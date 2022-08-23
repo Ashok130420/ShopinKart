@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        android:paddingHorizontal="@dimen/p20"
+        android:layout_marginTop="@dimen/m4"
+        android:paddingVertical="@dimen/p16">
+
+        <TextView
+            android:id="@+id/orderIdTV"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/order_id"
+            android:textColor="@color/primary_text"
+            android:textSize="@dimen/text_size_16"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/orderIdValueTV"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/m10"
+            android:text="@string/sic0011"
+            android:textColor="@color/primary_text"
+            android:textSize="@dimen/text_size_16"
+            app:layout_constraintBottom_toBottomOf="@+id/orderIdTV"
+            app:layout_constraintStart_toEndOf="@+id/orderIdTV"
+            app:layout_constraintTop_toTopOf="@+id/orderIdTV" />
+
+        <TextView
+            android:id="@+id/dateTV"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/m10"
+            android:text="@string/_01_07_2022"
+            android:textColor="@color/primary_text"
+            android:textSize="@dimen/text_size_16"
+            app:layout_constraintBottom_toBottomOf="@+id/orderIdTV"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/orderIdTV" />
+
+
+        <TextView
+            android:id="@+id/transactionIdTV"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingVertical="@dimen/p16"
+            android:text="@string/transaction_id"
+            android:textColor="@color/primary_text"
+            android:textSize="@dimen/text_size_16"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/orderIdTV" />
+
+        <TextView
+            android:id="@+id/transactionIdValueTV"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/m10"
+            android:text="@string/trn1234"
+            android:textColor="@color/primary_text"
+            android:textSize="@dimen/text_size_16"
+            app:layout_constraintBottom_toBottomOf="@+id/transactionIdTV"
+            app:layout_constraintStart_toEndOf="@+id/transactionIdTV"
+            app:layout_constraintTop_toTopOf="@+id/transactionIdTV" />
+
+        <TextView
+            android:id="@+id/downloadInvoiceTV"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/download_invoice"
+            android:textColor="@color/primary_text"
+            android:textSize="@dimen/text_size_16"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/transactionIdTV" />
+
+        <View
+            android:layout_width="0dp"
+            android:layout_height="1dp"
+            android:background="@color/primary_text"
+            app:layout_constraintEnd_toEndOf="@id/downloadInvoiceTV"
+            app:layout_constraintStart_toStartOf="@id/downloadInvoiceTV"
+            app:layout_constraintBottom_toBottomOf="@+id/downloadInvoiceTV" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>

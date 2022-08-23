@@ -1,0 +1,161 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+    </data>
+
+    <androidx.cardview.widget.CardView
+
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/background_corners_round">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+
+            android:layout_height="wrap_content">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/returnOrderCL"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="@dimen/m10"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <TextView
+                    android:id="@+id/titleTV"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@color/white"
+                    android:paddingVertical="@dimen/p14"
+                    android:textColor="@color/primary_text"
+                    android:textSize="@dimen/text_size_20"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+
+                    />
+
+                <ImageView
+                    android:id="@+id/backIV"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:background="@color/white"
+                    android:padding="@dimen/p8"
+                    android:src="@drawable/cross_icon_return_order"
+                    app:layout_constraintBottom_toBottomOf="@+id/titleTV"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="@+id/titleTV"
+                    tools:ignore="ContentDescription" />
+
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <RadioGroup
+                android:id="@+id/radioGroupReturnOrder"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/returnOrderCL">
+
+                <RadioButton
+                    android:id="@+id/damageRB"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/m10"
+                    android:backgroundTint="@color/radio_button"
+                    android:text="@string/damage_defective"
+                    android:textColor="@color/hint"
+                    android:textSize="@dimen/text_size_16" />
+
+                <RadioButton
+                    android:id="@+id/qualityNotGoodRB"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/m10"
+                    android:backgroundTint="@color/radio_button"
+                    android:text="@string/quality_not_good"
+                    android:textColor="@color/hint"
+                    android:textSize="@dimen/text_size_16" />
+
+                <RadioButton
+                    android:id="@+id/sizeIssueRB"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/m10"
+                    android:backgroundTint="@color/radio_button"
+                    android:text="@string/size_issue"
+                    android:textColor="@color/hint"
+                    android:textSize="@dimen/text_size_16" />
+
+                <RadioButton
+                    android:id="@+id/othersRB"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/m10"
+                    android:backgroundTint="@color/radio_button"
+                    android:text="@string/others"
+                    android:textColor="@color/hint"
+                    android:textSize="@dimen/text_size_16" />
+
+            </RadioGroup>
+
+            <TextView
+                android:id="@+id/descriptionTV"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="@dimen/m10"
+                android:background="@color/white"
+                android:paddingVertical="@dimen/p14"
+                android:text="@string/description"
+                android:textColor="@color/primary_text"
+                android:textSize="@dimen/text_size_14"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/radioGroupReturnOrder"
+
+                />
+
+            <EditText
+                android:id="@+id/descriptionET"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/m10"
+                android:background="@drawable/edit_text_background_boarder"
+                android:fontFamily="@font/dm_sans"
+                android:hint="@string/please_type_here"
+                android:inputType="textEmailAddress"
+                android:paddingHorizontal="@dimen/p20"
+                android:paddingVertical="@dimen/p16"
+                android:textColorHint="@color/hint"
+                android:textSize="14sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/descriptionTV"
+                tools:ignore="Autofill,ContentDescription,TextFields,UsingOnClickInXml" />
+
+            <TextView
+                android:id="@+id/submitRequestTV"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/m30"
+                android:layout_marginBottom="@dimen/m16"
+                android:background="@drawable/button_blue_radius5"
+                android:paddingHorizontal="@dimen/p30"
+                android:paddingVertical="@dimen/p14"
+                android:text="@string/submit_request"
+                android:textColor="@color/white"
+                android:textSize="@dimen/text_size_14"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/descriptionET"
+
+                />
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.cardview.widget.CardView>
+
+</layout>

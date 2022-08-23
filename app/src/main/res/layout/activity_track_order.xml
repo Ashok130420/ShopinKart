@@ -1,0 +1,278 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".activity.TrackOrderActivity">
+
+        <include
+            android:id="@+id/headerTrackOrder"
+            layout="@layout/header_product_cart" />
+
+        <!-- <ernestoyaquello.com.verticalstepperform.VerticalStepperFormView
+
+             android:id="@+id/stepper_form"
+             android:layout_width="match_parent"
+             android:layout_height="match_parent"
+             app:form_circle_background_color="@color/green"
+             app:form_next_button_background_color="@color/primary_Blue"
+             app:form_next_button_pressed_background_color="@color/golden_yellow"/>-->
+
+        <TextView
+            android:id="@+id/orderPlacedTimeTV"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/m20"
+            android:layout_marginTop="@dimen/m45"
+            android:paddingVertical="@dimen/p20"
+            android:text="@string/_9_30_am"
+            android:textColor="@color/primary_text"
+            android:textSize="@dimen/text_size_16"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/headerTrackOrder" />
+
+        <ImageView
+            android:id="@+id/orderPlacedIconIV"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_marginStart="@dimen/m24"
+            android:src="@drawable/green_right_icon"
+            app:layout_constraintBottom_toBottomOf="@+id/orderPlacedTimeTV"
+            app:layout_constraintStart_toEndOf="@+id/orderPlacedTimeTV"
+            app:layout_constraintTop_toTopOf="@+id/orderPlacedTimeTV"
+            tools:ignore="ContentDescription,UsingOnClickInXml" />
+
+        <TextView
+            android:id="@+id/orderPlacedTV"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/m30"
+            android:paddingVertical="@dimen/p20"
+            android:text="@string/order_placed"
+            android:textColor="@color/primary_text"
+            android:textSize="@dimen/text_size_18"
+            app:layout_constraintBottom_toBottomOf="@+id/orderPlacedTimeTV"
+            app:layout_constraintStart_toEndOf="@+id/orderPlacedIconIV"
+            app:layout_constraintTop_toTopOf="@+id/orderPlacedTimeTV" />
+
+        <TextView
+            android:id="@+id/orderPlacedDescriptionTV"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/your_order_sic0011_was_nplaced_for_delivery"
+            android:textColor="@color/unselected_Text_color"
+            android:textSize="@dimen/text_size_15"
+            app:layout_constraintStart_toStartOf="@+id/orderPlacedTV"
+            app:layout_constraintTop_toBottomOf="@+id/orderPlacedTV" />
+
+        <View
+            android:id="@+id/orderPlacedView"
+            android:layout_width="2dp"
+            android:layout_height="60dp"
+            android:layout_marginVertical="@dimen/m14"
+            android:background="@color/unselected_Text_color"
+            app:layout_constraintEnd_toEndOf="@+id/orderPlacedIconIV"
+            app:layout_constraintStart_toStartOf="@+id/orderPlacedIconIV"
+            app:layout_constraintTop_toBottomOf="@+id/orderPlacedIconIV" />
+
+        <!---->
+
+        <TextView
+            android:id="@+id/processingTimeTV"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/m20"
+            android:paddingVertical="@dimen/p20"
+            android:text="@string/_9_35_am"
+            android:textColor="@color/primary_text"
+            android:textSize="@dimen/text_size_16"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/orderPlacedView" />
+
+        <ImageView
+            android:id="@+id/processingIconIV"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_marginStart="@dimen/m24"
+            android:src="@drawable/green_right_icon"
+            app:layout_constraintBottom_toBottomOf="@+id/processingTimeTV"
+            app:layout_constraintStart_toEndOf="@+id/processingTimeTV"
+            app:layout_constraintTop_toTopOf="@+id/processingTimeTV"
+            tools:ignore="ContentDescription,UsingOnClickInXml" />
+
+        <TextView
+            android:id="@+id/processingTV"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/m30"
+            android:paddingVertical="@dimen/p20"
+            android:text="@string/processing"
+            android:textColor="@color/primary_text"
+            android:textSize="@dimen/text_size_18"
+            app:layout_constraintBottom_toBottomOf="@+id/processingTimeTV"
+            app:layout_constraintStart_toEndOf="@+id/processingIconIV"
+            app:layout_constraintTop_toTopOf="@+id/processingTimeTV" />
+
+        <TextView
+            android:id="@+id/processingDescriptionTV"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/your_order_is_accepted_and_n_we_are_processing_it"
+            android:textColor="@color/unselected_Text_color"
+            android:textSize="@dimen/text_size_15"
+            app:layout_constraintStart_toStartOf="@+id/processingTV"
+            app:layout_constraintTop_toBottomOf="@+id/processingTV" />
+
+        <View
+            android:id="@+id/processingView"
+            android:layout_width="2dp"
+            android:layout_height="60dp"
+            android:layout_marginVertical="@dimen/m14"
+            android:background="@color/unselected_Text_color"
+            app:layout_constraintEnd_toEndOf="@+id/processingIconIV"
+            app:layout_constraintStart_toStartOf="@+id/processingIconIV"
+            app:layout_constraintTop_toBottomOf="@+id/processingIconIV" />
+
+        <!---->
+
+        <TextView
+            android:id="@+id/outForDeliveryDateTV"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/m20"
+            android:paddingVertical="@dimen/p20"
+            android:text="@string/_9_55_am"
+            android:textColor="@color/primary_text"
+            android:textSize="@dimen/text_size_16"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/processingView" />
+
+        <ImageView
+            android:id="@+id/outForDeliveryIconIV"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_marginStart="@dimen/m24"
+            android:src="@drawable/green_right_icon"
+            app:layout_constraintBottom_toBottomOf="@+id/outForDeliveryDateTV"
+            app:layout_constraintStart_toEndOf="@+id/outForDeliveryDateTV"
+            app:layout_constraintTop_toTopOf="@+id/outForDeliveryDateTV"
+            tools:ignore="ContentDescription,UsingOnClickInXml" />
+
+        <TextView
+            android:id="@+id/outForDeliveryTV"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/m30"
+            android:paddingVertical="@dimen/p20"
+            android:text="@string/out_for_delivery"
+            android:textColor="@color/primary_text"
+            android:textSize="@dimen/text_size_18"
+            app:layout_constraintBottom_toBottomOf="@+id/outForDeliveryDateTV"
+            app:layout_constraintStart_toEndOf="@+id/outForDeliveryIconIV"
+            app:layout_constraintTop_toTopOf="@+id/outForDeliveryDateTV" />
+
+        <TextView
+            android:id="@+id/outForDeliveryDescriptionTV"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/our_delivery_agent_ram_nsingh_is_out_to_deliver_your_norder_91_9982099820"
+            android:textColor="@color/unselected_Text_color"
+            android:textSize="@dimen/text_size_15"
+            app:layout_constraintStart_toStartOf="@+id/outForDeliveryTV"
+            app:layout_constraintTop_toBottomOf="@+id/outForDeliveryTV" />
+
+        <View
+            android:id="@+id/outForDeliveryView"
+            android:layout_width="2dp"
+            android:layout_height="60dp"
+            android:layout_marginVertical="@dimen/m14"
+            android:background="@color/unselected_Text_color"
+            app:layout_constraintEnd_toEndOf="@+id/outForDeliveryIconIV"
+            app:layout_constraintStart_toStartOf="@+id/outForDeliveryIconIV"
+            app:layout_constraintTop_toBottomOf="@+id/outForDeliveryIconIV" />
+
+        <!---->
+
+
+        <TextView
+            android:id="@+id/deliveredDateTV"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/m20"
+            android:paddingVertical="@dimen/p20"
+            android:text="@string/_9_30_am"
+            android:textColor="@color/primary_text"
+            android:textSize="@dimen/text_size_16"
+            android:visibility="invisible"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/outForDeliveryView" />
+
+        <ImageView
+            android:id="@+id/deliveredIconIV"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_marginStart="@dimen/m24"
+            android:src="@drawable/circle_icon"
+            app:layout_constraintBottom_toBottomOf="@+id/deliveredDateTV"
+            app:layout_constraintStart_toEndOf="@+id/deliveredDateTV"
+            app:layout_constraintTop_toTopOf="@+id/deliveredDateTV"
+            tools:ignore="ContentDescription,UsingOnClickInXml" />
+
+        <TextView
+            android:id="@+id/deliveredTV"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/m30"
+            android:paddingVertical="@dimen/p20"
+            android:text="@string/delivered"
+            android:textColor="@color/primary_text"
+            android:textSize="@dimen/text_size_18"
+            app:layout_constraintBottom_toBottomOf="@+id/deliveredIconIV"
+            app:layout_constraintStart_toEndOf="@+id/deliveredIconIV"
+            app:layout_constraintTop_toTopOf="@+id/deliveredIconIV" />
+
+        <TextView
+            android:id="@+id/deliveredDescriptionTV"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/product_deliver_to_you_and_nmarked_as_deliverd_by_ncustomer"
+            android:textColor="@color/unselected_Text_color"
+            android:textSize="@dimen/text_size_15"
+            app:layout_constraintStart_toStartOf="@+id/deliveredTV"
+            app:layout_constraintTop_toBottomOf="@+id/deliveredTV" />
+
+        <View
+            android:id="@+id/deliveredView"
+            android:layout_width="2dp"
+            android:layout_height="60dp"
+            android:layout_marginVertical="@dimen/m14"
+            android:background="@color/unselected_Text_color"
+            app:layout_constraintEnd_toEndOf="@+id/outForDeliveryIconIV"
+            app:layout_constraintStart_toStartOf="@+id/outForDeliveryIconIV"
+            app:layout_constraintTop_toBottomOf="@+id/outForDeliveryIconIV" />
+
+        <TextView
+            android:id="@+id/cancelOrderTV"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/m30"
+            android:layout_marginEnd="@dimen/m20"
+            android:background="@drawable/shape_color_red"
+            android:paddingHorizontal="@dimen/p30"
+            android:paddingVertical="@dimen/p10"
+            android:text="@string/cancel_order"
+            android:textColor="@color/white"
+            android:textSize="@dimen/text_size_10"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/deliveredDescriptionTV" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

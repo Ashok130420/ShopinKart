@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:tools="http://schemas.android.com/tools"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="@dimen/m10"
+        android:layout_marginBottom="@dimen/m10"
+        android:background="@drawable/shape_round_corners_top_wear"
+        android:padding="@dimen/p16">
+
+        <ImageView
+            android:id="@+id/topWearIV"
+            android:layout_width="80dp"
+            android:layout_height="60dp"
+            android:scaleType="fitXY"
+            android:src="@drawable/top_wear"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:ignore="ContentDescription" />
+
+        <TextView
+            android:id="@+id/topWearTV"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/m10"
+            android:gravity="center"
+            android:text="@string/all_top_wear"
+            android:textSize="@dimen/text_size_12"
+            android:fontFamily="@font/dm_sans_medium"
+            app:layout_constraintEnd_toEndOf="@+id/topWearIV"
+            app:layout_constraintStart_toStartOf="@+id/topWearIV"
+            app:layout_constraintTop_toBottomOf="@id/topWearIV" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

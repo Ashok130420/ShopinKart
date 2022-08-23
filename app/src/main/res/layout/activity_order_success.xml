@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".activity.OrderSuccessActivity">
+
+        <include
+            android:id="@+id/headerOrderDetails"
+            layout="@layout/header_order_success" />
+
+        <ImageView
+            android:id="@+id/thankYouIV"
+            android:layout_width="300dp"
+            android:layout_height="180dp"
+            android:layout_marginTop="200dp"
+            android:src="@drawable/thank_you"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:ignore="ContentDescription" />
+
+        <TextView
+            android:id="@+id/trackDeliveryTV"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="@dimen/m35"
+            android:layout_marginTop="@dimen/m100"
+            android:gravity="center"
+            android:paddingVertical="@dimen/p10"
+            android:textColor="@color/unselected_Text_color"
+            android:textSize="@dimen/text_size_18"
+            app:layout_constraintTop_toBottomOf="@+id/thankYouIV" />
+
+        <TextView
+            android:id="@+id/goToOrdersTV"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="@dimen/m18"
+            android:layout_marginBottom="@dimen/m10"
+            android:background="@drawable/shape_text_blue"
+            android:gravity="center"
+            android:padding="@dimen/p16"
+            android:text="@string/go_to_your_orders"
+            android:textColor="@color/primary_Blue"
+            android:textSize="@dimen/text_size_14"
+            app:layout_constraintBottom_toTopOf="@+id/continueShoppingTV" />
+
+        <TextView
+            android:id="@+id/continueShoppingTV"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="@dimen/m18"
+            android:layout_marginTop="@dimen/m10"
+            android:layout_marginBottom="@dimen/m20"
+            android:background="@drawable/button_blue_radius5"
+            android:gravity="center"
+            android:padding="@dimen/p16"
+            android:text="@string/continue_shopping"
+            android:textColor="@color/white"
+            android:textSize="@dimen/text_size_14"
+            app:layout_constraintBottom_toBottomOf="parent" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

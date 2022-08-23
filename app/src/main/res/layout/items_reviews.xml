@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+       android:padding="@dimen/p10"
+        android:layout_marginTop="@dimen/m4"
+        android:background="@drawable/shape_fragment_corners_10">
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/profileIV"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:padding="@dimen/p1"
+            android:src="@drawable/profile"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/nameTV"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/m10"
+            android:text="@string/jon_deo"
+            android:textColor="@color/primary_text"
+            android:textSize="@dimen/text_size_16"
+            app:layout_constraintBottom_toBottomOf="@id/profileIV"
+            app:layout_constraintStart_toEndOf="@id/profileIV"
+            app:layout_constraintTop_toTopOf="@id/profileIV" />
+
+        <TextView
+            android:id="@+id/daysTV"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/m5"
+            android:text="@string/_1_day_ago"
+            android:textColor="@color/rating_bar_color"
+            android:textSize="@dimen/text_size_8"
+            app:layout_constraintBottom_toBottomOf="@id/nameTV"
+            app:layout_constraintStart_toEndOf="@id/nameTV" />
+
+        <RatingBar
+            android:id="@+id/ratingBarReviews"
+            style="@style/Widget.AppCompat.RatingBar.Small"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:numStars="5"
+            android:rating="4"
+            android:theme="@style/RatingBar"
+            app:layout_constraintBottom_toBottomOf="@id/profileIV"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@id/profileIV" />
+
+        <TextView
+            android:id="@+id/reviewMessageTV"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:padding="@dimen/p10"
+            android:text="@string/tim_responded_to_your_feedback_request_view_feedback_n_now_tim_responded_to_your_feedback_request_view_feedback_now"
+            android:textColor="@color/rating_bar_color"
+            android:textSize="@dimen/text_size_12"
+            android:layout_marginTop="@dimen/m10"
+            app:layout_constraintTop_toBottomOf="@id/profileIV"
+            app:layout_constraintStart_toStartOf="parent"
+            />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

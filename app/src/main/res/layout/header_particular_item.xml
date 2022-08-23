@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        android:paddingVertical="@dimen/p14">
+
+
+        <TextView
+            android:id="@+id/titleTV"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/m20"
+            android:text="@string/t_shirts"
+            android:textColor="@color/primary_text"
+            android:textSize="@dimen/text_size_18"
+            app:layout_constraintStart_toEndOf="@+id/backIV"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:ignore="RtlSymmetry" />
+
+        <ImageView
+            android:id="@+id/iconIV"
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:layout_marginStart="@dimen/m18"
+            android:padding="@dimen/p1"
+            android:src="@drawable/t_shirt_icon"
+            app:layout_constraintBottom_toBottomOf="@id/titleTV"
+            app:layout_constraintStart_toEndOf="@+id/titleTV"
+            app:layout_constraintTop_toTopOf="@id/titleTV"
+            tools:ignore="ContentDescription" />
+
+        <ImageView
+
+            android:id="@+id/backIV"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_marginStart="@dimen/m10"
+            android:background="@color/white"
+            android:src="@drawable/back_arrow"
+            app:layout_constraintBottom_toBottomOf="@+id/titleTV"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/titleTV"
+            tools:ignore="ContentDescription" />
+
+        <ImageView
+            android:id="@+id/cartIV"
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:layout_marginEnd="@dimen/m20"
+            android:padding="@dimen/p1"
+            android:src="@drawable/cart"
+            app:layout_constraintBottom_toBottomOf="@id/titleTV"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@id/titleTV"
+            tools:ignore="ContentDescription" />
+
+        <ImageView
+            android:id="@+id/searchIV"
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:layout_marginEnd="@dimen/m10"
+            android:padding="@dimen/p2"
+            android:src="@drawable/search_icon_black"
+            app:layout_constraintBottom_toBottomOf="@id/titleTV"
+            app:layout_constraintEnd_toStartOf="@+id/cartIV"
+            app:layout_constraintTop_toTopOf="@id/titleTV"
+            tools:ignore="ContentDescription" />
+
+        <TextView
+            android:id="@+id/cartItemTV"
+            android:layout_width="15dp"
+            android:layout_height="15dp"
+            android:background="@drawable/text_view_blue"
+            android:gravity="center"
+            android:maxLength="2"
+            android:text="@string/_4"
+            android:textColor="@color/white"
+            android:textSize="8sp"
+            app:layout_constraintEnd_toEndOf="@id/cartIV"
+            app:layout_constraintStart_toEndOf="@id/cartIV"
+            app:layout_constraintTop_toTopOf="@id/cartIV"
+            tools:ignore="SmallSp" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

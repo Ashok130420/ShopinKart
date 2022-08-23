@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/bottomHome"
+        android:icon="@drawable/home"
+        android:title="@string/home" />
+<item
+        android:id="@+id/bottomCategories"
+        android:icon="@drawable/categories"
+        android:title="@string/categories" />
+    <item
+        android:id="@+id/bottomOrders"
+        android:icon="@drawable/orders"
+        android:title="@string/orders" />
+    <item
+        android:id="@+id/bottomAccount"
+        android:icon="@drawable/account"
+        android:title="@string/account" />
+
+</menu>

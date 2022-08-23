@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/backGroundCL"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingStart="@dimen/p10">
+
+        <View
+            android:id="@+id/clothsView"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:background="@drawable/shape_round_blue"
+            android:visibility="gone"
+            app:layout_constraintBottom_toBottomOf="@+id/itemsNameTv"
+            app:layout_constraintEnd_toEndOf="@+id/itemsNameTv"
+            app:layout_constraintStart_toStartOf="@+id/itemsNameTv"
+            app:layout_constraintTop_toTopOf="@+id/itemsNameTv" />
+
+        <TextView
+            android:id="@+id/itemsNameTv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingHorizontal="@dimen/p20"
+            android:paddingVertical="@dimen/p10"
+            android:fontFamily="@font/dm_sans_medium"
+            android:text="@string/t_shirts"
+            android:textColor="@color/text_light_green"
+            android:textSize="@dimen/text_size_14"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>

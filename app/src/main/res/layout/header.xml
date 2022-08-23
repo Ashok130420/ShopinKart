@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/headerCL"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        android:paddingVertical="@dimen/m10">
+
+
+        <!--<ImageView
+            android:id="@+id/hamBurgerIV"
+            android:layout_width="17dp"
+            android:layout_height="17dp"
+            android:layout_marginHorizontal="@dimen/m18"
+            android:src="@drawable/ham_burger"
+            app:layout_constraintBottom_toBottomOf="@+id/nameTV"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/nameTV"
+            tools:ignore="ContentDescription" />-->
+
+
+        <ImageView
+            android:id="@+id/cartIV"
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:padding="@dimen/p2"
+
+            android:src="@drawable/cart"
+            app:layout_constraintEnd_toEndOf="@+id/cartItemTV"
+            app:layout_constraintTop_toTopOf="@+id/notificationIV"
+            tools:ignore="ContentDescription" />
+
+        <TextView
+            android:id="@+id/cartItemTV"
+            android:layout_width="15dp"
+            android:layout_height="15dp"
+            android:layout_marginEnd="@dimen/m18"
+            android:layout_marginBottom="15dp"
+            android:background="@drawable/text_view_blue"
+            android:gravity="center"
+            android:maxLength="2"
+            android:text="@string/_4"
+            android:textColor="@color/white"
+            android:textSize="8sp"
+            app:layout_constraintBottom_toBottomOf="@id/cartIV"
+            app:layout_constraintEnd_toEndOf="parent"
+            tools:ignore="SmallSp" />
+
+        <ImageView
+            android:id="@+id/notificationIV"
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:padding="@dimen/p1"
+            android:layout_marginEnd="11dp"
+            android:src="@drawable/notification"
+            app:layout_constraintBottom_toBottomOf="@+id/nameTV"
+            app:layout_constraintEnd_toStartOf="@+id/cartIV"
+            app:layout_constraintTop_toTopOf="@+id/nameTV"
+            tools:ignore="ContentDescription" />
+
+        <TextView
+            android:id="@+id/nameTV"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+
+
+            android:fontFamily="@font/dm_sans"
+            android:gravity="center"
+            android:textColor="@color/primary_Blue"
+            android:textSize="@dimen/text_size_20"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:ignore="SmallSp" />
+
+        <TextView
+            android:id="@+id/notificationItemTV"
+            android:layout_width="10dp"
+            android:layout_height="10dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="2dp"
+            android:layout_marginBottom="15dp"
+            android:background="@drawable/text_view_red"
+            android:gravity="center"
+            android:textColor="@color/white"
+            app:layout_constraintBottom_toBottomOf="@id/notificationIV"
+            app:layout_constraintEnd_toEndOf="@id/notificationIV"
+            tools:ignore="SmallSp" />
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/profileIV"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:padding="@dimen/p1"
+            android:layout_marginHorizontal="@dimen/m18"
+            android:src="@drawable/profile"
+            app:layout_constraintBottom_toBottomOf="@+id/nameTV"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/nameTV" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

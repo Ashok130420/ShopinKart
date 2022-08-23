@@ -1,0 +1,276 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/fragment_background"
+        tools:context="com.example.shopinkarts.fragments.AccountFragment">
+
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/profileCL"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/white"
+            app:layout_constraintTop_toTopOf="parent">
+
+
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/profileIV"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:layout_marginHorizontal="@dimen/m14"
+                android:layout_marginTop="@dimen/m6"
+                android:src="@drawable/profile"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/phoneNumberTV"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:gravity="center"
+                android:text="@string/_91_8945346789"
+                android:textColor="@color/primary_text"
+                android:textSize="@dimen/text_size_14"
+                app:layout_constraintEnd_toEndOf="@+id/profileIV"
+                app:layout_constraintStart_toStartOf="@+id/profileIV"
+                app:layout_constraintTop_toBottomOf="@+id/profileIV"
+
+                />
+
+            <TextView
+                android:id="@+id/walletTV"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/m5"
+                android:layout_marginBottom="@dimen/m10"
+                android:background="@drawable/shape_round_black"
+                android:gravity="center"
+                android:paddingHorizontal="@dimen/p16"
+                android:paddingVertical="@dimen/p5"
+                android:paddingStart="60dp"
+                android:text="@string/rs_00"
+                android:textColor="@color/wallet"
+                android:textSize="@dimen/text_size_14"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="@+id/profileIV"
+                app:layout_constraintStart_toStartOf="@+id/profileIV"
+                app:layout_constraintTop_toBottomOf="@+id/phoneNumberTV"
+                tools:ignore="RtlSymmetry" />
+
+            <ImageView
+                android:layout_width="40dp"
+                android:layout_height="30dp"
+                android:layout_marginStart="@dimen/m10"
+                android:src="@drawable/wallet"
+                app:layout_constraintBottom_toBottomOf="@+id/walletTV"
+                app:layout_constraintStart_toStartOf="@+id/walletTV"
+                app:layout_constraintTop_toTopOf="@+id/walletTV"
+                tools:ignore="ContentDescription" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+        <TextView
+            android:id="@+id/myTransactionTV"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/m8"
+            android:background="@color/white"
+            android:padding="@dimen/p14"
+            android:text="@string/my_transactions"
+            android:textColor="@color/primary_text"
+            android:textSize="@dimen/text_size_14"
+            app:layout_constraintTop_toBottomOf="@id/profileCL"
+
+            />
+
+        <ImageView
+            android:id="@+id/myTransactionIV"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_marginEnd="@dimen/m16"
+            android:background="@color/white"
+            android:padding="@dimen/p8"
+            android:src="@drawable/arrow_next"
+            app:layout_constraintBottom_toBottomOf="@+id/myTransactionTV"
+            app:layout_constraintEnd_toEndOf="@+id/myTransactionTV"
+            app:layout_constraintTop_toTopOf="@+id/myTransactionTV"
+            tools:ignore="ContentDescription" />
+
+        <TextView
+            android:id="@+id/addressesTV"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/m4"
+            android:background="@color/white"
+            android:padding="@dimen/p14"
+            android:text="@string/addresses"
+            android:textColor="@color/primary_text"
+            android:textSize="@dimen/text_size_14"
+            app:layout_constraintTop_toBottomOf="@id/myTransactionTV"
+
+            />
+
+        <ImageView
+            android:id="@+id/addressesIV"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_marginEnd="@dimen/m16"
+            android:background="@color/white"
+            android:padding="@dimen/p8"
+            android:src="@drawable/arrow_next"
+            app:layout_constraintBottom_toBottomOf="@+id/addressesTV"
+            app:layout_constraintEnd_toEndOf="@+id/addressesTV"
+            app:layout_constraintTop_toTopOf="@+id/addressesTV"
+            tools:ignore="ContentDescription" />
+
+        <TextView
+            android:id="@+id/customerSupportTV"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/m4"
+            android:background="@color/white"
+            android:padding="@dimen/p14"
+            android:text="@string/customer_support"
+            android:textColor="@color/primary_text"
+            android:textSize="@dimen/text_size_14"
+            app:layout_constraintTop_toBottomOf="@id/addressesTV"
+
+            />
+
+        <ImageView
+            android:id="@+id/customerSupportIV"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_marginEnd="@dimen/m16"
+            android:background="@color/white"
+            android:padding="@dimen/p8"
+            android:src="@drawable/arrow_next"
+            app:layout_constraintBottom_toBottomOf="@+id/customerSupportTV"
+            app:layout_constraintEnd_toEndOf="@+id/customerSupportTV"
+            app:layout_constraintTop_toTopOf="@+id/customerSupportTV"
+            tools:ignore="ContentDescription" />
+
+        <TextView
+            android:id="@+id/aboutTV"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/m4"
+            android:background="@color/white"
+            android:padding="@dimen/p14"
+            android:text="@string/about_shopinkarts"
+            android:textColor="@color/primary_text"
+            android:textSize="@dimen/text_size_14"
+            app:layout_constraintTop_toBottomOf="@id/customerSupportTV"
+
+            />
+
+        <ImageView
+            android:id="@+id/aboutIV"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_marginEnd="@dimen/m16"
+            android:background="@color/white"
+            android:padding="@dimen/p8"
+            android:src="@drawable/arrow_next"
+            app:layout_constraintBottom_toBottomOf="@+id/aboutTV"
+            app:layout_constraintEnd_toEndOf="@+id/aboutTV"
+            app:layout_constraintTop_toTopOf="@+id/aboutTV"
+            tools:ignore="ContentDescription" />
+
+        <TextView
+            android:id="@+id/termsConditionsTV"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/m4"
+            android:background="@color/white"
+            android:padding="@dimen/p14"
+            android:text="@string/terms_conditions"
+            android:textColor="@color/primary_text"
+            android:textSize="@dimen/text_size_14"
+            app:layout_constraintTop_toBottomOf="@id/aboutTV"
+
+            />
+
+        <ImageView
+            android:id="@+id/termsConditionsIV"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_marginEnd="@dimen/m16"
+            android:background="@color/white"
+            android:padding="@dimen/p8"
+            android:src="@drawable/arrow_next"
+            app:layout_constraintBottom_toBottomOf="@+id/termsConditionsTV"
+            app:layout_constraintEnd_toEndOf="@+id/termsConditionsTV"
+            app:layout_constraintTop_toTopOf="@+id/termsConditionsTV"
+            tools:ignore="ContentDescription" />
+
+        <TextView
+            android:id="@+id/refundPolicyTV"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/m4"
+            android:background="@color/white"
+            android:padding="@dimen/p14"
+            android:text="@string/refund_policy"
+            android:textColor="@color/primary_text"
+            android:textSize="@dimen/text_size_14"
+            app:layout_constraintTop_toBottomOf="@id/termsConditionsTV"
+
+            />
+
+        <ImageView
+            android:id="@+id/refundPolicyIV"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_marginEnd="@dimen/m16"
+            android:background="@color/white"
+            android:padding="@dimen/p8"
+            android:src="@drawable/arrow_next"
+            app:layout_constraintBottom_toBottomOf="@+id/refundPolicyTV"
+            app:layout_constraintEnd_toEndOf="@+id/refundPolicyTV"
+            app:layout_constraintTop_toTopOf="@+id/refundPolicyTV"
+            tools:ignore="ContentDescription" />
+
+
+        <TextView
+            android:id="@+id/privacyPolicyTV"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/m4"
+            android:background="@color/white"
+            android:padding="@dimen/p14"
+            android:text="@string/privacy_policy"
+            android:textColor="@color/primary_text"
+            android:textSize="@dimen/text_size_14"
+            app:layout_constraintTop_toBottomOf="@id/refundPolicyTV"
+
+            />
+
+        <ImageView
+            android:id="@+id/privacyPolicyIV"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_marginEnd="@dimen/m16"
+            android:background="@color/white"
+            android:padding="@dimen/p8"
+            android:src="@drawable/arrow_next"
+            app:layout_constraintBottom_toBottomOf="@+id/privacyPolicyTV"
+            app:layout_constraintEnd_toEndOf="@+id/privacyPolicyTV"
+            app:layout_constraintTop_toTopOf="@+id/privacyPolicyTV"
+            tools:ignore="ContentDescription" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

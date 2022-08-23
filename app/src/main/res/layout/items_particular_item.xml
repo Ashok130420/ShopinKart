@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+    </data>
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:cardCornerRadius="@dimen/m10"
+        app:cardUseCompatPadding="true">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/sale_background">
+
+            <ImageView
+                android:id="@+id/discountTagIV"
+                android:layout_width="55dp"
+                android:layout_height="20dp"
+                android:layout_marginTop="@dimen/m10"
+                android:scaleType="fitXY"
+                android:src="@drawable/discount_tag"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/discountTV"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="@dimen/p1"
+                android:text="@string/_10_off"
+                android:textColor="@color/white"
+                android:textSize="@dimen/m10"
+                app:layout_constraintBottom_toBottomOf="@+id/discountTagIV"
+                app:layout_constraintStart_toStartOf="@+id/discountTagIV"
+                app:layout_constraintTop_toTopOf="@id/discountTagIV"
+                tools:ignore="SpUsage" />
+
+            <ImageView
+                android:id="@+id/imageIV"
+                android:layout_width="match_parent"
+                android:layout_height="180dp"
+                android:layout_marginHorizontal="@dimen/m20"
+                android:layout_marginVertical="@dimen/p12"
+                android:scaleType="fitXY"
+                android:src="@drawable/newly_added_image"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/t_shirtNameTV"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="@dimen/m10"
+                android:layout_marginTop="@dimen/m16"
+                android:fontFamily="@font/dm_sans"
+                android:text="@string/linen_t_shirt"
+                android:textColor="@color/primary_text"
+                android:textSize="@dimen/text_size_14"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/imageIV" />
+
+            <TextView
+                android:id="@+id/priceTV"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/m6"
+                android:fontFamily="@font/dm_sans"
+                android:text="@string/rs_100_rs_500"
+                android:textColor="@color/red_velvet"
+                android:textSize="@dimen/text_size_14"
+                app:layout_constraintStart_toStartOf="@+id/t_shirtNameTV"
+                app:layout_constraintTop_toBottomOf="@+id/t_shirtNameTV" />
+
+            <RatingBar
+                android:id="@+id/ratingBar"
+                style="@style/Widget.AppCompat.RatingBar.Small"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/m10"
+                android:layout_marginBottom="@dimen/m10"
+                android:isIndicator="true"
+                android:numStars="1"
+                android:rating="1"
+                android:theme="@style/RatingBar"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="@+id/t_shirtNameTV"
+                app:layout_constraintTop_toBottomOf="@+id/priceTV" />
+
+            <TextView
+                android:id="@+id/ratingTV"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/m5"
+                android:fontFamily="@font/dm_sans"
+                android:text="@string/_4_6"
+                android:textColor="@color/primary_text"
+                android:textSize="@dimen/text_size_12"
+                app:layout_constraintBottom_toBottomOf="@+id/ratingBar"
+                app:layout_constraintStart_toEndOf="@+id/ratingBar"
+                app:layout_constraintTop_toTopOf="@+id/ratingBar" />
+
+            <ImageView
+                android:id="@+id/optionMenuIV"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:layout_marginEnd="@dimen/m10"
+                android:padding="3dp"
+                android:scaleType="fitXY"
+                android:src="@drawable/option_menu"
+                app:layout_constraintBottom_toBottomOf="@+id/ratingBar"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/ratingBar" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.cardview.widget.CardView>
+</layout>

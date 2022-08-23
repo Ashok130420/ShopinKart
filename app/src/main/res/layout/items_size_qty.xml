@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:id="@+id/colorIV"
+            android:layout_width="@dimen/m24"
+            android:layout_height="@dimen/m24"
+            android:layout_margin="@dimen/p2"
+            android:background="@drawable/shape_color_red"
+            android:padding="@dimen/p8"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:ignore="ContentDescription" />
+
+        <TextView
+            android:id="@+id/sizeTV"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/m10"
+            android:paddingVertical="@dimen/p2"
+            android:text="@string/size"
+            android:fontFamily="@font/dm_sans_medium"
+            android:textColor="@color/dark_Gray"
+            android:textSize="@dimen/text_size_12"
+            app:layout_constraintBottom_toBottomOf="@+id/colorIV"
+            app:layout_constraintStart_toEndOf="@+id/colorIV"
+            app:layout_constraintTop_toTopOf="@+id/colorIV" />
+
+        <TextView
+            android:id="@+id/sizeBlockTV"
+            android:layout_width="@dimen/m24"
+            android:layout_height="@dimen/m24"
+            android:layout_marginStart="@dimen/m10"
+            android:background="@drawable/shape_color_grey"
+            android:gravity="center"
+            android:padding="@dimen/p2"
+            android:text="@string/m"
+            android:textColor="@color/primary_text"
+            app:layout_constraintBottom_toBottomOf="@+id/sizeTV"
+            app:layout_constraintStart_toEndOf="@+id/sizeTV"
+            app:layout_constraintTop_toTopOf="@+id/sizeTV"
+            tools:ignore="ContentDescription" />
+
+        <TextView
+            android:id="@+id/qtyTV"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/m10"
+            android:paddingVertical="@dimen/p2"
+            android:text="@string/qty"
+            android:textColor="@color/dark_Gray"
+            android:fontFamily="@font/dm_sans_medium"
+            android:textSize="@dimen/text_size_12"
+            app:layout_constraintBottom_toBottomOf="@+id/sizeBlockTV"
+            app:layout_constraintStart_toEndOf="@+id/sizeBlockTV"
+            app:layout_constraintTop_toTopOf="@+id/sizeBlockTV" />
+
+        <TextView
+            android:id="@+id/qtyValueTV"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/m10"
+            android:layout_marginEnd="@dimen/p2"
+            android:gravity="center"
+            android:padding="@dimen/p2"
+            android:text="@string/_4"
+            android:textColor="@color/primary_text"
+            android:textSize="@dimen/text_size_12"
+            app:layout_constraintBottom_toBottomOf="@+id/sizeTV"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/qtyTV"
+            app:layout_constraintTop_toTopOf="@+id/sizeTV"
+            tools:ignore="ContentDescription" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

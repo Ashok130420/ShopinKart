@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="purple_200">#FFBB86FC</color>
+    <color name="purple_500">#3669C9</color>
+    <color name="purple_700">#3669C9</color>
+    <color name="teal_200">#C4C5C4</color>
+    <color name="teal_700">#FF018786</color>
+    <color name="black">#000000</color>
+    <color name="white">#FFFFFFFF</color>
+    <color name="primary_Blue">#3669C9</color>
+    <color name="dark_Gray">#ACACAC</color>
+    <color name="light_Gray">#F1F1F1</color>
+    <color name="app_Black">#130F26</color>
+    <color name="unselected_Text_color">#9EA6BE</color>
+    <color name="bba_EComm">#9EA6BE</color>
+    <color name="primary_text">#0C1A30</color>
+    <color name="dark_gray">#838589</color>
+    <color name="edit_text_background">#FAFAFA</color>
+    <color name="fragment_background">#FAFAFA</color>
+    <color name="hint">#C4C5C4</color>
+    <color name="red">#EE4C41</color>
+    <color name="red_velvet">#FE3A30</color>
+    <color name="golden_yellow">#FFC120</color>
+    <color name="grey">#F6F6F6</color>
+    <color name="sale_background">#FDF5E0</color>
+    <color name="orange">#F29233</color>
+    <color name="text_light_green">#77886B</color>
+    <color name="wallet">#BABDC1</color>
+    <color name="hint_color">#A7B6C0</color>
+    <color name="light_green">#C2E2B4</color>
+    <color name="dark_text">#494949</color>
+    <color name="green">#229D4C</color>
+    <color name="text_green">#36A65C</color>
+    <color name="radio_button">#BABABA</color>
+    <color name="rating_bar_color">#D9D9D9</color>
+
+
+</resources>
