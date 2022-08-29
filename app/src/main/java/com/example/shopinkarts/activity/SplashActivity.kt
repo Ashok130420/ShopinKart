@@ -1,12 +1,15 @@
 package com.example.shopinkarts.activity
 
+import android.R
 import android.content.Intent
 import android.os.Bundle
 import android.os.Handler
+import android.view.Window
 import android.view.WindowManager
 import androidx.appcompat.app.AppCompatActivity
-import com.example.shopinkarts.R
+import androidx.core.content.ContextCompat
 import com.example.shopinkarts.classes.SharedPreference
+
 
 class SplashActivity : AppCompatActivity() {
 
@@ -14,7 +17,8 @@ class SplashActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_splash)
+        setContentView(com.example.shopinkarts.R.layout.activity_splash)
+
 
         sharedPreference = SharedPreference(this)
         // Full Screen Hide the status bar

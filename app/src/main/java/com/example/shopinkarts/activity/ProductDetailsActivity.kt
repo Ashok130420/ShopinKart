@@ -148,9 +148,11 @@ class ProductDetailsActivity : AppCompatActivity() {
         binding.readReviewsHeaderCL.setOnClickListener {
             if (binding.readReviewsDetailsCL.visibility == View.VISIBLE) {
                 binding.readReviewsDetailsCL.visibility = View.GONE
+                binding.reviewHeaderView.visibility = View.VISIBLE
                 binding.readReviewsIV.rotation = 0F
             } else if (binding.readReviewsDetailsCL.visibility == View.GONE) {
                 binding.readReviewsDetailsCL.visibility = View.VISIBLE
+                binding.reviewHeaderView.visibility = View.GONE
                 binding.readReviewsIV.rotation = 90F
             }
         }

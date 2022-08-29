@@ -31,7 +31,7 @@ class CommonRecyclerViewAdapter(val context: Context, val arrayList: ArrayList<C
 
         holder.binding.titleTv.text = arrayList[position].name
         holder.binding.viewALl.text = arrayList[position].viewAll
-        holder.shopForAdapter = ShopForAdapter(context)
+       // holder.shopForAdapter = ShopForAdapter(context)
 
 
 

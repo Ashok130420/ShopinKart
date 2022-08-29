@@ -24,7 +24,7 @@
             app:layout_constraintTop_toTopOf="parent">
 
             <ImageView
-                android:id="@+id/menIV"
+                android:id="@+id/iconIV"
                 android:layout_width="60dp"
                 android:layout_height="60dp"
                 android:scaleType="fitXY"
@@ -43,10 +43,9 @@
             app:layout_constraintTop_toBottomOf="@id/imageCL">
 
             <TextView
-                android:id="@+id/textViewFood"
+                android:id="@+id/nameTV"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/m8"
                 android:fontFamily="@font/dm_sans_medium"
                 android:text="@string/men"
                 android:textColor="@color/primary_text"

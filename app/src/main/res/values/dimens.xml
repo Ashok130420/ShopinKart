@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
     <dimen name="p12">12dp</dimen>
     <dimen name="text_size_25">25sp</dimen>
     <dimen name="p25">25dp</dimen>
@@ -52,4 +52,5 @@
     <dimen name="m7">7dp</dimen>
     <dimen name="m2">2dp</dimen>
     <dimen name="text_size_13">13sp</dimen>
+    <dimen name="design_navigation_icon_size" tools:override="true">20dp</dimen>
 </resources>

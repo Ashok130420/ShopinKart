@@ -31,6 +31,7 @@
             android:id="@+id/navBottomMenu"
             android:layout_width="match_parent"
             android:layout_height="60dp"
+            app:itemIconSize="20dp"
             android:background="@drawable/nav_bottom_background"
             app:labelVisibilityMode="labeled"
             app:layout_constraintBottom_toBottomOf="parent"

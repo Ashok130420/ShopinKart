@@ -1,17 +1,31 @@
 package com.example.shopinkarts.activity
 
 import android.content.Intent
+import android.os.Build
 import android.os.Bundle
+import android.util.Log
 import android.view.View
+import android.view.Window
+import android.view.WindowManager
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.constraintlayout.widget.ConstraintLayout
+import androidx.core.content.ContextCompat
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import com.example.shopinkarts.R
+import com.example.shopinkarts.api.RetrofitClient
+import com.example.shopinkarts.classes.SharedPreference
 import com.example.shopinkarts.databinding.ActivityDashBoardBinding
 import com.example.shopinkarts.fragments.AccountFragment
 import com.example.shopinkarts.fragments.CategoriesFragment
 import com.example.shopinkarts.fragments.HomeFragment
 import com.example.shopinkarts.fragments.OrdersFragment
+import com.example.shopinkarts.response.DashBoardResponse
+import com.example.shopinkarts.response.ShopFor
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 
 class DashBoardActivity : AppCompatActivity() {
 
@@ -20,6 +34,7 @@ class DashBoardActivity : AppCompatActivity() {
     private val categoriesFragment = CategoriesFragment()
     private val ordersFragment = OrdersFragment()
     private val accountFragment = AccountFragment()
+
 
     companion object {
         var mInstance: DashBoardActivity = DashBoardActivity()
@@ -32,6 +47,11 @@ class DashBoardActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = DataBindingUtil.setContentView(this, R.layout.activity_dash_board)
 
+        /*   val window: Window = this.window
+           window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS)
+           window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS)
+           window.statusBarColor = ContextCompat.getColor(this, R.color.white)
+ */
         mInstance = this
 
         binding.headerDashBoard.notificationIV.setOnClickListener {
@@ -96,4 +116,6 @@ class DashBoardActivity : AppCompatActivity() {
     private fun myOrders() {
         binding.navBottomMenu.selectedItemId = R.id.bottomOrders
     }
+
+
 }

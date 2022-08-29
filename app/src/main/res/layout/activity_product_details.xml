@@ -527,6 +527,7 @@
                                 tools:ignore="ContentDescription" />
 
                             <View
+                                android:id="@+id/reviewHeaderView"
                                 android:layout_width="match_parent"
                                 android:layout_height="1dp"
                                 android:background="@color/light_Gray"
@@ -540,7 +541,7 @@
                             android:id="@+id/readReviewsDetailsCL"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:visibility="visible"
+                            android:visibility="gone"
                             app:layout_constraintTop_toBottomOf="@+id/readReviewsHeaderCL">
 
                             <androidx.constraintlayout.widget.ConstraintLayout
@@ -597,24 +598,17 @@
                                     app:layout_constraintBottom_toBottomOf="parent"
                                     app:layout_constraintStart_toStartOf="parent" />
 
-                                <!-- <View
-                                     android:id="@+id/star5"
-                                     android:layout_width="80dp"
-                                     android:layout_height="6dp"
-                                     android:background="@drawable/rating_bar"
-                                     app:layout_constraintEnd_toEndOf="parent"
-                                     app:layout_constraintTop_toTopOf="parent" />-->
 
                                 <ProgressBar
 
                                     android:id="@+id/star5"
                                     style="?android:attr/progressBarStyleHorizontal"
                                     android:layout_width="80dp"
-                                    android:layout_height="wrap_content"
-                                    android:indeterminateTint="@color/golden_yellow"
-                                    android:progress="70"
+                                    android:layout_height="4dp"
+                                    android:layout_marginTop="@dimen/m10"
                                     android:max="100"
-
+                                    android:progress="90"
+                                    android:progressDrawable="@drawable/custom_progress_bar"
                                     app:layout_constraintEnd_toEndOf="parent"
                                     app:layout_constraintTop_toTopOf="parent" />
 
@@ -631,12 +625,16 @@
                                     app:layout_constraintEnd_toStartOf="@id/star5"
                                     app:layout_constraintTop_toTopOf="@id/star5" />
 
-                                <View
+
+                                <ProgressBar
                                     android:id="@+id/star4"
+                                    style="?android:attr/progressBarStyleHorizontal"
                                     android:layout_width="80dp"
-                                    android:layout_height="6dp"
+                                    android:layout_height="4dp"
                                     android:layout_marginTop="@dimen/m10"
-                                    android:background="@drawable/rating_bar"
+                                    android:max="100"
+                                    android:progress="70"
+                                    android:progressDrawable="@drawable/custom_progress_bar"
                                     app:layout_constraintEnd_toEndOf="parent"
                                     app:layout_constraintTop_toBottomOf="@+id/star5" />
 
@@ -652,12 +650,16 @@
                                     app:layout_constraintEnd_toStartOf="@id/star4"
                                     app:layout_constraintTop_toTopOf="@id/star4" />
 
-                                <View
+
+                                <ProgressBar
                                     android:id="@+id/star3"
+                                    style="?android:attr/progressBarStyleHorizontal"
                                     android:layout_width="80dp"
-                                    android:layout_height="6dp"
+                                    android:layout_height="4dp"
                                     android:layout_marginTop="@dimen/m10"
-                                    android:background="@drawable/rating_bar"
+                                    android:max="100"
+                                    android:progress="50"
+                                    android:progressDrawable="@drawable/custom_progress_bar"
                                     app:layout_constraintEnd_toEndOf="parent"
                                     app:layout_constraintTop_toBottomOf="@+id/star4" />
 
@@ -673,12 +675,16 @@
                                     app:layout_constraintEnd_toStartOf="@id/star3"
                                     app:layout_constraintTop_toTopOf="@id/star3" />
 
-                                <View
+
+                                <ProgressBar
                                     android:id="@+id/star2"
+                                    style="?android:attr/progressBarStyleHorizontal"
                                     android:layout_width="80dp"
-                                    android:layout_height="6dp"
+                                    android:layout_height="4dp"
                                     android:layout_marginTop="@dimen/m10"
-                                    android:background="@drawable/rating_bar"
+                                    android:max="100"
+                                    android:progress="30"
+                                    android:progressDrawable="@drawable/custom_progress_bar"
                                     app:layout_constraintEnd_toEndOf="parent"
                                     app:layout_constraintTop_toBottomOf="@+id/star3" />
 
@@ -694,12 +700,16 @@
                                     app:layout_constraintEnd_toStartOf="@id/star2"
                                     app:layout_constraintTop_toTopOf="@id/star2" />
 
-                                <View
+
+                                <ProgressBar
                                     android:id="@+id/star1"
+                                    style="?android:attr/progressBarStyleHorizontal"
                                     android:layout_width="80dp"
-                                    android:layout_height="6dp"
+                                    android:layout_height="4dp"
                                     android:layout_marginTop="@dimen/m10"
-                                    android:background="@drawable/rating_bar"
+                                    android:max="100"
+                                    android:progress="10"
+                                    android:progressDrawable="@drawable/custom_progress_bar"
                                     app:layout_constraintEnd_toEndOf="parent"
                                     app:layout_constraintTop_toBottomOf="@+id/star2" />
 

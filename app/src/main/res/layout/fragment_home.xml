@@ -37,7 +37,7 @@
                     android:layout_marginTop="@dimen/m10"
                     app:layout_constraintTop_toTopOf="parent">
 
-                    <com.denzcoskun.imageslider.ImageSlider
+                    <!--<com.denzcoskun.imageslider.ImageSlider
                         android:id="@+id/imageSlider"
                         android:layout_width="match_parent"
                         android:layout_height="140dp"
@@ -51,7 +51,28 @@
                         app:iss_selected_dot="@drawable/default_selected_dot"
                         app:iss_unselected_dot="@drawable/default_unselected_dot"
                         app:layout_constraintTop_toTopOf="parent"
-                        tools:ignore="MissingConstraints" />
+                        tools:ignore="MissingConstraints" />-->
+
+                    <androidx.viewpager2.widget.ViewPager2
+                        android:id="@+id/introSliderViewPager"
+                        android:layout_width="match_parent"
+                        android:layout_height="130dp"
+                        android:layout_marginTop="@dimen/m10"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <LinearLayout
+                        android:id="@+id/indicatorsContainers"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/m10"
+                        android:gravity="center"
+                        android:orientation="horizontal"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/introSliderViewPager" />
+
 
                     <!--   <androidx.recyclerview.widget.RecyclerView
                            android:id="@+id/recyclerView"
@@ -64,6 +85,7 @@
                            tools:itemCount="1"
                            tools:listitem="@layout/items_shop_for"
                            />-->
+
                     <TextView
                         android:id="@+id/shopForTV"
                         android:layout_width="wrap_content"
@@ -74,7 +96,7 @@
                         android:textColor="@color/primary_text"
                         android:textSize="@dimen/text_size_18"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/imageSlider" />
+                        app:layout_constraintTop_toBottomOf="@+id/indicatorsContainers" />
 
                     <androidx.recyclerview.widget.RecyclerView
                         android:id="@+id/shopForRV"
