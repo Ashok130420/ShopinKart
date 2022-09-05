@@ -10,7 +10,7 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginHorizontal="@dimen/m14"
+
         tools:context=".activity.ViewAllActivity">
 
         <include
@@ -22,7 +22,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/p2"
-            android:background="@color/light_Gray"
+            android:background="@color/primary_Blue"
             app:layout_constraintTop_toBottomOf="@+id/headerViewAll">
 
             <androidx.constraintlayout.widget.ConstraintLayout
@@ -40,7 +40,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/shorting"
-                    android:textColor="@color/primary_text"
+                    android:textColor="@color/white"
                     android:textSize="@dimen/text_size_16"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
@@ -53,12 +53,22 @@
                     android:layout_height="25dp"
                     android:layout_marginStart="@dimen/m10"
                     android:padding="@dimen/p1"
-                    android:src="@drawable/shorting_icon"
+                    android:src="@drawable/shortng_icon_white"
                     app:layout_constraintBottom_toBottomOf="@id/shortTV"
                     app:layout_constraintStart_toEndOf="@+id/shortTV"
                     app:layout_constraintTop_toTopOf="@id/shortTV"
                     tools:ignore="ContentDescription" />
             </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <View
+                android:id="@+id/view1"
+                android:layout_width="1dp"
+                android:layout_height="15dp"
+                android:background="@color/white"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@id/filterCL"
+                app:layout_constraintStart_toEndOf="@+id/shortingCL"
+                app:layout_constraintTop_toTopOf="parent" />
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/filterCL"
@@ -76,7 +86,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="@dimen/m6"
                     android:text="@string/filter"
-                    android:textColor="@color/primary_text"
+                    android:textColor="@color/white"
                     android:textSize="@dimen/text_size_16"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
@@ -89,7 +99,7 @@
                     android:layout_height="25dp"
                     android:layout_marginStart="@dimen/m10"
                     android:padding="@dimen/p4"
-                    android:src="@drawable/filter_icon"
+                    android:src="@drawable/filter_icon_white"
                     app:layout_constraintStart_toEndOf="@+id/filterTV"
                     app:layout_constraintTop_toTopOf="parent"
                     tools:ignore="ContentDescription" />
@@ -100,16 +110,17 @@
         </androidx.constraintlayout.widget.ConstraintLayout>
 
         <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/newlyAddedRV"
+            android:id="@+id/viewAllRV"
             android:layout_width="match_parent"
             android:layout_height="0dp"
+            android:layout_marginHorizontal="@dimen/m14"
             android:layout_marginTop="@dimen/m10"
             app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/shortingFilterCL"
             app:spanCount="2"
             tools:itemCount="8"
-            tools:listitem="@layout/items_newly_added" />
+            tools:listitem="@layout/items_filter_items" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

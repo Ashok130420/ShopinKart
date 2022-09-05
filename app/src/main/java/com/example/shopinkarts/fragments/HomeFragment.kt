@@ -1,17 +1,12 @@
 package com.example.shopinkarts.fragments
 
-import android.content.Context
+
 import android.content.Intent
 import android.os.Bundle
 import android.os.Handler
 import android.util.Log
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
-import android.widget.ImageView
-import android.widget.LinearLayout
-import android.widget.ListPopupWindow
-import android.widget.Toast
+import android.view.*
+import android.widget.*
 import androidx.core.content.ContextCompat
 import androidx.core.view.get
 import androidx.databinding.DataBindingUtil
@@ -23,13 +18,10 @@ import com.example.shopinkarts.R
 import com.example.shopinkarts.activity.ViewAllActivity
 import com.example.shopinkarts.adapter.*
 import com.example.shopinkarts.api.RetrofitClient
-import com.example.shopinkarts.classes.SharedPreference
 import com.example.shopinkarts.databinding.FragmentHomeBinding
 import com.example.shopinkarts.model.ClothShortingModel
 import com.example.shopinkarts.model.CommonModel
-import com.example.shopinkarts.model.IntroSlide
-import com.example.shopinkarts.response.DashBoardResponse
-import com.example.shopinkarts.response.ShopFor
+import com.example.shopinkarts.response.*
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -43,7 +35,7 @@ class HomeFragment : Fragment() {
     lateinit var shopForAdapter: ShopForAdapter
     lateinit var newlyAddedAdapter: NewlyAddedAdapter
     lateinit var manufacturerAdapter: ManufacturerAdapter
-    lateinit var popularAdapter: PopularAdapter
+    lateinit var dealOfTheDayAdapter: DealOfTheDayAdapter
     lateinit var popularBrandAdapter: PopularBrandAdapter
     lateinit var flashSaleAdapter: FlashSaleAdapter
     lateinit var clothsShortingAdapter: ClothsShortingAdapter
@@ -54,19 +46,24 @@ class HomeFragment : Fragment() {
     lateinit var recommendedAdapter: RecommendedAdapter
 
     lateinit var commonRecyclerViewAdapter: CommonRecyclerViewAdapter
-    private val imageList = ArrayList<SlideModel>()
     private val imageListBanner = ArrayList<SlideModel>()
     private val imageListBanner2 = ArrayList<SlideModel>()
     var arrayList: ArrayList<CommonModel> = ArrayList()
     var arrayListCloths: ArrayList<ClothShortingModel> = ArrayList()
 
-    private lateinit var sharedPreference: SharedPreference
     val arrayListShopFor: ArrayList<ShopFor> = ArrayList()
+    val arrayListPreferredManufacturer: ArrayList<PreferredManufacturer> = ArrayList()
+    val arrayListNewlyAdded: ArrayList<NewlyAdded> = ArrayList()
+    val arraylistBanner1: ArrayList<Banner> = ArrayList()
+    val arrayListMostPopular: ArrayList<MostPopular> = ArrayList()
+    val arrayListTopRated: ArrayList<TopRated> = ArrayList()
+    val arrayListFlashSale: ArrayList<FlashSale> = ArrayList()
+    val arrayListDealOfDay: ArrayList<DealOfDay> = ArrayList()
 
-    private lateinit var introSlideAdapter: IntroSlideAdapter
+    private lateinit var banner1Adapter: Banner1Adapter
     var currentPage = 0
     var timer: Timer? = null
-    val DELAY_MS: Long = 500
+    val DELAY_MS: Long = 2000
     val PERIOD_MS: Long = 4000
 
     override fun onCreateView(
@@ -75,11 +72,10 @@ class HomeFragment : Fragment() {
     ): View {
 
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_home, container, false)
-        sharedPreference = SharedPreference(requireContext())
 
-        setIntroSliderViewPager()
-        setupIndicators()
+        activity?.window?.setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_RESIZE)
         setCurrentIndicator(0)
+//        dashBoardList()
 
         binding.introSliderViewPager.registerOnPageChangeCallback(object :
             ViewPager2.OnPageChangeCallback() {
@@ -88,16 +84,12 @@ class HomeFragment : Fragment() {
                 setCurrentIndicator(position)
             }
         })
-
         val handler = Handler()
         val update = Runnable {
-
-            binding.introSliderViewPager.setCurrentItem(currentPage % 4, true)
+            binding.introSliderViewPager.setCurrentItem(currentPage % 11, true)
             currentPage++
         }
-
         timer = Timer()
-
         timer!!.schedule(object : TimerTask() {
             override fun run() {
                 handler.post(update)
@@ -113,48 +105,17 @@ class HomeFragment : Fragment() {
             commonRecyclerViewAdapter = CommonRecyclerViewAdapter(requireContext(), arrayList)
             binding.recyclerView.adapter = commonRecyclerViewAdapter*/
 
-        /*imageList.clear()
-        imageList.add(SlideModel(R.drawable.banner_1))
-        imageList.add(SlideModel(R.drawable.banner_2))
-        imageList.add(SlideModel(R.drawable.banner_1))
-        imageList.add(SlideModel(R.drawable.banner_2))
-
-        binding.imageSlider.setImageList(imageList, ScaleTypes.FIT)*/
 
         // adapter for shopFor
 //        shopForAdapter = ShopForAdapter(requireContext(), arrayList[position].view_type)
 //        binding.shopForRV.hasFixedSize()
 //        binding.shopForRV.adapter = shopForAdapter
 
-        // adapter for shopFor
-        shopForAdapter = ShopForAdapter(requireContext(), arrayListShopFor)
-        binding.shopForRV.hasFixedSize()
-        binding.shopForRV.adapter = shopForAdapter
-
-        // adapter for newly added
-        newlyAddedAdapter = NewlyAddedAdapter(requireContext())
-        binding.newlyAddedRV.adapter = newlyAddedAdapter
-        binding.newlyAddedRV.isNestedScrollingEnabled = false
-
-        // adapter for Preferred Manufacturer
-        manufacturerAdapter = ManufacturerAdapter(requireContext())
-        binding.manufacturerRV.adapter = manufacturerAdapter
-        binding.manufacturerRV.isNestedScrollingEnabled = false
-
-        // adapter for popular items
-        popularAdapter = PopularAdapter(requireContext())
-        binding.popularRV.adapter = popularAdapter
-        binding.popularRV.isNestedScrollingEnabled = false
 
         // adapter for popular brand items
         popularBrandAdapter = PopularBrandAdapter(requireContext())
         binding.popularBrandRV.adapter = popularBrandAdapter
         binding.popularBrandRV.isNestedScrollingEnabled = false
-
-        // adapter for flash sale
-        flashSaleAdapter = FlashSaleAdapter(requireContext())
-        binding.flashSaleRV.adapter = flashSaleAdapter
-        binding.flashSaleRV.isNestedScrollingEnabled = false
 
         arrayListCloths.clear()
         arrayListCloths.add(
@@ -197,16 +158,6 @@ class HomeFragment : Fragment() {
         binding.filterItemsRV.adapter = filterItemsAdapter
         binding.filterItemsRV.isNestedScrollingEnabled = false
 
-        // adapter for most popular items
-        mostPopularAdapter = MostPopularAdapter(requireContext())
-        binding.mostPopularRV.adapter = mostPopularAdapter
-        binding.mostPopularRV.isNestedScrollingEnabled = false
-
-        // adapter for top rated items
-        topRatedAdapter = TopRatedAdapter(requireContext())
-        binding.topRatedRV.adapter = topRatedAdapter
-        binding.topRatedRV.isNestedScrollingEnabled = false
-
         binding.newlyAddedAllTV.setOnClickListener {
             val intent = Intent(context, ViewAllActivity::class.java)
             startActivity(intent)
@@ -242,18 +193,25 @@ class HomeFragment : Fragment() {
         binding.recommendedRV.adapter = recommendedAdapter
         binding.recommendedRV.isNestedScrollingEnabled = false
 
-
         return binding.root
     }
 
     override fun onStart() {
         super.onStart()
         dashBoardList()
+//        setIntroSliderViewPager()
+//        setupIndicators()
+//        setCurrentIndicator(0)
     }
 
     // setup Indicators
     private fun setupIndicators() {
-        val indicators = arrayOfNulls<ImageView>(introSlideAdapter.itemCount)
+
+        banner1Adapter = Banner1Adapter(requireContext(), arraylistBanner1)
+        binding.introSliderViewPager.adapter = banner1Adapter
+        banner1Adapter.notifyDataSetChanged()
+
+        val indicators = arrayOfNulls<ImageView>(banner1Adapter.arrayList.size)
         val layoutParms: LinearLayout.LayoutParams =
             LinearLayout.LayoutParams(ListPopupWindow.WRAP_CONTENT, ListPopupWindow.WRAP_CONTENT)
         layoutParms.setMargins(8, 0, 8, 0)
@@ -266,12 +224,12 @@ class HomeFragment : Fragment() {
                 )
                 this?.layoutParams = layoutParms
             }
-
             binding.indicatorsContainers.addView(indicators[i])
         }
     }
 
     //Current Indicator
+
     private fun setCurrentIndicator(index: Int) {
         val childCount = binding.indicatorsContainers.childCount
         for (i in 0 until childCount) {
@@ -290,27 +248,15 @@ class HomeFragment : Fragment() {
     }
 
     private fun setIntroSliderViewPager() {
-        introSlideAdapter = IntroSlideAdapter(
-            listOf(
-                IntroSlide(
-                    R.drawable.banner_2
-                ), IntroSlide(
-                    R.drawable.banner_1
-                ), IntroSlide(
-                    R.drawable.banner_2
-                ), IntroSlide(
-                    R.drawable.banner_1
-                )
-            )
-        )
-        binding.introSliderViewPager.adapter = introSlideAdapter
+        banner1Adapter = Banner1Adapter(requireContext(), arraylistBanner1)
+        binding.introSliderViewPager.adapter = banner1Adapter
+        banner1Adapter.notifyDataSetChanged()
     }
 
     private fun dashBoardList() {
 
-        val userId = sharedPreference.getUserId()
         val call: Call<DashBoardResponse> =
-            RetrofitClient.instance!!.api.dashBoard(userId!!)
+            RetrofitClient.instance!!.api.dashBoard()
         call.enqueue(object : Callback<DashBoardResponse> {
             override fun onResponse(
                 call: Call<DashBoardResponse>,
@@ -326,7 +272,57 @@ class HomeFragment : Fragment() {
                         binding.shopForRV.adapter = shopForAdapter
                         shopForAdapter.notifyDataSetChanged()
 
+                        arrayListPreferredManufacturer.clear()
+                        arrayListPreferredManufacturer.addAll(dashBoardResponse.preferredManufacturers)
+                        manufacturerAdapter =
+                            ManufacturerAdapter(requireContext(), arrayListPreferredManufacturer)
+                        binding.manufacturerRV.adapter = manufacturerAdapter
+                        binding.manufacturerRV.isNestedScrollingEnabled = false
+                        manufacturerAdapter.notifyDataSetChanged()
+
+                        arrayListNewlyAdded.clear()
+                        arrayListNewlyAdded.addAll(dashBoardResponse.newlyAdded)
+                        newlyAddedAdapter = NewlyAddedAdapter(requireContext(), arrayListNewlyAdded)
+                        binding.newlyAddedRV.adapter = newlyAddedAdapter
+                        binding.newlyAddedRV.isNestedScrollingEnabled = false
+                        newlyAddedAdapter.notifyDataSetChanged()
+
+                        arraylistBanner1.clear()
+                        arraylistBanner1.addAll(dashBoardResponse.banners)
+                        setupIndicators()
+
+                        arrayListMostPopular.clear()
+                        arrayListMostPopular.addAll(dashBoardResponse.mostPopular)
+                        mostPopularAdapter =
+                            MostPopularAdapter(requireContext(), arrayListMostPopular)
+                        binding.mostPopularRV.adapter = mostPopularAdapter
+                        binding.mostPopularRV.isNestedScrollingEnabled = false
+                        mostPopularAdapter.notifyDataSetChanged()
+
+                        arrayListTopRated.clear()
+                        arrayListTopRated.addAll(dashBoardResponse.topRated)
+                        topRatedAdapter = TopRatedAdapter(requireContext(), arrayListTopRated)
+                        binding.topRatedRV.adapter = topRatedAdapter
+                        binding.topRatedRV.isNestedScrollingEnabled = false
+                        topRatedAdapter.notifyDataSetChanged()
+
+                        arrayListFlashSale.clear()
+                        arrayListFlashSale.addAll(dashBoardResponse.flashSale)
+                        flashSaleAdapter = FlashSaleAdapter(requireContext(), arrayListFlashSale)
+                        binding.flashSaleRV.adapter = flashSaleAdapter
+                        binding.flashSaleRV.isNestedScrollingEnabled = false
+                        flashSaleAdapter.notifyDataSetChanged()
+
+                        arrayListDealOfDay.clear()
+                        arrayListDealOfDay.addAll(dashBoardResponse.dealOfDay)
+                        dealOfTheDayAdapter =
+                            DealOfTheDayAdapter(requireContext(), arrayListDealOfDay)
+                        binding.popularRV.adapter = dealOfTheDayAdapter
+                        binding.popularRV.isNestedScrollingEnabled = false
+                        dealOfTheDayAdapter.notifyDataSetChanged()
+
                     }
+
                     Log.d("TAG", "onResponse_SuccessResponse: ${dashBoardResponse.message}")
                 } else {
                     Toast.makeText(
@@ -335,7 +331,6 @@ class HomeFragment : Fragment() {
                         Toast.LENGTH_SHORT
                     ).show()
                 }
-
             }
 
             override fun onFailure(call: Call<DashBoardResponse>, t: Throwable) {

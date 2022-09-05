@@ -6,11 +6,14 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 import com.example.shopinkarts.R
 import com.example.shopinkarts.activity.ProductDetailsActivity
 import com.example.shopinkarts.databinding.ItemsTopRatedBinding
+import com.example.shopinkarts.response.TopRated
 
-class TopRatedAdapter(val context: Context) : RecyclerView.Adapter<TopRatedAdapter.ViewHolder>() {
+class TopRatedAdapter(val context: Context, val arrayList: ArrayList<TopRated>) :
+    RecyclerView.Adapter<TopRatedAdapter.ViewHolder>() {
 
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -25,6 +28,13 @@ class TopRatedAdapter(val context: Context) : RecyclerView.Adapter<TopRatedAdapt
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
+        val itemDetails = arrayList[position]
+        holder.binding.apply {
+            Glide.with(context).load(itemDetails.productImages[0]).into(imageIV)
+            productNameTV.text = itemDetails.productName
+            priceTV.text = "Rs ${itemDetails.price}"
+        }
+
         holder.itemView.setOnClickListener {
             val intent = Intent(context, ProductDetailsActivity::class.java)
             context.startActivity(intent)
@@ -32,7 +42,7 @@ class TopRatedAdapter(val context: Context) : RecyclerView.Adapter<TopRatedAdapt
     }
 
     override fun getItemCount(): Int {
-        return 14
+        return arrayList.size
     }
 
     inner class ViewHolder(itemView: ItemsTopRatedBinding) :

@@ -1,17 +1,17 @@
 package com.example.shopinkarts.adapter
 
 import android.content.Context
-import android.icu.number.NumberFormatter.with
-import android.icu.number.NumberRangeFormatter.with
+import android.content.Intent
+
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 import com.example.shopinkarts.R
+import com.example.shopinkarts.activity.DashBoardActivity
 import com.example.shopinkarts.databinding.ItemsShopForBinding
 import com.example.shopinkarts.response.ShopFor
-import com.squareup.picasso.Picasso
-import java.security.AccessController.getContext
 
 class ShopForAdapter(val context: Context, val arrayList: ArrayList<ShopFor>) :
     RecyclerView.Adapter<ShopForAdapter.ViewHolder>() {
@@ -34,8 +34,13 @@ class ShopForAdapter(val context: Context, val arrayList: ArrayList<ShopFor>) :
         val itemDetails = arrayList[position]
         holder.itemsShopForBinding.apply {
             nameTV.text = itemDetails.categoryName
-            // iconIV.setImageResource(itemDetails.categoryIcon)
-            Picasso.get().load(itemDetails.categoryIcon).fit().into(iconIV)
+            Glide.with(context).load(itemDetails.categoryIcon).into(iconIV)
+        }
+        holder.itemView.setOnClickListener {
+            val intent = Intent(context, DashBoardActivity::class.java)
+            intent.putExtra("from", "categories")
+            intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK
+            context.startActivity(intent)
         }
     }
 

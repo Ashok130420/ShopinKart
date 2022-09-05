@@ -16,7 +16,7 @@
             android:id="@+id/nameTV"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:paddingVertical="@dimen/p18"
+            android:paddingVertical="@dimen/p16"
             android:paddingStart="50dp"
             android:textColor="@color/primary_text"
             android:textSize="@dimen/text_size_18"

@@ -1,6 +1,6 @@
 package com.example.shopinkarts.model
 
-data class IntroSlide(
+data class ProductBannerSlide(
     val icon:Int
     )
 

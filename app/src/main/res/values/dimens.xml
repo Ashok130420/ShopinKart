@@ -53,4 +53,6 @@
     <dimen name="m2">2dp</dimen>
     <dimen name="text_size_13">13sp</dimen>
     <dimen name="design_navigation_icon_size" tools:override="true">20dp</dimen>
+    <dimen name="p6">6dp</dimen>
+    <dimen name="p7">7dp</dimen>
 </resources>

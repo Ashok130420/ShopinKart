@@ -25,6 +25,7 @@ class   AccountFragment : Fragment() {
             val intent = Intent(context, MyTransactionActivity::class.java)
             this.startActivity(intent)
         }
+
        /* binding.accountHeader.nameTV.text = resources.getString(R.string.profile)
         binding.accountHeader.headerCL.setBackgroundResource(R.drawable.background_white)
 */

@@ -3,16 +3,18 @@ package com.example.shopinkarts.activity
 import android.content.Intent
 import android.os.Bundle
 import android.view.View
+import android.widget.ImageView
+import android.widget.LinearLayout
+import android.widget.ListPopupWindow
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.ContextCompat
+import androidx.core.view.get
 import androidx.databinding.DataBindingUtil
-import com.denzcoskun.imageslider.constants.ScaleTypes
-import com.denzcoskun.imageslider.models.SlideModel
+import androidx.viewpager2.widget.ViewPager2
 import com.example.shopinkarts.R
-import com.example.shopinkarts.adapter.ReviewsAdapter
-import com.example.shopinkarts.adapter.SelectColorAdapter
-import com.example.shopinkarts.adapter.SelectSizeAdapter
-import com.example.shopinkarts.adapter.SimilarProductsAdapter
+import com.example.shopinkarts.adapter.*
 import com.example.shopinkarts.databinding.ActivityProductDetailsBinding
+import com.example.shopinkarts.model.ProductBannerSlide
 import com.example.shopinkarts.model.SelectColorModel
 import com.example.shopinkarts.model.SelectSizeModel
 
@@ -22,7 +24,8 @@ class ProductDetailsActivity : AppCompatActivity() {
     lateinit var selectColorAdapter: SelectColorAdapter
     lateinit var selectSizeAdapter: SelectSizeAdapter
     lateinit var similarProductsAdapter: SimilarProductsAdapter
-    lateinit var reviewsAdapter: ReviewsAdapter
+    lateinit var productBannerAdapter: ProductBannerAdapter
+
     var arraySelectColor: ArrayList<SelectColorModel> = ArrayList()
     var arraySelectSize: ArrayList<SelectSizeModel> = ArrayList()
     private var cartCount: Int = 1
@@ -31,6 +34,18 @@ class ProductDetailsActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = DataBindingUtil.setContentView(this, R.layout.activity_product_details)
+
+        setIntroSliderViewPager()
+        setupIndicators()
+        setCurrentIndicator(0)
+
+        binding.productViewPager.registerOnPageChangeCallback(object :
+            ViewPager2.OnPageChangeCallback() {
+            override fun onPageSelected(position: Int) {
+                super.onPageSelected(position)
+                setCurrentIndicator(position)
+            }
+        })
 
         binding.headerProductDetails.backIV.setOnClickListener {
             onBackPressed()
@@ -46,14 +61,14 @@ class ProductDetailsActivity : AppCompatActivity() {
             binding.quantityShowTV.text = quantityCount--.toString()
         }
 
-        val imageList = ArrayList<SlideModel>()
+        /*val imageList = ArrayList<SlideModel>()
         imageList.clear()
         imageList.add(SlideModel(R.drawable.newly_added_image))
         imageList.add(SlideModel(R.drawable.newly_added_image))
         imageList.add(SlideModel(R.drawable.newly_added_image))
         imageList.add(SlideModel(R.drawable.newly_added_image))
 
-        binding.productDetailsIS.setImageList(imageList, ScaleTypes.CENTER_INSIDE)
+        binding.productDetailsIS.setImageList(imageList, ScaleTypes.CENTER_INSIDE)*/
 
         // add values of array list of color
         arraySelectColor.add(
@@ -119,10 +134,6 @@ class ProductDetailsActivity : AppCompatActivity() {
         binding.similarProductsRV.adapter = similarProductsAdapter
         binding.similarProductsRV.isNestedScrollingEnabled = false
 
-        // adapter for reviews
-        reviewsAdapter = ReviewsAdapter(this)
-        binding.reviewsRV.adapter = reviewsAdapter
-        binding.reviewsRV.isNestedScrollingEnabled = false
 
 
         binding.productDescriptionCL.setOnClickListener {
@@ -146,15 +157,8 @@ class ProductDetailsActivity : AppCompatActivity() {
         }
 
         binding.readReviewsHeaderCL.setOnClickListener {
-            if (binding.readReviewsDetailsCL.visibility == View.VISIBLE) {
-                binding.readReviewsDetailsCL.visibility = View.GONE
-                binding.reviewHeaderView.visibility = View.VISIBLE
-                binding.readReviewsIV.rotation = 0F
-            } else if (binding.readReviewsDetailsCL.visibility == View.GONE) {
-                binding.readReviewsDetailsCL.visibility = View.VISIBLE
-                binding.reviewHeaderView.visibility = View.GONE
-                binding.readReviewsIV.rotation = 90F
-            }
+            val intent = Intent(this, ReadReviewsActivity::class.java)
+            startActivity(intent)
         }
 
         binding.deliveryInstructionCL.setOnClickListener {
@@ -175,5 +179,56 @@ class ProductDetailsActivity : AppCompatActivity() {
             val intent = Intent(this, ProductCartActivity::class.java)
             startActivity(intent)
         }
+    }
+
+    // setup Indicators
+    private fun setupIndicators() {
+        val indicators = arrayOfNulls<ImageView>(productBannerAdapter.itemCount)
+        val layoutParms: LinearLayout.LayoutParams =
+            LinearLayout.LayoutParams(ListPopupWindow.WRAP_CONTENT, ListPopupWindow.WRAP_CONTENT)
+        layoutParms.setMargins(8, 0, 8, 0)
+
+        for (i in indicators.indices) {
+            indicators[i] = ImageView(applicationContext)
+            indicators[i].apply {
+                this?.setImageDrawable(
+                    ContextCompat.getDrawable(applicationContext, R.drawable.indicator_inactive)
+                )
+                this?.layoutParams = layoutParms
+            }
+            binding.indicatorsContainersProduct.addView(indicators[i])
+        }
+    }
+
+    //Current Indicator
+    private fun setCurrentIndicator(index: Int) {
+
+        val childCount = binding.indicatorsContainersProduct.childCount
+        for (i in 0 until childCount) {
+            val imageView = binding.indicatorsContainersProduct[i] as ImageView
+            if (i == index) {
+                imageView.setImageDrawable(
+                    ContextCompat.getDrawable(applicationContext, R.drawable.indicator_active)
+                )
+            } else {
+                imageView.setImageDrawable(
+                    ContextCompat.getDrawable(applicationContext, R.drawable.indicator_inactive)
+                )
+
+            }
+        }
+
+    }
+
+    private fun setIntroSliderViewPager() {
+        productBannerAdapter = ProductBannerAdapter(
+            listOf(
+                ProductBannerSlide(R.drawable.newly_added_image),
+                ProductBannerSlide(R.drawable.newly_added_image),
+                ProductBannerSlide(R.drawable.newly_added_image),
+                ProductBannerSlide(R.drawable.newly_added_image)
+            )
+        )
+        binding.productViewPager.adapter = productBannerAdapter
     }
 }

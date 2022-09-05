@@ -1,8 +1,14 @@
 package com.example.shopinkarts.response
 
 data class DashBoardResponse(
-    var banners: List<Any>,
-    var message: String,
-    var shopFor: List<ShopFor>,
-    var status: Boolean
+    val banners: List<Banner>,
+    val dealOfDay: List<DealOfDay>,
+    val flashSale: List<FlashSale>,
+    val message: String,
+    val mostPopular: List<MostPopular>,
+    val newlyAdded: List<NewlyAdded>,
+    val preferredManufacturers: List<PreferredManufacturer>,
+    val shopFor: List<ShopFor>,
+    val status: Boolean,
+    val topRated: List<TopRated>
 )

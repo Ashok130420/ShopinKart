@@ -104,6 +104,11 @@ class DashBoardActivity : AppCompatActivity() {
                 myOrders()
             }
         }
+        intent.extras?.let {
+            if (it.getString("from") == "categories") {
+                categories()
+            }
+        }
     }
 
     // Replace Fragment on FrameLayout
@@ -115,6 +120,10 @@ class DashBoardActivity : AppCompatActivity() {
 
     private fun myOrders() {
         binding.navBottomMenu.selectedItemId = R.id.bottomOrders
+    }
+
+    private fun categories() {
+        binding.navBottomMenu.selectedItemId = R.id.bottomCategories
     }
 
 

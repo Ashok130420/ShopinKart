@@ -5,20 +5,22 @@ import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import com.example.shopinkarts.R
+import com.example.shopinkarts.adapter.FilterItemsAdapter
 import com.example.shopinkarts.adapter.NewlyAddedAdapter
 import com.example.shopinkarts.databinding.ActivityViewAllBinding
 
 class ViewAllActivity : AppCompatActivity() {
 
     lateinit var binding: ActivityViewAllBinding
-    lateinit var newlyAddedAdapter: NewlyAddedAdapter
+    lateinit var filterItemsAdapter: FilterItemsAdapter
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = DataBindingUtil.setContentView(this, R.layout.activity_view_all)
 
-        // adapter for newly added view all items
-        newlyAddedAdapter = NewlyAddedAdapter(this)
-        binding.newlyAddedRV.adapter = newlyAddedAdapter
+        // adapter for view all items
+
+        filterItemsAdapter = FilterItemsAdapter(this)
+        binding.viewAllRV.adapter = filterItemsAdapter
 
         binding.headerViewAll.backIV.setOnClickListener {
             onBackPressed()

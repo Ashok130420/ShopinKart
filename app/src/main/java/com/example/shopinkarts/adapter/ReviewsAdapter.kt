@@ -26,7 +26,7 @@ class ReviewsAdapter(val context: Context) : RecyclerView.Adapter<ReviewsAdapter
     }
 
     override fun getItemCount(): Int {
-        return 4
+        return 14
     }
 
     inner class ViewHolder(itemView: ItemsReviewsBinding) : RecyclerView.ViewHolder(itemView.root) {

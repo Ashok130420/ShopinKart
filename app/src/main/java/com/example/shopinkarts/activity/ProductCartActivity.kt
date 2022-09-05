@@ -32,21 +32,11 @@ class ProductCartActivity : AppCompatActivity() {
             val intent = Intent(this, PersonalDetailsActivity::class.java)
             startActivity(intent)
         }
-        binding.caseSelectIV.setBackgroundResource(R.drawable.grey_right_icon)
-        binding.onlineSelectIV.setBackgroundResource(R.drawable.grey_right_icon)
 
-        binding.cashOnDeliveryCL.setOnClickListener {
-            binding.caseSelectIV.setBackgroundResource(R.drawable.green_right_icon)
-            binding.onlineSelectIV.setBackgroundResource(R.drawable.grey_right_icon)
-        }
-        binding.payOnlineCL.setOnClickListener {
-            binding.onlineSelectIV.setBackgroundResource(R.drawable.green_right_icon)
-            binding.caseSelectIV.setBackgroundResource(R.drawable.grey_right_icon)
-        }
 
     }
 
-    fun selectPayment(view: View) {
+    /*fun selectPayment(view: View) {
 
         binding.caseSelectIV.setOnClickListener(object : View.OnClickListener {
             var button01pos = 0
@@ -68,5 +58,5 @@ class ProductCartActivity : AppCompatActivity() {
                 }
             }
         })
-    }
+    }*/
 }

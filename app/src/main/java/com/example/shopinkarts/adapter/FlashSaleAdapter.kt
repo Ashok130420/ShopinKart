@@ -6,11 +6,13 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 import com.example.shopinkarts.R
 import com.example.shopinkarts.activity.ProductDetailsActivity
 import com.example.shopinkarts.databinding.ItemsFlashSaleBinding
+import com.example.shopinkarts.response.FlashSale
 
-class FlashSaleAdapter(val context: Context) :
+class FlashSaleAdapter(val context: Context, val arrayList: ArrayList<FlashSale>) :
     RecyclerView.Adapter<FlashSaleAdapter.ViewHolder>() {
 
 
@@ -26,6 +28,14 @@ class FlashSaleAdapter(val context: Context) :
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
+        val itemDetails = arrayList[position]
+        holder.itemsFlashSaleBinding.apply {
+            Glide.with(context).load(itemDetails.productImages[0]).into(discountIV)
+            productNameTV.text = itemDetails.productName
+            priceTV.text = "Rs ${itemDetails.price}"
+            discountTV.text = "${itemDetails.discount} %OFF"
+
+        }
         holder.itemView.setOnClickListener {
             val intent = Intent(context, ProductDetailsActivity::class.java)
             context.startActivity(intent)
@@ -33,11 +43,11 @@ class FlashSaleAdapter(val context: Context) :
     }
 
     override fun getItemCount(): Int {
-        return 4
+        return arrayList.size
     }
 
     inner class ViewHolder(itemView: ItemsFlashSaleBinding) :
         RecyclerView.ViewHolder(itemView.root) {
-
+        val itemsFlashSaleBinding = itemView
     }
 }

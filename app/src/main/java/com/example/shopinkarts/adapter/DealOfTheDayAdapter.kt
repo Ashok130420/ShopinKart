@@ -6,18 +6,21 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 import com.example.shopinkarts.R
 import com.example.shopinkarts.activity.ProductDetailsActivity
-import com.example.shopinkarts.databinding.ItemsPopularBinding
+import com.example.shopinkarts.databinding.ItemsDealOfTheDayBinding
+import com.example.shopinkarts.response.DealOfDay
 
-class PopularAdapter(val context: Context) :
-    RecyclerView.Adapter<PopularAdapter.ViewHolder>() {
+
+class DealOfTheDayAdapter(val context: Context, val arrayList: ArrayList<DealOfDay>) :
+    RecyclerView.Adapter<DealOfTheDayAdapter.ViewHolder>() {
 
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        val binding: ItemsPopularBinding = DataBindingUtil.inflate(
+        val binding: ItemsDealOfTheDayBinding = DataBindingUtil.inflate(
             LayoutInflater.from(parent.context),
-            R.layout.items_popular,
+            R.layout.items_deal_of_the_day,
             parent,
             false
         )
@@ -26,6 +29,12 @@ class PopularAdapter(val context: Context) :
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
+        val itemDetails = arrayList[position]
+        holder.itemsDealOfTheDayBinding.apply {
+            Glide.with(context).load(itemDetails.productImages).into(imageIV)
+            productNameTV.text=itemDetails.productName
+            priceTV.text="RS ${itemDetails.price}"
+        }
         holder.itemView.setOnClickListener {
             val intent = Intent(context, ProductDetailsActivity::class.java)
             context.startActivity(intent)
@@ -33,11 +42,11 @@ class PopularAdapter(val context: Context) :
     }
 
     override fun getItemCount(): Int {
-        return 10
+        return arrayList.size
     }
 
-    inner class ViewHolder(itemView: ItemsPopularBinding) :
+    inner class ViewHolder(itemView: ItemsDealOfTheDayBinding) :
         RecyclerView.ViewHolder(itemView.root) {
-
+        val itemsDealOfTheDayBinding = itemView
     }
 }

@@ -24,10 +24,10 @@ class BusinessDetailsActivity : AppCompatActivity() {
         binding.headerBusinessDetails.backIV.setOnClickListener {
             onBackPressed()
         }
-        binding.continueTV.setOnClickListener {
+        /*binding.continueTV.setOnClickListener {
             val intent = Intent(this, OrderSuccessActivity::class.java)
             startActivity(intent)
-        }
+        }*/
 
     }
 

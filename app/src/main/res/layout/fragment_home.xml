@@ -29,13 +29,73 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
 
+                <EditText
+                    android:id="@+id/searchET"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="@dimen/m14"
+                    android:layout_marginTop="@dimen/m10"
+                    android:background="@drawable/search_background"
+                    android:focusable="false"
+                    android:fontFamily="@font/dm_sans_medium"
+                    android:hint="@string/search"
+                    android:inputType="textCapWords"
+                    android:padding="@dimen/p14"
+                    android:paddingStart="@dimen/m50"
+                    android:textColor="@color/primary_text"
+                    android:textColorHint="@color/grey_font"
+                    android:textSize="@dimen/text_size_14"
+                    app:layout_constraintTop_toTopOf="parent"
+
+                    tools:ignore="Autofill,TextFields" />
+
+                <ImageView
+                    android:layout_width="@dimen/m35"
+                    android:layout_height="@dimen/m35"
+                    android:layout_marginStart="@dimen/m10"
+                    android:padding="@dimen/p8"
+                    android:src="@drawable/search_icon"
+                    app:layout_constraintBottom_toBottomOf="@id/searchET"
+                    app:layout_constraintStart_toStartOf="@id/searchET"
+                    app:layout_constraintTop_toTopOf="@id/searchET"
+
+                    tools:ignore="ContentDescription" />
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/imageSliderCL"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/m10"
+                    app:layout_constraintTop_toBottomOf="@+id/searchET">
+
+                    <androidx.viewpager2.widget.ViewPager2
+                        android:id="@+id/introSliderViewPager"
+                        android:layout_width="match_parent"
+                        android:layout_height="140dp"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <LinearLayout
+                        android:id="@+id/indicatorsContainers"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/m10"
+                        android:gravity="center"
+                        android:orientation="horizontal"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/introSliderViewPager" />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:id="@+id/homeCL"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginHorizontal="@dimen/m14"
-                    android:layout_marginTop="@dimen/m10"
-                    app:layout_constraintTop_toTopOf="parent">
+
+                    app:layout_constraintTop_toBottomOf="@id/imageSliderCL">
 
                     <!--<com.denzcoskun.imageslider.ImageSlider
                         android:id="@+id/imageSlider"
@@ -52,26 +112,6 @@
                         app:iss_unselected_dot="@drawable/default_unselected_dot"
                         app:layout_constraintTop_toTopOf="parent"
                         tools:ignore="MissingConstraints" />-->
-
-                    <androidx.viewpager2.widget.ViewPager2
-                        android:id="@+id/introSliderViewPager"
-                        android:layout_width="match_parent"
-                        android:layout_height="130dp"
-                        android:layout_marginTop="@dimen/m10"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent" />
-
-                    <LinearLayout
-                        android:id="@+id/indicatorsContainers"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="@dimen/m10"
-                        android:gravity="center"
-                        android:orientation="horizontal"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@id/introSliderViewPager" />
 
 
                     <!--   <androidx.recyclerview.widget.RecyclerView
@@ -90,13 +130,13 @@
                         android:id="@+id/shopForTV"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="@dimen/m30"
+                        android:layout_marginTop="@dimen/m20"
                         android:fontFamily="@font/dm_sans"
                         android:text="@string/shop_for"
                         android:textColor="@color/primary_text"
                         android:textSize="@dimen/text_size_18"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/indicatorsContainers" />
+                        app:layout_constraintTop_toTopOf="parent" />
 
                     <androidx.recyclerview.widget.RecyclerView
                         android:id="@+id/shopForRV"
@@ -235,7 +275,7 @@
                     <com.denzcoskun.imageslider.ImageSlider
                         android:id="@+id/imageSliderBanner"
                         android:layout_width="match_parent"
-                        android:layout_height="130dp"
+                        android:layout_height="140dp"
                         android:layout_marginTop="@dimen/m30"
                         app:iss_auto_cycle="true"
                         app:iss_corner_radius="5"
@@ -247,6 +287,34 @@
                         app:iss_unselected_dot="@drawable/default_unselected_dot"
                         app:layout_constraintTop_toBottomOf="@+id/topRatedRV"
                         tools:ignore="MissingConstraints" />
+
+                   <!-- <androidx.constraintlayout.widget.ConstraintLayout
+                        android:id="@+id/banner2CL"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/m30"
+                        app:layout_constraintTop_toBottomOf="@+id/topRatedRV">
+
+                        <androidx.viewpager2.widget.ViewPager2
+                            android:id="@+id/banner2ViewPager"
+                            android:layout_width="match_parent"
+                            android:layout_height="140dp"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+                        <LinearLayout
+                            android:id="@+id/indicatorsBanner2"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/m10"
+                            android:gravity="center"
+                            android:orientation="horizontal"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@id/banner2ViewPager" />
+
+                    </androidx.constraintlayout.widget.ConstraintLayout>-->
 
 
                     <TextView
@@ -319,7 +387,7 @@
                         android:orientation="horizontal"
                         app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
                         app:layout_constraintTop_toBottomOf="@id/popularTV"
-                        tools:listitem="@layout/items_popular"
+                        tools:listitem="@layout/items_deal_of_the_day"
 
                         />
 

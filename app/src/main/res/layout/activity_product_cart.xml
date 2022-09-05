@@ -43,7 +43,7 @@
                     android:id="@+id/orderSummaryTV"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:padding="@dimen/p18"
+                    android:padding="@dimen/p16"
                     android:text="@string/order_summary"
                     android:textColor="@color/primary_text"
                     android:textSize="@dimen/text_size_18"
@@ -56,7 +56,6 @@
                     android:layout_height="wrap_content"
                     android:background="@color/white"
                     android:paddingHorizontal="@dimen/p20"
-                    android:paddingTop="@dimen/p20"
                     app:layout_constraintTop_toBottomOf="@+id/orderSummaryTV">
 
                     <TextView
@@ -64,9 +63,10 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="@dimen/m6"
+                        android:fontFamily="@font/dm_sans_medium"
                         android:text="@string/total_amount"
                         android:textColor="@color/dark_Gray"
-                        android:textSize="@dimen/text_size_16"
+                        android:textSize="@dimen/text_size_14"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent" />
 
@@ -74,9 +74,10 @@
                         android:id="@+id/totalAmountValueTV"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:fontFamily="@font/dm_sans_medium"
                         android:text="@string/rs_4200"
                         android:textColor="@color/primary_text"
-                        android:textSize="@dimen/text_size_16"
+                        android:textSize="@dimen/text_size_14"
                         app:layout_constraintBottom_toBottomOf="@+id/totalAmountTV"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintTop_toTopOf="@+id/totalAmountTV" />
@@ -86,9 +87,10 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="@dimen/m16"
+                        android:fontFamily="@font/dm_sans_medium"
                         android:text="@string/discounts"
                         android:textColor="@color/dark_Gray"
-                        android:textSize="@dimen/text_size_16"
+                        android:textSize="@dimen/text_size_14"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@+id/totalAmountTV" />
 
@@ -96,9 +98,10 @@
                         android:id="@+id/discountsValueTV"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:fontFamily="@font/dm_sans_medium"
                         android:text="@string/rs_2800"
                         android:textColor="@color/primary_text"
-                        android:textSize="@dimen/text_size_16"
+                        android:textSize="@dimen/text_size_14"
                         app:layout_constraintBottom_toBottomOf="@+id/discountsTV"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintTop_toTopOf="@+id/discountsTV" />
@@ -108,9 +111,10 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="@dimen/m16"
+                        android:fontFamily="@font/dm_sans_medium"
                         android:text="@string/order_total"
                         android:textColor="@color/dark_Gray"
-                        android:textSize="@dimen/text_size_16"
+                        android:textSize="@dimen/text_size_14"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@+id/discountsTV" />
 
@@ -118,9 +122,10 @@
                         android:id="@+id/orderTotalValueTV"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:fontFamily="@font/dm_sans_medium"
                         android:text="@string/rs_1400"
                         android:textColor="@color/primary_text"
-                        android:textSize="@dimen/text_size_16"
+                        android:textSize="@dimen/text_size_14"
                         app:layout_constraintBottom_toBottomOf="@+id/orderTotalTV"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintTop_toTopOf="@+id/orderTotalTV" />
@@ -130,9 +135,10 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="@dimen/m16"
+                        android:fontFamily="@font/dm_sans_medium"
                         android:text="@string/gst_18"
                         android:textColor="@color/dark_Gray"
-                        android:textSize="@dimen/text_size_16"
+                        android:textSize="@dimen/text_size_14"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@+id/orderTotalTV" />
 
@@ -140,9 +146,10 @@
                         android:id="@+id/gstValueTV"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:fontFamily="@font/dm_sans_medium"
                         android:text="@string/rs_252"
                         android:textColor="@color/primary_text"
-                        android:textSize="@dimen/text_size_16"
+                        android:textSize="@dimen/text_size_14"
                         app:layout_constraintBottom_toBottomOf="@+id/gstTV"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintTop_toTopOf="@+id/gstTV" />
@@ -162,9 +169,10 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginVertical="@dimen/m20"
+                        android:fontFamily="@font/dm_sans_medium"
                         android:text="@string/amount_to_be_paid"
                         android:textColor="@color/primary_text"
-                        android:textSize="@dimen/text_size_16"
+                        android:textSize="@dimen/text_size_14"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@+id/view" />
@@ -173,9 +181,10 @@
                         android:id="@+id/amountPaidValueTV"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:fontFamily="@font/dm_sans_medium"
                         android:text="@string/rs_1652"
                         android:textColor="@color/primary_text"
-                        android:textSize="@dimen/text_size_16"
+                        android:textSize="@dimen/text_size_14"
                         app:layout_constraintBottom_toBottomOf="@+id/amountPaidTV"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintTop_toTopOf="@+id/amountPaidTV" />
@@ -183,106 +192,6 @@
 
                 </androidx.constraintlayout.widget.ConstraintLayout>
 
-                <TextView
-                    android:id="@+id/paymentMethodTV"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:paddingHorizontal="@dimen/p18"
-                    android:paddingVertical="@dimen/p25"
-                    android:text="@string/payment_method"
-                    android:textColor="@color/primary_text"
-                    android:textSize="@dimen/text_size_18"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/amountCL" />
-
-                <androidx.constraintlayout.widget.ConstraintLayout
-                    android:id="@+id/cashOnDeliveryCL"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:background="@color/white"
-                    android:padding="@dimen/p18"
-                    app:layout_constraintTop_toBottomOf="@+id/paymentMethodTV">
-
-                    <ImageView
-                        android:id="@+id/caseIV"
-                        android:layout_width="30dp"
-                        android:layout_height="30dp"
-                        android:layout_marginStart="@dimen/m14"
-                        android:src="@drawable/cash"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent"
-                        tools:ignore="ContentDescription" />
-
-                    <TextView
-                        android:id="@+id/cashOnDeliveryTV"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="@dimen/m35"
-                        android:text="@string/payment_method"
-                        android:textColor="@color/primary_text"
-                        android:textSize="@dimen/text_size_16"
-                        app:layout_constraintBottom_toBottomOf="@+id/caseIV"
-                        app:layout_constraintStart_toEndOf="@+id/caseIV"
-                        app:layout_constraintTop_toTopOf="@+id/caseIV" />
-
-                    <ImageView
-                        android:id="@+id/caseSelectIV"
-                        android:layout_width="30dp"
-                        android:layout_height="30dp"
-                        android:layout_marginStart="@dimen/m14"
-
-                        app:layout_constraintBottom_toBottomOf="@+id/caseIV"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintTop_toTopOf="@+id/caseIV"
-                        tools:ignore="ContentDescription,UsingOnClickInXml" />
-
-                </androidx.constraintlayout.widget.ConstraintLayout>
-
-                <androidx.constraintlayout.widget.ConstraintLayout
-                    android:id="@+id/payOnlineCL"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/m4"
-                    android:background="@color/white"
-                    android:padding="@dimen/p18"
-                    app:layout_constraintTop_toBottomOf="@+id/cashOnDeliveryCL">
-
-                    <ImageView
-                        android:id="@+id/cardIV"
-                        android:layout_width="30dp"
-                        android:layout_height="30dp"
-                        android:layout_marginStart="@dimen/m14"
-                        android:src="@drawable/online_card"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent"
-                        tools:ignore="ContentDescription" />
-
-                    <TextView
-                        android:id="@+id/payOnlineTV"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="@dimen/m35"
-                        android:text="@string/payment_method"
-                        android:textColor="@color/primary_text"
-                        android:textSize="@dimen/text_size_16"
-                        app:layout_constraintBottom_toBottomOf="@+id/cardIV"
-                        app:layout_constraintStart_toEndOf="@+id/cardIV"
-                        app:layout_constraintTop_toTopOf="@+id/cardIV" />
-
-                    <ImageView
-                        android:id="@+id/onlineSelectIV"
-                        android:layout_width="30dp"
-                        android:layout_height="30dp"
-                        android:layout_marginStart="@dimen/m14"
-
-                        app:layout_constraintBottom_toBottomOf="@+id/cardIV"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintTop_toTopOf="@+id/cardIV"
-                        tools:ignore="ContentDescription,UsingOnClickInXml" />
-
-                </androidx.constraintlayout.widget.ConstraintLayout>
 
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:id="@+id/continueCL"
@@ -292,7 +201,7 @@
                     android:background="@color/white"
                     android:paddingHorizontal="@dimen/p20"
                     android:paddingVertical="@dimen/p25"
-                    app:layout_constraintTop_toBottomOf="@+id/payOnlineCL">
+                    app:layout_constraintTop_toBottomOf="@+id/amountCL">
 
                     <ImageView
                         android:id="@+id/giftIV"
@@ -309,6 +218,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="@dimen/m16"
+                        android:fontFamily="@font/dm_sans_medium"
                         android:text="@string/congratulations_you_are_saving_66_on_this_order"
                         android:textColor="@color/primary_text"
                         android:textSize="@dimen/text_size_12"

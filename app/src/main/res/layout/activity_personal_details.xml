@@ -17,248 +17,203 @@
             android:id="@+id/headerPersonalDetails"
             layout="@layout/header_product_cart" />
 
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/stepperCL"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="@dimen/m18"
+            android:layout_marginTop="@dimen/m10"
+            android:paddingVertical="@dimen/p10"
+            app:layout_constraintTop_toBottomOf="@id/headerPersonalDetails">
+
+            <View
+                android:id="@+id/view1"
+                android:layout_width="0dp"
+                android:layout_height="1dp"
+                android:background="@color/primary_text"
+                android:visibility="invisible"
+                app:layout_constraintEnd_toStartOf="@id/view2"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <ImageView
+                android:id="@+id/shippingIV"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:padding="@dimen/p4"
+                android:src="@drawable/blue_right_icon"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="@id/view1"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:ignore="ContentDescription,UsingOnClickInXml" />
+
+            <TextView
+                android:id="@+id/shippingTV"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/m10"
+                android:text="@string/shipping"
+                android:textColor="@color/black"
+                android:textSize="@dimen/text_size_15"
+                app:layout_constraintBottom_toBottomOf="@+id/shippingIV"
+                app:layout_constraintStart_toEndOf="@+id/shippingIV"
+                app:layout_constraintTop_toTopOf="@+id/shippingIV" />
+
+            <View
+                android:id="@+id/view2"
+                android:layout_width="0dp"
+                android:layout_height="1dp"
+                android:background="@color/primary_text"
+                android:visibility="invisible"
+                app:layout_constraintEnd_toStartOf="@+id/view3"
+                app:layout_constraintStart_toEndOf="@+id/view1"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <ImageView
+                android:id="@+id/paymentIV"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_marginStart="@dimen/m14"
+                android:padding="@dimen/p4"
+                android:src="@drawable/grey_right_icon2"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="@id/view2"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:ignore="ContentDescription,UsingOnClickInXml" />
+
+            <TextView
+                android:id="@+id/paymentTV"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/m10"
+                android:text="@string/payment"
+                android:textColor="@color/black"
+                android:textSize="@dimen/text_size_15"
+                app:layout_constraintBottom_toBottomOf="@+id/paymentIV"
+                app:layout_constraintStart_toEndOf="@+id/paymentIV"
+                app:layout_constraintTop_toTopOf="@+id/paymentIV" />
+
+
+            <View
+                android:id="@+id/view3"
+                android:layout_width="0dp"
+                android:layout_height="1dp"
+                android:background="@color/primary_text"
+                android:visibility="invisible"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/view2"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <ImageView
+                android:id="@+id/successIV"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_marginStart="@dimen/m14"
+                android:padding="@dimen/p4"
+                android:src="@drawable/grey_right_icon2"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="@id/view3"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:ignore="ContentDescription,UsingOnClickInXml" />
+
+            <TextView
+                android:id="@+id/successTV"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/m10"
+                android:text="@string/success"
+                android:textColor="@color/black"
+                android:textSize="@dimen/text_size_15"
+                app:layout_constraintBottom_toBottomOf="@+id/successIV"
+                app:layout_constraintStart_toEndOf="@+id/successIV"
+                app:layout_constraintTop_toTopOf="@+id/successIV" />
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+
         <ScrollView
+            android:id="@+id/scrollView"
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/headerPersonalDetails">
+            android:layout_marginBottom="@dimen/m10"
+            app:layout_constraintBottom_toTopOf="@+id/goToOrdersTV"
+            app:layout_constraintTop_toBottomOf="@+id/stepperCL">
 
 
             <androidx.constraintlayout.widget.ConstraintLayout
-                android:id="@+id/personalCL"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_margin="@dimen/m18"
-                android:background="@color/white"
-                app:layout_constraintTop_toBottomOf="@id/headerPersonalDetails"
-                tools:context=".activity.PersonalDetailsActivity">
+                app:layout_constraintTop_toBottomOf="@id/headerPersonalDetails">
 
-                <com.google.android.material.textfield.TextInputLayout
-                    android:id="@+id/nameTVLayout"
-                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:hint="@string/name"
-                    android:textColorHint="@color/hint_color"
-                    app:boxStrokeColor="@color/primary_Blue"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent">
-
-                    <com.google.android.material.textfield.TextInputEditText
-                        android:id="@+id/nameET"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:inputType="textCapSentences"
-                        android:textColorHighlight="@color/hint"
-                        android:textSize="@dimen/text_size_16" />
-
-                </com.google.android.material.textfield.TextInputLayout>
-
-
-                <EditText
-                    android:id="@+id/number91TV"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:background="@drawable/shape_grey_corners_5dp"
-                    android:enabled="false"
-                    android:padding="@dimen/p17"
-                    android:text="@string/_91"
-                    android:textColor="@color/primary_text"
-                    android:textSize="@dimen/text_size_16"
-                    app:layout_constraintBottom_toBottomOf="@id/phoneNumberTVLayout"
-                    app:layout_constraintStart_toStartOf="parent"
-                    tools:ignore="Autofill,LabelFor,TextFields" />
-
-                <com.google.android.material.textfield.TextInputLayout
-                    android:id="@+id/phoneNumberTVLayout"
-                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="@dimen/m14"
-                    android:layout_marginTop="@dimen/m20"
-                    android:hint="@string/phone_number"
-                    android:padding="0dp"
-                    android:textColorHint="@color/hint_color"
-                    app:boxStrokeColor="@color/primary_Blue"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toEndOf="@+id/number91TV"
-                    app:layout_constraintTop_toBottomOf="@+id/nameTVLayout">
-
-                    <com.google.android.material.textfield.TextInputEditText
-                        android:id="@+id/phoneNumberET"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:inputType="number"
-                        android:maxLength="10"
-                        android:textColorHighlight="@color/hint_color"
-                        android:textSize="@dimen/text_size_16" />
-
-                </com.google.android.material.textfield.TextInputLayout>
-
-                <com.google.android.material.textfield.TextInputLayout
-                    android:id="@+id/flatHouseTVLayout"
-                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                <!--Stepper Layout 1st-->
+                <include
+                    android:id="@+id/includeStepper1"
+                    layout="@layout/stepper1_layout"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/m20"
-                    android:hint="@string/flat_house_no_building_name"
-                    android:textColorHint="@color/hint_color"
-                    app:boxStrokeColor="@color/primary_Blue"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/number91TV">
+                    android:layout_margin="@dimen/m18"
+                    android:visibility="visible"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintVertical_bias="0.0"
+                    tools:layout_editor_absoluteX="105dp" />
 
-                    <com.google.android.material.textfield.TextInputEditText
-                        android:id="@+id/flatHouseET"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:inputType="textCapSentences"
-                        android:textColorHighlight="@color/hint_color"
-                        android:textSize="@dimen/text_size_16" />
+                <!--Stepper Layout 2nd-->
 
-                </com.google.android.material.textfield.TextInputLayout>
-
-                <com.google.android.material.textfield.TextInputLayout
-                    android:id="@+id/streetTVLayout"
-                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                <include
+                    android:id="@+id/includeStepper2"
+                    layout="@layout/stepper2_layout"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/m20"
-                    android:hint="@string/street_colony"
-                    android:textColorHint="@color/hint_color"
-                    app:boxStrokeColor="@color/primary_Blue"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/flatHouseTVLayout">
+                    android:layout_margin="@dimen/m18"
+                    android:visibility="gone"
+                    app:layout_constraintTop_toTopOf="parent" />
 
-                    <com.google.android.material.textfield.TextInputEditText
-                        android:id="@+id/streetET"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:inputType="textCapSentences"
-                        android:textColorHighlight="@color/hint_color"
-                        android:textSize="@dimen/text_size_16" />
-
-                </com.google.android.material.textfield.TextInputLayout>
-
-                <com.google.android.material.textfield.TextInputLayout
-                    android:id="@+id/pinCodeTVLayout"
-                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                <!--Stepper Layout 3rd-->
+                <include
+                    android:id="@+id/includeStepper3"
+                    layout="@layout/stepper3_layout"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/m20"
-                    android:hint="@string/pin_code"
-                    android:textColorHint="@color/hint_color"
-                    app:boxStrokeColor="@color/primary_Blue"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/streetTVLayout">
-
-                    <com.google.android.material.textfield.TextInputEditText
-                        android:id="@+id/pinCodeET"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:inputType="number"
-                        android:maxLength="6"
-                        android:textColorHighlight="@color/hint_color"
-                        android:textSize="@dimen/text_size_16" />
-
-                </com.google.android.material.textfield.TextInputLayout>
-
-                <com.google.android.material.textfield.TextInputLayout
-                    android:id="@+id/cityTVLayout"
-                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/m20"
-                    android:layout_marginEnd="@dimen/m10"
-                    android:hint="@string/city"
-                    android:textColorHint="@color/hint_color"
-                    app:boxStrokeColor="@color/primary_Blue"
-                    app:layout_constraintEnd_toStartOf="@+id/linearLayout"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/pinCodeTVLayout">
-
-                    <com.google.android.material.textfield.TextInputEditText
-                        android:id="@+id/cityET"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:inputType="textCapSentences"
-                        android:textSize="@dimen/text_size_16" />
-
-                </com.google.android.material.textfield.TextInputLayout>
-
-
-                <androidx.appcompat.widget.LinearLayoutCompat
-                    android:id="@+id/linearLayout"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="@dimen/m10"
-                    android:layout_marginTop="@dimen/p2"
-                    android:background="@drawable/shape_grey_corners_5dp"
-                    app:layout_constraintBottom_toBottomOf="@+id/cityTVLayout"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toEndOf="@+id/cityTVLayout"
-                    app:layout_constraintTop_toTopOf="@+id/cityTVLayout">
-
-                    <Spinner
-                        android:id="@+id/stateSpinner"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="@dimen/m10"
-                        android:entries="@array/state"
-                        android:inputType="number"
-                        android:paddingVertical="@dimen/p17"
-                        android:textColorHighlight="@color/hint_color"
-                        android:textSize="@dimen/text_size_16"
-                        app:layout_constraintBottom_toBottomOf="@+id/cityTVLayout"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toEndOf="@+id/cityTVLayout"
-                        app:layout_constraintTop_toTopOf="@+id/cityTVLayout" />
-                </androidx.appcompat.widget.LinearLayoutCompat>
-
-
-                <com.google.android.material.textfield.TextInputLayout
-                    android:id="@+id/landMarkTVLayout"
-                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/m20"
-                    android:hint="@string/landmark_optional"
-                    android:textColorHint="@color/hint_color"
-                    app:boxStrokeColor="@color/primary_Blue"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/cityTVLayout">
-
-                    <com.google.android.material.textfield.TextInputEditText
-                        android:id="@+id/landMarkET"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:inputType="textCapSentences"
-                        android:textColorHighlight="@color/hint_color"
-                        android:textSize="@dimen/text_size_16" />
-
-                </com.google.android.material.textfield.TextInputLayout>
-
-
-                <TextView
-                    android:id="@+id/continueTV"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginHorizontal="@dimen/m18"
-                    android:layout_marginTop="@dimen/m100"
-                    android:layout_marginBottom="@dimen/m20"
-                    android:background="@drawable/button_blue_radius5"
-                    android:gravity="center"
-                    android:padding="@dimen/p18"
-                    android:text="@string/continue_"
-                    android:textColor="@color/white"
-                    android:textSize="@dimen/text_size_12"
-                    app:layout_constraintBottom_toBottomOf="@+id/personalCL"
-                    app:layout_constraintTop_toBottomOf="@+id/landMarkTVLayout" />
+                    android:layout_margin="@dimen/m18"
+                    android:visibility="gone"
+                    app:layout_constraintTop_toTopOf="parent" />
 
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 
+
         </ScrollView>
+
+        <TextView
+            android:id="@+id/goToOrdersTV"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="@dimen/m18"
+            android:layout_marginBottom="@dimen/m10"
+            android:background="@drawable/shape_text_blue"
+            android:gravity="center"
+            android:padding="@dimen/p16"
+            android:text="@string/go_to_your_orders"
+            android:textColor="@color/primary_Blue"
+            android:textSize="@dimen/text_size_14"
+            android:visibility="gone"
+            app:layout_constraintBottom_toTopOf="@+id/continueTV" />
+
+        <TextView
+            android:id="@+id/continueTV"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="@dimen/m18"
+            android:layout_marginBottom="@dimen/m10"
+            android:background="@drawable/button_blue_radius5"
+            android:gravity="center"
+            android:padding="@dimen/p18"
+            android:text="@string/continue_"
+            android:textColor="@color/white"
+            android:textSize="@dimen/text_size_12"
+            app:layout_constraintBottom_toBottomOf="parent" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

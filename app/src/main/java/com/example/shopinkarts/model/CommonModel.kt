@@ -1,6 +1,6 @@
 package com.example.shopinkarts.model
 
-import androidx.recyclerview.widget.LinearLayoutManager
+
 
 data class CommonModel(
     var view_type: Int,

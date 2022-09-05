@@ -1,9 +1,14 @@
 package com.example.shopinkarts.fragments
 
+import android.content.Context
+import android.graphics.Rect
 import android.os.Bundle
 import android.view.LayoutInflater
+import android.view.MotionEvent
 import android.view.View
 import android.view.ViewGroup
+import android.view.inputmethod.InputMethodManager
+import android.widget.EditText
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import com.example.shopinkarts.R
@@ -27,8 +32,6 @@ class OrdersFragment : Fragment() {
         deliveredOrderAdapter = DeliveredOrderAdapter(requireContext())
         binding.deliveredOrderRV.adapter = deliveredOrderAdapter
         binding.deliveredOrderRV.isNestedScrollingEnabled = false
-
-
 
         return binding.root
     }

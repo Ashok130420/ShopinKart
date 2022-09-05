@@ -110,7 +110,7 @@ class LoginActivity : AppCompatActivity() {
         return super.dispatchTouchEvent(event)
     }
 
-    fun loginApi() {
+    private fun loginApi() {
 
         val requestBody: MutableMap<String, String> = HashMap()
         requestBody["phone"] = phone

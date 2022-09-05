@@ -1,0 +1,441 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+    </data>
+
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <ScrollView
+            android:id="@+id/scrollView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/personalCL"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@color/white"
+                    android:visibility="visible"
+                    app:layout_constraintTop_toTopOf="parent"
+                    tools:context=".activity.PersonalDetailsActivity">
+
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:id="@+id/nameTVLayout"
+                        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:hint="@string/name"
+                        android:textColorHint="@color/hint_color"
+                        app:boxStrokeColor="@color/primary_Blue"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent">
+
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/nameET"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:inputType="textCapSentences"
+                            android:textColorHighlight="@color/hint"
+                            android:textSize="@dimen/text_size_16" />
+
+                    </com.google.android.material.textfield.TextInputLayout>
+
+
+                    <EditText
+                        android:id="@+id/number91TV"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/shape_grey_corners_5dp"
+                        android:enabled="false"
+                        android:padding="@dimen/p17"
+                        android:text="@string/_91"
+                        android:textColor="@color/primary_text"
+                        android:textSize="@dimen/text_size_16"
+                        app:layout_constraintBottom_toBottomOf="@id/phoneNumberTVLayout"
+                        app:layout_constraintStart_toStartOf="parent"
+                        tools:ignore="Autofill,LabelFor,TextFields" />
+
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:id="@+id/phoneNumberTVLayout"
+                        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/m14"
+                        android:layout_marginTop="@dimen/m20"
+                        android:hint="@string/phone_number"
+                        android:padding="0dp"
+                        android:textColorHint="@color/hint_color"
+                        app:boxStrokeColor="@color/primary_Blue"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toEndOf="@+id/number91TV"
+                        app:layout_constraintTop_toBottomOf="@+id/nameTVLayout">
+
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/phoneNumberET"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:inputType="number"
+                            android:maxLength="10"
+                            android:textColorHighlight="@color/hint_color"
+                            android:textSize="@dimen/text_size_16" />
+
+                    </com.google.android.material.textfield.TextInputLayout>
+
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:id="@+id/flatHouseTVLayout"
+                        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/m20"
+                        android:hint="@string/flat_house_no_building_name"
+                        android:textColorHint="@color/hint_color"
+                        app:boxStrokeColor="@color/primary_Blue"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/number91TV">
+
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/flatHouseET"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:inputType="textCapSentences"
+                            android:textColorHighlight="@color/hint_color"
+                            android:textSize="@dimen/text_size_16" />
+
+                    </com.google.android.material.textfield.TextInputLayout>
+
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:id="@+id/streetTVLayout"
+                        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/m20"
+                        android:hint="@string/street_colony"
+                        android:textColorHint="@color/hint_color"
+                        app:boxStrokeColor="@color/primary_Blue"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/flatHouseTVLayout">
+
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/streetET"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:inputType="textCapSentences"
+                            android:textColorHighlight="@color/hint_color"
+                            android:textSize="@dimen/text_size_16" />
+
+                    </com.google.android.material.textfield.TextInputLayout>
+
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:id="@+id/pinCodeTVLayout"
+                        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/m20"
+                        android:hint="@string/pin_code"
+                        android:textColorHint="@color/hint_color"
+                        app:boxStrokeColor="@color/primary_Blue"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/streetTVLayout">
+
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/pinCodeET"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:inputType="number"
+                            android:maxLength="6"
+                            android:textColorHighlight="@color/hint_color"
+                            android:textSize="@dimen/text_size_16" />
+
+                    </com.google.android.material.textfield.TextInputLayout>
+
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:id="@+id/cityTVLayout"
+                        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/m20"
+                        android:layout_marginEnd="@dimen/m10"
+                        android:hint="@string/city"
+                        android:textColorHint="@color/hint_color"
+                        app:boxStrokeColor="@color/primary_Blue"
+                        app:layout_constraintEnd_toStartOf="@+id/linearLayout"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/pinCodeTVLayout">
+
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/cityET"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:inputType="textCapSentences"
+                            android:textSize="@dimen/text_size_16" />
+
+                    </com.google.android.material.textfield.TextInputLayout>
+
+
+                    <androidx.appcompat.widget.LinearLayoutCompat
+                        android:id="@+id/linearLayout"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/m10"
+                        android:layout_marginTop="@dimen/p2"
+                        android:background="@drawable/shape_grey_corners_5dp"
+                        app:layout_constraintBottom_toBottomOf="@+id/cityTVLayout"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toEndOf="@+id/cityTVLayout"
+                        app:layout_constraintTop_toTopOf="@+id/cityTVLayout">
+
+                        <Spinner
+                            android:id="@+id/stateSpinner"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="@dimen/m10"
+                            android:entries="@array/state"
+                            android:inputType="number"
+                            android:paddingVertical="@dimen/p17"
+                            android:textColorHighlight="@color/hint_color"
+                            android:textSize="@dimen/text_size_16"
+                            app:layout_constraintBottom_toBottomOf="@+id/cityTVLayout"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toEndOf="@+id/cityTVLayout"
+                            app:layout_constraintTop_toTopOf="@+id/cityTVLayout" />
+                    </androidx.appcompat.widget.LinearLayoutCompat>
+
+
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:id="@+id/landMarkTVLayout"
+                        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/m20"
+                        android:hint="@string/landmark_optional"
+                        android:textColorHint="@color/hint_color"
+                        app:boxStrokeColor="@color/primary_Blue"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/cityTVLayout">
+
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/landMarkET"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:inputType="textCapSentences"
+                            android:textColorHighlight="@color/hint_color"
+                            android:textSize="@dimen/text_size_16" />
+
+                    </com.google.android.material.textfield.TextInputLayout>
+
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/businessDetailsCl"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/m35"
+                    android:background="@color/white"
+                    app:layout_constraintTop_toBottomOf="@id/personalCL"
+                    tools:context=".activity.PersonalDetailsActivity">
+
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:id="@+id/businessNameTVLayout"
+                        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:hint="@string/name"
+                        android:textColorHint="@color/hint_color"
+                        app:boxStrokeColor="@color/primary_Blue"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent">
+
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/businessNameET"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:inputType="textCapSentences"
+                            android:textColorHighlight="@color/hint"
+                            android:textSize="@dimen/text_size_16"
+                            android:visibility="gone" />
+
+                    </com.google.android.material.textfield.TextInputLayout>
+
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:id="@+id/firmNameTVLayout"
+                        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/m20"
+                        android:hint="@string/company_name"
+                        android:textColorHint="@color/hint_color"
+                        app:boxStrokeColor="@color/primary_Blue"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/businessNameTVLayout">
+
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/firmNameET"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:inputType="textCapSentences"
+                            android:textColorHighlight="@color/hint"
+                            android:textSize="@dimen/text_size_16" />
+
+                    </com.google.android.material.textfield.TextInputLayout>
+
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:id="@+id/gstInTVLayout"
+                        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/m20"
+                        android:hint="@string/gst_in"
+                        android:textColorHint="@color/hint_color"
+                        app:boxStrokeColor="@color/primary_Blue"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/firmNameTVLayout">
+
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/gstInET"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:inputType="textCapCharacters"
+                            android:textColorHighlight="@color/hint"
+                            android:textSize="@dimen/text_size_16" />
+
+                    </com.google.android.material.textfield.TextInputLayout>
+
+                    <androidx.appcompat.widget.LinearLayoutCompat
+                        android:id="@+id/linearLayoutBusiness"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/m20"
+                        android:background="@drawable/shape_grey_corners_5dp"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/gstInTVLayout">
+
+                        <Spinner
+                            android:id="@+id/businessStateSpinner"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="@dimen/m10"
+                            android:entries="@array/state_business"
+                            android:inputType="number"
+                            android:paddingVertical="@dimen/p17"
+                            android:textColorHighlight="@color/hint_color"
+                            android:textSize="@dimen/text_size_16" />
+
+                    </androidx.appcompat.widget.LinearLayoutCompat>
+
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:id="@+id/businessCityTVLayout"
+                        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/m20"
+                        android:hint="@string/city"
+                        android:textColorHint="@color/hint_color"
+                        app:boxStrokeColor="@color/primary_Blue"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/linearLayoutBusiness">
+
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/businessCityET"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:inputType="textCapSentences"
+                            android:textColorHighlight="@color/hint"
+                            android:textSize="@dimen/text_size_16" />
+
+                    </com.google.android.material.textfield.TextInputLayout>
+
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:id="@+id/completeAddressTVLayout"
+                        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/m20"
+                        android:hint="@string/complete_address"
+                        android:textColorHint="@color/hint_color"
+                        app:boxStrokeColor="@color/primary_Blue"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/businessCityTVLayout">
+
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/completeAddressET"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:inputType="textCapSentences"
+                            android:textColorHighlight="@color/hint"
+                            android:textSize="@dimen/text_size_16" />
+
+                    </com.google.android.material.textfield.TextInputLayout>
+
+                    <EditText
+                        android:id="@+id/businessNumber91TV"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/shape_grey_corners_5dp"
+                        android:enabled="false"
+                        android:padding="@dimen/p17"
+                        android:text="@string/_91"
+                        android:textColor="@color/primary_text"
+                        android:textSize="@dimen/text_size_16"
+                        app:layout_constraintBottom_toBottomOf="@id/businessPhoneNumberTVLayout"
+                        app:layout_constraintStart_toStartOf="parent"
+                        tools:ignore="Autofill,LabelFor,TextFields" />
+
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:id="@+id/businessPhoneNumberTVLayout"
+                        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/m14"
+                        android:layout_marginTop="@dimen/m20"
+                        android:hint="@string/phone_number"
+                        android:padding="0dp"
+                        android:textColorHint="@color/hint_color"
+                        app:boxStrokeColor="@color/primary_Blue"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toEndOf="@+id/businessNumber91TV"
+                        app:layout_constraintTop_toBottomOf="@+id/completeAddressTVLayout">
+
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/businessPhoneNumberET"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:inputType="number"
+                            android:maxLength="10"
+                            android:textColorHighlight="@color/hint_color"
+                            android:textSize="@dimen/text_size_16" />
+
+                    </com.google.android.material.textfield.TextInputLayout>
+
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+        </ScrollView>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+</layout>

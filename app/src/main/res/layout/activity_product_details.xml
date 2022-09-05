@@ -28,29 +28,56 @@
                 android:layout_height="wrap_content"
                 app:layout_constraintTop_toBottomOf="@+id/headerProductDetails">
 
-                <com.denzcoskun.imageslider.ImageSlider
-                    android:id="@+id/productDetailsIS"
+                <!-- <com.denzcoskun.imageslider.ImageSlider
+                     android:id="@+id/productDetailsIS"
+                     android:layout_width="match_parent"
+                     android:layout_height="200dp"
+                     app:iss_auto_cycle="false"
+                     app:iss_corner_radius="5"
+                     app:iss_delay="0"
+                     app:iss_error_image="@android:color/darker_gray"
+                     app:iss_period="2000"
+                     app:iss_placeholder="@android:color/darker_gray"
+                     app:iss_selected_dot="@drawable/default_selected_dot"
+                     app:iss_unselected_dot="@drawable/default_unselected_dot"
+                     app:layout_constraintTop_toTopOf="parent"
+                     tools:ignore="MissingConstraints" />-->
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/imageSliderCL"
                     android:layout_width="match_parent"
-                    android:layout_height="200dp"
-                    app:iss_auto_cycle="false"
-                    app:iss_corner_radius="5"
-                    app:iss_delay="0"
-                    app:iss_error_image="@android:color/darker_gray"
-                    app:iss_period="2000"
-                    app:iss_placeholder="@android:color/darker_gray"
-                    app:iss_selected_dot="@drawable/default_selected_dot"
-                    app:iss_unselected_dot="@drawable/default_unselected_dot"
-                    app:layout_constraintTop_toTopOf="parent"
-                    tools:ignore="MissingConstraints" />
+                    android:layout_height="wrap_content"
+                    app:layout_constraintTop_toTopOf="parent">
+
+                    <androidx.viewpager2.widget.ViewPager2
+                        android:id="@+id/productViewPager"
+                        android:layout_width="match_parent"
+                        android:layout_height="180dp"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <LinearLayout
+                        android:id="@+id/indicatorsContainersProduct"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/m10"
+                        android:gravity="center"
+                        android:orientation="horizontal"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/productViewPager" />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
 
                 <ImageView
                     android:id="@+id/downloadImageIV"
                     android:layout_width="30dp"
                     android:layout_height="30dp"
-                    android:layout_margin="@dimen/m10"
+                    android:layout_margin="@dimen/m14"
                     android:src="@drawable/download_image_icon"
-                    app:layout_constraintEnd_toEndOf="@+id/productDetailsIS"
-                    app:layout_constraintTop_toTopOf="@+id/productDetailsIS"
+                    app:layout_constraintEnd_toEndOf="@+id/imageSliderCL"
+                    app:layout_constraintTop_toTopOf="@+id/imageSliderCL"
                     tools:ignore="ContentDescription" />
 
                 <androidx.constraintlayout.widget.ConstraintLayout
@@ -59,7 +86,7 @@
                     android:layout_height="wrap_content"
                     android:layout_margin="@dimen/m14"
                     android:background="@color/white"
-                    app:layout_constraintTop_toBottomOf="@+id/productDetailsIS">
+                    app:layout_constraintTop_toBottomOf="@+id/imageSliderCL">
 
                     <TextView
                         android:id="@+id/idTV"
@@ -537,252 +564,6 @@
 
                         </androidx.constraintlayout.widget.ConstraintLayout>
 
-                        <androidx.constraintlayout.widget.ConstraintLayout
-                            android:id="@+id/readReviewsDetailsCL"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:visibility="gone"
-                            app:layout_constraintTop_toBottomOf="@+id/readReviewsHeaderCL">
-
-                            <androidx.constraintlayout.widget.ConstraintLayout
-                                android:id="@+id/userReviewCL"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:background="@drawable/shape_fragment_corners_10"
-                                android:paddingVertical="@dimen/p15"
-                                android:paddingStart="@dimen/p20"
-                                android:paddingEnd="@dimen/p10"
-                                app:layout_constraintTop_toTopOf="parent">
-
-                                <TextView
-                                    android:id="@+id/ratingTV"
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:text="@string/_4_6"
-                                    android:textColor="@color/primary_text"
-                                    android:textSize="@dimen/text_size_32sp"
-                                    app:layout_constraintStart_toStartOf="parent"
-                                    app:layout_constraintTop_toTopOf="parent" />
-
-                                <TextView
-                                    android:id="@+id/totalRatingTV"
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:layout_marginBottom="@dimen/m5"
-                                    android:text="@string/_5"
-                                    android:textColor="@color/primary_text"
-                                    android:textSize="@dimen/text_size_16"
-                                    app:layout_constraintBottom_toBottomOf="@+id/ratingTV"
-                                    app:layout_constraintStart_toEndOf="@+id/ratingTV" />
-
-                                <TextView
-                                    android:id="@+id/basedOnReviewsTV"
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:text="@string/based_on_120_reviews"
-                                    android:textColor="@color/unselected_Text_color"
-                                    android:textSize="@dimen/text_size_12"
-                                    app:layout_constraintStart_toStartOf="parent"
-                                    app:layout_constraintTop_toBottomOf="@+id/ratingTV" />
-
-
-                                <RatingBar
-                                    android:id="@+id/ratingBarReviews"
-                                    style="@style/Widget.AppCompat.RatingBar.Small"
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:layout_marginTop="@dimen/m16"
-                                    android:numStars="5"
-                                    android:rating="4.5"
-                                    android:theme="@style/RatingBar"
-                                    app:layout_constraintBottom_toBottomOf="parent"
-                                    app:layout_constraintStart_toStartOf="parent" />
-
-
-                                <ProgressBar
-
-                                    android:id="@+id/star5"
-                                    style="?android:attr/progressBarStyleHorizontal"
-                                    android:layout_width="80dp"
-                                    android:layout_height="4dp"
-                                    android:layout_marginTop="@dimen/m10"
-                                    android:max="100"
-                                    android:progress="90"
-                                    android:progressDrawable="@drawable/custom_progress_bar"
-                                    app:layout_constraintEnd_toEndOf="parent"
-                                    app:layout_constraintTop_toTopOf="parent" />
-
-
-                                <TextView
-                                    android:id="@+id/star5TV"
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:layout_marginEnd="@dimen/m10"
-                                    android:text="@string/_5_star"
-                                    android:textColor="@color/unselected_Text_color"
-                                    android:textSize="@dimen/text_size_12"
-                                    app:layout_constraintBottom_toBottomOf="@+id/star5"
-                                    app:layout_constraintEnd_toStartOf="@id/star5"
-                                    app:layout_constraintTop_toTopOf="@id/star5" />
-
-
-                                <ProgressBar
-                                    android:id="@+id/star4"
-                                    style="?android:attr/progressBarStyleHorizontal"
-                                    android:layout_width="80dp"
-                                    android:layout_height="4dp"
-                                    android:layout_marginTop="@dimen/m10"
-                                    android:max="100"
-                                    android:progress="70"
-                                    android:progressDrawable="@drawable/custom_progress_bar"
-                                    app:layout_constraintEnd_toEndOf="parent"
-                                    app:layout_constraintTop_toBottomOf="@+id/star5" />
-
-                                <TextView
-                                    android:id="@+id/star4TV"
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:layout_marginEnd="@dimen/m10"
-                                    android:text="@string/_4_star"
-                                    android:textColor="@color/unselected_Text_color"
-                                    android:textSize="@dimen/text_size_12"
-                                    app:layout_constraintBottom_toBottomOf="@+id/star4"
-                                    app:layout_constraintEnd_toStartOf="@id/star4"
-                                    app:layout_constraintTop_toTopOf="@id/star4" />
-
-
-                                <ProgressBar
-                                    android:id="@+id/star3"
-                                    style="?android:attr/progressBarStyleHorizontal"
-                                    android:layout_width="80dp"
-                                    android:layout_height="4dp"
-                                    android:layout_marginTop="@dimen/m10"
-                                    android:max="100"
-                                    android:progress="50"
-                                    android:progressDrawable="@drawable/custom_progress_bar"
-                                    app:layout_constraintEnd_toEndOf="parent"
-                                    app:layout_constraintTop_toBottomOf="@+id/star4" />
-
-                                <TextView
-                                    android:id="@+id/star3TV"
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:layout_marginEnd="@dimen/m10"
-                                    android:text="@string/_3_star"
-                                    android:textColor="@color/unselected_Text_color"
-                                    android:textSize="@dimen/text_size_12"
-                                    app:layout_constraintBottom_toBottomOf="@+id/star3"
-                                    app:layout_constraintEnd_toStartOf="@id/star3"
-                                    app:layout_constraintTop_toTopOf="@id/star3" />
-
-
-                                <ProgressBar
-                                    android:id="@+id/star2"
-                                    style="?android:attr/progressBarStyleHorizontal"
-                                    android:layout_width="80dp"
-                                    android:layout_height="4dp"
-                                    android:layout_marginTop="@dimen/m10"
-                                    android:max="100"
-                                    android:progress="30"
-                                    android:progressDrawable="@drawable/custom_progress_bar"
-                                    app:layout_constraintEnd_toEndOf="parent"
-                                    app:layout_constraintTop_toBottomOf="@+id/star3" />
-
-                                <TextView
-                                    android:id="@+id/star2TV"
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:layout_marginEnd="@dimen/m10"
-                                    android:text="@string/_2_star"
-                                    android:textColor="@color/unselected_Text_color"
-                                    android:textSize="@dimen/text_size_12"
-                                    app:layout_constraintBottom_toBottomOf="@+id/star2"
-                                    app:layout_constraintEnd_toStartOf="@id/star2"
-                                    app:layout_constraintTop_toTopOf="@id/star2" />
-
-
-                                <ProgressBar
-                                    android:id="@+id/star1"
-                                    style="?android:attr/progressBarStyleHorizontal"
-                                    android:layout_width="80dp"
-                                    android:layout_height="4dp"
-                                    android:layout_marginTop="@dimen/m10"
-                                    android:max="100"
-                                    android:progress="10"
-                                    android:progressDrawable="@drawable/custom_progress_bar"
-                                    app:layout_constraintEnd_toEndOf="parent"
-                                    app:layout_constraintTop_toBottomOf="@+id/star2" />
-
-                                <TextView
-                                    android:id="@+id/star1TV"
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:layout_marginEnd="@dimen/m10"
-                                    android:text="@string/_1_star"
-                                    android:textColor="@color/unselected_Text_color"
-                                    android:textSize="@dimen/text_size_12"
-                                    app:layout_constraintBottom_toBottomOf="@+id/star1"
-                                    app:layout_constraintEnd_toStartOf="@id/star1"
-                                    app:layout_constraintTop_toTopOf="@id/star1" />
-
-                            </androidx.constraintlayout.widget.ConstraintLayout>
-
-                            <TextView
-                                android:id="@+id/userTV"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_marginTop="@dimen/p25"
-                                android:text="@string/user_reviews"
-                                android:textColor="@color/primary_text"
-                                android:textSize="@dimen/text_size_16"
-                                app:layout_constraintStart_toStartOf="parent"
-                                app:layout_constraintTop_toBottomOf="@id/userReviewCL" />
-
-                            <TextView
-                                android:id="@+id/filterTV"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_marginEnd="@dimen/m6"
-                                android:text="@string/filter"
-                                android:textColor="@color/primary_text"
-                                android:textSize="@dimen/text_size_16"
-                                app:layout_constraintBottom_toBottomOf="@id/filterIconIV"
-                                app:layout_constraintEnd_toStartOf="@id/filterIconIV"
-                                app:layout_constraintTop_toTopOf="@id/filterIconIV"
-                                tools:ignore="RtlSymmetry" />
-
-                            <ImageView
-                                android:id="@+id/filterIconIV"
-                                android:layout_width="25dp"
-                                android:layout_height="25dp"
-                                android:layout_marginStart="@dimen/m10"
-                                android:padding="@dimen/p4"
-                                android:src="@drawable/filter_icon"
-                                app:layout_constraintBottom_toBottomOf="@id/userTV"
-                                app:layout_constraintEnd_toEndOf="parent"
-                                app:layout_constraintTop_toTopOf="@id/userTV"
-                                tools:ignore="ContentDescription" />
-
-                            <View
-                                android:id="@+id/view"
-                                android:layout_width="match_parent"
-                                android:layout_height="1dp"
-                                android:background="@color/light_Gray"
-                                app:layout_constraintTop_toBottomOf="@id/filterIconIV" />
-
-                            <androidx.recyclerview.widget.RecyclerView
-                                android:id="@+id/reviewsRV"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:layout_marginTop="@dimen/m30"
-                                android:orientation="vertical"
-                                app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
-                                app:layout_constraintTop_toBottomOf="@id/view"
-                                tools:listitem="@layout/items_reviews"
-
-                                />
-
-                        </androidx.constraintlayout.widget.ConstraintLayout>
 
                     </androidx.constraintlayout.widget.ConstraintLayout>
 

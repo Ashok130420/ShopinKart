@@ -30,6 +30,7 @@
                 android:layout_height="100dp">
 
                 <ImageView
+                    android:id="@+id/imageIV"
                     android:layout_width="80dp"
                     android:layout_height="80dp"
                     android:scaleType="fitXY"
@@ -46,7 +47,7 @@
         </androidx.cardview.widget.CardView>
 
         <TextView
-            android:id="@+id/poloTV"
+            android:id="@+id/nameTV"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/m6"

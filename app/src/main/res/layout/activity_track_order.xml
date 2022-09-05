@@ -30,11 +30,11 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/m20"
-            android:layout_marginTop="@dimen/m45"
+            android:layout_marginTop="@dimen/m20"
             android:paddingVertical="@dimen/p20"
             android:text="@string/_9_30_am"
             android:textColor="@color/primary_text"
-            android:textSize="@dimen/text_size_16"
+            android:textSize="@dimen/text_size_14"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/headerTrackOrder" />
 
@@ -57,7 +57,7 @@
             android:paddingVertical="@dimen/p20"
             android:text="@string/order_placed"
             android:textColor="@color/primary_text"
-            android:textSize="@dimen/text_size_18"
+            android:textSize="@dimen/text_size_15"
             app:layout_constraintBottom_toBottomOf="@+id/orderPlacedTimeTV"
             app:layout_constraintStart_toEndOf="@+id/orderPlacedIconIV"
             app:layout_constraintTop_toTopOf="@+id/orderPlacedTimeTV" />
@@ -68,7 +68,8 @@
             android:layout_height="wrap_content"
             android:text="@string/your_order_sic0011_was_nplaced_for_delivery"
             android:textColor="@color/unselected_Text_color"
-            android:textSize="@dimen/text_size_15"
+            android:textSize="@dimen/text_size_12"
+            android:fontFamily="@font/dm_sans_medium"
             app:layout_constraintStart_toStartOf="@+id/orderPlacedTV"
             app:layout_constraintTop_toBottomOf="@+id/orderPlacedTV" />
 
@@ -92,7 +93,7 @@
             android:paddingVertical="@dimen/p20"
             android:text="@string/_9_35_am"
             android:textColor="@color/primary_text"
-            android:textSize="@dimen/text_size_16"
+            android:textSize="@dimen/text_size_14"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/orderPlacedView" />
 
@@ -115,7 +116,7 @@
             android:paddingVertical="@dimen/p20"
             android:text="@string/processing"
             android:textColor="@color/primary_text"
-            android:textSize="@dimen/text_size_18"
+            android:textSize="@dimen/text_size_15"
             app:layout_constraintBottom_toBottomOf="@+id/processingTimeTV"
             app:layout_constraintStart_toEndOf="@+id/processingIconIV"
             app:layout_constraintTop_toTopOf="@+id/processingTimeTV" />
@@ -126,7 +127,8 @@
             android:layout_height="wrap_content"
             android:text="@string/your_order_is_accepted_and_n_we_are_processing_it"
             android:textColor="@color/unselected_Text_color"
-            android:textSize="@dimen/text_size_15"
+            android:textSize="@dimen/text_size_12"
+            android:fontFamily="@font/dm_sans_medium"
             app:layout_constraintStart_toStartOf="@+id/processingTV"
             app:layout_constraintTop_toBottomOf="@+id/processingTV" />
 
@@ -150,7 +152,7 @@
             android:paddingVertical="@dimen/p20"
             android:text="@string/_9_55_am"
             android:textColor="@color/primary_text"
-            android:textSize="@dimen/text_size_16"
+            android:textSize="@dimen/text_size_14"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/processingView" />
 
@@ -173,7 +175,7 @@
             android:paddingVertical="@dimen/p20"
             android:text="@string/out_for_delivery"
             android:textColor="@color/primary_text"
-            android:textSize="@dimen/text_size_18"
+            android:textSize="@dimen/text_size_15"
             app:layout_constraintBottom_toBottomOf="@+id/outForDeliveryDateTV"
             app:layout_constraintStart_toEndOf="@+id/outForDeliveryIconIV"
             app:layout_constraintTop_toTopOf="@+id/outForDeliveryDateTV" />
@@ -184,7 +186,8 @@
             android:layout_height="wrap_content"
             android:text="@string/our_delivery_agent_ram_nsingh_is_out_to_deliver_your_norder_91_9982099820"
             android:textColor="@color/unselected_Text_color"
-            android:textSize="@dimen/text_size_15"
+            android:textSize="@dimen/text_size_12"
+            android:fontFamily="@font/dm_sans_medium"
             app:layout_constraintStart_toStartOf="@+id/outForDeliveryTV"
             app:layout_constraintTop_toBottomOf="@+id/outForDeliveryTV" />
 
@@ -209,7 +212,7 @@
             android:paddingVertical="@dimen/p20"
             android:text="@string/_9_30_am"
             android:textColor="@color/primary_text"
-            android:textSize="@dimen/text_size_16"
+            android:textSize="@dimen/text_size_14"
             android:visibility="invisible"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/outForDeliveryView" />
@@ -233,7 +236,7 @@
             android:paddingVertical="@dimen/p20"
             android:text="@string/delivered"
             android:textColor="@color/primary_text"
-            android:textSize="@dimen/text_size_18"
+            android:textSize="@dimen/text_size_15"
             app:layout_constraintBottom_toBottomOf="@+id/deliveredIconIV"
             app:layout_constraintStart_toEndOf="@+id/deliveredIconIV"
             app:layout_constraintTop_toTopOf="@+id/deliveredIconIV" />
@@ -244,7 +247,8 @@
             android:layout_height="wrap_content"
             android:text="@string/product_deliver_to_you_and_nmarked_as_deliverd_by_ncustomer"
             android:textColor="@color/unselected_Text_color"
-            android:textSize="@dimen/text_size_15"
+            android:textSize="@dimen/text_size_12"
+            android:fontFamily="@font/dm_sans_medium"
             app:layout_constraintStart_toStartOf="@+id/deliveredTV"
             app:layout_constraintTop_toBottomOf="@+id/deliveredTV" />
 

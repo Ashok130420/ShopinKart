@@ -12,6 +12,7 @@ class SharedPreference(context: Context) {
         const val TOKEN = "token"
         const val userId = "userId"
         const val isLogin = "isLogin"
+        const val usertype = "userType"
     }
 
     fun clear() {

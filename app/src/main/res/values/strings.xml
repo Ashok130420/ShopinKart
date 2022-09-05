@@ -217,6 +217,11 @@
     <string name="jon_deo">Jon Deo</string>
     <string name="_1_day_ago">1 day ago</string>
     <string name="tim_responded_to_your_feedback_request_view_feedback_n_now_tim_responded_to_your_feedback_request_view_feedback_now">“ Tim responded to your Feedback Request. View feedback\n now Tim responded to your Feedback Request. View feedback now. ”</string>
+    <string name="search">Search</string>
+    <string name="shipping">Shipping</string>
+    <string name="payment">Payment</string>
+    <string name="success">Success</string>
+    <string name="how_would_you_like_to_pay">How would you like to pay?</string>
 
 
 </resources>

@@ -21,11 +21,9 @@
             android:layout_height="wrap_content">
 
             <ImageView
-                android:id="@+id/newlyAddedIV"
-                android:layout_width="110dp"
-                android:layout_height="140dp"
-                android:layout_marginHorizontal="@dimen/m20"
-                android:layout_marginVertical="@dimen/p12"
+                android:id="@+id/imageIV"
+                android:layout_width="150dp"
+                android:layout_height="150dp"
                 android:scaleType="fitXY"
                 android:src="@drawable/newly_added_image"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -34,7 +32,7 @@
                 tools:ignore="ContentDescription" />
 
             <TextView
-                android:id="@+id/t_shirtNameTV"
+                android:id="@+id/productTV"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="@dimen/m10"
@@ -44,7 +42,7 @@
                 android:textColor="@color/primary_text"
                 android:textSize="@dimen/text_size_14"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/newlyAddedIV" />
+                app:layout_constraintTop_toBottomOf="@+id/imageIV" />
 
             <TextView
                 android:id="@+id/priceTV"
@@ -55,8 +53,8 @@
                 android:text="@string/rs_100_rs_500"
                 android:textColor="@color/red_velvet"
                 android:textSize="@dimen/text_size_14"
-                app:layout_constraintStart_toStartOf="@+id/t_shirtNameTV"
-                app:layout_constraintTop_toBottomOf="@+id/t_shirtNameTV" />
+                app:layout_constraintStart_toStartOf="@+id/productTV"
+                app:layout_constraintTop_toBottomOf="@+id/productTV" />
 
             <RatingBar
                 android:id="@+id/ratingBar"
@@ -70,7 +68,7 @@
                 android:rating="1"
                 android:theme="@style/RatingBar"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintStart_toStartOf="@+id/t_shirtNameTV"
+                app:layout_constraintStart_toStartOf="@+id/productTV"
                 app:layout_constraintTop_toBottomOf="@+id/priceTV" />
 
             <TextView
