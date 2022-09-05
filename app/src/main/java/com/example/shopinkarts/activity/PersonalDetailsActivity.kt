@@ -18,16 +18,21 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import androidx.databinding.DataBindingUtil
 import com.example.shopinkarts.R
+import com.example.shopinkarts.classes.SharedPreference
 import com.example.shopinkarts.databinding.ActivityPersonalDetailsBinding
 
 class PersonalDetailsActivity : AppCompatActivity() {
-
+    lateinit var sharedPreference: SharedPreference
     lateinit var binding: ActivityPersonalDetailsBinding
     var layoutCount = 1
-
+    var userType = ""
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = DataBindingUtil.setContentView(this, R.layout.activity_personal_details)
+
+        sharedPreference = SharedPreference(this)
+        userType = sharedPreference.getUserType().toString()
+        Log.d("USERTYPE.....", userType)
 
         layoutCount = 1
         layoutFirst()
@@ -47,7 +52,7 @@ class PersonalDetailsActivity : AppCompatActivity() {
 
         }
         val ss = SpannableString(
-            "You can track the delivery in the \n" +
+            "You can track the delivery in\nthe " +
                     "\"Order\" section"
         )
         val span1: ClickableSpan = object : ClickableSpan() {
@@ -135,7 +140,11 @@ class PersonalDetailsActivity : AppCompatActivity() {
     }
 
     private fun layoutFirst() {
-        binding.includeStepper1.personalCL.visibility = View.VISIBLE
+        if (userType == "1") {
+            binding.includeStepper1.businessDetailsCl.visibility = View.VISIBLE
+        } else {
+            binding.includeStepper1.personalCL.visibility = View.VISIBLE
+        }
         binding.includeStepper2.paymentCL.visibility = View.GONE
         binding.includeStepper3.successCL.visibility = View.GONE
         layoutCount++
@@ -144,6 +153,7 @@ class PersonalDetailsActivity : AppCompatActivity() {
 
     private fun layoutSecond() {
         binding.includeStepper1.personalCL.visibility = View.GONE
+        binding.includeStepper1.businessDetailsCl.visibility = View.GONE
         binding.includeStepper2.paymentCL.visibility = View.VISIBLE
         binding.includeStepper3.successCL.visibility = View.GONE
         binding.paymentIV.setImageResource(R.drawable.blue_right_icon)
@@ -152,6 +162,7 @@ class PersonalDetailsActivity : AppCompatActivity() {
 
     private fun layoutThird() {
         binding.includeStepper1.personalCL.visibility = View.GONE
+        binding.includeStepper1.businessDetailsCl.visibility = View.GONE
         binding.includeStepper2.paymentCL.visibility = View.GONE
         binding.includeStepper3.successCL.visibility = View.VISIBLE
         binding.successIV.setImageResource(R.drawable.blue_right_icon)

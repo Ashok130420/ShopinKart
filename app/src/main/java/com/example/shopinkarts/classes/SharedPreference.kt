@@ -12,7 +12,7 @@ class SharedPreference(context: Context) {
         const val TOKEN = "token"
         const val userId = "userId"
         const val isLogin = "isLogin"
-        const val usertype = "userType"
+        const val userType = "userType"
     }
 
     fun clear() {
@@ -30,6 +30,16 @@ class SharedPreference(context: Context) {
 
     fun getToken(): String? {
         return prefs.getString(TOKEN, " ")
+    }
+
+    fun setUsertype(usertype: String) {
+        val editor = prefs.edit()
+        editor.putString(userType, usertype)
+        editor.apply()
+    }
+
+    fun getUserType(): String? {
+        return prefs.getString(userType, "")
     }
 
     fun setUserId(token: String) {
