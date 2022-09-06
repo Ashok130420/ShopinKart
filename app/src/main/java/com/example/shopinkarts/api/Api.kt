@@ -27,6 +27,11 @@ interface Api {
     fun subCategories(@Path("id") id: String?): Call<SubCategoriesResponse>
 
     // particular item api
-    @GET("products/sub-category/{id}")
-    fun particularItem(@Path("id") id: String?): Call<ParticularItemResponse>
+    @GET("products/sub-category/{id}?")
+    fun particularItem(
+        @Path("id") id: String?,
+        @Query("type") type: String?,
+        @Query("subType") subType: String?,
+        @Query("value") value: String
+    ): Call<ParticularItemResponse>
 }

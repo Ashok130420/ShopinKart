@@ -36,10 +36,10 @@
                 app:layout_constraintTop_toTopOf="parent">
 
                 <TextView
-                    android:id="@+id/shortTV"
+                    android:id="@+id/sortTV"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/shorting"
+                    android:text="@string/sorting"
                     android:textColor="@color/white"
                     android:textSize="@dimen/text_size_16"
                     app:layout_constraintEnd_toEndOf="parent"
@@ -48,15 +48,15 @@
                     tools:ignore="RtlSymmetry" />
 
                 <ImageView
-                    android:id="@+id/shortingIconIV"
+                    android:id="@+id/sortingIconIV"
                     android:layout_width="25dp"
                     android:layout_height="25dp"
                     android:layout_marginStart="@dimen/m10"
                     android:padding="@dimen/p1"
-                    android:src="@drawable/shortng_icon_white"
-                    app:layout_constraintBottom_toBottomOf="@id/shortTV"
-                    app:layout_constraintStart_toEndOf="@+id/shortTV"
-                    app:layout_constraintTop_toTopOf="@id/shortTV"
+                    android:src="@drawable/sorting_icon_white"
+                    app:layout_constraintBottom_toBottomOf="@id/sortTV"
+                    app:layout_constraintStart_toEndOf="@+id/sortTV"
+                    app:layout_constraintTop_toTopOf="@id/sortTV"
                     tools:ignore="ContentDescription" />
             </androidx.constraintlayout.widget.ConstraintLayout>
 

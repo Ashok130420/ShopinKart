@@ -41,7 +41,7 @@ class LoginActivity : AppCompatActivity() {
         deviceId = OneSignal.getDeviceState()?.userId.toString()
 
         binding.signUpTV.setOnClickListener {
-            val intent = Intent(this, com.example.shopinkarts.activity.SignUpActivity::class.java)
+            val intent = Intent(this,SignUpActivity::class.java)
             startActivity(intent)
         }
         binding.signInTv.setOnClickListener {

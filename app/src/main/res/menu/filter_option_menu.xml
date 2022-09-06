@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/optionFilter1"
+        android:title="Rs 499  and Below" />
+    <item
+        android:id="@+id/optionFilter2"
+        android:title="Rs 500 and Rs 999" />
+    <item
+        android:id="@+id/optionFilter3"
+        android:title="Rs 1000 ans Rs 1999"
+        />
+    <item
+        android:id="@+id/optionFilter4"
+        android:title="Rs 2000 and Above"
+        />
+
+</menu>

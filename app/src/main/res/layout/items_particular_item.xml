@@ -21,9 +21,8 @@
             <ImageView
                 android:id="@+id/imageIV"
                 android:layout_width="match_parent"
-                android:layout_height="150dp"
-                android:layout_marginHorizontal="@dimen/m10"
-                android:layout_marginVertical="@dimen/m10"
+                android:layout_height="170dp"
+
                 android:scaleType="fitXY"
                 android:src="@drawable/newly_added_image"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -108,7 +107,7 @@
                 app:layout_constraintBottom_toBottomOf="@+id/ratingBar"
                 app:layout_constraintStart_toEndOf="@+id/ratingBar"
                 app:layout_constraintTop_toTopOf="@+id/ratingBar" />
-
+<!--
             <ImageView
                 android:id="@+id/optionMenuIV"
                 android:layout_width="20dp"
@@ -120,7 +119,7 @@
                 app:layout_constraintBottom_toBottomOf="@+id/ratingBar"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="@+id/ratingBar"
-                tools:ignore="ContentDescription" />
+                tools:ignore="ContentDescription" />-->
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 

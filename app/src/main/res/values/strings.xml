@@ -93,7 +93,7 @@
     <string name="read_reviews">Read Reviews </string>
     <string name="similar_products">Similar Products</string>
     <string name="showcasing_281_t_shirts">Showcasing 281 T-Shirts</string>
-    <string name="shorting">Short</string>
+    <string name="sorting">Sort</string>
     <string name="filter">Filter</string>
     <string name="category">Category</string>
     <string name="your_cart">Your Cart</string>
@@ -148,6 +148,20 @@
         <item>Delhi</item>
         <item>Bombay</item>
         <item>Ajmer</item>
+    </string-array>
+    <string-array name="filter">
+        <item>Filter</item>
+        <item>Rs 499  and Below</item>
+        <item>Rs 500 and Rs 999 </item>
+        <item>Rs 1000 ans Rs 1999</item>
+        <item>Rs 2000 and Above</item>
+
+    </string-array>
+    <string-array name="sorting">
+        <item>Sorting</item>
+        <item>Price - High to Low </item>
+        <item>Price Low to High</item>
+        <item>Newest First</item>
     </string-array>
     <string name="password_reset">Password reset</string>
     <string name="please_reset_your_password">Please reset your password</string>
@@ -222,6 +236,9 @@
     <string name="payment">Payment</string>
     <string name="success">Success</string>
     <string name="how_would_you_like_to_pay">How would you like to pay?</string>
+    <string name="price_high_to_low">Price - High to Low</string>
+    <string name="price_low_to_high">Price - Low to High</string>
+    <string name="newest_first">Newest First</string>
 
 
 </resources>
