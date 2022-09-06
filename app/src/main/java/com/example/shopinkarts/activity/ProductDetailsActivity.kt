@@ -39,6 +39,7 @@ class ProductDetailsActivity : AppCompatActivity() {
         setupIndicators()
         setCurrentIndicator(0)
 
+
         binding.productViewPager.registerOnPageChangeCallback(object :
             ViewPager2.OnPageChangeCallback() {
             override fun onPageSelected(position: Int) {

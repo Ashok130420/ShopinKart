@@ -11,10 +11,16 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginHorizontal="@dimen/p1"
+            android:paddingHorizontal="@dimen/p14"
+            app:cardCornerRadius="@dimen/m10"
+            app:cardUseCompatPadding="true">
 
             <ImageView
-                android:id="@+id/imageSlideIcon"
+                android:id="@+id/imageSlide3IV"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:scaleType="fitXY"
@@ -22,7 +28,7 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 tools:ignore="ContentDescription" />
-
+        </androidx.cardview.widget.CardView>
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 

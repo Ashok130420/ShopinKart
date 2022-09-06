@@ -32,6 +32,8 @@
         <entry key="..\:/New folder/ShopInKarts/app/src/main/res/layout/activity_sub_categories.xml" value="0.33" />
         <entry key="..\:/New folder/ShopInKarts/app/src/main/res/layout/activity_track_order.xml" value="0.1718683197947841" />
         <entry key="..\:/New folder/ShopInKarts/app/src/main/res/layout/activity_view_all.xml" value="0.25" />
+        <entry key="..\:/New folder/ShopInKarts/app/src/main/res/layout/banner2_container.xml" value="0.1718683197947841" />
+        <entry key="..\:/New folder/ShopInKarts/app/src/main/res/layout/banner3_container.xml" value="0.1718683197947841" />
         <entry key="..\:/New folder/ShopInKarts/app/src/main/res/layout/bottom_sheet_return_order.xml" value="0.1718683197947841" />
         <entry key="..\:/New folder/ShopInKarts/app/src/main/res/layout/fragment_account.xml" value="0.1718683197947841" />
         <entry key="..\:/New folder/ShopInKarts/app/src/main/res/layout/fragment_categories.xml" value="0.25" />
@@ -69,7 +71,7 @@
         <entry key="..\:/New folder/ShopInKarts/app/src/main/res/layout/items_top_rated.xml" value="0.21" />
         <entry key="..\:/New folder/ShopInKarts/app/src/main/res/layout/items_top_wear.xml" value="0.33" />
         <entry key="..\:/New folder/ShopInKarts/app/src/main/res/layout/product_slide_item_container.xml" value="0.1718683197947841" />
-        <entry key="..\:/New folder/ShopInKarts/app/src/main/res/layout/slide_item_container.xml" value="0.33" />
+        <entry key="..\:/New folder/ShopInKarts/app/src/main/res/layout/slide_item_container.xml" value="0.22" />
         <entry key="..\:/New folder/ShopInKarts/app/src/main/res/layout/stepper1_layout.xml" value="0.25" />
         <entry key="..\:/New folder/ShopInKarts/app/src/main/res/layout/stepper2_layout.xml" value="0.1718683197947841" />
         <entry key="..\:/New folder/ShopInKarts/app/src/main/res/layout/stepper3_layout.xml" value="0.1718683197947841" />
