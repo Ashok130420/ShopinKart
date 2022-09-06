@@ -288,33 +288,33 @@
                         app:layout_constraintTop_toBottomOf="@+id/topRatedRV"
                         tools:ignore="MissingConstraints" />
 
-                   <!-- <androidx.constraintlayout.widget.ConstraintLayout
-                        android:id="@+id/banner2CL"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="@dimen/m30"
-                        app:layout_constraintTop_toBottomOf="@+id/topRatedRV">
+                    <!-- <androidx.constraintlayout.widget.ConstraintLayout
+                         android:id="@+id/banner2CL"
+                         android:layout_width="match_parent"
+                         android:layout_height="wrap_content"
+                         android:layout_marginTop="@dimen/m30"
+                         app:layout_constraintTop_toBottomOf="@+id/topRatedRV">
 
-                        <androidx.viewpager2.widget.ViewPager2
-                            android:id="@+id/banner2ViewPager"
-                            android:layout_width="match_parent"
-                            android:layout_height="140dp"
-                            app:layout_constraintEnd_toEndOf="parent"
-                            app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toTopOf="parent" />
+                         <androidx.viewpager2.widget.ViewPager2
+                             android:id="@+id/banner2ViewPager"
+                             android:layout_width="match_parent"
+                             android:layout_height="140dp"
+                             app:layout_constraintEnd_toEndOf="parent"
+                             app:layout_constraintStart_toStartOf="parent"
+                             app:layout_constraintTop_toTopOf="parent" />
 
-                        <LinearLayout
-                            android:id="@+id/indicatorsBanner2"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="@dimen/m10"
-                            android:gravity="center"
-                            android:orientation="horizontal"
-                            app:layout_constraintEnd_toEndOf="parent"
-                            app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toBottomOf="@id/banner2ViewPager" />
+                         <LinearLayout
+                             android:id="@+id/indicatorsBanner2"
+                             android:layout_width="match_parent"
+                             android:layout_height="wrap_content"
+                             android:layout_marginTop="@dimen/m10"
+                             android:gravity="center"
+                             android:orientation="horizontal"
+                             app:layout_constraintEnd_toEndOf="parent"
+                             app:layout_constraintStart_toStartOf="parent"
+                             app:layout_constraintTop_toBottomOf="@id/banner2ViewPager" />
 
-                    </androidx.constraintlayout.widget.ConstraintLayout>-->
+                     </androidx.constraintlayout.widget.ConstraintLayout>-->
 
 
                     <TextView
@@ -360,7 +360,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="@dimen/m40"
                         android:fontFamily="@font/dm_sans"
-                        android:text="@string/popular"
+                        android:text="@string/deal_of_the_day"
                         android:textColor="@color/primary_text"
                         android:textSize="@dimen/text_size_18"
                         app:layout_constraintStart_toStartOf="parent"

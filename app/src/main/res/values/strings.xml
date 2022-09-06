@@ -239,6 +239,7 @@
     <string name="price_high_to_low">Price - High to Low</string>
     <string name="price_low_to_high">Price - Low to High</string>
     <string name="newest_first">Newest First</string>
+    <string name="deal_of_the_day">Deal Of The Day</string>
 
 
 </resources>
