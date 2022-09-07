@@ -1,32 +1,49 @@
 package com.example.shopinkarts.fragments
 
 import android.os.Bundle
+import android.os.Handler
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
+import android.widget.LinearLayout
+import android.widget.ListPopupWindow
 import android.widget.Toast
+import androidx.core.content.ContextCompat
+import androidx.core.view.get
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
+import androidx.viewpager2.widget.ViewPager2
 import com.denzcoskun.imageslider.constants.ScaleTypes
 import com.denzcoskun.imageslider.models.SlideModel
 import com.example.shopinkarts.R
+import com.example.shopinkarts.adapter.Banner3Adapter
 import com.example.shopinkarts.adapter.CategoriesAdapter
+import com.example.shopinkarts.adapter.CategoryBannerAdapter
 import com.example.shopinkarts.api.RetrofitClient
 import com.example.shopinkarts.databinding.FragmentCategoriesBinding
+import com.example.shopinkarts.model.Banner3Slide
+import com.example.shopinkarts.model.CategoryBannerSlide
 import com.example.shopinkarts.response.CategoriesResponse
 import com.example.shopinkarts.response.Category
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
+import java.util.*
+import kotlin.collections.ArrayList
 
 
 class CategoriesFragment : Fragment() {
 
     lateinit var binding: FragmentCategoriesBinding
     lateinit var categoriesAdapter: CategoriesAdapter
-    private val imageList = ArrayList<SlideModel>()
+    lateinit var categoryBannerAdapter: CategoryBannerAdapter
     var arrayListCategories: ArrayList<Category> = ArrayList()
+    var currentPage = 0
+    var timer: Timer? = null
+    val DELAY_MS: Long = 2000
+    val PERIOD_MS: Long = 4000
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -35,13 +52,30 @@ class CategoriesFragment : Fragment() {
 
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_categories, container, false)
 
-        imageList.clear()
-        imageList.add(SlideModel(R.drawable.banner_1))
-        imageList.add(SlideModel(R.drawable.banner_2))
-        imageList.add(SlideModel(R.drawable.banner_1))
-        imageList.add(SlideModel(R.drawable.banner_2))
+        setCategoryBannerViewPager()
+        setupIndicatorsCategoryBanner()
+        setCurrentIndicatorCategoryBanner(0)
 
-        binding.imageSlider.setImageList(imageList, ScaleTypes.FIT)
+        val handler = Handler()
+        val update = Runnable {
+            binding.categoryBannerViewPager.setCurrentItem(currentPage % 4, true)
+            currentPage++
+        }
+        timer = Timer()
+        timer!!.schedule(object : TimerTask() {
+            override fun run() {
+                handler.post(update)
+            }
+        }, DELAY_MS, PERIOD_MS)
+
+
+        binding.categoryBannerViewPager.registerOnPageChangeCallback(object :
+            ViewPager2.OnPageChangeCallback() {
+            override fun onPageSelected(position: Int) {
+                super.onPageSelected(position)
+                setCurrentIndicatorCategoryBanner(position)
+            }
+        })
 
         return binding.root
     }
@@ -85,6 +119,56 @@ class CategoriesFragment : Fragment() {
             }
 
         })
+    }
+
+    // banner 3
+    private fun setupIndicatorsCategoryBanner() {
+        val indicators = arrayOfNulls<ImageView>(categoryBannerAdapter.itemCount)
+        val layoutParms: LinearLayout.LayoutParams =
+            LinearLayout.LayoutParams(ListPopupWindow.WRAP_CONTENT, ListPopupWindow.WRAP_CONTENT)
+        layoutParms.setMargins(8, 0, 8, 0)
+
+        for (i in indicators.indices) {
+            indicators[i] = ImageView(requireContext())
+            indicators[i].apply {
+                this?.setImageDrawable(
+                    ContextCompat.getDrawable(requireContext(), R.drawable.indicator_inactive)
+                )
+                this?.layoutParams = layoutParms
+            }
+            binding.indicatorsCategoryBanner.addView(indicators[i])
+        }
+    }
+
+    private fun setCurrentIndicatorCategoryBanner(index: Int) {
+
+        val childCount = binding.indicatorsCategoryBanner.childCount
+        for (i in 0 until childCount) {
+            val imageView = binding.indicatorsCategoryBanner[i] as ImageView
+            if (i == index) {
+                imageView.setImageDrawable(
+                    context?.let { ContextCompat.getDrawable(it, R.drawable.indicator_active) }
+                )
+            } else {
+                imageView.setImageDrawable(
+                    context?.let { ContextCompat.getDrawable(it, R.drawable.indicator_inactive) }
+                )
+
+            }
+        }
+
+    }
+
+    private fun setCategoryBannerViewPager() {
+        categoryBannerAdapter = CategoryBannerAdapter(
+            listOf(
+                CategoryBannerSlide(R.drawable.banner_1),
+                CategoryBannerSlide(R.drawable.banner_2),
+                CategoryBannerSlide(R.drawable.banner_1),
+                CategoryBannerSlide(R.drawable.banner_2)
+            )
+        )
+        binding.categoryBannerViewPager.adapter = categoryBannerAdapter
     }
 
 }

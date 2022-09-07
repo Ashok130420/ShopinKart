@@ -14,22 +14,33 @@
         tools:context="com.example.shopinkarts.fragments.CategoriesFragment">
 
 
-        <com.denzcoskun.imageslider.ImageSlider
-            android:id="@+id/imageSlider"
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/categoryBannerCL"
             android:layout_width="match_parent"
-            android:layout_height="120dp"
+            android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/m10"
-            app:iss_auto_cycle="true"
-            app:iss_corner_radius="5"
-            app:iss_delay="0"
-            android:layout_marginHorizontal="@dimen/m10"
-            app:iss_error_image="@android:color/darker_gray"
-            app:iss_period="2000"
-            app:iss_placeholder="@android:color/darker_gray"
-            app:iss_selected_dot="@drawable/default_selected_dot"
-            app:iss_unselected_dot="@drawable/default_unselected_dot"
-            app:layout_constraintTop_toTopOf="parent"
-            tools:ignore="MissingConstraints" />
+            app:layout_constraintTop_toTopOf="parent">
+
+            <androidx.viewpager2.widget.ViewPager2
+                android:id="@+id/categoryBannerViewPager"
+                android:layout_width="match_parent"
+                android:layout_height="140dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <LinearLayout
+                android:id="@+id/indicatorsCategoryBanner"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/m10"
+                android:gravity="center"
+                android:orientation="horizontal"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/categoryBannerViewPager" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/categoriesRV"
@@ -40,9 +51,11 @@
             android:orientation="vertical"
             app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/imageSlider"
+            app:layout_constraintTop_toBottomOf="@id/categoryBannerCL"
             app:spanCount="2"
             tools:listitem="@layout/items_categories" />
+
+
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

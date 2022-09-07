@@ -23,6 +23,7 @@ import com.example.shopinkarts.model.Banner3Slide
 import com.example.shopinkarts.model.ClothShortingModel
 import com.example.shopinkarts.model.CommonModel
 import com.example.shopinkarts.response.*
+import com.facebook.shimmer.ShimmerFrameLayout
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -47,6 +48,10 @@ class HomeFragment : Fragment() {
     lateinit var recommendedAdapter: RecommendedAdapter
     lateinit var banner2Adapter: Banner2Adapter
     lateinit var banner3Adapter: Banner3Adapter
+    lateinit var shimmerShopFor: ShimmerFrameLayout
+    lateinit var shimmerManufacturer: ShimmerFrameLayout
+    lateinit var shimmerMostPopular: ShimmerFrameLayout
+    lateinit var shimmerHome: ShimmerFrameLayout
 
     lateinit var commonRecyclerViewAdapter: CommonRecyclerViewAdapter
     private val imageListBanner = ArrayList<SlideModel>()
@@ -77,6 +82,9 @@ class HomeFragment : Fragment() {
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_home, container, false)
 
         activity?.window?.setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_RESIZE)
+        shimmerShopFor = binding.shimmerViewShopFor
+        shimmerManufacturer = binding.shimmerViewManufacturer
+        shimmerMostPopular = binding.shimmerViewMostPopular
         setCurrentIndicator(0)
 //        dashBoardList()
 
@@ -246,6 +254,12 @@ class HomeFragment : Fragment() {
                 call: Call<DashBoardResponse>,
                 response: Response<DashBoardResponse>
             ) {
+                shimmerShopFor.stopShimmer()
+                shimmerShopFor.visibility = View.GONE
+                shimmerManufacturer.stopShimmer()
+                shimmerManufacturer.visibility = View.GONE
+                shimmerMostPopular.stopShimmer()
+                shimmerMostPopular.visibility = View.GONE
                 val dashBoardResponse = response.body()
                 if (response.isSuccessful) {
 
@@ -365,7 +379,6 @@ class HomeFragment : Fragment() {
                 )
             }
         }
-
     }
 
     private fun setIntroSliderViewPager() {

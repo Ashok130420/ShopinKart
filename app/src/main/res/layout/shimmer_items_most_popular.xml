@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+    </data>
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/m2"
+        android:layout_marginTop="@dimen/m2"
+        android:layout_marginEnd="@dimen/m10"
+        android:layout_marginBottom="@dimen/m2"
+        app:cardCornerRadius="@dimen/m10">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:id="@+id/imageIV"
+                android:layout_width="match_parent"
+                android:layout_height="150dp"
+                android:background="@color/shimmer_background"
+                android:scaleType="fitXY"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:ignore="ContentDescription" />
+
+            <TextView
+                android:id="@+id/productTV"
+                android:layout_width="@dimen/m100"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="@dimen/m10"
+                android:layout_marginTop="@dimen/m16"
+                android:background="@color/shimmer_background"
+                android:fontFamily="@font/dm_sans_medium"
+                android:textColor="@color/primary_text"
+                android:textSize="@dimen/text_size_14"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/imageIV" />
+
+            <TextView
+                android:id="@+id/priceTV"
+                android:layout_width="@dimen/m150"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/m6"
+                android:background="@color/shimmer_background"
+                android:fontFamily="@font/dm_sans_bold"
+                android:textColor="@color/red_velvet"
+                android:textSize="@dimen/text_size_14"
+                app:layout_constraintStart_toStartOf="@+id/productTV"
+                app:layout_constraintTop_toBottomOf="@+id/productTV" />
+
+
+            <TextView
+                android:id="@+id/ratingTV"
+                android:layout_width="@dimen/m50"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/m5"
+                android:layout_marginBottom="@dimen/m5"
+                android:background="@color/shimmer_background"
+                android:fontFamily="@font/dm_sans"
+                android:textColor="@color/primary_text"
+                android:textSize="@dimen/text_size_12"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="@+id/productTV"
+                app:layout_constraintTop_toBottomOf="@+id/priceTV" />
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.cardview.widget.CardView>
+</layout>
