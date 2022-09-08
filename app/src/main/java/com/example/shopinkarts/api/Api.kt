@@ -34,4 +34,10 @@ interface Api {
         @Query("subType") subType: String?,
         @Query("value") value: String
     ): Call<ParticularItemResponse>
+
+    // product
+    @POST("products/details")
+    fun productApi(@Body body: Map<String, String>): Call<ProductResponse>
+
+
 }

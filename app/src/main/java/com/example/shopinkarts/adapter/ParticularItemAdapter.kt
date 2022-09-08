@@ -39,6 +39,7 @@ class ParticularItemAdapter(val context: Context, var arrayList: ArrayList<Produ
         }
         holder.itemView.setOnClickListener {
             val intent = Intent(context, ProductDetailsActivity::class.java)
+            intent.putExtra("productId",itemDetails._id)
             context.startActivity(intent)
         }
     }

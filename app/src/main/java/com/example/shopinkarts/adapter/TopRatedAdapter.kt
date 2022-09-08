@@ -37,6 +37,7 @@ class TopRatedAdapter(val context: Context, val arrayList: ArrayList<TopRated>) 
 
         holder.itemView.setOnClickListener {
             val intent = Intent(context, ProductDetailsActivity::class.java)
+            intent.putExtra("productId",itemDetails._id)
             context.startActivity(intent)
         }
     }

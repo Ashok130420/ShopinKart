@@ -1,11 +1,15 @@
 package com.example.shopinkarts.activity
 
 import android.content.Intent
+import android.os.Build
 import android.os.Bundle
+import android.text.Html
+import android.util.Log
 import android.view.View
 import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.ListPopupWindow
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import androidx.core.view.get
@@ -13,10 +17,17 @@ import androidx.databinding.DataBindingUtil
 import androidx.viewpager2.widget.ViewPager2
 import com.example.shopinkarts.R
 import com.example.shopinkarts.adapter.*
+import com.example.shopinkarts.api.RetrofitClient
 import com.example.shopinkarts.databinding.ActivityProductDetailsBinding
 import com.example.shopinkarts.model.ProductBannerSlide
 import com.example.shopinkarts.model.SelectColorModel
 import com.example.shopinkarts.model.SelectSizeModel
+import com.example.shopinkarts.response.NewlyAdded
+import com.example.shopinkarts.response.ProductResponse
+import okhttp3.RequestBody
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 
 class ProductDetailsActivity : AppCompatActivity() {
 
@@ -26,15 +37,21 @@ class ProductDetailsActivity : AppCompatActivity() {
     lateinit var similarProductsAdapter: SimilarProductsAdapter
     lateinit var productBannerAdapter: ProductBannerAdapter
 
+    var arrayListSimilarProduct: ArrayList<NewlyAdded> = ArrayList()
     var arraySelectColor: ArrayList<SelectColorModel> = ArrayList()
     var arraySelectSize: ArrayList<SelectSizeModel> = ArrayList()
     private var cartCount: Int = 1
     var quantityCount: Int = 1
+    var productId = ""
+    var isFreeDelivery = ""
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = DataBindingUtil.setContentView(this, R.layout.activity_product_details)
 
+        productId = intent.extras!!.getString("productId", "")
+        Log.d("productId_productId", productId)
+        productApi()
         setIntroSliderViewPager()
         setupIndicators()
         setCurrentIndicator(0)
@@ -62,14 +79,6 @@ class ProductDetailsActivity : AppCompatActivity() {
             binding.quantityShowTV.text = quantityCount--.toString()
         }
 
-        /*val imageList = ArrayList<SlideModel>()
-        imageList.clear()
-        imageList.add(SlideModel(R.drawable.newly_added_image))
-        imageList.add(SlideModel(R.drawable.newly_added_image))
-        imageList.add(SlideModel(R.drawable.newly_added_image))
-        imageList.add(SlideModel(R.drawable.newly_added_image))
-
-        binding.productDetailsIS.setImageList(imageList, ScaleTypes.CENTER_INSIDE)*/
 
         // add values of array list of color
         arraySelectColor.add(
@@ -130,14 +139,10 @@ class ProductDetailsActivity : AppCompatActivity() {
         binding.selectSizeRV.adapter = selectSizeAdapter
         binding.selectSizeRV.isNestedScrollingEnabled = false
 
-        // adapter for similar products
-        similarProductsAdapter = SimilarProductsAdapter(this)
-        binding.similarProductsRV.adapter = similarProductsAdapter
-        binding.similarProductsRV.isNestedScrollingEnabled = false
 
 
 
-        binding.productDescriptionCL.setOnClickListener {
+        binding.productDescriptionHeaderCL.setOnClickListener {
             if (binding.productDescriptionDetailsCL.visibility == View.VISIBLE) {
                 binding.productDescriptionDetailsCL.visibility = View.GONE
                 binding.productDescriptionIV.rotation = 0F
@@ -147,7 +152,7 @@ class ProductDetailsActivity : AppCompatActivity() {
             }
         }
 
-        binding.productChecklistCL.setOnClickListener {
+        binding.productChecklistHeaderCL.setOnClickListener {
             if (binding.productCheckListDetailsCL.visibility == View.VISIBLE) {
                 binding.productCheckListDetailsCL.visibility = View.GONE
                 binding.productCheckListIV.rotation = 0F
@@ -162,7 +167,7 @@ class ProductDetailsActivity : AppCompatActivity() {
             startActivity(intent)
         }
 
-        binding.deliveryInstructionCL.setOnClickListener {
+        binding.deliveryInstructionHeaderCL.setOnClickListener {
             if (binding.deliveryInstructionDetailsCL.visibility == View.VISIBLE) {
                 binding.deliveryInstructionDetailsCL.visibility = View.GONE
                 binding.deliveryInstructionIV.rotation = 0F
@@ -182,7 +187,7 @@ class ProductDetailsActivity : AppCompatActivity() {
         }
     }
 
-    // setup Indicators
+    // banner
     private fun setupIndicators() {
         val indicators = arrayOfNulls<ImageView>(productBannerAdapter.itemCount)
         val layoutParms: LinearLayout.LayoutParams =
@@ -201,7 +206,6 @@ class ProductDetailsActivity : AppCompatActivity() {
         }
     }
 
-    //Current Indicator
     private fun setCurrentIndicator(index: Int) {
 
         val childCount = binding.indicatorsContainersProduct.childCount
@@ -232,4 +236,105 @@ class ProductDetailsActivity : AppCompatActivity() {
         )
         binding.productViewPager.adapter = productBannerAdapter
     }
+
+    private fun productApi() {
+        val requestBody: MutableMap<String, String> = HashMap()
+        requestBody["productId"] = productId
+
+        val call: Call<ProductResponse> = RetrofitClient.instance!!.api.productApi(requestBody)
+        call.enqueue(object : Callback<ProductResponse> {
+            override fun onResponse(
+                call: Call<ProductResponse>,
+                response: Response<ProductResponse>
+            ) {
+                if (response.isSuccessful) {
+                    val productResponse = response.body()
+                    if (productResponse!!.status) {
+
+                        binding.tShirtNameTV.text = productResponse.product.productName
+                        binding.discountedPriceTV.text = "Rs ${productResponse.product.price}.00"
+                        binding.discountTV.text = "${productResponse.product.discount} % OFF"
+                        if (productResponse.product.stock <= 50) {
+                            binding.unitesLeftTV.visibility = View.VISIBLE
+                        } else {
+                            binding.unitesLeftTV.visibility = View.GONE
+                        }
+
+                        binding.dispatchedTV.text = productResponse.product.dispatchDetails[0]
+                        binding.deliveryTV.text = productResponse.product.dispatchDetails[1]
+                        binding.ratingBar.rating = productResponse.product.avgRating.toFloat()
+
+                        isFreeDelivery = productResponse.product.isFreeDelivery.toString()
+                        if (isFreeDelivery == "1") {
+                            binding.deliveryIV.visibility = View.VISIBLE
+                            binding.deliveryTV.visibility = View.VISIBLE
+                        } else {
+                            binding.deliveryIV.visibility = View.GONE
+                            binding.deliveryTV.visibility = View.GONE
+                        }
+
+
+                        binding.productDescriptionDetailsTV.text =
+                            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+                                Html.fromHtml(
+                                    productResponse.product.description,
+                                    Html.FROM_HTML_MODE_COMPACT
+                                )
+                            } else {
+                                Html.fromHtml(productResponse.product.description)
+                            }
+                        binding.productCheckListDetailsTV.text =
+                            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+                                Html.fromHtml(
+                                    productResponse.product.productCheckList.toString(),
+                                    Html.FROM_HTML_MODE_COMPACT
+                                )
+                            } else {
+                                Html.fromHtml(productResponse.product.productCheckList.toString())
+                            }
+                        binding.deliveryInstructionDetailsTV.text =
+                            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+                                Html.fromHtml(
+                                    productResponse.product.deliveryInstructions[0],
+                                    Html.FROM_HTML_MODE_COMPACT
+                                )
+                            } else {
+                                Html.fromHtml(productResponse.product.deliveryInstructions[0])
+                            }
+
+                        arrayListSimilarProduct.clear()
+                        arrayListSimilarProduct.addAll(productResponse.similarProducts)
+                        similarProductsAdapter = SimilarProductsAdapter(
+                            this@ProductDetailsActivity,
+                            arrayListSimilarProduct
+                        )
+                        binding.similarProductsRV.adapter = similarProductsAdapter
+                        binding.similarProductsRV.isNestedScrollingEnabled = false
+                        similarProductsAdapter.notifyDataSetChanged()
+
+
+                        Log.e("TAG", "${response.message()} ")
+                    }
+                } else {
+
+                    Toast.makeText(
+                        this@ProductDetailsActivity,
+                        "${response.message()}",
+                        Toast.LENGTH_SHORT
+                    ).show()
+                }
+            }
+
+            override fun onFailure(call: Call<ProductResponse>, t: Throwable) {
+                Toast.makeText(
+                    this@ProductDetailsActivity,
+                    "${t.message}",
+                    Toast.LENGTH_SHORT
+                ).show()
+                Log.e("TAG", "${t.message} ")
+            }
+        })
+    }
+
+
 }

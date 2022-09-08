@@ -28,7 +28,6 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 import java.util.*
-import kotlin.collections.ArrayList
 
 
 class HomeFragment : Fragment() {
@@ -85,6 +84,7 @@ class HomeFragment : Fragment() {
         shimmerShopFor = binding.shimmerViewShopFor
         shimmerManufacturer = binding.shimmerViewManufacturer
         shimmerMostPopular = binding.shimmerViewMostPopular
+//        banner1Adapter = Banner1Adapter(requireContext(), arraylistBanner1)
         setCurrentIndicator(0)
 //        dashBoardList()
 
@@ -107,8 +107,8 @@ class HomeFragment : Fragment() {
         val handler = Handler()
         val update = Runnable {
             binding.introSliderViewPager.setCurrentItem(currentPage % 11, true)
-            binding.banner2ViewPager.setCurrentItem(currentPage % 4, true)
-            binding.banner3ViewPager.setCurrentItem(currentPage % 4, true)
+            binding.banner2ViewPager.setCurrentItem(currentPage % banner2Adapter.itemCount, true)
+            binding.banner3ViewPager.setCurrentItem(currentPage % banner3Adapter.itemCount, true)
             currentPage++
         }
         timer = Timer()
@@ -118,8 +118,9 @@ class HomeFragment : Fragment() {
             }
         }, DELAY_MS, PERIOD_MS)
 
-//        banner 2nd
+        /**/
 
+//        banner 2nd
         binding.banner2ViewPager.registerOnPageChangeCallback(object :
             ViewPager2.OnPageChangeCallback() {
             override fun onPageSelected(position: Int) {

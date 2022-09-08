@@ -211,7 +211,6 @@
                         android:layout_height="wrap_content"
                         android:layout_marginStart="@dimen/m14"
                         android:paddingVertical="@dimen/p2"
-                        android:text="@string/dispatched_in_2_3_days"
                         android:textColor="@color/dark_Gray"
                         android:textSize="@dimen/text_size_14"
                         app:layout_constraintBottom_toBottomOf="@+id/dispatchedIV"
@@ -224,9 +223,11 @@
                         android:layout_height="@dimen/m35"
                         android:layout_marginTop="@dimen/m8"
                         android:padding="@dimen/p4"
+                        android:visibility="gone"
                         android:src="@drawable/delivery"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@id/dispatchedIV" />
+                        app:layout_constraintTop_toBottomOf="@id/dispatchedIV"
+                        tools:ignore="ContentDescription" />
 
                     <TextView
                         android:id="@+id/deliveryTV"
@@ -234,9 +235,9 @@
                         android:layout_height="wrap_content"
                         android:layout_marginStart="@dimen/m14"
                         android:paddingVertical="@dimen/p2"
-                        android:text="@string/free_delivery"
                         android:textColor="@color/dark_Gray"
                         android:textSize="@dimen/text_size_14"
+                        android:visibility="gone"
                         app:layout_constraintBottom_toBottomOf="@+id/deliveryIV"
                         app:layout_constraintStart_toEndOf="@+id/deliveryIV"
                         app:layout_constraintTop_toTopOf="@+id/deliveryIV" />
@@ -381,58 +382,66 @@
                         android:layout_margin="@dimen/m14"
                         app:layout_constraintTop_toTopOf="parent">
 
-                        <TextView
-                            android:id="@+id/productDescriptionTV"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="@dimen/m8"
-                            android:background="@color/fragment_background"
-                            android:paddingVertical="@dimen/p12"
-                            android:text="@string/product_description"
-                            android:textColor="@color/primary_text"
-                            android:textSize="@dimen/text_size_16"
-                            app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toTopOf="parent"
-
-                            />
-
-                        <ImageView
-                            android:id="@+id/productDescriptionIV"
-                            android:layout_width="30dp"
-                            android:layout_height="30dp"
-                            android:padding="@dimen/p8"
-                            android:src="@drawable/arrow_next"
-                            app:layout_constraintBottom_toBottomOf="@+id/productDescriptionTV"
-                            app:layout_constraintEnd_toEndOf="parent"
-                            app:layout_constraintTop_toTopOf="@+id/productDescriptionTV"
-                            tools:ignore="ContentDescription" />
-
-                        <View
+                        <androidx.constraintlayout.widget.ConstraintLayout
+                            android:id="@+id/productDescriptionHeaderCL"
                             android:layout_width="match_parent"
-                            android:layout_height="1dp"
-                            android:background="@color/light_Gray"
-                            app:layout_constraintBottom_toBottomOf="@+id/productDescriptionDetailsCL"
+                            android:layout_height="wrap_content"
+                            app:layout_constraintTop_toTopOf="parent">
 
-                            />
+                            <TextView
+                                android:id="@+id/productDescriptionTV"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="@dimen/m8"
+                                android:background="@color/fragment_background"
+                                android:paddingVertical="@dimen/p12"
+                                android:text="@string/product_description"
+                                android:textColor="@color/primary_text"
+                                android:textSize="@dimen/text_size_16"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toTopOf="parent"
+
+                                />
+
+                            <ImageView
+                                android:id="@+id/productDescriptionIV"
+                                android:layout_width="30dp"
+                                android:layout_height="30dp"
+                                android:padding="@dimen/p8"
+                                android:src="@drawable/arrow_next"
+                                app:layout_constraintBottom_toBottomOf="@+id/productDescriptionTV"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintTop_toTopOf="@+id/productDescriptionTV"
+                                tools:ignore="ContentDescription" />
+
+                            <View
+                                android:layout_width="match_parent"
+                                android:layout_height="1dp"
+                                android:background="@color/light_Gray"
+                                app:layout_constraintBottom_toBottomOf="parent"
+
+                                />
+
+                        </androidx.constraintlayout.widget.ConstraintLayout>
 
                         <androidx.constraintlayout.widget.ConstraintLayout
                             android:id="@+id/productDescriptionDetailsCL"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:visibility="gone"
-                            app:layout_constraintTop_toBottomOf="@+id/productDescriptionTV">
+                            app:layout_constraintTop_toBottomOf="@+id/productDescriptionHeaderCL">
 
-                            <com.airbnb.lottie.LottieAnimationView
-                                android:id="@+id/lottyAnimation"
-                                android:layout_width="300dp"
-                                android:layout_height="300dp"
-                                app:layout_constraintBottom_toBottomOf="parent"
-                                app:layout_constraintEnd_toEndOf="parent"
-                                app:layout_constraintStart_toStartOf="parent"
+                            <TextView
+                                android:id="@+id/productDescriptionDetailsTV"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="@dimen/m10"
+                                android:inputType="textMultiLine"
+                                android:textColor="@color/primary_text"
+                                android:textSize="@dimen/text_size_14"
                                 app:layout_constraintTop_toTopOf="parent"
-                                app:lottie_autoPlay="true"
-                                app:lottie_loop="true"
-                                app:lottie_rawRes="@raw/empty" />
+                                tools:ignore="TextViewEdits" />
+
 
                         </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -445,55 +454,64 @@
                         android:layout_margin="@dimen/m14"
                         app:layout_constraintTop_toBottomOf="@+id/productDescriptionCL">
 
-                        <TextView
-                            android:id="@+id/productCheckListTV"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="@dimen/m8"
-                            android:background="@color/fragment_background"
-                            android:paddingVertical="@dimen/p12"
-                            android:text="@string/product_checklist"
-                            android:textColor="@color/primary_text"
-                            android:textSize="@dimen/text_size_16"
-                            app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toTopOf="parent"
-
-                            />
-
-                        <ImageView
-                            android:id="@+id/productCheckListIV"
-                            android:layout_width="30dp"
-                            android:layout_height="30dp"
-                            android:padding="@dimen/p8"
-                            android:src="@drawable/arrow_next"
-                            app:layout_constraintBottom_toBottomOf="@+id/productCheckListTV"
-                            app:layout_constraintEnd_toEndOf="parent"
-                            app:layout_constraintTop_toTopOf="@+id/productCheckListTV"
-                            tools:ignore="ContentDescription" />
-
-                        <View
+                        <androidx.constraintlayout.widget.ConstraintLayout
+                            android:id="@+id/productChecklistHeaderCL"
                             android:layout_width="match_parent"
-                            android:layout_height="1dp"
-                            android:background="@color/light_Gray"
-                            app:layout_constraintBottom_toBottomOf="@+id/productCheckListDetailsCL" />
+                            android:layout_height="wrap_content"
+                            app:layout_constraintTop_toTopOf="parent">
+
+                            <TextView
+                                android:id="@+id/productCheckListTV"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="@dimen/m8"
+                                android:background="@color/fragment_background"
+                                android:paddingVertical="@dimen/p12"
+                                android:text="@string/product_checklist"
+                                android:textColor="@color/primary_text"
+                                android:textSize="@dimen/text_size_16"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toTopOf="parent"
+
+                                />
+
+                            <ImageView
+                                android:id="@+id/productCheckListIV"
+                                android:layout_width="30dp"
+                                android:layout_height="30dp"
+                                android:padding="@dimen/p8"
+                                android:src="@drawable/arrow_next"
+                                app:layout_constraintBottom_toBottomOf="@+id/productCheckListTV"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintTop_toTopOf="@+id/productCheckListTV"
+                                tools:ignore="ContentDescription" />
+
+                            <View
+                                android:layout_width="match_parent"
+                                android:layout_height="1dp"
+                                android:background="@color/light_Gray"
+                                app:layout_constraintBottom_toBottomOf="parent" />
+
+
+                        </androidx.constraintlayout.widget.ConstraintLayout>
 
                         <androidx.constraintlayout.widget.ConstraintLayout
                             android:id="@+id/productCheckListDetailsCL"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:visibility="gone"
-                            app:layout_constraintTop_toBottomOf="@+id/productCheckListTV">
+                            app:layout_constraintTop_toBottomOf="@+id/productChecklistHeaderCL">
 
-                            <com.airbnb.lottie.LottieAnimationView
-                                android:layout_width="300dp"
-                                android:layout_height="300dp"
-                                app:layout_constraintBottom_toBottomOf="parent"
-                                app:layout_constraintEnd_toEndOf="parent"
-                                app:layout_constraintStart_toStartOf="parent"
+                            <TextView
+                                android:id="@+id/productCheckListDetailsTV"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="@dimen/m10"
+                                android:inputType="textMultiLine"
+                                android:textColor="@color/primary_text"
+                                android:textSize="@dimen/text_size_14"
                                 app:layout_constraintTop_toTopOf="parent"
-                                app:lottie_autoPlay="true"
-                                app:lottie_loop="true"
-                                app:lottie_rawRes="@raw/empty" />
+                                tools:ignore="TextViewEdits" />
 
                         </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -574,49 +592,57 @@
                         android:layout_margin="@dimen/m14"
                         app:layout_constraintTop_toBottomOf="@+id/readReviewsCL">
 
-                        <TextView
-                            android:id="@+id/deliveryInstructionTV"
-                            android:layout_width="wrap_content"
+                        <androidx.constraintlayout.widget.ConstraintLayout
+                            android:id="@+id/deliveryInstructionHeaderCL"
+                            android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_marginTop="@dimen/m8"
-                            android:background="@color/fragment_background"
-                            android:paddingVertical="@dimen/p12"
-                            android:text="@string/delivery_instructions"
-                            android:textColor="@color/primary_text"
-                            android:textSize="@dimen/text_size_16"
-                            app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toTopOf="parent"
+                            app:layout_constraintTop_toTopOf="parent">
 
-                            />
+                            <TextView
+                                android:id="@+id/deliveryInstructionTV"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="@dimen/m8"
+                                android:background="@color/fragment_background"
+                                android:paddingVertical="@dimen/p12"
+                                android:text="@string/delivery_instructions"
+                                android:textColor="@color/primary_text"
+                                android:textSize="@dimen/text_size_16"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toTopOf="parent"
 
-                        <ImageView
-                            android:id="@+id/deliveryInstructionIV"
-                            android:layout_width="30dp"
-                            android:layout_height="30dp"
-                            android:padding="@dimen/p8"
-                            android:src="@drawable/arrow_next"
-                            app:layout_constraintBottom_toBottomOf="@+id/deliveryInstructionTV"
-                            app:layout_constraintEnd_toEndOf="parent"
-                            app:layout_constraintTop_toTopOf="@+id/deliveryInstructionTV"
-                            tools:ignore="ContentDescription" />
+                                />
+
+                            <ImageView
+                                android:id="@+id/deliveryInstructionIV"
+                                android:layout_width="30dp"
+                                android:layout_height="30dp"
+                                android:padding="@dimen/p8"
+                                android:src="@drawable/arrow_next"
+                                app:layout_constraintBottom_toBottomOf="@+id/deliveryInstructionTV"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintTop_toTopOf="@+id/deliveryInstructionTV"
+                                tools:ignore="ContentDescription" />
+
+                        </androidx.constraintlayout.widget.ConstraintLayout>
 
                         <androidx.constraintlayout.widget.ConstraintLayout
                             android:id="@+id/deliveryInstructionDetailsCL"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:visibility="gone"
-                            app:layout_constraintTop_toBottomOf="@+id/deliveryInstructionTV">
+                            app:layout_constraintTop_toBottomOf="@+id/deliveryInstructionHeaderCL">
 
-                            <com.airbnb.lottie.LottieAnimationView
-                                android:layout_width="300dp"
-                                android:layout_height="300dp"
-                                app:layout_constraintBottom_toBottomOf="parent"
-                                app:layout_constraintEnd_toEndOf="parent"
-                                app:layout_constraintStart_toStartOf="parent"
+                            <TextView
+                                android:id="@+id/deliveryInstructionDetailsTV"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="@dimen/m10"
+                                android:inputType="textMultiLine"
+                                android:textColor="@color/primary_text"
+                                android:textSize="@dimen/text_size_14"
                                 app:layout_constraintTop_toTopOf="parent"
-                                app:lottie_autoPlay="true"
-                                app:lottie_loop="true"
-                                app:lottie_rawRes="@raw/empty" />
+                                tools:ignore="TextViewEdits" />
 
                         </androidx.constraintlayout.widget.ConstraintLayout>
 

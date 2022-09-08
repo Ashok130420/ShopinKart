@@ -10,5 +10,8 @@ data class DashBoardResponse(
     val preferredManufacturers: List<PreferredManufacturer>,
     val shopFor: List<ShopFor>,
     val status: Boolean,
-    val topRated: List<TopRated>
+    val topRated: List<TopRated>,
+    val discountForYou: List<Any>,
+    val recommendedItems: List<Any>
+
 )

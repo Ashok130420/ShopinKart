@@ -38,6 +38,7 @@ class FlashSaleAdapter(val context: Context, val arrayList: ArrayList<FlashSale>
         }
         holder.itemView.setOnClickListener {
             val intent = Intent(context, ProductDetailsActivity::class.java)
+            intent.putExtra("productId",itemDetails._id)
             context.startActivity(intent)
         }
     }

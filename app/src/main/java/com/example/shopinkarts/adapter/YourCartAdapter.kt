@@ -1,13 +1,11 @@
 package com.example.shopinkarts.adapter
 
 import android.content.Context
-import android.content.Intent
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.example.shopinkarts.R
-import com.example.shopinkarts.activity.ProductDetailsActivity
 import com.example.shopinkarts.databinding.ItemYourCartBinding
 
 class YourCartAdapter(val context: Context) :

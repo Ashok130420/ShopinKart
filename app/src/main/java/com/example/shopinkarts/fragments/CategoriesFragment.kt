@@ -14,16 +14,14 @@ import androidx.core.content.ContextCompat
 import androidx.core.view.get
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import androidx.viewpager2.widget.ViewPager2
-import com.denzcoskun.imageslider.constants.ScaleTypes
-import com.denzcoskun.imageslider.models.SlideModel
 import com.example.shopinkarts.R
-import com.example.shopinkarts.adapter.Banner3Adapter
 import com.example.shopinkarts.adapter.CategoriesAdapter
 import com.example.shopinkarts.adapter.CategoryBannerAdapter
 import com.example.shopinkarts.api.RetrofitClient
 import com.example.shopinkarts.databinding.FragmentCategoriesBinding
-import com.example.shopinkarts.model.Banner3Slide
 import com.example.shopinkarts.model.CategoryBannerSlide
 import com.example.shopinkarts.response.CategoriesResponse
 import com.example.shopinkarts.response.Category
@@ -31,7 +29,6 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 import java.util.*
-import kotlin.collections.ArrayList
 
 
 class CategoriesFragment : Fragment() {
@@ -43,7 +40,8 @@ class CategoriesFragment : Fragment() {
     var currentPage = 0
     var timer: Timer? = null
     val DELAY_MS: Long = 2000
-    val PERIOD_MS: Long = 4000
+    val PERIOD_MS: Long = 3000
+    lateinit var mLayoutManager:LinearLayoutManager
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -52,13 +50,17 @@ class CategoriesFragment : Fragment() {
 
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_categories, container, false)
 
+        mLayoutManager= LinearLayoutManager(requireContext())
         setCategoryBannerViewPager()
         setupIndicatorsCategoryBanner()
         setCurrentIndicatorCategoryBanner(0)
 
         val handler = Handler()
         val update = Runnable {
-            binding.categoryBannerViewPager.setCurrentItem(currentPage % 4, true)
+            binding.categoryBannerViewPager.setCurrentItem(
+                currentPage % categoryBannerAdapter.itemCount,
+                true
+            )
             currentPage++
         }
         timer = Timer()
@@ -67,6 +69,30 @@ class CategoriesFragment : Fragment() {
                 handler.post(update)
             }
         }, DELAY_MS, PERIOD_MS)
+
+
+        var loading = true
+        var pastVisiblesItems: Int
+        var visibleItemCount: Int
+        var totalItemCount: Int
+
+        binding.categoriesRV.addOnScrollListener(object : RecyclerView.OnScrollListener() {
+            override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
+                if (dy > 0) { //check for scroll down
+                    visibleItemCount = mLayoutManager.childCount
+                    pastVisiblesItems = mLayoutManager.findFirstVisibleItemPosition()
+                    totalItemCount = categoriesAdapter.itemCount
+                    if (!loading) {
+                        if (visibleItemCount + pastVisiblesItems >= totalItemCount) {
+                            loading = false
+                            Log.v("...", "Last Item Wow !")
+                            // Do pagination.. i.e. fetch new data
+                            loading = true
+                        }
+                    }
+                }
+            }
+        })
 
 
         binding.categoryBannerViewPager.registerOnPageChangeCallback(object :
