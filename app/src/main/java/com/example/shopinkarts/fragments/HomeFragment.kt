@@ -81,9 +81,10 @@ class HomeFragment : Fragment() {
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_home, container, false)
 
         activity?.window?.setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_RESIZE)
-        shimmerShopFor = binding.shimmerViewShopFor
+//        shimmerShopFor = binding.shimmerViewShopFor
         shimmerManufacturer = binding.shimmerViewManufacturer
         shimmerMostPopular = binding.shimmerViewMostPopular
+//        binding.shopForRV.showShimmer()
 //        banner1Adapter = Banner1Adapter(requireContext(), arraylistBanner1)
         setCurrentIndicator(0)
 //        dashBoardList()
@@ -96,6 +97,7 @@ class HomeFragment : Fragment() {
         setBanner3ViewPager()
         setupIndicatorsBanner3()
         setCurrentIndicatorBanner3(0)
+        binding.shopForRV.showShimmerAdapter()
 
         binding.introSliderViewPager.registerOnPageChangeCallback(object :
             ViewPager2.OnPageChangeCallback() {
@@ -104,19 +106,7 @@ class HomeFragment : Fragment() {
                 setCurrentIndicator(position)
             }
         })
-        val handler = Handler()
-        val update = Runnable {
-            binding.introSliderViewPager.setCurrentItem(currentPage % 11, true)
-            binding.banner2ViewPager.setCurrentItem(currentPage % banner2Adapter.itemCount, true)
-            binding.banner3ViewPager.setCurrentItem(currentPage % banner3Adapter.itemCount, true)
-            currentPage++
-        }
-        timer = Timer()
-        timer!!.schedule(object : TimerTask() {
-            override fun run() {
-                handler.post(update)
-            }
-        }, DELAY_MS, PERIOD_MS)
+
 
         /**/
 
@@ -210,20 +200,6 @@ class HomeFragment : Fragment() {
         }
 
 
-        /* imageListBanner.clear()
-         imageListBanner.add(SlideModel(R.drawable.banner_2))
-         imageListBanner.add(SlideModel(R.drawable.banner_1))
-         imageListBanner.add(SlideModel(R.drawable.banner_2))
-         imageListBanner.add(SlideModel(R.drawable.banner_1))
-         binding.imageSliderBanner.setImageList(imageListBanner, ScaleTypes.FIT)
- */
-        /*  imageListBanner2.clear()
-          imageListBanner2.add(SlideModel(R.drawable.shopping))
-          imageListBanner2.add(SlideModel(R.drawable.shopping))
-          imageListBanner2.add(SlideModel(R.drawable.shopping))
-          imageListBanner2.add(SlideModel(R.drawable.shopping))
-          imageListBanner2.add(SlideModel(R.drawable.shopping))
-          binding.imageSliderBanner2.setImageList(imageListBanner2, ScaleTypes.FIT)*/
 
         // adapter for discount for you items
         discountForYouAdapter = DiscountForYouAdapter(requireContext())
@@ -234,17 +210,10 @@ class HomeFragment : Fragment() {
         recommendedAdapter = RecommendedAdapter(requireContext())
         binding.recommendedRV.adapter = recommendedAdapter
         binding.recommendedRV.isNestedScrollingEnabled = false
-
+        dashBoardList()
         return binding.root
     }
 
-    override fun onStart() {
-        super.onStart()
-        dashBoardList()
-//        setIntroSliderViewPager()
-//        setupIndicators()
-//        setCurrentIndicator(0)
-    }
 
     private fun dashBoardList() {
 
@@ -255,14 +224,15 @@ class HomeFragment : Fragment() {
                 call: Call<DashBoardResponse>,
                 response: Response<DashBoardResponse>
             ) {
-                shimmerShopFor.stopShimmer()
-                shimmerShopFor.visibility = View.GONE
+//                binding.shopForRV.hideShimmer()
+//                shimmerShopFor.stopShimmer()
+//                shimmerShopFor.visibility = View.GONE
                 shimmerManufacturer.stopShimmer()
                 shimmerManufacturer.visibility = View.GONE
                 shimmerMostPopular.stopShimmer()
                 shimmerMostPopular.visibility = View.GONE
                 val dashBoardResponse = response.body()
-                if (response.isSuccessful) {
+                if (response.isSuccessful && context!=null) {
 
                     if (dashBoardResponse!!.status) {
                         arrayListShopFor.clear()
@@ -288,7 +258,12 @@ class HomeFragment : Fragment() {
 
                         arraylistBanner1.clear()
                         arraylistBanner1.addAll(dashBoardResponse.banners)
-                        setupIndicators()
+
+                        banner1Adapter = Banner1Adapter(requireContext(), arraylistBanner1)
+                        binding.introSliderViewPager.adapter = banner1Adapter
+//                        setupIndicators()
+                        binding.dotsIndicator.attachTo(binding.introSliderViewPager)
+                        autoSlide(arraylistBanner1.size)
 
                         arrayListMostPopular.clear()
                         arrayListMostPopular.addAll(dashBoardResponse.mostPopular)
@@ -324,6 +299,7 @@ class HomeFragment : Fragment() {
 
                     Log.d("TAG", "onResponse_SuccessResponse: ${dashBoardResponse.message}")
                 } else {
+                    if (context!=null)
                     Toast.makeText(
                         requireContext(),
                         "${dashBoardResponse?.message}",
@@ -334,6 +310,7 @@ class HomeFragment : Fragment() {
 
             override fun onFailure(call: Call<DashBoardResponse>, t: Throwable) {
                 Log.d("TAG", "onFailureResponse: $${t.message}")
+                if (context!=null)
                 Toast.makeText(requireContext(), "${t.message}", Toast.LENGTH_SHORT)
                     .show()
             }
@@ -341,7 +318,20 @@ class HomeFragment : Fragment() {
         })
 
     }
+    fun autoSlide(size: Int) {
+        val handler = Handler()
+        val update = Runnable {
+            binding.introSliderViewPager.setCurrentItem(currentPage % size, true)
 
+            currentPage++
+        }
+        timer = Timer()
+        timer!!.schedule(object : TimerTask() {
+            override fun run() {
+                handler.post(update)
+            }
+        }, DELAY_MS, PERIOD_MS)
+    }
     // banner 1
     private fun setupIndicators() {
 

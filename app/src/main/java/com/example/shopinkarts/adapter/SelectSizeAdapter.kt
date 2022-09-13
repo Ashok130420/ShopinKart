@@ -1,11 +1,13 @@
 package com.example.shopinkarts.adapter
 
 import android.content.Context
+import android.graphics.Color
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.example.shopinkarts.R
+import com.example.shopinkarts.activity.ProductDetailsActivity
 import com.example.shopinkarts.databinding.ItemsSelectSizeBinding
 import com.example.shopinkarts.model.SelectSizeModel
 
@@ -27,6 +29,7 @@ class SelectSizeAdapter(val context: Context, val arrayList: ArrayList<SelectSiz
         val item = arrayList[position]
 
         holder.binding.apply {
+
             sizeTV.text = arrayList[position].sizes
             if (item.isChecked) {
                 backGroundColorCL.setBackgroundColor(context.resources.getColor(R.color.primary_Blue))
@@ -37,13 +40,13 @@ class SelectSizeAdapter(val context: Context, val arrayList: ArrayList<SelectSiz
             }
         }
 
-
-
         holder.itemView.setOnClickListener {
             if (item.isChecked) {
+                ProductDetailsActivity.getInstance().inActiveAddCard()
                 item.isChecked = false
             } else {
                 arrayList.forEach { element -> element.isChecked = false }
+                ProductDetailsActivity.getInstance().activeAddCard()
                 item.isChecked = true
             }
             notifyDataSetChanged()

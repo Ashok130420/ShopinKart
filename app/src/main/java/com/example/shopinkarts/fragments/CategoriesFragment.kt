@@ -102,13 +102,8 @@ class CategoriesFragment : Fragment() {
                 setCurrentIndicatorCategoryBanner(position)
             }
         })
-
-        return binding.root
-    }
-
-    override fun onStart() {
-        super.onStart()
         categoriesList()
+        return binding.root
     }
 
     private fun categoriesList() {
@@ -125,9 +120,13 @@ class CategoriesFragment : Fragment() {
 
                         arrayListCategories.clear()
                         arrayListCategories.addAll(categoriesResponse.categories)
-                        categoriesAdapter = CategoriesAdapter(requireContext(), arrayListCategories)
-                        binding.categoriesRV.adapter = categoriesAdapter
-                        categoriesAdapter.notifyDataSetChanged()
+                        if (context!=null) {
+                            categoriesAdapter =
+                                CategoriesAdapter(requireContext(), arrayListCategories)
+                            binding.categoriesRV.adapter = categoriesAdapter
+                            categoriesAdapter.notifyDataSetChanged()
+                        }
+
                     }
                     Log.d("TAG", "onResponse_SuccessResponse :${categoriesResponse.message}")
                 } else {

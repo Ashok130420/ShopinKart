@@ -77,6 +77,22 @@
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent" />
 
+                    <com.tbuonomo.viewpagerdotsindicator.DotsIndicator
+                        android:id="@+id/dots_indicator"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        app:dotsColor="@color/white"
+                        app:dotsCornerRadius="8dp"
+                        app:dotsElevation="@dimen/m4"
+                        app:dotsSize="@dimen/m8"
+                        app:dotsSpacing="2dp"
+                        app:dotsWidthFactor="2.5"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/introSliderViewPager"
+                        app:progressMode="true"
+                        app:selectedDotColor="@color/primary_Blue" />
+
                     <LinearLayout
                         android:id="@+id/indicatorsContainers"
                         android:layout_width="match_parent"
@@ -84,6 +100,7 @@
                         android:layout_marginTop="@dimen/m10"
                         android:gravity="center"
                         android:orientation="horizontal"
+                        android:visibility="gone"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@id/introSliderViewPager" />
@@ -123,36 +140,17 @@
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent" />
 
-                    <com.facebook.shimmer.ShimmerFrameLayout
-                        android:id="@+id/shimmerViewShopFor"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="@dimen/m10"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@id/shopForTV">
 
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:orientation="horizontal">
-
-                            <include layout="@layout/shimmer_items_shop_for" />
-
-                        </LinearLayout>
-                    </com.facebook.shimmer.ShimmerFrameLayout>
-
-                    <androidx.recyclerview.widget.RecyclerView
+                    <com.cooltechworks.views.shimmer.ShimmerRecyclerView
                         android:id="@+id/shopForRV"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="@dimen/m10"
-                        android:orientation="horizontal"
-                        app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
-                        app:layout_constraintTop_toBottomOf="@id/shopForTV"
-                        tools:listitem="@layout/items_shop_for"
-
-                        />
-
+                        app:shimmer_demo_child_count="3"
+                        app:shimmer_demo_layout="@layout/shimmer_items_shop_for"
+                        app:shimmer_demo_layout_manager_type="linear_horizontal"
+                        app:shimmer_demo_angle="20"
+                        tools:listitem="@layout/shimmer_items_shop_for"
+                        app:layout_constraintTop_toBottomOf="@id/shopForTV" />
                     <TextView
                         android:id="@+id/preferredManufacturerTV"
                         android:layout_width="wrap_content"
@@ -337,6 +335,7 @@
                             android:layout_marginTop="@dimen/m10"
                             android:gravity="center"
                             android:orientation="horizontal"
+                            android:visibility="gone"
                             app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintStart_toStartOf="parent"
                             app:layout_constraintTop_toBottomOf="@id/banner2ViewPager" />

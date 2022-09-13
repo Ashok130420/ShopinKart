@@ -1,15 +1,17 @@
 package com.example.shopinkarts.adapter
 
+import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 import com.example.shopinkarts.R
 import com.example.shopinkarts.model.ProductBannerSlide
 
 
-class ProductBannerAdapter(private val introSlides: List<ProductBannerSlide>) :
+class ProductBannerAdapter(var context: Context, val introSlides: List<String>) :
     RecyclerView.Adapter<ProductBannerAdapter.IntroSlideViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): IntroSlideViewHolder {
@@ -25,16 +27,14 @@ class ProductBannerAdapter(private val introSlides: List<ProductBannerSlide>) :
     }
 
     override fun onBindViewHolder(holder: IntroSlideViewHolder, position: Int) {
-        holder.bind(introSlides[position])
+       Glide.with(context).load(introSlides[position]).into(holder.imageIcon)
     }
 
     class IntroSlideViewHolder(view: View) : RecyclerView.ViewHolder(view) {
 
-        private val imageIcon = view.findViewById<ImageView>(R.id.imageSlideIcon)
+         val imageIcon = view.findViewById<ImageView>(R.id.imageSlideIcon)
 
-        fun bind(introSlide: ProductBannerSlide) {
-            imageIcon.setImageResource(introSlide.icon)
-        }
+
 
     }
 

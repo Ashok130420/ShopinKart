@@ -3,6 +3,7 @@ package com.example.shopinkarts.activity
 import android.content.Intent
 import android.os.Build
 import android.os.Bundle
+import android.os.Handler
 import android.text.Html
 import android.util.Log
 import android.view.View
@@ -16,18 +17,21 @@ import androidx.core.view.get
 import androidx.databinding.DataBindingUtil
 import androidx.viewpager2.widget.ViewPager2
 import com.example.shopinkarts.R
-import com.example.shopinkarts.adapter.*
+import com.example.shopinkarts.adapter.ProductBannerAdapter
+import com.example.shopinkarts.adapter.SelectColorAdapter
+import com.example.shopinkarts.adapter.SelectSizeAdapter
+import com.example.shopinkarts.adapter.SimilarProductsAdapter
 import com.example.shopinkarts.api.RetrofitClient
 import com.example.shopinkarts.databinding.ActivityProductDetailsBinding
-import com.example.shopinkarts.model.ProductBannerSlide
 import com.example.shopinkarts.model.SelectColorModel
 import com.example.shopinkarts.model.SelectSizeModel
 import com.example.shopinkarts.response.NewlyAdded
+import com.example.shopinkarts.response.Product
 import com.example.shopinkarts.response.ProductResponse
-import okhttp3.RequestBody
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
+import java.util.*
 
 class ProductDetailsActivity : AppCompatActivity() {
 
@@ -36,25 +40,54 @@ class ProductDetailsActivity : AppCompatActivity() {
     lateinit var selectSizeAdapter: SelectSizeAdapter
     lateinit var similarProductsAdapter: SimilarProductsAdapter
     lateinit var productBannerAdapter: ProductBannerAdapter
+    var arrayListBanner: ArrayList<Product> = ArrayList()
 
     var arrayListSimilarProduct: ArrayList<NewlyAdded> = ArrayList()
     var arraySelectColor: ArrayList<SelectColorModel> = ArrayList()
     var arraySelectSize: ArrayList<SelectSizeModel> = ArrayList()
     private var cartCount: Int = 1
-    var quantityCount: Int = 1
+    var quantityCount: Int = 0
     var productId = ""
     var isFreeDelivery = ""
+    var currentPage = 0
+    var timer: Timer? = null
+    val DELAY_MS: Long = 2000
+    val PERIOD_MS: Long = 4000
+    var currentNumber = 1
+    var lastNumber = 0
+    var colorInstanceColor = ""
+
+    companion object {
+        var pInstance: ProductDetailsActivity = ProductDetailsActivity()
+        var colorSize = 0
+
+        fun getInstance(): ProductDetailsActivity {
+            colorSize
+            return pInstance
+        }
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = DataBindingUtil.setContentView(this, R.layout.activity_product_details)
+        pInstance = this
+        inActiveAddCard()
+
+        /* selectColorAdapter= SelectColorAdapter(this,colorInstanceColor,arraySelectColor)
+         colorInstanceColor = selectColorAdapter.colorInstance
+
+         if (colorInstanceColor == "true") {
+             activeAddCard()
+         } else {
+             inActiveAddCard()
+         }
+         Log.d("colorInstanceColor", colorInstanceColor)*/
+        Log.d("colorSize", colorSize.toString())
 
         productId = intent.extras!!.getString("productId", "")
         Log.d("productId_productId", productId)
+
         productApi()
-        setIntroSliderViewPager()
-        setupIndicators()
-        setCurrentIndicator(0)
 
 
         binding.productViewPager.registerOnPageChangeCallback(object :
@@ -68,78 +101,36 @@ class ProductDetailsActivity : AppCompatActivity() {
         binding.headerProductDetails.backIV.setOnClickListener {
             onBackPressed()
         }
-        binding.addToCartTV.setOnClickListener {
-            binding.headerProductDetails.cartItemTV.visibility = View.VISIBLE
-            binding.headerProductDetails.cartItemTV.text = cartCount++.toString()
+        binding.headerProductDetails.titleTV.setOnClickListener {
+            Log.d("colorSize", colorSize.toString())
         }
+
         binding.plusQuantityTV.setOnClickListener {
-            binding.quantityShowTV.text = quantityCount++.toString()
+            lastNumber = currentNumber
+            currentNumber++
+            binding.quantityShowTV.text = lastNumber.toString()
+
+            if (lastNumber >= 1) {
+                binding.addToCartTV.isClickable = true
+                binding.addToCartTV.setBackgroundResource(R.drawable.button_blue)
+                Log.d("currentNumber", currentNumber.toString())
+            }
+
         }
+
         binding.minusQuantityTV.setOnClickListener {
-            binding.quantityShowTV.text = quantityCount--.toString()
+            currentNumber = lastNumber
+            if (currentNumber > 0) {
+                lastNumber--
+            }
+
+            if (lastNumber <= 1) {
+                binding.addToCartTV.isClickable = false
+                binding.addToCartTV.setBackgroundResource(R.drawable.button_grey)
+            }
+
+            binding.quantityShowTV.text = lastNumber.toString()
         }
-
-
-        // add values of array list of color
-        arraySelectColor.add(
-            SelectColorModel(
-                colors = "#C2E2B4"
-            )
-        )
-        arraySelectColor.add(
-            SelectColorModel(
-                colors = "#229D4C"
-            )
-        )
-        arraySelectColor.add(
-            SelectColorModel(
-                colors = "#F6F6F6"
-            )
-        )
-        arraySelectColor.add(
-            SelectColorModel(
-                colors = "#EE4C41"
-            )
-        )
-
-        // adapter for select color
-        selectColorAdapter = SelectColorAdapter(this, arraySelectColor)
-        binding.selectColorRV.adapter = selectColorAdapter
-        binding.selectColorRV.isNestedScrollingEnabled = false
-
-        // add values of array list of size
-        arraySelectSize.add(
-            SelectSizeModel(
-                sizes = "S"
-            )
-        )
-        arraySelectSize.add(
-            SelectSizeModel(
-                sizes = "M"
-            )
-        )
-        arraySelectSize.add(
-            SelectSizeModel(
-                sizes = "L"
-            )
-        )
-        arraySelectSize.add(
-            SelectSizeModel(
-                sizes = "XL"
-            )
-        )
-        arraySelectSize.add(
-            SelectSizeModel(
-                sizes = "XXL"
-            )
-        )
-
-        // adapter for select size
-        selectSizeAdapter = SelectSizeAdapter(this, arraySelectSize)
-        binding.selectSizeRV.adapter = selectSizeAdapter
-        binding.selectSizeRV.isNestedScrollingEnabled = false
-
-
 
 
         binding.productDescriptionHeaderCL.setOnClickListener {
@@ -185,6 +176,8 @@ class ProductDetailsActivity : AppCompatActivity() {
             val intent = Intent(this, ProductCartActivity::class.java)
             startActivity(intent)
         }
+
+
     }
 
     // banner
@@ -225,16 +218,19 @@ class ProductDetailsActivity : AppCompatActivity() {
 
     }
 
-    private fun setIntroSliderViewPager() {
-        productBannerAdapter = ProductBannerAdapter(
-            listOf(
-                ProductBannerSlide(R.drawable.newly_added_image),
-                ProductBannerSlide(R.drawable.newly_added_image),
-                ProductBannerSlide(R.drawable.newly_added_image),
-                ProductBannerSlide(R.drawable.newly_added_image)
-            )
-        )
-        binding.productViewPager.adapter = productBannerAdapter
+    fun autoSlide(size: Int) {
+        val handler = Handler()
+        val update = Runnable {
+            binding.productViewPager.setCurrentItem(currentPage % size, true)
+
+            currentPage++
+        }
+        timer = Timer()
+        timer!!.schedule(object : TimerTask() {
+            override fun run() {
+                handler.post(update)
+            }
+        }, DELAY_MS, PERIOD_MS)
     }
 
     private fun productApi() {
@@ -259,7 +255,17 @@ class ProductDetailsActivity : AppCompatActivity() {
                         } else {
                             binding.unitesLeftTV.visibility = View.GONE
                         }
-
+                        val arrayBanner: ArrayList<String> = ArrayList()
+                        arrayBanner.addAll(productResponse.product.productImages)
+                        productBannerAdapter = ProductBannerAdapter(
+                            this@ProductDetailsActivity,
+                            arrayBanner
+                        )
+                        binding.productViewPager.adapter = productBannerAdapter
+                        setupIndicators()
+                        setCurrentIndicator(0)
+                        if (arrayBanner.isNotEmpty())
+                            autoSlide(arrayBanner.size)
                         binding.dispatchedTV.text = productResponse.product.dispatchDetails[0]
                         binding.deliveryTV.text = productResponse.product.dispatchDetails[1]
                         binding.ratingBar.rating = productResponse.product.avgRating.toFloat()
@@ -286,7 +292,7 @@ class ProductDetailsActivity : AppCompatActivity() {
                         binding.productCheckListDetailsTV.text =
                             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
                                 Html.fromHtml(
-                                    productResponse.product.productCheckList.toString(),
+                                    " ${productResponse.product.productCheckList.box}  ${productResponse.product.productCheckList.color}",
                                     Html.FROM_HTML_MODE_COMPACT
                                 )
                             } else {
@@ -313,6 +319,40 @@ class ProductDetailsActivity : AppCompatActivity() {
                         similarProductsAdapter.notifyDataSetChanged()
 
 
+                        for (element in productResponse.product.attributes) {
+                            if (element.name == "Color") {
+                                arraySelectColor.clear()
+                                for (item in element.types) {
+                                    arraySelectColor.add(SelectColorModel(item))
+                                    Log.d("colorSizeSize", colorSize.toString())
+                                }
+                            }
+                        }
+                        selectColorAdapter =
+                            SelectColorAdapter(this@ProductDetailsActivity, "", arraySelectColor)
+                        binding.selectColorRV.adapter = selectColorAdapter
+                        binding.selectColorRV.isNestedScrollingEnabled = false
+
+                        selectColorAdapter.notifyDataSetChanged()
+
+                        for (element in productResponse.product.attributes) {
+                            if (element.name == "Size") {
+                                arraySelectSize.clear()
+                                for (item in element.types) {
+
+                                    arraySelectSize.add(SelectSizeModel(item))
+
+                                }
+                            }
+                        }
+
+                        selectSizeAdapter =
+                            SelectSizeAdapter(this@ProductDetailsActivity, arraySelectSize)
+                        binding.selectSizeRV.adapter = selectSizeAdapter
+                        binding.selectSizeRV.isNestedScrollingEnabled = false
+                        selectSizeAdapter.notifyDataSetChanged()
+
+
                         Log.e("TAG", "${response.message()} ")
                     }
                 } else {
@@ -336,5 +376,25 @@ class ProductDetailsActivity : AppCompatActivity() {
         })
     }
 
+    fun inActiveAddCard() {
+
+        binding.addToCartTV.isClickable = false
+        binding.addToCartTV.setBackgroundResource(R.drawable.button_grey)
+    }
+
+
+    fun activeAddCard() {
+
+        binding.addToCartTV.isClickable = true
+
+        binding.addToCartTV.setBackgroundResource(R.drawable.button_blue)
+
+        binding.addToCartTV.setOnClickListener {
+            binding.headerProductDetails.cartItemTV.visibility = View.VISIBLE
+            binding.headerProductDetails.cartItemTV.text =
+                cartCount++.toString()
+
+        }
+    }
 
 }
