@@ -17,21 +17,21 @@ import androidx.core.view.get
 import androidx.databinding.DataBindingUtil
 import androidx.viewpager2.widget.ViewPager2
 import com.example.shopinkarts.R
-import com.example.shopinkarts.adapter.ProductBannerAdapter
-import com.example.shopinkarts.adapter.SelectColorAdapter
-import com.example.shopinkarts.adapter.SelectSizeAdapter
-import com.example.shopinkarts.adapter.SimilarProductsAdapter
+import com.example.shopinkarts.adapter.*
 import com.example.shopinkarts.api.RetrofitClient
 import com.example.shopinkarts.databinding.ActivityProductDetailsBinding
+import com.example.shopinkarts.model.CartModel
 import com.example.shopinkarts.model.SelectColorModel
 import com.example.shopinkarts.model.SelectSizeModel
+import com.example.shopinkarts.model.VariantDataModel
 import com.example.shopinkarts.response.NewlyAdded
-import com.example.shopinkarts.response.Product
 import com.example.shopinkarts.response.ProductResponse
+import com.example.shopinkarts.response.VariantsArr
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 import java.util.*
+import kotlin.collections.ArrayList
 
 class ProductDetailsActivity : AppCompatActivity() {
 
@@ -40,13 +40,11 @@ class ProductDetailsActivity : AppCompatActivity() {
     lateinit var selectSizeAdapter: SelectSizeAdapter
     lateinit var similarProductsAdapter: SimilarProductsAdapter
     lateinit var productBannerAdapter: ProductBannerAdapter
-    var arrayListBanner: ArrayList<Product> = ArrayList()
 
     var arrayListSimilarProduct: ArrayList<NewlyAdded> = ArrayList()
     var arraySelectColor: ArrayList<SelectColorModel> = ArrayList()
     var arraySelectSize: ArrayList<SelectSizeModel> = ArrayList()
     private var cartCount: Int = 1
-    var quantityCount: Int = 0
     var productId = ""
     var isFreeDelivery = ""
     var currentPage = 0
@@ -55,14 +53,29 @@ class ProductDetailsActivity : AppCompatActivity() {
     val PERIOD_MS: Long = 4000
     var currentNumber = 1
     var lastNumber = 0
-    var colorInstanceColor = ""
+
+    var pId = ""
+    var vId = ""
+    var itemName = ""
+    var discountedPrice = ""
+    var actualPrice = ""
+    var color = ""
+    var size = ""
+    var quantity = ""
+    var totalAmount = ""
+    var imageUrl = ""
+    var variantTarget = ""
 
     companion object {
         var pInstance: ProductDetailsActivity = ProductDetailsActivity()
+        var arrayListVariant: ArrayList<VariantsArr> = ArrayList()
         var colorSize = 0
+        var selectedColor = ""
+        var selectedSize = ""
+        var sizeOfSize = 0
+        var quantitySze = 0
 
         fun getInstance(): ProductDetailsActivity {
-            colorSize
             return pInstance
         }
     }
@@ -71,24 +84,22 @@ class ProductDetailsActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = DataBindingUtil.setContentView(this, R.layout.activity_product_details)
         pInstance = this
-        inActiveAddCard()
-
-        /* selectColorAdapter= SelectColorAdapter(this,colorInstanceColor,arraySelectColor)
-         colorInstanceColor = selectColorAdapter.colorInstance
-
-         if (colorInstanceColor == "true") {
-             activeAddCard()
-         } else {
-             inActiveAddCard()
-         }
-         Log.d("colorInstanceColor", colorInstanceColor)*/
-        Log.d("colorSize", colorSize.toString())
-
         productId = intent.extras!!.getString("productId", "")
         Log.d("productId_productId", productId)
 
-        productApi()
 
+        if (DashBoardActivity.arrayListCart.isNotEmpty()) {
+
+            binding.headerProductDetails.cartItemTV.visibility = View.VISIBLE
+            binding.headerProductDetails.cartItemTV.text =
+                DashBoardActivity.arrayListCart.size.toString()
+
+        } else {
+            binding.headerProductDetails.cartItemTV.visibility = View.GONE
+        }
+        colorSizeUpdate()
+        productApi()
+        inActiveAddCard()
 
         binding.productViewPager.registerOnPageChangeCallback(object :
             ViewPager2.OnPageChangeCallback() {
@@ -99,35 +110,42 @@ class ProductDetailsActivity : AppCompatActivity() {
         })
 
         binding.headerProductDetails.backIV.setOnClickListener {
+            lastNumber = 0
+            currentNumber = 0
             onBackPressed()
         }
         binding.headerProductDetails.titleTV.setOnClickListener {
-            Log.d("colorSize", colorSize.toString())
+            Log.d("ColoR", "onCreate: $selectedColor")
         }
 
         binding.plusQuantityTV.setOnClickListener {
+
             lastNumber = currentNumber
             currentNumber++
             binding.quantityShowTV.text = lastNumber.toString()
 
+            quantitySze = if (lastNumber >= 1) 1 else 0
+            Log.d("quantitySze", quantitySze.toString())
+
+
             if (lastNumber >= 1) {
-                binding.addToCartTV.isClickable = true
-                binding.addToCartTV.setBackgroundResource(R.drawable.button_blue)
-                Log.d("currentNumber", currentNumber.toString())
+                activeAddCard()
             }
 
         }
 
         binding.minusQuantityTV.setOnClickListener {
+
             currentNumber = lastNumber
             if (currentNumber > 0) {
                 lastNumber--
             }
 
-            if (lastNumber <= 1) {
-                binding.addToCartTV.isClickable = false
-                binding.addToCartTV.setBackgroundResource(R.drawable.button_grey)
+            if (lastNumber < 1) {
+                inActiveAddCard()
             }
+            quantitySze = if (lastNumber <= 1) 0 else 1
+            Log.d("quantitySze", quantitySze.toString())
 
             binding.quantityShowTV.text = lastNumber.toString()
         }
@@ -177,6 +195,108 @@ class ProductDetailsActivity : AppCompatActivity() {
             startActivity(intent)
         }
 
+        binding.addToCartTV.setOnClickListener {
+
+            variantTarget = "${selectedColor}-${selectedSize}"
+
+            if (DashBoardActivity.arrayListCart.isEmpty()) {
+
+                //discountedPrice = discountedPrice* quantity
+                //actualPrice = actualPrice * quantity;
+
+                DashBoardActivity.arrayListCart.add(
+                    CartModel(
+                        pId = pId,
+                        vId = vId,
+                        itemName = itemName,
+                        discountedPrice = "Rs ${discountedPrice}.00",
+                        actualPrice = "",
+                        color = selectedColor,
+                        size = selectedSize,
+                        quantity = lastNumber.toString(),
+                        totalAmount = totalAmount,
+                        imageUrl = imageUrl
+                    )
+                )
+                DashBoardActivity.selectedVIDs.add(vId)
+
+                Log.d("elementsVid", vId)
+
+                //store both thearraylist in SP
+
+            } else {
+
+                if (DashBoardActivity.selectedVIDs.contains(vId)) {
+                    //do nothing
+                    Toast.makeText(this, "Already Exist", Toast.LENGTH_SHORT).show()
+                } else {
+                    DashBoardActivity.arrayListCart.add(
+                        CartModel(
+                            pId = pId,
+                            vId = vId,
+                            itemName = itemName,
+                            discountedPrice = "Rs ${discountedPrice}.00",
+                            actualPrice = "",
+                            color = selectedColor,
+                            size = selectedSize,
+                            quantity = lastNumber.toString(),
+                            totalAmount = totalAmount,
+                            imageUrl = imageUrl
+                        )
+                    )
+                    DashBoardActivity.selectedVIDs.add(vId)
+                    Toast.makeText(this, "Product Added Successfully", Toast.LENGTH_SHORT).show()
+
+                    //store both thearraylist in SP
+                }
+
+
+//                for (elements in DashBoardActivity.arrayListCart) {
+//                    if (elements.vId==(vId)) {
+//                        binding.addToCartTV.isClickable = false
+//                        binding.addToCartTV.setBackgroundResource(R.drawable.button_grey)
+//                        Log.d("if_cart_present", elements.vId)
+//                        Log.d("if_current", vId)
+//                        Toast.makeText(this, "Already Exist", Toast.LENGTH_SHORT).show()
+//                        break
+//                    } else {
+//                        Log.d("else_cart_present", elements.vId)
+//                        Log.d("else_current", vId)
+//                        binding.addToCartTV.isClickable = true
+//                        binding.addToCartTV.setBackgroundResource(R.drawable.button_blue)
+//                        Toast.makeText(this, " Add new", Toast.LENGTH_SHORT).show()
+//
+//                        DashBoardActivity.arrayListCart.add(
+//                            CartModel(
+//                                pId = pId,
+//                                vId = vId,
+//                                itemName = itemName,
+//                                discountedPrice = "Rs ${discountedPrice}.00",
+//                                actualPrice = "",
+//                                color = selectedColor,
+//                                size = selectedSize,
+//                                quantity = lastNumber.toString(),
+//                                totalAmount = totalAmount,
+//                                imageUrl = imageUrl
+//                            )
+//                        )
+//                        break
+//                    }
+//                }
+
+
+            }
+
+//            selectedColor
+//            selectedSize
+
+            Log.d("variantTarget", variantTarget)
+            binding.headerProductDetails.cartItemTV.visibility = View.VISIBLE
+            binding.headerProductDetails.cartItemTV.text =
+                DashBoardActivity.arrayListCart.size.toString()
+
+
+        }
 
     }
 
@@ -233,7 +353,7 @@ class ProductDetailsActivity : AppCompatActivity() {
         }, DELAY_MS, PERIOD_MS)
     }
 
-    private fun productApi() {
+    fun productApi() {
         val requestBody: MutableMap<String, String> = HashMap()
         requestBody["productId"] = productId
 
@@ -247,6 +367,10 @@ class ProductDetailsActivity : AppCompatActivity() {
                     val productResponse = response.body()
                     if (productResponse!!.status) {
 
+
+                        pId = productResponse.product._id
+                        itemName = productResponse.product.productName
+                        imageUrl = productResponse.product.productImages[0]
                         binding.tShirtNameTV.text = productResponse.product.productName
                         binding.discountedPriceTV.text = "Rs ${productResponse.product.price}.00"
                         binding.discountTV.text = "${productResponse.product.discount} % OFF"
@@ -324,12 +448,12 @@ class ProductDetailsActivity : AppCompatActivity() {
                                 arraySelectColor.clear()
                                 for (item in element.types) {
                                     arraySelectColor.add(SelectColorModel(item))
-                                    Log.d("colorSizeSize", colorSize.toString())
+
                                 }
                             }
                         }
                         selectColorAdapter =
-                            SelectColorAdapter(this@ProductDetailsActivity, "", arraySelectColor)
+                            SelectColorAdapter(this@ProductDetailsActivity, arraySelectColor)
                         binding.selectColorRV.adapter = selectColorAdapter
                         binding.selectColorRV.isNestedScrollingEnabled = false
 
@@ -351,6 +475,9 @@ class ProductDetailsActivity : AppCompatActivity() {
                         binding.selectSizeRV.adapter = selectSizeAdapter
                         binding.selectSizeRV.isNestedScrollingEnabled = false
                         selectSizeAdapter.notifyDataSetChanged()
+
+                        arrayListVariant.addAll(productResponse.product.variantsArr)
+
 
 
                         Log.e("TAG", "${response.message()} ")
@@ -376,23 +503,55 @@ class ProductDetailsActivity : AppCompatActivity() {
         })
     }
 
+    fun colorSizeUpdate() {
+        colorSize
+        vId
+        selectedColor
+        variantTarget = "${selectedColor}-${selectedSize}"
+        Log.d("variantTarget", variantTarget)
+        Log.d("colorSelect1", selectedColor)
+        updatePrice()
+    }
+
+    fun sizeUpdate() {
+        sizeOfSize
+        selectedSize
+        vId
+        variantTarget = "${selectedColor}-${selectedSize}"
+        Log.d("variantTarget", variantTarget)
+        Log.d("selectedSize", sizeOfSize.toString())
+        updatePrice()
+    }
+
     fun inActiveAddCard() {
 
         binding.addToCartTV.isClickable = false
         binding.addToCartTV.setBackgroundResource(R.drawable.button_grey)
     }
 
+    fun updatePrice() {
+
+        if (colorSize == 1 && sizeOfSize == 1) {
+            for (elements in arrayListVariant) {
+                Log.d("elements", "onResponse: $elements")
+                if (elements.variant == variantTarget) {
+                    vId = elements.id
+                    Log.d("vId", elements.id)
+                    binding.discountedPriceTV.text = "Rs ${elements.price}.00"
+                    discountedPrice = elements.price.toString()
+                    totalAmount = arrayListVariant.sumBy { it.price }.toString()
+
+                }
+
+            }
+        }
+    }
 
     fun activeAddCard() {
 
-        binding.addToCartTV.isClickable = true
-
-        binding.addToCartTV.setBackgroundResource(R.drawable.button_blue)
-
-        binding.addToCartTV.setOnClickListener {
-            binding.headerProductDetails.cartItemTV.visibility = View.VISIBLE
-            binding.headerProductDetails.cartItemTV.text =
-                cartCount++.toString()
+        if (colorSize == 1 && sizeOfSize == 1 && quantitySze == 1) {
+            binding.addToCartTV.isClickable = true
+            binding.addToCartTV.setBackgroundResource(R.drawable.button_blue)
 
         }
     }

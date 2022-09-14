@@ -20,7 +20,7 @@
         <ScrollView
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintBottom_toTopOf="@+id/continueTV"
             app:layout_constraintTop_toBottomOf="@+id/headerProductCart">
 
             <androidx.constraintlayout.widget.ConstraintLayout
@@ -38,6 +38,7 @@
                     app:layout_constraintTop_toTopOf="parent"
                     tools:itemCount="2"
                     tools:listitem="@layout/item_your_cart" />
+
 
                 <TextView
                     android:id="@+id/orderSummaryTV"
@@ -226,25 +227,26 @@
                         app:layout_constraintStart_toEndOf="@+id/giftIV"
                         app:layout_constraintTop_toTopOf="@+id/giftIV" />
 
-                    <TextView
-                        android:id="@+id/continueTV"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="@dimen/m50"
-                        android:layout_marginBottom="@dimen/m20"
-                        android:background="@drawable/button_blue_radius5"
-                        android:gravity="center"
-                        android:padding="@dimen/p18"
-                        android:text="@string/continue_"
-                        android:textColor="@color/white"
-                        android:textSize="@dimen/text_size_12"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/giftIV" />
 
 
                 </androidx.constraintlayout.widget.ConstraintLayout>
 
             </androidx.constraintlayout.widget.ConstraintLayout>
         </ScrollView>
+        <TextView
+            android:id="@+id/continueTV"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/m50"
+            android:background="@drawable/button_blue_radius5"
+            android:gravity="center"
+            android:padding="@dimen/p18"
+            android:layout_marginHorizontal="@dimen/m14"
+            android:text="@string/continue_"
+            android:textColor="@color/white"
+            android:textSize="@dimen/text_size_12"
+            app:layout_constraintBottom_toBottomOf="parent"
+            />
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

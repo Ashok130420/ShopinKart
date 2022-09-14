@@ -18,6 +18,8 @@
             android:id="@+id/imageIV"
             android:layout_width="100dp"
             android:layout_height="120dp"
+            android:layout_marginStart="@dimen/m5"
+            android:scaleType="fitXY"
             android:src="@drawable/newly_added_image"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
@@ -98,13 +100,14 @@
 
         <TextView
             android:id="@+id/sizeBlockTV"
-            android:layout_width="@dimen/m24"
+            android:layout_width="wrap_content"
             android:layout_height="@dimen/m24"
             android:layout_marginStart="@dimen/m10"
             android:background="@drawable/shape_color_grey"
             android:gravity="center"
-            android:padding="@dimen/p2"
-            android:text="@string/m"
+            android:paddingHorizontal="@dimen/p8"
+
+            android:text="XXL"
             android:textColor="@color/primary_text"
             app:layout_constraintBottom_toBottomOf="@+id/sizeTV"
             app:layout_constraintStart_toEndOf="@+id/sizeTV"

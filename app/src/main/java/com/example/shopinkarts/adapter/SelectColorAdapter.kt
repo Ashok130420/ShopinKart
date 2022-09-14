@@ -16,7 +16,6 @@ import com.example.shopinkarts.model.SelectColorModel
 
 class SelectColorAdapter(
     val context: Context,
-    var colorInstance: String,
     val arrayList: ArrayList<SelectColorModel>
 ) :
     RecyclerView.Adapter<SelectColorAdapter.ViewHolder>() {
@@ -54,19 +53,23 @@ class SelectColorAdapter(
 
         holder.itemView.setOnClickListener {
             if (item.isChecked) {
-                ProductDetailsActivity.colorSize =0
-                Log.d("colorSize0",  ProductDetailsActivity.colorSize.toString())
-                ProductDetailsActivity.colorSize
+
+                ProductDetailsActivity.colorSize = 0
+                Log.d("colorSize0", ProductDetailsActivity.colorSize.toString())
+                ProductDetailsActivity.getInstance().colorSizeUpdate()
+                ProductDetailsActivity.getInstance().inActiveAddCard()
                 item.isChecked = false
             } else {
                 arrayList.forEach { element -> element.isChecked = false }
+                ProductDetailsActivity.selectedColor = arrayList[position].colors
                 ProductDetailsActivity.colorSize = 1
-                Log.d("colorSize1",  ProductDetailsActivity.colorSize.toString())
-               ProductDetailsActivity.colorSize
+                Log.d("colorSize1", ProductDetailsActivity.colorSize.toString())
+                ProductDetailsActivity.getInstance().colorSizeUpdate()
+                ProductDetailsActivity.getInstance().activeAddCard()
 
                 item.isChecked = true
             }
-            Log.d(colorInstance, colorInstance)
+
             notifyDataSetChanged()
         }
 

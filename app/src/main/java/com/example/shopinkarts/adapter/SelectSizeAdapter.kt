@@ -1,7 +1,6 @@
 package com.example.shopinkarts.adapter
 
 import android.content.Context
-import android.graphics.Color
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
@@ -42,10 +41,15 @@ class SelectSizeAdapter(val context: Context, val arrayList: ArrayList<SelectSiz
 
         holder.itemView.setOnClickListener {
             if (item.isChecked) {
+                ProductDetailsActivity.sizeOfSize = 0
+                ProductDetailsActivity.getInstance().sizeUpdate()
                 ProductDetailsActivity.getInstance().inActiveAddCard()
                 item.isChecked = false
             } else {
                 arrayList.forEach { element -> element.isChecked = false }
+                ProductDetailsActivity.selectedSize = arrayList[position].sizes
+                ProductDetailsActivity.sizeOfSize = 1
+                ProductDetailsActivity.getInstance().sizeUpdate()
                 ProductDetailsActivity.getInstance().activeAddCard()
                 item.isChecked = true
             }
