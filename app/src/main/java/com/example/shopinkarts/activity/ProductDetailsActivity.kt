@@ -23,7 +23,6 @@ import com.example.shopinkarts.databinding.ActivityProductDetailsBinding
 import com.example.shopinkarts.model.CartModel
 import com.example.shopinkarts.model.SelectColorModel
 import com.example.shopinkarts.model.SelectSizeModel
-import com.example.shopinkarts.model.VariantDataModel
 import com.example.shopinkarts.response.NewlyAdded
 import com.example.shopinkarts.response.ProductResponse
 import com.example.shopinkarts.response.VariantsArr
@@ -57,12 +56,12 @@ class ProductDetailsActivity : AppCompatActivity() {
     var pId = ""
     var vId = ""
     var itemName = ""
-    var discountedPrice = ""
+    var discountedPrice = 0
     var actualPrice = ""
     var color = ""
     var size = ""
     var quantity = ""
-    var totalAmount = ""
+    var totalAmount = 0
     var imageUrl = ""
     var variantTarget = ""
 
@@ -118,8 +117,58 @@ class ProductDetailsActivity : AppCompatActivity() {
             Log.d("ColoR", "onCreate: $selectedColor")
         }
 
-        binding.plusQuantityTV.setOnClickListener {
 
+        /*       binding.plusQuantityTV.setOnClickListener {
+
+                   for (elements in arrayListVariant) {
+                       Log.d("elements", "onResponse: $elements")
+                       if (elements.variant == variantTarget) {
+       //                    Toast.makeText(this, "Available", Toast.LENGTH_SHORT).show()
+                           binding.plusQuantityTV.isClickable = true
+                           lastNumber = currentNumber
+                           currentNumber++
+                           binding.quantityShowTV.text = lastNumber.toString()
+
+                           quantitySze = if (lastNumber >= 1) 1 else 0
+                           Log.d("quantitySze", quantitySze.toString())
+
+                           if (lastNumber >= 1) {
+                               activeAddCart()
+                           }
+
+                       } else {
+                           binding.plusQuantityTV.isClickable = false
+                           Toast.makeText(this, "Out of stock", Toast.LENGTH_SHORT).show()
+                       }
+                   }
+               }*/
+
+
+//        for (elements in arrayListVariant) {
+//            Log.d("elements", "onResponse: $elements")
+//            if (elements.variant == variantTarget) {
+//
+////                binding.plusQuantityTV.isClickable = true
+//
+//                binding.plusQuantityTV.setOnClickListener {
+//                    lastNumber = currentNumber
+//                    currentNumber++
+//                    binding.quantityShowTV.text = lastNumber.toString()
+//
+//                    quantitySze = if (lastNumber >= 1) 1 else 0
+//                    Log.d("quantitySze", quantitySze.toString())
+//
+//                    if (lastNumber >= 1) {
+//                        activeAddCart()
+//                    }
+//                }
+//            } else {
+////                binding.plusQuantityTV.isClickable = false
+//                Toast.makeText(this, "Out of stock", Toast.LENGTH_SHORT).show()
+//            }
+//        }
+
+/*        binding.plusQuantityTV.setOnClickListener {
             lastNumber = currentNumber
             currentNumber++
             binding.quantityShowTV.text = lastNumber.toString()
@@ -127,12 +176,10 @@ class ProductDetailsActivity : AppCompatActivity() {
             quantitySze = if (lastNumber >= 1) 1 else 0
             Log.d("quantitySze", quantitySze.toString())
 
-
             if (lastNumber >= 1) {
-                activeAddCard()
+                activeAddCart()
             }
-
-        }
+        }*/
 
         binding.minusQuantityTV.setOnClickListener {
 
@@ -146,7 +193,6 @@ class ProductDetailsActivity : AppCompatActivity() {
             }
             quantitySze = if (lastNumber <= 1) 0 else 1
             Log.d("quantitySze", quantitySze.toString())
-
             binding.quantityShowTV.text = lastNumber.toString()
         }
 
@@ -198,18 +244,16 @@ class ProductDetailsActivity : AppCompatActivity() {
         binding.addToCartTV.setOnClickListener {
 
             variantTarget = "${selectedColor}-${selectedSize}"
+            totalAmount = discountedPrice * lastNumber
 
             if (DashBoardActivity.arrayListCart.isEmpty()) {
-
-                //discountedPrice = discountedPrice* quantity
-                //actualPrice = actualPrice * quantity;
 
                 DashBoardActivity.arrayListCart.add(
                     CartModel(
                         pId = pId,
                         vId = vId,
                         itemName = itemName,
-                        discountedPrice = "Rs ${discountedPrice}.00",
+                        discountedPrice = "Rs ${totalAmount}.00",
                         actualPrice = "",
                         color = selectedColor,
                         size = selectedSize,
@@ -222,7 +266,7 @@ class ProductDetailsActivity : AppCompatActivity() {
 
                 Log.d("elementsVid", vId)
 
-                //store both thearraylist in SP
+                //store both the arraylist in SP
 
             } else {
 
@@ -235,7 +279,7 @@ class ProductDetailsActivity : AppCompatActivity() {
                             pId = pId,
                             vId = vId,
                             itemName = itemName,
-                            discountedPrice = "Rs ${discountedPrice}.00",
+                            discountedPrice = "Rs ${totalAmount}.00",
                             actualPrice = "",
                             color = selectedColor,
                             size = selectedSize,
@@ -245,51 +289,14 @@ class ProductDetailsActivity : AppCompatActivity() {
                         )
                     )
                     DashBoardActivity.selectedVIDs.add(vId)
-                    Toast.makeText(this, "Product Added Successfully", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(this, "Product Added Successfully", Toast.LENGTH_SHORT)
+                        .show()
 
-                    //store both thearraylist in SP
+                    //store both the arraylist in SP
                 }
 
 
-//                for (elements in DashBoardActivity.arrayListCart) {
-//                    if (elements.vId==(vId)) {
-//                        binding.addToCartTV.isClickable = false
-//                        binding.addToCartTV.setBackgroundResource(R.drawable.button_grey)
-//                        Log.d("if_cart_present", elements.vId)
-//                        Log.d("if_current", vId)
-//                        Toast.makeText(this, "Already Exist", Toast.LENGTH_SHORT).show()
-//                        break
-//                    } else {
-//                        Log.d("else_cart_present", elements.vId)
-//                        Log.d("else_current", vId)
-//                        binding.addToCartTV.isClickable = true
-//                        binding.addToCartTV.setBackgroundResource(R.drawable.button_blue)
-//                        Toast.makeText(this, " Add new", Toast.LENGTH_SHORT).show()
-//
-//                        DashBoardActivity.arrayListCart.add(
-//                            CartModel(
-//                                pId = pId,
-//                                vId = vId,
-//                                itemName = itemName,
-//                                discountedPrice = "Rs ${discountedPrice}.00",
-//                                actualPrice = "",
-//                                color = selectedColor,
-//                                size = selectedSize,
-//                                quantity = lastNumber.toString(),
-//                                totalAmount = totalAmount,
-//                                imageUrl = imageUrl
-//                            )
-//                        )
-//                        break
-//                    }
-//                }
-
-
             }
-
-//            selectedColor
-//            selectedSize
-
             Log.d("variantTarget", variantTarget)
             binding.headerProductDetails.cartItemTV.visibility = View.VISIBLE
             binding.headerProductDetails.cartItemTV.text =
@@ -304,7 +311,10 @@ class ProductDetailsActivity : AppCompatActivity() {
     private fun setupIndicators() {
         val indicators = arrayOfNulls<ImageView>(productBannerAdapter.itemCount)
         val layoutParms: LinearLayout.LayoutParams =
-            LinearLayout.LayoutParams(ListPopupWindow.WRAP_CONTENT, ListPopupWindow.WRAP_CONTENT)
+            LinearLayout.LayoutParams(
+                ListPopupWindow.WRAP_CONTENT,
+                ListPopupWindow.WRAP_CONTENT
+            )
         layoutParms.setMargins(8, 0, 8, 0)
 
         for (i in indicators.indices) {
@@ -372,7 +382,8 @@ class ProductDetailsActivity : AppCompatActivity() {
                         itemName = productResponse.product.productName
                         imageUrl = productResponse.product.productImages[0]
                         binding.tShirtNameTV.text = productResponse.product.productName
-                        binding.discountedPriceTV.text = "Rs ${productResponse.product.price}.00"
+                        binding.discountedPriceTV.text =
+                            "Rs ${productResponse.product.price}.00"
                         binding.discountTV.text = "${productResponse.product.discount} % OFF"
                         if (productResponse.product.stock <= 50) {
                             binding.unitesLeftTV.visibility = View.VISIBLE
@@ -480,6 +491,7 @@ class ProductDetailsActivity : AppCompatActivity() {
 
 
 
+
                         Log.e("TAG", "${response.message()} ")
                     }
                 } else {
@@ -505,8 +517,8 @@ class ProductDetailsActivity : AppCompatActivity() {
 
     fun colorSizeUpdate() {
         colorSize
-        vId
         selectedColor
+        totalAmount = discountedPrice * lastNumber
         variantTarget = "${selectedColor}-${selectedSize}"
         Log.d("variantTarget", variantTarget)
         Log.d("colorSelect1", selectedColor)
@@ -516,7 +528,7 @@ class ProductDetailsActivity : AppCompatActivity() {
     fun sizeUpdate() {
         sizeOfSize
         selectedSize
-        vId
+        totalAmount = discountedPrice * lastNumber
         variantTarget = "${selectedColor}-${selectedSize}"
         Log.d("variantTarget", variantTarget)
         Log.d("selectedSize", sizeOfSize.toString())
@@ -535,19 +547,36 @@ class ProductDetailsActivity : AppCompatActivity() {
             for (elements in arrayListVariant) {
                 Log.d("elements", "onResponse: $elements")
                 if (elements.variant == variantTarget) {
+                    Log.d("PlusE", elements.variant)
+                    Log.d("PlusV", variantTarget)
                     vId = elements.id
                     Log.d("vId", elements.id)
                     binding.discountedPriceTV.text = "Rs ${elements.price}.00"
-                    discountedPrice = elements.price.toString()
-                    totalAmount = arrayListVariant.sumBy { it.price }.toString()
+                    discountedPrice = elements.price
+//                    totalAmount = arrayListVariant.sumBy { it.price }
 
+                    binding.plusQuantityTV.setOnClickListener {
+                        lastNumber = currentNumber
+                        currentNumber++
+                        binding.quantityShowTV.text = lastNumber.toString()
+
+                        quantitySze = if (lastNumber >= 1) 1 else 0
+                        Log.d("quantitySze", quantitySze.toString())
+
+                        if (lastNumber >= 1) {
+                            activeAddCart()
+                        }
+                    }
+                } else {
+                    binding.plusQuantityTV.isClickable = false
+                    Toast.makeText(this, "Out of stock", Toast.LENGTH_SHORT).show()
                 }
 
             }
         }
     }
 
-    fun activeAddCard() {
+    fun activeAddCart() {
 
         if (colorSize == 1 && sizeOfSize == 1 && quantitySze == 1) {
             binding.addToCartTV.isClickable = true

@@ -36,7 +36,7 @@ class YourCartAdapter(val context: Context, var arrayList: ArrayList<CartModel>)
             sizeBlockTV.text = itemDetails.size
             colorIV.setBackgroundColor(Color.parseColor(itemDetails.color))
             Log.d("COLOR", itemDetails.color)
-            totalAmountTV.text = "Total Amount-Rs ${itemDetails.totalAmount}"
+//            totalAmountTV.text = "Total Amount-Rs ${itemDetails.totalAmount}"
             Glide.with(context).load(itemDetails.imageUrl).into(imageIV)
 
         }

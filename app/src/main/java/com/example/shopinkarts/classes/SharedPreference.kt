@@ -40,6 +40,7 @@ class SharedPreference(context: Context) {
 
     fun getUserType(): String? {
         return prefs.getString(userType, "")
+
     }
 
     fun setUserId(token: String) {

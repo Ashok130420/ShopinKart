@@ -10,6 +10,6 @@ data class CartModel(
     var color: String,
     var size: String,
     var quantity: String,
-    var totalAmount: String,
+    var totalAmount: Int,
     var imageUrl: String
 )
