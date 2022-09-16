@@ -50,12 +50,9 @@ class DashBoardActivity : AppCompatActivity() {
     override fun onResume() {
         arrayListCart
         Log.d("arrayListCart", arrayListCart.toString())
-//        binding.headerDashBoard.cartItemTV.text = ProductDetailsActivity.lastNumber.toString()
-//        Log.d("CartNumber",  ProductDetailsActivity.lastNumber.toString())
         if (arrayListCart.isNotEmpty()) {
             binding.headerDashBoard.cartItemTV.visibility = View.VISIBLE
-            binding.headerDashBoard.cartItemTV.text = ProductDetailsActivity.lastNumber.toString()
-            Log.d("CartNumber", ProductDetailsActivity.lastNumber.toString())
+            binding.headerDashBoard.cartItemTV.text = arrayListCart.size.toString()
         } else {
             binding.headerDashBoard.cartItemTV.visibility = View.GONE
         }

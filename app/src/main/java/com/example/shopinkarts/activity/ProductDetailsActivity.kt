@@ -80,6 +80,19 @@ class ProductDetailsActivity : AppCompatActivity() {
         }
     }
 
+    override fun onResume() {
+        DashBoardActivity.arrayListCart
+        Log.d("arrayListCart", DashBoardActivity.arrayListCart.toString())
+        if (DashBoardActivity.arrayListCart.isNotEmpty()) {
+            binding.headerProductDetails.cartItemTV.visibility = View.VISIBLE
+            binding.headerProductDetails.cartItemTV.text =
+                DashBoardActivity.arrayListCart.size.toString()
+        } else {
+            binding.headerProductDetails.cartItemTV.visibility = View.GONE
+        }
+        super.onResume()
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = DataBindingUtil.setContentView(this, R.layout.activity_product_details)
@@ -93,6 +106,7 @@ class ProductDetailsActivity : AppCompatActivity() {
         if (DashBoardActivity.arrayListCart.isNotEmpty()) {
 
             binding.headerProductDetails.cartItemTV.visibility = View.VISIBLE
+
             binding.headerProductDetails.cartItemTV.text =
                 DashBoardActivity.arrayListCart.size.toString()
 
@@ -119,9 +133,6 @@ class ProductDetailsActivity : AppCompatActivity() {
         binding.headerProductDetails.titleTV.setOnClickListener {
             Log.d("ColoR", "onCreate: $selectedColor")
         }
-
-
-
 
         binding.plusQuantityTV.setOnClickListener {
             if (currentNumber <= stock) {
@@ -190,21 +201,28 @@ class ProductDetailsActivity : AppCompatActivity() {
             }
         }
 
-        binding.buyNowTV.setOnClickListener {
-            activeAddCart()
-            if (DashBoardActivity.selectedVIDs.contains(vId)) {
-
-                Toast.makeText(this, "Product already into cart ", Toast.LENGTH_SHORT).show()
-            } else {
-                addItem()
-                val intent = Intent(this, ProductCartActivity::class.java)
-                startActivity(intent)
-            }
-
-        }
         binding.headerProductDetails.cartIV.setOnClickListener {
             val intent = Intent(this, ProductCartActivity::class.java)
             startActivity(intent)
+        }
+
+        binding.buyNowTV.setOnClickListener {
+            activeAddCart()
+
+            arrayListVariant
+           /* if (DashBoardActivity.selectedVIDs.contains(vId)) {
+
+                Toast.makeText(this, "Product already into cart ", Toast.LENGTH_SHORT).show()
+
+            } else*/
+            if (DashBoardActivity.arrayListCart.isEmpty()) {
+                addItem()
+                val intent = Intent(this, ProductCartActivity::class.java)
+                startActivity(intent)
+            }else{
+                Toast.makeText(this, "Product already in cart ", Toast.LENGTH_SHORT).show()
+            }
+
         }
 
         binding.addToCartTV.setOnClickListener {
@@ -345,7 +363,7 @@ class ProductDetailsActivity : AppCompatActivity() {
 
             if (DashBoardActivity.selectedVIDs.contains(vId)) {
                 //do nothing
-                Toast.makeText(this, "Already Exist", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this, "Product already in cart", Toast.LENGTH_SHORT).show()
             } else {
                 DashBoardActivity.arrayListCart.add(
                     CartModel(

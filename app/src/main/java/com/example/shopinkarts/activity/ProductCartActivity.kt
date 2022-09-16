@@ -17,13 +17,13 @@ class ProductCartActivity : AppCompatActivity() {
     lateinit var yourCartAdapter: YourCartAdapter
     var arrayListCart: ArrayList<CartModel> = ArrayList()
 
-    var totalAmount = 0
-    var discountAmount = 0
-    var orderTotal = 0
-    var gst = 0
-    var amountPaid = 0
-    var percentage = 0
-    var differenceAmount = 0
+    var totalAmount: Double = 0.00
+    var discountAmount = 0F
+    var orderTotal = 0F
+    var gst = 0F
+    var amountPaid = 0F
+    var percentage: Double = 0.00
+    var differenceAmount: Double = 0.00
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = DataBindingUtil.setContentView(this, R.layout.activity_product_cart)
@@ -58,17 +58,16 @@ class ProductCartActivity : AppCompatActivity() {
 
         binding.totalAmountValueTV.text =
             "RS ${DashBoardActivity.arrayListCart.sumBy { it.totalAmount }}"
-        totalAmount = DashBoardActivity.arrayListCart.sumBy { it.totalAmount }
+        totalAmount = DashBoardActivity.arrayListCart.sumBy { it.totalAmount }.toDouble()
 
         binding.discountsValueTV.text =
             "- RS ${DashBoardActivity.arrayListCart.sumBy { it.totalAmount }}"
-        discountAmount = DashBoardActivity.arrayListCart.sumBy { it.totalAmount }
+        discountAmount = DashBoardActivity.arrayListCart.sumBy { it.totalAmount }.toFloat()
 
-        orderTotal = totalAmount - discountAmount
+        orderTotal = (totalAmount - discountAmount).toFloat()
 
         binding.orderTotalValueTV.text = "Rs ${orderTotal}"
-
-        gst = 100 * 5 / 100
+        gst = orderTotal * 5 / 100
         binding.gstValueTV.text = gst.toString()
 
         amountPaid = orderTotal + gst
@@ -77,11 +76,14 @@ class ProductCartActivity : AppCompatActivity() {
 
 //        percentage = differenceAmount / totalAmount * 100
 
+        percentage = 2548.0 / 4200.0 * 100
+        Log.d("percentage", percentage.toInt().toString())
 
-        binding.continueTV.setOnClickListener {
-            val intent = Intent(this, PersonalDetailsActivity::class.java)
-            startActivity(intent)
-        }
+        binding.giftTV.text ="Congratulations! You are saving ${percentage}on \nthis order"
+            binding.continueTV.setOnClickListener {
+                val intent = Intent(this, PersonalDetailsActivity::class.java)
+                startActivity(intent)
+            }
 
 
     }
