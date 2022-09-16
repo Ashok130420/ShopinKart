@@ -2,7 +2,7 @@ package com.example.shopinkarts.response
 
 data class VariantsArr(
     val price: Int,
-    val stock: String,
+    val stock: Int,
     val variant: String,
 
     var pId: String,

@@ -200,7 +200,6 @@ class HomeFragment : Fragment() {
         }
 
 
-
         // adapter for discount for you items
         discountForYouAdapter = DiscountForYouAdapter(requireContext())
         binding.discountForYouRV.adapter = discountForYouAdapter

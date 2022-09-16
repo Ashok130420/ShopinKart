@@ -113,7 +113,7 @@
     <string name="amount_to_be_paid">Amount to be paid</string>
     <string name="rs_1652">Rs 1652</string>
     <string name="payment_method">Payment Method</string>
-    <string name="congratulations_you_are_saving_66_on_this_order">Congratulations! You are saving 66% on this order</string>
+    <string name="congratulations_you_are_saving_66_on_this_order">Congratulations! You are saving 66% on \nthis order</string>
     <string name="continue_">CONTINUE</string>
     <string name="personal_details">Personal Details</string>
     <string name="name">Name</string>

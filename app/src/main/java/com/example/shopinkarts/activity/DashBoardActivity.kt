@@ -41,33 +41,42 @@ class DashBoardActivity : AppCompatActivity() {
     companion object {
         var mInstance: DashBoardActivity = DashBoardActivity()
         var arrayListCart: ArrayList<CartModel> = ArrayList()
-        var selectedVIDs:ArrayList<String> = ArrayList()
+        var selectedVIDs: ArrayList<String> = ArrayList()
         fun getInstance(): DashBoardActivity {
             return mInstance
         }
     }
 
+    override fun onResume() {
+        arrayListCart
+        Log.d("arrayListCart", arrayListCart.toString())
+//        binding.headerDashBoard.cartItemTV.text = ProductDetailsActivity.lastNumber.toString()
+//        Log.d("CartNumber",  ProductDetailsActivity.lastNumber.toString())
+        if (arrayListCart.isNotEmpty()) {
+            binding.headerDashBoard.cartItemTV.visibility = View.VISIBLE
+            binding.headerDashBoard.cartItemTV.text = ProductDetailsActivity.lastNumber.toString()
+            Log.d("CartNumber", ProductDetailsActivity.lastNumber.toString())
+        } else {
+            binding.headerDashBoard.cartItemTV.visibility = View.GONE
+        }
+        super.onResume()
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = DataBindingUtil.setContentView(this, R.layout.activity_dash_board)
-        binding.headerDashBoard.cartItemTV.visibility=View.GONE
-        /*   val window: Window = this.window
-           window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS)
-           window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS)
-           window.statusBarColor = ContextCompat.getColor(this, R.color.white)
- */
+
+//           val window: Window = this.window
+//           window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS)
+//           window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS)
+//           window.statusBarColor = ContextCompat.getColor(this, R.color.white)
+
         mInstance = this
+
 
         binding.headerDashBoard.notificationIV.setOnClickListener {
             val intent = Intent(this, NotificationActivity::class.java)
             startActivity(intent)
-        }
-
-        if (arrayListCart.isNotEmpty()) {
-            binding.headerDashBoard.cartItemTV.visibility=View.VISIBLE
-            binding.headerDashBoard.cartItemTV.text = arrayListCart.size.toString()
-        }else{
-            binding.headerDashBoard.cartItemTV.visibility=View.GONE
         }
 
         binding.headerDashBoard.cartIV.setOnClickListener {

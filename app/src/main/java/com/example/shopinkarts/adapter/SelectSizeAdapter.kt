@@ -43,7 +43,7 @@ class SelectSizeAdapter(val context: Context, val arrayList: ArrayList<SelectSiz
             if (item.isChecked) {
                 ProductDetailsActivity.sizeOfSize = 0
                 ProductDetailsActivity.getInstance().sizeUpdate()
-                ProductDetailsActivity.getInstance().inActiveAddCard()
+                ProductDetailsActivity.getInstance().inActiveAddCart()
                 item.isChecked = false
             } else {
                 arrayList.forEach { element -> element.isChecked = false }
@@ -51,6 +51,7 @@ class SelectSizeAdapter(val context: Context, val arrayList: ArrayList<SelectSiz
                 ProductDetailsActivity.sizeOfSize = 1
                 ProductDetailsActivity.getInstance().sizeUpdate()
                 ProductDetailsActivity.getInstance().activeAddCart()
+                ProductDetailsActivity.getInstance().updateLastNumber()
                 item.isChecked = true
             }
             notifyDataSetChanged()

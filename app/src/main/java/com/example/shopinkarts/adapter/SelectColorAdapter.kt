@@ -57,7 +57,7 @@ class SelectColorAdapter(
                 ProductDetailsActivity.colorSize = 0
                 Log.d("colorSize0", ProductDetailsActivity.colorSize.toString())
                 ProductDetailsActivity.getInstance().colorSizeUpdate()
-                ProductDetailsActivity.getInstance().inActiveAddCard()
+                ProductDetailsActivity.getInstance().inActiveAddCart()
                 item.isChecked = false
             } else {
                 arrayList.forEach { element -> element.isChecked = false }
@@ -66,6 +66,7 @@ class SelectColorAdapter(
                 Log.d("colorSize1", ProductDetailsActivity.colorSize.toString())
                 ProductDetailsActivity.getInstance().colorSizeUpdate()
                 ProductDetailsActivity.getInstance().activeAddCart()
+                ProductDetailsActivity.getInstance().updateLastNumber()
 
                 item.isChecked = true
             }
