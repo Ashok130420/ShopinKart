@@ -19,6 +19,7 @@ class YourCartAdapter(val context: Context, var arrayList: ArrayList<CartModel>)
     RecyclerView.Adapter<YourCartAdapter.ViewHolder>() {
 
     var updateQty = 0
+    var unitPrice=0
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val binding: ItemYourCartBinding = DataBindingUtil.inflate(
@@ -37,6 +38,7 @@ class YourCartAdapter(val context: Context, var arrayList: ArrayList<CartModel>)
         holder.binding.apply {
 
             productNameTV.text = itemDetails.itemName
+
             discountedPriceTV.text = "Rs ${(itemDetails.totalAmount)}.00"
             updateQty = itemDetails.quantity
             quantityShowTV.text = updateQty.toString()
@@ -45,6 +47,7 @@ class YourCartAdapter(val context: Context, var arrayList: ArrayList<CartModel>)
             Log.d("COLOR", itemDetails.color)
 //          totalAmountTV.text = "Total Amount-Rs ${itemDetails.totalAmount}"
             Glide.with(context).load(itemDetails.imageUrl).into(imageIV)
+            discountedPriceTV.text = "Rs ${(unitPrice * updateQty)}.00"
 
             plusQuantityTV.setOnClickListener {
 
@@ -55,16 +58,18 @@ class YourCartAdapter(val context: Context, var arrayList: ArrayList<CartModel>)
                 Log.d("stock", itemDetails.stock.toString())
                 Log.d(" itemDetails.quantity", itemDetails.quantity.toString())
 
-                val unitPrice = itemDetails.discountedPrice.toInt()
+//                val unitPrice = 120
+                 unitPrice = itemDetails.discountedPrice.toInt()
 
                 if (updateQty <= itemDetails.stock) {
 
                     itemDetails.quantity = updateQty
-                    itemDetails.discountedPrice = (unitPrice * updateQty).toString()
 
                     Log.d("stockstockstock", unitPrice.toString())
                     Log.d("stockstockstock", updateQty.toString())
-                    Log.d("stockstockstock", itemDetails.discountedPrice)
+                    Log.d("stockstockstock", "${unitPrice * updateQty}")
+
+//                    discountedPriceTV.text = (unitPrice * updateQty).toString()
 
                     notifyDataSetChanged()
 
@@ -78,7 +83,7 @@ class YourCartAdapter(val context: Context, var arrayList: ArrayList<CartModel>)
                 Log.d("after+CQ", (itemDetails.quantity.toInt() - 1).toString())
                 Log.d("stock", itemDetails.stock.toString())
 
-                updateQty = itemDetails.quantity.toInt() - 1
+                updateQty = itemDetails.quantity - 1
 
                 val unitPrice = itemDetails.discountedPrice.toInt()
 
@@ -89,7 +94,7 @@ class YourCartAdapter(val context: Context, var arrayList: ArrayList<CartModel>)
                 } else {
                     //update item
                     itemDetails.quantity = updateQty
-                    itemDetails.discountedPrice = (unitPrice * updateQty).toString()
+                    discountedPriceTV.text = (unitPrice * updateQty).toString()
                 }
                 notifyDataSetChanged()
 

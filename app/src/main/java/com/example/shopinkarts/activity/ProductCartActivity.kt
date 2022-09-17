@@ -1,5 +1,6 @@
 package com.example.shopinkarts.activity
 
+import android.annotation.SuppressLint
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
@@ -24,6 +25,7 @@ class ProductCartActivity : AppCompatActivity() {
     var amountPaid = 0F
     var percentage: Double = 0.00
     var differenceAmount: Double = 0.00
+    @SuppressLint("SetTextI18n")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = DataBindingUtil.setContentView(this, R.layout.activity_product_cart)
