@@ -54,14 +54,13 @@ class ProductDetailsActivity : AppCompatActivity() {
     var pId = ""
     var vId = ""
     var itemName = ""
-    var discountedPrice = 0
     var actualPrice = ""
     var color = ""
     var size = ""
     var quantity = ""
-    var totalAmount = 0
     var imageUrl = ""
     var variantTarget = ""
+    var stock = 0
 
     companion object {
         var pInstance: ProductDetailsActivity = ProductDetailsActivity()
@@ -74,6 +73,9 @@ class ProductDetailsActivity : AppCompatActivity() {
         var stock = 0
         var currentNumber = 1
         var lastNumber = 0
+        var totalAmount = 0
+        var discountedPrice = 0
+
 
         fun getInstance(): ProductDetailsActivity {
             return pInstance
@@ -81,6 +83,7 @@ class ProductDetailsActivity : AppCompatActivity() {
     }
 
     override fun onResume() {
+        binding.quantityShowTV.text = lastNumber.toString()
         DashBoardActivity.arrayListCart
         Log.d("arrayListCart", DashBoardActivity.arrayListCart.toString())
         if (DashBoardActivity.arrayListCart.isNotEmpty()) {
@@ -208,83 +211,14 @@ class ProductDetailsActivity : AppCompatActivity() {
 
         binding.buyNowTV.setOnClickListener {
             activeAddCart()
-
-            arrayListVariant
-           /* if (DashBoardActivity.selectedVIDs.contains(vId)) {
-
-                Toast.makeText(this, "Product already into cart ", Toast.LENGTH_SHORT).show()
-
-            } else*/
-            if (DashBoardActivity.arrayListCart.isEmpty()) {
-                addItem()
-                val intent = Intent(this, ProductCartActivity::class.java)
-                startActivity(intent)
-            }else{
-                Toast.makeText(this, "Product already in cart ", Toast.LENGTH_SHORT).show()
-            }
+            addItem()
+            val intent = Intent(this, ProductCartActivity::class.java)
+            startActivity(intent)
 
         }
 
         binding.addToCartTV.setOnClickListener {
 
-            /* variantTarget = "${selectedColor}-${selectedSize}"
-             totalAmount = discountedPrice * lastNumber
-
-             if (DashBoardActivity.arrayListCart.isEmpty()) {
-
-                 DashBoardActivity.arrayListCart.add(
-                     CartModel(
-                         pId = pId,
-                         vId = vId,
-                         itemName = itemName,
-                         discountedPrice = "Rs ${totalAmount}.00",
-                         actualPrice = "",
-                         color = selectedColor,
-                         size = selectedSize,
-                         quantity = lastNumber.toString(),
-                         totalAmount = totalAmount,
-                         imageUrl = imageUrl
-                     )
-                 )
-                 DashBoardActivity.selectedVIDs.add(vId)
-
-                 Log.d("elementsVid", vId)
-
-                 //store both the arraylist in SP
-
-             } else {
-
-                 if (DashBoardActivity.selectedVIDs.contains(vId)) {
-                     //do nothing
-                     Toast.makeText(this, "Already Exist", Toast.LENGTH_SHORT).show()
-                 } else {
-                     DashBoardActivity.arrayListCart.add(
-                         CartModel(
-                             pId = pId,
-                             vId = vId,
-                             itemName = itemName,
-                             discountedPrice = "Rs ${totalAmount}.00",
-                             actualPrice = "",
-                             color = selectedColor,
-                             size = selectedSize,
-                             quantity = lastNumber.toString(),
-                             totalAmount = totalAmount,
-                             imageUrl = imageUrl
-                         )
-                     )
-                     DashBoardActivity.selectedVIDs.add(vId)
-                     Toast.makeText(this, "Product Added Successfully", Toast.LENGTH_SHORT)
-                         .show()
-
-                     //store both the arraylist in SP
-                 }
-
-
-             }
-             Log.d("variantTarget", variantTarget)
-             binding.headerProductDetails.cartItemTV.visibility = View.VISIBLE
-             binding.headerProductDetails.cartItemTV.text =
-                 DashBoardActivity.arrayListCart.size.toString()*/
             addItem()
 
         }
@@ -334,23 +268,27 @@ class ProductDetailsActivity : AppCompatActivity() {
     }
 
     private fun addItem() {
+
         variantTarget = "${selectedColor}-${selectedSize}"
         totalAmount = discountedPrice * lastNumber
 
         if (DashBoardActivity.arrayListCart.isEmpty()) {
+
+
 
             DashBoardActivity.arrayListCart.add(
                 CartModel(
                     pId = pId,
                     vId = vId,
                     itemName = itemName,
-                    discountedPrice = "Rs ${totalAmount}.00",
+                    discountedPrice = discountedPrice.toString(),
                     actualPrice = "",
                     color = selectedColor,
                     size = selectedSize,
-                    quantity = lastNumber.toString(),
+                    quantity = lastNumber,
                     totalAmount = totalAmount,
-                    imageUrl = imageUrl
+                    imageUrl = imageUrl,
+                    stock =stock
                 )
             )
             DashBoardActivity.selectedVIDs.add(vId)
@@ -370,13 +308,14 @@ class ProductDetailsActivity : AppCompatActivity() {
                         pId = pId,
                         vId = vId,
                         itemName = itemName,
-                        discountedPrice = "Rs ${totalAmount}.00",
+                        discountedPrice = discountedPrice.toString(),
                         actualPrice = "",
                         color = selectedColor,
                         size = selectedSize,
-                        quantity = lastNumber.toString(),
+                        quantity = lastNumber,
                         totalAmount = totalAmount,
-                        imageUrl = imageUrl
+                        imageUrl = imageUrl,
+                        stock =stock
                     )
                 )
                 DashBoardActivity.selectedVIDs.add(vId)
@@ -627,9 +566,17 @@ class ProductDetailsActivity : AppCompatActivity() {
         }
     }
 
-
     fun updateLastNumber() {
-        lastNumber = 0
+        if (colorSize == 1 && sizeOfSize == 1) {
+            lastNumber = 1
+            binding.addToCartTV.isEnabled = true
+            binding.buyNowTV.isEnabled = true
+            binding.addToCartTV.setBackgroundResource(R.drawable.button_blue)
+        } else {
+            lastNumber = 0
+            binding.addToCartTV.isEnabled = false
+            binding.buyNowTV.isEnabled = false
+        }
         currentNumber = 1
         binding.quantityShowTV.text = lastNumber.toString()
     }

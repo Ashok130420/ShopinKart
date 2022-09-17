@@ -11,13 +11,14 @@ import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.shopinkarts.R
-import com.example.shopinkarts.activity.ProductDetailsActivity
+import com.example.shopinkarts.activity.DashBoardActivity.Companion.selectedVIDs
 import com.example.shopinkarts.databinding.ItemYourCartBinding
 import com.example.shopinkarts.model.CartModel
 
 class YourCartAdapter(val context: Context, var arrayList: ArrayList<CartModel>) :
     RecyclerView.Adapter<YourCartAdapter.ViewHolder>() {
 
+    var updateQty = 0
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val binding: ItemYourCartBinding = DataBindingUtil.inflate(
@@ -34,9 +35,11 @@ class YourCartAdapter(val context: Context, var arrayList: ArrayList<CartModel>)
 
         val itemDetails = arrayList[position]
         holder.binding.apply {
+
             productNameTV.text = itemDetails.itemName
-            discountedPriceTV.text = itemDetails.discountedPrice
-            quantityShowTV.text = itemDetails.quantity
+            discountedPriceTV.text = "Rs ${(itemDetails.totalAmount)}.00"
+            updateQty = itemDetails.quantity
+            quantityShowTV.text = updateQty.toString()
             sizeBlockTV.text = itemDetails.size
             colorIV.setBackgroundColor(Color.parseColor(itemDetails.color))
             Log.d("COLOR", itemDetails.color)
@@ -45,30 +48,67 @@ class YourCartAdapter(val context: Context, var arrayList: ArrayList<CartModel>)
 
             plusQuantityTV.setOnClickListener {
 
-                if (ProductDetailsActivity.currentNumber <= ProductDetailsActivity.stock) {
+                updateQty = itemDetails.quantity + 1
 
-                    ProductDetailsActivity.lastNumber = ProductDetailsActivity.currentNumber
-                    ProductDetailsActivity.currentNumber++
-                    quantityShowTV.text = ProductDetailsActivity.lastNumber.toString()
+                Log.d("defaultCQ", itemDetails.quantity.toString())
+                Log.d("after+CQ", updateQty.toString())
+                Log.d("stock", itemDetails.stock.toString())
+                Log.d(" itemDetails.quantity", itemDetails.quantity.toString())
+
+                val unitPrice = itemDetails.discountedPrice.toInt()
+
+                if (updateQty <= itemDetails.stock) {
+
+                    itemDetails.quantity = updateQty
+                    itemDetails.discountedPrice = (unitPrice * updateQty).toString()
+
+                    Log.d("stockstockstock", unitPrice.toString())
+                    Log.d("stockstockstock", updateQty.toString())
+                    Log.d("stockstockstock", itemDetails.discountedPrice)
+
+                    notifyDataSetChanged()
 
                 } else {
                     Toast.makeText(context, "Out of stock", Toast.LENGTH_SHORT).show()
                 }
-
             }
+
             minusQuantityTV.setOnClickListener {
-                ProductDetailsActivity.currentNumber = ProductDetailsActivity.lastNumber
-                if (ProductDetailsActivity.currentNumber > 0) {
-                    ProductDetailsActivity.lastNumber--
+                Log.d("defaultCQ", itemDetails.quantity.toString())
+                Log.d("after+CQ", (itemDetails.quantity.toInt() - 1).toString())
+                Log.d("stock", itemDetails.stock.toString())
+
+                updateQty = itemDetails.quantity.toInt() - 1
+
+                val unitPrice = itemDetails.discountedPrice.toInt()
+
+                if (updateQty == 0) {
+                    //delete item
+                    arrayList.removeAt(position)
+
+                } else {
+                    //update item
+                    itemDetails.quantity = updateQty
+                    itemDetails.discountedPrice = (unitPrice * updateQty).toString()
                 }
-                quantityShowTV.text = ProductDetailsActivity.lastNumber.toString()
+                notifyDataSetChanged()
+
 
             }
+
             deleteIconIV.setOnClickListener {
                 arrayList.removeAt(position)
                 notifyDataSetChanged()
-                if (arrayList.isEmpty()) {
 
+                //deleting item from selected vId
+
+                for (element in selectedVIDs) {
+                    if (element == itemDetails.vId) {
+                        selectedVIDs.removeAt(position)
+                    }
+                }
+
+                if (arrayList.isEmpty()) {
                     (context as Activity).finish()
                 }
             }
@@ -76,7 +116,7 @@ class YourCartAdapter(val context: Context, var arrayList: ArrayList<CartModel>)
     }
 
     override fun getItemCount(): Int {
-        return arrayList.count()
+        return arrayList.size
     }
 
     inner class ViewHolder(itemView: ItemYourCartBinding) :
