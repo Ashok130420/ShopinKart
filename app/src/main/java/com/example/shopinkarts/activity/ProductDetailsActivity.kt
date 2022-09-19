@@ -19,6 +19,7 @@ import androidx.viewpager2.widget.ViewPager2
 import com.example.shopinkarts.R
 import com.example.shopinkarts.adapter.*
 import com.example.shopinkarts.api.RetrofitClient
+import com.example.shopinkarts.classes.SharedPreference
 import com.example.shopinkarts.databinding.ActivityProductDetailsBinding
 import com.example.shopinkarts.model.CartModel
 import com.example.shopinkarts.model.SelectColorModel
@@ -39,6 +40,8 @@ class ProductDetailsActivity : AppCompatActivity() {
     lateinit var selectSizeAdapter: SelectSizeAdapter
     lateinit var similarProductsAdapter: SimilarProductsAdapter
     lateinit var productBannerAdapter: ProductBannerAdapter
+    lateinit var sharedPreference: SharedPreference
+
 
     var arrayListSimilarProduct: ArrayList<NewlyAdded> = ArrayList()
     var arraySelectColor: ArrayList<SelectColorModel> = ArrayList()
@@ -54,7 +57,6 @@ class ProductDetailsActivity : AppCompatActivity() {
     var pId = ""
     var vId = ""
     var itemName = ""
-    var actualPrice = ""
     var color = ""
     var size = ""
     var quantity = ""
@@ -71,10 +73,12 @@ class ProductDetailsActivity : AppCompatActivity() {
         var sizeOfSize = 0
         var quantitySze = 0
         var stock = 0
-        var currentNumber = 1
-        var lastNumber = 0
+        var currentNumber = 0
+
+        //        var lastNumber = 0
         var totalAmount = 0
         var discountedPrice = 0
+        var actualPrice = 0
 
 
         fun getInstance(): ProductDetailsActivity {
@@ -83,7 +87,7 @@ class ProductDetailsActivity : AppCompatActivity() {
     }
 
     override fun onResume() {
-        binding.quantityShowTV.text = lastNumber.toString()
+        binding.quantityShowTV.text = currentNumber.toString()
         DashBoardActivity.arrayListCart
         Log.d("arrayListCart", DashBoardActivity.arrayListCart.toString())
         if (DashBoardActivity.arrayListCart.isNotEmpty()) {
@@ -100,8 +104,8 @@ class ProductDetailsActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = DataBindingUtil.setContentView(this, R.layout.activity_product_details)
         pInstance = this
-
-
+//        currentNumber = 0
+        sharedPreference = SharedPreference(this)
         productId = intent.extras!!.getString("productId", "")
         Log.d("productId_productId", productId)
 
@@ -129,7 +133,7 @@ class ProductDetailsActivity : AppCompatActivity() {
         })
 
         binding.headerProductDetails.backIV.setOnClickListener {
-            lastNumber = 0
+//            lastNumber = 0
             currentNumber = 0
             onBackPressed()
         }
@@ -140,16 +144,17 @@ class ProductDetailsActivity : AppCompatActivity() {
         binding.plusQuantityTV.setOnClickListener {
             if (currentNumber <= stock) {
 
-                lastNumber = currentNumber
-                currentNumber++
-                binding.quantityShowTV.text = lastNumber.toString()
+//                lastNumber = currentNumber
+                currentNumber + 1
+                binding.quantityShowTV.text = currentNumber.toString()
 
-                quantitySze = if (lastNumber >= 1) 1 else 0
-                Log.d("quantitySze", quantitySze.toString())
-
-                if (lastNumber >= 1) {
+                quantitySze = if (currentNumber >= 1) {
                     activeAddCart()
+                    1
+                } else {
+                    0
                 }
+
             } else {
                 Toast.makeText(this, "Out of stock", Toast.LENGTH_SHORT).show()
             }
@@ -157,16 +162,16 @@ class ProductDetailsActivity : AppCompatActivity() {
 
         binding.minusQuantityTV.setOnClickListener {
 
-            currentNumber = lastNumber
+//            currentNumber = lastNumber
             if (currentNumber > 0) {
-                lastNumber--
+                currentNumber--
             }
-            if (lastNumber < 1) {
+            if (currentNumber < 1) {
                 inActiveAddCart()
             }
-            quantitySze = if (lastNumber <= 1) 0 else 1
+            quantitySze = if (currentNumber <= 1) 0 else 1
             Log.d("quantitySze", quantitySze.toString())
-            binding.quantityShowTV.text = lastNumber.toString()
+            binding.quantityShowTV.text = currentNumber.toString()
         }
 
         binding.productDescriptionHeaderCL.setOnClickListener {
@@ -270,11 +275,9 @@ class ProductDetailsActivity : AppCompatActivity() {
     private fun addItem() {
 
         variantTarget = "${selectedColor}-${selectedSize}"
-        totalAmount = discountedPrice * lastNumber
+        totalAmount = discountedPrice * currentNumber
 
         if (DashBoardActivity.arrayListCart.isEmpty()) {
-
-
 
             DashBoardActivity.arrayListCart.add(
                 CartModel(
@@ -282,20 +285,21 @@ class ProductDetailsActivity : AppCompatActivity() {
                     vId = vId,
                     itemName = itemName,
                     discountedPrice = discountedPrice.toString(),
-                    actualPrice = "",
+                    actualPrice = actualPrice,
                     color = selectedColor,
                     size = selectedSize,
-                    quantity = lastNumber,
+                    quantity = currentNumber,
                     totalAmount = totalAmount,
                     imageUrl = imageUrl,
-                    stock =stock
+                    stock = stock
                 )
             )
             DashBoardActivity.selectedVIDs.add(vId)
 
             Log.d("elementsVid", vId)
 
-            //store both the arraylist in SP
+            //store arraylist in SP
+            sharedPreference.setArray()
 
         } else {
 
@@ -303,26 +307,28 @@ class ProductDetailsActivity : AppCompatActivity() {
                 //do nothing
                 Toast.makeText(this, "Product already in cart", Toast.LENGTH_SHORT).show()
             } else {
+
                 DashBoardActivity.arrayListCart.add(
                     CartModel(
                         pId = pId,
                         vId = vId,
                         itemName = itemName,
                         discountedPrice = discountedPrice.toString(),
-                        actualPrice = "",
+                        actualPrice = actualPrice,
                         color = selectedColor,
                         size = selectedSize,
-                        quantity = lastNumber,
+                        quantity = currentNumber,
                         totalAmount = totalAmount,
                         imageUrl = imageUrl,
-                        stock =stock
+                        stock = stock
                     )
                 )
                 DashBoardActivity.selectedVIDs.add(vId)
                 Toast.makeText(this, "Product Added Successfully", Toast.LENGTH_SHORT)
                     .show()
 
-                //store both the arraylist in SP
+                //store  arraylist in SP
+                sharedPreference.setArray()
             }
 
         }
@@ -502,7 +508,7 @@ class ProductDetailsActivity : AppCompatActivity() {
     fun colorSizeUpdate() {
         colorSize
         selectedColor
-        totalAmount = discountedPrice * lastNumber
+        totalAmount = discountedPrice * currentNumber
         variantTarget = "${selectedColor}-${selectedSize}"
         Log.d("variantTarget", variantTarget)
         Log.d("colorSelect1", selectedColor)
@@ -512,7 +518,7 @@ class ProductDetailsActivity : AppCompatActivity() {
     fun sizeUpdate() {
         sizeOfSize
         selectedSize
-        totalAmount = discountedPrice * lastNumber
+        totalAmount = discountedPrice * currentNumber
         variantTarget = "${selectedColor}-${selectedSize}"
         Log.d("variantTarget", variantTarget)
         Log.d("selectedSize", sizeOfSize.toString())
@@ -557,6 +563,8 @@ class ProductDetailsActivity : AppCompatActivity() {
                     Log.d("vId", elements.id)
                     binding.discountedPriceTV.text = "Rs ${elements.price}.00"
                     discountedPrice = elements.price
+                    binding.actualPriceTV.text = "Rs ${elements.actualPrice}.00"
+                    actualPrice = elements.actualPrice
 //                    totalAmount = arrayListVariant.sumBy { it.price }
                     stock = elements.stock
                     Log.d("Stock", stock.toString())
@@ -566,19 +574,27 @@ class ProductDetailsActivity : AppCompatActivity() {
         }
     }
 
-    fun updateLastNumber() {
+    fun updateCurrentNumber() {
         if (colorSize == 1 && sizeOfSize == 1) {
-            lastNumber = 1
             binding.addToCartTV.isEnabled = true
             binding.buyNowTV.isEnabled = true
             binding.addToCartTV.setBackgroundResource(R.drawable.button_blue)
+
+            currentNumber = 1
+            binding.quantityShowTV.text = currentNumber.toString()
+
         } else {
-            lastNumber = 0
             binding.addToCartTV.isEnabled = false
             binding.buyNowTV.isEnabled = false
+
+            currentNumber = 0
+            binding.quantityShowTV.text = currentNumber.toString()
         }
-        currentNumber = 1
-        binding.quantityShowTV.text = lastNumber.toString()
+//        currentNumber = 1
+//        binding.quantityShowTV.text = currentNumber.toString()
     }
 
+    fun setArray() {
+        sharedPreference.setArray()
+    }
 }

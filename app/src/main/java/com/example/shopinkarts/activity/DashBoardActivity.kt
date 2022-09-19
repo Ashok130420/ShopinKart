@@ -1,6 +1,8 @@
 package com.example.shopinkarts.activity
 
+import android.content.Context
 import android.content.Intent
+import android.content.SharedPreferences
 import android.os.Build
 import android.os.Bundle
 import android.util.Log
@@ -25,9 +27,12 @@ import com.example.shopinkarts.fragments.OrdersFragment
 import com.example.shopinkarts.model.CartModel
 import com.example.shopinkarts.response.DashBoardResponse
 import com.example.shopinkarts.response.ShopFor
+import com.google.gson.Gson
+import com.google.gson.reflect.TypeToken
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
+import java.lang.reflect.Type
 
 class DashBoardActivity : AppCompatActivity() {
 
@@ -36,6 +41,7 @@ class DashBoardActivity : AppCompatActivity() {
     private val categoriesFragment = CategoriesFragment()
     private val ordersFragment = OrdersFragment()
     private val accountFragment = AccountFragment()
+    lateinit var sharedPreference: SharedPreference
 
 
     companion object {
@@ -62,6 +68,9 @@ class DashBoardActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = DataBindingUtil.setContentView(this, R.layout.activity_dash_board)
+        sharedPreference = SharedPreference(this)
+        sharedPreference.getArray()
+
 
 //           val window: Window = this.window
 //           window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS)

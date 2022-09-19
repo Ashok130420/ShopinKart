@@ -66,7 +66,7 @@ class SelectColorAdapter(
                 Log.d("colorSize1", ProductDetailsActivity.colorSize.toString())
                 ProductDetailsActivity.getInstance().colorSizeUpdate()
                 ProductDetailsActivity.getInstance().activeAddCart()
-                ProductDetailsActivity.getInstance().updateLastNumber()
+                ProductDetailsActivity.getInstance().updateCurrentNumber()
 
                 item.isChecked = true
             }

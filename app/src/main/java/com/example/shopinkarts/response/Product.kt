@@ -22,5 +22,4 @@ data class Product(
     val tax: Int,
     val taxType: Int,
     val variantsArr: List<VariantsArr>
-
 )

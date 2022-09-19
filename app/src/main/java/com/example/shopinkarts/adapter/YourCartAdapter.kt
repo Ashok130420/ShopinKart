@@ -12,6 +12,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.shopinkarts.R
 import com.example.shopinkarts.activity.DashBoardActivity.Companion.selectedVIDs
+import com.example.shopinkarts.activity.ProductDetailsActivity
 import com.example.shopinkarts.databinding.ItemYourCartBinding
 import com.example.shopinkarts.model.CartModel
 
@@ -19,7 +20,7 @@ class YourCartAdapter(val context: Context, var arrayList: ArrayList<CartModel>)
     RecyclerView.Adapter<YourCartAdapter.ViewHolder>() {
 
     var updateQty = 0
-    var unitPrice=0
+    var unitPrice = 0
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val binding: ItemYourCartBinding = DataBindingUtil.inflate(
@@ -58,8 +59,7 @@ class YourCartAdapter(val context: Context, var arrayList: ArrayList<CartModel>)
                 Log.d("stock", itemDetails.stock.toString())
                 Log.d(" itemDetails.quantity", itemDetails.quantity.toString())
 
-//                val unitPrice = 120
-                 unitPrice = itemDetails.discountedPrice.toInt()
+                unitPrice = itemDetails.discountedPrice.toInt()
 
                 if (updateQty <= itemDetails.stock) {
 
@@ -69,7 +69,7 @@ class YourCartAdapter(val context: Context, var arrayList: ArrayList<CartModel>)
                     Log.d("stockstockstock", updateQty.toString())
                     Log.d("stockstockstock", "${unitPrice * updateQty}")
 
-//                    discountedPriceTV.text = (unitPrice * updateQty).toString()
+                    discountedPriceTV.text = (unitPrice * updateQty).toString()
 
                     notifyDataSetChanged()
 
@@ -103,15 +103,8 @@ class YourCartAdapter(val context: Context, var arrayList: ArrayList<CartModel>)
 
             deleteIconIV.setOnClickListener {
                 arrayList.removeAt(position)
+                ProductDetailsActivity.getInstance().setArray()
                 notifyDataSetChanged()
-
-                //deleting item from selected vId
-
-                for (element in selectedVIDs) {
-                    if (element == itemDetails.vId) {
-                        selectedVIDs.removeAt(position)
-                    }
-                }
 
                 if (arrayList.isEmpty()) {
                     (context as Activity).finish()

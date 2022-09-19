@@ -6,7 +6,7 @@ data class CartModel(
     var vId: String,
     var itemName: String,
     var discountedPrice: String,
-    var actualPrice: String,
+    var actualPrice: Int,
     var color: String,
     var size: String,
     var quantity: Int,

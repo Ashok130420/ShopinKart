@@ -51,7 +51,7 @@ class SelectSizeAdapter(val context: Context, val arrayList: ArrayList<SelectSiz
                 ProductDetailsActivity.sizeOfSize = 1
                 ProductDetailsActivity.getInstance().sizeUpdate()
                 ProductDetailsActivity.getInstance().activeAddCart()
-                ProductDetailsActivity.getInstance().updateLastNumber()
+                ProductDetailsActivity.getInstance().updateCurrentNumber()
                 item.isChecked = true
             }
             notifyDataSetChanged()

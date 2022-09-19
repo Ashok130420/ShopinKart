@@ -69,16 +69,16 @@ class SignUpActivity : AppCompatActivity() {
                 binding.phoneET.requestFocus()
                 return@setOnClickListener
             }
-           /* if (email.isEmpty()) {
-                binding.emailET.error = "Enter email address"
-                binding.emailET.requestFocus()
-                return@setOnClickListener
-            }*/
-         /*   if (!Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
-                binding.emailET.error = "Enter valid email"
-                binding.emailET.requestFocus()
-                return@setOnClickListener
-            }*/
+            /* if (email.isEmpty()) {
+                 binding.emailET.error = "Enter email address"
+                 binding.emailET.requestFocus()
+                 return@setOnClickListener
+             }*/
+            /*   if (!Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
+                   binding.emailET.error = "Enter valid email"
+                   binding.emailET.requestFocus()
+                   return@setOnClickListener
+               }*/
             if (password.isEmpty()) {
                 binding.passwordET.error = "Enter password"
                 binding.passwordET.requestFocus()

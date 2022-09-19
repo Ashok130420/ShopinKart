@@ -35,9 +35,11 @@ interface Api {
         @Query("value") value: String
     ): Call<ParticularItemResponse>
 
-    // product
+    // product api
     @POST("products/details")
     fun productApi(@Body body: Map<String, String>): Call<ProductResponse>
 
-
+    // order api
+    @POST("orders/create")
+    fun ordersApi(@Body body: Map<String, String>): Call<OrdersResponse>
 }

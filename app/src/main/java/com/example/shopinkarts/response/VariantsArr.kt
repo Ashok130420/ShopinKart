@@ -8,7 +8,7 @@ data class VariantsArr(
     var pId: String,
     var id: String,
     var discountedPrice: String,
-    var actualPrice: String,
+    var actualPrice: Int,
     var variantValue: String,
 
 )
