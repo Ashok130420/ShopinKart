@@ -68,7 +68,9 @@ class DashBoardActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = DataBindingUtil.setContentView(this, R.layout.activity_dash_board)
+
         sharedPreference = SharedPreference(this)
+
         sharedPreference.getArray()
 
 
@@ -155,6 +157,10 @@ class DashBoardActivity : AppCompatActivity() {
 
     private fun categories() {
         binding.navBottomMenu.selectedItemId = R.id.bottomCategories
+    }
+
+    fun setArray() {
+        sharedPreference.setArray()
     }
 
 

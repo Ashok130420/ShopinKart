@@ -37,8 +37,10 @@ class SharedPreference(val context: Context) {
         val gson = Gson()
 
         val json: String = gson.toJson(DashBoardActivity.arrayListCart)
+        val json2: String = gson.toJson(DashBoardActivity.selectedVIDs)
 
         editor.putString("arrayListCart", json)
+        editor.putString("selectedVIDs", json2)
 
         editor.apply()
 
@@ -48,16 +50,32 @@ class SharedPreference(val context: Context) {
     fun getArray() {
 
         val gson = Gson()
-        if (prefs.contains("arrayListCart")) {
+        if (prefs.contains("arrayListCart") && prefs.contains("selectedVIDs")) {
+
             val json = prefs.getString("arrayListCart", null)
+            val json2 = prefs.getString("selectedVIDs", null)
 
             val type: Type = object : TypeToken<ArrayList<CartModel?>?>() {}.type
+            val type1: Type = object : TypeToken<ArrayList<String?>?>() {}.type
 
             DashBoardActivity.arrayListCart =
                 gson.fromJson<Any>(json, type) as ArrayList<CartModel>
 
+            DashBoardActivity.selectedVIDs =
+                gson.fromJson<Any>(json2, type1) as ArrayList<String>
+
 
         }
+//        if (prefs.contains("selectedVIDs")) {
+//            val json2 = prefs.getString("selectedVIDs", null)
+//
+//            val type: Type = object : TypeToken<ArrayList<String?>?>() {}.type
+//
+//            DashBoardActivity.selectedVIDs =
+//                gson.fromJson<Any>(json2, type) as ArrayList<String>
+//
+//
+//        }
     }
 
     // For Token

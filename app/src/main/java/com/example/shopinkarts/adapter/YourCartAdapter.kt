@@ -12,7 +12,8 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.shopinkarts.R
 import com.example.shopinkarts.activity.DashBoardActivity.Companion.selectedVIDs
-import com.example.shopinkarts.activity.ProductDetailsActivity
+import com.example.shopinkarts.activity.ProductCartActivity
+import com.example.shopinkarts.classes.SharedPreference
 import com.example.shopinkarts.databinding.ItemYourCartBinding
 import com.example.shopinkarts.model.CartModel
 
@@ -21,6 +22,8 @@ class YourCartAdapter(val context: Context, var arrayList: ArrayList<CartModel>)
 
     var updateQty = 0
     var unitPrice = 0
+    var updatePrice = 0
+    lateinit var sharedPreference: SharedPreference
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val binding: ItemYourCartBinding = DataBindingUtil.inflate(
@@ -35,22 +38,33 @@ class YourCartAdapter(val context: Context, var arrayList: ArrayList<CartModel>)
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
 
+        sharedPreference = SharedPreference(context)
+
         val itemDetails = arrayList[position]
+
         holder.binding.apply {
 
             productNameTV.text = itemDetails.itemName
 
-            discountedPriceTV.text = "Rs ${(itemDetails.totalAmount)}.00"
+            updatePrice = itemDetails.totalAmount
+
+            discountedPriceTV.text = "Rs ${itemDetails.discountedPrice}.00"
+
+            actualPriceTV.text = "Rs ${itemDetails.actualPrice}.00"
+
+            totalAmountTV.text="Total Amount-Rs ${updatePrice}.00"
+
+            Log.d("TAG:totalAmount", "onBindViewHolder: ${(itemDetails.totalAmount)}")
+
             updateQty = itemDetails.quantity
             quantityShowTV.text = updateQty.toString()
             sizeBlockTV.text = itemDetails.size
             colorIV.setBackgroundColor(Color.parseColor(itemDetails.color))
             Log.d("COLOR", itemDetails.color)
-//          totalAmountTV.text = "Total Amount-Rs ${itemDetails.totalAmount}"
             Glide.with(context).load(itemDetails.imageUrl).into(imageIV)
-            discountedPriceTV.text = "Rs ${(unitPrice * updateQty)}.00"
 
             plusQuantityTV.setOnClickListener {
+                ProductCartActivity.getInstance().updatedCal()
 
                 updateQty = itemDetails.quantity + 1
 
@@ -69,9 +83,11 @@ class YourCartAdapter(val context: Context, var arrayList: ArrayList<CartModel>)
                     Log.d("stockstockstock", updateQty.toString())
                     Log.d("stockstockstock", "${unitPrice * updateQty}")
 
-                    discountedPriceTV.text = (unitPrice * updateQty).toString()
+                    updatePrice = unitPrice * updateQty
+                    itemDetails.totalAmount = updatePrice
 
                     notifyDataSetChanged()
+                    sharedPreference.setArray()
 
                 } else {
                     Toast.makeText(context, "Out of stock", Toast.LENGTH_SHORT).show()
@@ -79,6 +95,8 @@ class YourCartAdapter(val context: Context, var arrayList: ArrayList<CartModel>)
             }
 
             minusQuantityTV.setOnClickListener {
+                ProductCartActivity.getInstance().updatedCal()
+
                 Log.d("defaultCQ", itemDetails.quantity.toString())
                 Log.d("after+CQ", (itemDetails.quantity.toInt() - 1).toString())
                 Log.d("stock", itemDetails.stock.toString())
@@ -90,20 +108,32 @@ class YourCartAdapter(val context: Context, var arrayList: ArrayList<CartModel>)
                 if (updateQty == 0) {
                     //delete item
                     arrayList.removeAt(position)
+                    selectedVIDs.removeAt(position)
+                    sharedPreference.setArray()
+
+
+                    notifyDataSetChanged()
+
 
                 } else {
+
                     //update item
                     itemDetails.quantity = updateQty
-                    discountedPriceTV.text = (unitPrice * updateQty).toString()
+                    updatePrice = unitPrice * updateQty
+                    itemDetails.totalAmount = updatePrice
+                    sharedPreference.setArray()
+                    notifyDataSetChanged()
+
                 }
-                notifyDataSetChanged()
-
-
             }
 
             deleteIconIV.setOnClickListener {
+                ProductCartActivity.getInstance().updatedCal()
+
                 arrayList.removeAt(position)
-                ProductDetailsActivity.getInstance().setArray()
+                selectedVIDs.removeAt(position)
+                sharedPreference.setArray()
+
                 notifyDataSetChanged()
 
                 if (arrayList.isEmpty()) {
@@ -111,6 +141,7 @@ class YourCartAdapter(val context: Context, var arrayList: ArrayList<CartModel>)
                 }
             }
         }
+
     }
 
     override fun getItemCount(): Int {
@@ -119,8 +150,8 @@ class YourCartAdapter(val context: Context, var arrayList: ArrayList<CartModel>)
 
     inner class ViewHolder(itemView: ItemYourCartBinding) :
         RecyclerView.ViewHolder(itemView.root) {
+
         val binding: ItemYourCartBinding = itemView
 
     }
-
 }

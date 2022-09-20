@@ -33,6 +33,8 @@ import retrofit2.Response
 import java.util.*
 import kotlin.collections.ArrayList
 
+
+
 class ProductDetailsActivity : AppCompatActivity() {
 
     lateinit var binding: ActivityProductDetailsBinding
@@ -42,11 +44,10 @@ class ProductDetailsActivity : AppCompatActivity() {
     lateinit var productBannerAdapter: ProductBannerAdapter
     lateinit var sharedPreference: SharedPreference
 
-
     var arrayListSimilarProduct: ArrayList<NewlyAdded> = ArrayList()
     var arraySelectColor: ArrayList<SelectColorModel> = ArrayList()
     var arraySelectSize: ArrayList<SelectSizeModel> = ArrayList()
-    private var cartCount: Int = 1
+
     var productId = ""
     var isFreeDelivery = ""
     var currentPage = 0
@@ -74,12 +75,9 @@ class ProductDetailsActivity : AppCompatActivity() {
         var quantitySze = 0
         var stock = 0
         var currentNumber = 0
-
-        //        var lastNumber = 0
         var totalAmount = 0
         var discountedPrice = 0
         var actualPrice = 0
-
 
         fun getInstance(): ProductDetailsActivity {
             return pInstance
@@ -104,11 +102,13 @@ class ProductDetailsActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = DataBindingUtil.setContentView(this, R.layout.activity_product_details)
         pInstance = this
-//        currentNumber = 0
+
         sharedPreference = SharedPreference(this)
+
+        currentNumber = 0
+
         productId = intent.extras!!.getString("productId", "")
         Log.d("productId_productId", productId)
-
 
         if (DashBoardActivity.arrayListCart.isNotEmpty()) {
 
@@ -118,8 +118,11 @@ class ProductDetailsActivity : AppCompatActivity() {
                 DashBoardActivity.arrayListCart.size.toString()
 
         } else {
+
             binding.headerProductDetails.cartItemTV.visibility = View.GONE
+
         }
+
         colorSizeUpdate()
         productApi()
         inActiveAddCart()
@@ -133,22 +136,21 @@ class ProductDetailsActivity : AppCompatActivity() {
         })
 
         binding.headerProductDetails.backIV.setOnClickListener {
-//            lastNumber = 0
             currentNumber = 0
             onBackPressed()
         }
+
         binding.headerProductDetails.titleTV.setOnClickListener {
             Log.d("ColoR", "onCreate: $selectedColor")
         }
 
         binding.plusQuantityTV.setOnClickListener {
-            if (currentNumber <= stock) {
+            if (currentNumber < stock) {
 
-//                lastNumber = currentNumber
-                currentNumber + 1
+                currentNumber++
                 binding.quantityShowTV.text = currentNumber.toString()
 
-                quantitySze = if (currentNumber >= 1) {
+                quantitySze = if (currentNumber > 1) {
                     activeAddCart()
                     1
                 } else {
@@ -162,7 +164,6 @@ class ProductDetailsActivity : AppCompatActivity() {
 
         binding.minusQuantityTV.setOnClickListener {
 
-//            currentNumber = lastNumber
             if (currentNumber > 0) {
                 currentNumber--
             }
@@ -175,6 +176,7 @@ class ProductDetailsActivity : AppCompatActivity() {
         }
 
         binding.productDescriptionHeaderCL.setOnClickListener {
+
             if (binding.productDescriptionDetailsCL.visibility == View.VISIBLE) {
                 binding.productDescriptionDetailsCL.visibility = View.GONE
                 binding.productDescriptionIV.rotation = 0F
@@ -182,9 +184,11 @@ class ProductDetailsActivity : AppCompatActivity() {
                 binding.productDescriptionDetailsCL.visibility = View.VISIBLE
                 binding.productDescriptionIV.rotation = 90F
             }
+
         }
 
         binding.productChecklistHeaderCL.setOnClickListener {
+
             if (binding.productCheckListDetailsCL.visibility == View.VISIBLE) {
                 binding.productCheckListDetailsCL.visibility = View.GONE
                 binding.productCheckListIV.rotation = 0F
@@ -192,14 +196,18 @@ class ProductDetailsActivity : AppCompatActivity() {
                 binding.productCheckListDetailsCL.visibility = View.VISIBLE
                 binding.productCheckListIV.rotation = 90F
             }
+
         }
 
         binding.readReviewsHeaderCL.setOnClickListener {
+
             val intent = Intent(this, ReadReviewsActivity::class.java)
             startActivity(intent)
+
         }
 
         binding.deliveryInstructionHeaderCL.setOnClickListener {
+
             if (binding.deliveryInstructionDetailsCL.visibility == View.VISIBLE) {
                 binding.deliveryInstructionDetailsCL.visibility = View.GONE
                 binding.deliveryInstructionIV.rotation = 0F
@@ -207,14 +215,18 @@ class ProductDetailsActivity : AppCompatActivity() {
                 binding.deliveryInstructionDetailsCL.visibility = View.VISIBLE
                 binding.deliveryInstructionIV.rotation = 90F
             }
+
         }
 
         binding.headerProductDetails.cartIV.setOnClickListener {
+
             val intent = Intent(this, ProductCartActivity::class.java)
             startActivity(intent)
+
         }
 
         binding.buyNowTV.setOnClickListener {
+
             activeAddCart()
             addItem()
             val intent = Intent(this, ProductCartActivity::class.java)
@@ -230,9 +242,9 @@ class ProductDetailsActivity : AppCompatActivity() {
 
     }
 
-
     // banner
     private fun setupIndicators() {
+
         val indicators = arrayOfNulls<ImageView>(productBannerAdapter.itemCount)
         val layoutParms: LinearLayout.LayoutParams =
             LinearLayout.LayoutParams(
@@ -251,6 +263,7 @@ class ProductDetailsActivity : AppCompatActivity() {
             }
             binding.indicatorsContainersProduct.addView(indicators[i])
         }
+
     }
 
     private fun setCurrentIndicator(index: Int) {
@@ -295,6 +308,8 @@ class ProductDetailsActivity : AppCompatActivity() {
                 )
             )
             DashBoardActivity.selectedVIDs.add(vId)
+            Toast.makeText(this, "Product Added Successfully", Toast.LENGTH_SHORT)
+                .show()
 
             Log.d("elementsVid", vId)
 
@@ -339,6 +354,7 @@ class ProductDetailsActivity : AppCompatActivity() {
     }
 
     fun autoSlide(size: Int) {
+
         val handler = Handler()
         val update = Runnable {
             binding.productViewPager.setCurrentItem(currentPage % size, true)
@@ -351,9 +367,11 @@ class ProductDetailsActivity : AppCompatActivity() {
                 handler.post(update)
             }
         }, DELAY_MS, PERIOD_MS)
+
     }
 
     private fun productApi() {
+
         val requestBody: MutableMap<String, String> = HashMap()
         requestBody["productId"] = productId
 
@@ -506,6 +524,7 @@ class ProductDetailsActivity : AppCompatActivity() {
     }
 
     fun colorSizeUpdate() {
+
         colorSize
         selectedColor
         totalAmount = discountedPrice * currentNumber
@@ -513,9 +532,11 @@ class ProductDetailsActivity : AppCompatActivity() {
         Log.d("variantTarget", variantTarget)
         Log.d("colorSelect1", selectedColor)
         updatePrice()
+
     }
 
     fun sizeUpdate() {
+
         sizeOfSize
         selectedSize
         totalAmount = discountedPrice * currentNumber
@@ -523,6 +544,7 @@ class ProductDetailsActivity : AppCompatActivity() {
         Log.d("variantTarget", variantTarget)
         Log.d("selectedSize", sizeOfSize.toString())
         updatePrice()
+
     }
 
     fun inActiveAddCart() {
@@ -533,6 +555,7 @@ class ProductDetailsActivity : AppCompatActivity() {
         binding.plusQuantityTV.isEnabled = false
         binding.minusQuantityTV.isEnabled = false
         binding.addToCartTV.setBackgroundResource(R.drawable.button_grey)
+
     }
 
     fun activeAddCart() {
@@ -541,7 +564,6 @@ class ProductDetailsActivity : AppCompatActivity() {
             binding.addToCartTV.isEnabled = true
             binding.buyNowTV.isEnabled = true
             binding.addToCartTV.setBackgroundResource(R.drawable.button_blue)
-
 
         }
     }
@@ -575,6 +597,7 @@ class ProductDetailsActivity : AppCompatActivity() {
     }
 
     fun updateCurrentNumber() {
+
         if (colorSize == 1 && sizeOfSize == 1) {
             binding.addToCartTV.isEnabled = true
             binding.buyNowTV.isEnabled = true
@@ -590,8 +613,7 @@ class ProductDetailsActivity : AppCompatActivity() {
             currentNumber = 0
             binding.quantityShowTV.text = currentNumber.toString()
         }
-//        currentNumber = 1
-//        binding.quantityShowTV.text = currentNumber.toString()
+
     }
 
     fun setArray() {
