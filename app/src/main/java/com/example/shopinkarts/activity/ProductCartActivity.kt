@@ -1,6 +1,6 @@
 package com.example.shopinkarts.activity
 
-import android.annotation.SuppressLint
+
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
@@ -10,10 +10,6 @@ import androidx.databinding.DataBindingUtil
 import com.example.shopinkarts.R
 import com.example.shopinkarts.adapter.YourCartAdapter
 import com.example.shopinkarts.databinding.ActivityProductCartBinding
-import com.example.shopinkarts.model.CartModel
-import com.example.shopinkarts.response.VariantsArr
-import okhttp3.internal.notify
-import okhttp3.internal.notifyAll
 import kotlin.math.roundToInt
 
 class ProductCartActivity : AppCompatActivity() {
@@ -29,10 +25,9 @@ class ProductCartActivity : AppCompatActivity() {
     var differenceAmount: Double = 0.00
 
     companion object {
-        var pInstance: ProductCartActivity = ProductCartActivity()
-
+        var cartInstance: ProductCartActivity = ProductCartActivity()
         fun getInstance(): ProductCartActivity {
-            return pInstance
+            return cartInstance
         }
     }
 
@@ -40,9 +35,9 @@ class ProductCartActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = DataBindingUtil.setContentView(this, R.layout.activity_product_cart)
 
-        updatedCal()
-
+        cartInstance = this
         DashBoardActivity.arrayListCart
+        updatedCal()
 
         binding.headerProductCart.backIV.setOnClickListener {
             onBackPressed()
@@ -70,7 +65,7 @@ class ProductCartActivity : AppCompatActivity() {
         yourCartAdapter = YourCartAdapter(this, DashBoardActivity.arrayListCart)
         binding.yourCartRV.adapter = yourCartAdapter
         binding.yourCartRV.isNestedScrollingEnabled = false
-//        yourCartAdapter.notifyDataSetChanged()
+        yourCartAdapter.notifyDataSetChanged()
 
 /*//        totalAmount = DashBoardActivity.arrayListCart.sumBy { it.totalAmount }.toDouble()
         binding.totalAmountValueTV.text = "RS $totalAmount"
@@ -106,7 +101,7 @@ class ProductCartActivity : AppCompatActivity() {
         Log.d("totalAmount", "onCreate: $totalAmount")
 
         discountAmount = DashBoardActivity.arrayListCart.sumBy { it.actualPrice }.toFloat()
-        binding.totalAmountValueTV.text = "RS $totalAmount"
+        binding.discountsValueTV.text = "RS $discountAmount"
         Log.d("totalDiscountAmount", "onCreate: $discountAmount")
 
         orderTotal = (totalAmount - discountAmount).toFloat()

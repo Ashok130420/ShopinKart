@@ -12,6 +12,7 @@ import android.util.Log
 import android.view.MotionEvent
 import android.view.View
 import android.view.inputmethod.InputMethodManager
+import android.widget.AdapterView
 import android.widget.EditText
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
@@ -26,23 +27,68 @@ class PersonalDetailsActivity : AppCompatActivity() {
     lateinit var binding: ActivityPersonalDetailsBinding
     var layoutCount = 1
     var userType = ""
+    var state = ""
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = DataBindingUtil.setContentView(this, R.layout.activity_personal_details)
+
+        layoutCount = 1
+        layoutFirst()
 
         sharedPreference = SharedPreference(this)
         userType = sharedPreference.getUserType().toString()
         Log.d("USERTYPE.....", userType)
 
-        layoutCount = 1
-        layoutFirst()
+        binding.includeStepper1.nameET.setText(sharedPreference.getName())
+        binding.includeStepper1.phoneNumberET.setText(sharedPreference.getPhone())
+        binding.includeStepper1.flatHouseET.setText(sharedPreference.getFlat())
+        binding.includeStepper1.streetET.setText(sharedPreference.getStreet())
+        binding.includeStepper1.pinCodeET.setText(sharedPreference.getPin())
+        binding.includeStepper1.cityET.setText(sharedPreference.getCity())
+        binding.includeStepper1.stateSpinner
+        binding.includeStepper1.landMarkET.setText(sharedPreference.getLandmark())
+
+        binding.includeStepper1.stateSpinner.onItemSelectedListener =
+            object : AdapterView.OnItemSelectedListener {
+                override fun onItemSelected(
+                    parent: AdapterView<*>?,
+                    view: View?,
+                    positionState: Int,
+                    id: Long
+                ) {
+
+                    val selectedItem = parent?.getItemAtPosition(positionState).toString()
+                    if (positionState == 0) {
+                        state = ""
+                    } else {
+                        state = selectedItem
+                    }
+
+                }
+
+                override fun onNothingSelected(parent: AdapterView<*>?) {
+
+                }
+
+            }
+
+
 
         binding.headerPersonalDetails.nameTV.text = resources.getString(R.string.personal_details)
         binding.headerPersonalDetails.backIV.setOnClickListener {
             onBackPressed()
         }
         binding.continueTV.setOnClickListener {
-
+            sharedPreference.setAddress(
+                name = binding.includeStepper1.nameET.text.toString(),
+                phone = binding.includeStepper1.phoneNumberET.text.toString(),
+                flat = binding.includeStepper1.flatHouseET.text.toString(),
+                street = binding.includeStepper1.streetET.text.toString(),
+                pin = binding.includeStepper1.pinCodeET.text.toString(),
+                city = binding.includeStepper1.cityET.text.toString(),
+                state = binding.includeStepper1.stateSpinner.toString(),
+                landmark = binding.includeStepper1.landMarkET.text.toString()
+            )
             if (layoutCount < 4) {
                 preNextFunction()
             } else {
@@ -95,6 +141,8 @@ class PersonalDetailsActivity : AppCompatActivity() {
             intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK
             startActivity(intent)
         }
+
+
     }
 
     // To remove EditText focus on touch outside
@@ -125,17 +173,21 @@ class PersonalDetailsActivity : AppCompatActivity() {
 
         Log.d("TAG", "preNextFunction: $layoutCount")
 
-        if (layoutCount == 2) {
-            layoutSecond()
+        when (layoutCount) {
+            2 -> {
+                layoutSecond()
 
-            Log.d("layoutCount", layoutCount.toString())
-        } else if (layoutCount == 3) {
-            layoutThird()
+                Log.d("layoutCount", layoutCount.toString())
+            }
+            3 -> {
+                layoutThird()
 
-        } else {
-            val intent = Intent(this, DashBoardActivity::class.java)
-            intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK
-            startActivity(intent)
+            }
+            else -> {
+                val intent = Intent(this, DashBoardActivity::class.java)
+                intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK
+                startActivity(intent)
+            }
         }
     }
 

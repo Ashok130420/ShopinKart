@@ -64,6 +64,7 @@ class YourCartAdapter(val context: Context, var arrayList: ArrayList<CartModel>)
             Glide.with(context).load(itemDetails.imageUrl).into(imageIV)
 
             plusQuantityTV.setOnClickListener {
+
                 ProductCartActivity.getInstance().updatedCal()
 
                 updateQty = itemDetails.quantity + 1
