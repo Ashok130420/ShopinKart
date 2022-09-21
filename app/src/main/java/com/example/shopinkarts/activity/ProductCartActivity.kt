@@ -24,8 +24,10 @@ class ProductCartActivity : AppCompatActivity() {
     var percentage: Double = 0.00
     var differenceAmount: Double = 0.00
 
+
     companion object {
         var cartInstance: ProductCartActivity = ProductCartActivity()
+
         fun getInstance(): ProductCartActivity {
             return cartInstance
         }
@@ -67,42 +69,34 @@ class ProductCartActivity : AppCompatActivity() {
         binding.yourCartRV.isNestedScrollingEnabled = false
         yourCartAdapter.notifyDataSetChanged()
 
-/*//        totalAmount = DashBoardActivity.arrayListCart.sumBy { it.totalAmount }.toDouble()
-        binding.totalAmountValueTV.text = "RS $totalAmount"
-
-//        discountAmount = DashBoardActivity.arrayListCart.sumBy { it.totalAmount }.toFloat()
-        binding.discountsValueTV.text = "- RS $discountAmount"
-
-//        orderTotal = (totalAmount - discountAmount).toFloat()
-        binding.orderTotalValueTV.text = "Rs $orderTotal"
-
-//        gst = orderTotal * 5 / 100
-//        binding.gstValueTV.text = gst.toString()
-//
-//        amountPaid = orderTotal + gst
-//        binding.amountPaidValueTV.text = "Rs $amountPaid"
-//
-//        differenceAmount = totalAmount - amountPaid
-
-//        percentage = differenceAmount / totalAmount * 100
-        binding.giftTV.text =
-            "Congratulations! You are saving ${percentage.roundToInt()} % on \nthis order"*/
-
         binding.continueTV.setOnClickListener {
             val intent = Intent(this, PersonalDetailsActivity::class.java)
+            intent.putExtra("totalAmount", totalAmount)
+            intent.putExtra("gst", gst)
+            intent.putExtra("discount", differenceAmount)
+            intent.putExtra("finalAmount", amountPaid)
             startActivity(intent)
         }
+        Log.d("TAG_totalAmount", "onCreate: $totalAmount")
     }
 
+
     fun updatedCal() {
+
+//        if (DashBoardActivity.arrayListCart.isEmpty()) {
+//            binding.orderSummaryTV.visibility = View.GONE
+//            binding.amountCL.visibility = View.GONE
+//            binding.continueCL.visibility = View.GONE
+//            binding.continueTV.visibility = View.GONE
+//        }
 
         totalAmount = DashBoardActivity.arrayListCart.sumBy { it.totalAmount }.toDouble()
         binding.totalAmountValueTV.text = "RS $totalAmount"
         Log.d("totalAmount", "onCreate: $totalAmount")
 
         discountAmount = DashBoardActivity.arrayListCart.sumBy { it.actualPrice }.toFloat()
-        binding.discountsValueTV.text = "RS $discountAmount"
-        Log.d("totalDiscountAmount", "onCreate: $discountAmount")
+        binding.discountsValueTV.text = "-RS $discountAmount"
+        Log.d("totalDis{countAmount", "onCreate: $discountAmount")
 
         orderTotal = (totalAmount - discountAmount).toFloat()
         binding.orderTotalValueTV.text = "Rs $orderTotal"
@@ -117,10 +111,13 @@ class ProductCartActivity : AppCompatActivity() {
 
         differenceAmount = totalAmount - amountPaid
 
-        percentage = differenceAmount / totalAmount * 100
-        binding.giftTV.text =
-            "Congratulations! You are saving ${percentage.roundToInt()} % on \nthis order"
-        Log.d("totalPercentage", "onCreate: ${percentage.roundToInt()}")
+        if (DashBoardActivity.arrayListCart.isNotEmpty()) {
+            percentage = differenceAmount / totalAmount * 100
+            binding.giftTV.text =
+                "Congratulations! You are saving ${percentage.roundToInt()} % on \nthis order"
+            Log.d("totalPercentage", "onCreate: ${percentage.roundToInt()}")
+        }
+
 
     }
 

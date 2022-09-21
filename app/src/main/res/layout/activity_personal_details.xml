@@ -26,107 +26,108 @@
             android:paddingVertical="@dimen/p10"
             app:layout_constraintTop_toBottomOf="@id/headerPersonalDetails">
 
-            <View
-                android:id="@+id/view1"
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/shippingCL"
                 android:layout_width="0dp"
-                android:layout_height="1dp"
-                android:background="@color/primary_text"
-                android:visibility="invisible"
-                app:layout_constraintEnd_toStartOf="@id/view2"
+                android:layout_height="wrap_content"
+                app:layout_constraintEnd_toStartOf="@id/paymentCL"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintTop_toTopOf="parent">
 
-            <ImageView
-                android:id="@+id/shippingIV"
-                android:layout_width="30dp"
-                android:layout_height="30dp"
-                android:padding="@dimen/p4"
-                android:src="@drawable/blue_right_icon"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintStart_toStartOf="@id/view1"
-                app:layout_constraintTop_toTopOf="parent"
-                tools:ignore="ContentDescription,UsingOnClickInXml" />
+                <ImageView
+                    android:id="@+id/shippingIV"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:padding="@dimen/p4"
+                    android:src="@drawable/blue_right_icon"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    tools:ignore="ContentDescription,UsingOnClickInXml" />
 
-            <TextView
-                android:id="@+id/shippingTV"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/m10"
-                android:text="@string/shipping"
-                android:textColor="@color/black"
-                android:textSize="@dimen/text_size_15"
-                app:layout_constraintBottom_toBottomOf="@+id/shippingIV"
-                app:layout_constraintStart_toEndOf="@+id/shippingIV"
-                app:layout_constraintTop_toTopOf="@+id/shippingIV" />
+                <TextView
+                    android:id="@+id/shippingTV"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
 
-            <View
-                android:id="@+id/view2"
+                    android:text="@string/shipping"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/text_size_15"
+                    app:layout_constraintBottom_toBottomOf="@+id/shippingIV"
+                    app:layout_constraintStart_toEndOf="@+id/shippingIV"
+                    app:layout_constraintTop_toTopOf="@+id/shippingIV" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/paymentCL"
                 android:layout_width="0dp"
-                android:layout_height="1dp"
-                android:background="@color/primary_text"
-                android:visibility="invisible"
-                app:layout_constraintEnd_toStartOf="@+id/view3"
-                app:layout_constraintStart_toEndOf="@+id/view1"
-                app:layout_constraintTop_toTopOf="parent" />
-
-            <ImageView
-                android:id="@+id/paymentIV"
-                android:layout_width="30dp"
-                android:layout_height="30dp"
-                android:layout_marginStart="@dimen/m14"
-                android:padding="@dimen/p4"
-                android:src="@drawable/grey_right_icon2"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintStart_toStartOf="@id/view2"
-                app:layout_constraintTop_toTopOf="parent"
-                tools:ignore="ContentDescription,UsingOnClickInXml" />
-
-            <TextView
-                android:id="@+id/paymentTV"
-                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/m10"
-                android:text="@string/payment"
-                android:textColor="@color/black"
-                android:textSize="@dimen/text_size_15"
-                app:layout_constraintBottom_toBottomOf="@+id/paymentIV"
-                app:layout_constraintStart_toEndOf="@+id/paymentIV"
-                app:layout_constraintTop_toTopOf="@+id/paymentIV" />
+                app:layout_constraintBottom_toBottomOf="@id/shippingCL"
+                app:layout_constraintEnd_toStartOf="@id/successCL"
+                app:layout_constraintStart_toEndOf="@id/shippingCL"
+                app:layout_constraintTop_toTopOf="@id/shippingCL">
 
+                <ImageView
+                    android:id="@+id/paymentIV"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:layout_marginStart="@dimen/m14"
+                    android:padding="@dimen/p4"
+                    android:src="@drawable/grey_right_icon2"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    tools:ignore="ContentDescription,UsingOnClickInXml" />
 
-            <View
-                android:id="@+id/view3"
+                <TextView
+                    android:id="@+id/paymentTV"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/payment"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/text_size_15"
+                    app:layout_constraintBottom_toBottomOf="@+id/paymentIV"
+                    app:layout_constraintStart_toEndOf="@+id/paymentIV"
+                    app:layout_constraintTop_toTopOf="@+id/paymentIV" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/successCL"
                 android:layout_width="0dp"
-                android:layout_height="1dp"
-                android:background="@color/primary_text"
-                android:visibility="invisible"
+                android:layout_height="wrap_content"
+                app:layout_constraintBottom_toBottomOf="@id/shippingCL"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@+id/view2"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintStart_toEndOf="@id/paymentCL"
+                app:layout_constraintTop_toTopOf="@id/shippingCL">
 
-            <ImageView
-                android:id="@+id/successIV"
-                android:layout_width="30dp"
-                android:layout_height="30dp"
-                android:layout_marginStart="@dimen/m14"
-                android:padding="@dimen/p4"
-                android:src="@drawable/grey_right_icon2"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintStart_toStartOf="@id/view3"
-                app:layout_constraintTop_toTopOf="parent"
-                tools:ignore="ContentDescription,UsingOnClickInXml" />
+                <ImageView
+                    android:id="@+id/successIV"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:layout_marginStart="@dimen/m14"
+                    android:padding="@dimen/p4"
+                    android:src="@drawable/grey_right_icon2"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    tools:ignore="ContentDescription,UsingOnClickInXml" />
 
-            <TextView
-                android:id="@+id/successTV"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/m10"
-                android:text="@string/success"
-                android:textColor="@color/black"
-                android:textSize="@dimen/text_size_15"
-                app:layout_constraintBottom_toBottomOf="@+id/successIV"
-                app:layout_constraintStart_toEndOf="@+id/successIV"
-                app:layout_constraintTop_toTopOf="@+id/successIV" />
+                <TextView
+                    android:id="@+id/successTV"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+
+                    android:text="@string/success"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/text_size_15"
+                    app:layout_constraintBottom_toBottomOf="@+id/successIV"
+                    app:layout_constraintStart_toEndOf="@+id/successIV"
+                    app:layout_constraintTop_toTopOf="@+id/successIV" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
 
 
         </androidx.constraintlayout.widget.ConstraintLayout>

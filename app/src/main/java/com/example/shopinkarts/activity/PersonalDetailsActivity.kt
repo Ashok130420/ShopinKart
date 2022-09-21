@@ -12,15 +12,20 @@ import android.util.Log
 import android.view.MotionEvent
 import android.view.View
 import android.view.inputmethod.InputMethodManager
-import android.widget.AdapterView
 import android.widget.EditText
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import androidx.databinding.DataBindingUtil
 import com.example.shopinkarts.R
+import com.example.shopinkarts.api.RetrofitClient
 import com.example.shopinkarts.classes.SharedPreference
 import com.example.shopinkarts.databinding.ActivityPersonalDetailsBinding
+import com.example.shopinkarts.response.OrdersResponse
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
+import java.util.HashMap
 
 class PersonalDetailsActivity : AppCompatActivity() {
     lateinit var sharedPreference: SharedPreference
@@ -28,6 +33,13 @@ class PersonalDetailsActivity : AppCompatActivity() {
     var layoutCount = 1
     var userType = ""
     var state = ""
+
+    var totalAmount = ""
+    var gst = ""
+    var discountAmount = ""
+    var amountPaid = ""
+    var paymentType = 0
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = DataBindingUtil.setContentView(this, R.layout.activity_personal_details)
@@ -45,10 +57,12 @@ class PersonalDetailsActivity : AppCompatActivity() {
         binding.includeStepper1.streetET.setText(sharedPreference.getStreet())
         binding.includeStepper1.pinCodeET.setText(sharedPreference.getPin())
         binding.includeStepper1.cityET.setText(sharedPreference.getCity())
-        binding.includeStepper1.stateSpinner
+//      binding.includeStepper1.stateSpinner.setSelection(state.toInt())
+        state = sharedPreference.getState().toString()
+        Log.d("state", "onItemSelected:  $state ")
         binding.includeStepper1.landMarkET.setText(sharedPreference.getLandmark())
 
-        binding.includeStepper1.stateSpinner.onItemSelectedListener =
+        /*        binding.includeStepper1.stateSpinner.onItemSelectedListener =
             object : AdapterView.OnItemSelectedListener {
                 override fun onItemSelected(
                     parent: AdapterView<*>?,
@@ -62,6 +76,7 @@ class PersonalDetailsActivity : AppCompatActivity() {
                         state = ""
                     } else {
                         state = selectedItem
+//                        Log.d("state", "onItemSelected:  $state ")
                     }
 
                 }
@@ -70,8 +85,27 @@ class PersonalDetailsActivity : AppCompatActivity() {
 
                 }
 
-            }
+            }*/
 
+        binding.shippingCL.setOnClickListener {
+            layoutFirst()
+        }
+        binding.paymentCL.setOnClickListener {
+            layoutSecond()
+        }
+        binding.successCL.setOnClickListener {
+//            layoutThird()
+        }
+
+        totalAmount = intent.extras!!.getDouble("totalAmount", 0.0).toString()
+        gst = intent.extras!!.getFloat("gst", 0F).toString()
+        discountAmount = intent.extras!!.getDouble("discount", 0.0).toString()
+        amountPaid = intent.extras!!.getFloat("finalAmount", 0F).toString()
+
+        Log.d("TAG1", "onCreate: $totalAmount")
+        Log.d("TAG2", "onCreate: $gst")
+        Log.d("TAG3", "onCreate: $discountAmount")
+        Log.d("TAG4", "onCreate: $amountPaid")
 
 
         binding.headerPersonalDetails.nameTV.text = resources.getString(R.string.personal_details)
@@ -86,7 +120,7 @@ class PersonalDetailsActivity : AppCompatActivity() {
                 street = binding.includeStepper1.streetET.text.toString(),
                 pin = binding.includeStepper1.pinCodeET.text.toString(),
                 city = binding.includeStepper1.cityET.text.toString(),
-                state = binding.includeStepper1.stateSpinner.toString(),
+                state = state,
                 landmark = binding.includeStepper1.landMarkET.text.toString()
             )
             if (layoutCount < 4) {
@@ -121,12 +155,16 @@ class PersonalDetailsActivity : AppCompatActivity() {
         binding.includeStepper2.onlineSelectIV.setBackgroundResource(R.drawable.grey_right_icon)
 
         binding.includeStepper2.cashOnDeliveryCL.setOnClickListener {
+            paymentType = 0
             binding.includeStepper2.caseSelectIV.setBackgroundResource(R.drawable.green_right_icon)
             binding.includeStepper2.onlineSelectIV.setBackgroundResource(R.drawable.grey_right_icon)
+            Log.d("paymentType", "onCreate: $paymentType")
         }
         binding.includeStepper2.payOnlineCL.setOnClickListener {
+            paymentType = 1
             binding.includeStepper2.onlineSelectIV.setBackgroundResource(R.drawable.green_right_icon)
             binding.includeStepper2.caseSelectIV.setBackgroundResource(R.drawable.grey_right_icon)
+            Log.d("paymentType", "onCreate: $paymentType")
         }
 
         /*  binding.continueTV.setOnClickListener {
@@ -134,6 +172,7 @@ class PersonalDetailsActivity : AppCompatActivity() {
               intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK
               startActivity(intent)
           }*/
+
         binding.goToOrdersTV.setOnClickListener {
 
             val intent = Intent(this, DashBoardActivity::class.java)
@@ -141,7 +180,6 @@ class PersonalDetailsActivity : AppCompatActivity() {
             intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK
             startActivity(intent)
         }
-
 
     }
 
@@ -199,6 +237,8 @@ class PersonalDetailsActivity : AppCompatActivity() {
         }
         binding.includeStepper2.paymentCL.visibility = View.GONE
         binding.includeStepper3.successCL.visibility = View.GONE
+        binding.paymentIV.setImageResource(R.drawable.grey_right_icon)
+        binding.successIV.setImageResource(R.drawable.grey_right_icon)
         layoutCount++
 
     }
@@ -209,6 +249,7 @@ class PersonalDetailsActivity : AppCompatActivity() {
         binding.includeStepper2.paymentCL.visibility = View.VISIBLE
         binding.includeStepper3.successCL.visibility = View.GONE
         binding.paymentIV.setImageResource(R.drawable.blue_right_icon)
+        binding.successIV.setImageResource(R.drawable.grey_right_icon)
         layoutCount++
     }
 
@@ -219,5 +260,45 @@ class PersonalDetailsActivity : AppCompatActivity() {
         binding.includeStepper3.successCL.visibility = View.VISIBLE
         binding.successIV.setImageResource(R.drawable.blue_right_icon)
         layoutCount++
+    }
+
+    private fun orderApi() {
+        val requestBody: MutableMap<String, String> = HashMap()
+        requestBody["userId"] = sharedPreference.getUserId().toString()
+        requestBody["gstAmount"] = gst
+        requestBody["discount"] = discountAmount
+        requestBody["finalAmount"] = amountPaid
+        requestBody["paymentType"] = amountPaid
+
+
+        val call: Call<OrdersResponse> = RetrofitClient.instance!!.api.ordersApi(requestBody)
+        call.enqueue(object : Callback<OrdersResponse> {
+            override fun onResponse(
+                call: Call<OrdersResponse>,
+                response: Response<OrdersResponse>
+            ) {
+                if (response.isSuccessful) {
+                    val orderResponse = response.body()
+                    if (orderResponse!!.status) {
+
+                    } else {
+                        Toast.makeText(
+                            this@PersonalDetailsActivity, "${response.message()}",
+                            Toast.LENGTH_SHORT
+                        ).show()
+                        Log.e("TAG", "${response.message()} ")
+                    }
+                }
+            }
+
+            override fun onFailure(call: Call<OrdersResponse>, t: Throwable) {
+                Toast.makeText(
+                    this@PersonalDetailsActivity, "${t.message}",
+                    Toast.LENGTH_SHORT
+                ).show()
+                Log.e("TAG", "${t.message} ")
+            }
+        })
+
     }
 }
