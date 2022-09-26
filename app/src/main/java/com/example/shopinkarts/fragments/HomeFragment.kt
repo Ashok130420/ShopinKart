@@ -62,6 +62,7 @@ class HomeFragment : Fragment() {
     val arrayListPreferredManufacturer: ArrayList<PreferredManufacturer> = ArrayList()
     val arrayListNewlyAdded: ArrayList<NewlyAdded> = ArrayList()
     val arraylistBanner1: ArrayList<Banner> = ArrayList()
+    val arraylistBanner2: ArrayList<Banner> = ArrayList()
     val arrayListMostPopular: ArrayList<MostPopular> = ArrayList()
     val arrayListTopRated: ArrayList<TopRated> = ArrayList()
     val arrayListFlashSale: ArrayList<FlashSale> = ArrayList()
@@ -69,6 +70,7 @@ class HomeFragment : Fragment() {
 
     private lateinit var banner1Adapter: Banner1Adapter
     var currentPage = 0
+    var currentPage2 = 0
     var timer: Timer? = null
     val DELAY_MS: Long = 2000
     val PERIOD_MS: Long = 4000
@@ -84,19 +86,22 @@ class HomeFragment : Fragment() {
 //        shimmerShopFor = binding.shimmerViewShopFor
         shimmerManufacturer = binding.shimmerViewManufacturer
         shimmerMostPopular = binding.shimmerViewMostPopular
+
 //        binding.shopForRV.showShimmer()
 //        banner1Adapter = Banner1Adapter(requireContext(), arraylistBanner1)
         setCurrentIndicator(0)
 //        dashBoardList()
 
-//        banner 2nd fun
-        setBanner2ViewPager()
-        setupIndicatorsBanner2()
+//      banner 2nd fun
+//        setBanner2ViewPager()
+//        setupIndicatorsBanner2()
         setCurrentIndicatorBanner2(0)
+
 //      banner 3rd fun
         setBanner3ViewPager()
         setupIndicatorsBanner3()
         setCurrentIndicatorBanner3(0)
+
         binding.shopForRV.showShimmerAdapter()
 
         binding.introSliderViewPager.registerOnPageChangeCallback(object :
@@ -107,8 +112,6 @@ class HomeFragment : Fragment() {
             }
         })
 
-
-        /**/
 
 //        banner 2nd
         binding.banner2ViewPager.registerOnPageChangeCallback(object :
@@ -210,9 +213,10 @@ class HomeFragment : Fragment() {
         binding.recommendedRV.adapter = recommendedAdapter
         binding.recommendedRV.isNestedScrollingEnabled = false
         dashBoardList()
+
+
         return binding.root
     }
-
 
     private fun dashBoardList() {
 
@@ -231,13 +235,15 @@ class HomeFragment : Fragment() {
                 shimmerMostPopular.stopShimmer()
                 shimmerMostPopular.visibility = View.GONE
                 val dashBoardResponse = response.body()
-                if (response.isSuccessful && context!=null) {
+                if (response.isSuccessful && context != null) {
 
                     if (dashBoardResponse!!.status) {
+
                         arrayListShopFor.clear()
                         arrayListShopFor.addAll(dashBoardResponse.shopFor)
                         shopForAdapter = ShopForAdapter(requireContext(), arrayListShopFor)
                         binding.shopForRV.adapter = shopForAdapter
+                        binding.shopForRV.isNestedScrollingEnabled = true
                         shopForAdapter.notifyDataSetChanged()
 
                         arrayListPreferredManufacturer.clear()
@@ -260,9 +266,16 @@ class HomeFragment : Fragment() {
 
                         banner1Adapter = Banner1Adapter(requireContext(), arraylistBanner1)
                         binding.introSliderViewPager.adapter = banner1Adapter
-//                        setupIndicators()
                         binding.dotsIndicator.attachTo(binding.introSliderViewPager)
-                        autoSlide(arraylistBanner1.size)
+                        autoSlideBanner1(arraylistBanner1.size)
+
+                        arraylistBanner2.clear()
+                        arraylistBanner2.addAll(dashBoardResponse.banners)
+                        banner2Adapter = Banner2Adapter(requireContext(), arraylistBanner2)
+                        binding.banner2ViewPager.adapter = banner2Adapter
+                        binding.dotsIndicatorBanner2.attachTo(binding.banner2ViewPager)
+                        autoSlideBanner2(arraylistBanner2.size)
+
 
                         arrayListMostPopular.clear()
                         arrayListMostPopular.addAll(dashBoardResponse.mostPopular)
@@ -298,30 +311,30 @@ class HomeFragment : Fragment() {
 
                     Log.d("TAG", "onResponse_SuccessResponse: ${dashBoardResponse.message}")
                 } else {
-                    if (context!=null)
-                    Toast.makeText(
-                        requireContext(),
-                        "${dashBoardResponse?.message}",
-                        Toast.LENGTH_SHORT
-                    ).show()
+                    if (context != null)
+                        Toast.makeText(
+                            requireContext(),
+                            "${dashBoardResponse?.message}",
+                            Toast.LENGTH_SHORT
+                        ).show()
                 }
             }
 
             override fun onFailure(call: Call<DashBoardResponse>, t: Throwable) {
                 Log.d("TAG", "onFailureResponse: $${t.message}")
-                if (context!=null)
-                Toast.makeText(requireContext(), "${t.message}", Toast.LENGTH_SHORT)
-                    .show()
+                if (context != null)
+                    Toast.makeText(requireContext(), "${t.message}", Toast.LENGTH_SHORT)
+                        .show()
             }
 
         })
 
     }
-    fun autoSlide(size: Int) {
+
+    fun autoSlideBanner1(size: Int) {
         val handler = Handler()
         val update = Runnable {
             binding.introSliderViewPager.setCurrentItem(currentPage % size, true)
-
             currentPage++
         }
         timer = Timer()
@@ -331,6 +344,21 @@ class HomeFragment : Fragment() {
             }
         }, DELAY_MS, PERIOD_MS)
     }
+
+    fun autoSlideBanner2(size: Int) {
+        val handler = Handler()
+        val update = Runnable {
+            binding.banner2ViewPager.setCurrentItem(currentPage2 % size, true)
+            currentPage2++
+        }
+        timer = Timer()
+        timer!!.schedule(object : TimerTask() {
+            override fun run() {
+                handler.post(update)
+            }
+        }, DELAY_MS, PERIOD_MS)
+    }
+
     // banner 1
     private fun setupIndicators() {
 
@@ -416,15 +444,9 @@ class HomeFragment : Fragment() {
     }
 
     private fun setBanner2ViewPager() {
-        banner2Adapter = Banner2Adapter(
-            listOf(
-                Banner2Slide(R.drawable.banner_1),
-                Banner2Slide(R.drawable.banner_2),
-                Banner2Slide(R.drawable.banner_1),
-                Banner2Slide(R.drawable.banner_2)
-            )
-        )
+        banner2Adapter = Banner2Adapter(requireContext(), arraylistBanner2)
         binding.banner2ViewPager.adapter = banner2Adapter
+        banner2Adapter.notifyDataSetChanged()
     }
 
     // banner 3
@@ -476,6 +498,8 @@ class HomeFragment : Fragment() {
         )
         binding.banner3ViewPager.adapter = banner3Adapter
     }
+
+
 }
 
 

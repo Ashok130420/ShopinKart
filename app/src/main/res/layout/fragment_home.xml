@@ -151,6 +151,7 @@
                         app:shimmer_demo_angle="20"
                         tools:listitem="@layout/shimmer_items_shop_for"
                         app:layout_constraintTop_toBottomOf="@id/shopForTV" />
+
                     <TextView
                         android:id="@+id/preferredManufacturerTV"
                         android:layout_width="wrap_content"
@@ -327,6 +328,22 @@
                             app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintStart_toStartOf="parent"
                             app:layout_constraintTop_toTopOf="parent" />
+
+                        <com.tbuonomo.viewpagerdotsindicator.DotsIndicator
+                            android:id="@+id/dots_indicatorBanner2"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            app:dotsColor="@color/white"
+                            app:dotsCornerRadius="8dp"
+                            app:dotsElevation="@dimen/m4"
+                            app:dotsSize="@dimen/m8"
+                            app:dotsSpacing="2dp"
+                            app:dotsWidthFactor="2.5"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@id/banner2ViewPager"
+                            app:progressMode="true"
+                            app:selectedDotColor="@color/primary_Blue" />
 
                         <LinearLayout
                             android:id="@+id/indicatorsBanner2"
@@ -698,6 +715,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="@dimen/m10"
+                        android:visibility="gone"
                         app:layout_constraintTop_toTopOf="parent">
 
                         <androidx.viewpager2.widget.ViewPager2
@@ -727,6 +745,7 @@
                     android:id="@+id/clothShortingCL"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:visibility="gone"
                     android:layout_marginTop="@dimen/m35"
                     app:layout_constraintTop_toBottomOf="@+id/imageSliderBanner2CL">
 
@@ -747,6 +766,7 @@
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:id="@+id/filterItemsCL"
                     android:layout_width="match_parent"
+                    android:visibility="gone"
                     android:layout_height="wrap_content"
                     android:layout_marginHorizontal="@dimen/m14"
                     android:layout_marginTop="@dimen/m24"

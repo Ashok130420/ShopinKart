@@ -1,5 +1,6 @@
 package com.example.shopinkarts.api
 
+import com.example.shopinkarts.model.CreateOrderRequest
 import com.example.shopinkarts.response.*
 import retrofit2.Call
 import retrofit2.http.*
@@ -41,5 +42,10 @@ interface Api {
 
     // order api
     @POST("orders/create")
-    fun ordersApi(@Body body: Map<String, String>): Call<OrdersResponse>
+    fun ordersApi(@Body body: CreateOrderRequest): Call<SuccessResponse>
+
+    // my orders api
+    @GET("orders/user?")
+    fun myOrdersApi(@Query("id") id: String?): Call<MyOrdersResponse>
+
 }

@@ -37,6 +37,7 @@ class Banner1Adapter(val context: Context, val arrayList: ArrayList<Banner>) :
         holder.binding.apply {
             Glide.with(context).load(itemDetails.bannerImage).into(imageSlideIcon)
         }
+
 //      banner type 0 for external
         when (itemDetails.bannerType) {
             0 -> {

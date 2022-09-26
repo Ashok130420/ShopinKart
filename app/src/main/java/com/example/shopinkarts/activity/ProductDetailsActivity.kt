@@ -55,15 +55,6 @@ class ProductDetailsActivity : AppCompatActivity() {
     val DELAY_MS: Long = 2000
     val PERIOD_MS: Long = 4000
 
-    var pId = ""
-    var vId = ""
-    var itemName = ""
-    var color = ""
-    var size = ""
-    var quantity = ""
-    var imageUrl = ""
-    var variantTarget = ""
-    var stock = 0
 
     companion object {
         var pInstance: ProductDetailsActivity = ProductDetailsActivity()
@@ -78,6 +69,16 @@ class ProductDetailsActivity : AppCompatActivity() {
         var totalAmount = 0
         var discountedPrice = 0
         var actualPrice = 0
+
+        var pId = ""
+        var vId = ""
+        var itemName = ""
+        var color = ""
+        var size = ""
+        var quantity = ""
+        var imageUrl = ""
+        var variantTarget = ""
+//        var stock = 0
 
         fun getInstance(): ProductDetailsActivity {
             return pInstance
@@ -184,7 +185,6 @@ class ProductDetailsActivity : AppCompatActivity() {
                 binding.productDescriptionDetailsCL.visibility = View.VISIBLE
                 binding.productDescriptionIV.rotation = 90F
             }
-
         }
 
         binding.productChecklistHeaderCL.setOnClickListener {

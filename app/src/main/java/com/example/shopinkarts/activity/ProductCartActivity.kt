@@ -22,7 +22,7 @@ class ProductCartActivity : AppCompatActivity() {
     var gst = 0F
     var amountPaid = 0F
     var percentage: Double = 0.00
-    var differenceAmount: Double = 0.00
+    var differenceAmount = 0F
 
 
     companion object {
@@ -75,7 +75,9 @@ class ProductCartActivity : AppCompatActivity() {
             intent.putExtra("gst", gst)
             intent.putExtra("discount", differenceAmount)
             intent.putExtra("finalAmount", amountPaid)
+
             startActivity(intent)
+
         }
         Log.d("TAG_totalAmount", "onCreate: $totalAmount")
     }
@@ -109,7 +111,7 @@ class ProductCartActivity : AppCompatActivity() {
         binding.amountPaidValueTV.text = "Rs $amountPaid"
         Log.d("totalAmountPaid", "onCreate: $amountPaid")
 
-        differenceAmount = totalAmount - amountPaid
+        differenceAmount = (totalAmount - amountPaid).toFloat()
 
         if (DashBoardActivity.arrayListCart.isNotEmpty()) {
             percentage = differenceAmount / totalAmount * 100

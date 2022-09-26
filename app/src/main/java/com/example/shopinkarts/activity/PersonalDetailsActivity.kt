@@ -21,11 +21,13 @@ import com.example.shopinkarts.R
 import com.example.shopinkarts.api.RetrofitClient
 import com.example.shopinkarts.classes.SharedPreference
 import com.example.shopinkarts.databinding.ActivityPersonalDetailsBinding
-import com.example.shopinkarts.response.OrdersResponse
+import com.example.shopinkarts.model.CreateOrderRequest
+import com.example.shopinkarts.model.CreateProduct
+import com.example.shopinkarts.model.ShippingDetails
+import com.example.shopinkarts.response.*
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
-import java.util.HashMap
 
 class PersonalDetailsActivity : AppCompatActivity() {
     lateinit var sharedPreference: SharedPreference
@@ -34,11 +36,13 @@ class PersonalDetailsActivity : AppCompatActivity() {
     var userType = ""
     var state = ""
 
-    var totalAmount = ""
-    var gst = ""
-    var discountAmount = ""
-    var amountPaid = ""
+    var totalAmount: Double = 0.00
+    var gst = 0F
+    var discountAmount = 0F
+    var amountPaid = 0F
     var paymentType = 0
+
+    var id = ""
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -46,6 +50,7 @@ class PersonalDetailsActivity : AppCompatActivity() {
 
         layoutCount = 1
         layoutFirst()
+
 
         sharedPreference = SharedPreference(this)
         userType = sharedPreference.getUserType().toString()
@@ -97,10 +102,11 @@ class PersonalDetailsActivity : AppCompatActivity() {
 //            layoutThird()
         }
 
-        totalAmount = intent.extras!!.getDouble("totalAmount", 0.0).toString()
-        gst = intent.extras!!.getFloat("gst", 0F).toString()
-        discountAmount = intent.extras!!.getDouble("discount", 0.0).toString()
-        amountPaid = intent.extras!!.getFloat("finalAmount", 0F).toString()
+        totalAmount = intent.extras!!.getDouble("totalAmount", 0.0)
+        gst = intent.extras!!.getFloat("gst", 0F)
+        discountAmount = intent.extras!!.getFloat("discount", 0F)
+        amountPaid = intent.extras!!.getFloat("finalAmount", 0F)
+
 
         Log.d("TAG1", "onCreate: $totalAmount")
         Log.d("TAG2", "onCreate: $gst")
@@ -219,7 +225,7 @@ class PersonalDetailsActivity : AppCompatActivity() {
             }
             3 -> {
                 layoutThird()
-
+                orderApi()
             }
             else -> {
                 val intent = Intent(this, DashBoardActivity::class.java)
@@ -263,42 +269,85 @@ class PersonalDetailsActivity : AppCompatActivity() {
     }
 
     private fun orderApi() {
-        val requestBody: MutableMap<String, String> = HashMap()
-        requestBody["userId"] = sharedPreference.getUserId().toString()
-        requestBody["gstAmount"] = gst
-        requestBody["discount"] = discountAmount
-        requestBody["finalAmount"] = amountPaid
-        requestBody["paymentType"] = amountPaid
 
+        val arrayProduct: ArrayList<CreateProduct> = ArrayList()
 
-        val call: Call<OrdersResponse> = RetrofitClient.instance!!.api.ordersApi(requestBody)
-        call.enqueue(object : Callback<OrdersResponse> {
+        for (item in DashBoardActivity.arrayListCart) {
+            arrayProduct.add(
+                CreateProduct(
+                    productId = item.pId,
+                    productImage = item.imageUrl,
+                    productName = item.itemName,
+                    qty = item.quantity,
+                    totalAmount = item.totalAmount.toDouble(),
+                    variantId = item.vId
+                )
+            )
+        }
+
+        val shippingDetails = ShippingDetails(
+            name = binding.includeStepper1.nameET.text.toString(),
+            phone = binding.includeStepper1.phoneNumberET.text.toString(),
+            houseNo = binding.includeStepper1.flatHouseET.text.toString(),
+            street = binding.includeStepper1.streetET.text.toString(),
+            pincode = binding.includeStepper1.pinCodeET.text.toString(),
+            city = binding.includeStepper1.cityET.text.toString(),
+            state = state,
+            landmark = binding.includeStepper1.landMarkET.text.toString()
+        )
+//        val requestBody = OrdersResponse(
+        val requestBody = CreateOrderRequest(
+
+            discount = discountAmount.toString(),
+            finalAmount = amountPaid.toString(),
+            gstAmount = gst.toString(),
+            paymentType = paymentType.toString(),
+            products = arrayProduct,
+            shippingDetails = shippingDetails,
+            totalAmount = totalAmount.toString(),
+            userId = sharedPreference.getUserId().toString(),
+
+        )
+//        )
+
+        val call: Call<SuccessResponse> = RetrofitClient.instance!!.api.ordersApi(requestBody)
+        call.enqueue(object : Callback<SuccessResponse> {
             override fun onResponse(
-                call: Call<OrdersResponse>,
-                response: Response<OrdersResponse>
+                call: Call<SuccessResponse>,
+                response: Response<SuccessResponse>
             ) {
                 if (response.isSuccessful) {
                     val orderResponse = response.body()
                     if (orderResponse!!.status) {
 
-                    } else {
                         Toast.makeText(
-                            this@PersonalDetailsActivity, "${response.message()}",
+                            this@PersonalDetailsActivity, response.message(),
                             Toast.LENGTH_SHORT
                         ).show()
-                        Log.e("TAG", "${response.message()} ")
+                        Log.e("orderResponse", "${response.message()} ")
+
+                    } else {
+                        Toast.makeText(
+                            this@PersonalDetailsActivity, response.message(),
+                            Toast.LENGTH_SHORT
+                        ).show()
+                        Log.e("orderResponse", "${response.message()} ")
+
                     }
                 }
             }
 
-            override fun onFailure(call: Call<OrdersResponse>, t: Throwable) {
+            override fun onFailure(call: Call<SuccessResponse>, t: Throwable) {
                 Toast.makeText(
                     this@PersonalDetailsActivity, "${t.message}",
                     Toast.LENGTH_SHORT
                 ).show()
-                Log.e("TAG", "${t.message} ")
+                Log.e("orderResponse", "${t.message} ")
             }
         })
-
     }
 }
+
+
+
+

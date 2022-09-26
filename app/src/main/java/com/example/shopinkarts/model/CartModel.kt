@@ -13,4 +13,5 @@ data class CartModel(
     var totalAmount: Int,
     var imageUrl: String,
     var stock: Int
+
 )

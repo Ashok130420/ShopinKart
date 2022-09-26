@@ -17,6 +17,7 @@
             android:id="@+id/imageIV"
             android:layout_width="80dp"
             android:layout_height="90dp"
+            android:scaleType="fitXY"
             android:src="@drawable/newly_added_image"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"

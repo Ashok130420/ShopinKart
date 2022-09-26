@@ -9,10 +9,12 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.shopinkarts.R
 import com.example.shopinkarts.activity.TrackOrderActivity
 import com.example.shopinkarts.databinding.ItemsDeliveredOrderBinding
+import com.example.shopinkarts.response.Order
 
-class DeliveredOrderAdapter(val context: Context) :
+class DeliveredOrderAdapter(val context: Context, val arrayList: ArrayList<Order>) :
     RecyclerView.Adapter<DeliveredOrderAdapter.ViewHolder>() {
 
+    lateinit var productAdapter: ProductAdapter
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
 
@@ -27,8 +29,14 @@ class DeliveredOrderAdapter(val context: Context) :
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        holder.binding.productRV.adapter = holder.productAdapter
+        val itemDetails = arrayList[position]
+        holder.binding.apply {
+
+        }
+        productAdapter = ProductAdapter(context, itemDetails.products)
+        holder.binding.productRV.adapter = productAdapter
         holder.binding.productRV.isNestedScrollingEnabled = false
+
         holder.binding.trackOrderStatusTV.setOnClickListener {
             val intent = Intent(context, TrackOrderActivity::class.java)
             context.startActivity(intent)
@@ -37,14 +45,13 @@ class DeliveredOrderAdapter(val context: Context) :
     }
 
     override fun getItemCount(): Int {
-        return 3
+        return arrayList.size
     }
 
     inner class ViewHolder(itemView: ItemsDeliveredOrderBinding) :
         RecyclerView.ViewHolder(itemView.root) {
         val binding: ItemsDeliveredOrderBinding = itemView
 
-        var productAdapter: ProductAdapter = ProductAdapter(context)
 
     }
 }

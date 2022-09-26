@@ -1,15 +1,18 @@
 package com.example.shopinkarts.response
 
+import com.example.shopinkarts.model.CreateProduct
+import com.example.shopinkarts.model.ShippingDetails
+
 data class Order(
     val _id: String,
     val creationTimeStamp: String,
-    val discount: Int,
-    val finalAmount: Int,
-    val gstAmount: Int,
+    val discount: Float,
+    val finalAmount: Float,
+    val gstAmount: Float,
     val orderStatus: Int,
     val paymentType: Int,
-    val products: List<ProductOrder>,
+    val products: List<CreateProduct>,
     val shippingDetails: ShippingDetails,
-    val totalAmount: Int,
+    val totalAmount: Double,
     val userId: String
 )

@@ -37,7 +37,7 @@
                 android:id="@+id/caseIV"
                 android:layout_width="30dp"
                 android:layout_height="30dp"
-                android:layout_marginStart="@dimen/m14"
+
                 android:src="@drawable/cash"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -48,7 +48,7 @@
                 android:id="@+id/cashOnDeliveryTV"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/m35"
+                android:layout_marginStart="@dimen/m20"
                 android:fontFamily="@font/dm_sans_medium"
                 android:text="Cash on Delivery"
                 android:textColor="@color/primary_text"
@@ -63,7 +63,6 @@
                 android:layout_width="30dp"
                 android:layout_height="30dp"
                 android:layout_marginStart="@dimen/m14"
-
                 app:layout_constraintBottom_toBottomOf="@+id/caseIV"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="@+id/caseIV"
@@ -84,9 +83,7 @@
                 android:id="@+id/cardIV"
                 android:layout_width="30dp"
                 android:layout_height="30dp"
-                android:layout_marginStart="@dimen/m14"
                 android:src="@drawable/online_card"
-
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 tools:ignore="ContentDescription" />
@@ -95,7 +92,7 @@
                 android:id="@+id/payOnlineTV"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/m35"
+                android:layout_marginStart="@dimen/m20"
                 android:fontFamily="@font/dm_sans_medium"
                 android:text="Pay Online"
                 android:textColor="@color/primary_text"
@@ -111,7 +108,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="5dp"
                 android:fontFamily="@font/dm_sans_medium"
-                android:text="UPI, Debit Card, Credit Card, \nNet Banking, Wallet"
+                android:text="UPI, Debit Card, Credit Card,Net Banking, Wallet"
                 android:textColor="@color/hint"
                 android:textSize="@dimen/text_size_10"
                 app:layout_constraintStart_toStartOf="@+id/payOnlineTV"

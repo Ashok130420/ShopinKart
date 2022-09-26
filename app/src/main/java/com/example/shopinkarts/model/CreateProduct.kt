@@ -1,7 +1,7 @@
-package com.example.shopinkarts.response
+package com.example.shopinkarts.model
 
-data class ProductOrder(
-    var productId: String,
+data class CreateProduct(
+    val productId: String,
     val productImage: String,
     val productName: String,
     val qty: Int,
