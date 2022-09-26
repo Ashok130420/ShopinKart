@@ -56,36 +56,39 @@ class OrdersFragment : Fragment() {
 
                         arrayListMyOrders.clear()
                         arrayListMyOrders.addAll(myOrderResponse.orders)
-                        deliveredOrderAdapter =
-                            DeliveredOrderAdapter(requireContext(), arrayListMyOrders)
-                        binding.deliveredOrderRV.adapter = deliveredOrderAdapter
-                        binding.deliveredOrderRV.isNestedScrollingEnabled = false
-                        deliveredOrderAdapter.notifyDataSetChanged()
-
+                        if (context!=null) {
+                            deliveredOrderAdapter =
+                                DeliveredOrderAdapter(requireContext(), arrayListMyOrders)
+                            binding.deliveredOrderRV.adapter = deliveredOrderAdapter
+                            binding.deliveredOrderRV.isNestedScrollingEnabled = false
+                            deliveredOrderAdapter.notifyDataSetChanged()
+                        }
                     }
-                    Toast.makeText(
-                        requireContext(), "${myOrderResponse?.message}", Toast.LENGTH_SHORT
-                    ).show()
+//                    Toast.makeText(
+//                        requireContext(), "${myOrderResponse?.message}", Toast.LENGTH_SHORT
+//                    ).show()
 
                     Log.d("TAG", "onResponse_SuccessResponse  ${myOrderResponse.message} ")
 
                 } else {
-
-                    Toast.makeText(
-                        requireContext(),
-                        "${myOrderResponse?.message}",
-                        Toast.LENGTH_SHORT
-                    ).show()
-
+                    if (context != null) {
+                        Toast.makeText(
+                            requireContext(),
+                            "${myOrderResponse?.message}",
+                            Toast.LENGTH_SHORT
+                        ).show()
+                    }
                     Log.d("TAG", "onResponse_ElseResponse  ${myOrderResponse?.message} ")
 
                 }
             }
 
             override fun onFailure(call: Call<MyOrdersResponse>, t: Throwable) {
-                Toast.makeText(
-                    requireContext(), "${t?.message}", Toast.LENGTH_SHORT
-                ).show()
+                if (context != null) {
+                    Toast.makeText(
+                        requireContext(), "${t?.message}", Toast.LENGTH_SHORT
+                    ).show()
+                }
                 Log.d("TAG", "onResponse_FailureResponse${t.message} ")
             }
         })

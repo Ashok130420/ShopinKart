@@ -29,8 +29,6 @@ class ParticularItemActivity : AppCompatActivity() {
     var imageURL = ""
     var particularItemId = ""
 
-    var sorting = String()
-    var filter = String()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -38,10 +36,13 @@ class ParticularItemActivity : AppCompatActivity() {
 
         subCategoryName = intent.extras!!.getString("subCategoryName", "")
         imageURL = intent.extras!!.getString("imageURL", "")
+
         particularItemId = intent.extras!!.getString("particularItemId", "")
         Log.d("particularItemId", particularItemId)
 
         binding.headerParticularItem.titleTV.text = subCategoryName
+        binding.headerParticularItem.cartIV.visibility=View.GONE
+        binding.headerParticularItem.cartItemTV.visibility=View.GONE
         Glide.with(this).load(imageURL).into(binding.headerParticularItem.iconIV)
 
         particularItemList("sort", "price", "0")

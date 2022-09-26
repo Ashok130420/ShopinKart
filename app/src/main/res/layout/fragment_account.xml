@@ -272,5 +272,23 @@
             app:layout_constraintTop_toTopOf="@+id/privacyPolicyTV"
             tools:ignore="ContentDescription" />
 
+
+
+        <TextView
+            android:id="@+id/logOutTV"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/m4"
+            android:layout_margin="@dimen/m10"
+            android:background="@drawable/shape_text_blue"
+            android:paddingHorizontal="@dimen/p20"
+            android:paddingVertical="@dimen/p10"
+            android:text="@string/logout"
+            android:textColor="@color/primary_Blue"
+            android:textSize="@dimen/text_size_14"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            />
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

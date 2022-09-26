@@ -14,14 +14,12 @@ import androidx.fragment.app.Fragment
 import androidx.viewpager2.widget.ViewPager2
 import com.denzcoskun.imageslider.models.SlideModel
 import com.example.shopinkarts.R
+import com.example.shopinkarts.activity.DashBoardActivity
 import com.example.shopinkarts.activity.ViewAllActivity
 import com.example.shopinkarts.adapter.*
 import com.example.shopinkarts.api.RetrofitClient
 import com.example.shopinkarts.databinding.FragmentHomeBinding
-import com.example.shopinkarts.model.Banner2Slide
-import com.example.shopinkarts.model.Banner3Slide
-import com.example.shopinkarts.model.ClothShortingModel
-import com.example.shopinkarts.model.CommonModel
+import com.example.shopinkarts.model.*
 import com.example.shopinkarts.response.*
 import com.facebook.shimmer.ShimmerFrameLayout
 import retrofit2.Call
@@ -60,13 +58,10 @@ class HomeFragment : Fragment() {
 
     val arrayListShopFor: ArrayList<ShopFor> = ArrayList()
     val arrayListPreferredManufacturer: ArrayList<PreferredManufacturer> = ArrayList()
-    val arrayListNewlyAdded: ArrayList<NewlyAdded> = ArrayList()
+
     val arraylistBanner1: ArrayList<Banner> = ArrayList()
     val arraylistBanner2: ArrayList<Banner> = ArrayList()
-    val arrayListMostPopular: ArrayList<MostPopular> = ArrayList()
-    val arrayListTopRated: ArrayList<TopRated> = ArrayList()
-    val arrayListFlashSale: ArrayList<FlashSale> = ArrayList()
-    val arrayListDealOfDay: ArrayList<DealOfDay> = ArrayList()
+
 
     private lateinit var banner1Adapter: Banner1Adapter
     var currentPage = 0
@@ -74,6 +69,23 @@ class HomeFragment : Fragment() {
     var timer: Timer? = null
     val DELAY_MS: Long = 2000
     val PERIOD_MS: Long = 4000
+
+    companion object {
+        var mInstance:HomeFragment= HomeFragment()
+
+        val arrayListNewlyAdded: ArrayList<NewlyAdded> = ArrayList()
+        val arrayListMostPopular: ArrayList<MostPopular> = ArrayList()
+        val arrayListTopRated: ArrayList<TopRated> = ArrayList()
+        val arrayListFlashSale: ArrayList<FlashSale> = ArrayList()
+        val arrayListDealOfDay: ArrayList<DealOfDay> = ArrayList()
+        val arrayListShopFor: ArrayList<ShopFor> = ArrayList()
+        val arrayListPreferredManufacturer: ArrayList<PreferredManufacturer> = ArrayList()
+
+        fun getInstance(): HomeFragment {
+            return mInstance
+        }
+    }
+
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -193,12 +205,52 @@ class HomeFragment : Fragment() {
         binding.filterItemsRV.adapter = filterItemsAdapter
         binding.filterItemsRV.isNestedScrollingEnabled = false
 
-        binding.newlyAddedAllTV.setOnClickListener {
+
+        binding.preferredManufacturerAllTV.setOnClickListener {
             val intent = Intent(context, ViewAllActivity::class.java)
+            intent.putExtra("from", "preferredManufacturer")
             startActivity(intent)
         }
+
         binding.mostPopularAllTV.setOnClickListener {
             val intent = Intent(context, ViewAllActivity::class.java)
+            intent.putExtra("from", "mostPopular")
+            startActivity(intent)
+        }
+
+        binding.topRatedAllTV.setOnClickListener {
+            val intent = Intent(context, ViewAllActivity::class.java)
+            intent.putExtra("from", "topRated")
+            startActivity(intent)
+        }
+        binding.newlyAddedAllTV.setOnClickListener {
+            val intent = Intent(context, ViewAllActivity::class.java)
+            intent.putExtra("from", "newlyAdded")
+            startActivity(intent)
+        }
+        binding.allFlashSaleTV.setOnClickListener {
+            val intent = Intent(context, ViewAllActivity::class.java)
+            intent.putExtra("from", "flashSale")
+            startActivity(intent)
+        }
+        binding.dealOfDayAllTV.setOnClickListener {
+            val intent = Intent(context, ViewAllActivity::class.java)
+            intent.putExtra("from", "dealOfDay")
+            startActivity(intent)
+        }
+        binding.popularBrandAllTV.setOnClickListener {
+            val intent = Intent(context, ViewAllActivity::class.java)
+            intent.putExtra("from", "popularBrand")
+            startActivity(intent)
+        }
+        binding.discountForYouAllTV.setOnClickListener {
+            val intent = Intent(context, ViewAllActivity::class.java)
+            intent.putExtra("from", "discountForYou")
+            startActivity(intent)
+        }
+        binding.recommendedAllTV.setOnClickListener {
+            val intent = Intent(context, ViewAllActivity::class.java)
+            intent.putExtra("from", "recommended")
             startActivity(intent)
         }
 
@@ -303,8 +355,8 @@ class HomeFragment : Fragment() {
                         arrayListDealOfDay.addAll(dashBoardResponse.dealOfDay)
                         dealOfTheDayAdapter =
                             DealOfTheDayAdapter(requireContext(), arrayListDealOfDay)
-                        binding.popularRV.adapter = dealOfTheDayAdapter
-                        binding.popularRV.isNestedScrollingEnabled = false
+                        binding.dealOfDayRV.adapter = dealOfTheDayAdapter
+                        binding.dealOfDayRV.isNestedScrollingEnabled = false
                         dealOfTheDayAdapter.notifyDataSetChanged()
 
                     }

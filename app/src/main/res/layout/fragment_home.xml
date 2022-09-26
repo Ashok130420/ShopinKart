@@ -398,7 +398,7 @@
                         />
 
                     <TextView
-                        android:id="@+id/popularTV"
+                        android:id="@+id/dealOfDayTV"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="@dimen/m40"
@@ -410,26 +410,26 @@
                         app:layout_constraintTop_toBottomOf="@+id/flashSaleAllItemsCL" />
 
                     <TextView
-                        android:id="@+id/popularAllTV"
+                        android:id="@+id/dealOfDayAllTV"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/dm_sans"
                         android:text="@string/view_all"
                         android:textColor="@color/primary_Blue"
                         android:textSize="@dimen/text_size_12"
-                        app:layout_constraintBottom_toBottomOf="@+id/popularTV"
+                        app:layout_constraintBottom_toBottomOf="@+id/dealOfDayTV"
                         app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintTop_toTopOf="@+id/popularTV" />
+                        app:layout_constraintTop_toTopOf="@+id/dealOfDayTV" />
 
 
                     <androidx.recyclerview.widget.RecyclerView
-                        android:id="@+id/popularRV"
+                        android:id="@+id/dealOfDayRV"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="@dimen/m24"
                         android:orientation="horizontal"
                         app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
-                        app:layout_constraintTop_toBottomOf="@id/popularTV"
+                        app:layout_constraintTop_toBottomOf="@id/dealOfDayTV"
                         tools:listitem="@layout/items_deal_of_the_day"
 
                         />
@@ -444,7 +444,7 @@
                         android:textColor="@color/primary_text"
                         android:textSize="@dimen/text_size_18"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/popularRV" />
+                        app:layout_constraintTop_toBottomOf="@+id/dealOfDayRV" />
 
                     <TextView
                         android:id="@+id/popularBrandAllTV"

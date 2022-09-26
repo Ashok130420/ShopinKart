@@ -1,23 +1,13 @@
 package com.example.shopinkarts.activity
 
-import android.content.Context
 import android.content.Intent
-import android.content.SharedPreferences
-import android.os.Build
 import android.os.Bundle
 import android.util.Log
 import android.view.View
-import android.view.Window
-import android.view.WindowManager
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import androidx.constraintlayout.widget.ConstraintLayout
-import androidx.core.content.ContextCompat
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import com.example.shopinkarts.R
-import com.example.shopinkarts.adapter.YourCartAdapter
-import com.example.shopinkarts.api.RetrofitClient
 import com.example.shopinkarts.classes.SharedPreference
 import com.example.shopinkarts.databinding.ActivityDashBoardBinding
 import com.example.shopinkarts.fragments.AccountFragment
@@ -25,14 +15,7 @@ import com.example.shopinkarts.fragments.CategoriesFragment
 import com.example.shopinkarts.fragments.HomeFragment
 import com.example.shopinkarts.fragments.OrdersFragment
 import com.example.shopinkarts.model.CartModel
-import com.example.shopinkarts.response.DashBoardResponse
-import com.example.shopinkarts.response.ShopFor
-import com.google.gson.Gson
-import com.google.gson.reflect.TypeToken
-import retrofit2.Call
-import retrofit2.Callback
-import retrofit2.Response
-import java.lang.reflect.Type
+
 
 class DashBoardActivity : AppCompatActivity() {
 
