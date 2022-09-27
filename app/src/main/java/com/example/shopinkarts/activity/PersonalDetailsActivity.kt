@@ -34,7 +34,6 @@ class PersonalDetailsActivity : AppCompatActivity() {
     lateinit var binding: ActivityPersonalDetailsBinding
     var layoutCount = 1
     var userType = ""
-    var state = ""
 
     var totalAmount: Double = 0.00
     var gst = 0F
@@ -42,7 +41,14 @@ class PersonalDetailsActivity : AppCompatActivity() {
     var amountPaid = 0F
     var paymentType = 0
 
-    var id = ""
+    var name = ""
+    var phone = ""
+    var flat = ""
+    var street = ""
+    var pin = ""
+    var city = ""
+    var state = ""
+    var landmark = ""
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -115,10 +121,59 @@ class PersonalDetailsActivity : AppCompatActivity() {
 
 
         binding.headerPersonalDetails.nameTV.text = resources.getString(R.string.personal_details)
+
         binding.headerPersonalDetails.backIV.setOnClickListener {
             onBackPressed()
         }
+
         binding.continueTV.setOnClickListener {
+
+            name = binding.includeStepper1.nameET.text.toString().trim()
+            phone = binding.includeStepper1.phoneNumberET.text.toString().trim()
+            flat = binding.includeStepper1.flatHouseET.text.toString().trim()
+            street = binding.includeStepper1.streetET.text.toString().trim()
+            pin = binding.includeStepper1.pinCodeET.text.toString().trim()
+            city = binding.includeStepper1.cityET.text.toString().trim()
+            state = state
+            landmark = binding.includeStepper1.landMarkET.text.toString().trim()
+
+            if (name.isEmpty()) {
+                binding.includeStepper1.nameET.error = "Enter name"
+                binding.includeStepper1.nameET.requestFocus()
+                return@setOnClickListener
+            }
+
+            if (phone.isEmpty()) {
+                binding.includeStepper1.phoneNumberET.error = "Enter phone number"
+                binding.includeStepper1.phoneNumberET.requestFocus()
+                return@setOnClickListener
+            }
+            if (flat.isEmpty()) {
+                binding.includeStepper1.flatHouseET.error = "Enter house no"
+                binding.includeStepper1.flatHouseET.requestFocus()
+                return@setOnClickListener
+            }
+            if (street.isEmpty()) {
+                binding.includeStepper1.streetET.error = "Enter street"
+                binding.includeStepper1.streetET.requestFocus()
+                return@setOnClickListener
+            }
+            if (pin.isEmpty()) {
+                binding.includeStepper1.pinCodeET.error = "Enter pin code"
+                binding.includeStepper1.pinCodeET.requestFocus()
+                return@setOnClickListener
+            }
+            if (city.isEmpty()) {
+                binding.includeStepper1.cityET.error = "Enter city"
+                binding.includeStepper1.cityET.requestFocus()
+                return@setOnClickListener
+            }
+            if (landmark.isEmpty()) {
+                binding.includeStepper1.landMarkET.error = "Enter landmark"
+                binding.includeStepper1.landMarkET.requestFocus()
+                return@setOnClickListener
+            }
+
             sharedPreference.setAddress(
                 name = binding.includeStepper1.nameET.text.toString(),
                 phone = binding.includeStepper1.phoneNumberET.text.toString(),
@@ -137,9 +192,9 @@ class PersonalDetailsActivity : AppCompatActivity() {
             }
 
         }
+
         val ss = SpannableString(
-            "You can track the delivery in\nthe " +
-                    "\"Order\" section"
+            "You can track the delivery in\nthe " + "\"Order\" section"
         )
         val span1: ClickableSpan = object : ClickableSpan() {
             override fun onClick(view: View) {
@@ -247,6 +302,7 @@ class PersonalDetailsActivity : AppCompatActivity() {
         binding.successIV.setImageResource(R.drawable.grey_right_icon)
         layoutCount++
 
+
     }
 
     private fun layoutSecond() {
@@ -256,6 +312,7 @@ class PersonalDetailsActivity : AppCompatActivity() {
         binding.includeStepper3.successCL.visibility = View.GONE
         binding.paymentIV.setImageResource(R.drawable.blue_right_icon)
         binding.successIV.setImageResource(R.drawable.grey_right_icon)
+
         layoutCount++
     }
 
@@ -307,44 +364,51 @@ class PersonalDetailsActivity : AppCompatActivity() {
             totalAmount = totalAmount.toString(),
             userId = sharedPreference.getUserId().toString(),
 
-        )
+            )
 //        )
 
         val call: Call<SuccessResponse> = RetrofitClient.instance!!.api.ordersApi(requestBody)
         call.enqueue(object : Callback<SuccessResponse> {
             override fun onResponse(
-                call: Call<SuccessResponse>,
-                response: Response<SuccessResponse>
+                call: Call<SuccessResponse>, response: Response<SuccessResponse>
             ) {
                 if (response.isSuccessful) {
                     val orderResponse = response.body()
                     if (orderResponse!!.status) {
 
+                        DashBoardActivity.arrayListCart.clear()
+                        DashBoardActivity.selectedVIDs.clear()
+                        sharedPreference.setArray()
                         Toast.makeText(
-                            this@PersonalDetailsActivity, response.message(),
-                            Toast.LENGTH_SHORT
+                            this@PersonalDetailsActivity, response.message(), Toast.LENGTH_SHORT
                         ).show()
                         Log.e("orderResponse", "${response.message()} ")
 
                     } else {
                         Toast.makeText(
-                            this@PersonalDetailsActivity, response.message(),
-                            Toast.LENGTH_SHORT
+                            this@PersonalDetailsActivity, response.message(), Toast.LENGTH_SHORT
                         ).show()
                         Log.e("orderResponse", "${response.message()} ")
 
                     }
+                    DashBoardActivity.arrayListCart.clear()
+                    DashBoardActivity.selectedVIDs.clear()
+                    sharedPreference.setArray()
                 }
             }
 
             override fun onFailure(call: Call<SuccessResponse>, t: Throwable) {
                 Toast.makeText(
-                    this@PersonalDetailsActivity, "${t.message}",
-                    Toast.LENGTH_SHORT
+                    this@PersonalDetailsActivity, "${t.message}", Toast.LENGTH_SHORT
                 ).show()
                 Log.e("orderResponse", "${t.message} ")
             }
         })
+    }
+
+    fun validation() {
+
+
     }
 }
 

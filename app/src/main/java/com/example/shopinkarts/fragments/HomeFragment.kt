@@ -3,6 +3,7 @@ package com.example.shopinkarts.fragments
 
 import android.content.Intent
 import android.os.Bundle
+import android.os.CountDownTimer
 import android.os.Handler
 import android.util.Log
 import android.view.*
@@ -14,7 +15,6 @@ import androidx.fragment.app.Fragment
 import androidx.viewpager2.widget.ViewPager2
 import com.denzcoskun.imageslider.models.SlideModel
 import com.example.shopinkarts.R
-import com.example.shopinkarts.activity.DashBoardActivity
 import com.example.shopinkarts.activity.ViewAllActivity
 import com.example.shopinkarts.adapter.*
 import com.example.shopinkarts.api.RetrofitClient
@@ -71,7 +71,7 @@ class HomeFragment : Fragment() {
     val PERIOD_MS: Long = 4000
 
     companion object {
-        var mInstance:HomeFragment= HomeFragment()
+        var mInstance: HomeFragment = HomeFragment()
 
         val arrayListNewlyAdded: ArrayList<NewlyAdded> = ArrayList()
         val arrayListMostPopular: ArrayList<MostPopular> = ArrayList()
@@ -88,8 +88,7 @@ class HomeFragment : Fragment() {
 
 
     override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
+        inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
     ): View {
 
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_home, container, false)
@@ -97,7 +96,7 @@ class HomeFragment : Fragment() {
         activity?.window?.setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_RESIZE)
 //        shimmerShopFor = binding.shimmerViewShopFor
         shimmerManufacturer = binding.shimmerViewManufacturer
-        shimmerMostPopular = binding.shimmerViewMostPopular
+//        shimmerMostPopular = binding.shimmerViewMostPopular
 
 //        binding.shopForRV.showShimmer()
 //        banner1Adapter = Banner1Adapter(requireContext(), arraylistBanner1)
@@ -115,6 +114,8 @@ class HomeFragment : Fragment() {
         setCurrentIndicatorBanner3(0)
 
         binding.shopForRV.showShimmerAdapter()
+        binding.mostPopularRV.showShimmerAdapter()
+        binding.newlyAddedRV.showShimmerAdapter()
 
         binding.introSliderViewPager.registerOnPageChangeCallback(object :
             ViewPager2.OnPageChangeCallback() {
@@ -266,26 +267,56 @@ class HomeFragment : Fragment() {
         binding.recommendedRV.isNestedScrollingEnabled = false
         dashBoardList()
 
+        val timer = object : CountDownTimer(20000000, 1000) {
+            override fun onTick(millisUntilFinished: Long) {
+                var diff: Long = millisUntilFinished
+                val secondsInMilli: Long = 1000
+                val minutesInMilli = secondsInMilli * 60
+                val hoursInMilli = minutesInMilli * 60
+                val daysInMilli = hoursInMilli * 24
+
+                val elapsedDays = diff / daysInMilli
+                diff %= daysInMilli
+
+                val elapsedHours = diff / hoursInMilli
+                diff %= hoursInMilli
+
+                val elapsedMinutes = diff / minutesInMilli
+                diff %= minutesInMilli
+
+                val elapsedSeconds = diff / secondsInMilli
+
+                binding.clock1TV.text = "$elapsedHours : $elapsedMinutes : $elapsedSeconds "
+//                    "$elapsedDays days $elapsedHours hs $elapsedMinutes min $elapsedSeconds sec"
+            }
+
+            override fun onFinish() {
+
+                binding.clock1TV.text = " 00 : 00 : 00 "
+
+            }
+        }
+        timer.start()
+
 
         return binding.root
     }
 
     private fun dashBoardList() {
 
-        val call: Call<DashBoardResponse> =
-            RetrofitClient.instance!!.api.dashBoard()
+        val call: Call<DashBoardResponse> = RetrofitClient.instance!!.api.dashBoard()
         call.enqueue(object : Callback<DashBoardResponse> {
             override fun onResponse(
-                call: Call<DashBoardResponse>,
-                response: Response<DashBoardResponse>
+                call: Call<DashBoardResponse>, response: Response<DashBoardResponse>
             ) {
 //                binding.shopForRV.hideShimmer()
 //                shimmerShopFor.stopShimmer()
 //                shimmerShopFor.visibility = View.GONE
                 shimmerManufacturer.stopShimmer()
                 shimmerManufacturer.visibility = View.GONE
-                shimmerMostPopular.stopShimmer()
-                shimmerMostPopular.visibility = View.GONE
+//                shimmerMostPopular.stopShimmer()
+//                shimmerMostPopular.visibility = View.GONE
+
                 val dashBoardResponse = response.body()
                 if (response.isSuccessful && context != null) {
 
@@ -363,20 +394,19 @@ class HomeFragment : Fragment() {
 
                     Log.d("TAG", "onResponse_SuccessResponse: ${dashBoardResponse.message}")
                 } else {
-                    if (context != null)
-                        Toast.makeText(
-                            requireContext(),
-                            "${dashBoardResponse?.message}",
-                            Toast.LENGTH_SHORT
-                        ).show()
+                    if (context != null) Toast.makeText(
+                        requireContext(), "${dashBoardResponse?.message}", Toast.LENGTH_SHORT
+                    ).show()
                 }
             }
 
             override fun onFailure(call: Call<DashBoardResponse>, t: Throwable) {
                 Log.d("TAG", "onFailureResponse: $${t.message}")
-                if (context != null)
-                    Toast.makeText(requireContext(), "${t.message}", Toast.LENGTH_SHORT)
-                        .show()
+                if (context != null) Toast.makeText(
+                    requireContext(),
+                    "${t.message}",
+                    Toast.LENGTH_SHORT
+                ).show()
             }
 
         })
@@ -440,13 +470,19 @@ class HomeFragment : Fragment() {
         for (i in 0 until childCount) {
             val imageView = binding.indicatorsContainers[i] as ImageView
             if (i == index) {
-                imageView.setImageDrawable(
-                    context?.let { ContextCompat.getDrawable(it, R.drawable.indicator_active) }
-                )
+                imageView.setImageDrawable(context?.let {
+                    ContextCompat.getDrawable(
+                        it,
+                        R.drawable.indicator_active
+                    )
+                })
             } else {
-                imageView.setImageDrawable(
-                    context?.let { ContextCompat.getDrawable(it, R.drawable.indicator_inactive) }
-                )
+                imageView.setImageDrawable(context?.let {
+                    ContextCompat.getDrawable(
+                        it,
+                        R.drawable.indicator_inactive
+                    )
+                })
             }
         }
     }
@@ -482,13 +518,19 @@ class HomeFragment : Fragment() {
         for (i in 0 until childCount) {
             val imageView = binding.indicatorsBanner2[i] as ImageView
             if (i == index) {
-                imageView.setImageDrawable(
-                    context?.let { ContextCompat.getDrawable(it, R.drawable.indicator_active) }
-                )
+                imageView.setImageDrawable(context?.let {
+                    ContextCompat.getDrawable(
+                        it,
+                        R.drawable.indicator_active
+                    )
+                })
             } else {
-                imageView.setImageDrawable(
-                    context?.let { ContextCompat.getDrawable(it, R.drawable.indicator_inactive) }
-                )
+                imageView.setImageDrawable(context?.let {
+                    ContextCompat.getDrawable(
+                        it,
+                        R.drawable.indicator_inactive
+                    )
+                })
 
             }
         }
@@ -526,13 +568,19 @@ class HomeFragment : Fragment() {
         for (i in 0 until childCount) {
             val imageView = binding.indicatorsBanner3[i] as ImageView
             if (i == index) {
-                imageView.setImageDrawable(
-                    context?.let { ContextCompat.getDrawable(it, R.drawable.indicator_active) }
-                )
+                imageView.setImageDrawable(context?.let {
+                    ContextCompat.getDrawable(
+                        it,
+                        R.drawable.indicator_active
+                    )
+                })
             } else {
-                imageView.setImageDrawable(
-                    context?.let { ContextCompat.getDrawable(it, R.drawable.indicator_inactive) }
-                )
+                imageView.setImageDrawable(context?.let {
+                    ContextCompat.getDrawable(
+                        it,
+                        R.drawable.indicator_inactive
+                    )
+                })
 
             }
         }

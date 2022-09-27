@@ -32,7 +32,6 @@ class ProductAdapter(val context: Context, val products: List<CreateProduct>) :
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val itemDetails = products[position]
         holder.binding.apply {
-
             productNameTV.text = itemDetails.productName
             priceTV.text = itemDetails.totalAmount.toString()
             Glide.with(context).load(itemDetails.productImage).into(imageIV)
@@ -44,9 +43,10 @@ class ProductAdapter(val context: Context, val products: List<CreateProduct>) :
         sizeQtyAdapter = SizeQtyAdapter(context)
         holder.binding.sizeQtyRV.adapter = holder.sizeQtyAdapter
         holder.binding.sizeQtyRV.isNestedScrollingEnabled = false
+
         holder.itemView.setOnClickListener {
-            val intent = Intent(context, OrderDetailsActivity::class.java)
-            context.startActivity(intent)
+//            val intent = Intent(context, OrderDetailsActivity::class.java)
+//            context.startActivity(intent)
         }
 
     }

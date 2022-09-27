@@ -138,7 +138,6 @@ class SharedPreference(val context: Context) {
 
     fun setArray() {
 
-
         val editor = prefs.edit()
         val gson = Gson()
 

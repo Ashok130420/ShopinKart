@@ -57,4 +57,5 @@
     <dimen name="p7">7dp</dimen>
     <dimen name="m150">150dp</dimen>
     <dimen name="m180">180dp</dimen>
+    <dimen name="m110">110dp</dimen>
 </resources>

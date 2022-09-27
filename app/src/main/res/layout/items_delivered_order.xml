@@ -49,7 +49,7 @@
                 tools:ignore="ContentDescription" />
 
             <TextView
-                android:id="@+id/textViewCustomerDetails"
+                android:id="@+id/acceptedTV"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/m10"
@@ -90,7 +90,7 @@
                 tools:ignore="ContentDescription" />
 
             <TextView
-                android:id="@+id/textViewHouseSketch"
+                android:id="@+id/processingTV"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/m10"
@@ -133,7 +133,7 @@
                 tools:ignore="ContentDescription" />
 
             <TextView
-                android:id="@+id/textViewHouseDetails"
+                android:id="@+id/outForDeliveryTV"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/m10"
@@ -176,7 +176,7 @@
                 tools:ignore="ContentDescription" />
 
             <TextView
-                android:id="@+id/textViewAirTightness"
+                android:id="@+id/deliveredTV"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/m10"

@@ -19,10 +19,7 @@ class DeliveredOrderAdapter(val context: Context, val arrayList: ArrayList<Order
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
 
         val binding: ItemsDeliveredOrderBinding = DataBindingUtil.inflate(
-            LayoutInflater.from(parent.context),
-            R.layout.items_delivered_order,
-            parent,
-            false
+            LayoutInflater.from(parent.context), R.layout.items_delivered_order, parent, false
         )
 
         return ViewHolder(binding)
@@ -32,10 +29,58 @@ class DeliveredOrderAdapter(val context: Context, val arrayList: ArrayList<Order
         val itemDetails = arrayList[position]
         holder.binding.apply {
 
+            productAdapter = ProductAdapter(context, itemDetails.products)
+            productRV.adapter = productAdapter
+            productRV.isNestedScrollingEnabled = false
+
+            if (itemDetails.orderStatus == 0) {
+                viewStepper2.setBackgroundColor(context.resources.getColor(R.color.hint))
+                viewStepper3.setBackgroundColor(context.resources.getColor(R.color.hint))
+                viewStepper1.setBackgroundColor(context.resources.getColor(R.color.hint))
+                processingTV.setBackgroundResource(R.drawable.button_grey_radius5)
+                outForDeliveryTV.setBackgroundResource(R.drawable.button_grey_radius5)
+                deliveredTV.setBackgroundResource(R.drawable.button_grey_radius5)
+                outForDeliveryIV.setImageResource(R.drawable.deactivate_stepper)
+                deliveredIV.setImageResource(R.drawable.deactivate_stepper)
+                processingIV.setImageResource(R.drawable.deactivate_stepper)
+
+            } else if (itemDetails.orderStatus == 1) {
+                viewStepper2.setBackgroundColor(context.resources.getColor(R.color.hint))
+                viewStepper3.setBackgroundColor(context.resources.getColor(R.color.hint))
+                viewStepper1.setBackgroundColor(context.resources.getColor(R.color.primary_Blue))
+                processingIV.setImageResource(R.drawable.active_stepper)
+                processingTV.setBackgroundResource(R.drawable.button_blue_radius5)
+                outForDeliveryTV.setBackgroundResource(R.drawable.button_grey_radius5)
+                deliveredTV.setBackgroundResource(R.drawable.button_grey_radius5)
+                outForDeliveryIV.setImageResource(R.drawable.deactivate_stepper)
+                deliveredIV.setImageResource(R.drawable.deactivate_stepper)
+
+            } else if (itemDetails.orderStatus == 2) {
+                viewStepper1.setBackgroundColor(context.resources.getColor(R.color.primary_Blue))
+                viewStepper2.setBackgroundColor(context.resources.getColor(R.color.primary_Blue))
+                viewStepper3.setBackgroundColor(context.resources.getColor(R.color.hint))
+                processingIV.setImageResource(R.drawable.active_stepper)
+                outForDeliveryIV.setImageResource(R.drawable.active_stepper)
+                processingTV.setBackgroundResource(R.drawable.button_blue_radius5)
+                outForDeliveryTV.setBackgroundResource(R.drawable.button_blue_radius5)
+                deliveredTV.setBackgroundResource(R.drawable.button_grey_radius5)
+                deliveredIV.setImageResource(R.drawable.deactivate_stepper)
+
+            } else if (itemDetails.orderStatus == 3) {
+                viewStepper1.setBackgroundColor(context.resources.getColor(R.color.primary_Blue))
+                viewStepper2.setBackgroundColor(context.resources.getColor(R.color.primary_Blue))
+                viewStepper3.setBackgroundColor(context.resources.getColor(R.color.primary_Blue))
+                processingIV.setImageResource(R.drawable.active_stepper)
+                outForDeliveryIV.setImageResource(R.drawable.active_stepper)
+                deliveredIV.setImageResource(R.drawable.active_stepper)
+                deliveredTV.setBackgroundResource(R.drawable.button_blue_radius5)
+                processingTV.setBackgroundResource(R.drawable.button_blue_radius5)
+                outForDeliveryTV.setBackgroundResource(R.drawable.button_blue_radius5)
+
+            }
+
         }
-        productAdapter = ProductAdapter(context, itemDetails.products)
-        holder.binding.productRV.adapter = productAdapter
-        holder.binding.productRV.isNestedScrollingEnabled = false
+
 
         holder.binding.trackOrderStatusTV.setOnClickListener {
             val intent = Intent(context, TrackOrderActivity::class.java)
@@ -51,7 +96,5 @@ class DeliveredOrderAdapter(val context: Context, val arrayList: ArrayList<Order
     inner class ViewHolder(itemView: ItemsDeliveredOrderBinding) :
         RecyclerView.ViewHolder(itemView.root) {
         val binding: ItemsDeliveredOrderBinding = itemView
-
-
     }
 }

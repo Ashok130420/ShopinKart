@@ -140,17 +140,28 @@
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent" />
 
-
                     <com.cooltechworks.views.shimmer.ShimmerRecyclerView
                         android:id="@+id/shopForRV"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        app:layout_constraintTop_toBottomOf="@id/shopForTV"
+                        app:shimmer_demo_angle="20"
                         app:shimmer_demo_child_count="3"
                         app:shimmer_demo_layout="@layout/shimmer_items_shop_for"
                         app:shimmer_demo_layout_manager_type="linear_horizontal"
-                        app:shimmer_demo_angle="20"
-                        tools:listitem="@layout/shimmer_items_shop_for"
-                        app:layout_constraintTop_toBottomOf="@id/shopForTV" />
+                        tools:listitem="@layout/shimmer_items_shop_for" />
+
+                    <!--                    <androidx.recyclerview.widget.RecyclerView-->
+                    <!--                        android:id="@+id/shopForRV"-->
+                    <!--                        android:layout_width="match_parent"-->
+                    <!--                        android:layout_height="wrap_content"-->
+                    <!--                        android:layout_marginTop="@dimen/m20"-->
+                    <!--                        android:orientation="horizontal"-->
+                    <!--                        app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"-->
+                    <!--                        app:layout_constraintTop_toBottomOf="@id/shopForTV"-->
+                    <!--                        tools:listitem="@layout/items_shop_for"-->
+                    <!--                        />-->
 
                     <TextView
                         android:id="@+id/preferredManufacturerTV"
@@ -238,33 +249,46 @@
 
                     </androidx.constraintlayout.widget.ConstraintLayout>
 
-                    <com.facebook.shimmer.ShimmerFrameLayout
-                        android:id="@+id/shimmerViewMostPopular"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="@dimen/m20"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@id/mostPopularCL">
+                    <!--                    <com.facebook.shimmer.ShimmerFrameLayout-->
+                    <!--                        android:id="@+id/shimmerViewMostPopular"-->
+                    <!--                        android:layout_width="match_parent"-->
+                    <!--                        android:layout_height="wrap_content"-->
+                    <!--                        android:layout_marginTop="@dimen/m20"-->
+                    <!--                        app:layout_constraintStart_toStartOf="parent"-->
+                    <!--                        app:layout_constraintTop_toBottomOf="@id/mostPopularCL">-->
 
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:orientation="horizontal">
+                    <!--                        <LinearLayout-->
+                    <!--                            android:layout_width="match_parent"-->
+                    <!--                            android:layout_height="wrap_content"-->
+                    <!--                            android:orientation="horizontal">-->
 
-                            <include layout="@layout/shimmer_items_most_popular" />
+                    <!--                            <include layout="@layout/shimmer_items_most_popular" />-->
 
-                        </LinearLayout>
-                    </com.facebook.shimmer.ShimmerFrameLayout>
+                    <!--                        </LinearLayout>-->
+                    <!--                    </com.facebook.shimmer.ShimmerFrameLayout>-->
 
-                    <androidx.recyclerview.widget.RecyclerView
+                    <com.cooltechworks.views.shimmer.ShimmerRecyclerView
                         android:id="@+id/mostPopularRV"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="@dimen/m10"
                         android:orientation="horizontal"
-                        app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
                         app:layout_constraintTop_toBottomOf="@id/mostPopularCL"
-                        tools:listitem="@layout/items_most_popular" />
+                        app:shimmer_demo_angle="20"
+                        app:shimmer_demo_child_count="3"
+                        app:shimmer_demo_layout="@layout/shimmer_items_most_popular"
+                        app:shimmer_demo_layout_manager_type="linear_horizontal"
+                        tools:listitem="@layout/shimmer_items_most_popular" />
+
+                    <!--                    <androidx.recyclerview.widget.RecyclerView-->
+                    <!--                        android:id="@+id/mostPopularRV"-->
+                    <!--                        android:layout_width="match_parent"-->
+                    <!--                        android:layout_height="wrap_content"-->
+                    <!--                        android:layout_marginTop="@dimen/m10"-->
+                    <!--                        android:orientation="horizontal"-->
+                    <!--                        app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"-->
+                    <!--                        app:layout_constraintTop_toBottomOf="@id/mostPopularCL"-->
+                    <!--                        tools:listitem="@layout/items_most_popular" />-->
 
                     <androidx.constraintlayout.widget.ConstraintLayout
                         android:id="@+id/topRatedCL"
@@ -385,17 +409,30 @@
                         app:layout_constraintTop_toTopOf="@+id/newlyAddedTV" />
 
 
-                    <androidx.recyclerview.widget.RecyclerView
+                    <com.cooltechworks.views.shimmer.ShimmerRecyclerView
                         android:id="@+id/newlyAddedRV"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="@dimen/m24"
-                        android:orientation="horizontal"
-                        app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
-                        app:layout_constraintTop_toBottomOf="@id/newlyAddedTV"
-                        tools:listitem="@layout/items_newly_added"
+                        android:orientation="vertical"
+                        app:layout_constraintTop_toBottomOf="@id/newlyAddedTV"                        app:shimmer_demo_angle="20"
+                        app:shimmer_demo_child_count="3"
+                        app:shimmer_demo_layout="@layout/shimmer_items_most_popular"
+                        app:shimmer_demo_layout_manager_type="linear_horizontal"
+                        tools:listitem="@layout/shimmer_items_most_popular" />
 
-                        />
+
+<!--                    <androidx.recyclerview.widget.RecyclerView-->
+<!--                        android:id="@+id/newlyAddedRV"-->
+<!--                        android:layout_width="match_parent"-->
+<!--                        android:layout_height="wrap_content"-->
+<!--                        android:layout_marginTop="@dimen/m24"-->
+<!--                        android:orientation="horizontal"-->
+<!--                        app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"-->
+<!--                        app:layout_constraintTop_toBottomOf="@id/newlyAddedTV"-->
+<!--                        tools:listitem="@layout/items_newly_added"-->
+
+<!--                        />-->
 
                     <TextView
                         android:id="@+id/dealOfDayTV"
@@ -589,51 +626,48 @@
                             android:id="@+id/clock1TV"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:background="@drawable/text_view_blue"
                             android:fontFamily="@font/dm_sans_medium"
-                            android:maxLength="2"
                             android:padding="@dimen/p5"
-                            android:text="@string/_02"
-                            android:textColor="@color/white"
+                            android:text=" 00 : 00 : 00 "
+                            android:textColor="@color/primary_Blue"
                             android:textSize="@dimen/text_size_16"
                             app:layout_constraintBottom_toBottomOf="@+id/closingTV"
-                            app:layout_constraintEnd_toStartOf="@+id/clock2TV"
                             app:layout_constraintStart_toEndOf="@+id/closingTV"
                             app:layout_constraintTop_toTopOf="@+id/closingTV" />
 
-                        <TextView
-                            android:id="@+id/clock2TV"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:background="@drawable/text_view_blue"
-                            android:fontFamily="@font/dm_sans_medium"
-                            android:maxLength="2"
-                            android:padding="@dimen/p5"
-                            android:text="@string/_35"
-                            android:textColor="@color/white"
-                            android:textSize="@dimen/text_size_16"
-                            app:layout_constraintBottom_toBottomOf="@+id/closingTV"
-                            app:layout_constraintEnd_toStartOf="@+id/clock3TV"
-                            app:layout_constraintStart_toEndOf="@+id/clock1TV"
-                            app:layout_constraintTop_toTopOf="@+id/closingTV" />
+                        <!-- <TextView
+                             android:id="@+id/clock2TV"
+                             android:layout_width="wrap_content"
+                             android:layout_height="wrap_content"
+                             android:background="@drawable/text_view_blue"
+                             android:fontFamily="@font/dm_sans_medium"
+                             android:maxLength="2"
+                             android:padding="@dimen/p5"
+                             android:text="@string/_35"
+                             android:textColor="@color/white"
+                             android:textSize="@dimen/text_size_16"
+                             app:layout_constraintBottom_toBottomOf="@+id/closingTV"
+                             app:layout_constraintEnd_toStartOf="@+id/clock3TV"
+                             app:layout_constraintStart_toEndOf="@+id/clock1TV"
+                             app:layout_constraintTop_toTopOf="@+id/closingTV" />
 
-                        <TextView
-                            android:id="@+id/clock3TV"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginEnd="@dimen/m35"
-                            android:background="@drawable/text_view_blue"
-                            android:fontFamily="@font/dm_sans_medium"
-                            android:maxLength="2"
-                            android:padding="@dimen/p5"
-                            android:text="@string/_05"
-                            android:textColor="@color/white"
-                            android:textSize="@dimen/text_size_16"
-                            app:layout_constraintBottom_toBottomOf="@+id/closingTV"
-                            app:layout_constraintEnd_toEndOf="@+id/FlashSaleTV"
-                            app:layout_constraintStart_toEndOf="@+id/clock2TV"
-                            app:layout_constraintTop_toTopOf="@+id/closingTV" />
-
+                         <TextView
+                             android:id="@+id/clock3TV"
+                             android:layout_width="wrap_content"
+                             android:layout_height="wrap_content"
+                             android:layout_marginEnd="@dimen/m35"
+                             android:background="@drawable/text_view_blue"
+                             android:fontFamily="@font/dm_sans_medium"
+                             android:maxLength="2"
+                             android:padding="@dimen/p5"
+                             android:text="@string/_05"
+                             android:textColor="@color/white"
+                             android:textSize="@dimen/text_size_16"
+                             app:layout_constraintBottom_toBottomOf="@+id/closingTV"
+                             app:layout_constraintEnd_toEndOf="@+id/FlashSaleTV"
+                             app:layout_constraintStart_toEndOf="@+id/clock2TV"
+                             app:layout_constraintTop_toTopOf="@+id/closingTV" />
+ -->
                     </androidx.constraintlayout.widget.ConstraintLayout>
 
                     <androidx.recyclerview.widget.RecyclerView
@@ -745,8 +779,8 @@
                     android:id="@+id/clothShortingCL"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:visibility="gone"
                     android:layout_marginTop="@dimen/m35"
+                    android:visibility="gone"
                     app:layout_constraintTop_toBottomOf="@+id/imageSliderBanner2CL">
 
                     <androidx.recyclerview.widget.RecyclerView
@@ -766,10 +800,10 @@
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:id="@+id/filterItemsCL"
                     android:layout_width="match_parent"
-                    android:visibility="gone"
                     android:layout_height="wrap_content"
                     android:layout_marginHorizontal="@dimen/m14"
                     android:layout_marginTop="@dimen/m24"
+                    android:visibility="gone"
                     app:layout_constraintTop_toBottomOf="@+id/clothShortingCL">
 
                     <androidx.recyclerview.widget.RecyclerView

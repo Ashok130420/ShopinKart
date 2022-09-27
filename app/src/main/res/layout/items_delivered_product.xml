@@ -69,6 +69,7 @@
             android:layout_marginStart="@dimen/m14"
             android:fontFamily="@font/dm_sans_medium"
             android:paddingVertical="@dimen/p2"
+
             android:text="@string/rs_1652"
             android:textColor="@color/primary_text"
             android:textSize="@dimen/text_size_12"
@@ -150,6 +151,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/m14"
             android:layout_marginTop="@dimen/m10"
+            android:visibility="gone"
             android:layout_marginBottom="@dimen/m14"
             android:background="@drawable/shape_color_green"
             android:paddingHorizontal="@dimen/p10"
