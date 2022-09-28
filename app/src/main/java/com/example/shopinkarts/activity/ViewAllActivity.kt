@@ -1,45 +1,32 @@
 package com.example.shopinkarts.activity
 
 
-import android.annotation.SuppressLint
 import android.os.Bundle
-import android.util.Log
 import android.view.View
 import android.widget.PopupMenu
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import com.example.shopinkarts.R
 import com.example.shopinkarts.adapter.*
-import com.example.shopinkarts.api.RetrofitClient
 import com.example.shopinkarts.databinding.ActivityViewAllBinding
 import com.example.shopinkarts.fragments.HomeFragment
-import com.example.shopinkarts.response.ParticularItemResponse
 import com.example.shopinkarts.response.Product
-import retrofit2.Call
-import retrofit2.Callback
-import retrofit2.Response
 
 
 class ViewAllActivity : AppCompatActivity() {
 
     lateinit var binding: ActivityViewAllBinding
-    lateinit var filterItemsAdapter: FilterItemsAdapter
     lateinit var newlyAddedAdapter: NewlyAddedAdapter
     lateinit var manufacturerAdapter: ManufacturerAdapter
     lateinit var dealOfTheDayAdapter: DealOfTheDayAdapter
     lateinit var popularBrandAdapter: PopularBrandAdapter
     lateinit var flashSaleAdapter: FlashSaleAdapter
-    lateinit var clothsShortingAdapter: ClothsShortingAdapter
     lateinit var mostPopularAdapter: MostPopularAdapter
     lateinit var topRatedAdapter: TopRatedAdapter
     lateinit var discountForYouAdapter: DiscountForYouAdapter
     lateinit var recommendedAdapter: RecommendedAdapter
-    lateinit var particularItemAdapter:ParticularItemAdapter
 
-    var arrayListParticularItem: ArrayList<Product> = ArrayList()
-
-    var particularItemId=""
+    var particularItemId = ""
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -48,7 +35,6 @@ class ViewAllActivity : AppCompatActivity() {
 
         particularItemId = intent.extras!!.getString("particularItemId", "")
 
-//        binding.headerViewAll.titleTV.text = resources.getString(R.string.newly_added)
         binding.headerViewAll.iconIV.visibility = View.GONE
         binding.headerViewAll.cartIV.visibility = View.GONE
         binding.headerViewAll.cartItemTV.visibility = View.GONE
@@ -158,78 +144,24 @@ class ViewAllActivity : AppCompatActivity() {
 
     private fun popularBrand() {
         binding.headerViewAll.titleTV.text = resources.getString(R.string.popular_brand)
-        popularBrandAdapter = PopularBrandAdapter(this)
+        popularBrandAdapter = PopularBrandAdapter(this,HomeFragment.arrayListPopularBrand)
         binding.viewAllRV.adapter = popularBrandAdapter
         popularBrandAdapter.notifyDataSetChanged()
     }
 
     private fun discountForYou() {
         binding.headerViewAll.titleTV.text = resources.getString(R.string.discount_for_you)
-        discountForYouAdapter = DiscountForYouAdapter(this)
+        discountForYouAdapter = DiscountForYouAdapter(this, HomeFragment.arrayListDiscountForYou)
         binding.viewAllRV.adapter = discountForYouAdapter
         discountForYouAdapter.notifyDataSetChanged()
     }
 
     private fun recommended() {
-        recommendedAdapter = RecommendedAdapter(this)
+        binding.headerViewAll.titleTV.text = resources.getString(R.string.recommended)
+        recommendedAdapter = RecommendedAdapter(this, HomeFragment.arrayListRecommended)
         binding.viewAllRV.adapter = recommendedAdapter
         recommendedAdapter.notifyDataSetChanged()
     }
-
-  /*  private fun particularItemList(type: String, subType: String, value: String) {
-
-
-        val call: Call<ParticularItemResponse> =
-            RetrofitClient.instance!!.api.particularItem(
-                particularItemId,
-                type = type,
-                subType = subType,
-                value = value
-            )
-        call.enqueue(object : Callback<ParticularItemResponse> {
-            override fun onResponse(
-                call: Call<ParticularItemResponse>,
-                response: Response<ParticularItemResponse>
-            ) {
-                val particularItemResponse = response.body()
-                if (response.isSuccessful) {
-                    if (particularItemResponse!!.status) {
-
-//                        intent.extras?.let {
-//                            if (it.getString("from") == "newlyAdded") {
-//                                binding.headerViewAll.titleTV.text = resources.getString(R.string.newly_added)
-////                                HomeFragment.arrayListNewlyAdded.addAll(particularItemResponse.products)
-//                                newlyAddedAdapter = NewlyAddedAdapter(this@ViewAllActivity, HomeFragment.arrayListNewlyAdded)
-//                                binding.viewAllRV.adapter = newlyAddedAdapter
-//                                newlyAddedAdapter.notifyDataSetChanged()
-//                            }
-//                        }
-                        arrayListParticularItem.clear()
-                        arrayListParticularItem.addAll(particularItemResponse.products)
-                        particularItemAdapter = ParticularItemAdapter(
-                            this@ParticularItemActivity, arrayListParticularItem
-                        )
-                        binding.particularItemRV.adapter = particularItemAdapter
-                        particularItemAdapter.notifyDataSetChanged()
-
-                    }
-                    Log.d("TAG", "onResponse_SuccessResponse${particularItemResponse.message} ")
-                } else {
-                    Toast.makeText(
-                        this@ViewAllActivity,
-                        "${particularItemResponse?.message}",
-                        Toast.LENGTH_SHORT
-                    ).show()
-                }
-            }
-
-            override fun onFailure(call: Call<ParticularItemResponse>, t: Throwable) {
-                Log.d("TAG", "onFailureResponse: ${t.message}")
-                Toast.makeText(this@ViewAllActivity, "${t.message}", Toast.LENGTH_SHORT)
-                    .show()
-            }
-        })
-    }*/
 
     private fun popupMenuSorting(view: View) {
         val popupMenu = PopupMenu(this, view)

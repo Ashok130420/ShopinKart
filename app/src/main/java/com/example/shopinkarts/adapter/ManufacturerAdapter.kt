@@ -31,7 +31,6 @@ class ManufacturerAdapter(val context: Context, val arrayList: ArrayList<Preferr
             nameTV.text = itemDetails.brandName
             Glide.with(context).load(itemDetails.brandImage).into(imageIV)
         }
-
     }
 
     override fun getItemCount(): Int {

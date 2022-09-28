@@ -34,6 +34,7 @@ class MostPopularAdapter(val context: Context, val arrayList: ArrayList<MostPopu
             Glide.with(context).load(itemDetails.productImages[0]).into(imageIV)
             productTV.text = itemDetails.productName
             priceTV.text = "Rs ${itemDetails.price}"
+            ratingTV.text=itemDetails.avgRating.toString()
 
         }
         holder.itemView.setOnClickListener {

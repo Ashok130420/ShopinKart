@@ -34,6 +34,7 @@ class DealOfTheDayAdapter(val context: Context, val arrayList: ArrayList<DealOfD
             Glide.with(context).load(itemDetails.productImages[0]).into(imageIV)
             productNameTV.text=itemDetails.productName
             priceTV.text="RS ${itemDetails.price}"
+            ratingTV.text=itemDetails.avgRating.toString()
         }
         holder.itemView.setOnClickListener {
             val intent = Intent(context, ProductDetailsActivity::class.java)

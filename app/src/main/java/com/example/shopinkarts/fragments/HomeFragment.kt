@@ -11,7 +11,11 @@ import android.widget.*
 import androidx.core.content.ContextCompat
 import androidx.core.view.get
 import androidx.databinding.DataBindingUtil
+import androidx.databinding.DataBindingUtil.setContentView
 import androidx.fragment.app.Fragment
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
+import androidx.recyclerview.widget.RecyclerView.LayoutManager
 import androidx.viewpager2.widget.ViewPager2
 import com.denzcoskun.imageslider.models.SlideModel
 import com.example.shopinkarts.R
@@ -53,15 +57,12 @@ class HomeFragment : Fragment() {
     lateinit var commonRecyclerViewAdapter: CommonRecyclerViewAdapter
     private val imageListBanner = ArrayList<SlideModel>()
     private val imageListBanner2 = ArrayList<SlideModel>()
+
     var arrayList: ArrayList<CommonModel> = ArrayList()
     var arrayListCloths: ArrayList<ClothShortingModel> = ArrayList()
 
-    val arrayListShopFor: ArrayList<ShopFor> = ArrayList()
-    val arrayListPreferredManufacturer: ArrayList<PreferredManufacturer> = ArrayList()
-
     val arraylistBanner1: ArrayList<Banner> = ArrayList()
     val arraylistBanner2: ArrayList<Banner> = ArrayList()
-
 
     private lateinit var banner1Adapter: Banner1Adapter
     var currentPage = 0
@@ -79,13 +80,16 @@ class HomeFragment : Fragment() {
         val arrayListFlashSale: ArrayList<FlashSale> = ArrayList()
         val arrayListDealOfDay: ArrayList<DealOfDay> = ArrayList()
         val arrayListShopFor: ArrayList<ShopFor> = ArrayList()
+        val arrayListDiscountForYou: ArrayList<DiscountForYou> = ArrayList()
+        val arrayListRecommended: ArrayList<RecommendedItem> = ArrayList()
         val arrayListPreferredManufacturer: ArrayList<PreferredManufacturer> = ArrayList()
+        val arrayListPopularBrand: ArrayList<PreferredManufacturer> = ArrayList()
+
 
         fun getInstance(): HomeFragment {
             return mInstance
         }
     }
-
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
@@ -94,6 +98,9 @@ class HomeFragment : Fragment() {
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_home, container, false)
 
         activity?.window?.setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_RESIZE)
+
+        dashBoardList()
+
 //        shimmerShopFor = binding.shimmerViewShopFor
         shimmerManufacturer = binding.shimmerViewManufacturer
 //        shimmerMostPopular = binding.shimmerViewMostPopular
@@ -159,11 +166,6 @@ class HomeFragment : Fragment() {
 //        binding.shopForRV.hasFixedSize()
 //        binding.shopForRV.adapter = shopForAdapter
 
-
-        // adapter for popular brand items
-        popularBrandAdapter = PopularBrandAdapter(requireContext())
-        binding.popularBrandRV.adapter = popularBrandAdapter
-        binding.popularBrandRV.isNestedScrollingEnabled = false
 
         arrayListCloths.clear()
         arrayListCloths.add(
@@ -255,18 +257,6 @@ class HomeFragment : Fragment() {
             startActivity(intent)
         }
 
-
-        // adapter for discount for you items
-        discountForYouAdapter = DiscountForYouAdapter(requireContext())
-        binding.discountForYouRV.adapter = discountForYouAdapter
-        binding.discountForYouRV.isNestedScrollingEnabled = false
-
-        // adapter for recommended items
-        recommendedAdapter = RecommendedAdapter(requireContext())
-        binding.recommendedRV.adapter = recommendedAdapter
-        binding.recommendedRV.isNestedScrollingEnabled = false
-        dashBoardList()
-
         val timer = object : CountDownTimer(20000000, 1000) {
             override fun onTick(millisUntilFinished: Long) {
                 var diff: Long = millisUntilFinished
@@ -297,7 +287,6 @@ class HomeFragment : Fragment() {
             }
         }
         timer.start()
-
 
         return binding.root
     }
@@ -337,6 +326,14 @@ class HomeFragment : Fragment() {
                         binding.manufacturerRV.isNestedScrollingEnabled = false
                         manufacturerAdapter.notifyDataSetChanged()
 
+                        arrayListPopularBrand.clear()
+                        arrayListPopularBrand.addAll(dashBoardResponse.preferredManufacturers)
+                        popularBrandAdapter = PopularBrandAdapter(requireContext(),
+                            arrayListPopularBrand)
+                        binding.popularBrandRV.adapter = popularBrandAdapter
+                        binding.popularBrandRV.isNestedScrollingEnabled = false
+                        popularBrandAdapter.notifyDataSetChanged()
+
                         arrayListNewlyAdded.clear()
                         arrayListNewlyAdded.addAll(dashBoardResponse.newlyAdded)
                         newlyAddedAdapter = NewlyAddedAdapter(requireContext(), arrayListNewlyAdded)
@@ -346,7 +343,6 @@ class HomeFragment : Fragment() {
 
                         arraylistBanner1.clear()
                         arraylistBanner1.addAll(dashBoardResponse.banners)
-
                         banner1Adapter = Banner1Adapter(requireContext(), arraylistBanner1)
                         binding.introSliderViewPager.adapter = banner1Adapter
                         binding.dotsIndicator.attachTo(binding.introSliderViewPager)
@@ -358,7 +354,6 @@ class HomeFragment : Fragment() {
                         binding.banner2ViewPager.adapter = banner2Adapter
                         binding.dotsIndicatorBanner2.attachTo(binding.banner2ViewPager)
                         autoSlideBanner2(arraylistBanner2.size)
-
 
                         arrayListMostPopular.clear()
                         arrayListMostPopular.addAll(dashBoardResponse.mostPopular)
@@ -389,6 +384,24 @@ class HomeFragment : Fragment() {
                         binding.dealOfDayRV.adapter = dealOfTheDayAdapter
                         binding.dealOfDayRV.isNestedScrollingEnabled = false
                         dealOfTheDayAdapter.notifyDataSetChanged()
+
+                        arrayListDiscountForYou.clear()
+                        arrayListDiscountForYou.addAll(dashBoardResponse.discountForYou)
+                        discountForYouAdapter =
+                            DiscountForYouAdapter(requireContext(), arrayListDiscountForYou)
+                        binding.discountForYouRV.adapter = discountForYouAdapter
+                        binding.discountForYouRV.isNestedScrollingEnabled = false
+                        discountForYouAdapter.notifyDataSetChanged()
+
+                        arrayListRecommended.clear()
+                        arrayListRecommended.addAll(dashBoardResponse.recommendedItems)
+                        recommendedAdapter =
+                            RecommendedAdapter(requireContext(), arrayListRecommended)
+                        binding.recommendedRV.adapter = recommendedAdapter
+                        binding.recommendedRV.isNestedScrollingEnabled = false
+                        recommendedAdapter.notifyDataSetChanged()
+
+
 
                     }
 

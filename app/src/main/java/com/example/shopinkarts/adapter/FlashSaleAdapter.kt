@@ -34,6 +34,7 @@ class FlashSaleAdapter(val context: Context, val arrayList: ArrayList<FlashSale>
             productNameTV.text = itemDetails.productName
             priceTV.text = "Rs ${itemDetails.price}"
             discountTV.text = "${itemDetails.discount} %OFF"
+            ratingTV.text=itemDetails.avgRating.toString()
 
         }
         holder.itemView.setOnClickListener {

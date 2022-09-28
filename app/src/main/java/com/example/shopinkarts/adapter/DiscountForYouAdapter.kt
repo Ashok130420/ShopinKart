@@ -6,11 +6,13 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 import com.example.shopinkarts.R
 import com.example.shopinkarts.activity.ProductDetailsActivity
 import com.example.shopinkarts.databinding.ItemsDiscountForYouBinding
+import com.example.shopinkarts.response.DiscountForYou
 
-class DiscountForYouAdapter(val context: Context) :
+class DiscountForYouAdapter(val context: Context,val arrayList:ArrayList<DiscountForYou>) :
     RecyclerView.Adapter<DiscountForYouAdapter.ViewHolder>() {
 
 
@@ -26,18 +28,24 @@ class DiscountForYouAdapter(val context: Context) :
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
+        val itemDetails = arrayList[position]
         holder.binding.apply {
+
+            Glide.with(context).load(itemDetails.productImages[0]).into(imageIV)
+            productNameTV.text = itemDetails.productName
+            priceTV.text = "Rs ${itemDetails.price}"
+            ratingTV.text=itemDetails.avgRating.toString()
 
         }
         holder.itemView.setOnClickListener {
             val intent = Intent(context, ProductDetailsActivity::class.java)
-//            intent.putExtra("productId",itemDetails._id)
+            intent.putExtra("productId",itemDetails._id)
             context.startActivity(intent)
         }
     }
 
     override fun getItemCount(): Int {
-        return 20
+        return arrayList.size
     }
 
     inner class ViewHolder(itemView: ItemsDiscountForYouBinding) :

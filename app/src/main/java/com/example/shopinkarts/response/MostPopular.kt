@@ -15,5 +15,11 @@ data class MostPopular(
     val subCategoryId: String,
     val tax: Int,
     val taxType: Int,
-    val variantsArr: List<VariantsArr>
+    val variantsArr: List<VariantsArr>,
+    val avgRating: Int,
+    val deliveryInstructions: List<String>,
+    val dispatchDetails: List<String>,
+    val isFreeDelivery: Int,
+    val productCheckList: ProductCheckList,
+    val reviews: List<Any>,
 )

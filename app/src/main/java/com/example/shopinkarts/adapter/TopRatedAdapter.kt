@@ -33,6 +33,7 @@ class TopRatedAdapter(val context: Context, val arrayList: ArrayList<TopRated>) 
             Glide.with(context).load(itemDetails.productImages[0]).into(imageIV)
             productNameTV.text = itemDetails.productName
             priceTV.text = "Rs ${itemDetails.price}"
+            ratingTV.text=itemDetails.avgRating.toString()
         }
 
         holder.itemView.setOnClickListener {

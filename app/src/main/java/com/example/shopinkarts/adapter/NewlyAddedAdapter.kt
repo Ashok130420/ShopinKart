@@ -34,6 +34,7 @@ class NewlyAddedAdapter(val context: Context, val arrayList: ArrayList<NewlyAdde
             Glide.with(context).load(itemDetails.productImages[0]).into(newlyAddedIV)
             productNameTV.text = itemDetails.productName
             priceTV.text = "Rs ${itemDetails.price}"
+            ratingTV.text=itemDetails.avgRating.toString()
 
         }
         holder.itemView.setOnClickListener {
