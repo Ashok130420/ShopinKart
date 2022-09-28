@@ -71,30 +71,6 @@ class CategoriesFragment : Fragment() {
         }, DELAY_MS, PERIOD_MS)
 
 
-        var loading = true
-        var pastVisiblesItems: Int
-        var visibleItemCount: Int
-        var totalItemCount: Int
-
-        binding.categoriesRV.addOnScrollListener(object : RecyclerView.OnScrollListener() {
-            override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
-                if (dy > 0) { //check for scroll down
-                    visibleItemCount = mLayoutManager.childCount
-                    pastVisiblesItems = mLayoutManager.findFirstVisibleItemPosition()
-                    totalItemCount = categoriesAdapter.itemCount
-                    if (!loading) {
-                        if (visibleItemCount + pastVisiblesItems >= totalItemCount) {
-                            loading = false
-                            Log.v("...", "Last Item Wow !")
-                            // Do pagination.. i.e. fetch new data
-                            loading = true
-                        }
-                    }
-                }
-            }
-        })
-
-
         binding.categoryBannerViewPager.registerOnPageChangeCallback(object :
             ViewPager2.OnPageChangeCallback() {
             override fun onPageSelected(position: Int) {

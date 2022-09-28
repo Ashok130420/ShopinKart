@@ -25,10 +25,26 @@
             app:layout_constraintVertical_bias="0.0">
 
             <androidx.constraintlayout.widget.ConstraintLayout
-
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
 
+                <com.facebook.shimmer.ShimmerFrameLayout
+                    android:id="@+id/shimmerViewBanner"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/m10"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <include layout="@layout/shimmer_fragment_home" />
+
+                    </LinearLayout>
+                </com.facebook.shimmer.ShimmerFrameLayout>
 
                 <EditText
                     android:id="@+id/searchET"
@@ -46,16 +62,19 @@
                     android:textColor="@color/primary_text"
                     android:textColorHint="@color/grey_font"
                     android:textSize="@dimen/text_size_14"
+                    android:visibility="invisible"
                     app:layout_constraintTop_toTopOf="parent"
 
                     tools:ignore="Autofill,TextFields" />
 
                 <ImageView
+                    android:id="@+id/searchIV"
                     android:layout_width="@dimen/m35"
                     android:layout_height="@dimen/m35"
                     android:layout_marginStart="@dimen/m10"
                     android:padding="@dimen/p8"
                     android:src="@drawable/search_icon"
+                    android:visibility="invisible"
                     app:layout_constraintBottom_toBottomOf="@id/searchET"
                     app:layout_constraintStart_toStartOf="@id/searchET"
                     app:layout_constraintTop_toTopOf="@id/searchET"
@@ -85,6 +104,7 @@
                         app:dotsCornerRadius="8dp"
                         app:dotsElevation="@dimen/m4"
                         app:dotsSize="@dimen/m8"
+                        android:visibility="gone"
                         app:dotsSpacing="2dp"
                         app:dotsWidthFactor="2.5"
                         app:layout_constraintEnd_toEndOf="parent"
@@ -100,7 +120,7 @@
                         android:layout_marginTop="@dimen/m10"
                         android:gravity="center"
                         android:orientation="horizontal"
-                        android:visibility="gone"
+                        android:visibility="visible"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@id/introSliderViewPager" />
@@ -115,7 +135,6 @@
 
                     app:layout_constraintTop_toBottomOf="@id/imageSliderCL">
 
-
                     <!--   <androidx.recyclerview.widget.RecyclerView
                            android:id="@+id/recyclerView"
                            android:layout_width="match_parent"
@@ -128,6 +147,24 @@
                            tools:listitem="@layout/items_shop_for"
                            />-->
 
+                    <com.facebook.shimmer.ShimmerFrameLayout
+                        android:id="@+id/shimmerViewShop"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/m20"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal">
+
+                            <include layout="@layout/shimmer_items_text" />
+
+                        </LinearLayout>
+                    </com.facebook.shimmer.ShimmerFrameLayout>
+
                     <TextView
                         android:id="@+id/shopForTV"
                         android:layout_width="wrap_content"
@@ -137,19 +174,19 @@
                         android:text="@string/shop_for"
                         android:textColor="@color/primary_text"
                         android:textSize="@dimen/text_size_18"
+                        android:visibility="invisible"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent" />
 
-                    <com.cooltechworks.views.shimmer.ShimmerRecyclerView
+                    <androidx.recyclerview.widget.RecyclerView
                         android:id="@+id/shopForRV"
-                        android:layout_width="match_parent"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
+                        app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@id/shopForTV"
-                        app:shimmer_demo_angle="25"
-                        app:shimmer_demo_child_count="3"
-                        app:shimmer_demo_layout="@layout/shimmer_items_shop_for"
-                        app:shimmer_demo_layout_manager_type="linear_horizontal"
-                        tools:listitem="@layout/shimmer_items_shop_for" />
+                        tools:listitem="@layout/items_shop_for" />
 
                     <!-- <androidx.recyclerview.widget.RecyclerView-->
                     <!--     android:id="@+id/shopForRV"-->
@@ -162,6 +199,24 @@
                     <!--     tools:listitem="@layout/items_shop_for"-->
                     <!--     />-->
 
+                    <com.facebook.shimmer.ShimmerFrameLayout
+                        android:id="@+id/shimmerViewManu"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/m120"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/shopForTV">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal">
+
+                            <include layout="@layout/shimmer_items_text" />
+
+                        </LinearLayout>
+                    </com.facebook.shimmer.ShimmerFrameLayout>
+
                     <TextView
                         android:id="@+id/preferredManufacturerTV"
                         android:layout_width="wrap_content"
@@ -171,6 +226,7 @@
                         android:text="@string/preferred_manufacturer"
                         android:textColor="@color/primary_text"
                         android:textSize="@dimen/text_size_18"
+                        android:visibility="invisible"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@+id/shopForTV" />
 
@@ -182,6 +238,7 @@
                         android:text="@string/view_all"
                         android:textColor="@color/primary_Blue"
                         android:textSize="@dimen/text_size_12"
+                        android:visibility="invisible"
                         app:layout_constraintBottom_toBottomOf="@+id/preferredManufacturerTV"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintTop_toTopOf="@+id/preferredManufacturerTV" />
@@ -360,6 +417,7 @@
                             app:dotsCornerRadius="8dp"
                             app:dotsElevation="@dimen/m4"
                             app:dotsSize="@dimen/m8"
+                            android:visibility="gone"
                             app:dotsSpacing="2dp"
                             app:dotsWidthFactor="2.5"
                             app:layout_constraintEnd_toEndOf="parent"
@@ -375,7 +433,7 @@
                             android:layout_marginTop="@dimen/m10"
                             android:gravity="center"
                             android:orientation="horizontal"
-                            android:visibility="gone"
+                            android:visibility="visible"
                             app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintStart_toStartOf="parent"
                             app:layout_constraintTop_toBottomOf="@id/banner2ViewPager" />
@@ -413,13 +471,13 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="@dimen/m24"
-                        app:spanCount="2"
-                        tools:itemCount="2"
                         android:orientation="horizontal"
                         app:layout_constraintTop_toBottomOf="@id/newlyAddedTV"
                         app:shimmer_demo_angle="20"
                         app:shimmer_demo_layout="@layout/shimmer_items_most_popular"
                         app:shimmer_demo_layout_manager_type="linear_horizontal"
+                        app:spanCount="2"
+                        tools:itemCount="2"
                         tools:listitem="@layout/shimmer_items_most_popular" />
 
 

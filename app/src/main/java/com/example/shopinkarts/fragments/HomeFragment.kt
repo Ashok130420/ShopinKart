@@ -53,20 +53,22 @@ class HomeFragment : Fragment() {
     lateinit var shimmerManufacturer: ShimmerFrameLayout
     lateinit var shimmerMostPopular: ShimmerFrameLayout
     lateinit var shimmerHome: ShimmerFrameLayout
+    lateinit var shimmerShop: ShimmerFrameLayout
+    lateinit var shimmerManu: ShimmerFrameLayout
 
     lateinit var commonRecyclerViewAdapter: CommonRecyclerViewAdapter
-    private val imageListBanner = ArrayList<SlideModel>()
-    private val imageListBanner2 = ArrayList<SlideModel>()
 
     var arrayList: ArrayList<CommonModel> = ArrayList()
     var arrayListCloths: ArrayList<ClothShortingModel> = ArrayList()
 
     val arraylistBanner1: ArrayList<Banner> = ArrayList()
     val arraylistBanner2: ArrayList<Banner> = ArrayList()
+    val arraylistBanner3: ArrayList<Banner> = ArrayList()
 
     private lateinit var banner1Adapter: Banner1Adapter
     var currentPage = 0
     var currentPage2 = 0
+    var currentPage3 = 0
     var timer: Timer? = null
     val DELAY_MS: Long = 2000
     val PERIOD_MS: Long = 4000
@@ -101,26 +103,23 @@ class HomeFragment : Fragment() {
 
         dashBoardList()
 
-//        shimmerShopFor = binding.shimmerViewShopFor
         shimmerManufacturer = binding.shimmerViewManufacturer
-//        shimmerMostPopular = binding.shimmerViewMostPopular
+        shimmerShop = binding.shimmerViewShop
+        shimmerManu = binding.shimmerViewManu
+        shimmerHome = binding.shimmerViewBanner
 
-//        binding.shopForRV.showShimmer()
-//        banner1Adapter = Banner1Adapter(requireContext(), arraylistBanner1)
+//      binding.shopForRV.showShimmer()
+
+//      banner 1st fun
         setCurrentIndicator(0)
-//        dashBoardList()
 
 //      banner 2nd fun
-//        setBanner2ViewPager()
-//        setupIndicatorsBanner2()
         setCurrentIndicatorBanner2(0)
 
 //      banner 3rd fun
-        setBanner3ViewPager()
-        setupIndicatorsBanner3()
         setCurrentIndicatorBanner3(0)
 
-        binding.shopForRV.showShimmerAdapter()
+
         binding.mostPopularRV.showShimmerAdapter()
         binding.newlyAddedRV.showShimmerAdapter()
 
@@ -161,7 +160,7 @@ class HomeFragment : Fragment() {
             binding.recyclerView.adapter = commonRecyclerViewAdapter*/
 
 
-        // adapter for shopFor
+//        adapter for shopFor
 //        shopForAdapter = ShopForAdapter(requireContext(), arrayList[position].view_type)
 //        binding.shopForRV.hasFixedSize()
 //        binding.shopForRV.adapter = shopForAdapter
@@ -208,56 +207,7 @@ class HomeFragment : Fragment() {
         binding.filterItemsRV.adapter = filterItemsAdapter
         binding.filterItemsRV.isNestedScrollingEnabled = false
 
-
-        binding.preferredManufacturerAllTV.setOnClickListener {
-            val intent = Intent(context, ViewAllActivity::class.java)
-            intent.putExtra("from", "preferredManufacturer")
-            startActivity(intent)
-        }
-
-        binding.mostPopularAllTV.setOnClickListener {
-            val intent = Intent(context, ViewAllActivity::class.java)
-            intent.putExtra("from", "mostPopular")
-            startActivity(intent)
-        }
-
-        binding.topRatedAllTV.setOnClickListener {
-            val intent = Intent(context, ViewAllActivity::class.java)
-            intent.putExtra("from", "topRated")
-            startActivity(intent)
-        }
-        binding.newlyAddedAllTV.setOnClickListener {
-            val intent = Intent(context, ViewAllActivity::class.java)
-            intent.putExtra("from", "newlyAdded")
-            startActivity(intent)
-        }
-        binding.allFlashSaleTV.setOnClickListener {
-            val intent = Intent(context, ViewAllActivity::class.java)
-            intent.putExtra("from", "flashSale")
-            startActivity(intent)
-        }
-        binding.dealOfDayAllTV.setOnClickListener {
-            val intent = Intent(context, ViewAllActivity::class.java)
-            intent.putExtra("from", "dealOfDay")
-            startActivity(intent)
-        }
-        binding.popularBrandAllTV.setOnClickListener {
-            val intent = Intent(context, ViewAllActivity::class.java)
-            intent.putExtra("from", "popularBrand")
-            startActivity(intent)
-        }
-        binding.discountForYouAllTV.setOnClickListener {
-            val intent = Intent(context, ViewAllActivity::class.java)
-            intent.putExtra("from", "discountForYou")
-            startActivity(intent)
-        }
-        binding.recommendedAllTV.setOnClickListener {
-            val intent = Intent(context, ViewAllActivity::class.java)
-            intent.putExtra("from", "recommended")
-            startActivity(intent)
-        }
-
-        val timer = object : CountDownTimer(20000000, 1000) {
+        val time = object : CountDownTimer(20000000, 1000) {
             override fun onTick(millisUntilFinished: Long) {
                 var diff: Long = millisUntilFinished
                 val secondsInMilli: Long = 1000
@@ -286,7 +236,7 @@ class HomeFragment : Fragment() {
 
             }
         }
-        timer.start()
+        time.start()
 
         return binding.root
     }
@@ -303,6 +253,21 @@ class HomeFragment : Fragment() {
 //                shimmerShopFor.visibility = View.GONE
                 shimmerManufacturer.stopShimmer()
                 shimmerManufacturer.visibility = View.GONE
+
+                binding.searchET.visibility = View.VISIBLE
+                binding.searchIV.visibility = View.VISIBLE
+                binding.shopForTV.visibility = View.VISIBLE
+                binding.preferredManufacturerTV.visibility = View.VISIBLE
+                binding.preferredManufacturerAllTV.visibility = View.VISIBLE
+
+                shimmerHome.stopShimmer()
+                shimmerHome.visibility = View.GONE
+
+                shimmerShop.stopShimmer()
+                shimmerShop.visibility = View.GONE
+
+                shimmerManu.stopShimmer()
+                shimmerManu.visibility = View.GONE
 //                shimmerMostPopular.stopShimmer()
 //                shimmerMostPopular.visibility = View.GONE
 
@@ -315,7 +280,7 @@ class HomeFragment : Fragment() {
                         arrayListShopFor.addAll(dashBoardResponse.shopFor)
                         shopForAdapter = ShopForAdapter(requireContext(), arrayListShopFor)
                         binding.shopForRV.adapter = shopForAdapter
-                        binding.shopForRV.isNestedScrollingEnabled = true
+//                        binding.shopForRV.isNestedScrollingEnabled = true
                         shopForAdapter.notifyDataSetChanged()
 
                         arrayListPreferredManufacturer.clear()
@@ -328,8 +293,9 @@ class HomeFragment : Fragment() {
 
                         arrayListPopularBrand.clear()
                         arrayListPopularBrand.addAll(dashBoardResponse.preferredManufacturers)
-                        popularBrandAdapter = PopularBrandAdapter(requireContext(),
-                            arrayListPopularBrand)
+                        popularBrandAdapter = PopularBrandAdapter(
+                            requireContext(), arrayListPopularBrand
+                        )
                         binding.popularBrandRV.adapter = popularBrandAdapter
                         binding.popularBrandRV.isNestedScrollingEnabled = false
                         popularBrandAdapter.notifyDataSetChanged()
@@ -345,15 +311,25 @@ class HomeFragment : Fragment() {
                         arraylistBanner1.addAll(dashBoardResponse.banners)
                         banner1Adapter = Banner1Adapter(requireContext(), arraylistBanner1)
                         binding.introSliderViewPager.adapter = banner1Adapter
-                        binding.dotsIndicator.attachTo(binding.introSliderViewPager)
+//                        binding.dotsIndicator.attachTo(binding.introSliderViewPager)
+                        setupIndicators()
                         autoSlideBanner1(arraylistBanner1.size)
 
                         arraylistBanner2.clear()
                         arraylistBanner2.addAll(dashBoardResponse.banners)
                         banner2Adapter = Banner2Adapter(requireContext(), arraylistBanner2)
                         binding.banner2ViewPager.adapter = banner2Adapter
-                        binding.dotsIndicatorBanner2.attachTo(binding.banner2ViewPager)
+//                        binding.dotsIndicatorBanner2.attachTo(binding.banner2ViewPager)
+                        setupIndicatorsBanner2()
                         autoSlideBanner2(arraylistBanner2.size)
+
+                        arraylistBanner3.clear()
+                        arraylistBanner3.addAll(dashBoardResponse.banners)
+                        banner3Adapter = Banner3Adapter(requireContext(), arraylistBanner3)
+                        binding.banner3ViewPager.adapter = banner3Adapter
+//                        binding.dotsIndicatorBanner2.attachTo(binding.banner2ViewPager)
+                        setupIndicatorsBanner3()
+                        autoSlideBanner3(arraylistBanner3.size)
 
                         arrayListMostPopular.clear()
                         arrayListMostPopular.addAll(dashBoardResponse.mostPopular)
@@ -402,7 +378,6 @@ class HomeFragment : Fragment() {
                         recommendedAdapter.notifyDataSetChanged()
 
 
-
                     }
 
                     Log.d("TAG", "onResponse_SuccessResponse: ${dashBoardResponse.message}")
@@ -416,9 +391,7 @@ class HomeFragment : Fragment() {
             override fun onFailure(call: Call<DashBoardResponse>, t: Throwable) {
                 Log.d("TAG", "onFailureResponse: $${t.message}")
                 if (context != null) Toast.makeText(
-                    requireContext(),
-                    "${t.message}",
-                    Toast.LENGTH_SHORT
+                    requireContext(), "${t.message}", Toast.LENGTH_SHORT
                 ).show()
             }
 
@@ -454,6 +427,26 @@ class HomeFragment : Fragment() {
         }, DELAY_MS, PERIOD_MS)
     }
 
+    fun autoSlideBanner3(size: Int) {
+        val handler = Handler()
+        val update = Runnable {
+            binding.banner3ViewPager.setCurrentItem(
+                currentPage3 % size, true
+            )
+            currentPage3++
+        }
+
+        timer = Timer()
+        timer!!.schedule(
+            object : TimerTask() {
+                override fun run() {
+                    handler.post(update)
+                }
+            }, DELAY_MS, PERIOD_MS
+        )
+
+    }
+
     // banner 1
     private fun setupIndicators() {
 
@@ -485,25 +478,17 @@ class HomeFragment : Fragment() {
             if (i == index) {
                 imageView.setImageDrawable(context?.let {
                     ContextCompat.getDrawable(
-                        it,
-                        R.drawable.indicator_active
+                        it, R.drawable.indicator_active
                     )
                 })
             } else {
                 imageView.setImageDrawable(context?.let {
                     ContextCompat.getDrawable(
-                        it,
-                        R.drawable.indicator_inactive
+                        it, R.drawable.indicator_inactive
                     )
                 })
             }
         }
-    }
-
-    private fun setIntroSliderViewPager() {
-        banner1Adapter = Banner1Adapter(requireContext(), arraylistBanner1)
-        binding.introSliderViewPager.adapter = banner1Adapter
-        banner1Adapter.notifyDataSetChanged()
     }
 
     //  banner 2
@@ -533,27 +518,19 @@ class HomeFragment : Fragment() {
             if (i == index) {
                 imageView.setImageDrawable(context?.let {
                     ContextCompat.getDrawable(
-                        it,
-                        R.drawable.indicator_active
+                        it, R.drawable.indicator_active
                     )
                 })
             } else {
                 imageView.setImageDrawable(context?.let {
                     ContextCompat.getDrawable(
-                        it,
-                        R.drawable.indicator_inactive
+                        it, R.drawable.indicator_inactive
                     )
                 })
 
             }
         }
 
-    }
-
-    private fun setBanner2ViewPager() {
-        banner2Adapter = Banner2Adapter(requireContext(), arraylistBanner2)
-        binding.banner2ViewPager.adapter = banner2Adapter
-        banner2Adapter.notifyDataSetChanged()
     }
 
     // banner 3
@@ -599,19 +576,6 @@ class HomeFragment : Fragment() {
         }
 
     }
-
-    private fun setBanner3ViewPager() {
-        banner3Adapter = Banner3Adapter(
-            listOf(
-                Banner3Slide(R.drawable.banner_1),
-                Banner3Slide(R.drawable.banner_2),
-                Banner3Slide(R.drawable.banner_1),
-                Banner3Slide(R.drawable.banner_2)
-            )
-        )
-        binding.banner3ViewPager.adapter = banner3Adapter
-    }
-
 
 }
 
