@@ -149,7 +149,7 @@
                         app:shimmer_demo_child_count="3"
                         app:shimmer_demo_layout="@layout/shimmer_items_shop_for"
                         app:shimmer_demo_layout_manager_type="linear_horizontal"
-                        tools:listitem="@layout/items_shop_for" />
+                        tools:listitem="@layout/shimmer_items_shop_for" />
 
                     <!-- <androidx.recyclerview.widget.RecyclerView-->
                     <!--     android:id="@+id/shopForRV"-->
@@ -413,26 +413,28 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="@dimen/m24"
-                        android:orientation="vertical"
+                        app:spanCount="2"
+                        tools:itemCount="2"
+                        android:orientation="horizontal"
                         app:layout_constraintTop_toBottomOf="@id/newlyAddedTV"
                         app:shimmer_demo_angle="20"
-                        app:shimmer_demo_child_count="3"
                         app:shimmer_demo_layout="@layout/shimmer_items_most_popular"
                         app:shimmer_demo_layout_manager_type="linear_horizontal"
                         tools:listitem="@layout/shimmer_items_most_popular" />
 
 
-                    <!--                    <androidx.recyclerview.widget.RecyclerView-->
-                    <!--                        android:id="@+id/newlyAddedRV"-->
-                    <!--                        android:layout_width="match_parent"-->
-                    <!--                        android:layout_height="wrap_content"-->
-                    <!--                        android:layout_marginTop="@dimen/m24"-->
-                    <!--                        android:orientation="horizontal"-->
-                    <!--                        app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"-->
-                    <!--                        app:layout_constraintTop_toBottomOf="@id/newlyAddedTV"-->
-                    <!--                        tools:listitem="@layout/items_newly_added"-->
+                    <!--  <androidx.recyclerview.widget.RecyclerView-->
+                    <!--      android:id="@+id/newlyAddedRV"-->
+                    <!--      android:layout_width="match_parent"-->
+                    <!--      android:layout_height="wrap_content"-->
+                    <!--      android:layout_marginTop="@dimen/m24"-->
+                    <!--      android:orientation="horizontal"-->
+                    <!--      app:spanCount="2"-->
+                    <!--      app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"-->
+                    <!--      app:layout_constraintTop_toBottomOf="@id/newlyAddedTV"-->
+                    <!--      tools:listitem="@layout/items_newly_added"-->
 
-                    <!--                        />-->
+                    <!--      />-->
 
                     <TextView
                         android:id="@+id/dealOfDayTV"

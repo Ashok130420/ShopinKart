@@ -379,6 +379,7 @@ class PersonalDetailsActivity : AppCompatActivity() {
                         DashBoardActivity.arrayListCart.clear()
                         DashBoardActivity.selectedVIDs.clear()
                         sharedPreference.setArray()
+
                         Toast.makeText(
                             this@PersonalDetailsActivity, response.message(), Toast.LENGTH_SHORT
                         ).show()

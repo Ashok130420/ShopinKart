@@ -8,22 +8,19 @@
     </data>
 
     <androidx.cardview.widget.CardView
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/m2"
-        android:layout_marginTop="@dimen/m2"
-        android:layout_marginEnd="@dimen/m10"
-        android:layout_marginBottom="@dimen/m2"
-        app:cardCornerRadius="@dimen/m10">
+        app:cardCornerRadius="@dimen/m10"
+        app:cardUseCompatPadding="true">
 
         <androidx.constraintlayout.widget.ConstraintLayout
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
             <ImageView
                 android:id="@+id/newlyAddedIV"
-                android:layout_width="150dp"
-                android:layout_height="150dp"
+                android:layout_width="match_parent"
+                android:layout_height="160dp"
                 android:scaleType="fitXY"
                 android:src="@drawable/newly_added_image"
                 app:layout_constraintEnd_toEndOf="parent"
