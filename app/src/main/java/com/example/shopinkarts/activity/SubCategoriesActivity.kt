@@ -36,8 +36,9 @@ class SubCategoriesActivity : AppCompatActivity() {
         categoryName = intent.extras!!.getString("categoryName", "")
 
         binding.headerSubCategories.titleTV.text = categoryName
+
         binding.headerSubCategories.backIV.setOnClickListener {
-            onBackPressed()
+          finish()
         }
 
         subCategoriesList()

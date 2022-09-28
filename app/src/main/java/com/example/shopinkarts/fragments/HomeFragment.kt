@@ -1,7 +1,6 @@
 package com.example.shopinkarts.fragments
 
 
-import android.content.Intent
 import android.os.Bundle
 import android.os.CountDownTimer
 import android.os.Handler
@@ -11,17 +10,12 @@ import android.widget.*
 import androidx.core.content.ContextCompat
 import androidx.core.view.get
 import androidx.databinding.DataBindingUtil
-import androidx.databinding.DataBindingUtil.setContentView
 import androidx.fragment.app.Fragment
-import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
-import androidx.recyclerview.widget.RecyclerView.LayoutManager
 import androidx.viewpager2.widget.ViewPager2
-import com.denzcoskun.imageslider.models.SlideModel
 import com.example.shopinkarts.R
-import com.example.shopinkarts.activity.ViewAllActivity
 import com.example.shopinkarts.adapter.*
 import com.example.shopinkarts.api.RetrofitClient
+import com.example.shopinkarts.classes.CustomScrollView
 import com.example.shopinkarts.databinding.FragmentHomeBinding
 import com.example.shopinkarts.model.*
 import com.example.shopinkarts.response.*
@@ -49,12 +43,8 @@ class HomeFragment : Fragment() {
     lateinit var recommendedAdapter: RecommendedAdapter
     lateinit var banner2Adapter: Banner2Adapter
     lateinit var banner3Adapter: Banner3Adapter
-    lateinit var shimmerShopFor: ShimmerFrameLayout
-    lateinit var shimmerManufacturer: ShimmerFrameLayout
-    lateinit var shimmerMostPopular: ShimmerFrameLayout
     lateinit var shimmerHome: ShimmerFrameLayout
-    lateinit var shimmerShop: ShimmerFrameLayout
-    lateinit var shimmerManu: ShimmerFrameLayout
+
 
     lateinit var commonRecyclerViewAdapter: CommonRecyclerViewAdapter
 
@@ -93,6 +83,7 @@ class HomeFragment : Fragment() {
         }
     }
 
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
     ): View {
@@ -103,12 +94,7 @@ class HomeFragment : Fragment() {
 
         dashBoardList()
 
-        shimmerManufacturer = binding.shimmerViewManufacturer
-        shimmerShop = binding.shimmerViewShop
-        shimmerManu = binding.shimmerViewManu
         shimmerHome = binding.shimmerViewBanner
-
-//      binding.shopForRV.showShimmer()
 
 //      banner 1st fun
         setCurrentIndicator(0)
@@ -119,8 +105,6 @@ class HomeFragment : Fragment() {
 //      banner 3rd fun
         setCurrentIndicatorBanner3(0)
 
-
-        binding.mostPopularRV.showShimmerAdapter()
         binding.newlyAddedRV.showShimmerAdapter()
 
         binding.introSliderViewPager.registerOnPageChangeCallback(object :
@@ -130,6 +114,10 @@ class HomeFragment : Fragment() {
                 setCurrentIndicator(position)
             }
         })
+
+//      disable scrolling
+        binding.scrollView.isEnableScrolling = false
+
 
 
 //        banner 2nd
@@ -150,14 +138,14 @@ class HomeFragment : Fragment() {
             }
         })
 
-        /*    arrayList.clear()
-            arrayList.add(CommonModel(view_type = 1, "Shop For", "View All", 0, 0))
-            arrayList.add(CommonModel(view_type = 3, "Preferred Manufacturer", "View All", 0, 0))
-            arrayList.add(CommonModel(view_type = 2, "Newly Added", "View All", 1, 1))
-            arrayList.add(CommonModel(view_type = 2, "Popular", "View All", 0, 0))
-            arrayList.add(CommonModel(view_type = 3, "Popular Brand", "View All", 0, 0))
-            commonRecyclerViewAdapter = CommonRecyclerViewAdapter(requireContext(), arrayList)
-            binding.recyclerView.adapter = commonRecyclerViewAdapter*/
+//        arrayList.clear()
+//        arrayList.add(CommonModel(view_type = 1, "Shop For", "View All", 0, 0))
+//        arrayList.add(CommonModel(view_type = 3, "Preferred Manufacturer", "View All", 0, 0))
+//        arrayList.add(CommonModel(view_type = 2, "Newly Added", "View All", 1, 1))
+//        arrayList.add(CommonModel(view_type = 2, "Popular", "View All", 0, 0))
+//        arrayList.add(CommonModel(view_type = 3, "Popular Brand", "View All", 0, 0))
+//        commonRecyclerViewAdapter = CommonRecyclerViewAdapter(requireContext(), arrayList)
+//        binding.recyclerView.adapter = commonRecyclerViewAdapter
 
 
 //        adapter for shopFor
@@ -248,26 +236,20 @@ class HomeFragment : Fragment() {
             override fun onResponse(
                 call: Call<DashBoardResponse>, response: Response<DashBoardResponse>
             ) {
-//                binding.shopForRV.hideShimmer()
-//                shimmerShopFor.stopShimmer()
-//                shimmerShopFor.visibility = View.GONE
-                shimmerManufacturer.stopShimmer()
-                shimmerManufacturer.visibility = View.GONE
+
 
                 binding.searchET.visibility = View.VISIBLE
                 binding.searchIV.visibility = View.VISIBLE
                 binding.shopForTV.visibility = View.VISIBLE
                 binding.preferredManufacturerTV.visibility = View.VISIBLE
                 binding.preferredManufacturerAllTV.visibility = View.VISIBLE
+                binding.mostPopularTV.visibility = View.VISIBLE
+                binding.mostPopularAllTV.visibility = View.VISIBLE
 
                 shimmerHome.stopShimmer()
                 shimmerHome.visibility = View.GONE
 
-                shimmerShop.stopShimmer()
-                shimmerShop.visibility = View.GONE
 
-                shimmerManu.stopShimmer()
-                shimmerManu.visibility = View.GONE
 //                shimmerMostPopular.stopShimmer()
 //                shimmerMostPopular.visibility = View.GONE
 
@@ -275,6 +257,9 @@ class HomeFragment : Fragment() {
                 if (response.isSuccessful && context != null) {
 
                     if (dashBoardResponse!!.status) {
+
+//                      scrolling enable
+                        binding.scrollView.isEnableScrolling = true
 
                         arrayListShopFor.clear()
                         arrayListShopFor.addAll(dashBoardResponse.shopFor)
@@ -560,15 +545,13 @@ class HomeFragment : Fragment() {
             if (i == index) {
                 imageView.setImageDrawable(context?.let {
                     ContextCompat.getDrawable(
-                        it,
-                        R.drawable.indicator_active
+                        it, R.drawable.indicator_active
                     )
                 })
             } else {
                 imageView.setImageDrawable(context?.let {
                     ContextCompat.getDrawable(
-                        it,
-                        R.drawable.indicator_inactive
+                        it, R.drawable.indicator_inactive
                     )
                 })
 

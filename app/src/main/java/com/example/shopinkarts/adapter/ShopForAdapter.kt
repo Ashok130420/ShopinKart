@@ -19,13 +19,9 @@ class ShopForAdapter(val context: Context, val arrayList: ArrayList<ShopFor>) :
 
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        val binding: ItemsShopForBinding =
-            DataBindingUtil.inflate(
-                LayoutInflater.from(parent.context),
-                R.layout.items_shop_for,
-                parent,
-                false
-            )
+        val binding: ItemsShopForBinding = DataBindingUtil.inflate(
+            LayoutInflater.from(parent.context), R.layout.items_shop_for, parent, false
+        )
 
         return ViewHolder(binding)
     }
@@ -37,11 +33,14 @@ class ShopForAdapter(val context: Context, val arrayList: ArrayList<ShopFor>) :
             nameTV.text = itemDetails.categoryName
             Glide.with(context).load(itemDetails.categoryIcon).into(iconIV)
         }
+
         holder.itemView.setOnClickListener {
-            val intent = Intent(context, DashBoardActivity::class.java)
+            val intent = Intent(context, SubCategoriesActivity::class.java)
             itemDetails._id
-            intent.putExtra("from", "categories")
-            intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK
+//            intent.putExtra("from", "categories")
+            intent.putExtra("categoryId", itemDetails._id)
+            intent.putExtra("categoryName", itemDetails.categoryName)
+//            intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK
             context.startActivity(intent)
         }
     }
