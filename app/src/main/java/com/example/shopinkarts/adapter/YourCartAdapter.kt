@@ -27,10 +27,7 @@ class YourCartAdapter(val context: Context, var arrayList: ArrayList<CartModel>)
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val binding: ItemYourCartBinding = DataBindingUtil.inflate(
-            LayoutInflater.from(parent.context),
-            R.layout.item_your_cart,
-            parent,
-            false
+            LayoutInflater.from(parent.context), R.layout.item_your_cart, parent, false
         )
 
         return ViewHolder(binding)
@@ -52,7 +49,7 @@ class YourCartAdapter(val context: Context, var arrayList: ArrayList<CartModel>)
 
             actualPriceTV.text = "Rs ${itemDetails.actualPrice}.00"
 
-            totalAmountTV.text="Total Amount-Rs ${updatePrice}.00"
+            totalAmountTV.text = "Total Amount-Rs ${updatePrice}.00"
 
             Log.d("TAG:totalAmount", "onBindViewHolder: ${(itemDetails.totalAmount)}")
 
@@ -64,8 +61,6 @@ class YourCartAdapter(val context: Context, var arrayList: ArrayList<CartModel>)
             Glide.with(context).load(itemDetails.imageUrl).into(imageIV)
 
             plusQuantityTV.setOnClickListener {
-
-                ProductCartActivity.getInstance().updatedCal()
 
                 updateQty = itemDetails.quantity + 1
 
@@ -93,10 +88,10 @@ class YourCartAdapter(val context: Context, var arrayList: ArrayList<CartModel>)
                 } else {
                     Toast.makeText(context, "Out of stock", Toast.LENGTH_SHORT).show()
                 }
+                ProductCartActivity.getInstance().updatedCal()
             }
 
             minusQuantityTV.setOnClickListener {
-                ProductCartActivity.getInstance().updatedCal()
 
                 Log.d("defaultCQ", itemDetails.quantity.toString())
                 Log.d("after+CQ", (itemDetails.quantity.toInt() - 1).toString())
@@ -126,6 +121,7 @@ class YourCartAdapter(val context: Context, var arrayList: ArrayList<CartModel>)
                     notifyDataSetChanged()
 
                 }
+                ProductCartActivity.getInstance().updatedCal()
             }
 
             deleteIconIV.setOnClickListener {
@@ -149,8 +145,7 @@ class YourCartAdapter(val context: Context, var arrayList: ArrayList<CartModel>)
         return arrayList.size
     }
 
-    inner class ViewHolder(itemView: ItemYourCartBinding) :
-        RecyclerView.ViewHolder(itemView.root) {
+    inner class ViewHolder(itemView: ItemYourCartBinding) : RecyclerView.ViewHolder(itemView.root) {
 
         val binding: ItemYourCartBinding = itemView
 

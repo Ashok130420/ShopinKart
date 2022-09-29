@@ -89,6 +89,7 @@ class ProductDetailsActivity : AppCompatActivity() {
         binding.quantityShowTV.text = currentNumber.toString()
         DashBoardActivity.arrayListCart
         Log.d("arrayListCart", DashBoardActivity.arrayListCart.toString())
+
         if (DashBoardActivity.arrayListCart.isNotEmpty()) {
             binding.headerProductDetails.cartItemTV.visibility = View.VISIBLE
             binding.headerProductDetails.cartItemTV.text =
@@ -101,6 +102,7 @@ class ProductDetailsActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
         binding = DataBindingUtil.setContentView(this, R.layout.activity_product_details)
         pInstance = this
 
@@ -138,6 +140,9 @@ class ProductDetailsActivity : AppCompatActivity() {
 
         binding.headerProductDetails.backIV.setOnClickListener {
             currentNumber = 0
+            colorSize = 0
+            sizeOfSize = 0
+            quantitySze = 0
             onBackPressed()
         }
 

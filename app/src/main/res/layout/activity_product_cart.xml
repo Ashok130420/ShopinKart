@@ -24,229 +24,254 @@
             app:layout_constraintTop_toBottomOf="@+id/headerProductCart">
 
             <androidx.constraintlayout.widget.ConstraintLayout
-                android:id="@+id/yourCartCL"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                app:layout_constraintTop_toBottomOf="@+id/headerProductCart">
-
-                <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/yourCartRV"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/m6"
-                    app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
-                    app:layout_constraintTop_toTopOf="parent"
-                    tools:itemCount="2"
-                    tools:listitem="@layout/item_your_cart" />
-
-
-                <TextView
-                    android:id="@+id/orderSummaryTV"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:padding="@dimen/p16"
-                    android:text="@string/order_summary"
-                    android:textColor="@color/primary_text"
-                    android:textSize="@dimen/text_size_18"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/yourCartRV" />
+                android:layout_height="wrap_content">
 
                 <androidx.constraintlayout.widget.ConstraintLayout
-                    android:id="@+id/amountCL"
+                    android:id="@+id/yourCartCL"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:background="@color/white"
-                    android:paddingHorizontal="@dimen/p20"
-                    app:layout_constraintTop_toBottomOf="@+id/orderSummaryTV">
+                    app:layout_constraintTop_toTopOf="parent">
 
-                    <TextView
-                        android:id="@+id/totalAmountTV"
-                        android:layout_width="wrap_content"
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/yourCartRV"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="@dimen/m6"
-                        android:fontFamily="@font/dm_sans_medium"
-                        android:text="@string/total_amount"
-                        android:textColor="@color/dark_Gray"
-                        android:textSize="@dimen/text_size_14"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent" />
+                        app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
+                        app:layout_constraintTop_toTopOf="parent"
+                        tools:itemCount="2"
+                        tools:listitem="@layout/item_your_cart" />
+
 
                     <TextView
-                        android:id="@+id/totalAmountValueTV"
+                        android:id="@+id/orderSummaryTV"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:fontFamily="@font/dm_sans_medium"
-                        android:text="@string/rs_4200"
+                        android:padding="@dimen/p16"
+                        android:text="@string/order_summary"
                         android:textColor="@color/primary_text"
-                        android:textSize="@dimen/text_size_14"
-                        app:layout_constraintBottom_toBottomOf="@+id/totalAmountTV"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintTop_toTopOf="@+id/totalAmountTV" />
-
-                    <TextView
-                        android:id="@+id/discountsTV"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="@dimen/m16"
-                        android:fontFamily="@font/dm_sans_medium"
-                        android:text="@string/discounts"
-                        android:textColor="@color/dark_Gray"
-                        android:textSize="@dimen/text_size_14"
+                        android:textSize="@dimen/text_size_18"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/totalAmountTV" />
+                        app:layout_constraintTop_toBottomOf="@id/yourCartRV" />
 
-                    <TextView
-                        android:id="@+id/discountsValueTV"
-                        android:layout_width="wrap_content"
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:id="@+id/amountCL"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:fontFamily="@font/dm_sans_medium"
-                        android:text="@string/rs_2800"
-                        android:textColor="@color/primary_text"
-                        android:textSize="@dimen/text_size_14"
-                        app:layout_constraintBottom_toBottomOf="@+id/discountsTV"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintTop_toTopOf="@+id/discountsTV" />
+                        android:background="@color/white"
+                        android:paddingHorizontal="@dimen/p20"
+                        app:layout_constraintTop_toBottomOf="@+id/orderSummaryTV">
 
-                    <TextView
-                        android:id="@+id/orderTotalTV"
-                        android:layout_width="wrap_content"
+                        <TextView
+                            android:id="@+id/totalAmountTV"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/m6"
+                            android:fontFamily="@font/dm_sans_medium"
+                            android:text="@string/total_amount"
+                            android:textColor="@color/dark_Gray"
+                            android:textSize="@dimen/text_size_14"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+                        <TextView
+                            android:id="@+id/totalAmountValueTV"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/dm_sans_medium"
+                            android:text="@string/rs_4200"
+                            android:textColor="@color/primary_text"
+                            android:textSize="@dimen/text_size_14"
+                            app:layout_constraintBottom_toBottomOf="@+id/totalAmountTV"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintTop_toTopOf="@+id/totalAmountTV" />
+
+                        <TextView
+                            android:id="@+id/discountsTV"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/m16"
+                            android:fontFamily="@font/dm_sans_medium"
+                            android:text="@string/discounts"
+                            android:textColor="@color/dark_Gray"
+                            android:textSize="@dimen/text_size_14"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@+id/totalAmountTV" />
+
+                        <TextView
+                            android:id="@+id/discountsValueTV"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/dm_sans_medium"
+                            android:text="@string/rs_2800"
+                            android:textColor="@color/primary_text"
+                            android:textSize="@dimen/text_size_14"
+                            app:layout_constraintBottom_toBottomOf="@+id/discountsTV"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintTop_toTopOf="@+id/discountsTV" />
+
+                        <TextView
+                            android:id="@+id/orderTotalTV"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/m16"
+                            android:fontFamily="@font/dm_sans_medium"
+                            android:text="@string/order_total"
+                            android:textColor="@color/dark_Gray"
+                            android:textSize="@dimen/text_size_14"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@+id/discountsTV" />
+
+                        <TextView
+                            android:id="@+id/orderTotalValueTV"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/dm_sans_medium"
+                            android:text="@string/rs_1400"
+                            android:textColor="@color/primary_text"
+                            android:textSize="@dimen/text_size_14"
+                            app:layout_constraintBottom_toBottomOf="@+id/orderTotalTV"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintTop_toTopOf="@+id/orderTotalTV" />
+
+                        <TextView
+                            android:id="@+id/gstTV"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/m16"
+                            android:fontFamily="@font/dm_sans_medium"
+                            android:text="@string/gst_18"
+                            android:textColor="@color/dark_Gray"
+                            android:textSize="@dimen/text_size_14"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@+id/orderTotalTV" />
+
+                        <TextView
+                            android:id="@+id/gstValueTV"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/dm_sans_medium"
+                            android:text="@string/rs_252"
+                            android:textColor="@color/primary_text"
+                            android:textSize="@dimen/text_size_14"
+                            app:layout_constraintBottom_toBottomOf="@+id/gstTV"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintTop_toTopOf="@+id/gstTV" />
+
+                        <View
+                            android:id="@+id/view"
+                            android:layout_width="0dp"
+                            android:layout_height="1dp"
+                            android:layout_marginTop="@dimen/m5"
+                            android:background="@color/light_Gray"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@id/gstTV" />
+
+                        <TextView
+                            android:id="@+id/amountPaidTV"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginVertical="@dimen/m20"
+                            android:fontFamily="@font/dm_sans_medium"
+                            android:text="@string/amount_to_be_paid"
+                            android:textColor="@color/primary_text"
+                            android:textSize="@dimen/text_size_14"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@+id/view" />
+
+                        <TextView
+                            android:id="@+id/amountPaidValueTV"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/dm_sans_medium"
+                            android:text="@string/rs_1652"
+                            android:textColor="@color/primary_text"
+                            android:textSize="@dimen/text_size_14"
+                            app:layout_constraintBottom_toBottomOf="@+id/amountPaidTV"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintTop_toTopOf="@+id/amountPaidTV" />
+
+
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:id="@+id/continueCL"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="@dimen/m16"
-                        android:fontFamily="@font/dm_sans_medium"
-                        android:text="@string/order_total"
-                        android:textColor="@color/dark_Gray"
-                        android:textSize="@dimen/text_size_14"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/discountsTV" />
+                        android:layout_marginTop="@dimen/m4"
+                        android:background="@color/white"
+                        android:paddingHorizontal="@dimen/p20"
+                        android:paddingVertical="@dimen/p25"
+                        app:layout_constraintTop_toBottomOf="@+id/amountCL">
 
-                    <TextView
-                        android:id="@+id/orderTotalValueTV"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:fontFamily="@font/dm_sans_medium"
-                        android:text="@string/rs_1400"
-                        android:textColor="@color/primary_text"
-                        android:textSize="@dimen/text_size_14"
-                        app:layout_constraintBottom_toBottomOf="@+id/orderTotalTV"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintTop_toTopOf="@+id/orderTotalTV" />
+                        <ImageView
+                            android:id="@+id/giftIV"
+                            android:layout_width="30dp"
+                            android:layout_height="30dp"
+                            android:layout_marginStart="@dimen/m14"
+                            android:src="@drawable/gift_icon"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent"
+                            tools:ignore="ContentDescription" />
 
-                    <TextView
-                        android:id="@+id/gstTV"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="@dimen/m16"
-                        android:fontFamily="@font/dm_sans_medium"
-                        android:text="@string/gst_18"
-                        android:textColor="@color/dark_Gray"
-                        android:textSize="@dimen/text_size_14"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/orderTotalTV" />
+                        <TextView
+                            android:id="@+id/giftTV"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="@dimen/m16"
+                            android:fontFamily="@font/dm_sans_medium"
+                            android:text="@string/congratulations_you_are_saving_66_on_this_order"
+                            android:textColor="@color/primary_text"
+                            android:textSize="@dimen/text_size_12"
+                            app:layout_constraintBottom_toBottomOf="@+id/giftIV"
+                            app:layout_constraintStart_toEndOf="@+id/giftIV"
+                            app:layout_constraintTop_toTopOf="@+id/giftIV" />
 
-                    <TextView
-                        android:id="@+id/gstValueTV"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:fontFamily="@font/dm_sans_medium"
-                        android:text="@string/rs_252"
-                        android:textColor="@color/primary_text"
-                        android:textSize="@dimen/text_size_14"
-                        app:layout_constraintBottom_toBottomOf="@+id/gstTV"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintTop_toTopOf="@+id/gstTV" />
 
-                    <View
-                        android:id="@+id/view"
-                        android:layout_width="0dp"
-                        android:layout_height="1dp"
-                        android:layout_marginTop="@dimen/m5"
-                        android:background="@color/light_Gray"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@id/gstTV" />
-
-                    <TextView
-                        android:id="@+id/amountPaidTV"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginVertical="@dimen/m20"
-                        android:fontFamily="@font/dm_sans_medium"
-                        android:text="@string/amount_to_be_paid"
-                        android:textColor="@color/primary_text"
-                        android:textSize="@dimen/text_size_14"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/view" />
-
-                    <TextView
-                        android:id="@+id/amountPaidValueTV"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:fontFamily="@font/dm_sans_medium"
-                        android:text="@string/rs_1652"
-                        android:textColor="@color/primary_text"
-                        android:textSize="@dimen/text_size_14"
-                        app:layout_constraintBottom_toBottomOf="@+id/amountPaidTV"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintTop_toTopOf="@+id/amountPaidTV" />
-
+                    </androidx.constraintlayout.widget.ConstraintLayout>
 
                 </androidx.constraintlayout.widget.ConstraintLayout>
-
-
                 <androidx.constraintlayout.widget.ConstraintLayout
-                    android:id="@+id/continueCL"
+                    android:id="@+id/lottyAnimation"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/m4"
-                    android:background="@color/white"
-                    android:paddingHorizontal="@dimen/p20"
-                    android:paddingVertical="@dimen/p25"
-                    app:layout_constraintTop_toBottomOf="@+id/amountCL">
+                    android:layout_height="match_parent"
+                    app:layout_constraintTop_toTopOf="parent">
 
-                    <ImageView
-                        android:id="@+id/giftIV"
-                        android:layout_width="30dp"
-                        android:layout_height="30dp"
-                        android:layout_marginStart="@dimen/m14"
-                        android:src="@drawable/gift_icon"
+                    <com.airbnb.lottie.LottieAnimationView
+
+                        android:layout_width="300dp"
+                        android:layout_height="300dp"
+                        android:layout_marginTop="@dimen/m150"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent"
-                        tools:ignore="ContentDescription" />
-
-                    <TextView
-                        android:id="@+id/giftTV"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="@dimen/m16"
-                        android:fontFamily="@font/dm_sans_medium"
-                        android:text="@string/congratulations_you_are_saving_66_on_this_order"
-                        android:textColor="@color/primary_text"
-                        android:textSize="@dimen/text_size_12"
-                        app:layout_constraintBottom_toBottomOf="@+id/giftIV"
-                        app:layout_constraintStart_toEndOf="@+id/giftIV"
-                        app:layout_constraintTop_toTopOf="@+id/giftIV" />
-
-
+                        app:lottie_autoPlay="true"
+                        app:lottie_loop="true"
+                        app:lottie_rawRes="@raw/cart" />
 
                 </androidx.constraintlayout.widget.ConstraintLayout>
 
             </androidx.constraintlayout.widget.ConstraintLayout>
         </ScrollView>
+
         <TextView
             android:id="@+id/continueTV"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginHorizontal="@dimen/m14"
             android:layout_marginTop="@dimen/m50"
             android:background="@drawable/button_blue_radius5"
             android:gravity="center"
             android:padding="@dimen/p18"
-            android:layout_marginHorizontal="@dimen/m14"
             android:text="@string/continue_"
             android:textColor="@color/white"
             android:textSize="@dimen/text_size_12"
-            app:layout_constraintBottom_toBottomOf="parent"
-            />
+            app:layout_constraintBottom_toBottomOf="parent" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

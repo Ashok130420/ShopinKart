@@ -5,6 +5,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.View
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import com.example.shopinkarts.R
@@ -39,6 +40,7 @@ class ProductCartActivity : AppCompatActivity() {
 
         cartInstance = this
         DashBoardActivity.arrayListCart
+
         updatedCal()
 
         binding.headerProductCart.backIV.setOnClickListener {
@@ -82,22 +84,26 @@ class ProductCartActivity : AppCompatActivity() {
         Log.d("TAG_totalAmount", "onCreate: $totalAmount")
     }
 
-
     fun updatedCal() {
+        if (DashBoardActivity.arrayListCart.isEmpty()) {
+            binding.lottyAnimation.visibility = View.VISIBLE
+            binding.yourCartCL.visibility = View.GONE
+            binding.orderSummaryTV.visibility = View.GONE
+            binding.amountCL.visibility = View.GONE
+            binding.continueCL.visibility = View.GONE
+            binding.continueTV.visibility = View.GONE
+        } else {
+            binding.yourCartCL.visibility = View.VISIBLE
+            binding.lottyAnimation.visibility = View.GONE
+        }
 
-//        if (DashBoardActivity.arrayListCart.isEmpty()) {
-//            binding.orderSummaryTV.visibility = View.GONE
-//            binding.amountCL.visibility = View.GONE
-//            binding.continueCL.visibility = View.GONE
-//            binding.continueTV.visibility = View.GONE
-//        }
 
         totalAmount = DashBoardActivity.arrayListCart.sumBy { it.totalAmount }.toDouble()
         binding.totalAmountValueTV.text = "RS $totalAmount"
         Log.d("totalAmount", "onCreate: $totalAmount")
 
         discountAmount = DashBoardActivity.arrayListCart.sumBy { it.actualPrice }.toFloat()
-        binding.discountsValueTV.text = "-RS $discountAmount"
+        binding.discountsValueTV.text = "- RS $discountAmount"
         Log.d("totalDis{countAmount", "onCreate: $discountAmount")
 
         orderTotal = (totalAmount - discountAmount).toFloat()
@@ -105,7 +111,7 @@ class ProductCartActivity : AppCompatActivity() {
         Log.d("totalOrderTotal", "onCreate: $orderTotal")
 
         gst = orderTotal * 5 / 100
-        binding.gstValueTV.text = gst.toString()
+        binding.gstValueTV.text = "Rs $gst"
 
         amountPaid = orderTotal + gst
         binding.amountPaidValueTV.text = "Rs $amountPaid"
@@ -119,7 +125,6 @@ class ProductCartActivity : AppCompatActivity() {
                 "Congratulations! You are saving ${percentage.roundToInt()} % on \nthis order"
             Log.d("totalPercentage", "onCreate: ${percentage.roundToInt()}")
         }
-
 
     }
 
