@@ -15,4 +15,5 @@ data class Order(
     val shippingDetails: ShippingDetails,
     val totalAmount: Double,
     val userId: String
+
 )

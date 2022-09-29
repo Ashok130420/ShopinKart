@@ -1,6 +1,7 @@
 package com.example.shopinkarts.fragments
 
 
+import android.content.Intent
 import android.os.Bundle
 import android.os.CountDownTimer
 import android.os.Handler
@@ -13,6 +14,7 @@ import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.viewpager2.widget.ViewPager2
 import com.example.shopinkarts.R
+import com.example.shopinkarts.activity.ViewAllActivity
 import com.example.shopinkarts.adapter.*
 import com.example.shopinkarts.api.RetrofitClient
 import com.example.shopinkarts.classes.CustomScrollView
@@ -105,8 +107,10 @@ class HomeFragment : Fragment() {
 //      banner 3rd fun
         setCurrentIndicatorBanner3(0)
 
-        binding.newlyAddedRV.showShimmerAdapter()
+//      disable scrolling
+        binding.scrollView.isEnableScrolling = false
 
+//        banner 1st
         binding.introSliderViewPager.registerOnPageChangeCallback(object :
             ViewPager2.OnPageChangeCallback() {
             override fun onPageSelected(position: Int) {
@@ -114,11 +118,6 @@ class HomeFragment : Fragment() {
                 setCurrentIndicator(position)
             }
         })
-
-//      disable scrolling
-        binding.scrollView.isEnableScrolling = false
-
-
 
 //        banner 2nd
         binding.banner2ViewPager.registerOnPageChangeCallback(object :
@@ -152,6 +151,60 @@ class HomeFragment : Fragment() {
 //        shopForAdapter = ShopForAdapter(requireContext(), arrayList[position].view_type)
 //        binding.shopForRV.hasFixedSize()
 //        binding.shopForRV.adapter = shopForAdapter
+
+        binding.preferredManufacturerAllTV.setOnClickListener {
+            val intent = Intent(requireContext(), ViewAllActivity::class.java)
+            intent.putExtra("from", "preferredManufacturer")
+            startActivity(intent)
+        }
+
+        binding.mostPopularAllTV.setOnClickListener {
+            val intent = Intent(requireContext(), ViewAllActivity::class.java)
+            intent.putExtra("from", "mostPopular")
+            startActivity(intent)
+        }
+
+        binding.topRatedAllTV.setOnClickListener {
+            val intent = Intent(requireContext(), ViewAllActivity::class.java)
+            intent.putExtra("from", "topRated")
+            startActivity(intent)
+        }
+
+        binding.newlyAddedAllTV.setOnClickListener {
+            val intent = Intent(requireContext(), ViewAllActivity::class.java)
+            intent.putExtra("from", "newlyAdded")
+            startActivity(intent)
+        }
+
+        binding.flashSaleAllItemsCL.setOnClickListener {
+            val intent = Intent(requireContext(), ViewAllActivity::class.java)
+            intent.putExtra("from", "flashSale")
+            startActivity(intent)
+        }
+
+        binding.dealOfDayAllTV.setOnClickListener {
+            val intent = Intent(requireContext(), ViewAllActivity::class.java)
+            intent.putExtra("from", "dealOfDay")
+            startActivity(intent)
+        }
+
+        binding.popularBrandAllTV.setOnClickListener {
+            val intent = Intent(requireContext(), ViewAllActivity::class.java)
+            intent.putExtra("from", "popularBrand")
+            startActivity(intent)
+        }
+
+        binding.discountForYouAllTV.setOnClickListener {
+            val intent = Intent(requireContext(), ViewAllActivity::class.java)
+            intent.putExtra("from", "discountForYou")
+            startActivity(intent)
+        }
+
+        binding.recommendedAllTV.setOnClickListener {
+            val intent = Intent(requireContext(), ViewAllActivity::class.java)
+            intent.putExtra("from", "recommended")
+            startActivity(intent)
+        }
 
 
         arrayListCloths.clear()
@@ -236,8 +289,6 @@ class HomeFragment : Fragment() {
             override fun onResponse(
                 call: Call<DashBoardResponse>, response: Response<DashBoardResponse>
             ) {
-
-
                 binding.searchET.visibility = View.VISIBLE
                 binding.searchIV.visibility = View.VISIBLE
                 binding.shopForTV.visibility = View.VISIBLE
@@ -249,9 +300,6 @@ class HomeFragment : Fragment() {
                 shimmerHome.stopShimmer()
                 shimmerHome.visibility = View.GONE
 
-
-//                shimmerMostPopular.stopShimmer()
-//                shimmerMostPopular.visibility = View.GONE
 
                 val dashBoardResponse = response.body()
                 if (response.isSuccessful && context != null) {
@@ -265,7 +313,8 @@ class HomeFragment : Fragment() {
                         arrayListShopFor.addAll(dashBoardResponse.shopFor)
                         shopForAdapter = ShopForAdapter(requireContext(), arrayListShopFor)
                         binding.shopForRV.adapter = shopForAdapter
-//                        binding.shopForRV.isNestedScrollingEnabled = true
+                        binding.shopForRV.hasFixedSize()
+                        binding.shopForRV.isNestedScrollingEnabled = false
                         shopForAdapter.notifyDataSetChanged()
 
                         arrayListPreferredManufacturer.clear()

@@ -51,7 +51,7 @@
             android:inputType="textMultiLine"
             android:text="@string/all_top_wear"
             android:textColor="@color/black"
-            android:textSize="@dimen/text_size_12"
+            android:textSize="@dimen/text_size_14"
             app:layout_constraintEnd_toEndOf="@+id/imageCardView"
             app:layout_constraintStart_toStartOf="@+id/imageCardView"
             app:layout_constraintTop_toBottomOf="@id/imageCardView"

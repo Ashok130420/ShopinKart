@@ -76,11 +76,11 @@
 
             <TextView
                 android:id="@+id/shopForTV"
-                android:layout_width="@dimen/m150"
+                android:layout_width="@dimen/m100"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/m20"
-                android:fontFamily="@font/dm_sans"
                 android:background="@color/shimmer_background"
+                android:fontFamily="@font/dm_sans"
                 android:textColor="@color/primary_text"
                 android:textSize="@dimen/text_size_18"
                 android:visibility="visible"
@@ -88,14 +88,40 @@
                 app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
-                android:id="@+id/shopForRV"
-                android:layout_width="match_parent"
+                android:id="@+id/shopFor"
+                android:layout_width="0dp"
                 android:layout_height="@dimen/m100"
                 android:layout_marginTop="@dimen/m5"
+                android:layout_marginEnd="@dimen/m10"
                 android:background="@color/shimmer_background"
+                app:layout_constraintEnd_toStartOf="@+id/shopFor1"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/shopForTV"
-                tools:listitem="@layout/items_shop_for" />
+                app:layout_constraintTop_toBottomOf="@id/shopForTV" />
+
+            <TextView
+                android:id="@+id/shopFor1TV"
+                android:layout_width="@dimen/m100"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/m20"
+                android:background="@color/shimmer_background"
+                android:fontFamily="@font/dm_sans"
+                android:textColor="@color/primary_text"
+                android:textSize="@dimen/text_size_18"
+                android:visibility="visible"
+                app:layout_constraintStart_toStartOf="@+id/shopFor1"
+                app:layout_constraintTop_toTopOf="parent" />
+
+
+            <TextView
+                android:id="@+id/shopFor1"
+                android:layout_width="0dp"
+                android:layout_height="@dimen/m100"
+                android:layout_marginStart="@dimen/m10"
+                android:layout_marginTop="@dimen/m5"
+                android:background="@color/shimmer_background"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/shopFor"
+                app:layout_constraintTop_toBottomOf="@id/shopForTV" />
 
             <TextView
                 android:id="@+id/preferredManufacturerTV"
@@ -108,14 +134,14 @@
                 android:textSize="@dimen/text_size_18"
                 android:visibility="visible"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/shopForRV" />
+                app:layout_constraintTop_toBottomOf="@+id/shopFor" />
 
             <TextView
                 android:id="@+id/preferredManufacturerAllTV"
                 android:layout_width="@dimen/m70"
                 android:layout_height="wrap_content"
-                android:fontFamily="@font/dm_sans"
                 android:background="@color/shimmer_background"
+                android:fontFamily="@font/dm_sans"
                 android:textColor="@color/primary_Blue"
                 android:textSize="@dimen/text_size_18"
                 android:visibility="visible"
@@ -124,14 +150,13 @@
                 app:layout_constraintTop_toTopOf="@+id/preferredManufacturerTV" />
 
             <TextView
-                android:id="@+id/manufacturerRV"
+                android:id="@+id/manufacturer"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/m150"
                 android:layout_marginTop="@dimen/m5"
                 android:background="@color/shimmer_background"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/preferredManufacturerTV"
-                tools:listitem="@layout/items_shop_for" />
+                app:layout_constraintTop_toBottomOf="@id/preferredManufacturerTV" />
 
             <TextView
                 android:id="@+id/manufacturerTV"
@@ -144,7 +169,8 @@
                 android:textSize="@dimen/text_size_18"
                 android:visibility="visible"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/manufacturerRV" />
+                app:layout_constraintTop_toBottomOf="@+id/manufacturer" />
+
             <TextView
                 android:id="@+id/mostPopularCL"
                 android:layout_width="@dimen/m250"
@@ -162,8 +188,8 @@
                 android:id="@+id/manufacturerAllTV"
                 android:layout_width="@dimen/m70"
                 android:layout_height="wrap_content"
-                android:fontFamily="@font/dm_sans"
                 android:background="@color/shimmer_background"
+                android:fontFamily="@font/dm_sans"
                 android:textColor="@color/primary_Blue"
                 android:textSize="@dimen/text_size_18"
                 android:visibility="visible"
@@ -173,9 +199,9 @@
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
+                android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/m20"
-                app:layout_constraintTop_toBottomOf="@+id/mostPopularCL"
-                android:layout_height="wrap_content">
+                app:layout_constraintTop_toBottomOf="@+id/mostPopularCL">
 
                 <ImageView
                     android:id="@+id/imageIV"
@@ -230,7 +256,6 @@
 
 
             </androidx.constraintlayout.widget.ConstraintLayout>
-
 
 
         </androidx.constraintlayout.widget.ConstraintLayout>

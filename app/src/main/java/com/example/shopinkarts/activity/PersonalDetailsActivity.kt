@@ -337,7 +337,9 @@ class PersonalDetailsActivity : AppCompatActivity() {
                     productName = item.itemName,
                     qty = item.quantity,
                     totalAmount = item.totalAmount.toDouble(),
-                    variantId = item.vId
+                    variantId = item.vId,
+                    variantsArr = item.variantsArr,
+
                 )
             )
         }
@@ -407,10 +409,7 @@ class PersonalDetailsActivity : AppCompatActivity() {
         })
     }
 
-    fun validation() {
 
-
-    }
 }
 
 

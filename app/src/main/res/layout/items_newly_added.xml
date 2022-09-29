@@ -8,18 +8,18 @@
     </data>
 
     <androidx.cardview.widget.CardView
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:cardCornerRadius="@dimen/m10"
         app:cardUseCompatPadding="true">
 
         <androidx.constraintlayout.widget.ConstraintLayout
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content">
 
             <ImageView
                 android:id="@+id/newlyAddedIV"
-                android:layout_width="match_parent"
+                android:layout_width="155dp"
                 android:layout_height="160dp"
                 android:scaleType="fitXY"
                 android:src="@drawable/newly_added_image"

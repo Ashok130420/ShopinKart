@@ -18,6 +18,7 @@ class ProductAdapter(val context: Context, val products: List<CreateProduct>) :
     RecyclerView.Adapter<ProductAdapter.ViewHolder>() {
 
     lateinit var sizeQtyAdapter: SizeQtyAdapter
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val binding: ItemsDeliveredProductBinding = DataBindingUtil.inflate(
             LayoutInflater.from(parent.context),
@@ -32,16 +33,15 @@ class ProductAdapter(val context: Context, val products: List<CreateProduct>) :
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val itemDetails = products[position]
         holder.binding.apply {
+
             productNameTV.text = itemDetails.productName
             priceTV.text = itemDetails.totalAmount.toString()
             Glide.with(context).load(itemDetails.productImage).into(imageIV)
-            Log.d("ChooseImage", "${itemDetails.productImage} ")
 
         }
 
-
-        sizeQtyAdapter = SizeQtyAdapter(context)
-        holder.binding.sizeQtyRV.adapter = holder.sizeQtyAdapter
+        sizeQtyAdapter = SizeQtyAdapter(context,itemDetails.variantsArr)
+        holder.binding.sizeQtyRV.adapter = sizeQtyAdapter
         holder.binding.sizeQtyRV.isNestedScrollingEnabled = false
 
         holder.itemView.setOnClickListener {
@@ -58,6 +58,6 @@ class ProductAdapter(val context: Context, val products: List<CreateProduct>) :
     inner class ViewHolder(itemView: ItemsDeliveredProductBinding) :
         RecyclerView.ViewHolder(itemView.root) {
         val binding: ItemsDeliveredProductBinding = itemView
-        var sizeQtyAdapter: SizeQtyAdapter = SizeQtyAdapter(context)
+
     }
 }

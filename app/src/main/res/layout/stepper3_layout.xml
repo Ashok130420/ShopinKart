@@ -14,16 +14,38 @@
         android:visibility="visible"
         app:layout_constraintTop_toBottomOf="@+id/paymentCL">
 
-        <ImageView
-            android:id="@+id/thankYouIV"
-            android:layout_width="250dp"
-            android:layout_height="140dp"
+        <com.airbnb.lottie.LottieAnimationView
+            android:id="@+id/lottyAnimation"
+            android:layout_width="300dp"
+            android:layout_height="200dp"
             android:layout_marginTop="50dp"
-            android:src="@drawable/thank_you"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            tools:ignore="ContentDescription" />
+            app:lottie_autoPlay="true"
+            app:lottie_loop="true"
+            app:lottie_rawRes="@raw/order_complete" />
+
+        <TextView
+            android:id="@+id/thankYouTV"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="Your order is successfully placed"
+            android:paddingVertical="@dimen/p10"
+            android:textColor="@color/unselected_Text_color"
+            android:textSize="@dimen/text_size_14"
+            app:layout_constraintTop_toBottomOf="@+id/lottyAnimation" />
+
+<!--        <ImageView-->
+<!--            android:id="@+id/thankYouIV"-->
+<!--            android:layout_width="250dp"-->
+<!--            android:layout_height="140dp"-->
+<!--            android:src="@drawable/thank_you"-->
+<!--            app:layout_constraintEnd_toEndOf="parent"-->
+<!--            app:layout_constraintStart_toStartOf="parent"-->
+<!--            app:layout_constraintTop_toTopOf="parent"-->
+<!--            tools:ignore="ContentDescription" />-->
 
         <TextView
             android:id="@+id/trackDeliveryTV"
@@ -35,7 +57,7 @@
             android:paddingVertical="@dimen/p10"
             android:textColor="@color/unselected_Text_color"
             android:textSize="@dimen/text_size_14"
-            app:layout_constraintTop_toBottomOf="@+id/thankYouIV" />
+            app:layout_constraintTop_toBottomOf="@+id/thankYouTV" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

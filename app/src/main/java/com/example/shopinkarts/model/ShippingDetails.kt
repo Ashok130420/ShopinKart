@@ -9,4 +9,5 @@ data class ShippingDetails(
     val pincode: String,
     val state: String,
     val street: String
+
 )

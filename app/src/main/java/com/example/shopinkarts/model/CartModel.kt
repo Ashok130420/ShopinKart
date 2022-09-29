@@ -1,5 +1,7 @@
 package com.example.shopinkarts.model
 
+import com.example.shopinkarts.response.VariantsArr
+
 
 data class CartModel(
     var pId: String,
@@ -12,6 +14,7 @@ data class CartModel(
     var quantity: Int,
     var totalAmount: Int,
     var imageUrl: String,
-    var stock: Int
+    var stock: Int,
+    var variantsArr: ArrayList<VariantsArr>
 
 )

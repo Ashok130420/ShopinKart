@@ -34,7 +34,6 @@ import java.util.*
 import kotlin.collections.ArrayList
 
 
-
 class ProductDetailsActivity : AppCompatActivity() {
 
     lateinit var binding: ActivityProductDetailsBinding
@@ -47,6 +46,7 @@ class ProductDetailsActivity : AppCompatActivity() {
     var arrayListSimilarProduct: ArrayList<NewlyAdded> = ArrayList()
     var arraySelectColor: ArrayList<SelectColorModel> = ArrayList()
     var arraySelectSize: ArrayList<SelectSizeModel> = ArrayList()
+    var arrayListVariant: ArrayList<VariantsArr> = ArrayList()
 
     var productId = ""
     var isFreeDelivery = ""
@@ -246,11 +246,9 @@ class ProductDetailsActivity : AppCompatActivity() {
     private fun setupIndicators() {
 
         val indicators = arrayOfNulls<ImageView>(productBannerAdapter.itemCount)
-        val layoutParms: LinearLayout.LayoutParams =
-            LinearLayout.LayoutParams(
-                ListPopupWindow.WRAP_CONTENT,
-                ListPopupWindow.WRAP_CONTENT
-            )
+        val layoutParms: LinearLayout.LayoutParams = LinearLayout.LayoutParams(
+            ListPopupWindow.WRAP_CONTENT, ListPopupWindow.WRAP_CONTENT
+        )
         layoutParms.setMargins(8, 0, 8, 0)
 
         for (i in indicators.indices) {
@@ -304,12 +302,12 @@ class ProductDetailsActivity : AppCompatActivity() {
                     quantity = currentNumber,
                     totalAmount = totalAmount,
                     imageUrl = imageUrl,
-                    stock = stock
+                    stock = stock,
+                    variantsArr = arrayListVariant
                 )
             )
             DashBoardActivity.selectedVIDs.add(vId)
-            Toast.makeText(this, "Product Added Successfully", Toast.LENGTH_SHORT)
-                .show()
+            Toast.makeText(this, "Product Added Successfully", Toast.LENGTH_SHORT).show()
 
             Log.d("elementsVid", vId)
 
@@ -335,12 +333,12 @@ class ProductDetailsActivity : AppCompatActivity() {
                         quantity = currentNumber,
                         totalAmount = totalAmount,
                         imageUrl = imageUrl,
-                        stock = stock
+                        stock = stock,
+                        variantsArr = arrayListVariant
                     )
                 )
                 DashBoardActivity.selectedVIDs.add(vId)
-                Toast.makeText(this, "Product Added Successfully", Toast.LENGTH_SHORT)
-                    .show()
+                Toast.makeText(this, "Product Added Successfully", Toast.LENGTH_SHORT).show()
 
                 //store  arraylist in SP
                 sharedPreference.setArray()
@@ -378,8 +376,7 @@ class ProductDetailsActivity : AppCompatActivity() {
         val call: Call<ProductResponse> = RetrofitClient.instance!!.api.productApi(requestBody)
         call.enqueue(object : Callback<ProductResponse> {
             override fun onResponse(
-                call: Call<ProductResponse>,
-                response: Response<ProductResponse>
+                call: Call<ProductResponse>, response: Response<ProductResponse>
             ) {
                 if (response.isSuccessful) {
                     val productResponse = response.body()
@@ -390,8 +387,7 @@ class ProductDetailsActivity : AppCompatActivity() {
                         itemName = productResponse.product.productName
                         imageUrl = productResponse.product.productImages[0]
                         binding.tShirtNameTV.text = productResponse.product.productName
-                        binding.discountedPriceTV.text =
-                            "Rs ${productResponse.product.price}.00"
+                        binding.discountedPriceTV.text = "Rs ${productResponse.product.price}.00"
                         binding.discountTV.text = "${productResponse.product.discount} % OFF"
                         if (productResponse.product.stock <= 50) {
                             binding.unitesLeftTV.visibility = View.VISIBLE
@@ -401,14 +397,12 @@ class ProductDetailsActivity : AppCompatActivity() {
                         val arrayBanner: ArrayList<String> = ArrayList()
                         arrayBanner.addAll(productResponse.product.productImages)
                         productBannerAdapter = ProductBannerAdapter(
-                            this@ProductDetailsActivity,
-                            arrayBanner
+                            this@ProductDetailsActivity, arrayBanner
                         )
                         binding.productViewPager.adapter = productBannerAdapter
                         setupIndicators()
                         setCurrentIndicator(0)
-                        if (arrayBanner.isNotEmpty())
-                            autoSlide(arrayBanner.size)
+                        if (arrayBanner.isNotEmpty()) autoSlide(arrayBanner.size)
                         binding.dispatchedTV.text = productResponse.product.dispatchDetails[0]
                         binding.deliveryTV.text = productResponse.product.dispatchDetails[1]
                         binding.ratingBar.rating = productResponse.product.avgRating.toFloat()
@@ -426,8 +420,7 @@ class ProductDetailsActivity : AppCompatActivity() {
                         binding.productDescriptionDetailsTV.text =
                             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
                                 Html.fromHtml(
-                                    productResponse.product.description,
-                                    Html.FROM_HTML_MODE_COMPACT
+                                    productResponse.product.description, Html.FROM_HTML_MODE_COMPACT
                                 )
                             } else {
                                 Html.fromHtml(productResponse.product.description)
@@ -454,8 +447,7 @@ class ProductDetailsActivity : AppCompatActivity() {
                         arrayListSimilarProduct.clear()
                         arrayListSimilarProduct.addAll(productResponse.similarProducts)
                         similarProductsAdapter = SimilarProductsAdapter(
-                            this@ProductDetailsActivity,
-                            arrayListSimilarProduct
+                            this@ProductDetailsActivity, arrayListSimilarProduct
                         )
                         binding.similarProductsRV.adapter = similarProductsAdapter
                         binding.similarProductsRV.isNestedScrollingEnabled = false
@@ -505,18 +497,14 @@ class ProductDetailsActivity : AppCompatActivity() {
                 } else {
 
                     Toast.makeText(
-                        this@ProductDetailsActivity,
-                        "${response.message()}",
-                        Toast.LENGTH_SHORT
+                        this@ProductDetailsActivity, "${response.message()}", Toast.LENGTH_SHORT
                     ).show()
                 }
             }
 
             override fun onFailure(call: Call<ProductResponse>, t: Throwable) {
                 Toast.makeText(
-                    this@ProductDetailsActivity,
-                    "${t.message}",
-                    Toast.LENGTH_SHORT
+                    this@ProductDetailsActivity, "${t.message}", Toast.LENGTH_SHORT
                 ).show()
                 Log.e("TAG", "${t.message} ")
             }
