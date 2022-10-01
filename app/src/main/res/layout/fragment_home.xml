@@ -171,8 +171,6 @@
                         tools:listitem="@layout/items_shop_for" />
 
 
-
-
                     <TextView
                         android:id="@+id/preferredManufacturerTV"
                         android:layout_width="wrap_content"
@@ -421,17 +419,17 @@
                         tools:listitem="@layout/shimmer_items_most_popular" />
 -->
 
-                      <androidx.recyclerview.widget.RecyclerView
-                          android:id="@+id/newlyAddedRV"
-                          android:layout_width="match_parent"
-                          android:layout_height="wrap_content"
-                          android:layout_marginTop="@dimen/m24"
-                          android:orientation="horizontal"
-                          app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
-                          app:layout_constraintTop_toBottomOf="@id/newlyAddedTV"
-                          tools:listitem="@layout/items_newly_added"
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/newlyAddedRV"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/m24"
+                        android:orientation="horizontal"
+                        app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
+                        app:layout_constraintTop_toBottomOf="@id/newlyAddedTV"
+                        tools:listitem="@layout/items_newly_added"
 
-                          />
+                        />
 
                     <TextView
                         android:id="@+id/dealOfDayTV"
@@ -479,6 +477,7 @@
                         android:text="@string/popular_brand"
                         android:textColor="@color/primary_text"
                         android:textSize="@dimen/text_size_18"
+                        android:visibility="gone"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@+id/dealOfDayRV" />
 
@@ -490,6 +489,7 @@
                         android:text="@string/view_all"
                         android:textColor="@color/primary_Blue"
                         android:textSize="@dimen/text_size_12"
+                        android:visibility="gone"
                         app:layout_constraintBottom_toBottomOf="@+id/popularBrandTV"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintTop_toTopOf="@+id/popularBrandTV" />
@@ -500,6 +500,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="@dimen/m24"
                         android:orientation="horizontal"
+                        android:visibility="gone"
                         app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
                         app:layout_constraintTop_toBottomOf="@id/popularBrandTV"
                         tools:listitem="@layout/item_popular_brand" />
