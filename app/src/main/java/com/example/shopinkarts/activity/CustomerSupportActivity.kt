@@ -7,6 +7,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import com.example.shopinkarts.R
 import com.example.shopinkarts.api.RetrofitClient
+import com.example.shopinkarts.classes.SharedPreference
 import com.example.shopinkarts.databinding.ActivityCustomerSupportBinding
 import com.example.shopinkarts.response.CustomerSupportResponse
 import retrofit2.Call
@@ -16,18 +17,25 @@ import retrofit2.Response
 
 class CustomerSupportActivity : AppCompatActivity() {
 
+    lateinit var sharedPreference: SharedPreference
     lateinit var binding: ActivityCustomerSupportBinding
     var TAG = "CustomerSupportActivity"
     var phone = ""
     var message = ""
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = DataBindingUtil.setContentView(this, R.layout.activity_customer_support)
+
+        sharedPreference = SharedPreference(this)
 
         binding.headerCustomerSupport.nameTV.text = resources.getString(R.string.customer_support)
         binding.headerCustomerSupport.backIV.setOnClickListener {
             onBackPressed()
         }
+
+        binding.nameET.setText(sharedPreference.getName())
+        binding.phoneET.setText(sharedPreference.getPhone())
 
         binding.submitTV.setOnClickListener {
 

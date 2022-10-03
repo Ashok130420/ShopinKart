@@ -43,10 +43,18 @@ class SearchActivity : AppCompatActivity() {
 
             override fun onTextChanged(charSequence: CharSequence, i: Int, i1: Int, i2: Int) {
                 productId = binding.headerSearch.searchET.text.toString()
-                searchList()
+                if (productId.isNotEmpty()) {
+                    searchList()
+                } else {
+                    arrayListSearch.clear()
+                }
             }
 
-            override fun afterTextChanged(editable: Editable) {}
+            override fun afterTextChanged(editable: Editable) {
+                if (productId.isNotEmpty()){
+                    arrayListSearch.clear()
+                }
+            }
         })
     }
 
