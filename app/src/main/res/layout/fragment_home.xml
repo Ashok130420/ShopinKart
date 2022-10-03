@@ -46,21 +46,18 @@
                     </LinearLayout>
                 </com.facebook.shimmer.ShimmerFrameLayout>
 
-                <EditText
-                    android:id="@+id/searchET"
+                <TextView
+                    android:id="@+id/searchTV"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginHorizontal="@dimen/m14"
                     android:layout_marginTop="@dimen/m10"
                     android:background="@drawable/search_background"
-                    android:focusable="false"
                     android:fontFamily="@font/dm_sans_medium"
                     android:hint="@string/search"
-                    android:inputType="textCapWords"
                     android:padding="@dimen/p14"
                     android:paddingStart="@dimen/m50"
-                    android:textColor="@color/primary_text"
-                    android:textColorHint="@color/grey_font"
+                    android:textColor="@color/grey_font"
                     android:textSize="@dimen/text_size_14"
                     android:visibility="invisible"
                     app:layout_constraintTop_toTopOf="parent"
@@ -75,9 +72,9 @@
                     android:padding="@dimen/p8"
                     android:src="@drawable/search_icon"
                     android:visibility="invisible"
-                    app:layout_constraintBottom_toBottomOf="@id/searchET"
-                    app:layout_constraintStart_toStartOf="@id/searchET"
-                    app:layout_constraintTop_toTopOf="@id/searchET"
+                    app:layout_constraintBottom_toBottomOf="@id/searchTV"
+                    app:layout_constraintStart_toStartOf="@id/searchTV"
+                    app:layout_constraintTop_toTopOf="@id/searchTV"
 
                     tools:ignore="ContentDescription" />
 
@@ -86,7 +83,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/m10"
-                    app:layout_constraintTop_toBottomOf="@+id/searchET">
+                    app:layout_constraintTop_toBottomOf="@+id/searchTV">
 
                     <androidx.viewpager2.widget.ViewPager2
                         android:id="@+id/introSliderViewPager"

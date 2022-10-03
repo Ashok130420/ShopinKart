@@ -21,5 +21,7 @@ data class Product(
     val subCategoryId: String,
     val tax: Int,
     val taxType: Int,
-    val variantsArr: List<VariantsArr>
+    val variantsArr: List<VariantsArr>,
+    val productId:String
+
 )

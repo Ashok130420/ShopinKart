@@ -48,7 +48,7 @@ class ProductDetailsActivity : AppCompatActivity() {
     var arraySelectSize: ArrayList<SelectSizeModel> = ArrayList()
     var arrayListVariant: ArrayList<VariantsArr> = ArrayList()
 
-    var productId = ""
+
     var isFreeDelivery = ""
     var currentPage = 0
     var timer: Timer? = null
@@ -70,6 +70,8 @@ class ProductDetailsActivity : AppCompatActivity() {
         var discountedPrice = 0
         var actualPrice = 0
 
+        var productId = ""
+
         var pId = ""
         var vId = ""
         var itemName = ""
@@ -78,7 +80,7 @@ class ProductDetailsActivity : AppCompatActivity() {
         var quantity = ""
         var imageUrl = ""
         var variantTarget = ""
-//        var stock = 0
+//      var stock = 0
 
         fun getInstance(): ProductDetailsActivity {
             return pInstance
@@ -391,6 +393,7 @@ class ProductDetailsActivity : AppCompatActivity() {
                         pId = productResponse.product._id
                         itemName = productResponse.product.productName
                         imageUrl = productResponse.product.productImages[0]
+                        binding.idTV.text = "#Id -${productResponse.product.productId}"
                         binding.tShirtNameTV.text = productResponse.product.productName
                         binding.discountedPriceTV.text = "Rs ${productResponse.product.price}.00"
                         binding.discountTV.text = "${productResponse.product.discount} % OFF"

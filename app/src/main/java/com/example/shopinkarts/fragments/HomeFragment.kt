@@ -14,6 +14,7 @@ import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.viewpager2.widget.ViewPager2
 import com.example.shopinkarts.R
+import com.example.shopinkarts.activity.SearchActivity
 import com.example.shopinkarts.activity.ViewAllActivity
 import com.example.shopinkarts.adapter.*
 import com.example.shopinkarts.api.RetrofitClient
@@ -84,7 +85,6 @@ class HomeFragment : Fragment() {
             return mInstance
         }
     }
-
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
@@ -206,6 +206,11 @@ class HomeFragment : Fragment() {
             startActivity(intent)
         }
 
+        binding.searchTV.setOnClickListener {
+            val intent = Intent(requireContext(), SearchActivity::class.java)
+            startActivity(intent)
+        }
+
 
         arrayListCloths.clear()
         arrayListCloths.add(
@@ -289,7 +294,7 @@ class HomeFragment : Fragment() {
             override fun onResponse(
                 call: Call<DashBoardResponse>, response: Response<DashBoardResponse>
             ) {
-                binding.searchET.visibility = View.VISIBLE
+                binding.searchTV.visibility = View.VISIBLE
                 binding.searchIV.visibility = View.VISIBLE
                 binding.shopForTV.visibility = View.VISIBLE
                 binding.preferredManufacturerTV.visibility = View.VISIBLE

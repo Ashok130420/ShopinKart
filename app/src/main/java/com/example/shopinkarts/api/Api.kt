@@ -50,6 +50,9 @@ interface Api {
 
     // customer support api
     @POST("customer-supports/create")
-    fun customerSupportApi(@Body body: Map<String, String>):Call<CustomerSupportResponse>
+    fun customerSupportApi(@Body body: Map<String, String>): Call<CustomerSupportResponse>
 
+    // search api
+    @GET("products/search?")
+    fun search(@Query("searchId") searchId: String?): Call<SearchResponse>
 }

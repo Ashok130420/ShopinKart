@@ -28,6 +28,7 @@ class CustomerSupportActivity : AppCompatActivity() {
         binding.headerCustomerSupport.backIV.setOnClickListener {
             onBackPressed()
         }
+
         binding.submitTV.setOnClickListener {
 
             phone = binding.phoneET.text.toString()
