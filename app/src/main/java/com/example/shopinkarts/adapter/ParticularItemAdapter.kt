@@ -16,7 +16,6 @@ import com.example.shopinkarts.response.Product
 class ParticularItemAdapter(val context: Context, var arrayList: ArrayList<Product>) :
     RecyclerView.Adapter<ParticularItemAdapter.ViewHolder>() {
 
-
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val binding: ItemsParticularItemBinding = DataBindingUtil.inflate(
             LayoutInflater.from(parent.context),
@@ -42,6 +41,7 @@ class ParticularItemAdapter(val context: Context, var arrayList: ArrayList<Produ
             intent.putExtra("productId",itemDetails._id)
             context.startActivity(intent)
         }
+
     }
 
     override fun getItemCount(): Int {

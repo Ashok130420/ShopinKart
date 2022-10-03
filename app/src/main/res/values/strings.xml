@@ -241,6 +241,8 @@
     <string name="newest_first">Newest First</string>
     <string name="deal_of_the_day">Deal Of The Day</string>
     <string name="logout">LogOut</string>
+    <string name="product_id">Product Id</string>
+    <string name="message">Message</string>
 
 
 </resources>

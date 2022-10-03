@@ -48,4 +48,8 @@ interface Api {
     @GET("orders/user?")
     fun myOrdersApi(@Query("id") id: String?): Call<MyOrdersResponse>
 
+    // customer support api
+    @POST("customer-supports/create")
+    fun customerSupportApi(@Body body: Map<String, String>):Call<CustomerSupportResponse>
+
 }

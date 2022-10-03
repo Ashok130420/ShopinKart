@@ -2,13 +2,16 @@ package com.example.shopinkarts.activity
 
 import android.content.Intent
 import android.os.Bundle
+import android.os.Handler
 import android.util.Log
 import android.view.View
-import android.widget.AdapterView
 import android.widget.PopupMenu
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
+import androidx.recyclerview.widget.GridLayoutManager
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.shopinkarts.R
 import com.example.shopinkarts.adapter.ParticularItemAdapter
@@ -24,16 +27,21 @@ class ParticularItemActivity : AppCompatActivity() {
 
     lateinit var binding: ActivityParticularItemBinding
     lateinit var particularItemAdapter: ParticularItemAdapter
+    lateinit var layoutManager: LinearLayoutManager
     var arrayListParticularItem: ArrayList<Product> = ArrayList()
     var subCategoryName = ""
     var imageURL = ""
     var particularItemId = ""
 
+    var page = 1
+    var isloading = false
+    val limit = arrayListParticularItem.size
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = DataBindingUtil.setContentView(this, R.layout.activity_particular_item)
 
+        layoutManager = LinearLayoutManager(this)
         subCategoryName = intent.extras!!.getString("subCategoryName", "")
         imageURL = intent.extras!!.getString("imageURL", "")
 
@@ -41,8 +49,8 @@ class ParticularItemActivity : AppCompatActivity() {
         Log.d("particularItemId", particularItemId)
 
         binding.headerParticularItem.titleTV.text = subCategoryName
-        binding.headerParticularItem.cartIV.visibility=View.GONE
-        binding.headerParticularItem.cartItemTV.visibility=View.GONE
+        binding.headerParticularItem.cartIV.visibility = View.GONE
+        binding.headerParticularItem.cartItemTV.visibility = View.GONE
         Glide.with(this).load(imageURL).into(binding.headerParticularItem.iconIV)
 
         particularItemList("sort", "price", "0")
@@ -128,34 +136,75 @@ class ParticularItemActivity : AppCompatActivity() {
                 }
             }
 */
+
+        binding.particularItemRV.addOnScrollListener(object : RecyclerView.OnScrollListener() {
+            override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
+//                if (dy > 0) {
+                val visibleItemCount: Int = layoutManager.childCount
+                val pastVisibleItem: Int =
+                    layoutManager.findFirstCompletelyVisibleItemPosition()
+                val total: Int = particularItemAdapter.itemCount
+                if (!isloading) {
+                    if ((visibleItemCount + pastVisibleItem) > total) {
+                        page++
+                        particularItemList("sort", "price", "0")
+                    }
+                }
+//                }
+                super.onScrolled(recyclerView, dx, dy)
+            }
+        })
+
     }
+
 
     private fun particularItemList(type: String, subType: String, value: String) {
 
 
-        val call: Call<ParticularItemResponse> =
-            RetrofitClient.instance!!.api.particularItem(
-                particularItemId,
-                type = type,
-                subType = subType,
-                value = value
-            )
+        val call: Call<ParticularItemResponse> = RetrofitClient.instance!!.api.particularItem(
+            particularItemId, type = type, subType = subType, value = value
+        )
         call.enqueue(object : Callback<ParticularItemResponse> {
             override fun onResponse(
-                call: Call<ParticularItemResponse>,
-                response: Response<ParticularItemResponse>
+                call: Call<ParticularItemResponse>, response: Response<ParticularItemResponse>
             ) {
                 val particularItemResponse = response.body()
                 if (response.isSuccessful) {
                     if (particularItemResponse!!.status) {
 
+                        isloading = true
+                        binding.progressbar.visibility = View.VISIBLE
+                        val start: Int = (page - 1) * limit
+                        val end: Int = (page) * limit
+
                         arrayListParticularItem.clear()
-                        arrayListParticularItem.addAll(particularItemResponse.products)
-                        particularItemAdapter = ParticularItemAdapter(
-                            this@ParticularItemActivity, arrayListParticularItem
-                        )
-                        binding.particularItemRV.adapter = particularItemAdapter
-                        particularItemAdapter.notifyDataSetChanged()
+                        for (i: Int in start..end) {
+                            arrayListParticularItem.addAll(particularItemResponse.products)
+                        }
+
+                        Handler().postDelayed({
+                            if (::particularItemAdapter.isInitialized) {
+                                particularItemAdapter.notifyDataSetChanged()
+                            } else {
+                                particularItemAdapter = ParticularItemAdapter(
+                                    this@ParticularItemActivity, arrayListParticularItem
+                                )
+                                binding.particularItemRV.adapter = particularItemAdapter
+
+                            }
+                            isloading = false
+                            binding.progressbar.visibility = View.GONE
+                        }, 3000)
+
+//                        arrayListParticularItem.clear()
+//                        arrayListParticularItem.addAll(particularItemResponse.products)
+//                        particularItemAdapter = ParticularItemAdapter(
+//                            this@ParticularItemActivity, arrayListParticularItem
+//                        )
+
+//                        binding.particularItemRV.adapter = particularItemAdapter
+//                        particularItemAdapter.notifyDataSetChanged()
+
                         binding.allProductsTV.text =
                             "Showcasing ${arrayListParticularItem.size} ${subCategoryName}"
                     }
@@ -200,8 +249,7 @@ class ParticularItemActivity : AppCompatActivity() {
         val popup = PopupMenu::class.java.getDeclaredField("mPopup")
         popup.isAccessible = true
         val menu = popup.get(popupMenu)
-        menu.javaClass.getDeclaredMethod("setForceShowIcon", Boolean::class.java)
-            .invoke(menu, true)
+        menu.javaClass.getDeclaredMethod("setForceShowIcon", Boolean::class.java).invoke(menu, true)
         popupMenu.show()
 
     }
@@ -237,8 +285,7 @@ class ParticularItemActivity : AppCompatActivity() {
         val popup = PopupMenu::class.java.getDeclaredField("mPopup")
         popup.isAccessible = true
         val menu = popup.get(popupMenu)
-        menu.javaClass.getDeclaredMethod("setForceShowIcon", Boolean::class.java)
-            .invoke(menu, true)
+        menu.javaClass.getDeclaredMethod("setForceShowIcon", Boolean::class.java).invoke(menu, true)
         popupMenu.show()
 
     }

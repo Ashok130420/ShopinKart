@@ -203,6 +203,13 @@
             tools:itemCount="5"
             tools:listitem="@layout/items_particular_item" />
 
+        <ProgressBar
+            android:id="@+id/progressbar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            app:layout_constraintBottom_toBottomOf="@+id/particularItemRV" />
+
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

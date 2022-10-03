@@ -4,7 +4,7 @@ package com.example.shopinkarts.api
 import android.app.Application
 import com.onesignal.OneSignal
 
-const val ONESIGNAL_APP_ID = "dd973c9e-182d-4405-8b7e-7d3bd48a05cd"
+const val ONESIGNAL_APP_ID = "50e8d4b7-8f07-4502-9430-9d3d68bc73ac"
 
 class MyApplication : Application() {
 
@@ -17,6 +17,7 @@ class MyApplication : Application() {
         // OneSignal Initialization
         OneSignal.initWithContext(this)
         OneSignal.setAppId(ONESIGNAL_APP_ID)
+
         instance = this
     }
 
