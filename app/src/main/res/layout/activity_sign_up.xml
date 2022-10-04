@@ -67,157 +67,159 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/welcomeTV" />
 
-            <TextView
-                android:id="@+id/phoneTV"
-                android:layout_width="wrap_content"
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/phoneNumberLayout"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/m30"
-                android:fontFamily="@font/dm_sans"
-                android:text="@string/phone"
-                android:textColor="@color/primary_text"
-                android:textSize="@dimen/text_size_16"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/belowDetailsTV" />
+                android:hint="@string/phone_number"
+                android:padding="0dp"
+                android:textColorHint="@color/hint_color"
+                app:boxStrokeColor="@color/primary_Blue"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/belowDetailsTV">
 
-            <EditText
-                android:id="@+id/phoneET"
+                <com.google.android.material.textfield.TextInputEditText
+
+                    android:id="@+id/phoneET"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/dm_sans"
+                    android:inputType="number"
+                    android:maxLength="10"
+                    android:textColorHighlight="@color/hint_color"
+                    android:textColorHint="@color/hint"
+                    android:textSize="@dimen/text_size_14"
+
+                    />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/emailLayout"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/m10"
-                android:background="@drawable/edit_text_background"
-                android:fontFamily="@font/dm_sans"
-                android:hint="@string/please_type_here"
-                android:inputType="number"
-                android:maxLength="10"
-                android:paddingHorizontal="@dimen/p20"
-                android:paddingVertical="@dimen/p16"
-                android:textColorHint="@color/hint"
-                android:textSize="14sp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/phoneTV"
-                tools:ignore="Autofill,ContentDescription,TextFields,UsingOnClickInXml" />
-
-            <TextView
-                android:id="@+id/emailTV"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/m20"
-                android:fontFamily="@font/dm_sans"
-                android:text="@string/email"
-                android:textColor="@color/primary_text"
-                android:textSize="@dimen/text_size_16"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/phoneET" />
+                android:hint="@string/email"
+                android:padding="0dp"
+                android:textColorHint="@color/hint_color"
+                app:boxStrokeColor="@color/primary_Blue"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/phoneNumberLayout">
 
-            <EditText
-                android:id="@+id/emailET"
+                <com.google.android.material.textfield.TextInputEditText
+
+                    android:id="@+id/emailET"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/dm_sans"
+                    android:inputType="number"
+                    android:maxLength="10"
+                    android:textColorHighlight="@color/hint_color"
+                    android:textColorHint="@color/hint"
+                    android:textSize="@dimen/text_size_14"
+
+                    />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/radioLayout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/m10"
-                android:background="@drawable/edit_text_background"
-                android:fontFamily="@font/dm_sans"
-                android:hint="@string/please_type_here"
-                android:inputType="textEmailAddress"
-                android:paddingHorizontal="@dimen/p20"
-                android:paddingVertical="@dimen/p16"
-                android:textColorHint="@color/hint"
-                android:textSize="14sp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/emailTV"
-                tools:ignore="Autofill,ContentDescription,TextFields,UsingOnClickInXml" />
-
-
-            <TextView
-                android:id="@+id/selectOneTV"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/m20"
-                android:fontFamily="@font/dm_sans"
-                android:text="@string/please_select_one"
-                android:textColor="@color/primary_text"
-                android:textSize="@dimen/text_size_16"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/emailET" />
+                android:hint="@string/phone_number"
+                android:paddingVertical="2dp"
+                android:textColorHint="@color/hint_color"
+                app:boxStrokeColor="@color/grey_font"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/emailLayout">
+
+
+                <RadioGroup
+                    android:id="@+id/radioGroup"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/emailLayout">
+
+                    <RadioButton
+                        android:id="@+id/personalRB"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/m10"
+                        android:backgroundTint="@color/hint"
+                        android:checked="true"
+                        android:fontFamily="@font/dm_sans"
+                        android:text="@string/personal_use"
+                        android:textColor="@color/grey_font"
+                        android:textSize="@dimen/text_size_14" />
+
+                    <RadioButton
+                        android:id="@+id/resellingRB"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/m50"
+                        android:backgroundTint="@color/hint"
+                        android:fontFamily="@font/dm_sans"
+                        android:text="@string/for_reselling"
+                        android:textColor="@color/grey_font"
+                        android:textSize="@dimen/text_size_14" />
+                </RadioGroup>
+
+
+            </com.google.android.material.textfield.TextInputLayout>
 
             <View
-                android:id="@+id/selectOneView"
                 android:layout_width="match_parent"
-                android:layout_height="50dp"
-                android:layout_marginTop="@dimen/m10"
-                android:background="@drawable/edit_text_background"
-                android:fontFamily="@font/dm_sans"
-                android:hint="@string/enter_email"
-                android:inputType="textEmailAddress"
-                android:paddingHorizontal="@dimen/p20"
-                android:paddingVertical="@dimen/p16"
-                android:textColorHint="@color/hint"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/selectOneTV" />
+                android:layout_height="0dp"
+                android:background="@drawable/shape_text_grey"
+                app:layout_constraintBottom_toBottomOf="@+id/radioLayout"
+                app:layout_constraintTop_toTopOf="@+id/radioLayout"
 
-            <RadioGroup
-                android:id="@+id/radioGroup"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                app:layout_constraintBottom_toBottomOf="@+id/selectOneView"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="@+id/selectOneView">
 
-                <RadioButton
-                    android:id="@+id/personalRB"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="@dimen/m10"
-                    android:backgroundTint="@color/hint"
-                    android:fontFamily="@font/dm_sans"
-                    android:text="@string/personal_use"
-                    android:textColor="@color/hint"
-                    android:textSize="@dimen/text_size_14" />
+                />
 
-                <RadioButton
-                    android:id="@+id/resellingRB"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="@dimen/m50"
-                    android:backgroundTint="@color/hint"
-                    android:fontFamily="@font/dm_sans"
-                    android:text="@string/for_reselling"
-                    android:textColor="@color/hint"
-                    android:textSize="@dimen/text_size_14" />
-            </RadioGroup>
-
-            <TextView
-                android:id="@+id/passwordTV"
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/passwordLayout"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/m20"
-                android:fontFamily="@font/dm_sans"
-                android:text="@string/password"
-                android:textColor="@color/primary_text"
-                android:textSize="@dimen/text_size_16"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/selectOneView" />
-
-            <EditText
-                android:id="@+id/passwordET"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/m10"
-                android:background="@drawable/edit_text_background"
-                android:fontFamily="@font/dm_sans"
-                android:hint="@string/please_set_here"
-                android:inputType="textPassword"
-                android:paddingHorizontal="@dimen/p20"
-                android:paddingVertical="@dimen/p16"
-                android:textColorHint="@color/hint"
-                android:textSize="14sp"
+                android:hint="@string/password"
+                android:padding="0dp"
+                android:textColorHint="@color/hint_color"
+                app:boxStrokeColor="@color/primary_Blue"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/passwordTV"
-                tools:ignore="Autofill,ContentDescription,TextFields,UsingOnClickInXml" />
+                app:layout_constraintTop_toBottomOf="@+id/radioLayout">
+
+                <com.google.android.material.textfield.TextInputEditText
+
+
+                    android:id="@+id/passwordET"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/m20"
+                    android:fontFamily="@font/dm_sans"
+                    android:inputType="textPassword"
+                    android:maxLength="15"
+                    android:textColorHighlight="@color/hint_color"
+                    android:textColorHint="@color/hint"
+                    android:textSize="@dimen/text_size_14"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/passwordTV"
+
+                    />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+
+
 
             <ImageView
                 android:id="@+id/passToggle"
@@ -226,10 +228,175 @@
                 android:onClick="passToggle"
                 android:padding="8dp"
                 android:src="@drawable/eye_open"
-                app:layout_constraintBottom_toBottomOf="@+id/passwordET"
-                app:layout_constraintEnd_toEndOf="@+id/passwordET"
-                app:layout_constraintTop_toTopOf="@+id/passwordET"
+                app:layout_constraintBottom_toBottomOf="@+id/passwordLayout"
+                app:layout_constraintEnd_toEndOf="@+id/passwordLayout"
+                app:layout_constraintTop_toTopOf="@+id/passwordLayout"
                 tools:ignore="ContentDescription,UsingOnClickInXml" />
+
+            <!--  <TextView
+                  android:id="@+id/phoneTV"
+                  android:layout_width="wrap_content"
+                  android:layout_height="wrap_content"
+                  android:layout_marginTop="@dimen/m30"
+                  android:fontFamily="@font/dm_sans"
+                  android:text="@string/phone"
+                  android:textColor="@color/primary_text"
+                  android:textSize="@dimen/text_size_16"
+                  app:layout_constraintStart_toStartOf="parent"
+                  app:layout_constraintTop_toBottomOf="@+id/belowDetailsTV" />
+
+              <EditText
+                  android:id="@+id/phoneET"
+                  android:layout_width="match_parent"
+                  android:layout_height="wrap_content"
+                  android:layout_marginTop="@dimen/m10"
+                  android:background="@drawable/edit_text_background"
+                  android:fontFamily="@font/dm_sans"
+                  android:hint="@string/please_type_here"
+                  android:inputType="number"
+                  android:maxLength="10"
+                  android:paddingHorizontal="@dimen/p20"
+                  android:paddingVertical="@dimen/p16"
+                  android:textColorHint="@color/hint"
+                  android:textSize="14sp"
+                  app:layout_constraintEnd_toEndOf="parent"
+                  app:layout_constraintStart_toStartOf="parent"
+                  app:layout_constraintTop_toBottomOf="@+id/phoneTV"
+                  tools:ignore="Autofill,ContentDescription,TextFields,UsingOnClickInXml" />
+
+              <TextView
+                  android:id="@+id/emailTV"
+                  android:layout_width="wrap_content"
+                  android:layout_height="wrap_content"
+                  android:layout_marginTop="@dimen/m20"
+                  android:fontFamily="@font/dm_sans"
+                  android:text="@string/email"
+                  android:textColor="@color/primary_text"
+                  android:textSize="@dimen/text_size_16"
+                  app:layout_constraintStart_toStartOf="parent"
+                  app:layout_constraintTop_toBottomOf="@+id/phoneET" />
+
+              <EditText
+                  android:id="@+id/emailET"
+                  android:layout_width="match_parent"
+                  android:layout_height="wrap_content"
+                  android:layout_marginTop="@dimen/m10"
+                  android:background="@drawable/edit_text_background"
+                  android:fontFamily="@font/dm_sans"
+                  android:hint="@string/please_type_here"
+                  android:inputType="textEmailAddress"
+                  android:paddingHorizontal="@dimen/p20"
+                  android:paddingVertical="@dimen/p16"
+                  android:textColorHint="@color/hint"
+                  android:textSize="14sp"
+                  app:layout_constraintEnd_toEndOf="parent"
+                  app:layout_constraintStart_toStartOf="parent"
+                  app:layout_constraintTop_toBottomOf="@+id/emailTV"
+                  tools:ignore="Autofill,ContentDescription,TextFields,UsingOnClickInXml" />
+
+
+              <TextView
+                  android:id="@+id/selectOneTV"
+                  android:layout_width="wrap_content"
+                  android:layout_height="wrap_content"
+                  android:layout_marginTop="@dimen/m20"
+                  android:fontFamily="@font/dm_sans"
+                  android:text="@string/please_select_one"
+                  android:textColor="@color/primary_text"
+                  android:textSize="@dimen/text_size_16"
+                  app:layout_constraintStart_toStartOf="parent"
+                  app:layout_constraintTop_toBottomOf="@+id/emailET" />
+
+              <View
+                  android:id="@+id/selectOneView"
+                  android:layout_width="match_parent"
+                  android:layout_height="50dp"
+                  android:layout_marginTop="@dimen/m10"
+                  android:background="@drawable/edit_text_background"
+                  android:fontFamily="@font/dm_sans"
+                  android:hint="@string/enter_email"
+                  android:inputType="textEmailAddress"
+                  android:paddingHorizontal="@dimen/p20"
+                  android:paddingVertical="@dimen/p16"
+                  android:textColorHint="@color/hint"
+                  app:layout_constraintEnd_toEndOf="parent"
+                  app:layout_constraintStart_toStartOf="parent"
+                  app:layout_constraintTop_toBottomOf="@+id/selectOneTV" />
+
+              <RadioGroup
+                  android:id="@+id/radioGroup"
+                  android:layout_width="wrap_content"
+                  android:layout_height="wrap_content"
+                  android:orientation="horizontal"
+                  app:layout_constraintBottom_toBottomOf="@+id/selectOneView"
+                  app:layout_constraintStart_toStartOf="parent"
+                  app:layout_constraintTop_toTopOf="@+id/selectOneView">
+
+                  <RadioButton
+                      android:id="@+id/personalRB"
+                      android:layout_width="wrap_content"
+                      android:layout_height="wrap_content"
+                      android:layout_marginStart="@dimen/m10"
+                      android:backgroundTint="@color/hint"
+                      android:checked="true"
+                      android:fontFamily="@font/dm_sans"
+                      android:text="@string/personal_use"
+                      android:textColor="@color/hint"
+                      android:textSize="@dimen/text_size_14" />
+
+                  <RadioButton
+                      android:id="@+id/resellingRB"
+                      android:layout_width="wrap_content"
+                      android:layout_height="wrap_content"
+                      android:layout_marginStart="@dimen/m50"
+                      android:backgroundTint="@color/hint"
+                      android:fontFamily="@font/dm_sans"
+                      android:text="@string/for_reselling"
+                      android:textColor="@color/hint"
+                      android:textSize="@dimen/text_size_14" />
+              </RadioGroup>
+
+              <TextView
+                  android:id="@+id/passwordTV"
+                  android:layout_width="match_parent"
+                  android:layout_height="wrap_content"
+                  android:layout_marginTop="@dimen/m20"
+                  android:fontFamily="@font/dm_sans"
+                  android:text="@string/password"
+                  android:textColor="@color/primary_text"
+                  android:textSize="@dimen/text_size_16"
+                  app:layout_constraintStart_toStartOf="parent"
+                  app:layout_constraintTop_toBottomOf="@+id/selectOneView" />
+
+              <EditText
+                  android:id="@+id/passwordET"
+                  android:layout_width="match_parent"
+                  android:layout_height="wrap_content"
+                  android:layout_marginTop="@dimen/m10"
+                  android:background="@drawable/edit_text_background"
+                  android:fontFamily="@font/dm_sans"
+                  android:hint="@string/please_set_here"
+                  android:inputType="textPassword"
+                  android:paddingHorizontal="@dimen/p20"
+                  android:paddingVertical="@dimen/p16"
+                  android:textColorHint="@color/hint"
+                  android:textSize="14sp"
+                  app:layout_constraintEnd_toEndOf="parent"
+                  app:layout_constraintStart_toStartOf="parent"
+                  app:layout_constraintTop_toBottomOf="@+id/passwordTV"
+                  tools:ignore="Autofill,ContentDescription,TextFields,UsingOnClickInXml" />
+
+              <ImageView
+                  android:id="@+id/passToggle"
+                  android:layout_width="40dp"
+                  android:layout_height="40dp"
+                  android:onClick="passToggle"
+                  android:padding="8dp"
+                  android:src="@drawable/eye_open"
+                  app:layout_constraintBottom_toBottomOf="@+id/passwordET"
+                  app:layout_constraintEnd_toEndOf="@+id/passwordET"
+                  app:layout_constraintTop_toTopOf="@+id/passwordET"
+                  tools:ignore="ContentDescription,UsingOnClickInXml" />-->
 
 
         </androidx.constraintlayout.widget.ConstraintLayout>

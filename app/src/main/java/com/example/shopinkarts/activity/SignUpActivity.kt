@@ -56,6 +56,7 @@ class SignUpActivity : AppCompatActivity() {
             val rb = radioGroup.findViewById<RadioButton>(i)
             if (rb != null)
                 userType = radioGroup.indexOfChild(rb).toString()
+
         }
 
         binding.signUpTv.setOnClickListener {
