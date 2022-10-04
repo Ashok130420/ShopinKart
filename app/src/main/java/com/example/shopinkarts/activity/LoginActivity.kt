@@ -35,7 +35,6 @@ class LoginActivity : AppCompatActivity() {
     var deviceId = String()
     var phone = ""
     var password = ""
-    var phoneNo = ""
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

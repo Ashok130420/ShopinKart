@@ -28,7 +28,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:background="@color/white"
-                    android:visibility="gone"
+                    android:visibility="visible"
                     app:layout_constraintTop_toTopOf="parent"
                     tools:context=".activity.PersonalDetailsActivity">
 
