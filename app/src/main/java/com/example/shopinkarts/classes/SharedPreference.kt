@@ -24,6 +24,7 @@ class SharedPreference(val context: Context) {
 
         const val Name = "name"
         const val Phone = "phone"
+        const val PhoneNo = "phoneNo"
         const val Flat = "flat"
         const val Street = "street"
         const val Pin = "pin"
@@ -37,6 +38,12 @@ class SharedPreference(val context: Context) {
         val editor: SharedPreferences.Editor = prefs.edit()
         editor.clear()
         editor.commit()
+    }
+
+    fun setPhoneNo(phoneNo: String) {
+        val editor = prefs.edit()
+        editor.putString(PhoneNo, phoneNo)
+        editor.apply()
     }
 
     fun setAddress(
@@ -68,6 +75,10 @@ class SharedPreference(val context: Context) {
 
     fun getPhone(): String? {
         return prefs.getString(Phone, "")
+    }
+
+    fun getPhoneNo(): String? {
+        return prefs.getString(PhoneNo, "")
     }
 
     fun getFlat(): String? {

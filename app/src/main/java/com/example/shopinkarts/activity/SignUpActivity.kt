@@ -46,6 +46,7 @@ class SignUpActivity : AppCompatActivity() {
         sharedPreference = SharedPreference(this)
 
         deviceId = OneSignal.getDeviceState()?.userId.toString()
+        Log.d("TAG_deviceId", "onCreate: $deviceId")
 
         binding.backIV.setOnClickListener {
             onBackPressed()

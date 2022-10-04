@@ -7,7 +7,6 @@ import com.onesignal.OneSignal
 const val ONESIGNAL_APP_ID = "50e8d4b7-8f07-4502-9430-9d3d68bc73ac"
 
 class MyApplication : Application() {
-
     override fun onCreate() {
         super.onCreate()
 

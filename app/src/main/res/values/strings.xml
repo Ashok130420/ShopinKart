@@ -243,6 +243,7 @@
     <string name="logout">LogOut</string>
     <string name="product_id">Product Id</string>
     <string name="message">Message</string>
+    <string name="notification_description">Notification Description</string>
 
 
 </resources>

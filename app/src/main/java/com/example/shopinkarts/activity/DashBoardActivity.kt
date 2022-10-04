@@ -56,13 +56,13 @@ class DashBoardActivity : AppCompatActivity() {
 
         sharedPreference.getArray()
 
+        mInstance = this
+
 
 //           val window: Window = this.window
 //           window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS)
 //           window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS)
 //           window.statusBarColor = ContextCompat.getColor(this, R.color.white)
-
-        mInstance = this
 
 
         binding.headerDashBoard.notificationIV.setOnClickListener {
@@ -124,6 +124,11 @@ class DashBoardActivity : AppCompatActivity() {
             if (it.getString("from") == "categories") {
                 categories()
             }
+        }
+        if (NotificationActivity.arrayListNotifications.isEmpty()) {
+            binding.headerDashBoard.notificationItemTV.visibility = View.GONE
+        } else {
+            binding.headerDashBoard.notificationItemTV.visibility = View.VISIBLE
         }
     }
 

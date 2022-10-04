@@ -16,5 +16,6 @@ class TermsConditionsActivity : AppCompatActivity() {
         binding.headerTermsConditions.backIV.setOnClickListener {
             onBackPressed()
         }
+
     }
 }

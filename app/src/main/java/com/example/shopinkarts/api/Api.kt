@@ -55,4 +55,8 @@ interface Api {
     // search api
     @GET("products/search?")
     fun search(@Query("searchId") searchId: String?): Call<SearchResponse>
+
+    // notification api
+    @GET("notifications/users/{id}")
+    fun notification(@Path("id") id: String?): Call<NotificationResponse>
 }

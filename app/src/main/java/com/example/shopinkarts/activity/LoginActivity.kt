@@ -17,6 +17,8 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import com.example.shopinkarts.R
+import com.example.shopinkarts.api.MyApplication
+import com.example.shopinkarts.api.ONESIGNAL_APP_ID
 import com.example.shopinkarts.api.RetrofitClient
 import com.example.shopinkarts.classes.SharedPreference
 import com.example.shopinkarts.databinding.ActivityLoginBinding
@@ -33,15 +35,20 @@ class LoginActivity : AppCompatActivity() {
     var deviceId = String()
     var phone = ""
     var password = ""
+    var phoneNo = ""
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = DataBindingUtil.setContentView(this, R.layout.activity_login)
 
         sharedPreference = SharedPreference(this)
+
         deviceId = OneSignal.getDeviceState()?.userId.toString()
 
+        Log.d("TAG_deviceId", "onCreate: $deviceId")
+
         binding.signUpTV.setOnClickListener {
-            val intent = Intent(this,SignUpActivity::class.java)
+            val intent = Intent(this, SignUpActivity::class.java)
             startActivity(intent)
         }
         binding.signInTv.setOnClickListener {
@@ -112,10 +119,14 @@ class LoginActivity : AppCompatActivity() {
 
     private fun loginApi() {
 
+        deviceId = OneSignal.getDeviceState()?.userId.toString()
+        Log.d("TAG_deviceId", "onCreate: $deviceId")
         val requestBody: MutableMap<String, String> = HashMap()
+
         requestBody["phone"] = phone
         requestBody["password"] = password
         requestBody["deviceId"] = deviceId
+
 
         /*Progress bar*/
         val mProgressDialog = ProgressDialog(this)
@@ -137,6 +148,9 @@ class LoginActivity : AppCompatActivity() {
                         sharedPreference.setToken(loginResponse.token)
                         sharedPreference.setUserId(loginResponse.user._id)
                         sharedPreference.isLoginSet(loginResponse.status)
+
+                        sharedPreference.setPhoneNo(phoneNo = binding.phoneET.text.toString())
+
 
                         val intent =
                             Intent(this@LoginActivity, DashBoardActivity::class.java)
