@@ -25,7 +25,6 @@ class AboutUsActivity : AppCompatActivity() {
         date = intent.extras!!.getString("date", "")
         Log.d("pdfUrl_date", "onCreate: $date")
 
-
 //        getDate(date.toLong())
 //        Log.d("pdfUrl_date", "onCreate: ${getDate(date.toLong())}")
 
@@ -37,8 +36,6 @@ class AboutUsActivity : AppCompatActivity() {
         }
 
         pdfUrl = intent.extras!!.getString("pdfUrl", "")
-//      pdfUrl = "http://134.209.151.175/api/download/1661751944497sample.pdf"
-
         Log.d("pdfUrl", "onCreate: $pdfUrl")
 
         binding.webView.webViewClient = WebViewClient()

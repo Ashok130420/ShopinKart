@@ -30,7 +30,7 @@ class SizeQtyAdapter(val context: Context, val arrayList: ArrayList<VariantsArr>
         val itemDetails = arrayList[position]
         holder.binding.apply {
 
-//            qtyValueTV.text = itemDetails.price.toString()
+            qtyValueTV.text = itemDetails.price.toString()
 
         }
 

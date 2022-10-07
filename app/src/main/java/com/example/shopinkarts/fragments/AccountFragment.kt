@@ -45,7 +45,6 @@ class AccountFragment : Fragment() {
             this.startActivity(intent)
         }
 
-
         binding.addressesTV.setOnClickListener {
             val intent = Intent(context, AddressesActivity::class.java)
             this.startActivity(intent)
@@ -56,12 +55,12 @@ class AccountFragment : Fragment() {
             this.startActivity(intent)
         }
 
-
         val phone = sharedPreference.getPhoneNo()
 
         Log.d("TAG_phone", "onCreateView: $phone")
 
-        binding.phoneNumberTV.text = "+91-${sharedPreference.getPhoneNo()}"
+        binding.nameTV.text = sharedPreference.getName()
+        binding.phoneNumberTV.text = "+91${sharedPreference.getPhoneNo()}"
 
         binding.logOutTV.setOnClickListener {
             sharedPreference.isLoginSet(false)
@@ -73,7 +72,6 @@ class AccountFragment : Fragment() {
         binding.profileIV.setOnClickListener {
             launchGallery()
         }
-
 
         return binding.root
     }
@@ -104,7 +102,7 @@ class AccountFragment : Fragment() {
 
     }
 
-    fun appSetting() {
+    private fun appSetting() {
         val call: Call<AppSettingResponse> = RetrofitClient.instance!!.api.appSetting()
         call.enqueue(object : Callback<AppSettingResponse> {
             override fun onResponse(
@@ -132,7 +130,10 @@ class AccountFragment : Fragment() {
                         binding.termsConditionsTV.setOnClickListener {
                             val intent = Intent(context, AboutUsActivity::class.java)
                             intent.putExtra("header", "Terms & Conditions")
-                            intent.putExtra("pdfUrl", appSettingResponse.appSetting.termsAndConditions)
+                            intent.putExtra(
+                                "pdfUrl",
+                                appSettingResponse.appSetting.termsAndConditions
+                            )
                             startActivity(intent)
                         }
 
