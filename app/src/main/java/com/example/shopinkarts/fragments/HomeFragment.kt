@@ -301,10 +301,11 @@ class HomeFragment : Fragment() {
                 binding.preferredManufacturerAllTV.visibility = View.VISIBLE
                 binding.mostPopularTV.visibility = View.VISIBLE
                 binding.mostPopularAllTV.visibility = View.VISIBLE
+                binding.topRatedTV.visibility = View.VISIBLE
+                binding.topRatedAllTV.visibility = View.VISIBLE
 
                 shimmerHome.stopShimmer()
                 shimmerHome.visibility = View.GONE
-
 
                 val dashBoardResponse = response.body()
                 if (response.isSuccessful && context != null) {

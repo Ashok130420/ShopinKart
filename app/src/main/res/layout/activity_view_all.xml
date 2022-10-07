@@ -19,22 +19,23 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             tools:layout_editor_absoluteY="-2dp" />
+
         <View
+            android:id="@+id/view"
             android:layout_width="match_parent"
             android:layout_height="1dp"
             android:background="@color/hint"
-            app:layout_constraintTop_toBottomOf="@+id/headerViewAll"
-            android:id="@+id/view"/>
+            app:layout_constraintTop_toBottomOf="@+id/headerViewAll" />
 
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/shortingFilterCL"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:visibility="gone"
             android:layout_marginTop="@dimen/p2"
-            android:paddingVertical="@dimen/p10"
             android:background="@color/primary_Blue"
+            android:paddingVertical="@dimen/p10"
+            android:visibility="gone"
             app:layout_constraintTop_toBottomOf="@+id/headerViewAll">
 
             <View
@@ -190,9 +191,8 @@
             android:id="@+id/viewAllRV"
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_marginHorizontal="@dimen/m14"
             android:layout_margin="@dimen/m10"
-
+            android:layout_marginHorizontal="@dimen/m14"
             app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/shortingFilterCL"

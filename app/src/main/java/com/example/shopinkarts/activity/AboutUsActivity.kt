@@ -1,30 +1,33 @@
 package com.example.shopinkarts.activity
 
-import android.os.AsyncTask
 import android.os.Bundle
+import android.text.format.DateFormat
 import android.util.Log
-import android.webkit.WebView
 import android.webkit.WebViewClient
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import com.example.shopinkarts.R
 import com.example.shopinkarts.databinding.ActivityAboutUsBinding
-import com.github.barteksc.pdfviewer.PDFView
-import java.io.BufferedInputStream
-import java.io.InputStream
-import java.net.HttpURLConnection
-import java.net.URL
-import javax.net.ssl.HttpsURLConnection
-
+import java.util.*
 
 class AboutUsActivity : AppCompatActivity() {
 
     lateinit var binding: ActivityAboutUsBinding
     var pdfUrl = ""
     var header = ""
+    var date = ""
+    var dateFormat = 0L
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = DataBindingUtil.setContentView(this, R.layout.activity_about_us)
+
+        date = intent.extras!!.getString("date", "")
+        Log.d("pdfUrl_date", "onCreate: $date")
+
+
+//        getDate(date.toLong())
+//        Log.d("pdfUrl_date", "onCreate: ${getDate(date.toLong())}")
 
         header = intent.extras!!.getString("header", "")
         binding.headerAbout.nameTV.text = header
@@ -34,14 +37,22 @@ class AboutUsActivity : AppCompatActivity() {
         }
 
         pdfUrl = intent.extras!!.getString("pdfUrl", "")
-//        pdfUrl = "http://134.209.151.175/api/download/1661751944497sample.pdf"
+//      pdfUrl = "http://134.209.151.175/api/download/1661751944497sample.pdf"
 
         Log.d("pdfUrl", "onCreate: $pdfUrl")
 
         binding.webView.webViewClient = WebViewClient()
         binding.webView.settings.setSupportZoom(true)
+
         binding.webView.settings.javaScriptEnabled = true
 
         binding.webView.loadUrl("https://docs.google.com/gview?embedded=true&url=" + pdfUrl)
     }
+
+    private fun getDate(time: Long): String? {
+        val cal = Calendar.getInstance(Locale.ENGLISH)
+        cal.timeInMillis = time * 1000
+        return DateFormat.format("dd-MM-yyyy", cal).toString()
+    }
+
 }

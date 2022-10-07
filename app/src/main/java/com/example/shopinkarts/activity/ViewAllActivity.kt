@@ -51,7 +51,6 @@ class ViewAllActivity : AppCompatActivity() {
             popupMenuFilter(it)
         }
 
-
         intent.extras?.let {
             if (it.getString("from") == "newlyAdded") {
                 newlyAdded()

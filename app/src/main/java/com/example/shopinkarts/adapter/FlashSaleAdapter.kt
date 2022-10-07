@@ -23,7 +23,6 @@ class FlashSaleAdapter(val context: Context, val arrayList: ArrayList<FlashSale>
             parent,
             false
         )
-
         return ViewHolder(binding)
     }
 
