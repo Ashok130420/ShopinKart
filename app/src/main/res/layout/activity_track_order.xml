@@ -27,12 +27,12 @@
 
         <TextView
             android:id="@+id/orderPlacedTimeTV"
-            android:layout_width="wrap_content"
+            android:layout_width="70dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/m20"
             android:layout_marginTop="@dimen/m20"
             android:paddingVertical="@dimen/p20"
-            android:text="@string/_9_30_am"
+
             android:textColor="@color/primary_text"
             android:textSize="@dimen/text_size_14"
             app:layout_constraintStart_toStartOf="parent"
@@ -42,7 +42,7 @@
             android:id="@+id/orderPlacedIconIV"
             android:layout_width="30dp"
             android:layout_height="30dp"
-            android:layout_marginStart="@dimen/m24"
+            android:layout_marginStart="@dimen/m20"
             android:src="@drawable/green_right_icon"
             app:layout_constraintBottom_toBottomOf="@+id/orderPlacedTimeTV"
             app:layout_constraintStart_toEndOf="@+id/orderPlacedTimeTV"
@@ -53,7 +53,7 @@
             android:id="@+id/orderPlacedTV"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/m30"
+            android:layout_marginStart="@dimen/m20"
             android:paddingVertical="@dimen/p20"
             android:text="@string/order_placed"
             android:textColor="@color/primary_text"
@@ -64,12 +64,12 @@
 
         <TextView
             android:id="@+id/orderPlacedDescriptionTV"
-            android:layout_width="wrap_content"
+            android:layout_width="@dimen/m170"
             android:layout_height="wrap_content"
-            android:text="@string/your_order_sic0011_was_nplaced_for_delivery"
+            android:fontFamily="@font/dm_sans_medium"
+            android:inputType="textMultiLine"
             android:textColor="@color/unselected_Text_color"
             android:textSize="@dimen/text_size_12"
-            android:fontFamily="@font/dm_sans_medium"
             app:layout_constraintStart_toStartOf="@+id/orderPlacedTV"
             app:layout_constraintTop_toBottomOf="@+id/orderPlacedTV" />
 
@@ -87,11 +87,11 @@
 
         <TextView
             android:id="@+id/processingTimeTV"
-            android:layout_width="wrap_content"
+            android:layout_width="70dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/m20"
             android:paddingVertical="@dimen/p20"
-            android:text="@string/_9_35_am"
+
             android:textColor="@color/primary_text"
             android:textSize="@dimen/text_size_14"
             app:layout_constraintStart_toStartOf="parent"
@@ -101,8 +101,8 @@
             android:id="@+id/processingIconIV"
             android:layout_width="30dp"
             android:layout_height="30dp"
-            android:layout_marginStart="@dimen/m24"
-            android:src="@drawable/green_right_icon"
+            android:layout_marginStart="@dimen/m20"
+            android:src="@drawable/circle_icon"
             app:layout_constraintBottom_toBottomOf="@+id/processingTimeTV"
             app:layout_constraintStart_toEndOf="@+id/processingTimeTV"
             app:layout_constraintTop_toTopOf="@+id/processingTimeTV"
@@ -112,7 +112,7 @@
             android:id="@+id/processingTV"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/m30"
+            android:layout_marginStart="@dimen/m20"
             android:paddingVertical="@dimen/p20"
             android:text="@string/processing"
             android:textColor="@color/primary_text"
@@ -123,12 +123,13 @@
 
         <TextView
             android:id="@+id/processingDescriptionTV"
-            android:layout_width="wrap_content"
+            android:layout_width="@dimen/m170"
             android:layout_height="wrap_content"
-            android:text="@string/your_order_is_accepted_and_n_we_are_processing_it"
+            android:fontFamily="@font/dm_sans_medium"
+
+            android:inputType="textMultiLine"
             android:textColor="@color/unselected_Text_color"
             android:textSize="@dimen/text_size_12"
-            android:fontFamily="@font/dm_sans_medium"
             app:layout_constraintStart_toStartOf="@+id/processingTV"
             app:layout_constraintTop_toBottomOf="@+id/processingTV" />
 
@@ -146,11 +147,11 @@
 
         <TextView
             android:id="@+id/outForDeliveryDateTV"
-            android:layout_width="wrap_content"
+            android:layout_width="70dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/m20"
             android:paddingVertical="@dimen/p20"
-            android:text="@string/_9_55_am"
+
             android:textColor="@color/primary_text"
             android:textSize="@dimen/text_size_14"
             app:layout_constraintStart_toStartOf="parent"
@@ -160,8 +161,8 @@
             android:id="@+id/outForDeliveryIconIV"
             android:layout_width="30dp"
             android:layout_height="30dp"
-            android:layout_marginStart="@dimen/m24"
-            android:src="@drawable/green_right_icon"
+            android:layout_marginStart="@dimen/m20"
+            android:src="@drawable/circle_icon"
             app:layout_constraintBottom_toBottomOf="@+id/outForDeliveryDateTV"
             app:layout_constraintStart_toEndOf="@+id/outForDeliveryDateTV"
             app:layout_constraintTop_toTopOf="@+id/outForDeliveryDateTV"
@@ -171,7 +172,7 @@
             android:id="@+id/outForDeliveryTV"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/m30"
+            android:layout_marginStart="@dimen/m20"
             android:paddingVertical="@dimen/p20"
             android:text="@string/out_for_delivery"
             android:textColor="@color/primary_text"
@@ -182,12 +183,12 @@
 
         <TextView
             android:id="@+id/outForDeliveryDescriptionTV"
-            android:layout_width="wrap_content"
+            android:layout_width="@dimen/m170"
             android:layout_height="wrap_content"
-            android:text="@string/our_delivery_agent_ram_nsingh_is_out_to_deliver_your_norder_91_9982099820"
+            android:fontFamily="@font/dm_sans_medium"
+            android:inputType="textMultiLine"
             android:textColor="@color/unselected_Text_color"
             android:textSize="@dimen/text_size_12"
-            android:fontFamily="@font/dm_sans_medium"
             app:layout_constraintStart_toStartOf="@+id/outForDeliveryTV"
             app:layout_constraintTop_toBottomOf="@+id/outForDeliveryTV" />
 
@@ -206,7 +207,7 @@
 
         <TextView
             android:id="@+id/deliveredDateTV"
-            android:layout_width="wrap_content"
+            android:layout_width="70dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/m20"
             android:paddingVertical="@dimen/p20"
@@ -221,7 +222,7 @@
             android:id="@+id/deliveredIconIV"
             android:layout_width="30dp"
             android:layout_height="30dp"
-            android:layout_marginStart="@dimen/m24"
+            android:layout_marginStart="@dimen/m20"
             android:src="@drawable/circle_icon"
             app:layout_constraintBottom_toBottomOf="@+id/deliveredDateTV"
             app:layout_constraintStart_toEndOf="@+id/deliveredDateTV"
@@ -232,7 +233,7 @@
             android:id="@+id/deliveredTV"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/m30"
+            android:layout_marginStart="@dimen/m20"
             android:paddingVertical="@dimen/p20"
             android:text="@string/delivered"
             android:textColor="@color/primary_text"
@@ -243,12 +244,12 @@
 
         <TextView
             android:id="@+id/deliveredDescriptionTV"
-            android:layout_width="wrap_content"
+            android:layout_width="@dimen/m170"
             android:layout_height="wrap_content"
-            android:text="@string/product_deliver_to_you_and_nmarked_as_deliverd_by_ncustomer"
+            android:fontFamily="@font/dm_sans_medium"
+            android:inputType="textMultiLine"
             android:textColor="@color/unselected_Text_color"
             android:textSize="@dimen/text_size_12"
-            android:fontFamily="@font/dm_sans_medium"
             app:layout_constraintStart_toStartOf="@+id/deliveredTV"
             app:layout_constraintTop_toBottomOf="@+id/deliveredTV" />
 
@@ -271,6 +272,7 @@
             android:background="@drawable/shape_color_red"
             android:paddingHorizontal="@dimen/p30"
             android:paddingVertical="@dimen/p10"
+            android:visibility="invisible"
             android:text="@string/cancel_order"
             android:textColor="@color/white"
             android:textSize="@dimen/text_size_10"

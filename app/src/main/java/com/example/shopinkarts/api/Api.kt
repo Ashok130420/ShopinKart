@@ -59,4 +59,12 @@ interface Api {
     // notification api
     @GET("notifications/users/{id}")
     fun notification(@Path("id") id: String?): Call<NotificationResponse>
+
+    // app setting api
+    @GET("app-settings")
+    fun appSetting(): Call<AppSettingResponse>
+
+    // track order api
+    @GET("orders/track?")
+    fun trackOrder(@Query("id") id: String?): Call<TrackOrderResponse>
 }

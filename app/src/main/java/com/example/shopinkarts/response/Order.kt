@@ -14,6 +14,10 @@ data class Order(
     val products: List<CreateProduct>,
     val shippingDetails: ShippingDetails,
     val totalAmount: Double,
-    val userId: String
+    val userId: String,
+    val orderId: String,
+    val trackingDetails: List<TrackOrder>,
+
+
 
 )

@@ -37,10 +37,12 @@ class ProductAdapter(val context: Context, val products: List<CreateProduct>) :
             productNameTV.text = itemDetails.productName
             priceTV.text = itemDetails.totalAmount.toString()
             Glide.with(context).load(itemDetails.productImage).into(imageIV)
+//            pidTV.text=itemDetails.productId
+//            if (itemDetails.)
 
         }
 
-        sizeQtyAdapter = SizeQtyAdapter(context,itemDetails.variantsArr)
+        sizeQtyAdapter = SizeQtyAdapter(context, itemDetails.variantsArr)
         holder.binding.sizeQtyRV.adapter = sizeQtyAdapter
         holder.binding.sizeQtyRV.isNestedScrollingEnabled = false
 

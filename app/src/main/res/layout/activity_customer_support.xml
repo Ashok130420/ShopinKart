@@ -16,18 +16,6 @@
             android:id="@+id/headerCustomerSupport"
             layout="@layout/header_profile" />
 
-        <!-- <com.airbnb.lottie.LottieAnimationView
-             android:id="@+id/lottyAnimation"
-             android:layout_width="300dp"
-             android:layout_height="300dp"
-             app:layout_constraintBottom_toBottomOf="parent"
-             app:layout_constraintEnd_toEndOf="parent"
-             app:layout_constraintStart_toStartOf="parent"
-             app:layout_constraintTop_toTopOf="parent"
-             app:lottie_autoPlay="true"
-             app:lottie_loop="true"
-             app:lottie_rawRes="@raw/empty" />-->
-
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/nameTVLayout"
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
@@ -125,6 +113,131 @@
 
         </com.google.android.material.textfield.TextInputLayout>
 
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/productReturnCCL"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="@dimen/m14"
+            android:layout_marginTop="@dimen/m20"
+            android:background="@drawable/shape_text_grey"
+            android:paddingVertical="@dimen/m10"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/messageTVLayout">
+
+
+            <TextView
+                android:id="@+id/returnProductTV"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="@dimen/m10"
+                android:layout_marginTop="@dimen/m5"
+                android:text="@string/product_return"
+                android:textColor="@color/hint_color"
+                android:textSize="@dimen/text_size_14"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/noTV"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="@dimen/m10"
+                android:layout_marginTop="@dimen/m10"
+                android:background="@drawable/shape_text_grey"
+                android:paddingHorizontal="@dimen/p15"
+                android:paddingVertical="@dimen/p5"
+                android:text="@string/no"
+                android:textColor="@color/hint_color"
+                android:textSize="@dimen/text_size_14"
+                app:layout_constraintBottom_toBottomOf="@+id/returnProductTV"
+                app:layout_constraintEnd_toStartOf="@id/yesTV"
+                app:layout_constraintTop_toTopOf="@+id/returnProductTV" />
+
+            <TextView
+                android:id="@+id/yesTV"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="@dimen/m10"
+                android:layout_marginTop="@dimen/m10"
+                android:background="@drawable/shape_text_grey"
+                android:paddingHorizontal="@dimen/p15"
+                android:paddingVertical="@dimen/p5"
+                android:text="@string/yes"
+                android:textColor="@color/hint_color"
+                android:textSize="@dimen/text_size_14"
+                app:layout_constraintBottom_toBottomOf="@+id/returnProductTV"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/returnProductTV" />
+
+            <!--<RadioGroup
+                android:id="@+id/radioGroup"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="@dimen/m10"
+                android:orientation="horizontal"
+                app:layout_constraintBottom_toBottomOf="@+id/returnProductTV"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/returnProductTV">
+
+                <RadioButton
+                    android:id="@+id/noRB"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/m10"
+                    android:backgroundTint="@color/hint_color"
+                    android:checked="true"
+                    android:fontFamily="@font/dm_sans"
+                    android:text="@string/no"
+                    android:textColor="@color/hint_color"
+                    android:textSize="@dimen/text_size_14" />
+
+                <RadioButton
+                    android:id="@+id/yesRB"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/m50"
+                    android:backgroundTint="@color/hint_color"
+                    android:fontFamily="@font/dm_sans"
+                    android:text="@string/yes"
+                    android:textColor="@color/hint_color"
+                    android:textSize="@dimen/text_size_14" />
+
+
+            </RadioGroup>-->
+
+            <TextView
+                android:id="@+id/orderIdTV"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="@dimen/m10"
+                android:layout_marginTop="@dimen/m30"
+                android:layout_marginBottom="@dimen/m5"
+                android:text="@string/order_id"
+                android:textColor="@color/hint_color"
+                android:textSize="@dimen/text_size_14"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/returnProductTV" />
+
+            <EditText
+                android:id="@+id/returnOrderId"
+                android:layout_width="@dimen/m100"
+                android:layout_height="wrap_content"
+                android:background="@drawable/shape_text_grey"
+                android:gravity="center"
+                android:paddingHorizontal="@dimen/p10"
+                android:paddingVertical="@dimen/p2"
+                android:singleLine="true"
+                android:textColor="@color/hint_color"
+                app:layout_constraintBottom_toBottomOf="@+id/orderIdTV"
+                app:layout_constraintStart_toStartOf="@id/noTV"
+                app:layout_constraintTop_toTopOf="@+id/orderIdTV"
+
+                />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
         <TextView
             android:id="@+id/submitTV"
             android:layout_width="wrap_content"
@@ -138,7 +251,7 @@
             android:textColor="@color/primary_Blue"
             android:textSize="@dimen/text_size_14"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/messageTVLayout" />
+            app:layout_constraintTop_toBottomOf="@id/productReturnCCL" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

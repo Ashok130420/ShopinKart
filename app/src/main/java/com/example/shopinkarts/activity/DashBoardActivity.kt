@@ -7,6 +7,7 @@ import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
+import com.bumptech.glide.Glide
 import com.example.shopinkarts.R
 import com.example.shopinkarts.classes.SharedPreference
 import com.example.shopinkarts.databinding.ActivityDashBoardBinding
@@ -28,6 +29,7 @@ class DashBoardActivity : AppCompatActivity() {
 
 
     companion object {
+        var profile = ""
         var mInstance: DashBoardActivity = DashBoardActivity()
         var arrayListCart: ArrayList<CartModel> = ArrayList()
         var selectedVIDs: ArrayList<String> = ArrayList()
@@ -37,6 +39,13 @@ class DashBoardActivity : AppCompatActivity() {
     }
 
     override fun onResume() {
+
+        if (profile.isEmpty()) {
+                binding.headerDashBoard.profileIV.setBackgroundResource(R.drawable.profile)
+        } else {
+            Glide.with(this).load(profile).into(binding.headerDashBoard.profileIV)
+        }
+
         arrayListCart
         Log.d("arrayListCart", arrayListCart.toString())
         if (arrayListCart.isNotEmpty()) {

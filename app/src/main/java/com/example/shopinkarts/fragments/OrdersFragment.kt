@@ -56,12 +56,13 @@ class OrdersFragment : Fragment() {
 
                         arrayListMyOrders.clear()
                         arrayListMyOrders.addAll(myOrderResponse.orders)
-                        if (context!=null) {
+                        if (context != null) {
                             deliveredOrderAdapter =
                                 DeliveredOrderAdapter(requireContext(), arrayListMyOrders)
                             binding.deliveredOrderRV.adapter = deliveredOrderAdapter
                             binding.deliveredOrderRV.isNestedScrollingEnabled = false
                             deliveredOrderAdapter.notifyDataSetChanged()
+
                         }
                         myOrderResponse.orders
                     }

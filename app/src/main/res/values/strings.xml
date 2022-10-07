@@ -244,6 +244,9 @@
     <string name="product_id">Product Id</string>
     <string name="message">Message</string>
     <string name="notification_description">Notification Description</string>
+    <string name="no">No</string>
+    <string name="yes">Yes</string>
+    <string name="product_return">Product Return</string>
 
 
 </resources>

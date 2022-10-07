@@ -10,4 +10,5 @@ data class CreateProduct(
     val totalAmount: Double,
     val variantId: String,
     val variantsArr: ArrayList<VariantsArr>
+
 )
