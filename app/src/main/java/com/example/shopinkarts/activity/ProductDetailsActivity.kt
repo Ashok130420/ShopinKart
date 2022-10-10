@@ -69,7 +69,7 @@ class ProductDetailsActivity : AppCompatActivity() {
     var timer: Timer? = null
     val DELAY_MS: Long = 2000
     val PERIOD_MS: Long = 4000
-
+    var imageNumber = 1
 
     companion object {
         var pInstance: ProductDetailsActivity = ProductDetailsActivity()
@@ -448,7 +448,6 @@ class ProductDetailsActivity : AppCompatActivity() {
                         setCurrentIndicator(0)
 
                         binding.downloadImageIV.setOnClickListener {
-
                             downloadFile(productResponse.product.productImages[0])
 
                         }
@@ -674,6 +673,7 @@ class ProductDetailsActivity : AppCompatActivity() {
         ) {
 
             // this will request for permission when user has not granted permission for the app
+
             ActivityCompat.requestPermissions(
                 this as Activity, arrayOf(
                     Manifest.permission.READ_EXTERNAL_STORAGE,
@@ -683,19 +683,21 @@ class ProductDetailsActivity : AppCompatActivity() {
         } else {
 
             //Download Script
+
             val downloadManager =
                 this.getSystemService(Context.DOWNLOAD_SERVICE) as DownloadManager?
             val uri = Uri.parse(url)
             val request = DownloadManager.Request(uri)
             request.setVisibleInDownloadsUi(true)
             request.setTitle(this.resources.getString(R.string.app_name))
-            request.setDescription("Downloading...");
+            request.setDescription("Downloading...")
             request.setNotificationVisibility(DownloadManager.Request.VISIBILITY_VISIBLE_NOTIFY_COMPLETED)
             request.setDestinationInExternalPublicDir(
                 Environment.DIRECTORY_DOWNLOADS,
 //                uri.lastPathSegment
-                this.resources.getString(R.string.app_name) + "shopInKarts.jpg"
+                this.resources.getString(R.string.app_name) + "shopInKarts${imageNumber}.jpg"
             )
+            imageNumber++
             downloadManager!!.enqueue(request)
         }
     }
