@@ -10,6 +10,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import com.example.shopinkarts.R
 import com.example.shopinkarts.adapter.YourCartAdapter
+import com.example.shopinkarts.classes.Utils
 import com.example.shopinkarts.databinding.ActivityProductCartBinding
 import kotlin.math.roundToInt
 
@@ -36,6 +37,8 @@ class ProductCartActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        Utils.changeStatusTextColor(this)
+        Utils.changeStatusColor(this,R.color.white)
         binding = DataBindingUtil.setContentView(this, R.layout.activity_product_cart)
 
         cartInstance = this

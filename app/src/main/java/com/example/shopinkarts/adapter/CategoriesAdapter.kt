@@ -9,6 +9,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.shopinkarts.R
 import com.example.shopinkarts.activity.SubCategoriesActivity
+import com.example.shopinkarts.classes.Utils
 import com.example.shopinkarts.databinding.ItemsCategoriesBinding
 import com.example.shopinkarts.response.Category
 
@@ -43,7 +44,12 @@ class CategoriesAdapter(val context: Context, val arrayList: ArrayList<Category>
             nameTV.text = itemDetails.categoryName
             descriptionTV.text = itemDetails.categorySubName
             Glide.with(context).load(itemDetails.categoryIcon).into(itemsIV)
-
+//            if (arrayList[position].creationTimeStamp != null)
+//                nameTV.text = Utils.formatDateFromDateString(
+//                    "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'",
+//                    "dd/MMM/yyyy",
+//                    arrayList[position].creationTimeStamp
+//                )
         }
 
     }

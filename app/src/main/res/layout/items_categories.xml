@@ -39,7 +39,7 @@
                 android:gravity="top"
                 android:text="@string/men"
                 android:textColor="@color/black"
-                android:textSize="@dimen/text_size_15"
+                android:textSize="@dimen/text_size_13"
                 app:layout_constraintStart_toStartOf="parent"
 
                 app:layout_constraintTop_toTopOf="parent" />

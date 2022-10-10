@@ -26,6 +26,7 @@ class AccountFragment : Fragment() {
 
     lateinit var binding: FragmentAccountBinding
     lateinit var sharedPreference: SharedPreference
+
     var TAG = "AccountFragment"
 
     private val PICK_IMAGE_REQUEST = 71
@@ -163,4 +164,5 @@ class AccountFragment : Fragment() {
 
         })
     }
+
 }

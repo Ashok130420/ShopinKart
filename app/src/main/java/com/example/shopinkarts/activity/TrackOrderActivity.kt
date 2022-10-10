@@ -10,6 +10,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import com.example.shopinkarts.R
 import com.example.shopinkarts.api.RetrofitClient
+import com.example.shopinkarts.classes.Utils
 import com.example.shopinkarts.databinding.ActivityTrackOrderBinding
 import com.example.shopinkarts.databinding.BottomSheetReturnOrderBinding
 import com.example.shopinkarts.response.TrackOrder
@@ -26,6 +27,8 @@ class TrackOrderActivity : AppCompatActivity() {
     var orderId = ""
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        Utils.changeStatusTextColor(this)
+        Utils.changeStatusColor(this,R.color.white)
         binding = DataBindingUtil.setContentView(this, R.layout.activity_track_order)
 
         orderId = intent.extras!!.getString("orderId", "")

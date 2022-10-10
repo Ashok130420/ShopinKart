@@ -450,7 +450,7 @@
                                 android:layout_height="wrap_content"
                                 android:layout_marginTop="@dimen/m10"
                                 android:inputType="textMultiLine"
-                                android:textColor="@color/primary_text"
+                                android:textColor="@color/grey_font"
                                 android:textSize="@dimen/text_size_14"
                                 app:layout_constraintTop_toTopOf="parent"
                                 tools:ignore="TextViewEdits" />
@@ -521,7 +521,7 @@
                                 android:layout_height="wrap_content"
                                 android:layout_marginTop="@dimen/m10"
                                 android:inputType="textMultiLine"
-                                android:textColor="@color/primary_text"
+                                android:textColor="@color/grey_font"
                                 android:textSize="@dimen/text_size_14"
                                 app:layout_constraintTop_toTopOf="parent"
                                 tools:ignore="TextViewEdits" />
@@ -535,6 +535,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="0dp"
                         android:layout_margin="@dimen/m14"
+                        android:visibility="gone"
                         app:layout_constraintTop_toBottomOf="@+id/productChecklistCL">
 
                         <androidx.constraintlayout.widget.ConstraintLayout
@@ -652,7 +653,7 @@
                                 android:layout_height="wrap_content"
                                 android:layout_marginTop="@dimen/m10"
                                 android:inputType="textMultiLine"
-                                android:textColor="@color/primary_text"
+                                android:textColor="@color/grey_font"
                                 android:textSize="@dimen/text_size_14"
                                 app:layout_constraintTop_toTopOf="parent"
                                 tools:ignore="TextViewEdits" />
@@ -678,6 +679,7 @@
                     <View
                         android:layout_width="match_parent"
                         android:layout_height="1dp"
+                        android:visibility="gone"
                         android:background="@color/light_Gray"
                         app:layout_constraintTop_toTopOf="parent" />
 
@@ -685,7 +687,6 @@
                         android:id="@+id/similarProductsTV"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="@dimen/m24"
                         android:paddingHorizontal="@dimen/p14"
                         android:paddingVertical="@dimen/p2"
                         android:text="@string/similar_products"

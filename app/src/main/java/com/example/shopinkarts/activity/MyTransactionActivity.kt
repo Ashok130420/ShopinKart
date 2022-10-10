@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import com.example.shopinkarts.R
 import com.example.shopinkarts.adapter.MyTransactionAdapter
+import com.example.shopinkarts.classes.Utils
 import com.example.shopinkarts.databinding.ActivityMyTransactionBinding
 
 class MyTransactionActivity : AppCompatActivity() {
@@ -12,6 +13,8 @@ class MyTransactionActivity : AppCompatActivity() {
     lateinit var myTransactionAdapter: MyTransactionAdapter
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        Utils.changeStatusTextColor(this)
+        Utils.changeStatusColor(this,R.color.white)
         binding = DataBindingUtil.setContentView(this, R.layout.activity_my_transaction)
 
         binding.headerMyTransactions.nameTV.text = resources.getString(R.string.my_transactions)

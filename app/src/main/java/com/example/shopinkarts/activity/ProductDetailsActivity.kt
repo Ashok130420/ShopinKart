@@ -1,11 +1,15 @@
 package com.example.shopinkarts.activity
 
 import android.content.Intent
+import android.graphics.Bitmap
 import android.os.Build
 import android.os.Bundle
+import android.os.Environment
 import android.os.Handler
 import android.text.Html
 import android.util.Log
+import android.view.MotionEvent
+import android.view.ScaleGestureDetector
 import android.view.View
 import android.widget.ImageView
 import android.widget.LinearLayout
@@ -19,7 +23,9 @@ import androidx.viewpager2.widget.ViewPager2
 import com.example.shopinkarts.R
 import com.example.shopinkarts.adapter.*
 import com.example.shopinkarts.api.RetrofitClient
+import com.example.shopinkarts.classes.DownloadAndSaveImageTask
 import com.example.shopinkarts.classes.SharedPreference
+import com.example.shopinkarts.classes.Utils
 import com.example.shopinkarts.databinding.ActivityProductDetailsBinding
 import com.example.shopinkarts.model.CartModel
 import com.example.shopinkarts.model.SelectColorModel
@@ -27,9 +33,16 @@ import com.example.shopinkarts.model.SelectSizeModel
 import com.example.shopinkarts.response.NewlyAdded
 import com.example.shopinkarts.response.ProductResponse
 import com.example.shopinkarts.response.VariantsArr
+import okhttp3.MediaType.Companion.toMediaType
+import okhttp3.MultipartBody
+import okhttp3.RequestBody.Companion.asRequestBody
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
+import java.io.File
+import java.io.FileOutputStream
+import java.lang.Float.max
+import java.lang.Float.min
 import java.util.*
 import kotlin.collections.ArrayList
 
@@ -47,7 +60,10 @@ class ProductDetailsActivity : AppCompatActivity() {
     var arraySelectColor: ArrayList<SelectColorModel> = ArrayList()
     var arraySelectSize: ArrayList<SelectSizeModel> = ArrayList()
     var arrayListVariant: ArrayList<VariantsArr> = ArrayList()
+    lateinit var downloadAndSaveImageTask: DownloadAndSaveImageTask
 
+    private lateinit var scaleGestureDetector: ScaleGestureDetector
+    private var scaleFactor = 1.0f
 
     var isFreeDelivery = ""
     var currentPage = 0
@@ -104,10 +120,18 @@ class ProductDetailsActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
+        Utils.changeStatusTextColor(this)
+        Utils.changeStatusColor(this,R.color.white)
         binding = DataBindingUtil.setContentView(this, R.layout.activity_product_details)
         pInstance = this
 
+
+
+        scaleGestureDetector = ScaleGestureDetector(this, ScaleListener())
+
+
+
+        downloadAndSaveImageTask = DownloadAndSaveImageTask(this)
         sharedPreference = SharedPreference(this)
 
         currentNumber = 0
@@ -248,6 +272,22 @@ class ProductDetailsActivity : AppCompatActivity() {
         }
 
     }
+
+    override fun onTouchEvent(motionEvent: MotionEvent): Boolean {
+        scaleGestureDetector.onTouchEvent(motionEvent)
+        return true
+    }
+
+    inner class ScaleListener : ScaleGestureDetector.SimpleOnScaleGestureListener() {
+        override fun onScale(scaleGestureDetector: ScaleGestureDetector): Boolean {
+            scaleFactor *= scaleGestureDetector.scaleFactor
+            scaleFactor = max(0.1f, min(scaleFactor, 10.0f))
+            binding.downloadImageIV.scaleX = scaleFactor
+            binding.downloadImageIV.scaleY = scaleFactor
+            return true
+        }
+    }
+
 
     // banner
     private fun setupIndicators() {
@@ -397,11 +437,13 @@ class ProductDetailsActivity : AppCompatActivity() {
                         binding.tShirtNameTV.text = productResponse.product.productName
                         binding.discountedPriceTV.text = "Rs ${productResponse.product.price}.00"
                         binding.discountTV.text = "${productResponse.product.discount} % OFF"
-                        if (productResponse.product.stock <= 50) {
+
+                        if (productResponse.product.stock <= 10) {
                             binding.unitesLeftTV.visibility = View.VISIBLE
                         } else {
                             binding.unitesLeftTV.visibility = View.GONE
                         }
+
                         val arrayBanner: ArrayList<String> = ArrayList()
                         arrayBanner.addAll(productResponse.product.productImages)
                         productBannerAdapter = ProductBannerAdapter(
@@ -410,7 +452,21 @@ class ProductDetailsActivity : AppCompatActivity() {
                         binding.productViewPager.adapter = productBannerAdapter
                         setupIndicators()
                         setCurrentIndicator(0)
+
+                        binding.downloadImageIV.setOnClickListener {
+//                            DownloadAndSaveImageTask(this@ProductDetailsActivity).execute("https://s3.amazonaws.com/appsdeveloperblog/Micky.jpg")
+                            Log.d(
+                                "Seiggailion",
+                                "onResponse: ${productResponse.product.productImages[0]}"
+                            )
+                            DownloadAndSaveImageTask(this@ProductDetailsActivity).execute(
+                                productResponse.product.productImages[0]
+                            )
+
+                        }
+
                         if (arrayBanner.isNotEmpty()) autoSlide(arrayBanner.size)
+
                         binding.dispatchedTV.text = productResponse.product.dispatchDetails[0]
                         binding.deliveryTV.text = productResponse.product.dispatchDetails[1]
                         binding.ratingBar.rating = productResponse.product.avgRating.toFloat()
@@ -433,15 +489,19 @@ class ProductDetailsActivity : AppCompatActivity() {
                             } else {
                                 Html.fromHtml(productResponse.product.description)
                             }
+//                        binding.productCheckListDetailsTV.text =
+//                            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+//                                Html.fromHtml(
+//                                    " ${productResponse.product.productCheckList.box} ${productResponse.product.productCheckList.color}",
+//                                    Html.FROM_HTML_MODE_COMPACT
+//                                )
+//                            } else {
+//                                Html.fromHtml(productResponse.product.productCheckList.toString())
+//                            }
+
                         binding.productCheckListDetailsTV.text =
-                            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
-                                Html.fromHtml(
-                                    " ${productResponse.product.productCheckList.box}  ${productResponse.product.productCheckList.color}",
-                                    Html.FROM_HTML_MODE_COMPACT
-                                )
-                            } else {
-                                Html.fromHtml(productResponse.product.productCheckList.toString())
-                            }
+                            "Item : ${productResponse.product.productCheckList.box} \nColor : ${productResponse.product.productCheckList.color}"
+
                         binding.deliveryInstructionDetailsTV.text =
                             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
                                 Html.fromHtml(
@@ -550,7 +610,7 @@ class ProductDetailsActivity : AppCompatActivity() {
         binding.buyNowTV.isEnabled = false
         binding.plusQuantityTV.isEnabled = false
         binding.minusQuantityTV.isEnabled = false
-        binding.addToCartTV.setBackgroundResource(R.drawable.button_grey)
+        binding.addToCartTV.setBackgroundResource(R.drawable.button_grey_radius5)
 
     }
 
@@ -559,7 +619,7 @@ class ProductDetailsActivity : AppCompatActivity() {
         if (colorSize == 1 && sizeOfSize == 1 && quantitySze == 1) {
             binding.addToCartTV.isEnabled = true
             binding.buyNowTV.isEnabled = true
-            binding.addToCartTV.setBackgroundResource(R.drawable.button_blue)
+            binding.addToCartTV.setBackgroundResource(R.drawable.button_blue_radius5)
 
         }
     }
@@ -597,7 +657,7 @@ class ProductDetailsActivity : AppCompatActivity() {
         if (colorSize == 1 && sizeOfSize == 1) {
             binding.addToCartTV.isEnabled = true
             binding.buyNowTV.isEnabled = true
-            binding.addToCartTV.setBackgroundResource(R.drawable.button_blue)
+            binding.addToCartTV.setBackgroundResource(R.drawable.button_blue_radius5)
 
             currentNumber = 1
             binding.quantityShowTV.text = currentNumber.toString()
@@ -616,3 +676,5 @@ class ProductDetailsActivity : AppCompatActivity() {
         sharedPreference.setArray()
     }
 }
+
+

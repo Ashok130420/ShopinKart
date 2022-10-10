@@ -21,6 +21,7 @@ import com.example.shopinkarts.api.MyApplication
 import com.example.shopinkarts.api.ONESIGNAL_APP_ID
 import com.example.shopinkarts.api.RetrofitClient
 import com.example.shopinkarts.classes.SharedPreference
+import com.example.shopinkarts.classes.Utils
 import com.example.shopinkarts.databinding.ActivityLoginBinding
 import com.example.shopinkarts.response.LoginResponse
 import com.onesignal.OneSignal
@@ -38,6 +39,8 @@ class LoginActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        Utils.changeStatusTextColor(this)
+        Utils.changeStatusColor(this,R.color.white)
         binding = DataBindingUtil.setContentView(this, R.layout.activity_login)
 
         sharedPreference = SharedPreference(this)

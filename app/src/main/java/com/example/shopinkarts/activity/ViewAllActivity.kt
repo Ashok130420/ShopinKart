@@ -8,6 +8,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import com.example.shopinkarts.R
 import com.example.shopinkarts.adapter.*
+import com.example.shopinkarts.classes.Utils
 import com.example.shopinkarts.databinding.ActivityViewAllBinding
 import com.example.shopinkarts.fragments.HomeFragment
 import com.example.shopinkarts.response.Product
@@ -30,7 +31,8 @@ class ViewAllActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
+        Utils.changeStatusTextColor(this)
+        Utils.changeStatusColor(this,R.color.white)
         binding = DataBindingUtil.setContentView(this, R.layout.activity_view_all)
 
         particularItemId = intent.extras!!.getString("particularItemId", "")

@@ -10,6 +10,7 @@ import com.example.shopinkarts.adapter.AccessoriesAdapter
 import com.example.shopinkarts.adapter.BottomWearAdapter
 import com.example.shopinkarts.adapter.TopWearAdapter
 import com.example.shopinkarts.api.RetrofitClient
+import com.example.shopinkarts.classes.Utils
 import com.example.shopinkarts.databinding.ActivitySubCategoriesBinding
 import com.example.shopinkarts.response.SubCategoriesResponse
 import com.example.shopinkarts.response.SubCategory
@@ -30,6 +31,8 @@ class SubCategoriesActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        Utils.changeStatusTextColor(this)
+        Utils.changeStatusColor(this,R.color.white)
         binding = DataBindingUtil.setContentView(this, R.layout.activity_sub_categories)
 
         subCategoryId = intent.extras!!.getString("categoryId", "")

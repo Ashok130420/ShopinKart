@@ -16,6 +16,7 @@ import com.bumptech.glide.Glide
 import com.example.shopinkarts.R
 import com.example.shopinkarts.adapter.ParticularItemAdapter
 import com.example.shopinkarts.api.RetrofitClient
+import com.example.shopinkarts.classes.Utils
 import com.example.shopinkarts.databinding.ActivityParticularItemBinding
 import com.example.shopinkarts.response.ParticularItemResponse
 import com.example.shopinkarts.response.Product
@@ -39,6 +40,8 @@ class ParticularItemActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        Utils.changeStatusTextColor(this)
+        Utils.changeStatusColor(this,R.color.white)
         binding = DataBindingUtil.setContentView(this, R.layout.activity_particular_item)
 
         layoutManager = LinearLayoutManager(this)
@@ -194,7 +197,7 @@ class ParticularItemActivity : AppCompatActivity() {
                             }
                             isloading = false
                             binding.progressbar.visibility = View.GONE
-                        }, 3000)
+                        }, 1000)
 
 //                        arrayListParticularItem.clear()
 //                        arrayListParticularItem.addAll(particularItemResponse.products)

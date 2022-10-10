@@ -6,6 +6,7 @@ import android.os.Handler
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import com.example.shopinkarts.R
+import com.example.shopinkarts.classes.Utils
 import com.example.shopinkarts.databinding.ActivityPasswordChangedBinding
 
 class PasswordChangedActivity : AppCompatActivity() {
@@ -14,6 +15,8 @@ class PasswordChangedActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        Utils.changeStatusTextColor(this)
+        Utils.changeStatusColor(this,R.color.white)
         binding = DataBindingUtil.setContentView(this, R.layout.activity_password_changed)
 
         Handler().postDelayed({

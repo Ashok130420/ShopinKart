@@ -12,6 +12,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import androidx.databinding.DataBindingUtil
 import com.example.shopinkarts.R
+import com.example.shopinkarts.classes.Utils
 import com.example.shopinkarts.databinding.ActivityOrderSuccessBinding
 import com.example.shopinkarts.fragments.OrdersFragment
 
@@ -23,6 +24,8 @@ class OrderSuccessActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        Utils.changeStatusTextColor(this)
+        Utils.changeStatusColor(this,R.color.white)
         binding = DataBindingUtil.setContentView(this, R.layout.activity_order_success)
         ordersFragment = OrdersFragment()
         binding.headerOrderDetails.nameTV.text = resources.getString(R.string.order_success)

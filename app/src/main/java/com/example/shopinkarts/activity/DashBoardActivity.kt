@@ -10,6 +10,7 @@ import androidx.fragment.app.Fragment
 import com.bumptech.glide.Glide
 import com.example.shopinkarts.R
 import com.example.shopinkarts.classes.SharedPreference
+import com.example.shopinkarts.classes.Utils
 import com.example.shopinkarts.databinding.ActivityDashBoardBinding
 import com.example.shopinkarts.fragments.AccountFragment
 import com.example.shopinkarts.fragments.CategoriesFragment
@@ -59,6 +60,9 @@ class DashBoardActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        Utils.changeStatusTextColor(this)
+        Utils.changeStatusColor(this,R.color.white)
+
         binding = DataBindingUtil.setContentView(this, R.layout.activity_dash_board)
 
         sharedPreference = SharedPreference(this)

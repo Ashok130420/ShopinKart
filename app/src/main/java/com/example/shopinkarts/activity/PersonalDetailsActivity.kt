@@ -20,6 +20,7 @@ import androidx.databinding.DataBindingUtil
 import com.example.shopinkarts.R
 import com.example.shopinkarts.api.RetrofitClient
 import com.example.shopinkarts.classes.SharedPreference
+import com.example.shopinkarts.classes.Utils
 import com.example.shopinkarts.databinding.ActivityPersonalDetailsBinding
 import com.example.shopinkarts.model.CreateOrderRequest
 import com.example.shopinkarts.model.CreateProduct
@@ -52,6 +53,8 @@ class PersonalDetailsActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        Utils.changeStatusTextColor(this)
+        Utils.changeStatusColor(this,R.color.white)
         binding = DataBindingUtil.setContentView(this, R.layout.activity_personal_details)
 
         layoutCount = 1
@@ -168,11 +171,6 @@ class PersonalDetailsActivity : AppCompatActivity() {
                 binding.includeStepper1.cityET.requestFocus()
                 return@setOnClickListener
             }
-            if (landmark.isEmpty()) {
-                binding.includeStepper1.landMarkET.error = "Enter landmark"
-                binding.includeStepper1.landMarkET.requestFocus()
-                return@setOnClickListener
-            }
 
             sharedPreference.setAddress(
                 name = binding.includeStepper1.nameET.text.toString(),
@@ -213,18 +211,19 @@ class PersonalDetailsActivity : AppCompatActivity() {
 
 
         binding.includeStepper2.caseSelectIV.setBackgroundResource(R.drawable.grey_right_icon)
-        binding.includeStepper2.onlineSelectIV.setBackgroundResource(R.drawable.grey_right_icon)
+//        binding.includeStepper2.onlineSelectIV.setBackgroundResource(R.drawable.grey_right_icon)
 
         binding.includeStepper2.cashOnDeliveryCL.setOnClickListener {
             paymentType = 0
             binding.includeStepper2.caseSelectIV.setBackgroundResource(R.drawable.green_right_icon)
-            binding.includeStepper2.onlineSelectIV.setBackgroundResource(R.drawable.grey_right_icon)
+//            binding.includeStepper2.onlineSelectIV.setBackgroundResource(R.drawable.grey_right_icon)
             Log.d("paymentType", "onCreate: $paymentType")
         }
         binding.includeStepper2.payOnlineCL.setOnClickListener {
-            paymentType = 1
-            binding.includeStepper2.onlineSelectIV.setBackgroundResource(R.drawable.green_right_icon)
-            binding.includeStepper2.caseSelectIV.setBackgroundResource(R.drawable.grey_right_icon)
+//            paymentType = 1
+//            binding.includeStepper2.onlineSelectIV.setBackgroundResource(R.drawable.green_right_icon)
+//            binding.includeStepper2.caseSelectIV.setBackgroundResource(R.drawable.grey_right_icon)
+            Toast.makeText(this,"Pay online coming soon...",Toast.LENGTH_SHORT).show()
             Log.d("paymentType", "onCreate: $paymentType")
         }
 

@@ -5,6 +5,7 @@ import android.os.Bundle
 import androidx.databinding.DataBindingUtil
 import com.example.shopinkarts.R
 import com.example.shopinkarts.adapter.ReviewsAdapter
+import com.example.shopinkarts.classes.Utils
 import com.example.shopinkarts.databinding.ActivityReadReviewsBinding
 
 class ReadReviewsActivity : AppCompatActivity() {
@@ -12,6 +13,8 @@ class ReadReviewsActivity : AppCompatActivity() {
     lateinit var reviewsAdapter: ReviewsAdapter
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        Utils.changeStatusTextColor(this)
+        Utils.changeStatusColor(this,R.color.white)
         binding = DataBindingUtil.setContentView(this, R.layout.activity_read_reviews)
 
         binding.headerReadReview.backIV.setOnClickListener {

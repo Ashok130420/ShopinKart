@@ -7,6 +7,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import com.example.shopinkarts.R
 import com.example.shopinkarts.adapter.OrderDetailsAdapter
+import com.example.shopinkarts.classes.Utils
 import com.example.shopinkarts.databinding.ActivityOrderDetailsBinding
 import com.example.shopinkarts.databinding.BottomSheetReturnOrderBinding
 import com.google.android.material.bottomsheet.BottomSheetDialog
@@ -18,6 +19,8 @@ class OrderDetailsActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        Utils.changeStatusTextColor(this)
+        Utils.changeStatusColor(this,R.color.white)
         binding = DataBindingUtil.setContentView(this, R.layout.activity_order_details)
 
         binding.headerOrderDetails.backIV.setOnClickListener {

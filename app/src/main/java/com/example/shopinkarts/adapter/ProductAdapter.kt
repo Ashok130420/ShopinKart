@@ -40,6 +40,8 @@ class ProductAdapter(val context: Context, val products: List<CreateProduct>) :
 //            pidTV.text=itemDetails.productId
 //            if (itemDetails.)
 
+
+
         }
 
         sizeQtyAdapter = SizeQtyAdapter(context, itemDetails.variantsArr)

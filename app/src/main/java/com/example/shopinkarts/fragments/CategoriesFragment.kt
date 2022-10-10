@@ -41,7 +41,7 @@ class CategoriesFragment : Fragment() {
     var timer: Timer? = null
     val DELAY_MS: Long = 2000
     val PERIOD_MS: Long = 3000
-    lateinit var mLayoutManager:LinearLayoutManager
+    lateinit var mLayoutManager: LinearLayoutManager
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -50,7 +50,7 @@ class CategoriesFragment : Fragment() {
 
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_categories, container, false)
 
-        mLayoutManager= LinearLayoutManager(requireContext())
+        mLayoutManager = LinearLayoutManager(requireContext())
         setCategoryBannerViewPager()
         setupIndicatorsCategoryBanner()
         setCurrentIndicatorCategoryBanner(0)
@@ -96,10 +96,11 @@ class CategoriesFragment : Fragment() {
 
                         arrayListCategories.clear()
                         arrayListCategories.addAll(categoriesResponse.categories)
-                        if (context!=null) {
+                        if (context != null) {
                             categoriesAdapter =
                                 CategoriesAdapter(requireContext(), arrayListCategories)
                             binding.categoriesRV.adapter = categoriesAdapter
+                            binding.categoriesRV.isNestedScrollingEnabled = false
                             categoriesAdapter.notifyDataSetChanged()
                         }
 

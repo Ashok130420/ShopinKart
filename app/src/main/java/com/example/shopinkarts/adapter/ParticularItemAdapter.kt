@@ -27,7 +27,6 @@ class ParticularItemAdapter(val context: Context, var arrayList: ArrayList<Produ
         return ViewHolder(binding)
     }
 
-
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val itemDetails = arrayList[position]
         holder.itemsParticularItemBinding.apply {

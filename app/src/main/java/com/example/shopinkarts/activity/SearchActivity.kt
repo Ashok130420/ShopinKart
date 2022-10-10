@@ -15,6 +15,7 @@ import androidx.databinding.DataBindingUtil
 import com.example.shopinkarts.R
 import com.example.shopinkarts.adapter.SearchAdapter
 import com.example.shopinkarts.api.RetrofitClient
+import com.example.shopinkarts.classes.Utils
 import com.example.shopinkarts.databinding.ActivitySearchBinding
 import com.example.shopinkarts.response.Product
 import com.example.shopinkarts.response.SearchResponse
@@ -31,6 +32,8 @@ class SearchActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        Utils.changeStatusTextColor(this)
+        Utils.changeStatusColor(this,R.color.white)
         binding = DataBindingUtil.setContentView(this, R.layout.activity_search)
 
         binding.headerSearch.backIV.setOnClickListener {

@@ -63,13 +63,11 @@
                 style="@style/Widget.AppCompat.RatingBar.Small"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/m10"
-                android:layout_marginBottom="@dimen/m10"
+                android:layout_marginTop="@dimen/m5"
                 android:isIndicator="true"
                 android:numStars="1"
                 android:rating="1"
                 android:theme="@style/RatingBar"
-                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="@+id/productNameTV"
                 app:layout_constraintTop_toBottomOf="@+id/priceTV" />
 
@@ -92,13 +90,30 @@
                 android:layout_height="20dp"
                 android:layout_marginEnd="@dimen/m10"
                 android:padding="3dp"
-                android:visibility="gone"
                 android:scaleType="fitXY"
                 android:src="@drawable/option_menu"
+                android:visibility="gone"
                 app:layout_constraintBottom_toBottomOf="@+id/ratingBar"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="@+id/ratingBar"
                 tools:ignore="ContentDescription" />
+
+
+            <TextView
+                android:id="@+id/discountTV"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/m5"
+                android:background="@color/purple"
+                android:fontFamily="@font/dm_sans"
+                android:gravity="center"
+                android:padding="@dimen/m5"
+                android:text="@string/_30_off"
+                android:textColor="@color/white"
+                android:textSize="@dimen/text_size_12"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/ratingTV" />
         </androidx.constraintlayout.widget.ConstraintLayout>
 
     </androidx.cardview.widget.CardView>

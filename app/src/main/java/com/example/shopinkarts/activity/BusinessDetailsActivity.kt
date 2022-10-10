@@ -10,6 +10,7 @@ import android.widget.EditText
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import com.example.shopinkarts.R
+import com.example.shopinkarts.classes.Utils
 import com.example.shopinkarts.databinding.ActivityBusinessDetailsBinding
 
 class BusinessDetailsActivity : AppCompatActivity() {
@@ -18,6 +19,8 @@ class BusinessDetailsActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        Utils.changeStatusTextColor(this)
+        Utils.changeStatusColor(this,R.color.white)
         binding = DataBindingUtil.setContentView(this, R.layout.activity_business_details)
 
         binding.headerBusinessDetails.nameTV.text = resources.getString(R.string.business_details)
