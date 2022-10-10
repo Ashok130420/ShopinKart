@@ -5,7 +5,6 @@ import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.View
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import com.example.shopinkarts.R
@@ -75,7 +74,7 @@ class ProductCartActivity : AppCompatActivity() {
         yourCartAdapter.notifyDataSetChanged()
 
         binding.continueTV.setOnClickListener {
-            val intent = Intent(this, PersonalDetailsActivity::class.java)
+            val intent = Intent(this, CheckOutDetailsActivity::class.java)
             intent.putExtra("totalAmount", totalAmount)
             intent.putExtra("gst", gst)
             intent.putExtra("discount", differenceAmount)

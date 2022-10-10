@@ -71,7 +71,7 @@
             android:name=".activity.BusinessDetailsActivity"
             android:exported="false" />
         <activity
-            android:name=".activity.PersonalDetailsActivity"
+            android:name=".activity.CheckOutDetailsActivity"
             android:exported="true"
             android:windowSoftInputMode="stateUnchanged">
 

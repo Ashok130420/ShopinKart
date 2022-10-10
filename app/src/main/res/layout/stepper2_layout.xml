@@ -17,7 +17,6 @@
             android:id="@+id/paymentMethodTV"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:paddingHorizontal="@dimen/p14"
             android:paddingVertical="@dimen/p10"
             android:text="@string/how_would_you_like_to_pay"
             android:textColor="@color/primary_text"
@@ -28,8 +27,9 @@
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/cashOnDeliveryCL"
             android:layout_width="match_parent"
+            android:layout_marginTop="@dimen/m10"
             android:layout_height="wrap_content"
-            android:background="@color/white"
+            android:background="@drawable/shape_green_corners_5dp"
             android:padding="@dimen/p14"
             app:layout_constraintTop_toBottomOf="@+id/paymentMethodTV">
 

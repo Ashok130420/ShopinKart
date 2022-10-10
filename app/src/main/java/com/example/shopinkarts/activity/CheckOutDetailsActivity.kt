@@ -21,7 +21,7 @@ import com.example.shopinkarts.R
 import com.example.shopinkarts.api.RetrofitClient
 import com.example.shopinkarts.classes.SharedPreference
 import com.example.shopinkarts.classes.Utils
-import com.example.shopinkarts.databinding.ActivityPersonalDetailsBinding
+import com.example.shopinkarts.databinding.ActivityCheckoutDetailsBinding
 import com.example.shopinkarts.model.CreateOrderRequest
 import com.example.shopinkarts.model.CreateProduct
 import com.example.shopinkarts.model.ShippingDetails
@@ -30,9 +30,9 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
-class PersonalDetailsActivity : AppCompatActivity() {
+class CheckOutDetailsActivity : AppCompatActivity() {
     lateinit var sharedPreference: SharedPreference
-    lateinit var binding: ActivityPersonalDetailsBinding
+    lateinit var binding: ActivityCheckoutDetailsBinding
     var layoutCount = 1
     var userType = ""
 
@@ -55,7 +55,7 @@ class PersonalDetailsActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         Utils.changeStatusTextColor(this)
         Utils.changeStatusColor(this,R.color.white)
-        binding = DataBindingUtil.setContentView(this, R.layout.activity_personal_details)
+        binding = DataBindingUtil.setContentView(this, R.layout.activity_checkout_details)
 
         layoutCount = 1
         layoutFirst()
@@ -197,9 +197,9 @@ class PersonalDetailsActivity : AppCompatActivity() {
         val span1: ClickableSpan = object : ClickableSpan() {
             override fun onClick(view: View) {
 
-                val intent = Intent(this@PersonalDetailsActivity, TrackOrderActivity::class.java)
+                val intent = Intent(this@CheckOutDetailsActivity, TrackOrderActivity::class.java)
                 startActivity(intent)
-                Toast.makeText(this@PersonalDetailsActivity, "clicked", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this@CheckOutDetailsActivity, "clicked", Toast.LENGTH_SHORT).show()
             }
         }
 
@@ -210,7 +210,7 @@ class PersonalDetailsActivity : AppCompatActivity() {
         binding.includeStepper3.trackDeliveryTV.movementMethod = LinkMovementMethod.getInstance()
 
 
-        binding.includeStepper2.caseSelectIV.setBackgroundResource(R.drawable.grey_right_icon)
+        binding.includeStepper2.caseSelectIV.setBackgroundResource(R.drawable.green_right_icon)
 //        binding.includeStepper2.onlineSelectIV.setBackgroundResource(R.drawable.grey_right_icon)
 
         binding.includeStepper2.cashOnDeliveryCL.setOnClickListener {
@@ -262,8 +262,8 @@ class PersonalDetailsActivity : AppCompatActivity() {
 
     private fun preNextFunction() {
         if (layoutCount >= 3) {
-            binding.continueTV.text = resources.getString(R.string.continue_shopping)
-            binding.goToOrdersTV.visibility = View.VISIBLE
+//            binding.continueTV.text = resources.getString(R.string.continue_shopping)
+//            binding.goToOrdersTV.visibility = View.VISIBLE
 
         } else {
             binding.continueTV.text = resources.getString(R.string.continue_)
@@ -278,7 +278,7 @@ class PersonalDetailsActivity : AppCompatActivity() {
                 Log.d("layoutCount", layoutCount.toString())
             }
             3 -> {
-                layoutThird()
+//                layoutThird()
                 orderApi()
             }
             else -> {
@@ -381,14 +381,18 @@ class PersonalDetailsActivity : AppCompatActivity() {
                         DashBoardActivity.selectedVIDs.clear()
                         sharedPreference.setArray()
 
-                        Toast.makeText(
-                            this@PersonalDetailsActivity, response.message(), Toast.LENGTH_SHORT
-                        ).show()
+//                        Toast.makeText(
+//                            this@CheckOutDetailsActivity, response.message(), Toast.LENGTH_SHORT
+//                        ).show()
                         Log.e("orderResponse", "${response.message()} ")
+
+                        layoutThird()
+                        binding.continueTV.text = resources.getString(R.string.continue_shopping)
+                        binding.goToOrdersTV.visibility = View.VISIBLE
 
                     } else {
                         Toast.makeText(
-                            this@PersonalDetailsActivity, response.message(), Toast.LENGTH_SHORT
+                            this@CheckOutDetailsActivity, response.message(), Toast.LENGTH_SHORT
                         ).show()
                         Log.e("orderResponse", "${response.message()} ")
 
@@ -401,7 +405,7 @@ class PersonalDetailsActivity : AppCompatActivity() {
 
             override fun onFailure(call: Call<SuccessResponse>, t: Throwable) {
                 Toast.makeText(
-                    this@PersonalDetailsActivity, "${t.message}", Toast.LENGTH_SHORT
+                    this@CheckOutDetailsActivity, "${t.message}", Toast.LENGTH_SHORT
                 ).show()
                 Log.e("orderResponse", "${t.message} ")
             }

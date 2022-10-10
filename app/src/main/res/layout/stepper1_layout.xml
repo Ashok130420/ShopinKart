@@ -30,7 +30,7 @@
                     android:background="@color/white"
                     android:visibility="visible"
                     app:layout_constraintTop_toTopOf="parent"
-                    tools:context=".activity.PersonalDetailsActivity">
+                    tools:context=".activity.CheckOutDetailsActivity">
 
                     <com.google.android.material.textfield.TextInputLayout
                         android:id="@+id/nameTVLayout"
@@ -50,7 +50,7 @@
                             android:layout_height="wrap_content"
                             android:inputType="textCapSentences"
                             android:textColorHighlight="@color/hint"
-                            android:textSize="@dimen/text_size_16" />
+                            android:textSize="@dimen/text_size_12" />
 
                     </com.google.android.material.textfield.TextInputLayout>
 
@@ -64,7 +64,7 @@
                         android:padding="@dimen/p17"
                         android:text="@string/_91"
                         android:textColor="@color/primary_text"
-                        android:textSize="@dimen/text_size_16"
+                        android:textSize="@dimen/text_size_12"
                         app:layout_constraintBottom_toBottomOf="@id/phoneNumberTVLayout"
                         app:layout_constraintStart_toStartOf="parent"
                         tools:ignore="Autofill,LabelFor,TextFields" />
@@ -91,7 +91,7 @@
                             android:inputType="number"
                             android:maxLength="10"
                             android:textColorHighlight="@color/hint_color"
-                            android:textSize="@dimen/text_size_16" />
+                            android:textSize="@dimen/text_size_12" />
 
                     </com.google.android.material.textfield.TextInputLayout>
 
@@ -113,7 +113,7 @@
                             android:layout_height="wrap_content"
                             android:inputType="textCapSentences"
                             android:textColorHighlight="@color/hint_color"
-                            android:textSize="@dimen/text_size_16" />
+                            android:textSize="@dimen/text_size_12" />
 
                     </com.google.android.material.textfield.TextInputLayout>
 
@@ -135,7 +135,7 @@
                             android:layout_height="wrap_content"
                             android:inputType="textCapSentences"
                             android:textColorHighlight="@color/hint_color"
-                            android:textSize="@dimen/text_size_16" />
+                            android:textSize="@dimen/text_size_12" />
 
                     </com.google.android.material.textfield.TextInputLayout>
 
@@ -158,7 +158,7 @@
                             android:inputType="number"
                             android:maxLength="6"
                             android:textColorHighlight="@color/hint_color"
-                            android:textSize="@dimen/text_size_16" />
+                            android:textSize="@dimen/text_size_12" />
 
                     </com.google.android.material.textfield.TextInputLayout>
 
@@ -181,7 +181,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:inputType="textCapSentences"
-                            android:textSize="@dimen/text_size_16" />
+                            android:textSize="@dimen/text_size_12" />
 
                     </com.google.android.material.textfield.TextInputLayout>
 
@@ -204,9 +204,9 @@
                             android:layout_marginStart="@dimen/m10"
                             android:entries="@array/state"
                             android:inputType="number"
-                            android:paddingVertical="@dimen/p17"
+                            android:paddingVertical="@dimen/p14"
                             android:textColorHighlight="@color/hint_color"
-                            android:textSize="@dimen/text_size_16"
+                            android:textSize="@dimen/text_size_12"
                             app:layout_constraintBottom_toBottomOf="@+id/cityTVLayout"
                             app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintStart_toEndOf="@+id/cityTVLayout"
@@ -231,7 +231,7 @@
                             android:layout_height="wrap_content"
                             android:inputType="textCapSentences"
                             android:textColorHighlight="@color/hint_color"
-                            android:textSize="@dimen/text_size_16" />
+                            android:textSize="@dimen/text_size_12" />
 
                     </com.google.android.material.textfield.TextInputLayout>
 
@@ -246,7 +246,7 @@
                     android:background="@color/white"
                     android:visibility="gone"
                     app:layout_constraintTop_toBottomOf="@id/personalCL"
-                    tools:context=".activity.PersonalDetailsActivity">
+                    tools:context=".activity.CheckOutDetailsActivity">
 
                     <com.google.android.material.textfield.TextInputLayout
                         android:id="@+id/businessNameTVLayout"
@@ -266,7 +266,7 @@
                             android:layout_height="wrap_content"
                             android:inputType="textCapSentences"
                             android:textColorHighlight="@color/hint"
-                            android:textSize="@dimen/text_size_16"
+                            android:textSize="@dimen/text_size_12"
                             android:visibility="visible" />
 
                     </com.google.android.material.textfield.TextInputLayout>
@@ -290,7 +290,7 @@
                             android:layout_height="wrap_content"
                             android:inputType="textCapSentences"
                             android:textColorHighlight="@color/hint"
-                            android:textSize="@dimen/text_size_16" />
+                            android:textSize="@dimen/text_size_12" />
 
                     </com.google.android.material.textfield.TextInputLayout>
 
@@ -313,7 +313,7 @@
                             android:layout_height="wrap_content"
                             android:inputType="textCapCharacters"
                             android:textColorHighlight="@color/hint"
-                            android:textSize="@dimen/text_size_16" />
+                            android:textSize="@dimen/text_size_12" />
 
                     </com.google.android.material.textfield.TextInputLayout>
 
@@ -334,9 +334,9 @@
                             android:layout_marginStart="@dimen/m10"
                             android:entries="@array/state_business"
                             android:inputType="number"
-                            android:paddingVertical="@dimen/p17"
+                            android:paddingVertical="@dimen/p14"
                             android:textColorHighlight="@color/hint_color"
-                            android:textSize="@dimen/text_size_16" />
+                            android:textSize="@dimen/text_size_12" />
 
                     </androidx.appcompat.widget.LinearLayoutCompat>
 
@@ -349,7 +349,7 @@
                         android:padding="@dimen/p17"
                         android:text="@string/_91"
                         android:textColor="@color/primary_text"
-                        android:textSize="@dimen/text_size_16"
+                        android:textSize="@dimen/text_size_12"
                         app:layout_constraintBottom_toBottomOf="@id/businessPhoneNumberTVLayout"
                         app:layout_constraintStart_toStartOf="parent"
                         tools:ignore="Autofill,LabelFor,TextFields" />
@@ -376,7 +376,7 @@
                             android:inputType="number"
                             android:maxLength="10"
                             android:textColorHighlight="@color/hint_color"
-                            android:textSize="@dimen/text_size_16" />
+                            android:textSize="@dimen/text_size_12" />
 
                     </com.google.android.material.textfield.TextInputLayout>
 
@@ -398,7 +398,7 @@
                             android:layout_height="wrap_content"
                             android:inputType="textCapSentences"
                             android:textColorHighlight="@color/hint_color"
-                            android:textSize="@dimen/text_size_16" />
+                            android:textSize="@dimen/text_size_12" />
 
                     </com.google.android.material.textfield.TextInputLayout>
 
@@ -420,7 +420,7 @@
                             android:layout_height="wrap_content"
                             android:inputType="textCapSentences"
                             android:textColorHighlight="@color/hint_color"
-                            android:textSize="@dimen/text_size_16" />
+                            android:textSize="@dimen/text_size_12" />
 
                     </com.google.android.material.textfield.TextInputLayout>
 
@@ -443,7 +443,7 @@
                             android:inputType="number"
                             android:maxLength="6"
                             android:textColorHighlight="@color/hint_color"
-                            android:textSize="@dimen/text_size_16" />
+                            android:textSize="@dimen/text_size_12" />
 
                     </com.google.android.material.textfield.TextInputLayout>
 
@@ -466,7 +466,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:inputType="textCapSentences"
-                            android:textSize="@dimen/text_size_16" />
+                            android:textSize="@dimen/text_size_12" />
 
                     </com.google.android.material.textfield.TextInputLayout>
 
@@ -489,9 +489,9 @@
                             android:layout_marginStart="@dimen/m10"
                             android:entries="@array/state"
                             android:inputType="number"
-                            android:paddingVertical="@dimen/p17"
+                            android:paddingVertical="@dimen/p14"
                             android:textColorHighlight="@color/hint_color"
-                            android:textSize="@dimen/text_size_16"
+                            android:textSize="@dimen/text_size_12"
                             app:layout_constraintBottom_toBottomOf="@+id/cityTVLayout"
                             app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintStart_toEndOf="@+id/cityTVLayout"
@@ -516,7 +516,7 @@
                             android:layout_height="wrap_content"
                             android:inputType="textCapSentences"
                             android:textColorHighlight="@color/hint_color"
-                            android:textSize="@dimen/text_size_16" />
+                            android:textSize="@dimen/text_size_12" />
 
                     </com.google.android.material.textfield.TextInputLayout>
 
