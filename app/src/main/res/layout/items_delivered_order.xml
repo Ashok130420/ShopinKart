@@ -212,7 +212,7 @@
                 android:paddingVertical="@dimen/p14"
                 android:text="@string/track_order_status"
                 android:textColor="@color/primary_text"
-                android:textSize="@dimen/text_size_14"
+                android:textSize="@dimen/text_size_12"
                 app:layout_constraintTop_toTopOf="parent"
 
                 />
@@ -253,7 +253,7 @@
                 android:paddingVertical="@dimen/p14"
                 android:text="@string/download_invoice"
                 android:textColor="@color/primary_text"
-                android:textSize="@dimen/text_size_14"
+                android:textSize="@dimen/text_size_12"
                 app:layout_constraintTop_toTopOf="parent"
 
                 />

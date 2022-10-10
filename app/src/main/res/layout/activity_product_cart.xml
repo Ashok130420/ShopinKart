@@ -51,7 +51,7 @@
                         android:padding="@dimen/p16"
                         android:text="@string/order_summary"
                         android:textColor="@color/primary_text"
-                        android:textSize="@dimen/text_size_18"
+                        android:textSize="@dimen/text_size_16"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@id/yourCartRV" />
 
@@ -71,7 +71,7 @@
                             android:fontFamily="@font/dm_sans_medium"
                             android:text="@string/total_amount"
                             android:textColor="@color/dark_Gray"
-                            android:textSize="@dimen/text_size_14"
+                            android:textSize="@dimen/text_size_12"
                             app:layout_constraintStart_toStartOf="parent"
                             app:layout_constraintTop_toTopOf="parent" />
 
@@ -82,7 +82,7 @@
                             android:fontFamily="@font/dm_sans_medium"
                             android:text="@string/rs_4200"
                             android:textColor="@color/primary_text"
-                            android:textSize="@dimen/text_size_14"
+                            android:textSize="@dimen/text_size_12"
                             app:layout_constraintBottom_toBottomOf="@+id/totalAmountTV"
                             app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintTop_toTopOf="@+id/totalAmountTV" />
@@ -95,7 +95,7 @@
                             android:fontFamily="@font/dm_sans_medium"
                             android:text="@string/discounts"
                             android:textColor="@color/dark_Gray"
-                            android:textSize="@dimen/text_size_14"
+                            android:textSize="@dimen/text_size_12"
                             app:layout_constraintStart_toStartOf="parent"
                             app:layout_constraintTop_toBottomOf="@+id/totalAmountTV" />
 
@@ -106,7 +106,7 @@
                             android:fontFamily="@font/dm_sans_medium"
                             android:text="@string/rs_2800"
                             android:textColor="@color/primary_text"
-                            android:textSize="@dimen/text_size_14"
+                            android:textSize="@dimen/text_size_12"
                             app:layout_constraintBottom_toBottomOf="@+id/discountsTV"
                             app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintTop_toTopOf="@+id/discountsTV" />
@@ -119,7 +119,7 @@
                             android:fontFamily="@font/dm_sans_medium"
                             android:text="@string/order_total"
                             android:textColor="@color/dark_Gray"
-                            android:textSize="@dimen/text_size_14"
+                            android:textSize="@dimen/text_size_12"
                             app:layout_constraintStart_toStartOf="parent"
                             app:layout_constraintTop_toBottomOf="@+id/discountsTV" />
 
@@ -130,7 +130,7 @@
                             android:fontFamily="@font/dm_sans_medium"
                             android:text="@string/rs_1400"
                             android:textColor="@color/primary_text"
-                            android:textSize="@dimen/text_size_14"
+                            android:textSize="@dimen/text_size_12"
                             app:layout_constraintBottom_toBottomOf="@+id/orderTotalTV"
                             app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintTop_toTopOf="@+id/orderTotalTV" />
@@ -143,7 +143,7 @@
                             android:fontFamily="@font/dm_sans_medium"
                             android:text="@string/gst_18"
                             android:textColor="@color/dark_Gray"
-                            android:textSize="@dimen/text_size_14"
+                            android:textSize="@dimen/text_size_12"
                             app:layout_constraintStart_toStartOf="parent"
                             app:layout_constraintTop_toBottomOf="@+id/orderTotalTV" />
 
@@ -154,7 +154,7 @@
                             android:fontFamily="@font/dm_sans_medium"
                             android:text="@string/rs_252"
                             android:textColor="@color/primary_text"
-                            android:textSize="@dimen/text_size_14"
+                            android:textSize="@dimen/text_size_12"
                             app:layout_constraintBottom_toBottomOf="@+id/gstTV"
                             app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintTop_toTopOf="@+id/gstTV" />
@@ -235,6 +235,7 @@
                     </androidx.constraintlayout.widget.ConstraintLayout>
 
                 </androidx.constraintlayout.widget.ConstraintLayout>
+
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:id="@+id/lottyAnimation"
                     android:layout_width="match_parent"

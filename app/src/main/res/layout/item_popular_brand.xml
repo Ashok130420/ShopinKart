@@ -54,6 +54,7 @@
             android:layout_marginTop="@dimen/m6"
             android:padding="@dimen/p5"
             android:text="@string/puma"
+            android:textSize="@dimen/text_size_12"
             android:fontFamily="@font/dm_sans_medium"
             android:textColor="@color/primary_text"
             app:layout_constraintEnd_toEndOf="@id/cardView"

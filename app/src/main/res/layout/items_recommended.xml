@@ -42,7 +42,7 @@
                 android:fontFamily="@font/dm_sans_medium"
                 android:text="@string/linen_t_shirt"
                 android:textColor="@color/primary_text"
-                android:textSize="@dimen/text_size_14"
+                   android:textSize="@dimen/text_size_12"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/imageIV" />
 
@@ -54,7 +54,7 @@
                 android:fontFamily="@font/dm_sans_bold"
                 android:text="@string/rs_100_rs_500"
                 android:textColor="@color/red_velvet"
-                android:textSize="@dimen/text_size_14"
+                   android:textSize="@dimen/text_size_12"
                 app:layout_constraintStart_toStartOf="@+id/productNameTV"
                 app:layout_constraintTop_toBottomOf="@+id/productNameTV" />
 
