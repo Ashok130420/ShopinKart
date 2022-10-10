@@ -36,7 +36,7 @@
                 android:layout_height="wrap_content"
                 android:inputType="textCapSentences"
                 android:textColorHighlight="@color/hint"
-                android:textSize="@dimen/text_size_16" />
+                android:textSize="@dimen/text_size_12" />
 
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -61,7 +61,7 @@
                 android:inputType="number"
                 android:maxLength="10"
                 android:textColorHighlight="@color/hint"
-                android:textSize="@dimen/text_size_16" />
+                android:textSize="@dimen/text_size_12" />
 
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -85,7 +85,7 @@
                 android:layout_height="wrap_content"
                 android:inputType="textCapSentences"
                 android:textColorHighlight="@color/hint"
-                android:textSize="@dimen/text_size_16" />
+                android:textSize="@dimen/text_size_12" />
 
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -109,7 +109,7 @@
                 android:layout_height="wrap_content"
                 android:inputType="textCapSentences"
                 android:textColorHighlight="@color/hint"
-                android:textSize="@dimen/text_size_16" />
+                android:textSize="@dimen/text_size_12" />
 
         </com.google.android.material.textfield.TextInputLayout>
 
