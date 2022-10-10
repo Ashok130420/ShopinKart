@@ -1,7 +1,12 @@
 package com.example.shopinkarts.activity
 
+import android.Manifest
+import android.app.Activity
+import android.app.DownloadManager
+import android.content.Context
 import android.content.Intent
-import android.graphics.Bitmap
+import android.content.pm.PackageManager
+import android.net.Uri
 import android.os.Build
 import android.os.Bundle
 import android.os.Environment
@@ -16,6 +21,7 @@ import android.widget.LinearLayout
 import android.widget.ListPopupWindow
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.core.view.get
 import androidx.databinding.DataBindingUtil
@@ -23,7 +29,6 @@ import androidx.viewpager2.widget.ViewPager2
 import com.example.shopinkarts.R
 import com.example.shopinkarts.adapter.*
 import com.example.shopinkarts.api.RetrofitClient
-import com.example.shopinkarts.classes.DownloadAndSaveImageTask
 import com.example.shopinkarts.classes.SharedPreference
 import com.example.shopinkarts.classes.Utils
 import com.example.shopinkarts.databinding.ActivityProductDetailsBinding
@@ -33,14 +38,9 @@ import com.example.shopinkarts.model.SelectSizeModel
 import com.example.shopinkarts.response.NewlyAdded
 import com.example.shopinkarts.response.ProductResponse
 import com.example.shopinkarts.response.VariantsArr
-import okhttp3.MediaType.Companion.toMediaType
-import okhttp3.MultipartBody
-import okhttp3.RequestBody.Companion.asRequestBody
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
-import java.io.File
-import java.io.FileOutputStream
 import java.lang.Float.max
 import java.lang.Float.min
 import java.util.*
@@ -60,7 +60,6 @@ class ProductDetailsActivity : AppCompatActivity() {
     var arraySelectColor: ArrayList<SelectColorModel> = ArrayList()
     var arraySelectSize: ArrayList<SelectSizeModel> = ArrayList()
     var arrayListVariant: ArrayList<VariantsArr> = ArrayList()
-    lateinit var downloadAndSaveImageTask: DownloadAndSaveImageTask
 
     private lateinit var scaleGestureDetector: ScaleGestureDetector
     private var scaleFactor = 1.0f
@@ -121,17 +120,12 @@ class ProductDetailsActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         Utils.changeStatusTextColor(this)
-        Utils.changeStatusColor(this,R.color.white)
+        Utils.changeStatusColor(this, R.color.white)
         binding = DataBindingUtil.setContentView(this, R.layout.activity_product_details)
         pInstance = this
 
-
-
         scaleGestureDetector = ScaleGestureDetector(this, ScaleListener())
 
-
-
-        downloadAndSaveImageTask = DownloadAndSaveImageTask(this)
         sharedPreference = SharedPreference(this)
 
         currentNumber = 0
@@ -454,14 +448,8 @@ class ProductDetailsActivity : AppCompatActivity() {
                         setCurrentIndicator(0)
 
                         binding.downloadImageIV.setOnClickListener {
-//                            DownloadAndSaveImageTask(this@ProductDetailsActivity).execute("https://s3.amazonaws.com/appsdeveloperblog/Micky.jpg")
-                            Log.d(
-                                "Seiggailion",
-                                "onResponse: ${productResponse.product.productImages[0]}"
-                            )
-                            DownloadAndSaveImageTask(this@ProductDetailsActivity).execute(
-                                productResponse.product.productImages[0]
-                            )
+
+                            downloadFile(productResponse.product.productImages[0])
 
                         }
 
@@ -674,6 +662,42 @@ class ProductDetailsActivity : AppCompatActivity() {
 
     fun setArray() {
         sharedPreference.setArray()
+    }
+
+    fun downloadFile(url: String) {
+        Toast.makeText(this, "Your download has begun", Toast.LENGTH_SHORT).show()
+        if (ActivityCompat.checkSelfPermission(
+                this, Manifest.permission.READ_EXTERNAL_STORAGE
+            ) != PackageManager.PERMISSION_GRANTED || ActivityCompat.checkSelfPermission(
+                this, Manifest.permission.WRITE_EXTERNAL_STORAGE
+            ) != PackageManager.PERMISSION_GRANTED
+        ) {
+
+            // this will request for permission when user has not granted permission for the app
+            ActivityCompat.requestPermissions(
+                this as Activity, arrayOf(
+                    Manifest.permission.READ_EXTERNAL_STORAGE,
+                    Manifest.permission.WRITE_EXTERNAL_STORAGE
+                ), 1
+            )
+        } else {
+
+            //Download Script
+            val downloadManager =
+                this.getSystemService(Context.DOWNLOAD_SERVICE) as DownloadManager?
+            val uri = Uri.parse(url)
+            val request = DownloadManager.Request(uri)
+            request.setVisibleInDownloadsUi(true)
+            request.setTitle(this.resources.getString(R.string.app_name))
+            request.setDescription("Downloading...");
+            request.setNotificationVisibility(DownloadManager.Request.VISIBILITY_VISIBLE_NOTIFY_COMPLETED)
+            request.setDestinationInExternalPublicDir(
+                Environment.DIRECTORY_DOWNLOADS,
+//                uri.lastPathSegment
+                this.resources.getString(R.string.app_name) + "shopInKarts.jpg"
+            )
+            downloadManager!!.enqueue(request)
+        }
     }
 }
 

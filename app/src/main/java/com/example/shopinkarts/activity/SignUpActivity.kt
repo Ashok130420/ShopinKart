@@ -163,6 +163,8 @@ class SignUpActivity : AppCompatActivity() {
                         mProgressDialog.dismiss()
 
                         sharedPreference.setToken(signupResponse.token)
+                        sharedPreference.setUserId(signupResponse.user._id)
+
                         Log.d("Token....", signupResponse.token)
                         sharedPreference.setUsertype(signupResponse.user.userType.toString())
                         Log.d("UserType", signupResponse.user.userType.toString())
