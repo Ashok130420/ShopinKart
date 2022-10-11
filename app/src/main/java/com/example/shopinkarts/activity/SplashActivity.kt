@@ -4,6 +4,8 @@ import android.content.Intent
 import android.os.Bundle
 import android.os.Handler
 import android.util.Log
+import android.view.View
+import android.view.View.SYSTEM_UI_FLAG_HIDE_NAVIGATION
 import android.view.WindowManager
 import androidx.appcompat.app.AppCompatActivity
 import com.example.shopinkarts.classes.SharedPreference
@@ -28,8 +30,12 @@ class SplashActivity : AppCompatActivity() {
         // Full Screen Hide the status bar
         window.setFlags(
             WindowManager.LayoutParams.FLAG_FULLSCREEN,
-            WindowManager.LayoutParams.FLAG_FULLSCREEN
-        )
+            WindowManager.LayoutParams.FLAG_FULLSCREEN,
+
+            )
+        //hide navigation bar
+        window.decorView.systemUiVisibility = SYSTEM_UI_FLAG_HIDE_NAVIGATION
+
 
         Handler().postDelayed({
             if (sharedPreference.isLoginGet()) {

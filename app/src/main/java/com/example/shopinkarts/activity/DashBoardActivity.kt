@@ -28,7 +28,6 @@ class DashBoardActivity : AppCompatActivity() {
     private val accountFragment = AccountFragment()
     lateinit var sharedPreference: SharedPreference
 
-
     companion object {
         var profile = ""
         var mInstance: DashBoardActivity = DashBoardActivity()
@@ -42,7 +41,7 @@ class DashBoardActivity : AppCompatActivity() {
     override fun onResume() {
 
         if (profile.isEmpty()) {
-                binding.headerDashBoard.profileIV.setBackgroundResource(R.drawable.profile)
+            binding.headerDashBoard.profileIV.setBackgroundResource(R.drawable.profile)
         } else {
             Glide.with(this).load(profile).into(binding.headerDashBoard.profileIV)
         }
@@ -61,7 +60,7 @@ class DashBoardActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         Utils.changeStatusTextColor(this)
-        Utils.changeStatusColor(this,R.color.white)
+        Utils.changeStatusColor(this, R.color.white)
 
         binding = DataBindingUtil.setContentView(this, R.layout.activity_dash_board)
 
@@ -70,7 +69,6 @@ class DashBoardActivity : AppCompatActivity() {
         sharedPreference.getArray()
 
         mInstance = this
-
 
 //           val window: Window = this.window
 //           window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS)
