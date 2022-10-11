@@ -1,6 +1,7 @@
 package com.example.shopinkarts.adapter
 
 import android.content.Context
+import android.content.Intent
 import android.os.Build
 import android.view.LayoutInflater
 import android.view.View
@@ -10,6 +11,7 @@ import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.shopinkarts.R
+import com.example.shopinkarts.activity.ImageZoomActivity
 import com.example.shopinkarts.databinding.ProductSlideItemContainerBinding
 import com.example.shopinkarts.databinding.SlideItemContainerBinding
 
@@ -39,13 +41,10 @@ class ProductBannerAdapter(var context: Context, val introSlides: List<String>) 
             Glide.with(context).load(introSlides[position]).into(imageSlideIcon)
 
             imageSlideIcon.setOnClickListener {
+                val intent = Intent(context, ImageZoomActivity::class.java)
+                intent.putExtra("imageUrl", introSlides[position])
+                context.startActivity(intent)
 
-//                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.ICE_CREAM_SANDWICH) {
-//                    imageSlideIcon.setSystemUiVisibility(View.SYSTEM_UI_FLAG_HIDE_NAVIGATION)
-//                } else if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB) imageSlideIcon.setSystemUiVisibility(
-//                    View.STATUS_BAR_HIDDEN
-//                ) else {
-//                }
             }
         }
 

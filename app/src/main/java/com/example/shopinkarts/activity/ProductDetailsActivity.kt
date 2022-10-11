@@ -124,7 +124,6 @@ class ProductDetailsActivity : AppCompatActivity() {
         binding = DataBindingUtil.setContentView(this, R.layout.activity_product_details)
         pInstance = this
 
-        scaleGestureDetector = ScaleGestureDetector(this, ScaleListener())
 
         sharedPreference = SharedPreference(this)
 
@@ -265,21 +264,6 @@ class ProductDetailsActivity : AppCompatActivity() {
 
         }
 
-    }
-
-    override fun onTouchEvent(motionEvent: MotionEvent): Boolean {
-        scaleGestureDetector.onTouchEvent(motionEvent)
-        return true
-    }
-
-    inner class ScaleListener : ScaleGestureDetector.SimpleOnScaleGestureListener() {
-        override fun onScale(scaleGestureDetector: ScaleGestureDetector): Boolean {
-            scaleFactor *= scaleGestureDetector.scaleFactor
-            scaleFactor = max(0.1f, min(scaleFactor, 10.0f))
-            binding.downloadImageIV.scaleX = scaleFactor
-            binding.downloadImageIV.scaleY = scaleFactor
-            return true
-        }
     }
 
 
@@ -448,6 +432,7 @@ class ProductDetailsActivity : AppCompatActivity() {
                         setCurrentIndicator(0)
 
                         binding.downloadImageIV.setOnClickListener {
+
                             downloadFile(productResponse.product.productImages[0])
 
                         }
