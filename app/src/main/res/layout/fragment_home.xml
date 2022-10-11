@@ -202,8 +202,8 @@
                             android:fontFamily="@font/dm_sans"
                             android:text="@string/view_all"
                             android:textColor="@color/primary_Blue"
-                           android:textSize="@dimen/text_size_10"
-                            android:visibility="invisible"
+                            android:textSize="@dimen/text_size_10"
+                            android:visibility="gone"
                             app:layout_constraintBottom_toBottomOf="@+id/preferredManufacturerTV"
                             app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintTop_toTopOf="@+id/preferredManufacturerTV" />
@@ -248,7 +248,7 @@
                             android:fontFamily="@font/dm_sans"
                             android:text="@string/view_all"
                             android:textColor="@color/primary_Blue"
-                           android:textSize="@dimen/text_size_10"
+                            android:textSize="@dimen/text_size_10"
                             android:visibility="invisible"
                             app:layout_constraintBottom_toBottomOf="@+id/mostPopularTV"
                             app:layout_constraintEnd_toEndOf="parent"
@@ -293,7 +293,7 @@
                             android:fontFamily="@font/dm_sans"
                             android:text="@string/view_all"
                             android:textColor="@color/primary_Blue"
-                           android:textSize="@dimen/text_size_10"
+                            android:textSize="@dimen/text_size_10"
                             android:visibility="invisible"
                             app:layout_constraintBottom_toBottomOf="@+id/topRatedTV"
                             app:layout_constraintEnd_toEndOf="parent"
@@ -383,7 +383,7 @@
                             android:fontFamily="@font/dm_sans"
                             android:text="@string/view_all"
                             android:textColor="@color/primary_Blue"
-                           android:textSize="@dimen/text_size_10"
+                            android:textSize="@dimen/text_size_10"
                             app:layout_constraintBottom_toBottomOf="@+id/newlyAddedTV"
                             app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintTop_toTopOf="@+id/newlyAddedTV" />
@@ -442,7 +442,7 @@
                             android:fontFamily="@font/dm_sans"
                             android:text="@string/view_all"
                             android:textColor="@color/primary_Blue"
-                           android:textSize="@dimen/text_size_10"
+                            android:textSize="@dimen/text_size_10"
                             app:layout_constraintBottom_toBottomOf="@+id/dealOfDayTV"
                             app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintTop_toTopOf="@+id/dealOfDayTV" />
@@ -488,7 +488,7 @@
                             android:fontFamily="@font/dm_sans"
                             android:text="@string/view_all"
                             android:textColor="@color/primary_Blue"
-                           android:textSize="@dimen/text_size_10"
+                            android:textSize="@dimen/text_size_10"
                             app:layout_constraintBottom_toBottomOf="@+id/popularBrandTV"
                             app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintTop_toTopOf="@+id/popularBrandTV" />
@@ -531,7 +531,7 @@
                             android:fontFamily="@font/dm_sans"
                             android:text="@string/view_all"
                             android:textColor="@color/primary_Blue"
-                           android:textSize="@dimen/text_size_10"
+                            android:textSize="@dimen/text_size_10"
                             app:layout_constraintBottom_toBottomOf="@+id/discountForYouTV"
                             app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintTop_toTopOf="@+id/discountForYouTV" />
@@ -573,7 +573,7 @@
                             android:fontFamily="@font/dm_sans"
                             android:text="@string/view_all"
                             android:textColor="@color/primary_Blue"
-                           android:textSize="@dimen/text_size_10"
+                            android:textSize="@dimen/text_size_10"
                             app:layout_constraintBottom_toBottomOf="@+id/recommendedTV"
                             app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintTop_toTopOf="@+id/recommendedTV" />

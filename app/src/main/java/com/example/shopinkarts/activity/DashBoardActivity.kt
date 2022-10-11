@@ -75,7 +75,6 @@ class DashBoardActivity : AppCompatActivity() {
 //           window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS)
 //           window.statusBarColor = ContextCompat.getColor(this, R.color.white)
 
-
         binding.headerDashBoard.notificationIV.setOnClickListener {
             val intent = Intent(this, NotificationActivity::class.java)
             startActivity(intent)
@@ -161,6 +160,5 @@ class DashBoardActivity : AppCompatActivity() {
     fun setArray() {
         sharedPreference.setArray()
     }
-
-
+    
 }

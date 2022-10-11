@@ -298,7 +298,7 @@ class HomeFragment : Fragment() {
                 binding.searchIV.visibility = View.VISIBLE
                 binding.shopForTV.visibility = View.VISIBLE
                 binding.preferredManufacturerTV.visibility = View.VISIBLE
-                binding.preferredManufacturerAllTV.visibility = View.VISIBLE
+//                binding.preferredManufacturerAllTV.visibility = View.VISIBLE
                 binding.mostPopularTV.visibility = View.VISIBLE
                 binding.mostPopularAllTV.visibility = View.VISIBLE
                 binding.topRatedTV.visibility = View.VISIBLE

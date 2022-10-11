@@ -437,7 +437,7 @@ class ProductDetailsActivity : AppCompatActivity() {
 
                         }
 
-                        if (arrayBanner.isNotEmpty()) autoSlide(arrayBanner.size)
+//                        if (arrayBanner.isNotEmpty()) autoSlide(arrayBanner.size)
 
                         binding.dispatchedTV.text = productResponse.product.dispatchDetails[0]
                         binding.deliveryTV.text = productResponse.product.dispatchDetails[1]
