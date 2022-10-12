@@ -50,7 +50,7 @@ class NewlyAddedAdapter(val context: Context, val arrayList: ArrayList<NewlyAdde
             if (arrayList.size <= 3) {
                 arrayList.size
             } else {
-                10
+                1
             }
         } else {
             arrayList.size
