@@ -3,6 +3,7 @@ package com.example.shopinkarts.adapter
 import android.content.Context
 import android.content.Intent
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.RecyclerView
@@ -35,6 +36,13 @@ class DiscountForYouAdapter(val context: Context,val arrayList:ArrayList<Discoun
             productNameTV.text = itemDetails.productName
             priceTV.text = "Rs ${itemDetails.price}"
             ratingTV.text=itemDetails.avgRating.toString()
+            if (itemDetails.discountType == 0) {
+                discountTV.text = "${itemDetails.discount} %OFF"
+            } else if (itemDetails.discountType == 1) {
+                discountTV.text = "${itemDetails.discount} OFF"
+            } else {
+                discountTV.visibility = View.GONE
+            }
 
         }
         holder.itemView.setOnClickListener {
