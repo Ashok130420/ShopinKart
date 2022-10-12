@@ -10,11 +10,11 @@ import com.bumptech.glide.Glide
 import com.example.shopinkarts.R
 import com.example.shopinkarts.activity.ProductDetailsActivity
 import com.example.shopinkarts.databinding.ItemsNewlyAddedBinding
+import com.example.shopinkarts.fragments.HomeFragment
 import com.example.shopinkarts.response.NewlyAdded
 
 class NewlyAddedAdapter(val context: Context, val arrayList: ArrayList<NewlyAdded>) :
     RecyclerView.Adapter<NewlyAddedAdapter.ViewHolder>() {
-
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val binding: ItemsNewlyAddedBinding = DataBindingUtil.inflate(
@@ -34,19 +34,29 @@ class NewlyAddedAdapter(val context: Context, val arrayList: ArrayList<NewlyAdde
             Glide.with(context).load(itemDetails.productImages[0]).into(newlyAddedIV)
             productNameTV.text = itemDetails.productName
             priceTV.text = "Rs ${itemDetails.price}"
-            ratingTV.text=itemDetails.avgRating.toString()
+            ratingTV.text = itemDetails.avgRating.toString()
 
         }
         holder.itemView.setOnClickListener {
             val intent = Intent(context, ProductDetailsActivity::class.java)
-            intent.putExtra("productId",itemDetails._id)
+            intent.putExtra("productId", itemDetails._id)
             context.startActivity(intent)
         }
     }
 
     override fun getItemCount(): Int {
-        return arrayList.size
+
+        return if (HomeFragment.listItems == 0) {
+            if (arrayList.size <= 3) {
+                arrayList.size
+            } else {
+                10
+            }
+        } else {
+            arrayList.size
+        }
     }
+
 
     inner class ViewHolder(itemView: ItemsNewlyAddedBinding) :
         RecyclerView.ViewHolder(itemView.root) {

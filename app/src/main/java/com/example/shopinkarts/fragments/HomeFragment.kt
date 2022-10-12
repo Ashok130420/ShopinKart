@@ -79,7 +79,7 @@ class HomeFragment : Fragment() {
         val arrayListRecommended: ArrayList<RecommendedItem> = ArrayList()
         val arrayListPreferredManufacturer: ArrayList<PreferredManufacturer> = ArrayList()
         val arrayListPopularBrand: ArrayList<PreferredManufacturer> = ArrayList()
-
+        var listItems = 0
 
         fun getInstance(): HomeFragment {
             return mInstance
@@ -153,54 +153,63 @@ class HomeFragment : Fragment() {
 //        binding.shopForRV.adapter = shopForAdapter
 
         binding.preferredManufacturerAllTV.setOnClickListener {
+            listItems=1
             val intent = Intent(requireContext(), ViewAllActivity::class.java)
             intent.putExtra("from", "preferredManufacturer")
             startActivity(intent)
         }
 
         binding.mostPopularAllTV.setOnClickListener {
+            listItems=1
             val intent = Intent(requireContext(), ViewAllActivity::class.java)
             intent.putExtra("from", "mostPopular")
             startActivity(intent)
         }
 
         binding.topRatedAllTV.setOnClickListener {
+            listItems=1
             val intent = Intent(requireContext(), ViewAllActivity::class.java)
             intent.putExtra("from", "topRated")
             startActivity(intent)
         }
 
         binding.newlyAddedAllTV.setOnClickListener {
+            listItems=1
             val intent = Intent(requireContext(), ViewAllActivity::class.java)
             intent.putExtra("from", "newlyAdded")
             startActivity(intent)
         }
 
         binding.flashSaleAllItemsCL.setOnClickListener {
+            listItems=1
             val intent = Intent(requireContext(), ViewAllActivity::class.java)
             intent.putExtra("from", "flashSale")
             startActivity(intent)
         }
 
         binding.dealOfDayAllTV.setOnClickListener {
+            listItems=1
             val intent = Intent(requireContext(), ViewAllActivity::class.java)
             intent.putExtra("from", "dealOfDay")
             startActivity(intent)
         }
 
         binding.popularBrandAllTV.setOnClickListener {
+            listItems=1
             val intent = Intent(requireContext(), ViewAllActivity::class.java)
             intent.putExtra("from", "popularBrand")
             startActivity(intent)
         }
 
         binding.discountForYouAllTV.setOnClickListener {
+            listItems=1
             val intent = Intent(requireContext(), ViewAllActivity::class.java)
             intent.putExtra("from", "discountForYou")
             startActivity(intent)
         }
 
         binding.recommendedAllTV.setOnClickListener {
+            listItems=1
             val intent = Intent(requireContext(), ViewAllActivity::class.java)
             intent.putExtra("from", "recommended")
             startActivity(intent)
