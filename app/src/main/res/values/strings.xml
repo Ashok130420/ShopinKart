@@ -252,6 +252,14 @@
     <string name="xxl">XXL</string>
     <string name="enter_otp">Enter otp</string>
     <string name="please_enter_the_code_to_continue">Please enter the code to continue</string>
+    <string name="customer_address">Customer Address</string>
+    <string name="cod_collect_rs_30000">COD : Collect Rs 30000/-</string>
+    <string name="gst_08bfddfp73597">GST- 08BfddfP73597</string>
+    <string name="k_a_c_aparment_3rd_floor_flat_no_302_muthyalapalem_near_waler_lanknellore_andhra_pradesh_524003">K.A.C.Aparment 3rd floor flat no.302,Muthyalapalem near waler lankNellore, Andhra Pradesh, 524003</string>
+    <string name="product_name">Product Name</string>
+    <string name="amount">Amount</string>
+    <string name="taxes">Taxes</string>
+    <string name="rs_200">Rs 200</string>
 
 
 </resources>

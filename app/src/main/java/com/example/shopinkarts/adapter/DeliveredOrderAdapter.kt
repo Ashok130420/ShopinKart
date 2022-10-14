@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.example.shopinkarts.R
+import com.example.shopinkarts.activity.InvoiceActivity
 import com.example.shopinkarts.activity.TrackOrderActivity
 import com.example.shopinkarts.classes.Utils
 import com.example.shopinkarts.databinding.ItemsDeliveredOrderBinding
@@ -50,8 +51,7 @@ class DeliveredOrderAdapter(val context: Context, val arrayList: ArrayList<Order
                 deliveredIV.setImageResource(R.drawable.deactivate_stepper)
                 processingIV.setImageResource(R.drawable.deactivate_stepper)
 
-            }
-            else if (itemDetails.orderStatus == 1) {
+            } else if (itemDetails.orderStatus == 1) {
                 viewStepper2.setBackgroundColor(context.resources.getColor(R.color.hint))
                 viewStepper3.setBackgroundColor(context.resources.getColor(R.color.hint))
                 viewStepper1.setBackgroundColor(context.resources.getColor(R.color.primary_Blue))
@@ -62,8 +62,7 @@ class DeliveredOrderAdapter(val context: Context, val arrayList: ArrayList<Order
                 outForDeliveryIV.setImageResource(R.drawable.deactivate_stepper)
                 deliveredIV.setImageResource(R.drawable.deactivate_stepper)
 
-            }
-            else if (itemDetails.orderStatus == 2) {
+            } else if (itemDetails.orderStatus == 2) {
                 viewStepper1.setBackgroundColor(context.resources.getColor(R.color.primary_Blue))
                 viewStepper2.setBackgroundColor(context.resources.getColor(R.color.primary_Blue))
                 viewStepper3.setBackgroundColor(context.resources.getColor(R.color.hint))
@@ -74,8 +73,7 @@ class DeliveredOrderAdapter(val context: Context, val arrayList: ArrayList<Order
                 deliveredTV.setBackgroundResource(R.drawable.button_grey_radius5)
                 deliveredIV.setImageResource(R.drawable.deactivate_stepper)
 
-            }
-            else if (itemDetails.orderStatus == 3) {
+            } else if (itemDetails.orderStatus == 3) {
                 viewStepper1.setBackgroundColor(context.resources.getColor(R.color.primary_Blue))
                 viewStepper2.setBackgroundColor(context.resources.getColor(R.color.primary_Blue))
                 viewStepper3.setBackgroundColor(context.resources.getColor(R.color.primary_Blue))
@@ -89,22 +87,22 @@ class DeliveredOrderAdapter(val context: Context, val arrayList: ArrayList<Order
             }
 
 //          time stamp date convert
-            date =
-                Utils.formatDateFromDateString(
-                    "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'",
-                    "dd-MMM-yyyy",
-                    arrayList[position].creationTimeStamp
-                ).toString()
+            date = Utils.formatDateFromDateString(
+                "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'", "dd-MMM-yyyy", arrayList[position].creationTimeStamp
+            ).toString()
 
-            paymentType=itemDetails.paymentType
+            paymentType = itemDetails.paymentType
 
+            downloadInvoiceCL.setOnClickListener {
+                val intent = Intent(context, InvoiceActivity::class.java)
+                context.startActivity(intent)
+            }
 
-        }
-
-        holder.binding.trackOrderStatusTV.setOnClickListener {
-            val intent = Intent(context, TrackOrderActivity::class.java)
-            intent.putExtra("orderId", itemDetails.orderId)
-            context.startActivity(intent)
+            trackOrderStatusTV.setOnClickListener {
+                val intent = Intent(context, TrackOrderActivity::class.java)
+                intent.putExtra("orderId", itemDetails.orderId)
+                context.startActivity(intent)
+            }
         }
 
 
