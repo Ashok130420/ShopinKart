@@ -1,6 +1,7 @@
 package com.example.shopinkarts.fragments
 
 
+import android.annotation.SuppressLint
 import android.content.Intent
 import android.os.Bundle
 import android.os.CountDownTimer
@@ -300,6 +301,7 @@ class HomeFragment : Fragment() {
 
         val call: Call<DashBoardResponse> = RetrofitClient.instance!!.api.dashBoard()
         call.enqueue(object : Callback<DashBoardResponse> {
+            @SuppressLint("NotifyDataSetChanged")
             override fun onResponse(
                 call: Call<DashBoardResponse>, response: Response<DashBoardResponse>
             ) {

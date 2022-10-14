@@ -173,6 +173,7 @@
     <string name="_20_may_2021">20 May, 2021</string>
     <string name="payment_mode">Payment Mode</string>
     <string name="cod">COD</string>
+    <string name="card">Card</string>
     <string name="order_id_sic0011">Order ID #SIC0011</string>
     <string name="pid_2031447">PID #2031447</string>
     <string name="track_order_status">Track Order Status</string>

@@ -8,6 +8,7 @@ import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.example.shopinkarts.R
 import com.example.shopinkarts.activity.TrackOrderActivity
+import com.example.shopinkarts.classes.Utils
 import com.example.shopinkarts.databinding.ItemsDeliveredOrderBinding
 import com.example.shopinkarts.response.Order
 
@@ -16,6 +17,10 @@ class DeliveredOrderAdapter(val context: Context, val arrayList: ArrayList<Order
 
     lateinit var productAdapter: ProductAdapter
 
+    companion object {
+        var date = ""
+        var paymentType = 0
+    }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
 
@@ -83,14 +88,25 @@ class DeliveredOrderAdapter(val context: Context, val arrayList: ArrayList<Order
 
             }
 
-        }
+//          time stamp date convert
+            date =
+                Utils.formatDateFromDateString(
+                    "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'",
+                    "dd-MMM-yyyy",
+                    arrayList[position].creationTimeStamp
+                ).toString()
 
+            paymentType=itemDetails.paymentType
+
+
+        }
 
         holder.binding.trackOrderStatusTV.setOnClickListener {
             val intent = Intent(context, TrackOrderActivity::class.java)
-            intent.putExtra("orderId",itemDetails.orderId)
+            intent.putExtra("orderId", itemDetails.orderId)
             context.startActivity(intent)
         }
+
 
     }
 

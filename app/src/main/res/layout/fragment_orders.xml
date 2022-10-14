@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
-    <data> </data>
+    <data></data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -21,8 +21,7 @@
             app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
             app:layout_constraintTop_toTopOf="parent"
             tools:itemCount="1"
-            tools:listitem="@layout/items_delivered_order"
-            />
+            tools:listitem="@layout/items_delivered_order" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

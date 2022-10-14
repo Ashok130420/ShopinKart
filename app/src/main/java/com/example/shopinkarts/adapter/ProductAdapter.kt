@@ -1,15 +1,12 @@
 package com.example.shopinkarts.adapter
 
 import android.content.Context
-import android.content.Intent
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.shopinkarts.R
-import com.example.shopinkarts.activity.OrderDetailsActivity
 import com.example.shopinkarts.databinding.ItemsDeliveredProductBinding
 import com.example.shopinkarts.model.CreateProduct
 
@@ -17,14 +14,11 @@ import com.example.shopinkarts.model.CreateProduct
 class ProductAdapter(val context: Context, val products: List<CreateProduct>) :
     RecyclerView.Adapter<ProductAdapter.ViewHolder>() {
 
-    lateinit var sizeQtyAdapter: SizeQtyAdapter
+    private lateinit var sizeQtyAdapter: SizeQtyAdapter
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val binding: ItemsDeliveredProductBinding = DataBindingUtil.inflate(
-            LayoutInflater.from(parent.context),
-            R.layout.items_delivered_product,
-            parent,
-            false
+            LayoutInflater.from(parent.context), R.layout.items_delivered_product, parent, false
         )
 
         return ViewHolder(binding)
@@ -36,11 +30,18 @@ class ProductAdapter(val context: Context, val products: List<CreateProduct>) :
 
             productNameTV.text = itemDetails.productName
             priceTV.text = itemDetails.totalAmount.toString()
+
             Glide.with(context).load(itemDetails.productImage).into(imageIV)
-//            pidTV.text=itemDetails.productId
-//            if (itemDetails.)
 
+            dateTV.text = DeliveredOrderAdapter.date
 
+//            pidTV.text = itemDetails.productId
+
+            if (DeliveredOrderAdapter.paymentType == 1) {
+                codOnlineTV.text = context.resources.getString(R.string.card)
+            } else {
+                codOnlineTV.text = context.resources.getString(R.string.cod)
+            }
 
         }
 
