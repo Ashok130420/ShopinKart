@@ -249,6 +249,8 @@
     <string name="product_return">Product Return</string>
     <string name="_30_off">30% Off</string>
     <string name="xxl">XXL</string>
+    <string name="enter_otp">Enter otp</string>
+    <string name="please_enter_the_code_to_continue">Please enter the code to continue</string>
 
 
 </resources>

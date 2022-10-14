@@ -178,6 +178,7 @@ class SignUpActivity : AppCompatActivity() {
                             Toast.LENGTH_SHORT
                         ).show()
                         val intent = Intent(this@SignUpActivity, DashBoardActivity::class.java)
+//                        val intent = Intent(this@SignUpActivity, OtpVerifyActivity::class.java)
                         startActivity(intent)
                     }
 
@@ -185,7 +186,7 @@ class SignUpActivity : AppCompatActivity() {
                     mProgressDialog.dismiss()
                     Toast.makeText(
                         this@SignUpActivity,
-                        "${response.message()}",
+                        response.message(),
                         Toast.LENGTH_SHORT
                     ).show()
                 }
