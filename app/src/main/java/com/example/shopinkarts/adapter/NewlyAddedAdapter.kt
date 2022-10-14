@@ -1,5 +1,6 @@
 package com.example.shopinkarts.adapter
 
+import android.annotation.SuppressLint
 import android.content.Context
 import android.content.Intent
 import android.view.LayoutInflater
@@ -27,6 +28,7 @@ class NewlyAddedAdapter(val context: Context, val arrayList: ArrayList<NewlyAdde
         return ViewHolder(binding)
     }
 
+    @SuppressLint("SetTextI18n")
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val itemDetails = arrayList[position]
         holder.binding.apply {
@@ -35,6 +37,7 @@ class NewlyAddedAdapter(val context: Context, val arrayList: ArrayList<NewlyAdde
             productNameTV.text = itemDetails.productName
             priceTV.text = "Rs ${itemDetails.price}"
             ratingTV.text = itemDetails.avgRating.toString()
+
 
         }
         holder.itemView.setOnClickListener {
@@ -56,7 +59,6 @@ class NewlyAddedAdapter(val context: Context, val arrayList: ArrayList<NewlyAdde
             arrayList.size
         }
     }
-
 
     inner class ViewHolder(itemView: ItemsNewlyAddedBinding) :
         RecyclerView.ViewHolder(itemView.root) {
