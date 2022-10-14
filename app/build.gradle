@@ -39,6 +39,7 @@ android {
             excludes += ['META-INF/atomicfu.kotlin_module']
         }
     }
+    namespace 'com.example.shopinkarts'
 }
 
 dependencies {
