@@ -1,5 +1,6 @@
 package com.example.shopinkarts.activity
 
+import android.annotation.SuppressLint
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
@@ -12,6 +13,7 @@ class InvoiceActivity : AppCompatActivity() {
     lateinit var binding: ActivityInvoiceBinding
     lateinit var sharedPreference: SharedPreference
 
+    @SuppressLint("SetTextI18n")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
@@ -20,9 +22,8 @@ class InvoiceActivity : AppCompatActivity() {
         sharedPreference = SharedPreference(this)
 
         binding.customerNameTV.text =
-            "${sharedPreference.getName()}\n${sharedPreference.getFlat()}, " +
-                    "${sharedPreference.getStreet()}," +
-                    " ${sharedPreference.getPin()}," +
+            "${sharedPreference.getName()}\n${sharedPreference.getFlat()}," +
+                    "${sharedPreference.getStreet()}, ${sharedPreference.getPin()}," +
                     "${sharedPreference.getCity()},${sharedPreference.getLandmark()}"
 
 
