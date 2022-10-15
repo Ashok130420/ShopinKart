@@ -45,6 +45,7 @@
             android:text="@string/_20_may_2021"
             android:textColor="@color/dark_Gray"
             android:textSize="@dimen/text_size_10"
+            android:visibility="gone"
             app:layout_constraintBottom_toBottomOf="@+id/productNameTV"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="@+id/productNameTV" />
@@ -56,7 +57,7 @@
             android:layout_marginTop="@dimen/m6"
             android:fontFamily="@font/dm_sans_medium"
             android:paddingVertical="@dimen/p2"
-            android:text="@string/total_amount"
+            android:text="@string/amount"
             android:textColor="@color/dark_Gray"
             android:textSize="@dimen/text_size_10"
             app:layout_constraintStart_toStartOf="@+id/productNameTV"

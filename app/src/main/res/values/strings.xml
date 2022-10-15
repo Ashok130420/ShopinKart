@@ -260,6 +260,7 @@
     <string name="amount">Amount</string>
     <string name="taxes">Taxes</string>
     <string name="rs_200">Rs 200</string>
+    <string name="date">Date</string>
 
 
 </resources>

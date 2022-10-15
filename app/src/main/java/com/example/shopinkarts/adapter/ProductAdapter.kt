@@ -1,5 +1,6 @@
 package com.example.shopinkarts.adapter
 
+import android.annotation.SuppressLint
 import android.content.Context
 import android.view.LayoutInflater
 import android.view.ViewGroup
@@ -16,12 +17,6 @@ class ProductAdapter(val context: Context, val products: List<CreateProduct>) :
 
     private lateinit var sizeQtyAdapter: SizeQtyAdapter
 
-    companion object {
-        var name = ""
-        var qty = ""
-        var totalAmount = ""
-
-    }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val binding: ItemsDeliveredProductBinding = DataBindingUtil.inflate(
@@ -31,19 +26,16 @@ class ProductAdapter(val context: Context, val products: List<CreateProduct>) :
         return ViewHolder(binding)
     }
 
+    @SuppressLint("SetTextI18n")
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
 
         val itemDetails = products[position]
 
         holder.binding.apply {
 
-            name = itemDetails.productName
-            qty = itemDetails.qty.toString()
-            totalAmount = itemDetails.totalAmount.toString()
-
             productNameTV.text = itemDetails.productName
 
-            priceTV.text = itemDetails.totalAmount.toString()
+            priceTV.text = "Rs ${itemDetails.totalAmount}"
 
             Glide.with(context).load(itemDetails.productImage).into(imageIV)
 

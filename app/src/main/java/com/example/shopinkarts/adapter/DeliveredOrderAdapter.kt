@@ -1,8 +1,11 @@
 package com.example.shopinkarts.adapter
 
+import android.annotation.SuppressLint
 import android.content.Context
 import android.content.Intent
+import android.util.Log
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.RecyclerView
@@ -23,6 +26,7 @@ class DeliveredOrderAdapter(val context: Context, val arrayList: ArrayList<Order
 
     companion object {
         var date = ""
+        var gst=0F
         var paymentType = 0
         var arrayListInvoice: ArrayList<CreateProduct> = ArrayList()
     }
@@ -36,6 +40,7 @@ class DeliveredOrderAdapter(val context: Context, val arrayList: ArrayList<Order
         return ViewHolder(binding)
     }
 
+    @SuppressLint("SetTextI18n")
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
 
         sharedPreference = SharedPreference(context)
@@ -44,7 +49,15 @@ class DeliveredOrderAdapter(val context: Context, val arrayList: ArrayList<Order
 
         holder.binding.apply {
 
-            orderIdTV.text = itemDetails.orderId
+            orderIdTV.text = "# ${itemDetails.orderId}"
+
+            dateValueTV.text = Utils.formatDateFromDateString(
+                "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'", "dd-MMM-yyyy", arrayList[position].creationTimeStamp
+            ).toString()
+
+            totalAmountValueTV.text = " Rs ${itemDetails.totalAmount + itemDetails.gstAmount}"
+            gst=itemDetails.gstAmount
+            Log.d("itemDetails.gstAmount", itemDetails.gstAmount.toString())
 
             arrayListInvoice.clear()
             arrayListInvoice.addAll(itemDetails.products)
@@ -107,14 +120,17 @@ class DeliveredOrderAdapter(val context: Context, val arrayList: ArrayList<Order
 
             paymentType = itemDetails.paymentType
 
-            downloadInvoiceCL.setOnClickListener {
+//            if (itemDetails.orderStatus == 3) {
 
-                val intent = Intent(context, InvoiceActivity::class.java)
-                //send position
-                intent.putExtra("position", position)
-                context.startActivity(intent)
-            }
+                downloadInvoiceCL.visibility = View.VISIBLE
+                downloadInvoiceCL.setOnClickListener {
 
+                    val intent = Intent(context, InvoiceActivity::class.java)
+                    //send position
+                    intent.putExtra("position", position)
+                    context.startActivity(intent)
+                }
+//            }
             trackOrderStatusTV.setOnClickListener {
                 val intent = Intent(context, TrackOrderActivity::class.java)
                 intent.putExtra("orderId", itemDetails.orderId)
