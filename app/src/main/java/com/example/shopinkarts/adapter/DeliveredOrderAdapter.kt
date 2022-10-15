@@ -26,9 +26,10 @@ class DeliveredOrderAdapter(val context: Context, val arrayList: ArrayList<Order
 
     companion object {
         var date = ""
-        var gst=0F
+        var gst = 0F
         var paymentType = 0
         var arrayListInvoice: ArrayList<CreateProduct> = ArrayList()
+        var tAmount = 0F
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -56,7 +57,10 @@ class DeliveredOrderAdapter(val context: Context, val arrayList: ArrayList<Order
             ).toString()
 
             totalAmountValueTV.text = " Rs ${itemDetails.totalAmount + itemDetails.gstAmount}"
-            gst=itemDetails.gstAmount
+            tAmount = (itemDetails.totalAmount + itemDetails.gstAmount).toFloat()
+
+            gst = itemDetails.gstAmount
+
             Log.d("itemDetails.gstAmount", itemDetails.gstAmount.toString())
 
             arrayListInvoice.clear()
@@ -67,50 +71,55 @@ class DeliveredOrderAdapter(val context: Context, val arrayList: ArrayList<Order
             productRV.isNestedScrollingEnabled = false
             productRV.hasFixedSize()
 
-            if (itemDetails.orderStatus == 0) {
-                viewStepper2.setBackgroundColor(context.resources.getColor(R.color.hint))
-                viewStepper3.setBackgroundColor(context.resources.getColor(R.color.hint))
-                viewStepper1.setBackgroundColor(context.resources.getColor(R.color.hint))
-                processingTV.setBackgroundResource(R.drawable.button_grey_radius5)
-                outForDeliveryTV.setBackgroundResource(R.drawable.button_grey_radius5)
-                deliveredTV.setBackgroundResource(R.drawable.button_grey_radius5)
-                outForDeliveryIV.setImageResource(R.drawable.deactivate_stepper)
-                deliveredIV.setImageResource(R.drawable.deactivate_stepper)
-                processingIV.setImageResource(R.drawable.deactivate_stepper)
+            when (itemDetails.orderStatus) {
+                0 -> {
+                    viewStepper2.setBackgroundColor(context.resources.getColor(R.color.hint))
+                    viewStepper3.setBackgroundColor(context.resources.getColor(R.color.hint))
+                    viewStepper1.setBackgroundColor(context.resources.getColor(R.color.hint))
+                    processingTV.setBackgroundResource(R.drawable.button_grey_radius5)
+                    outForDeliveryTV.setBackgroundResource(R.drawable.button_grey_radius5)
+                    deliveredTV.setBackgroundResource(R.drawable.button_grey_radius5)
+                    outForDeliveryIV.setImageResource(R.drawable.deactivate_stepper)
+                    deliveredIV.setImageResource(R.drawable.deactivate_stepper)
+                    processingIV.setImageResource(R.drawable.deactivate_stepper)
 
-            } else if (itemDetails.orderStatus == 1) {
-                viewStepper2.setBackgroundColor(context.resources.getColor(R.color.hint))
-                viewStepper3.setBackgroundColor(context.resources.getColor(R.color.hint))
-                viewStepper1.setBackgroundColor(context.resources.getColor(R.color.primary_Blue))
-                processingIV.setImageResource(R.drawable.active_stepper)
-                processingTV.setBackgroundResource(R.drawable.button_blue_radius5)
-                outForDeliveryTV.setBackgroundResource(R.drawable.button_grey_radius5)
-                deliveredTV.setBackgroundResource(R.drawable.button_grey_radius5)
-                outForDeliveryIV.setImageResource(R.drawable.deactivate_stepper)
-                deliveredIV.setImageResource(R.drawable.deactivate_stepper)
+                }
+                1 -> {
+                    viewStepper2.setBackgroundColor(context.resources.getColor(R.color.hint))
+                    viewStepper3.setBackgroundColor(context.resources.getColor(R.color.hint))
+                    viewStepper1.setBackgroundColor(context.resources.getColor(R.color.primary_Blue))
+                    processingIV.setImageResource(R.drawable.active_stepper)
+                    processingTV.setBackgroundResource(R.drawable.button_blue_radius5)
+                    outForDeliveryTV.setBackgroundResource(R.drawable.button_grey_radius5)
+                    deliveredTV.setBackgroundResource(R.drawable.button_grey_radius5)
+                    outForDeliveryIV.setImageResource(R.drawable.deactivate_stepper)
+                    deliveredIV.setImageResource(R.drawable.deactivate_stepper)
 
-            } else if (itemDetails.orderStatus == 2) {
-                viewStepper1.setBackgroundColor(context.resources.getColor(R.color.primary_Blue))
-                viewStepper2.setBackgroundColor(context.resources.getColor(R.color.primary_Blue))
-                viewStepper3.setBackgroundColor(context.resources.getColor(R.color.hint))
-                processingIV.setImageResource(R.drawable.active_stepper)
-                outForDeliveryIV.setImageResource(R.drawable.active_stepper)
-                processingTV.setBackgroundResource(R.drawable.button_blue_radius5)
-                outForDeliveryTV.setBackgroundResource(R.drawable.button_blue_radius5)
-                deliveredTV.setBackgroundResource(R.drawable.button_grey_radius5)
-                deliveredIV.setImageResource(R.drawable.deactivate_stepper)
+                }
+                2 -> {
+                    viewStepper1.setBackgroundColor(context.resources.getColor(R.color.primary_Blue))
+                    viewStepper2.setBackgroundColor(context.resources.getColor(R.color.primary_Blue))
+                    viewStepper3.setBackgroundColor(context.resources.getColor(R.color.hint))
+                    processingIV.setImageResource(R.drawable.active_stepper)
+                    outForDeliveryIV.setImageResource(R.drawable.active_stepper)
+                    processingTV.setBackgroundResource(R.drawable.button_blue_radius5)
+                    outForDeliveryTV.setBackgroundResource(R.drawable.button_blue_radius5)
+                    deliveredTV.setBackgroundResource(R.drawable.button_grey_radius5)
+                    deliveredIV.setImageResource(R.drawable.deactivate_stepper)
 
-            } else if (itemDetails.orderStatus == 3) {
-                viewStepper1.setBackgroundColor(context.resources.getColor(R.color.primary_Blue))
-                viewStepper2.setBackgroundColor(context.resources.getColor(R.color.primary_Blue))
-                viewStepper3.setBackgroundColor(context.resources.getColor(R.color.primary_Blue))
-                processingIV.setImageResource(R.drawable.active_stepper)
-                outForDeliveryIV.setImageResource(R.drawable.active_stepper)
-                deliveredIV.setImageResource(R.drawable.active_stepper)
-                deliveredTV.setBackgroundResource(R.drawable.button_blue_radius5)
-                processingTV.setBackgroundResource(R.drawable.button_blue_radius5)
-                outForDeliveryTV.setBackgroundResource(R.drawable.button_blue_radius5)
+                }
+                3 -> {
+                    viewStepper1.setBackgroundColor(context.resources.getColor(R.color.primary_Blue))
+                    viewStepper2.setBackgroundColor(context.resources.getColor(R.color.primary_Blue))
+                    viewStepper3.setBackgroundColor(context.resources.getColor(R.color.primary_Blue))
+                    processingIV.setImageResource(R.drawable.active_stepper)
+                    outForDeliveryIV.setImageResource(R.drawable.active_stepper)
+                    deliveredIV.setImageResource(R.drawable.active_stepper)
+                    deliveredTV.setBackgroundResource(R.drawable.button_blue_radius5)
+                    processingTV.setBackgroundResource(R.drawable.button_blue_radius5)
+                    outForDeliveryTV.setBackgroundResource(R.drawable.button_blue_radius5)
 
+                }
             }
 
 //          time stamp date convert
@@ -122,14 +131,14 @@ class DeliveredOrderAdapter(val context: Context, val arrayList: ArrayList<Order
 
 //            if (itemDetails.orderStatus == 3) {
 
-                downloadInvoiceCL.visibility = View.VISIBLE
-                downloadInvoiceCL.setOnClickListener {
+            downloadInvoiceCL.visibility = View.VISIBLE
+            downloadInvoiceCL.setOnClickListener {
 
-                    val intent = Intent(context, InvoiceActivity::class.java)
-                    //send position
-                    intent.putExtra("position", position)
-                    context.startActivity(intent)
-                }
+                val intent = Intent(context, InvoiceActivity::class.java)
+                //send position
+                intent.putExtra("position", position)
+                context.startActivity(intent)
+            }
 //            }
             trackOrderStatusTV.setOnClickListener {
                 val intent = Intent(context, TrackOrderActivity::class.java)

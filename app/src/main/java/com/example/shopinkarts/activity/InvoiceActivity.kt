@@ -5,7 +5,6 @@ import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import com.example.shopinkarts.R
-import com.example.shopinkarts.adapter.DeliveredOrderAdapter
 import com.example.shopinkarts.adapter.InvoiceAdapter
 import com.example.shopinkarts.classes.SharedPreference
 import com.example.shopinkarts.databinding.ActivityInvoiceBinding
@@ -19,6 +18,7 @@ class InvoiceActivity : AppCompatActivity() {
     lateinit var invoiceAdapter: InvoiceAdapter
     var position = 0
     var arrayList: List<CreateProduct> = ArrayList()
+    var gstAmount = 0F
 
     @SuppressLint("SetTextI18n")
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -33,9 +33,14 @@ class InvoiceActivity : AppCompatActivity() {
         binding.customerNameTV.text =
             "${sharedPreference.getName()}\n${sharedPreference.getFlat()},${sharedPreference.getStreet()}, ${sharedPreference.getPin()},${sharedPreference.getCity()},${sharedPreference.getLandmark()}"
 
+        binding.paymentTV.text =
+            "COD : Collect amount \nRs ${OrdersFragment.arrayListMyOrders[position].totalAmount + OrdersFragment.arrayListMyOrders[position].gstAmount} /-"
+
         arrayList = OrdersFragment.arrayListMyOrders[position].products
 
-        invoiceAdapter = InvoiceAdapter(this, arrayList)
+        gstAmount = OrdersFragment.arrayListMyOrders[position].gstAmount
+
+        invoiceAdapter = InvoiceAdapter(this, arrayList, gstAmount)
         binding.invoiceDetailsRV.adapter = invoiceAdapter
         binding.invoiceDetailsRV.hasFixedSize()
         binding.invoiceDetailsRV.isNestedScrollingEnabled = false
