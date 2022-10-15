@@ -11,6 +11,7 @@ import com.example.shopinkarts.activity.InvoiceActivity
 import com.example.shopinkarts.activity.TrackOrderActivity
 import com.example.shopinkarts.classes.Utils
 import com.example.shopinkarts.databinding.ItemsDeliveredOrderBinding
+import com.example.shopinkarts.model.CreateProduct
 import com.example.shopinkarts.response.Order
 
 class DeliveredOrderAdapter(val context: Context, val arrayList: ArrayList<Order>) :
@@ -21,6 +22,7 @@ class DeliveredOrderAdapter(val context: Context, val arrayList: ArrayList<Order
     companion object {
         var date = ""
         var paymentType = 0
+        var arrayListInvoice: ArrayList<CreateProduct> = ArrayList()
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -36,6 +38,8 @@ class DeliveredOrderAdapter(val context: Context, val arrayList: ArrayList<Order
         val itemDetails = arrayList[position]
         holder.binding.apply {
 
+            arrayListInvoice.clear()
+            arrayListInvoice.addAll(itemDetails.products)
             productAdapter = ProductAdapter(context, itemDetails.products)
             productRV.adapter = productAdapter
             productRV.isNestedScrollingEnabled = false

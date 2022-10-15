@@ -9,12 +9,20 @@ import com.bumptech.glide.Glide
 import com.example.shopinkarts.R
 import com.example.shopinkarts.databinding.ItemsDeliveredProductBinding
 import com.example.shopinkarts.model.CreateProduct
+import com.example.shopinkarts.response.Order
 
 
 class ProductAdapter(val context: Context, val products: List<CreateProduct>) :
     RecyclerView.Adapter<ProductAdapter.ViewHolder>() {
 
     private lateinit var sizeQtyAdapter: SizeQtyAdapter
+
+    companion object {
+        var name = ""
+        var qty = ""
+        var totalAmount = ""
+        var arrayListInvoice: ArrayList<CreateProduct> = ArrayList()
+    }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val binding: ItemsDeliveredProductBinding = DataBindingUtil.inflate(
@@ -28,7 +36,12 @@ class ProductAdapter(val context: Context, val products: List<CreateProduct>) :
         val itemDetails = products[position]
         holder.binding.apply {
 
+            name = itemDetails.productName
+            qty = itemDetails.qty.toString()
+            totalAmount = itemDetails.totalAmount.toString()
+
             productNameTV.text = itemDetails.productName
+
             priceTV.text = itemDetails.totalAmount.toString()
 
             Glide.with(context).load(itemDetails.productImage).into(imageIV)

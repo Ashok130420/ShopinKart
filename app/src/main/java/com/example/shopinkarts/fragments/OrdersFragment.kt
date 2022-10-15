@@ -1,5 +1,6 @@
 package com.example.shopinkarts.fragments
 
+import android.annotation.SuppressLint
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -25,12 +26,16 @@ class OrdersFragment : Fragment() {
     lateinit var sharedPreference: SharedPreference
     lateinit var binding: FragmentOrdersBinding
     lateinit var deliveredOrderAdapter: DeliveredOrderAdapter
-    var arrayListMyOrders: ArrayList<Order> = ArrayList()
+//    var arrayListMyOrders: ArrayList<Order> = ArrayList()
+
+    companion object{
+        var arrayListMyOrders: ArrayList<Order> = ArrayList()
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_orders, container, false)
 
         sharedPreference = SharedPreference(requireContext())
@@ -45,6 +50,7 @@ class OrdersFragment : Fragment() {
             RetrofitClient.instance!!.api.myOrdersApi(id = sharedPreference.getUserId())
 
         call.enqueue(object : Callback<MyOrdersResponse> {
+            @SuppressLint("NotifyDataSetChanged")
             override fun onResponse(
                 call: Call<MyOrdersResponse>,
                 response: Response<MyOrdersResponse>
@@ -88,7 +94,7 @@ class OrdersFragment : Fragment() {
             override fun onFailure(call: Call<MyOrdersResponse>, t: Throwable) {
                 if (context != null) {
                     Toast.makeText(
-                        requireContext(), "${t?.message}", Toast.LENGTH_SHORT
+                        requireContext(), "${t.message}", Toast.LENGTH_SHORT
                     ).show()
                 }
                 Log.d("TAG", "onResponse_FailureResponse${t.message} ")
