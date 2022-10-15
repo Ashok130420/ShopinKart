@@ -10,13 +10,15 @@ import com.example.shopinkarts.adapter.InvoiceAdapter
 import com.example.shopinkarts.classes.SharedPreference
 import com.example.shopinkarts.databinding.ActivityInvoiceBinding
 import com.example.shopinkarts.fragments.OrdersFragment
-import com.example.shopinkarts.response.Order
+import com.example.shopinkarts.model.CreateProduct
 
 class InvoiceActivity : AppCompatActivity() {
 
     lateinit var binding: ActivityInvoiceBinding
     lateinit var sharedPreference: SharedPreference
     lateinit var invoiceAdapter: InvoiceAdapter
+    var position = 0
+    var arrayList: List<CreateProduct> = ArrayList()
 
     @SuppressLint("SetTextI18n")
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -26,10 +28,14 @@ class InvoiceActivity : AppCompatActivity() {
 
         sharedPreference = SharedPreference(this)
 
-        binding.customerNameTV.text = "${sharedPreference.getName()}\n${sharedPreference.getFlat()},${sharedPreference.getStreet()}, ${sharedPreference.getPin()},${sharedPreference.getCity()},${sharedPreference.getLandmark()}"
+        position = intent.extras!!.getInt("position", 0)
 
+        binding.customerNameTV.text =
+            "${sharedPreference.getName()}\n${sharedPreference.getFlat()},${sharedPreference.getStreet()}, ${sharedPreference.getPin()},${sharedPreference.getCity()},${sharedPreference.getLandmark()}"
 
-        invoiceAdapter = InvoiceAdapter(this, DeliveredOrderAdapter.arrayListInvoice)
+        arrayList = OrdersFragment.arrayListMyOrders[position].products
+
+        invoiceAdapter = InvoiceAdapter(this, arrayList)
         binding.invoiceDetailsRV.adapter = invoiceAdapter
         binding.invoiceDetailsRV.hasFixedSize()
         binding.invoiceDetailsRV.isNestedScrollingEnabled = false

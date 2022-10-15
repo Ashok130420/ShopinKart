@@ -9,6 +9,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.shopinkarts.R
 import com.example.shopinkarts.activity.InvoiceActivity
 import com.example.shopinkarts.activity.TrackOrderActivity
+import com.example.shopinkarts.classes.SharedPreference
 import com.example.shopinkarts.classes.Utils
 import com.example.shopinkarts.databinding.ItemsDeliveredOrderBinding
 import com.example.shopinkarts.model.CreateProduct
@@ -18,6 +19,7 @@ class DeliveredOrderAdapter(val context: Context, val arrayList: ArrayList<Order
     RecyclerView.Adapter<DeliveredOrderAdapter.ViewHolder>() {
 
     lateinit var productAdapter: ProductAdapter
+    lateinit var sharedPreference: SharedPreference
 
     companion object {
         var date = ""
@@ -35,14 +37,22 @@ class DeliveredOrderAdapter(val context: Context, val arrayList: ArrayList<Order
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
+
+        sharedPreference = SharedPreference(context)
+
         val itemDetails = arrayList[position]
+
         holder.binding.apply {
+
+            orderIdTV.text = itemDetails.orderId
 
             arrayListInvoice.clear()
             arrayListInvoice.addAll(itemDetails.products)
+
             productAdapter = ProductAdapter(context, itemDetails.products)
             productRV.adapter = productAdapter
             productRV.isNestedScrollingEnabled = false
+            productRV.hasFixedSize()
 
             if (itemDetails.orderStatus == 0) {
                 viewStepper2.setBackgroundColor(context.resources.getColor(R.color.hint))
@@ -98,7 +108,10 @@ class DeliveredOrderAdapter(val context: Context, val arrayList: ArrayList<Order
             paymentType = itemDetails.paymentType
 
             downloadInvoiceCL.setOnClickListener {
+
                 val intent = Intent(context, InvoiceActivity::class.java)
+                //send position
+                intent.putExtra("position", position)
                 context.startActivity(intent)
             }
 
@@ -120,4 +133,6 @@ class DeliveredOrderAdapter(val context: Context, val arrayList: ArrayList<Order
         RecyclerView.ViewHolder(itemView.root) {
         val binding: ItemsDeliveredOrderBinding = itemView
     }
+
+
 }

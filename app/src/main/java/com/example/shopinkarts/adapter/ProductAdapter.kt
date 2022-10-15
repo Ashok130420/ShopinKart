@@ -9,7 +9,6 @@ import com.bumptech.glide.Glide
 import com.example.shopinkarts.R
 import com.example.shopinkarts.databinding.ItemsDeliveredProductBinding
 import com.example.shopinkarts.model.CreateProduct
-import com.example.shopinkarts.response.Order
 
 
 class ProductAdapter(val context: Context, val products: List<CreateProduct>) :
@@ -21,7 +20,7 @@ class ProductAdapter(val context: Context, val products: List<CreateProduct>) :
         var name = ""
         var qty = ""
         var totalAmount = ""
-        var arrayListInvoice: ArrayList<CreateProduct> = ArrayList()
+
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -33,7 +32,9 @@ class ProductAdapter(val context: Context, val products: List<CreateProduct>) :
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
+
         val itemDetails = products[position]
+
         holder.binding.apply {
 
             name = itemDetails.productName

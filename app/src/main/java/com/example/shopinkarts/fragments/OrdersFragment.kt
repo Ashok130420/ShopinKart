@@ -27,24 +27,29 @@ class OrdersFragment : Fragment() {
     lateinit var binding: FragmentOrdersBinding
     lateinit var deliveredOrderAdapter: DeliveredOrderAdapter
 //    var arrayListMyOrders: ArrayList<Order> = ArrayList()
+    companion object {
 
-    companion object{
         var arrayListMyOrders: ArrayList<Order> = ArrayList()
+        val mInstance: OrdersFragment = OrdersFragment()
+
+        fun getInstance(): OrdersFragment {
+            return mInstance
+        }
     }
 
     override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
+        inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
     ): View {
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_orders, container, false)
 
         sharedPreference = SharedPreference(requireContext())
 
         myOrdersList()
+
         return binding.root
     }
 
-    private fun myOrdersList() {
+    fun myOrdersList() {
 
         val call: Call<MyOrdersResponse> =
             RetrofitClient.instance!!.api.myOrdersApi(id = sharedPreference.getUserId())
@@ -52,8 +57,7 @@ class OrdersFragment : Fragment() {
         call.enqueue(object : Callback<MyOrdersResponse> {
             @SuppressLint("NotifyDataSetChanged")
             override fun onResponse(
-                call: Call<MyOrdersResponse>,
-                response: Response<MyOrdersResponse>
+                call: Call<MyOrdersResponse>, response: Response<MyOrdersResponse>
             ) {
                 val myOrderResponse = response.body()
                 if (response.isSuccessful) {
@@ -62,11 +66,13 @@ class OrdersFragment : Fragment() {
 
                         arrayListMyOrders.clear()
                         arrayListMyOrders.addAll(myOrderResponse.orders)
+
                         if (context != null) {
                             deliveredOrderAdapter =
                                 DeliveredOrderAdapter(requireContext(), arrayListMyOrders)
                             binding.deliveredOrderRV.adapter = deliveredOrderAdapter
                             binding.deliveredOrderRV.isNestedScrollingEnabled = false
+                            binding.deliveredOrderRV.hasFixedSize()
                             deliveredOrderAdapter.notifyDataSetChanged()
 
                         }
@@ -81,9 +87,7 @@ class OrdersFragment : Fragment() {
                 } else {
                     if (context != null) {
                         Toast.makeText(
-                            requireContext(),
-                            "${myOrderResponse?.message}",
-                            Toast.LENGTH_SHORT
+                            requireContext(), "${myOrderResponse?.message}", Toast.LENGTH_SHORT
                         ).show()
                     }
                     Log.d("TAG", "onResponse_ElseResponse  ${myOrderResponse?.message} ")

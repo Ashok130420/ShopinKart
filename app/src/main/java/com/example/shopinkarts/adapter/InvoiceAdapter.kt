@@ -10,7 +10,10 @@ import com.example.shopinkarts.R
 import com.example.shopinkarts.databinding.ItemsInvoiceDetailsBinding
 import com.example.shopinkarts.model.CreateProduct
 
-class InvoiceAdapter(val context: Context, val arrayList: ArrayList<CreateProduct>) :
+class InvoiceAdapter(
+    val context: Context,
+    val arrayList: List<CreateProduct>
+) :
     RecyclerView.Adapter<InvoiceAdapter.ViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -24,9 +27,9 @@ class InvoiceAdapter(val context: Context, val arrayList: ArrayList<CreateProduc
 
     @SuppressLint("SetTextI18n")
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        val itemDetails = arrayList[position]
-        val itemDetail = DeliveredOrderAdapter.arrayListInvoice[position]
 
+
+        val itemDetails = arrayList[position]
         holder.binding.apply {
 
             itemsNameTV.text = itemDetails.productName

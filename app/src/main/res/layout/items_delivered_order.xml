@@ -36,8 +36,8 @@
                 android:id="@+id/acceptedIV"
                 android:layout_width="20dp"
                 android:layout_height="20dp"
-                android:layout_marginTop="20dp"
                 android:layout_marginStart="@dimen/m10"
+                android:layout_marginTop="20dp"
                 android:layout_marginEnd="@dimen/m40"
                 android:background="@drawable/active_stepper"
                 android:gravity="center"
@@ -97,7 +97,7 @@
                 android:layout_marginTop="@dimen/m10"
                 android:background="@drawable/button_grey_radius5"
                 android:gravity="center"
-                    android:paddingHorizontal="@dimen/p7"
+                android:paddingHorizontal="@dimen/p7"
                 android:paddingVertical="@dimen/p5"
                 android:text="@string/processing"
                 android:textColor="@color/white"
@@ -140,7 +140,7 @@
                 android:layout_marginTop="@dimen/m10"
                 android:background="@drawable/button_grey_radius5"
                 android:gravity="center"
-                    android:paddingHorizontal="@dimen/p7"
+                android:paddingHorizontal="@dimen/p7"
                 android:paddingVertical="@dimen/p5"
                 android:text="@string/out_for_delivery"
                 android:textColor="@color/white"
@@ -184,7 +184,7 @@
                 android:layout_marginTop="@dimen/m10"
                 android:background="@drawable/button_grey_radius5"
                 android:gravity="center"
-                    android:paddingHorizontal="@dimen/p7"
+                android:paddingHorizontal="@dimen/p7"
                 android:paddingVertical="@dimen/p5"
                 android:text="@string/delivered"
                 android:textColor="@color/white"
@@ -274,6 +274,18 @@
                 tools:ignore="ContentDescription" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <TextView
+            android:id="@+id/orderIdTV"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/m6"
+            android:paddingVertical="@dimen/p2"
+            android:text="@string/order_id_sic0011"
+            android:textColor="@color/dark_Gray"
+            android:textSize="@dimen/text_size_8"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/downloadInvoiceCL" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>
