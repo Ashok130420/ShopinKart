@@ -7,6 +7,7 @@ import androidx.databinding.DataBindingUtil
 import com.example.shopinkarts.R
 import com.example.shopinkarts.adapter.InvoiceAdapter
 import com.example.shopinkarts.classes.SharedPreference
+import com.example.shopinkarts.classes.Utils
 import com.example.shopinkarts.databinding.ActivityInvoiceBinding
 import com.example.shopinkarts.fragments.OrdersFragment
 import com.example.shopinkarts.model.CreateProduct
@@ -22,11 +23,17 @@ class InvoiceActivity : AppCompatActivity() {
 
     @SuppressLint("SetTextI18n")
     override fun onCreate(savedInstanceState: Bundle?) {
+        Utils.changeStatusTextColor(this)
+        Utils.changeStatusColor(this, R.color.white)
         super.onCreate(savedInstanceState)
 
         binding = DataBindingUtil.setContentView(this, R.layout.activity_invoice)
 
         sharedPreference = SharedPreference(this)
+
+        binding.back.setOnClickListener {
+            onBackPressed()
+        }
 
         position = intent.extras!!.getInt("position", 0)
 
