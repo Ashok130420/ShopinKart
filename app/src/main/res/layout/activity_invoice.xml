@@ -50,7 +50,7 @@
                     android:inputType="textMultiLine"
                     android:text="@string/shopinkarts"
                     android:textColor="@color/primary_text"
-                    android:textSize="@dimen/text_size_10"
+                    android:textSize="@dimen/text_size_12"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/customerAddressTV"
                     tools:ignore="TextViewEdits" />
@@ -74,6 +74,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:background="@color/primary_text"
+                    android:paddingVertical="@dimen/p5"
                     android:fontFamily="@font/dm_sans_bold"
                     android:text="@string/cod_collect_rs_30000"
                     android:textColor="@color/white"
@@ -136,6 +137,7 @@
                     android:id="@+id/headingsCL"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:paddingVertical="@dimen/p5"
                     android:background="@color/primary_text"
                     app:layout_constraintTop_toTopOf="parent">
 
@@ -155,42 +157,14 @@
                         android:id="@+id/qtyTV"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginStart="@dimen/m10"
+                        android:layout_marginEnd="@dimen/m24"
                         android:background="@color/primary_text"
                         android:fontFamily="@font/dm_sans_bold"
                         android:text="@string/qty"
                         android:textColor="@color/white"
                         android:textSize="@dimen/text_size_12"
                         app:layout_constraintBottom_toBottomOf="@+id/itemsTV"
-                        app:layout_constraintStart_toEndOf="@+id/itemsTV"
-                        app:layout_constraintTop_toTopOf="@+id/itemsTV" />
-
-                    <TextView
-                        android:id="@+id/AmountTV"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="@dimen/m10"
-                        android:background="@color/primary_text"
-                        android:fontFamily="@font/dm_sans_bold"
-                        android:text="@string/amount"
-                        android:textColor="@color/white"
-                        android:textSize="@dimen/text_size_12"
-                        app:layout_constraintBottom_toBottomOf="@+id/itemsTV"
-                        app:layout_constraintStart_toEndOf="@+id/qtyTV"
-                        app:layout_constraintTop_toTopOf="@+id/itemsTV" />
-
-                    <TextView
-                        android:id="@+id/taxesTV"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:background="@color/primary_text"
-                        android:fontFamily="@font/dm_sans_bold"
-                        android:text="@string/taxes"
-                        android:layout_marginStart="@dimen/m10"
-                        android:textColor="@color/white"
-                        android:textSize="@dimen/text_size_12"
-                        app:layout_constraintBottom_toBottomOf="@+id/itemsTV"
-                        app:layout_constraintStart_toEndOf="@+id/AmountTV"
+                        app:layout_constraintEnd_toStartOf="@id/totalAmountTV"
                         app:layout_constraintTop_toTopOf="@+id/itemsTV" />
 
                     <TextView
@@ -228,6 +202,94 @@
                         tools:listitem="@layout/items_invoice_details" />
 
                 </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <View
+                    android:id="@+id/view"
+                    android:layout_width="match_parent"
+                    android:layout_height="4dp"
+                    android:layout_marginTop="@dimen/m10"
+                    android:background="@drawable/dash_line"
+                    app:layout_constraintTop_toBottomOf="@id/invoiceDetailsCL" />
+
+
+                <TextView
+                    android:id="@+id/tAmountTV"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/m10"
+                    android:fontFamily="@font/dm_sans_bold"
+                    android:text="@string/amount"
+                    android:textColor="@color/primary_text"
+                    android:textSize="@dimen/text_size_10"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/view" />
+
+                <TextView
+                    android:id="@+id/tAmountValueTV"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/dm_sans_bold"
+                    android:textColor="@color/primary_text"
+                    android:textSize="@dimen/text_size_10"
+                    app:layout_constraintBottom_toBottomOf="@+id/tAmountTV"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="@+id/tAmountTV" />
+
+                <TextView
+                    android:id="@+id/gstTaxTV"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/m10"
+                    android:fontFamily="@font/dm_sans_bold"
+                    android:text="@string/taxes_gst"
+                    android:textColor="@color/primary_text"
+                    android:textSize="@dimen/text_size_10"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/tAmountTV" />
+
+                <TextView
+                    android:id="@+id/gstTaxValueTV"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/dm_sans_bold"
+                    android:textColor="@color/primary_text"
+                    android:textSize="@dimen/text_size_10"
+                    app:layout_constraintBottom_toBottomOf="@+id/gstTaxTV"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="@+id/gstTaxTV" />
+
+                <View
+                    android:id="@+id/view1"
+                    android:layout_width="match_parent"
+                    android:layout_height="4dp"
+                    android:layout_marginTop="@dimen/m10"
+                    android:background="@drawable/dash_line"
+                    app:layout_constraintTop_toBottomOf="@id/gstTaxTV" />
+
+
+                <TextView
+                    android:id="@+id/totalTV"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/m20"
+                    android:fontFamily="@font/dm_sans_bold"
+                    android:text="@string/total_amount"
+                    android:textColor="@color/primary_text"
+                    android:textSize="@dimen/text_size_12"
+                    app:layout_constraintTop_toBottomOf="@+id/gstTaxTV" />
+
+                <TextView
+                    android:id="@+id/totalValueTV"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/dm_sans_bold"
+
+                    android:textColor="@color/primary_text"
+                    android:textSize="@dimen/text_size_12"
+                    app:layout_constraintBottom_toBottomOf="@+id/totalTV"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="@+id/totalTV" />
+
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 

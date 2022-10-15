@@ -31,8 +31,6 @@ class InvoiceAdapter(
 
             itemsNameTV.text = itemDetails.productName
             qtyValueTV.text = itemDetails.qty.toString()
-            amountValueTV.text = "RS ${itemDetails.totalAmount}"
-            taxesValueTV.text = "RS $gstAmount"
             totalAmountValueTV.text = "RS ${itemDetails.totalAmount + gstAmount}"
 
         }

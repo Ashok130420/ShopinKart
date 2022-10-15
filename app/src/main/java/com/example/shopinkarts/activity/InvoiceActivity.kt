@@ -38,6 +38,14 @@ class InvoiceActivity : AppCompatActivity() {
 
         arrayList = OrdersFragment.arrayListMyOrders[position].products
 
+        binding.tAmountValueTV.text =
+            OrdersFragment.arrayListMyOrders[position].totalAmount.toString()
+
+        binding.gstTaxValueTV.text = OrdersFragment.arrayListMyOrders[position].gstAmount.toString()
+
+        binding.totalValueTV.text =
+            "Rs ${OrdersFragment.arrayListMyOrders[position].totalAmount + OrdersFragment.arrayListMyOrders[position].gstAmount}"
+
         gstAmount = OrdersFragment.arrayListMyOrders[position].gstAmount
 
         invoiceAdapter = InvoiceAdapter(this, arrayList, gstAmount)
