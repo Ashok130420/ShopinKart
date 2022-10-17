@@ -25,7 +25,7 @@ import com.example.shopinkarts.databinding.ActivityCheckoutDetailsBinding
 import com.example.shopinkarts.model.CreateOrderRequest
 import com.example.shopinkarts.model.CreateProduct
 import com.example.shopinkarts.model.ShippingDetails
-import com.example.shopinkarts.response.*
+import com.example.shopinkarts.response.SuccessResponse
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -54,12 +54,11 @@ class CheckOutDetailsActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         Utils.changeStatusTextColor(this)
-        Utils.changeStatusColor(this,R.color.white)
+        Utils.changeStatusColor(this, R.color.white)
         binding = DataBindingUtil.setContentView(this, R.layout.activity_checkout_details)
 
         layoutCount = 1
         layoutFirst()
-
 
         sharedPreference = SharedPreference(this)
         userType = sharedPreference.getUserType().toString()
@@ -223,7 +222,7 @@ class CheckOutDetailsActivity : AppCompatActivity() {
 //            paymentType = 1
 //            binding.includeStepper2.onlineSelectIV.setBackgroundResource(R.drawable.green_right_icon)
 //            binding.includeStepper2.caseSelectIV.setBackgroundResource(R.drawable.grey_right_icon)
-            Toast.makeText(this,"Pay online coming soon...",Toast.LENGTH_SHORT).show()
+            Toast.makeText(this, "Pay online coming soon...", Toast.LENGTH_SHORT).show()
             Log.d("paymentType", "onCreate: $paymentType")
         }
 
@@ -339,7 +338,7 @@ class CheckOutDetailsActivity : AppCompatActivity() {
                     variantId = item.vId,
                     variantsArr = item.variantsArr,
 
-                )
+                    )
             )
         }
 

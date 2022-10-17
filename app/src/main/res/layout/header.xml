@@ -29,8 +29,8 @@
 
         <ImageView
             android:id="@+id/cartIV"
-            android:layout_width="25dp"
-            android:layout_height="25dp"
+            android:layout_width="23dp"
+            android:layout_height="23dp"
             android:padding="@dimen/p2"
 
             android:src="@drawable/cart"
@@ -56,8 +56,8 @@
 
         <ImageView
             android:id="@+id/notificationIV"
-            android:layout_width="25dp"
-            android:layout_height="25dp"
+            android:layout_width="23dp"
+            android:layout_height="23dp"
             android:padding="@dimen/p1"
             android:layout_marginEnd="11dp"
             android:src="@drawable/notification"
@@ -96,8 +96,8 @@
 
         <de.hdodenhof.circleimageview.CircleImageView
             android:id="@+id/profileIV"
-            android:layout_width="30dp"
-            android:layout_height="30dp"
+            android:layout_width="25dp"
+            android:layout_height="25dp"
             android:padding="@dimen/p1"
             android:background="@drawable/profile_boarder"
             android:layout_marginHorizontal="@dimen/m18"

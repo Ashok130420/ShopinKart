@@ -9,4 +9,5 @@ data class CreateOrderRequest(
     val shippingDetails: ShippingDetails,
     val totalAmount: String,
     val userId: String
+
 )

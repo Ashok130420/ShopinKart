@@ -680,7 +680,7 @@ class ProductDetailsActivity : AppCompatActivity() {
             request.setDestinationInExternalPublicDir(
                 Environment.DIRECTORY_DOWNLOADS,
 //                uri.lastPathSegment
-                this.resources.getString(R.string.app_name) + "shopInKarts${imageNumber}.jpg"
+                this.resources.getString(R.string.app_name) + "${imageNumber}.jpg"
             )
             imageNumber++
             downloadManager!!.enqueue(request)
