@@ -329,6 +329,7 @@ class ProductDetailsActivity : AppCompatActivity() {
                     imageUrl = imageUrl,
                     stock = stock,
                     variantsArr = arrayListVariant
+
                 )
             )
             DashBoardActivity.selectedVIDs.add(vId)

@@ -19,5 +19,4 @@ data class Order(
     val trackingDetails: List<TrackOrder>,
 
 
-
 )

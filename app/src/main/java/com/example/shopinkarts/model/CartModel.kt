@@ -15,6 +15,7 @@ data class CartModel(
     var totalAmount: Int,
     var imageUrl: String,
     var stock: Int,
-    var variantsArr: ArrayList<VariantsArr>
+    var variantsArr: ArrayList<VariantsArr>,
+//    var variants: ArrayList<Variant>
 
 )

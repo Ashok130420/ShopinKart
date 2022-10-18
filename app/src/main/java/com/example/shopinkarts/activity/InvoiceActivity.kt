@@ -25,10 +25,8 @@ import com.example.shopinkarts.adapter.InvoiceAdapter
 import com.example.shopinkarts.classes.SharedPreference
 import com.example.shopinkarts.classes.Utils
 import com.example.shopinkarts.databinding.ActivityInvoiceBinding
+import com.example.shopinkarts.fragments.OrdersFragment
 import com.example.shopinkarts.model.CreateProduct
-
-import com.itextpdf.kernel.pdf.PdfWriter
-import com.itextpdf.layout.element.Paragraph
 import java.io.File
 import java.io.FileOutputStream
 import java.io.OutputStream
@@ -120,34 +118,33 @@ class InvoiceActivity : AppCompatActivity() {
                  val pdfFilePath: String? = receipt.buildPdf()
              }
          })*/
-//        position = intent.extras!!.getInt("position", 0)
-//
-//        binding.customerNameTV.text =
-//            "${sharedPreference.getName()}\n${sharedPreference.getFlat()},${sharedPreference.getStreet()}, ${sharedPreference.getPin()},${sharedPreference.getCity()},${sharedPreference.getLandmark()}"
-//
-//        binding.paymentTV.text =
-//            "COD : Collect amount \nRs ${OrdersFragment.arrayListMyOrders[position].totalAmount + OrdersFragment.arrayListMyOrders[position].gstAmount} /-"
-//
-//        arrayList = OrdersFragment.arrayListMyOrders[position].products
-//
-//        binding.tAmountValueTV.text =
-//            OrdersFragment.arrayListMyOrders[position].totalAmount.toString()
-//
-//        binding.gstTaxValueTV.text = OrdersFragment.arrayListMyOrders[position].gstAmount.toString()
-//
-//        binding.totalValueTV.text =
-//            "Rs ${OrdersFragment.arrayListMyOrders[position].totalAmount + OrdersFragment.arrayListMyOrders[position].gstAmount}"
-//
-//        gstAmount = OrdersFragment.arrayListMyOrders[position].gstAmount
-//
-//        invoiceAdapter = InvoiceAdapter(this, arrayList, gstAmount)
-//        binding.invoiceDetailsRV.adapter = invoiceAdapter
-//        binding.invoiceDetailsRV.hasFixedSize()
-//        binding.invoiceDetailsRV.isNestedScrollingEnabled = false
+        position = intent.extras!!.getInt("position", 0)
+
+        binding.customerNameTV.text =
+            "${sharedPreference.getName()}\n${sharedPreference.getFlat()},${sharedPreference.getStreet()}, ${sharedPreference.getPin()},${sharedPreference.getCity()},${sharedPreference.getLandmark()}"
+
+        binding.paymentTV.text =
+            "COD : Collect amount \nRs ${OrdersFragment.arrayListMyOrders[position].totalAmount + OrdersFragment.arrayListMyOrders[position].gstAmount} /-"
+
+        arrayList = OrdersFragment.arrayListMyOrders[position].products
+
+        binding.tAmountValueTV.text =
+            OrdersFragment.arrayListMyOrders[position].totalAmount.toString()
+
+        binding.gstTaxValueTV.text = OrdersFragment.arrayListMyOrders[position].gstAmount.toString()
+
+        binding.totalValueTV.text =
+            "Rs ${OrdersFragment.arrayListMyOrders[position].totalAmount + OrdersFragment.arrayListMyOrders[position].gstAmount}"
+
+        gstAmount = OrdersFragment.arrayListMyOrders[position].gstAmount
+
+        invoiceAdapter = InvoiceAdapter(this, arrayList, gstAmount)
+        binding.invoiceDetailsRV.adapter = invoiceAdapter
+        binding.invoiceDetailsRV.hasFixedSize()
+        binding.invoiceDetailsRV.isNestedScrollingEnabled = false
 
 
     }
-
 
     /* @RequiresApi(Build.VERSION_CODES.R)
      fun generatePDF() {
@@ -275,8 +272,6 @@ class InvoiceActivity : AppCompatActivity() {
         return screenshot
     }
 
-
-    // this method saves the image to gallery
     private fun saveMediaToStorage(bitmap: Bitmap) {
         // Generating a file name
         val filename = "${System.currentTimeMillis()}.jpg"
@@ -360,8 +355,5 @@ class InvoiceActivity : AppCompatActivity() {
             downloadManager!!.enqueue(request)
         }
     }
-
-
-   
 
 }

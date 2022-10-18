@@ -1,6 +1,7 @@
 package com.example.shopinkarts.activity
 
 
+import android.annotation.SuppressLint
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
@@ -11,6 +12,7 @@ import com.example.shopinkarts.R
 import com.example.shopinkarts.adapter.YourCartAdapter
 import com.example.shopinkarts.classes.Utils
 import com.example.shopinkarts.databinding.ActivityProductCartBinding
+import com.example.shopinkarts.model.Variant
 import kotlin.math.roundToInt
 
 class ProductCartActivity : AppCompatActivity() {
@@ -28,16 +30,17 @@ class ProductCartActivity : AppCompatActivity() {
 
     companion object {
         var cartInstance: ProductCartActivity = ProductCartActivity()
-
+        var qtyVariants = 0
         fun getInstance(): ProductCartActivity {
             return cartInstance
         }
     }
 
+    @SuppressLint("NotifyDataSetChanged")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         Utils.changeStatusTextColor(this)
-        Utils.changeStatusColor(this,R.color.white)
+        Utils.changeStatusColor(this, R.color.white)
         binding = DataBindingUtil.setContentView(this, R.layout.activity_product_cart)
 
         cartInstance = this
@@ -67,11 +70,27 @@ class ProductCartActivity : AppCompatActivity() {
 
         }
 
+        for (item in DashBoardActivity.arrayListCart) {
+            DashBoardActivity.arrayListVariants.add(
+                Variant(
+                    amount = 0,
+                    color = item.color,
+                    id = item.vId,
+                    qty = YourCartAdapter.updateQty,
+                    size = item.size,
+                )
+            )
+            Log.d("arrayListVariants", "onCreate: ${DashBoardActivity.arrayListVariants}")
+        }
+
+
         // adapter for your cart
         yourCartAdapter = YourCartAdapter(this, DashBoardActivity.arrayListCart)
         binding.yourCartRV.adapter = yourCartAdapter
         binding.yourCartRV.isNestedScrollingEnabled = false
         yourCartAdapter.notifyDataSetChanged()
+
+        Log.d("arrayListCart",  DashBoardActivity.arrayListCart.toString())
 
         binding.continueTV.setOnClickListener {
             val intent = Intent(this, CheckOutDetailsActivity::class.java)

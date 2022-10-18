@@ -17,6 +17,7 @@ import com.example.shopinkarts.fragments.CategoriesFragment
 import com.example.shopinkarts.fragments.HomeFragment
 import com.example.shopinkarts.fragments.OrdersFragment
 import com.example.shopinkarts.model.CartModel
+import com.example.shopinkarts.model.Variant
 
 
 class DashBoardActivity : AppCompatActivity() {
@@ -33,6 +34,8 @@ class DashBoardActivity : AppCompatActivity() {
         var mInstance: DashBoardActivity = DashBoardActivity()
         var arrayListCart: ArrayList<CartModel> = ArrayList()
         var selectedVIDs: ArrayList<String> = ArrayList()
+        var arrayListVariants: ArrayList<Variant> = ArrayList()
+
         fun getInstance(): DashBoardActivity {
             return mInstance
         }
@@ -160,5 +163,5 @@ class DashBoardActivity : AppCompatActivity() {
     fun setArray() {
         sharedPreference.setArray()
     }
-    
+
 }

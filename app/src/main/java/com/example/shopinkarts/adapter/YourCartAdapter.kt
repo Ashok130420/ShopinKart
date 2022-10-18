@@ -1,5 +1,6 @@
 package com.example.shopinkarts.adapter
 
+import android.annotation.SuppressLint
 import android.app.Activity
 import android.content.Context
 import android.graphics.Color
@@ -20,10 +21,14 @@ import com.example.shopinkarts.model.CartModel
 class YourCartAdapter(val context: Context, var arrayList: ArrayList<CartModel>) :
     RecyclerView.Adapter<YourCartAdapter.ViewHolder>() {
 
-    var updateQty = 0
+
     var unitPrice = 0
     var updatePrice = 0
     lateinit var sharedPreference: SharedPreference
+
+    companion object {
+        var updateQty = 0
+    }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val binding: ItemYourCartBinding = DataBindingUtil.inflate(
@@ -33,6 +38,7 @@ class YourCartAdapter(val context: Context, var arrayList: ArrayList<CartModel>)
         return ViewHolder(binding)
     }
 
+    @SuppressLint("SetTextI18n")
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
 
         sharedPreference = SharedPreference(context)
@@ -55,6 +61,9 @@ class YourCartAdapter(val context: Context, var arrayList: ArrayList<CartModel>)
 
             updateQty = itemDetails.quantity
             quantityShowTV.text = updateQty.toString()
+
+//            ProductCartActivity.qtyVariants = updateQty
+
             sizeBlockTV.text = itemDetails.size
             colorIV.setBackgroundColor(Color.parseColor(itemDetails.color))
             Log.d("COLOR", itemDetails.color)

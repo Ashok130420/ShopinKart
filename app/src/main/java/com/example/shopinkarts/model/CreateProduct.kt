@@ -8,15 +8,7 @@ data class CreateProduct(
     val productName: String,
     val qty: Int,
     val totalAmount: Double,
-    val variantId: String,
-    val variantsArr: ArrayList<VariantsArr>
-
-
-//    val productId: String,
-//    val productImage: String,
-//    val productName: String,
-//    val qty: Int,
-//    val totalAmount: Double,
-//    val variantId: String
+    val variants: List<Variant>,
+//    val variantsArr: List<VariantsArr>
 
 )

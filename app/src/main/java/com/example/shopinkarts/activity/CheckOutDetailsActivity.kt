@@ -25,6 +25,7 @@ import com.example.shopinkarts.databinding.ActivityCheckoutDetailsBinding
 import com.example.shopinkarts.model.CreateOrderRequest
 import com.example.shopinkarts.model.CreateProduct
 import com.example.shopinkarts.model.ShippingDetails
+import com.example.shopinkarts.model.Variant
 import com.example.shopinkarts.response.SuccessResponse
 import retrofit2.Call
 import retrofit2.Callback
@@ -50,6 +51,7 @@ class CheckOutDetailsActivity : AppCompatActivity() {
     var city = ""
     var state = ""
     var landmark = ""
+    var arrayListCreateVariants: ArrayList<CreateProduct> = ArrayList()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -278,7 +280,10 @@ class CheckOutDetailsActivity : AppCompatActivity() {
             }
             3 -> {
 //                layoutThird()
+
                 orderApi()
+
+
             }
             else -> {
                 val intent = Intent(this, DashBoardActivity::class.java)
@@ -328,6 +333,7 @@ class CheckOutDetailsActivity : AppCompatActivity() {
         val arrayProduct: ArrayList<CreateProduct> = ArrayList()
 
         for (item in DashBoardActivity.arrayListCart) {
+
             arrayProduct.add(
                 CreateProduct(
                     productId = item.pId,
@@ -335,11 +341,10 @@ class CheckOutDetailsActivity : AppCompatActivity() {
                     productName = item.itemName,
                     qty = item.quantity,
                     totalAmount = item.totalAmount.toDouble(),
-                    variantId = item.vId,
-                    variantsArr = item.variantsArr,
-
-                    )
+                    variants = DashBoardActivity.arrayListVariants,
+                )
             )
+            Log.d("arrayProduct", arrayProduct.toString())
         }
 
         val shippingDetails = ShippingDetails(
@@ -352,7 +357,7 @@ class CheckOutDetailsActivity : AppCompatActivity() {
             state = state,
             landmark = binding.includeStepper1.landMarkET.text.toString()
         )
-//        val requestBody = OrdersResponse(
+
         val requestBody = CreateOrderRequest(
 
             discount = discountAmount.toString(),
@@ -365,7 +370,8 @@ class CheckOutDetailsActivity : AppCompatActivity() {
             userId = sharedPreference.getUserId().toString(),
 
             )
-//        )
+        Log.d("requestBody", "orderApi: $requestBody")
+
 
         val call: Call<SuccessResponse> = RetrofitClient.instance!!.api.ordersApi(requestBody)
         call.enqueue(object : Callback<SuccessResponse> {
@@ -411,6 +417,17 @@ class CheckOutDetailsActivity : AppCompatActivity() {
         })
     }
 
+    fun createVariants() {
+        if (arrayListCreateVariants.isEmpty())
+//            arrayListCreateVariants.add(
+//                CreateProduct(
+//                    productId = ""
+//                )
+//            )
+            for (item in DashBoardActivity.arrayListCart) {
+
+            }
+    }
 
 }
 

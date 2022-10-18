@@ -8,6 +8,7 @@ import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.shopinkarts.R
+import com.example.shopinkarts.activity.DashBoardActivity
 import com.example.shopinkarts.databinding.ItemsDeliveredProductBinding
 import com.example.shopinkarts.model.CreateProduct
 
@@ -48,10 +49,10 @@ class ProductAdapter(val context: Context, val products: List<CreateProduct>) :
             } else {
                 codOnlineTV.text = context.resources.getString(R.string.cod)
             }
-
         }
 
-        sizeQtyAdapter = SizeQtyAdapter(context, itemDetails.variantsArr)
+//        sizeQtyAdapter = SizeQtyAdapter(context, itemDetails.variantsArr)
+        sizeQtyAdapter = SizeQtyAdapter(context,itemDetails.variants)
         holder.binding.sizeQtyRV.adapter = sizeQtyAdapter
         holder.binding.sizeQtyRV.isNestedScrollingEnabled = false
 

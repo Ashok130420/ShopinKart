@@ -1,6 +1,7 @@
 package com.example.shopinkarts.adapter
 
 import android.content.Context
+import android.graphics.Color
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
@@ -8,9 +9,10 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.shopinkarts.R
 import com.example.shopinkarts.databinding.ItemsSizeQtyBinding
+import com.example.shopinkarts.model.Variant
 import com.example.shopinkarts.response.VariantsArr
 
-class SizeQtyAdapter(val context: Context, val arrayList: ArrayList<VariantsArr>) :
+class SizeQtyAdapter(val context: Context, val arrayList: List<Variant>) :
     RecyclerView.Adapter<SizeQtyAdapter.ViewHolder>() {
 
 
@@ -30,11 +32,11 @@ class SizeQtyAdapter(val context: Context, val arrayList: ArrayList<VariantsArr>
         val itemDetails = arrayList[position]
         holder.binding.apply {
 
-            qtyValueTV.text = itemDetails.price.toString()
+            colorIV.setBackgroundColor(Color.parseColor(itemDetails.color))
+            sizeBlockTV.text = itemDetails.size
+            qtyValueTV.text = itemDetails.qty.toString()
 
         }
-
-
     }
 
     override fun getItemCount(): Int {
