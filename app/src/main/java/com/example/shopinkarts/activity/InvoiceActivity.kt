@@ -12,6 +12,7 @@ import android.net.Uri
 import android.os.Build
 import android.os.Bundle
 import android.os.Environment
+import android.os.Handler
 import android.provider.MediaStore
 import android.util.Log
 import android.view.View
@@ -25,10 +26,14 @@ import com.example.shopinkarts.classes.SharedPreference
 import com.example.shopinkarts.classes.Utils
 import com.example.shopinkarts.databinding.ActivityInvoiceBinding
 import com.example.shopinkarts.model.CreateProduct
+
+import com.itextpdf.kernel.pdf.PdfWriter
+import com.itextpdf.layout.element.Paragraph
 import java.io.File
 import java.io.FileOutputStream
 import java.io.OutputStream
 import java.util.*
+import java.util.Calendar.getInstance
 
 
 class InvoiceActivity : AppCompatActivity() {
@@ -356,5 +361,7 @@ class InvoiceActivity : AppCompatActivity() {
         }
     }
 
+
+   
 
 }
