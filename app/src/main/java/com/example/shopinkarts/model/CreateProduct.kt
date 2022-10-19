@@ -1,6 +1,6 @@
 package com.example.shopinkarts.model
 
-import com.example.shopinkarts.response.VariantsArr
+
 
 data class CreateProduct(
     val productId: String,

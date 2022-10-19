@@ -1,6 +1,7 @@
 package com.example.shopinkarts.activity
 
 import android.Manifest
+import android.annotation.SuppressLint
 import android.app.Activity
 import android.app.DownloadManager
 import android.content.Context
@@ -37,6 +38,7 @@ import com.example.shopinkarts.model.SelectColorModel
 import com.example.shopinkarts.model.SelectSizeModel
 import com.example.shopinkarts.response.NewlyAdded
 import com.example.shopinkarts.response.ProductResponse
+import com.example.shopinkarts.response.SimilarProduct
 import com.example.shopinkarts.response.VariantsArr
 import retrofit2.Call
 import retrofit2.Callback
@@ -56,7 +58,7 @@ class ProductDetailsActivity : AppCompatActivity() {
     lateinit var productBannerAdapter: ProductBannerAdapter
     lateinit var sharedPreference: SharedPreference
 
-    var arrayListSimilarProduct: ArrayList<NewlyAdded> = ArrayList()
+    var arrayListSimilarProduct: ArrayList<SimilarProduct> = ArrayList()
     var arraySelectColor: ArrayList<SelectColorModel> = ArrayList()
     var arraySelectSize: ArrayList<SelectSizeModel> = ArrayList()
     var arrayListVariant: ArrayList<VariantsArr> = ArrayList()
@@ -92,10 +94,8 @@ class ProductDetailsActivity : AppCompatActivity() {
         var itemName = ""
         var color = ""
         var size = ""
-        var quantity = ""
         var imageUrl = ""
         var variantTarget = ""
-//      var stock = 0
 
         fun getInstance(): ProductDetailsActivity {
             return pInstance
@@ -123,7 +123,6 @@ class ProductDetailsActivity : AppCompatActivity() {
         Utils.changeStatusColor(this, R.color.white)
         binding = DataBindingUtil.setContentView(this, R.layout.activity_product_details)
         pInstance = this
-
 
         sharedPreference = SharedPreference(this)
 
@@ -256,11 +255,15 @@ class ProductDetailsActivity : AppCompatActivity() {
             val intent = Intent(this, ProductCartActivity::class.java)
             startActivity(intent)
 
+            DashBoardActivity.arrayListVariants.clear()
+
         }
 
         binding.addToCartTV.setOnClickListener {
 
             addItem()
+
+            DashBoardActivity.arrayListVariants.clear()
 
         }
 
@@ -344,7 +347,9 @@ class ProductDetailsActivity : AppCompatActivity() {
 
             if (DashBoardActivity.selectedVIDs.contains(vId)) {
                 //do nothing
+
                 Toast.makeText(this, "Product already in cart", Toast.LENGTH_SHORT).show()
+
             } else {
 
                 DashBoardActivity.arrayListCart.add(
@@ -401,6 +406,7 @@ class ProductDetailsActivity : AppCompatActivity() {
 
         val call: Call<ProductResponse> = RetrofitClient.instance!!.api.productApi(requestBody)
         call.enqueue(object : Callback<ProductResponse> {
+            @SuppressLint("NotifyDataSetChanged", "SetTextI18n")
             override fun onResponse(
                 call: Call<ProductResponse>, response: Response<ProductResponse>
             ) {
@@ -531,14 +537,12 @@ class ProductDetailsActivity : AppCompatActivity() {
                         arrayListVariant.addAll(productResponse.product.variantsArr)
 
 
-
-
                         Log.e("TAG", "${response.message()} ")
                     }
                 } else {
 
                     Toast.makeText(
-                        this@ProductDetailsActivity, "${response.message()}", Toast.LENGTH_SHORT
+                        this@ProductDetailsActivity, response.message(), Toast.LENGTH_SHORT
                     ).show()
                 }
             }
@@ -597,6 +601,7 @@ class ProductDetailsActivity : AppCompatActivity() {
         }
     }
 
+    @SuppressLint("SetTextI18n")
     private fun updatePrice() {
 
         if (colorSize == 1 && sizeOfSize == 1) {

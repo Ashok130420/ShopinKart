@@ -5,10 +5,13 @@ data class VariantsArr(
     val stock: Int,
     val variant: String,
 
+
     var pId: String,
     var id: String,
     var discountedPrice: String,
     var actualPrice: Int,
     var variantValue: String,
+
+
 
 )

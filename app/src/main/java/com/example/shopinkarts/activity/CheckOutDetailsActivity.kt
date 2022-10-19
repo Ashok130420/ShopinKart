@@ -332,6 +332,7 @@ class CheckOutDetailsActivity : AppCompatActivity() {
 
         val arrayProduct: ArrayList<CreateProduct> = ArrayList()
 
+
         for (item in DashBoardActivity.arrayListCart) {
 
             arrayProduct.add(

@@ -30,7 +30,6 @@ class ProductCartActivity : AppCompatActivity() {
 
     companion object {
         var cartInstance: ProductCartActivity = ProductCartActivity()
-        var qtyVariants = 0
         fun getInstance(): ProductCartActivity {
             return cartInstance
         }
@@ -44,12 +43,13 @@ class ProductCartActivity : AppCompatActivity() {
         binding = DataBindingUtil.setContentView(this, R.layout.activity_product_cart)
 
         cartInstance = this
+
         DashBoardActivity.arrayListCart
 
         updatedCal()
 
         binding.headerProductCart.backIV.setOnClickListener {
-            onBackPressed()
+            finish()
         }
 
         binding.headerProductCart.nameTV.text = resources.getString(R.string.your_cart)
@@ -71,6 +71,7 @@ class ProductCartActivity : AppCompatActivity() {
         }
 
         for (item in DashBoardActivity.arrayListCart) {
+
             DashBoardActivity.arrayListVariants.add(
                 Variant(
                     amount = 0,
@@ -80,9 +81,9 @@ class ProductCartActivity : AppCompatActivity() {
                     size = item.size,
                 )
             )
+
             Log.d("arrayListVariants", "onCreate: ${DashBoardActivity.arrayListVariants}")
         }
-
 
         // adapter for your cart
         yourCartAdapter = YourCartAdapter(this, DashBoardActivity.arrayListCart)
@@ -90,7 +91,7 @@ class ProductCartActivity : AppCompatActivity() {
         binding.yourCartRV.isNestedScrollingEnabled = false
         yourCartAdapter.notifyDataSetChanged()
 
-        Log.d("arrayListCart",  DashBoardActivity.arrayListCart.toString())
+        Log.d("arrayListCart", DashBoardActivity.arrayListCart.toString())
 
         binding.continueTV.setOnClickListener {
             val intent = Intent(this, CheckOutDetailsActivity::class.java)
@@ -105,6 +106,7 @@ class ProductCartActivity : AppCompatActivity() {
         Log.d("TAG_totalAmount", "onCreate: $totalAmount")
     }
 
+    @SuppressLint("SetTextI18n")
     fun updatedCal() {
         if (DashBoardActivity.arrayListCart.isEmpty()) {
             binding.lottyAnimation.visibility = View.VISIBLE
@@ -118,12 +120,11 @@ class ProductCartActivity : AppCompatActivity() {
             binding.lottyAnimation.visibility = View.GONE
         }
 
-
-        totalAmount = DashBoardActivity.arrayListCart.sumBy { it.totalAmount }.toDouble()
+        totalAmount = DashBoardActivity.arrayListCart.sumOf { it.totalAmount }.toDouble()
         binding.totalAmountValueTV.text = "RS $totalAmount"
         Log.d("totalAmount", "onCreate: $totalAmount")
 
-        discountAmount = DashBoardActivity.arrayListCart.sumBy { it.actualPrice }.toFloat()
+        discountAmount = DashBoardActivity.arrayListCart.sumOf { it.actualPrice }.toFloat()
         binding.discountsValueTV.text = "- RS $discountAmount"
         Log.d("totalDis{countAmount", "onCreate: $discountAmount")
 
@@ -146,7 +147,6 @@ class ProductCartActivity : AppCompatActivity() {
                 "Congratulations! You are saving ${percentage.roundToInt()} % on \nthis order"
             Log.d("totalPercentage", "onCreate: ${percentage.roundToInt()}")
         }
-
     }
 
 }
