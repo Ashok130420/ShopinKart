@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:id="@+id/colorIV"
+            android:layout_width="@dimen/m24"
+            android:layout_height="@dimen/m24"
+            android:layout_marginTop="@dimen/m6"
+            android:background="@drawable/shape_color_red"
+            android:padding="@dimen/p8"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:ignore="ContentDescription" />
+
+        <TextView
+            android:id="@+id/sizeTV"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/m5"
+            android:fontFamily="@font/dm_sans_medium"
+            android:paddingVertical="@dimen/p2"
+            android:text="@string/size"
+            android:textColor="@color/dark_Gray"
+            android:textSize="@dimen/text_size_12"
+            app:layout_constraintBottom_toBottomOf="@+id/colorIV"
+            app:layout_constraintStart_toEndOf="@+id/colorIV"
+            app:layout_constraintTop_toTopOf="@+id/colorIV" />
+
+        <TextView
+            android:id="@+id/sizeBlockTV"
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/m24"
+            android:layout_marginStart="@dimen/m5"
+            android:background="@drawable/shape_color_grey"
+            android:gravity="center"
+            android:paddingHorizontal="@dimen/p8"
+            android:text="@string/xxl"
+            android:textColor="@color/primary_text"
+            app:layout_constraintBottom_toBottomOf="@+id/sizeTV"
+            app:layout_constraintStart_toEndOf="@+id/sizeTV"
+            app:layout_constraintTop_toTopOf="@+id/sizeTV"
+            tools:ignore="ContentDescription" />
+
+        <TextView
+            android:id="@+id/qtyTV"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/m5"
+            android:layout_marginEnd="@dimen/m10"
+            android:fontFamily="@font/dm_sans_medium"
+            android:paddingVertical="@dimen/p2"
+            android:text="@string/qty"
+            android:textColor="@color/dark_Gray"
+            android:textSize="@dimen/text_size_12"
+            app:layout_constraintBottom_toBottomOf="@+id/sizeBlockTV"
+            app:layout_constraintEnd_toStartOf="@+id/qtyCL"
+            app:layout_constraintTop_toTopOf="@+id/sizeBlockTV" />
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/qtyCL"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/m5"
+            android:layout_marginEnd="@dimen/m5"
+            app:layout_constraintBottom_toBottomOf="@+id/qtyTV"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/qtyTV"
+
+            >
+
+            <TextView
+                android:id="@+id/plusQuantityTV"
+                android:layout_width="@dimen/m24"
+                android:layout_height="@dimen/m24"
+                android:background="@drawable/shape_color_grey"
+                android:gravity="center"
+                android:text="@string/plus"
+                android:textColor="@color/primary_text"
+                android:textSize="@dimen/text_size_14"
+                android:textStyle="bold"
+                android:visibility="invisible"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:ignore="ContentDescription" />
+
+            <TextView
+                android:id="@+id/quantityShowTV"
+                android:layout_width="@dimen/m24"
+                android:layout_height="@dimen/m24"
+                android:layout_marginStart="@dimen/m10"
+                android:background="@drawable/square_button_blue"
+                android:gravity="center"
+                android:text="@string/_4"
+                android:textColor="@color/white"
+                android:textSize="@dimen/text_size_14"
+                android:textStyle="bold"
+                android:visibility="visible"
+                app:layout_constraintBottom_toBottomOf="@+id/plusQuantityTV"
+                app:layout_constraintStart_toEndOf="@+id/plusQuantityTV"
+                app:layout_constraintTop_toTopOf="@+id/plusQuantityTV"
+                tools:ignore="ContentDescription" />
+
+            <TextView
+                android:id="@+id/minusQuantityTV"
+                android:layout_width="@dimen/m24"
+                android:layout_height="@dimen/m24"
+                android:layout_marginStart="@dimen/m10"
+                android:background="@drawable/shape_color_grey"
+                android:gravity="center"
+                android:text="@string/minus"
+                android:textColor="@color/primary_text"
+                android:textSize="@dimen/text_size_14"
+                android:textStyle="bold"
+                android:visibility="invisible"
+                app:layout_constraintBottom_toBottomOf="@+id/plusQuantityTV"
+                app:layout_constraintStart_toEndOf="@+id/quantityShowTV"
+                app:layout_constraintTop_toTopOf="@+id/plusQuantityTV"
+                tools:ignore="ContentDescription" />
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

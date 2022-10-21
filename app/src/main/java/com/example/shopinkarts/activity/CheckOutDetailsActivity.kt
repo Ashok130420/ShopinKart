@@ -25,7 +25,6 @@ import com.example.shopinkarts.databinding.ActivityCheckoutDetailsBinding
 import com.example.shopinkarts.model.CreateOrderRequest
 import com.example.shopinkarts.model.CreateProduct
 import com.example.shopinkarts.model.ShippingDetails
-import com.example.shopinkarts.model.Variant
 import com.example.shopinkarts.response.SuccessResponse
 import retrofit2.Call
 import retrofit2.Callback
@@ -335,17 +334,19 @@ class CheckOutDetailsActivity : AppCompatActivity() {
 
         for (item in DashBoardActivity.arrayListCart) {
 
+            val sum= item.variants.sumOf { it.price }
             arrayProduct.add(
                 CreateProduct(
                     productId = item.pId,
                     productImage = item.imageUrl,
                     productName = item.itemName,
                     qty = item.quantity,
-                    totalAmount = item.totalAmount.toDouble(),
-                    variants = DashBoardActivity.arrayListVariants,
+                    totalAmount = sum.toDouble(),
+                    variants = item.variants
                 )
             )
             Log.d("arrayProduct", arrayProduct.toString())
+
         }
 
         val shippingDetails = ShippingDetails(
@@ -418,17 +419,6 @@ class CheckOutDetailsActivity : AppCompatActivity() {
         })
     }
 
-    fun createVariants() {
-        if (arrayListCreateVariants.isEmpty())
-//            arrayListCreateVariants.add(
-//                CreateProduct(
-//                    productId = ""
-//                )
-//            )
-            for (item in DashBoardActivity.arrayListCart) {
-
-            }
-    }
 
 }
 

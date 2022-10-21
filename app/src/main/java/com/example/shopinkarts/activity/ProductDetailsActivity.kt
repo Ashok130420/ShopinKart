@@ -36,10 +36,9 @@ import com.example.shopinkarts.databinding.ActivityProductDetailsBinding
 import com.example.shopinkarts.model.CartModel
 import com.example.shopinkarts.model.SelectColorModel
 import com.example.shopinkarts.model.SelectSizeModel
-import com.example.shopinkarts.response.NewlyAdded
-import com.example.shopinkarts.response.ProductResponse
-import com.example.shopinkarts.response.SimilarProduct
-import com.example.shopinkarts.response.VariantsArr
+import com.example.shopinkarts.response.*
+import okhttp3.internal.notify
+import okhttp3.internal.notifyAll
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -75,7 +74,6 @@ class ProductDetailsActivity : AppCompatActivity() {
 
     companion object {
         var pInstance: ProductDetailsActivity = ProductDetailsActivity()
-        var arrayListVariant: ArrayList<VariantsArr> = ArrayList()
         var colorSize = 0
         var selectedColor = ""
         var selectedSize = ""
@@ -86,9 +84,7 @@ class ProductDetailsActivity : AppCompatActivity() {
         var totalAmount = 0
         var discountedPrice = 0
         var actualPrice = 0
-
         var productId = ""
-
         var pId = ""
         var vId = ""
         var itemName = ""
@@ -97,6 +93,7 @@ class ProductDetailsActivity : AppCompatActivity() {
         var imageUrl = ""
         var variantTarget = ""
 
+        var unitPrice = 0
         fun getInstance(): ProductDetailsActivity {
             return pInstance
         }
@@ -117,6 +114,7 @@ class ProductDetailsActivity : AppCompatActivity() {
         super.onResume()
     }
 
+    @SuppressLint("SetTextI18n")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         Utils.changeStatusTextColor(this)
@@ -169,10 +167,14 @@ class ProductDetailsActivity : AppCompatActivity() {
         }
 
         binding.plusQuantityTV.setOnClickListener {
+
             if (currentNumber < stock) {
 
                 currentNumber++
+
                 binding.quantityShowTV.text = currentNumber.toString()
+
+                binding.discountedPriceTV.text = "Rs ${ unitPrice * currentNumber }.00"
 
                 quantitySze = if (currentNumber > 1) {
                     activeAddCart()
@@ -197,6 +199,8 @@ class ProductDetailsActivity : AppCompatActivity() {
             quantitySze = if (currentNumber <= 1) 0 else 1
             Log.d("quantitySze", quantitySze.toString())
             binding.quantityShowTV.text = currentNumber.toString()
+
+            binding.discountedPriceTV.text = "Rs ${ unitPrice * currentNumber }.00"
         }
 
         binding.productDescriptionHeaderCL.setOnClickListener {
@@ -255,7 +259,6 @@ class ProductDetailsActivity : AppCompatActivity() {
             val intent = Intent(this, ProductCartActivity::class.java)
             startActivity(intent)
 
-            DashBoardActivity.arrayListVariants.clear()
 
         }
 
@@ -263,7 +266,6 @@ class ProductDetailsActivity : AppCompatActivity() {
 
             addItem()
 
-            DashBoardActivity.arrayListVariants.clear()
 
         }
 
@@ -316,25 +318,34 @@ class ProductDetailsActivity : AppCompatActivity() {
         variantTarget = "${selectedColor}-${selectedSize}"
         totalAmount = discountedPrice * currentNumber
 
-        if (DashBoardActivity.arrayListCart.isEmpty()) {
+        val variantArray: ArrayList<Variants> = ArrayList()
 
-            DashBoardActivity.arrayListCart.add(
-                CartModel(
-                    pId = pId,
-                    vId = vId,
-                    itemName = itemName,
-                    discountedPrice = discountedPrice.toString(),
-                    actualPrice = actualPrice,
+        if (DashBoardActivity.arrayListCart.isEmpty()) {
+            val variant =
+                Variants(
                     color = selectedColor,
                     size = selectedSize,
                     quantity = currentNumber,
-                    totalAmount = totalAmount,
-                    imageUrl = imageUrl,
-                    stock = stock,
-                    variantsArr = arrayListVariant
-
+                    price = actualPrice,
+                    id = vId
                 )
+            variantArray.add(variant)
+            val product = CartModel(
+                pId = pId,
+                vId = vId,
+                itemName = itemName,
+                discountedPrice = discountedPrice.toString(),
+                actualPrice = actualPrice,
+                color = selectedColor,
+                size = selectedSize,
+                quantity = currentNumber,
+                totalAmount = totalAmount,
+                imageUrl = imageUrl,
+                stock = stock,
+                variantsArr = arrayListVariant,
+                variants = variantArray
             )
+            DashBoardActivity.arrayListCart.add(product)
             DashBoardActivity.selectedVIDs.add(vId)
             Toast.makeText(this, "Product Added Successfully", Toast.LENGTH_SHORT).show()
 
@@ -345,13 +356,95 @@ class ProductDetailsActivity : AppCompatActivity() {
 
         } else {
 
-            if (DashBoardActivity.selectedVIDs.contains(vId)) {
-                //do nothing
+            var isProductFound = false
 
-                Toast.makeText(this, "Product already in cart", Toast.LENGTH_SHORT).show()
+            for (index in DashBoardActivity.arrayListCart.indices) {
+                val product = DashBoardActivity.arrayListCart[index]
+                if (product.pId == pId) {
+                    isProductFound = true
+                    if (product.variants.contains(
+                            Variants(
+                                color = selectedColor,
+                                size = selectedSize,
+                                quantity = currentNumber,
+                                price = actualPrice,
+                                id = vId
+                            )
+                        )
+                    ) {
+                        Toast.makeText(this, "Product already in cart", Toast.LENGTH_SHORT).show()
+                        sharedPreference.setArray()
+                    } else {
+                        variantArray.clear()
+                        variantArray.addAll(product.variants)
+                        var variantCheck = false
 
-            } else {
+                        for (ind in variantArray.indices) {
+                            if (product.variants[ind].id == vId) {
+                                variantCheck = true
+                                variantArray.set(
+                                    index = ind,
+                                    element = Variants(
+                                        color = selectedColor,
+                                        size = selectedSize,
+                                        quantity = currentNumber,
+                                        price = actualPrice,
+                                        id = vId
+                                    )
+                                )
+                                break
+                            }
+                        }
+                        if (!variantCheck) {
+                            variantArray.add(
+                                Variants(
+                                    color = selectedColor,
+                                    size = selectedSize,
+                                    quantity = currentNumber,
+                                    price = actualPrice,
+                                    id = vId
+                                )
+                            )
+                        }
 
+                    }
+
+                    DashBoardActivity.arrayListCart.set(
+                        index = index, element = CartModel(
+                            pId = pId,
+                            vId = vId,
+                            itemName = itemName,
+                            discountedPrice = discountedPrice.toString(),
+                            actualPrice = actualPrice,
+                            color = selectedColor,
+                            size = selectedSize,
+                            quantity = currentNumber,
+                            totalAmount = totalAmount,
+                            imageUrl = imageUrl,
+                            stock = stock,
+                            variantsArr = arrayListVariant,
+                            variants = variantArray
+                        )
+                    )
+                    Toast.makeText(this, "Product update Successfully", Toast.LENGTH_SHORT).show()
+
+                    Log.d("itemDetails.variants", DashBoardActivity.arrayListCart.toString())
+
+                    sharedPreference.setArray()
+                    break
+                }
+            }
+
+            if (!isProductFound) {
+                variantArray.add(
+                    Variants(
+                        color = selectedColor,
+                        size = selectedSize,
+                        quantity = currentNumber,
+                        price = actualPrice,
+                        id = vId
+                    )
+                )
                 DashBoardActivity.arrayListCart.add(
                     CartModel(
                         pId = pId,
@@ -365,7 +458,8 @@ class ProductDetailsActivity : AppCompatActivity() {
                         totalAmount = totalAmount,
                         imageUrl = imageUrl,
                         stock = stock,
-                        variantsArr = arrayListVariant
+                        variantsArr = arrayListVariant,
+                        variants = variantArray
                     )
                 )
                 DashBoardActivity.selectedVIDs.add(vId)
@@ -374,6 +468,33 @@ class ProductDetailsActivity : AppCompatActivity() {
                 //store  arraylist in SP
                 sharedPreference.setArray()
             }
+
+//            DashBoardActivity.arrayListVariants.addAll(variantArray)
+//            sharedPreference.setArray()
+
+            /* if (DashBoardActivity.selectedVIDs.contains(vId)) {
+                     if (product.variants.contains(Variants(color = color, size = size, quantity = quantitySze))) {
+                         Toast.makeText(this, "Product already in cart", Toast.LENGTH_SHORT).show()
+                     }else{
+                         product.variants.add(Variants(color = color, size = size, quantity = quantitySze))
+                         DashBoardActivity.arrayListCart.add(
+                             product
+                         )
+                     }
+
+             }
+             else {
+
+                 product.variants.add(Variants(color = color, size = size, quantity = quantitySze))
+                 DashBoardActivity.arrayListCart.add(
+                     product
+                 )
+                 DashBoardActivity.selectedVIDs.add(vId)
+                 Toast.makeText(this, "Product Added Successfully", Toast.LENGTH_SHORT).show()
+
+                 //store  arraylist in SP
+                 sharedPreference.setArray()
+             }*/
 
         }
         Log.d("variantTarget", variantTarget)
@@ -617,7 +738,10 @@ class ProductDetailsActivity : AppCompatActivity() {
                     Log.d("PlusV", variantTarget)
                     vId = elements.id
                     Log.d("vId", elements.id)
+
+                    unitPrice = elements.price
                     binding.discountedPriceTV.text = "Rs ${elements.price}.00"
+
                     discountedPrice = elements.price
                     binding.actualPriceTV.text = "Rs ${elements.actualPrice}.00"
                     actualPrice = elements.actualPrice

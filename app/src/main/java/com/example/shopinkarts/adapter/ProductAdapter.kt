@@ -51,8 +51,8 @@ class ProductAdapter(val context: Context, val products: List<CreateProduct>) :
             }
         }
 
-//        sizeQtyAdapter = SizeQtyAdapter(context, itemDetails.variantsArr)
-        sizeQtyAdapter = SizeQtyAdapter(context,itemDetails.variants)
+//      sizeQtyAdapter = SizeQtyAdapter(context, itemDetails.variantsArr)
+        sizeQtyAdapter = SizeQtyAdapter(context, itemDetails.variants)
         holder.binding.sizeQtyRV.adapter = sizeQtyAdapter
         holder.binding.sizeQtyRV.isNestedScrollingEnabled = false
 
@@ -60,7 +60,6 @@ class ProductAdapter(val context: Context, val products: List<CreateProduct>) :
 //            val intent = Intent(context, OrderDetailsActivity::class.java)
 //            context.startActivity(intent)
         }
-
     }
 
     override fun getItemCount(): Int {

@@ -12,6 +12,7 @@ import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.shopinkarts.R
+import com.example.shopinkarts.activity.DashBoardActivity
 import com.example.shopinkarts.activity.DashBoardActivity.Companion.selectedVIDs
 import com.example.shopinkarts.activity.ProductCartActivity
 import com.example.shopinkarts.classes.SharedPreference
@@ -25,6 +26,7 @@ class YourCartAdapter(val context: Context, var arrayList: ArrayList<CartModel>)
     var unitPrice = 0
     var updatePrice = 0
     lateinit var sharedPreference: SharedPreference
+    lateinit var cartColorSizeAdapter: CartColorSizeAdapter
 
     companion object {
         var updateQty = 0
@@ -44,31 +46,38 @@ class YourCartAdapter(val context: Context, var arrayList: ArrayList<CartModel>)
         sharedPreference = SharedPreference(context)
 
         val itemDetails = arrayList[position]
-
         holder.binding.apply {
 
             productNameTV.text = itemDetails.itemName
 
             updatePrice = itemDetails.totalAmount
 
-            discountedPriceTV.text = "Rs ${itemDetails.discountedPrice}.00"
+//            discountedPriceTV.text = "Rs ${updatePrice}.00"
+//            actualPriceTV.text =
+//                "Rs ${ DashBoardActivity.arrayListCart.sumOf { it.totalAmount }.toDouble()}.00"
 
+            var totalPrice = 0
+
+            for (i in itemDetails.variants) {
+
+                totalPrice += i.price * i.quantity
+                Log.d("totalPrice", totalPrice.toString())
+
+            }
+            totalAmountTV.text = "Total Amount-Rs ${totalPrice}.00"
+            discountedPriceTV.text = "Rs ${totalPrice}.00"
             actualPriceTV.text = "Rs ${itemDetails.actualPrice}.00"
-
-            totalAmountTV.text = "Total Amount-Rs ${updatePrice}.00"
 
             Log.d("TAG:totalAmount", "onBindViewHolder: ${(itemDetails.totalAmount)}")
 
-            updateQty = itemDetails.quantity
-            quantityShowTV.text = updateQty.toString()
+//            updateQty = itemDetails.variants[0].quantity
+//          /  quantityShowTV.text = updateQty.toString()
+//            sizeBlockTV.text = itemDetails.variants[0].size
+//            colorIV.setBackgroundColor(Color.parseColor(itemDetails.variants[0].color))
 
-//            ProductCartActivity.qtyVariants = updateQty
-
-            sizeBlockTV.text = itemDetails.size
-            colorIV.setBackgroundColor(Color.parseColor(itemDetails.color))
-            Log.d("COLOR", itemDetails.color)
             Glide.with(context).load(itemDetails.imageUrl).into(imageIV)
 
+/*
             plusQuantityTV.setOnClickListener {
 
                 updateQty = itemDetails.quantity + 1
@@ -131,7 +140,14 @@ class YourCartAdapter(val context: Context, var arrayList: ArrayList<CartModel>)
 
                 }
                 ProductCartActivity.getInstance().updatedCal()
-            }
+            }*/
+
+            cartColorSizeAdapter = CartColorSizeAdapter(context, itemDetails.variants)
+            cartSizeColorRV.adapter = cartColorSizeAdapter
+            cartSizeColorRV.isNestedScrollingEnabled = false
+            cartSizeColorRV.hasFixedSize()
+
+            Log.d("itemDetails.variants", itemDetails.variants.toString())
 
             deleteIconIV.setOnClickListener {
                 ProductCartActivity.getInstance().updatedCal()

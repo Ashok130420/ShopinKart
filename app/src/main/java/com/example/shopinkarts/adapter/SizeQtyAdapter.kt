@@ -6,13 +6,11 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.RecyclerView
-import com.bumptech.glide.Glide
 import com.example.shopinkarts.R
 import com.example.shopinkarts.databinding.ItemsSizeQtyBinding
-import com.example.shopinkarts.model.Variant
-import com.example.shopinkarts.response.VariantsArr
+import com.example.shopinkarts.response.Variants
 
-class SizeQtyAdapter(val context: Context, val arrayList: List<Variant>) :
+class SizeQtyAdapter(val context: Context, val arrayList: List<Variants>) :
     RecyclerView.Adapter<SizeQtyAdapter.ViewHolder>() {
 
 
@@ -34,7 +32,7 @@ class SizeQtyAdapter(val context: Context, val arrayList: List<Variant>) :
 
             colorIV.setBackgroundColor(Color.parseColor(itemDetails.color))
             sizeBlockTV.text = itemDetails.size
-            qtyValueTV.text = itemDetails.qty.toString()
+            qtyValueTV.text = itemDetails.quantity.toString()
 
         }
     }

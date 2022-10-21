@@ -12,7 +12,7 @@ import com.example.shopinkarts.R
 import com.example.shopinkarts.adapter.YourCartAdapter
 import com.example.shopinkarts.classes.Utils
 import com.example.shopinkarts.databinding.ActivityProductCartBinding
-import com.example.shopinkarts.model.Variant
+import com.example.shopinkarts.response.Variants
 import kotlin.math.roundToInt
 
 class ProductCartActivity : AppCompatActivity() {
@@ -70,20 +70,20 @@ class ProductCartActivity : AppCompatActivity() {
 
         }
 
-        for (item in DashBoardActivity.arrayListCart) {
-
-            DashBoardActivity.arrayListVariants.add(
-                Variant(
-                    amount = 0,
-                    color = item.color,
-                    id = item.vId,
-                    qty = YourCartAdapter.updateQty,
-                    size = item.size,
-                )
-            )
-
-            Log.d("arrayListVariants", "onCreate: ${DashBoardActivity.arrayListVariants}")
-        }
+//        for (item in DashBoardActivity.arrayListCart) {
+//
+//            DashBoardActivity.arrayListVariants.add(
+//                Variants(
+//                    price = 0,
+//                    color = item.color,
+//                    id = item.vId,
+//                    quantity = YourCartAdapter.updateQty,
+//                    size = item.size,
+//                )
+//            )
+//
+//            Log.d("arrayListVariants", "onCreate: ${DashBoardActivity.arrayListVariants}")
+//        }
 
         // adapter for your cart
         yourCartAdapter = YourCartAdapter(this, DashBoardActivity.arrayListCart)
@@ -120,32 +120,37 @@ class ProductCartActivity : AppCompatActivity() {
             binding.lottyAnimation.visibility = View.GONE
         }
 
-        totalAmount = DashBoardActivity.arrayListCart.sumOf { it.totalAmount }.toDouble()
-        binding.totalAmountValueTV.text = "RS $totalAmount"
-        Log.d("totalAmount", "onCreate: $totalAmount")
+//        totalAmount = DashBoardActivity.arrayListCart.sumOf { it.totalAmount }.toDouble()
 
-        discountAmount = DashBoardActivity.arrayListCart.sumOf { it.actualPrice }.toFloat()
-        binding.discountsValueTV.text = "- RS $discountAmount"
-        Log.d("totalDis{countAmount", "onCreate: $discountAmount")
+        for (item in DashBoardActivity.arrayListCart) {
 
-        orderTotal = (totalAmount - discountAmount).toFloat()
-        binding.orderTotalValueTV.text = "Rs $orderTotal"
-        Log.d("totalOrderTotal", "onCreate: $orderTotal")
+            totalAmount = item.variants.sumOf { it.price }.toDouble()
+            binding.totalAmountValueTV.text = "RS $totalAmount"
+            Log.d("totalAmount", "onCreate: $totalAmount")
 
-        gst = orderTotal * 5 / 100
-        binding.gstValueTV.text = "Rs $gst"
+            discountAmount = DashBoardActivity.arrayListCart.sumOf { it.actualPrice }.toFloat()
+            binding.discountsValueTV.text = "- RS $discountAmount"
+            Log.d("totalDis{countAmount", "onCreate: $discountAmount")
 
-        amountPaid = orderTotal + gst
-        binding.amountPaidValueTV.text = "Rs $amountPaid"
-        Log.d("totalAmountPaid", "onCreate: $amountPaid")
+            orderTotal = (totalAmount - discountAmount).toFloat()
+            binding.orderTotalValueTV.text = "Rs $orderTotal"
+            Log.d("totalOrderTotal", "onCreate: $orderTotal")
 
-        differenceAmount = (totalAmount - amountPaid).toFloat()
+            gst = orderTotal * 5 / 100
+            binding.gstValueTV.text = "Rs $gst"
 
-        if (DashBoardActivity.arrayListCart.isNotEmpty()) {
-            percentage = differenceAmount / totalAmount * 100
-            binding.giftTV.text =
-                "Congratulations! You are saving ${percentage.roundToInt()} % on \nthis order"
-            Log.d("totalPercentage", "onCreate: ${percentage.roundToInt()}")
+            amountPaid = orderTotal + gst
+            binding.amountPaidValueTV.text = "Rs $amountPaid"
+            Log.d("totalAmountPaid", "onCreate: $amountPaid")
+
+            differenceAmount = (totalAmount - amountPaid).toFloat()
+
+            if (DashBoardActivity.arrayListCart.isNotEmpty()) {
+                percentage = differenceAmount / totalAmount * 100
+                binding.giftTV.text =
+                    "Congratulations! You are saving ${percentage.roundToInt()} % on \nthis order"
+                Log.d("totalPercentage", "onCreate: ${percentage.roundToInt()}")
+            }
         }
     }
 

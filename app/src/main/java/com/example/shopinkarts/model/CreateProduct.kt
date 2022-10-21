@@ -1,5 +1,6 @@
 package com.example.shopinkarts.model
 
+import com.example.shopinkarts.response.Variants
 
 
 data class CreateProduct(
@@ -8,7 +9,7 @@ data class CreateProduct(
     val productName: String,
     val qty: Int,
     val totalAmount: Double,
-    val variants: List<Variant>,
+    val variants: List<Variants>,
 //    val variantsArr: List<VariantsArr>
 
 )

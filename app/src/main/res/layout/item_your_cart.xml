@@ -55,6 +55,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/m14"
+            android:visibility="gone"
             android:fontFamily="@font/dm_sans_medium"
             android:paddingVertical="@dimen/p2"
             android:text="@string/rs_300_00"
@@ -73,137 +74,148 @@
             app:layout_constraintStart_toStartOf="@+id/actualPriceTV"
             app:layout_constraintTop_toTopOf="@+id/actualPriceTV" />
 
-        <ImageView
-            android:id="@+id/colorIV"
-            android:layout_width="@dimen/m24"
-            android:layout_height="@dimen/m24"
-            android:layout_marginTop="@dimen/m6"
-            android:background="@drawable/shape_color_red"
-            android:padding="@dimen/p8"
+        <!-- <ImageView
+             android:id="@+id/colorIV"
+             android:layout_width="@dimen/m24"
+             android:layout_height="@dimen/m24"
+             android:layout_marginTop="@dimen/m6"
+             android:background="@drawable/shape_color_red"
+             android:padding="@dimen/p8"
+             app:layout_constraintStart_toStartOf="@+id/productNameTV"
+             app:layout_constraintTop_toBottomOf="@+id/discountedPriceTV"
+             tools:ignore="ContentDescription" />
+
+         <TextView
+             android:id="@+id/sizeTV"
+             android:layout_width="wrap_content"
+             android:layout_height="wrap_content"
+             android:layout_marginStart="@dimen/m5"
+             android:fontFamily="@font/dm_sans_medium"
+             android:paddingVertical="@dimen/p2"
+             android:text="@string/size"
+             android:textColor="@color/dark_Gray"
+             android:textSize="@dimen/text_size_12"
+             app:layout_constraintBottom_toBottomOf="@+id/colorIV"
+             app:layout_constraintStart_toEndOf="@+id/colorIV"
+             app:layout_constraintTop_toTopOf="@+id/colorIV" />
+
+         <TextView
+             android:id="@+id/sizeBlockTV"
+             android:layout_width="wrap_content"
+             android:layout_height="@dimen/m24"
+             android:layout_marginStart="@dimen/m5"
+             android:background="@drawable/shape_color_grey"
+             android:gravity="center"
+             android:paddingHorizontal="@dimen/p8"
+             android:text="@string/xxl"
+             android:textColor="@color/primary_text"
+             app:layout_constraintBottom_toBottomOf="@+id/sizeTV"
+             app:layout_constraintStart_toEndOf="@+id/sizeTV"
+             app:layout_constraintTop_toTopOf="@+id/sizeTV"
+             tools:ignore="ContentDescription" />
+
+         <TextView
+             android:id="@+id/qtyTV"
+             android:layout_width="wrap_content"
+             android:layout_height="wrap_content"
+             android:layout_marginStart="@dimen/m5"
+             android:fontFamily="@font/dm_sans_medium"
+             android:paddingVertical="@dimen/p2"
+             android:text="@string/qty"
+             android:textColor="@color/dark_Gray"
+             android:textSize="@dimen/text_size_12"
+             app:layout_constraintBottom_toBottomOf="@+id/sizeBlockTV"
+             app:layout_constraintStart_toEndOf="@+id/sizeBlockTV"
+             app:layout_constraintTop_toTopOf="@+id/sizeBlockTV" />
+
+         <androidx.constraintlayout.widget.ConstraintLayout
+             android:id="@+id/qtyCL"
+             android:layout_width="wrap_content"
+             android:layout_height="wrap_content"
+             android:layout_marginStart="@dimen/m5"
+             android:layout_marginEnd="@dimen/m5"
+             app:layout_constraintBottom_toBottomOf="@+id/qtyTV"
+             app:layout_constraintEnd_toEndOf="parent"
+             app:layout_constraintTop_toTopOf="@+id/qtyTV"
+
+             >
+
+             <TextView
+                 android:id="@+id/plusQuantityTV"
+                 android:layout_width="@dimen/m24"
+                 android:layout_height="@dimen/m24"
+                 android:background="@drawable/shape_color_grey"
+                 android:gravity="center"
+                 android:text="@string/plus"
+                 android:textColor="@color/primary_text"
+                 android:textSize="@dimen/text_size_14"
+                 android:textStyle="bold"
+                 android:visibility="visible"
+                 app:layout_constraintStart_toStartOf="parent"
+                 app:layout_constraintTop_toTopOf="parent"
+                 tools:ignore="ContentDescription" />
+
+             <TextView
+                 android:id="@+id/quantityShowTV"
+                 android:layout_width="@dimen/m24"
+                 android:layout_height="@dimen/m24"
+                 android:layout_marginStart="@dimen/m10"
+                 android:background="@drawable/square_button_blue"
+                 android:gravity="center"
+                 android:text="@string/_4"
+                 android:textColor="@color/white"
+                 android:textSize="@dimen/text_size_14"
+                 android:textStyle="bold"
+                 android:visibility="visible"
+                 app:layout_constraintBottom_toBottomOf="@+id/plusQuantityTV"
+                 app:layout_constraintStart_toEndOf="@+id/plusQuantityTV"
+                 app:layout_constraintTop_toTopOf="@+id/plusQuantityTV"
+                 tools:ignore="ContentDescription" />
+
+             <TextView
+                 android:id="@+id/minusQuantityTV"
+                 android:layout_width="@dimen/m24"
+                 android:layout_height="@dimen/m24"
+                 android:layout_marginStart="@dimen/m10"
+                 android:background="@drawable/shape_color_grey"
+                 android:gravity="center"
+                 android:text="@string/minus"
+                 android:textColor="@color/primary_text"
+                 android:textSize="@dimen/text_size_14"
+                 android:textStyle="bold"
+                 android:visibility="visible"
+                 app:layout_constraintBottom_toBottomOf="@+id/plusQuantityTV"
+                 app:layout_constraintStart_toEndOf="@+id/quantityShowTV"
+                 app:layout_constraintTop_toTopOf="@+id/plusQuantityTV"
+                 tools:ignore="ContentDescription" />
+
+
+         </androidx.constraintlayout.widget.ConstraintLayout>-->
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/cartSizeColorRV"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="@+id/productNameTV"
             app:layout_constraintTop_toBottomOf="@+id/discountedPriceTV"
-            tools:ignore="ContentDescription" />
-
-        <TextView
-            android:id="@+id/sizeTV"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/m5"
-            android:fontFamily="@font/dm_sans_medium"
-            android:paddingVertical="@dimen/p2"
-            android:text="@string/size"
-            android:textColor="@color/dark_Gray"
-            android:textSize="@dimen/text_size_12"
-            app:layout_constraintBottom_toBottomOf="@+id/colorIV"
-            app:layout_constraintStart_toEndOf="@+id/colorIV"
-            app:layout_constraintTop_toTopOf="@+id/colorIV" />
-
-        <TextView
-            android:id="@+id/sizeBlockTV"
-            android:layout_width="wrap_content"
-            android:layout_height="@dimen/m24"
-            android:layout_marginStart="@dimen/m5"
-            android:background="@drawable/shape_color_grey"
-            android:gravity="center"
-            android:paddingHorizontal="@dimen/p8"
-            android:text="@string/xxl"
-            android:textColor="@color/primary_text"
-            app:layout_constraintBottom_toBottomOf="@+id/sizeTV"
-            app:layout_constraintStart_toEndOf="@+id/sizeTV"
-            app:layout_constraintTop_toTopOf="@+id/sizeTV"
-            tools:ignore="ContentDescription" />
-
-        <TextView
-            android:id="@+id/qtyTV"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/m5"
-            android:fontFamily="@font/dm_sans_medium"
-            android:paddingVertical="@dimen/p2"
-            android:text="@string/qty"
-            android:textColor="@color/dark_Gray"
-            android:textSize="@dimen/text_size_12"
-            app:layout_constraintBottom_toBottomOf="@+id/sizeBlockTV"
-            app:layout_constraintStart_toEndOf="@+id/sizeBlockTV"
-            app:layout_constraintTop_toTopOf="@+id/sizeBlockTV" />
-
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/qtyCL"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/m5"
-            android:layout_marginEnd="@dimen/m5"
-            app:layout_constraintBottom_toBottomOf="@+id/qtyTV"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/qtyTV"
-
-            >
-
-            <TextView
-                android:id="@+id/plusQuantityTV"
-                android:layout_width="@dimen/m24"
-                android:layout_height="@dimen/m24"
-                android:background="@drawable/shape_color_grey"
-                android:gravity="center"
-                android:text="@string/plus"
-                android:textColor="@color/primary_text"
-                android:textSize="@dimen/text_size_14"
-                android:textStyle="bold"
-                android:visibility="visible"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                tools:ignore="ContentDescription" />
-
-            <TextView
-                android:id="@+id/quantityShowTV"
-                android:layout_width="@dimen/m24"
-                android:layout_height="@dimen/m24"
-                android:layout_marginStart="@dimen/m10"
-                android:background="@drawable/square_button_blue"
-                android:gravity="center"
-                android:text="@string/_4"
-                android:textColor="@color/white"
-                android:textSize="@dimen/text_size_14"
-                android:textStyle="bold"
-                android:visibility="visible"
-                app:layout_constraintBottom_toBottomOf="@+id/plusQuantityTV"
-                app:layout_constraintStart_toEndOf="@+id/plusQuantityTV"
-                app:layout_constraintTop_toTopOf="@+id/plusQuantityTV"
-                tools:ignore="ContentDescription" />
-
-            <TextView
-                android:id="@+id/minusQuantityTV"
-                android:layout_width="@dimen/m24"
-                android:layout_height="@dimen/m24"
-                android:layout_marginStart="@dimen/m10"
-                android:background="@drawable/shape_color_grey"
-                android:gravity="center"
-                android:text="@string/minus"
-                android:textColor="@color/primary_text"
-                android:textSize="@dimen/text_size_14"
-                android:textStyle="bold"
-                android:visibility="visible"
-                app:layout_constraintBottom_toBottomOf="@+id/plusQuantityTV"
-                app:layout_constraintStart_toEndOf="@+id/quantityShowTV"
-                app:layout_constraintTop_toTopOf="@+id/plusQuantityTV"
-                tools:ignore="ContentDescription" />
-
-
-        </androidx.constraintlayout.widget.ConstraintLayout>
+            tools:itemCount="2"
+            tools:listitem="@layout/items_cart_color_size_qty" />
 
         <TextView
             android:id="@+id/totalAmountTV"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:visibility="gone"
             android:layout_marginTop="@dimen/m10"
             android:fontFamily="@font/dm_sans_medium"
             android:paddingVertical="@dimen/p2"
             android:text="@string/total_amount_rs_1000"
             android:textColor="@color/dark_Gray"
             android:textSize="@dimen/text_size_10"
-            app:layout_constraintBottom_toBottomOf="@+id/imageIV"
             app:layout_constraintStart_toStartOf="@+id/productNameTV"
-            app:layout_constraintTop_toBottomOf="@+id/colorIV" />
+            app:layout_constraintTop_toBottomOf="@+id/cartSizeColorRV" />
 
         <ImageView
             android:id="@+id/delete_iconIV"
