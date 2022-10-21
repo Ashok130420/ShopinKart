@@ -52,6 +52,7 @@ class CheckOutDetailsActivity : AppCompatActivity() {
     var landmark = ""
     var totalPrice = 0
     var finalPrice = 0
+    var totalQuantity=0
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         Utils.changeStatusTextColor(this)
@@ -336,12 +337,18 @@ class CheckOutDetailsActivity : AppCompatActivity() {
 //        totalAmount = DashBoardActivity.arrayListCart.sumOf { it.totalAmount }.toDouble()
 
             var t = 0
+            var q = 0
             for (i in item.variants) {
+
                 finalPrice += i.price * i.quantity
                 t += i.price * i.quantity
                 Log.d("totalPrice", totalPrice.toString())
 
+                q += i.quantity
+                Log.d("totalQuantity", q.toString())
             }
+
+            totalQuantity=q
             totalPrice = t
 //            val sum= item.variants.sumOf { it.price }
 
@@ -350,7 +357,7 @@ class CheckOutDetailsActivity : AppCompatActivity() {
                     productId = item.pId,
                     productImage = item.imageUrl,
                     productName = item.itemName,
-                    qty = item.quantity,
+                    qty = totalQuantity,
                     totalAmount = totalPrice.toDouble(),
                     variants = item.variants
                 )

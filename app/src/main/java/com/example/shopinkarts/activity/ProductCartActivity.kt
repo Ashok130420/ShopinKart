@@ -31,6 +31,7 @@ class ProductCartActivity : AppCompatActivity() {
     companion object {
         var cartInstance: ProductCartActivity = ProductCartActivity()
         var orderTotalAmount=0
+        var orderTotalQuantity=0
         fun getInstance(): ProductCartActivity {
             return cartInstance
         }

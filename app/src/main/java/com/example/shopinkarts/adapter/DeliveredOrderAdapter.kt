@@ -30,7 +30,7 @@ class DeliveredOrderAdapter(val context: Context, val arrayList: ArrayList<Order
         var paymentType = 0
         var arrayListInvoice: ArrayList<CreateProduct> = ArrayList()
         var tAmount = 0F
-        var orderTotalAmount=0
+        var orderTotalAmount = 0
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -139,6 +139,8 @@ class DeliveredOrderAdapter(val context: Context, val arrayList: ArrayList<Order
                 val intent = Intent(context, InvoiceActivity::class.java)
                 //send position
                 intent.putExtra("position", position)
+                intent.putExtra("orderId", itemDetails.orderId)
+
                 context.startActivity(intent)
             }
 //            }

@@ -11,7 +11,8 @@ import com.example.shopinkarts.databinding.ItemsInvoiceDetailsBinding
 import com.example.shopinkarts.model.CreateProduct
 
 class InvoiceAdapter(
-    val context: Context, val arrayList: List<CreateProduct>) : RecyclerView.Adapter<InvoiceAdapter.ViewHolder>() {
+    val context: Context, val arrayList: List<CreateProduct>
+) : RecyclerView.Adapter<InvoiceAdapter.ViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val binding: ItemsInvoiceDetailsBinding = DataBindingUtil.inflate(
@@ -29,7 +30,7 @@ class InvoiceAdapter(
         val itemDetails = arrayList[position]
         holder.binding.apply {
 
-            itemsNameTV.text = itemDetails.productName
+            itemsNameTV.text = "${itemDetails.productName} \nPid-(${ itemDetails.productId })"
             qtyValueTV.text = itemDetails.qty.toString()
             totalAmountValueTV.text = "RS ${itemDetails.totalAmount}"
 

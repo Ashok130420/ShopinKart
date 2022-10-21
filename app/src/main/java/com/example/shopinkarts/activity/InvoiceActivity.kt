@@ -43,6 +43,7 @@ class InvoiceActivity : AppCompatActivity() {
     var arrayList: List<CreateProduct> = ArrayList()
     var gstAmount = 0F
     var pdfNumber = 1
+    var orderId = ""
 
 //    var pageHeight = 1120
 //    var pageWidth = 792
@@ -65,6 +66,9 @@ class InvoiceActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
 
         binding = DataBindingUtil.setContentView(this, R.layout.activity_invoice)
+
+        orderId = intent.extras!!.getString("orderId", "")
+        Log.d("orderId", orderId.toString())
 
         ActivityCompat.requestPermissions(
             this,
@@ -122,6 +126,8 @@ class InvoiceActivity : AppCompatActivity() {
 
         binding.customerNameTV.text =
             "${sharedPreference.getName()}\n${sharedPreference.getFlat()},${sharedPreference.getStreet()}, ${sharedPreference.getPin()},${sharedPreference.getCity()},${sharedPreference.getLandmark()}"
+
+        binding.orderIdTV.text = "Order Id-${orderId}"
 
         binding.paymentTV.text =
             "COD : Collect amount \nRs ${OrdersFragment.arrayListMyOrders[position].totalAmount + OrdersFragment.arrayListMyOrders[position].gstAmount} /-"
@@ -256,10 +262,14 @@ class InvoiceActivity : AppCompatActivity() {
 
     private fun getScreenShotFromView(v: View): Bitmap? {
         // create a bitmap object
+
+        binding.downloadInvoiceTV.visibility = View.INVISIBLE
+
         var screenshot: Bitmap? = null
         try {
 
-            screenshot = Bitmap.createBitmap(v.measuredWidth, v.measuredHeight, Bitmap.Config.ARGB_8888)
+            screenshot =
+                Bitmap.createBitmap(v.measuredWidth, v.measuredHeight, Bitmap.Config.ARGB_8888)
             // Now draw this bitmap on a canvas
             Log.d("screenshot", screenshot.toString())
 
@@ -313,6 +323,7 @@ class InvoiceActivity : AppCompatActivity() {
             // Finally writing the bitmap to the output stream that we opened
             bitmap.compress(Bitmap.CompressFormat.JPEG, 100, it)
             Toast.makeText(this, "Invoice saved to Gallery", Toast.LENGTH_SHORT).show()
+            finish()
         }
 
     }
