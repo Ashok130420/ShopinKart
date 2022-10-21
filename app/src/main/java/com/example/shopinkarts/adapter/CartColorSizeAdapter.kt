@@ -34,69 +34,69 @@ class CartColorSizeAdapter(val context: Context, val arrayList: ArrayList<Varian
             sizeBlockTV.text = itemDetails.size
             colorIV.setBackgroundColor(Color.parseColor(itemDetails.color))
 
-//            plusQuantityTV.setOnClickListener {
-//
-//                updateQty = itemDetails.quantity + 1
-//
-//                Log.d("defaultCQ", itemDetails.quantity.toString())
-//                Log.d("after+CQ", updateQty.toString())
-//                Log.d("stock", itemDetails.stock.toString())
-//                Log.d(" itemDetails.quantity", itemDetails.quantity.toString())
-//
-//                unitPrice = itemDetails.discountedPrice.toInt()
-//
-//                if (updateQty <= itemDetails.stock) {
-//
-//                    itemDetails.quantity = updateQty
-//
-//                    Log.d("stockstockstock", unitPrice.toString())
-//                    Log.d("stockstockstock", updateQty.toString())
-//                    Log.d("stockstockstock", "${unitPrice * updateQty}")
-//
-//                    updatePrice = unitPrice * updateQty
-//                    itemDetails.totalAmount = updatePrice
-//
-//                    notifyDataSetChanged()
-//                    sharedPreference.setArray()
-//
-//                } else {
-//                    Toast.makeText(context, "Out of stock", Toast.LENGTH_SHORT).show()
-//                }
-//                ProductCartActivity.getInstance().updatedCal()
-//            }
-//
-//            minusQuantityTV.setOnClickListener {
-//
-//                Log.d("defaultCQ", itemDetails.quantity.toString())
-//                Log.d("after+CQ", (itemDetails.quantity.toInt() - 1).toString())
-//                Log.d("stock", itemDetails.stock.toString())
-//
-//                updateQty = itemDetails.quantity - 1
-//
-//                val unitPrice = itemDetails.discountedPrice.toInt()
-//
-//                if (updateQty == 0) {
-//                    //delete item
-//                    arrayList.removeAt(position)
-//                    selectedVIDs.removeAt(position)
-//                    sharedPreference.setArray()
-//
-//
-//                    notifyDataSetChanged()
-//
-//
-//                } else {
-//
-//                    //update item
-//                    itemDetails.quantity = updateQty
-//                    updatePrice = unitPrice * updateQty
-//                    itemDetails.totalAmount = updatePrice
-//                    sharedPreference.setArray()
-//                    notifyDataSetChanged()
-//
-//                }
-//                ProductCartActivity.getInstance().updatedCal()
-//            }
+  /*          plusQuantityTV.setOnClickListener {
+
+                updateQty = itemDetails.quantity + 1
+
+                Log.d("defaultCQ", itemDetails.quantity.toString())
+                Log.d("after+CQ", updateQty.toString())
+                Log.d("stock", itemDetails.stock.toString())
+                Log.d(" itemDetails.quantity", itemDetails.quantity.toString())
+
+                unitPrice = itemDetails.discountedPrice.toInt()
+
+                if (updateQty <= itemDetails.stock) {
+
+                    itemDetails.quantity = updateQty
+
+                    Log.d("stockstockstock", unitPrice.toString())
+                    Log.d("stockstockstock", updateQty.toString())
+                    Log.d("stockstockstock", "${unitPrice * updateQty}")
+
+                    updatePrice = unitPrice * updateQty
+                    itemDetails.totalAmount = updatePrice
+
+                    notifyDataSetChanged()
+                    sharedPreference.setArray()
+
+                } else {
+                    Toast.makeText(context, "Out of stock", Toast.LENGTH_SHORT).show()
+                }
+                ProductCartActivity.getInstance().updatedCal()
+            }
+
+            minusQuantityTV.setOnClickListener {
+
+                Log.d("defaultCQ", itemDetails.quantity.toString())
+                Log.d("after+CQ", (itemDetails.quantity.toInt() - 1).toString())
+                Log.d("stock", itemDetails.stock.toString())
+
+                updateQty = itemDetails.quantity - 1
+
+                val unitPrice = itemDetails.discountedPrice.toInt()
+
+                if (updateQty == 0) {
+                    //delete item
+                    arrayList.removeAt(position)
+                    selectedVIDs.removeAt(position)
+                    sharedPreference.setArray()
+
+
+                    notifyDataSetChanged()
+
+
+                } else {
+
+                    //update item
+                    itemDetails.quantity = updateQty
+                    updatePrice = unitPrice * updateQty
+                    itemDetails.totalAmount = updatePrice
+                    sharedPreference.setArray()
+                    notifyDataSetChanged()
+
+                }
+                ProductCartActivity.getInstance().updatedCal()
+            }*/
 
         }
 

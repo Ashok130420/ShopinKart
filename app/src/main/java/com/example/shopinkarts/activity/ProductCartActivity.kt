@@ -30,6 +30,7 @@ class ProductCartActivity : AppCompatActivity() {
 
     companion object {
         var cartInstance: ProductCartActivity = ProductCartActivity()
+        var orderTotalAmount=0
         fun getInstance(): ProductCartActivity {
             return cartInstance
         }
@@ -46,7 +47,7 @@ class ProductCartActivity : AppCompatActivity() {
 
         DashBoardActivity.arrayListCart
 
-        updatedCal()
+//        updatedCal()
 
         binding.headerProductCart.backIV.setOnClickListener {
             finish()
@@ -58,7 +59,7 @@ class ProductCartActivity : AppCompatActivity() {
 
             binding.orderSummaryTV.visibility = View.VISIBLE
             binding.amountCL.visibility = View.VISIBLE
-            binding.continueCL.visibility = View.VISIBLE
+            binding.continueCL.visibility = View.GONE
             binding.continueTV.visibility = View.VISIBLE
 
         } else {
@@ -70,20 +71,6 @@ class ProductCartActivity : AppCompatActivity() {
 
         }
 
-//        for (item in DashBoardActivity.arrayListCart) {
-//
-//            DashBoardActivity.arrayListVariants.add(
-//                Variants(
-//                    price = 0,
-//                    color = item.color,
-//                    id = item.vId,
-//                    quantity = YourCartAdapter.updateQty,
-//                    size = item.size,
-//                )
-//            )
-//
-//            Log.d("arrayListVariants", "onCreate: ${DashBoardActivity.arrayListVariants}")
-//        }
 
         // adapter for your cart
         yourCartAdapter = YourCartAdapter(this, DashBoardActivity.arrayListCart)
@@ -92,6 +79,8 @@ class ProductCartActivity : AppCompatActivity() {
         yourCartAdapter.notifyDataSetChanged()
 
         Log.d("arrayListCart", DashBoardActivity.arrayListCart.toString())
+
+//        updatedCal()
 
         binding.continueTV.setOnClickListener {
             val intent = Intent(this, CheckOutDetailsActivity::class.java)
@@ -108,6 +97,7 @@ class ProductCartActivity : AppCompatActivity() {
 
     @SuppressLint("SetTextI18n")
     fun updatedCal() {
+
         if (DashBoardActivity.arrayListCart.isEmpty()) {
             binding.lottyAnimation.visibility = View.VISIBLE
             binding.yourCartCL.visibility = View.GONE
@@ -122,36 +112,37 @@ class ProductCartActivity : AppCompatActivity() {
 
 //        totalAmount = DashBoardActivity.arrayListCart.sumOf { it.totalAmount }.toDouble()
 
-        for (item in DashBoardActivity.arrayListCart) {
+//        for (item in DashBoardActivity.arrayListCart) {
 
-            totalAmount = item.variants.sumOf { it.price }.toDouble()
-            binding.totalAmountValueTV.text = "RS $totalAmount"
-            Log.d("totalAmount", "onCreate: $totalAmount")
+//            totalAmount = item.variants.sumOf { it.price }.toDouble()
 
-            discountAmount = DashBoardActivity.arrayListCart.sumOf { it.actualPrice }.toFloat()
-            binding.discountsValueTV.text = "- RS $discountAmount"
-            Log.d("totalDis{countAmount", "onCreate: $discountAmount")
+            binding.totalAmountValueTV.text = "RS $orderTotalAmount"
+            Log.d("totalAmount", "onCreate: $orderTotalAmount")
 
-            orderTotal = (totalAmount - discountAmount).toFloat()
-            binding.orderTotalValueTV.text = "Rs $orderTotal"
-            Log.d("totalOrderTotal", "onCreate: $orderTotal")
+//            discountAmount = DashBoardActivity.arrayListCart.sumOf { it.actualPrice }.toFloat()
+//            binding.discountsValueTV.text = "- RS $discountAmount"
+//            Log.d("totalDis{countAmount", "onCreate: $discountAmount")
+//
+//            orderTotal = (totalAmount - discountAmount).toFloat()
+//            binding.orderTotalValueTV.text = "Rs $orderTotal"
+//            Log.d("totalOrderTotal", "onCreate: $orderTotal")
 
-            gst = orderTotal * 5 / 100
+            gst = (orderTotalAmount * 5 / 100).toFloat()
             binding.gstValueTV.text = "Rs $gst"
 
-            amountPaid = orderTotal + gst
+            amountPaid = orderTotalAmount + gst
             binding.amountPaidValueTV.text = "Rs $amountPaid"
             Log.d("totalAmountPaid", "onCreate: $amountPaid")
 
             differenceAmount = (totalAmount - amountPaid).toFloat()
 
-            if (DashBoardActivity.arrayListCart.isNotEmpty()) {
-                percentage = differenceAmount / totalAmount * 100
-                binding.giftTV.text =
-                    "Congratulations! You are saving ${percentage.roundToInt()} % on \nthis order"
-                Log.d("totalPercentage", "onCreate: ${percentage.roundToInt()}")
-            }
+//            if (DashBoardActivity.arrayListCart.isNotEmpty()) {
+//                percentage = differenceAmount / totalAmount * 100
+//                binding.giftTV.text =
+//                    "Congratulations! You are saving ${percentage.roundToInt()} % on \nthis order"
+//                Log.d("totalPercentage", "onCreate: ${percentage.roundToInt()}")
+//            }
         }
-    }
+//    }
 
 }

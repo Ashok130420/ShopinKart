@@ -28,6 +28,9 @@ class YourCartAdapter(val context: Context, var arrayList: ArrayList<CartModel>)
     lateinit var sharedPreference: SharedPreference
     lateinit var cartColorSizeAdapter: CartColorSizeAdapter
 
+
+    var finalTotalPrice = 0
+
     companion object {
         var updateQty = 0
     }
@@ -40,7 +43,7 @@ class YourCartAdapter(val context: Context, var arrayList: ArrayList<CartModel>)
         return ViewHolder(binding)
     }
 
-    @SuppressLint("SetTextI18n")
+    @SuppressLint("SetTextI18n", "NotifyDataSetChanged")
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
 
         sharedPreference = SharedPreference(context)
@@ -64,6 +67,13 @@ class YourCartAdapter(val context: Context, var arrayList: ArrayList<CartModel>)
                 Log.d("totalPrice", totalPrice.toString())
 
             }
+
+            finalTotalPrice += totalPrice
+
+            ProductCartActivity.orderTotalAmount = finalTotalPrice
+
+            ProductCartActivity.cartInstance.updatedCal()
+
             totalAmountTV.text = "Total Amount-Rs ${totalPrice}.00"
             discountedPriceTV.text = "Rs ${totalPrice}.00"
             actualPriceTV.text = "Rs ${itemDetails.actualPrice}.00"
