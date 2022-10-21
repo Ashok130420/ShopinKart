@@ -157,7 +157,7 @@
                             android:fontFamily="@font/dm_sans"
                             android:text="@string/shop_for"
                             android:textColor="@color/primary_text"
-                            android:textSize="@dimen/text_size_14"
+                            android:textSize="@dimen/text_size_16"
                             android:visibility="invisible"
                             app:layout_constraintStart_toStartOf="parent"
                             app:layout_constraintTop_toTopOf="parent" />
@@ -190,7 +190,7 @@
                             android:fontFamily="@font/dm_sans"
                             android:text="@string/preferred_manufacturer"
                             android:textColor="@color/primary_text"
-                            android:textSize="@dimen/text_size_14"
+                            android:textSize="@dimen/text_size_16"
                             android:visibility="invisible"
                             app:layout_constraintStart_toStartOf="parent"
                             app:layout_constraintTop_toTopOf="parent" />
@@ -202,7 +202,7 @@
                             android:fontFamily="@font/dm_sans"
                             android:text="@string/view_all"
                             android:textColor="@color/primary_Blue"
-                            android:textSize="@dimen/text_size_10"
+                            android:textSize="@dimen/text_size_12"
                             android:visibility="gone"
                             app:layout_constraintBottom_toBottomOf="@+id/preferredManufacturerTV"
                             app:layout_constraintEnd_toEndOf="parent"
@@ -225,7 +225,7 @@
                         android:id="@+id/mostPopularCL"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="@dimen/m20"
+                        android:layout_marginTop="@dimen/m16"
                         app:layout_constraintTop_toBottomOf="@+id/preferredManufacturerCl">
 
                         <TextView
@@ -236,7 +236,7 @@
                             android:paddingVertical="@dimen/m10"
                             android:text="@string/most_popular"
                             android:textColor="@color/primary_text"
-                            android:textSize="@dimen/text_size_14"
+                            android:textSize="@dimen/text_size_16"
                             android:visibility="invisible"
                             app:layout_constraintStart_toStartOf="parent"
                             app:layout_constraintTop_toTopOf="parent" />
@@ -248,7 +248,7 @@
                             android:fontFamily="@font/dm_sans"
                             android:text="@string/view_all"
                             android:textColor="@color/primary_Blue"
-                            android:textSize="@dimen/text_size_10"
+                            android:textSize="@dimen/text_size_12"
                             android:visibility="invisible"
                             app:layout_constraintBottom_toBottomOf="@+id/mostPopularTV"
                             app:layout_constraintEnd_toEndOf="parent"
@@ -281,7 +281,7 @@
                             android:paddingVertical="@dimen/m10"
                             android:text="@string/top_rated"
                             android:textColor="@color/primary_text"
-                            android:textSize="@dimen/text_size_14"
+                            android:textSize="@dimen/text_size_16"
                             android:visibility="invisible"
                             app:layout_constraintStart_toStartOf="parent"
                             app:layout_constraintTop_toTopOf="parent" />
@@ -293,7 +293,7 @@
                             android:fontFamily="@font/dm_sans"
                             android:text="@string/view_all"
                             android:textColor="@color/primary_Blue"
-                            android:textSize="@dimen/text_size_10"
+                            android:textSize="@dimen/text_size_12"
                             android:visibility="invisible"
                             app:layout_constraintBottom_toBottomOf="@+id/topRatedTV"
                             app:layout_constraintEnd_toEndOf="parent"
@@ -372,7 +372,7 @@
                             android:fontFamily="@font/dm_sans"
                             android:text="@string/newly_added"
                             android:textColor="@color/primary_text"
-                            android:textSize="@dimen/text_size_14"
+                            android:textSize="@dimen/text_size_16"
                             app:layout_constraintStart_toStartOf="parent"
                             app:layout_constraintTop_toTopOf="parent" />
 
@@ -383,7 +383,7 @@
                             android:fontFamily="@font/dm_sans"
                             android:text="@string/view_all"
                             android:textColor="@color/primary_Blue"
-                            android:textSize="@dimen/text_size_10"
+                            android:textSize="@dimen/text_size_12"
                             app:layout_constraintBottom_toBottomOf="@+id/newlyAddedTV"
                             app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintTop_toTopOf="@+id/newlyAddedTV" />
@@ -431,7 +431,7 @@
                             android:fontFamily="@font/dm_sans"
                             android:text="@string/deal_of_the_day"
                             android:textColor="@color/primary_text"
-                            android:textSize="@dimen/text_size_14"
+                            android:textSize="@dimen/text_size_16"
                             app:layout_constraintStart_toStartOf="parent"
                             app:layout_constraintTop_toTopOf="parent" />
 
@@ -442,7 +442,7 @@
                             android:fontFamily="@font/dm_sans"
                             android:text="@string/view_all"
                             android:textColor="@color/primary_Blue"
-                            android:textSize="@dimen/text_size_10"
+                            android:textSize="@dimen/text_size_12"
                             app:layout_constraintBottom_toBottomOf="@+id/dealOfDayTV"
                             app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintTop_toTopOf="@+id/dealOfDayTV" />
@@ -477,7 +477,7 @@
                             android:fontFamily="@font/dm_sans"
                             android:text="@string/popular_brand"
                             android:textColor="@color/primary_text"
-                            android:textSize="@dimen/text_size_14"
+                            android:textSize="@dimen/text_size_16"
                             app:layout_constraintStart_toStartOf="parent"
                             app:layout_constraintTop_toTopOf="parent" />
 
@@ -488,7 +488,7 @@
                             android:fontFamily="@font/dm_sans"
                             android:text="@string/view_all"
                             android:textColor="@color/primary_Blue"
-                            android:textSize="@dimen/text_size_10"
+                            android:textSize="@dimen/text_size_12"
                             app:layout_constraintBottom_toBottomOf="@+id/popularBrandTV"
                             app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintTop_toTopOf="@+id/popularBrandTV" />
@@ -520,7 +520,7 @@
                             android:paddingVertical="@dimen/m10"
                             android:text="@string/discount_for_you"
                             android:textColor="@color/primary_text"
-                            android:textSize="@dimen/text_size_14"
+                            android:textSize="@dimen/text_size_16"
                             app:layout_constraintStart_toStartOf="parent"
                             app:layout_constraintTop_toTopOf="parent" />
 
@@ -531,7 +531,7 @@
                             android:fontFamily="@font/dm_sans"
                             android:text="@string/view_all"
                             android:textColor="@color/primary_Blue"
-                            android:textSize="@dimen/text_size_10"
+                            android:textSize="@dimen/text_size_12"
                             app:layout_constraintBottom_toBottomOf="@+id/discountForYouTV"
                             app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintTop_toTopOf="@+id/discountForYouTV" />
@@ -562,7 +562,7 @@
                             android:paddingVertical="@dimen/m10"
                             android:text="@string/recommended"
                             android:textColor="@color/primary_text"
-                            android:textSize="@dimen/text_size_14"
+                            android:textSize="@dimen/text_size_16"
                             app:layout_constraintStart_toStartOf="parent"
                             app:layout_constraintTop_toTopOf="parent" />
 
@@ -573,7 +573,7 @@
                             android:fontFamily="@font/dm_sans"
                             android:text="@string/view_all"
                             android:textColor="@color/primary_Blue"
-                            android:textSize="@dimen/text_size_10"
+                            android:textSize="@dimen/text_size_12"
                             app:layout_constraintBottom_toBottomOf="@+id/recommendedTV"
                             app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintTop_toTopOf="@+id/recommendedTV" />
@@ -617,6 +617,7 @@
                             android:layout_marginTop="@dimen/m18"
                             android:text="@string/closing_in"
                             android:textColor="#CCCCCC"
+                            android:visibility="gone"
                             app:layout_constraintEnd_toStartOf="@+id/clock1TV"
                             app:layout_constraintStart_toStartOf="@+id/FlashSaleTV"
                             app:layout_constraintTop_toBottomOf="@+id/FlashSaleTV" />
@@ -630,6 +631,7 @@
                             android:text=" 00 : 00 : 00 "
                             android:textColor="@color/primary_Blue"
                             android:textSize="@dimen/text_size_16"
+                            android:visibility="gone"
                             app:layout_constraintBottom_toBottomOf="@+id/closingTV"
                             app:layout_constraintStart_toEndOf="@+id/closingTV"
                             app:layout_constraintTop_toTopOf="@+id/closingTV" />
@@ -644,7 +646,7 @@
                              android:padding="@dimen/p5"
                              android:text="@string/_35"
                              android:textColor="@color/white"
-                             android:textSize="@dimen/text_size_14"
+                             android:textSize="@dimen/text_size_16"
                              app:layout_constraintBottom_toBottomOf="@+id/closingTV"
                              app:layout_constraintEnd_toStartOf="@+id/clock3TV"
                              app:layout_constraintStart_toEndOf="@+id/clock1TV"
@@ -661,7 +663,7 @@
                              android:padding="@dimen/p5"
                              android:text="@string/_05"
                              android:textColor="@color/white"
-                             android:textSize="@dimen/text_size_14"
+                             android:textSize="@dimen/text_size_16"
                              app:layout_constraintBottom_toBottomOf="@+id/closingTV"
                              app:layout_constraintEnd_toEndOf="@+id/FlashSaleTV"
                              app:layout_constraintStart_toEndOf="@+id/clock2TV"

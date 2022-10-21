@@ -43,7 +43,7 @@ class SignUpActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         Utils.changeStatusTextColor(this)
-        Utils.changeStatusColor(this,R.color.white)
+        Utils.changeStatusColor(this, R.color.white)
         binding = DataBindingUtil.setContentView(this, R.layout.activity_sign_up)
 
         sharedPreference = SharedPreference(this)
@@ -147,7 +147,7 @@ class SignUpActivity : AppCompatActivity() {
         requestBody["userType"] = userType
 
         val mProgressDialog = ProgressDialog(this)
-        mProgressDialog.setTitle("Loading....")
+        mProgressDialog.setMessage("Loading....")
         mProgressDialog.setCanceledOnTouchOutside(false)
         mProgressDialog.show()
 

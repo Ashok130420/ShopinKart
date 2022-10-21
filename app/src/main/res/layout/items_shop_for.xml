@@ -47,6 +47,7 @@
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/p5"
             app:layout_constraintEnd_toEndOf="@id/imageCL"
             app:layout_constraintStart_toStartOf="@id/imageCL"
             app:layout_constraintTop_toBottomOf="@id/imageCL">
@@ -58,7 +59,7 @@
                 android:fontFamily="@font/dm_sans_medium"
                 android:text="@string/men"
                 android:textColor="@color/primary_text"
-                android:textSize="@dimen/text_size_12"
+                android:textSize="@dimen/text_size_14"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 

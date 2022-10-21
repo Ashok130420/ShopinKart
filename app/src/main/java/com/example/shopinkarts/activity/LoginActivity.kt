@@ -132,7 +132,7 @@ class LoginActivity : AppCompatActivity() {
 
         /*Progress bar*/
         val mProgressDialog = ProgressDialog(this)
-        mProgressDialog.setTitle("Loading....")
+        mProgressDialog.setMessage("Loading....")
         mProgressDialog.show()
 
         val call: Call<LoginResponse> =

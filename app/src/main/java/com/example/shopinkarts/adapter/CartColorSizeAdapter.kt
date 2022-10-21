@@ -7,7 +7,6 @@ import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.example.shopinkarts.R
-import com.example.shopinkarts.adapter.YourCartAdapter.Companion.updateQty
 import com.example.shopinkarts.databinding.ItemsCartColorSizeQtyBinding
 import com.example.shopinkarts.response.Variants
 
