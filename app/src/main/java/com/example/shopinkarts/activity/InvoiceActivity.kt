@@ -264,6 +264,7 @@ class InvoiceActivity : AppCompatActivity() {
         // create a bitmap object
 
         binding.downloadInvoiceTV.visibility = View.INVISIBLE
+        binding.back.visibility = View.INVISIBLE
 
         var screenshot: Bitmap? = null
         try {
@@ -322,7 +323,13 @@ class InvoiceActivity : AppCompatActivity() {
         fos?.use {
             // Finally writing the bitmap to the output stream that we opened
             bitmap.compress(Bitmap.CompressFormat.JPEG, 100, it)
-            Toast.makeText(this, "Invoice saved to Gallery", Toast.LENGTH_SHORT).show()
+            Toast.makeText(
+                this,
+                "Invoice saved to Gallery at " + "${
+                    Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES)
+                }",
+                Toast.LENGTH_SHORT
+            ).show()
             finish()
         }
 

@@ -45,7 +45,7 @@ class DashBoardActivity : AppCompatActivity() {
     override fun onResume() {
 
         if (profile.isEmpty()) {
-            binding.headerDashBoard.profileIV.setBackgroundResource(R.drawable.profile)
+            binding.headerDashBoard.profileIV.setBackgroundResource(R.drawable.white_blue_logo)
         } else {
             Glide.with(this).load(profile).into(binding.headerDashBoard.profileIV)
         }

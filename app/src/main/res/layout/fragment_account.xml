@@ -30,7 +30,7 @@
                 android:layout_marginTop="@dimen/m6"
                 android:background="@drawable/profile_boarder"
                 android:padding="@dimen/m2"
-                android:src="@drawable/profile"
+                android:src="@drawable/white_blue_logo"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />

@@ -49,12 +49,10 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/m6"
-                android:layout_marginBottom="@dimen/m10"
                 android:fontFamily="@font/dm_sans_bold"
                 android:text="@string/rs_100_rs_500"
                 android:textColor="@color/red_velvet"
                 android:textSize="@dimen/text_size_12"
-                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="@+id/productTV"
                 app:layout_constraintTop_toBottomOf="@+id/productTV" />
 
@@ -69,7 +67,6 @@
                 android:numStars="1"
                 android:rating="1"
                 android:theme="@style/RatingBar"
-                android:visibility="gone"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="@+id/productTV"
                 app:layout_constraintTop_toBottomOf="@+id/priceTV" />
@@ -83,7 +80,6 @@
                 android:text="@string/_4_6"
                 android:textColor="@color/primary_text"
                 android:textSize="@dimen/text_size_12"
-                android:visibility="gone"
                 app:layout_constraintBottom_toBottomOf="@+id/ratingBar"
                 app:layout_constraintStart_toEndOf="@+id/ratingBar"
                 app:layout_constraintTop_toTopOf="@+id/ratingBar" />
