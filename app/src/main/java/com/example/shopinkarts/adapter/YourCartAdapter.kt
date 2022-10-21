@@ -32,7 +32,7 @@ class YourCartAdapter(val context: Context, var arrayList: ArrayList<CartModel>)
     var finalTotalPrice = 0
 
     companion object {
-        var updateQty = 0
+        var totalPrice = 0
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -59,7 +59,7 @@ class YourCartAdapter(val context: Context, var arrayList: ArrayList<CartModel>)
 //            actualPriceTV.text =
 //                "Rs ${ DashBoardActivity.arrayListCart.sumOf { it.totalAmount }.toDouble()}.00"
 
-            var totalPrice = 0
+             totalPrice = 0
 
             for (i in itemDetails.variants) {
 
@@ -73,6 +73,8 @@ class YourCartAdapter(val context: Context, var arrayList: ArrayList<CartModel>)
             ProductCartActivity.orderTotalAmount = finalTotalPrice
 
             ProductCartActivity.cartInstance.updatedCal()
+
+            DeliveredOrderAdapter.orderTotalAmount=finalTotalPrice
 
             totalAmountTV.text = "Total Amount-Rs ${totalPrice}.00"
             discountedPriceTV.text = "Rs ${totalPrice}.00"

@@ -50,8 +50,8 @@ class CheckOutDetailsActivity : AppCompatActivity() {
     var city = ""
     var state = ""
     var landmark = ""
-    var arrayListCreateVariants: ArrayList<CreateProduct> = ArrayList()
-
+    var totalPrice = 0
+    var finalPrice = 0
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         Utils.changeStatusTextColor(this)
@@ -333,15 +333,25 @@ class CheckOutDetailsActivity : AppCompatActivity() {
 
 
         for (item in DashBoardActivity.arrayListCart) {
+//        totalAmount = DashBoardActivity.arrayListCart.sumOf { it.totalAmount }.toDouble()
 
-            val sum= item.variants.sumOf { it.price }
+            var t = 0
+            for (i in item.variants) {
+                finalPrice += i.price * i.quantity
+                t += i.price * i.quantity
+                Log.d("totalPrice", totalPrice.toString())
+
+            }
+            totalPrice = t
+//            val sum= item.variants.sumOf { it.price }
+
             arrayProduct.add(
                 CreateProduct(
                     productId = item.pId,
                     productImage = item.imageUrl,
                     productName = item.itemName,
                     qty = item.quantity,
-                    totalAmount = sum.toDouble(),
+                    totalAmount = totalPrice.toDouble(),
                     variants = item.variants
                 )
             )
@@ -363,7 +373,7 @@ class CheckOutDetailsActivity : AppCompatActivity() {
         val requestBody = CreateOrderRequest(
 
             discount = discountAmount.toString(),
-            finalAmount = amountPaid.toString(),
+            finalAmount = finalPrice.toString(),
             gstAmount = gst.toString(),
             paymentType = paymentType.toString(),
             products = arrayProduct,

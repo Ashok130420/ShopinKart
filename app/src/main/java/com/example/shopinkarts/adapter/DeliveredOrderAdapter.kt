@@ -30,6 +30,7 @@ class DeliveredOrderAdapter(val context: Context, val arrayList: ArrayList<Order
         var paymentType = 0
         var arrayListInvoice: ArrayList<CreateProduct> = ArrayList()
         var tAmount = 0F
+        var orderTotalAmount=0
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -56,8 +57,8 @@ class DeliveredOrderAdapter(val context: Context, val arrayList: ArrayList<Order
                 "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'", "dd-MMM-yyyy", arrayList[position].creationTimeStamp
             ).toString()
 
-            totalAmountValueTV.text = " Rs ${itemDetails.totalAmount + itemDetails.gstAmount}"
-            tAmount = (itemDetails.totalAmount + itemDetails.gstAmount).toFloat()
+            totalAmountValueTV.text = " Rs ${itemDetails.finalAmount + itemDetails.gstAmount}"
+            tAmount = (itemDetails.finalAmount + itemDetails.gstAmount).toFloat()
 
             gst = itemDetails.gstAmount
 
@@ -132,6 +133,7 @@ class DeliveredOrderAdapter(val context: Context, val arrayList: ArrayList<Order
 //            if (itemDetails.orderStatus == 3) {
 
             downloadInvoiceCL.visibility = View.VISIBLE
+
             downloadInvoiceCL.setOnClickListener {
 
                 val intent = Intent(context, InvoiceActivity::class.java)

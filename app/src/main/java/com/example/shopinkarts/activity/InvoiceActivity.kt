@@ -129,16 +129,16 @@ class InvoiceActivity : AppCompatActivity() {
         arrayList = OrdersFragment.arrayListMyOrders[position].products
 
         binding.tAmountValueTV.text =
-            OrdersFragment.arrayListMyOrders[position].totalAmount.toString()
+            OrdersFragment.arrayListMyOrders[position].finalAmount.toString()
 
         binding.gstTaxValueTV.text = OrdersFragment.arrayListMyOrders[position].gstAmount.toString()
 
         binding.totalValueTV.text =
-            "Rs ${OrdersFragment.arrayListMyOrders[position].totalAmount + OrdersFragment.arrayListMyOrders[position].gstAmount}"
+            "Rs ${OrdersFragment.arrayListMyOrders[position].finalAmount + OrdersFragment.arrayListMyOrders[position].gstAmount}"
 
         gstAmount = OrdersFragment.arrayListMyOrders[position].gstAmount
 
-        invoiceAdapter = InvoiceAdapter(this, arrayList, gstAmount)
+        invoiceAdapter = InvoiceAdapter(this, arrayList)
         binding.invoiceDetailsRV.adapter = invoiceAdapter
         binding.invoiceDetailsRV.hasFixedSize()
         binding.invoiceDetailsRV.isNestedScrollingEnabled = false
@@ -312,7 +312,7 @@ class InvoiceActivity : AppCompatActivity() {
         fos?.use {
             // Finally writing the bitmap to the output stream that we opened
             bitmap.compress(Bitmap.CompressFormat.JPEG, 100, it)
-            Toast.makeText(this, "Captured View and saved to Gallery", Toast.LENGTH_SHORT).show()
+            Toast.makeText(this, "Invoice saved to Gallery", Toast.LENGTH_SHORT).show()
         }
 
     }
