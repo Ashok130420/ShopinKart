@@ -172,6 +172,8 @@ class SignUpActivity : AppCompatActivity() {
                         Log.d("sharedPreference....", "$sharedPreference")
                         sharedPreference.isLoginSet(signupResponse.status)
 
+                        sharedPreference.setPhoneNo(phoneNo = binding.phoneET.text.toString())
+
                         Toast.makeText(
                             this@SignUpActivity,
                             signupResponse.message,

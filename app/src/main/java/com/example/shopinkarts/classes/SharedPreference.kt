@@ -32,6 +32,8 @@ class SharedPreference(val context: Context) {
         const val State = "state"
         const val Landmark = "landmark"
 
+        const val LoginPhoneNo="loginPhoneNo"
+
     }
 
     fun clear() {
