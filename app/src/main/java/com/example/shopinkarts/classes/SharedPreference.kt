@@ -13,8 +13,7 @@ import java.lang.reflect.Type
 
 class SharedPreference(val context: Context) {
 
-    var prefs: SharedPreferences =
-        context.getSharedPreferences("prefs", Context.MODE_PRIVATE)
+    var prefs: SharedPreferences = context.getSharedPreferences("prefs", Context.MODE_PRIVATE)
 
     companion object {
         const val TOKEN = "token"
@@ -32,7 +31,17 @@ class SharedPreference(val context: Context) {
         const val State = "state"
         const val Landmark = "landmark"
 
-        const val LoginPhoneNo="loginPhoneNo"
+        const val BName = "bName"
+        const val BCompany = "bCompany"
+        const val BGST = "bGST"
+        const val BPhoneNo = "bPhoneNo"
+        const val BFlat = "bFlat"
+        const val BStreet = "bStreet"
+        const val BPin = "bPin"
+        const val BCity = "bCity"
+        const val BState = "bState"
+        const val BLandmark = "bLandmark"
+
 
     }
 
@@ -107,6 +116,77 @@ class SharedPreference(val context: Context) {
         return prefs.getString(Landmark, "")
     }
 
+    //    Business Address
+    fun setBusinessAddress(
+        bname: String,
+        bphone: String,
+        bflat: String,
+        bstreet: String,
+        bpin: String,
+        bcity: String,
+        bstate: String,
+        blandmark: String,
+        bcompany: String,
+        bgst: String
+    ) {
+
+
+        val editor = prefs.edit()
+        editor.putString(BName, bname)
+        editor.putString(BCompany, bcompany)
+        editor.putString(BGST, bgst)
+        editor.putString(BPhoneNo, bphone)
+        editor.putString(BFlat, bflat)
+        editor.putString(BStreet, bstreet)
+        editor.putString(BPin, bpin)
+        editor.putString(BCity, bcity)
+        editor.putString(BState, bstate)
+        editor.putString(BLandmark, blandmark)
+
+        editor.apply()
+    }
+
+    fun getBusinessName(): String? {
+        return prefs.getString(BName, "")
+    }
+
+    fun getBusinessCompany(): String? {
+        return prefs.getString(BCompany, "")
+    }
+
+    fun getBusinessGst(): String? {
+        return prefs.getString(BGST, "")
+    }
+
+    fun getBusinessPhoneNo(): String? {
+        return prefs.getString(BPhoneNo, "")
+    }
+
+    fun getBusinessFlat(): String? {
+        return prefs.getString(BFlat, "")
+    }
+
+    fun getBusinessStreet(): String? {
+        return prefs.getString(BStreet, "")
+    }
+
+    fun getBusinessPin(): String? {
+        return prefs.getString(BPin, "")
+    }
+
+    fun getBusinessCity(): String? {
+        return prefs.getString(BCity, "")
+    }
+
+    fun getBusinessState(): String? {
+        return prefs.getString(BState, "")
+    }
+
+    fun getBusinessLandmark(): String? {
+        return prefs.getString(BLandmark, "")
+    }
+
+
     // For Token
     fun setToken(token: String) {
         val editor = prefs.edit()
@@ -175,11 +255,9 @@ class SharedPreference(val context: Context) {
             val type: Type = object : TypeToken<ArrayList<CartModel?>?>() {}.type
             val type1: Type = object : TypeToken<ArrayList<String?>?>() {}.type
 
-            DashBoardActivity.arrayListCart =
-                gson.fromJson<Any>(json, type) as ArrayList<CartModel>
+            DashBoardActivity.arrayListCart = gson.fromJson<Any>(json, type) as ArrayList<CartModel>
 
-            DashBoardActivity.selectedVIDs =
-                gson.fromJson<Any>(json2, type1) as ArrayList<String>
+            DashBoardActivity.selectedVIDs = gson.fromJson<Any>(json2, type1) as ArrayList<String>
 
         }
 

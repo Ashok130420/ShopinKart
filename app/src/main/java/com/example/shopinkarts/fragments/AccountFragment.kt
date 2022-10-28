@@ -66,6 +66,8 @@ class AccountFragment : Fragment() {
         binding.logOutTV.setOnClickListener {
             sharedPreference.isLoginSet(false)
             sharedPreference.clear()
+//            DashBoardActivity.arrayListCart.clear()
+//            DashBoardActivity.selectedVIDs.clear()
             val intent = Intent(requireContext(), LoginActivity::class.java)
             startActivity(intent)
         }
@@ -132,8 +134,7 @@ class AccountFragment : Fragment() {
                             val intent = Intent(context, AboutUsActivity::class.java)
                             intent.putExtra("header", "Terms & Conditions")
                             intent.putExtra(
-                                "pdfUrl",
-                                appSettingResponse.appSetting.termsAndConditions
+                                "pdfUrl", appSettingResponse.appSetting.termsAndConditions
                             )
                             startActivity(intent)
                         }

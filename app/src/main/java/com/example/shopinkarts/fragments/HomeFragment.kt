@@ -13,13 +13,13 @@ import androidx.core.content.ContextCompat
 import androidx.core.view.get
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout.OnRefreshListener
 import androidx.viewpager2.widget.ViewPager2
 import com.example.shopinkarts.R
 import com.example.shopinkarts.activity.SearchActivity
 import com.example.shopinkarts.activity.ViewAllActivity
 import com.example.shopinkarts.adapter.*
 import com.example.shopinkarts.api.RetrofitClient
-import com.example.shopinkarts.classes.CustomScrollView
 import com.example.shopinkarts.databinding.FragmentHomeBinding
 import com.example.shopinkarts.model.*
 import com.example.shopinkarts.response.*
@@ -99,6 +99,14 @@ class HomeFragment : Fragment() {
 
         shimmerHome = binding.shimmerViewBanner
 
+
+        binding.pullToRefresh.setOnRefreshListener(OnRefreshListener {
+//            onResume()
+//            dashBoardList()
+
+            binding.pullToRefresh.isRefreshing = false
+        })
+
 //      banner 1st fun
         setCurrentIndicator(0)
 
@@ -154,63 +162,63 @@ class HomeFragment : Fragment() {
 //        binding.shopForRV.adapter = shopForAdapter
 
         binding.preferredManufacturerAllTV.setOnClickListener {
-            listItems=1
+            listItems = 1
             val intent = Intent(requireContext(), ViewAllActivity::class.java)
             intent.putExtra("from", "preferredManufacturer")
             startActivity(intent)
         }
 
         binding.mostPopularAllTV.setOnClickListener {
-            listItems=1
+            listItems = 1
             val intent = Intent(requireContext(), ViewAllActivity::class.java)
             intent.putExtra("from", "mostPopular")
             startActivity(intent)
         }
 
         binding.topRatedAllTV.setOnClickListener {
-            listItems=1
+            listItems = 1
             val intent = Intent(requireContext(), ViewAllActivity::class.java)
             intent.putExtra("from", "topRated")
             startActivity(intent)
         }
 
         binding.newlyAddedAllTV.setOnClickListener {
-            listItems=1
+            listItems = 1
             val intent = Intent(requireContext(), ViewAllActivity::class.java)
             intent.putExtra("from", "newlyAdded")
             startActivity(intent)
         }
 
         binding.flashSaleAllItemsCL.setOnClickListener {
-            listItems=1
+            listItems = 1
             val intent = Intent(requireContext(), ViewAllActivity::class.java)
             intent.putExtra("from", "flashSale")
             startActivity(intent)
         }
 
         binding.dealOfDayAllTV.setOnClickListener {
-            listItems=1
+            listItems = 1
             val intent = Intent(requireContext(), ViewAllActivity::class.java)
             intent.putExtra("from", "dealOfDay")
             startActivity(intent)
         }
 
         binding.popularBrandAllTV.setOnClickListener {
-            listItems=1
+            listItems = 1
             val intent = Intent(requireContext(), ViewAllActivity::class.java)
             intent.putExtra("from", "popularBrand")
             startActivity(intent)
         }
 
         binding.discountForYouAllTV.setOnClickListener {
-            listItems=1
+            listItems = 1
             val intent = Intent(requireContext(), ViewAllActivity::class.java)
             intent.putExtra("from", "discountForYou")
             startActivity(intent)
         }
 
         binding.recommendedAllTV.setOnClickListener {
-            listItems=1
+            listItems = 1
             val intent = Intent(requireContext(), ViewAllActivity::class.java)
             intent.putExtra("from", "recommended")
             startActivity(intent)
@@ -499,6 +507,7 @@ class HomeFragment : Fragment() {
     }
 
     // banner 1
+    @SuppressLint("NotifyDataSetChanged")
     private fun setupIndicators() {
 
         banner1Adapter = Banner1Adapter(requireContext(), arraylistBanner1)

@@ -33,17 +33,19 @@ class CustomerSupportActivity : AppCompatActivity() {
     var phone = ""
     var message = ""
     var isReturnRequest = 0
+    var userType = ""
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         Utils.changeStatusTextColor(this)
-        Utils.changeStatusColor(this,R.color.white)
+        Utils.changeStatusColor(this, R.color.white)
         binding = DataBindingUtil.setContentView(this, R.layout.activity_customer_support)
 
         sharedPreference = SharedPreference(this)
+        userType = sharedPreference.getUserType().toString()
 
         binding.noTV.setBackgroundResource(R.drawable.button_blue_radius5)
-        binding.noTV.setTextColor(ContextCompat.getColor(this,R.color.white))
+        binding.noTV.setTextColor(ContextCompat.getColor(this, R.color.white))
         binding.orderIdTV.visibility = View.GONE
         binding.returnOrderId.visibility = View.GONE
         Log.d("isReturnRequest", "onCreate: $isReturnRequest")
@@ -53,8 +55,14 @@ class CustomerSupportActivity : AppCompatActivity() {
             onBackPressed()
         }
 
-        binding.nameET.setText(sharedPreference.getName())
-        binding.phoneET.setText(sharedPreference.getPhone())
+        if (userType == "0") {
+            binding.nameET.setText(sharedPreference.getName())
+            binding.phoneET.setText(sharedPreference.getPhone())
+        } else {
+            binding.nameET.setText(sharedPreference.getBusinessName())
+            binding.phoneET.setText(sharedPreference.getBusinessPhoneNo())
+        }
+
 
         binding.noTV.setOnClickListener {
 
@@ -63,8 +71,8 @@ class CustomerSupportActivity : AppCompatActivity() {
             binding.returnOrderId.visibility = View.GONE
             binding.noTV.setBackgroundResource(R.drawable.button_blue_radius5)
             binding.yesTV.setBackgroundResource(R.drawable.shape_text_grey)
-            binding.noTV.setTextColor(ContextCompat.getColor(this,R.color.white))
-            binding.yesTV.setTextColor(ContextCompat.getColor(this,R.color.hint_color))
+            binding.noTV.setTextColor(ContextCompat.getColor(this, R.color.white))
+            binding.yesTV.setTextColor(ContextCompat.getColor(this, R.color.hint_color))
 
             Log.d("isReturnRequest", "onCreate: $isReturnRequest")
         }
@@ -76,8 +84,8 @@ class CustomerSupportActivity : AppCompatActivity() {
             binding.returnOrderId.visibility = View.VISIBLE
             binding.yesTV.setBackgroundResource(R.drawable.button_blue_radius5)
             binding.noTV.setBackgroundResource(R.drawable.shape_text_grey)
-            binding.noTV.setTextColor(ContextCompat.getColor(this,R.color.hint_color))
-            binding.yesTV.setTextColor(ContextCompat.getColor(this,R.color.white))
+            binding.noTV.setTextColor(ContextCompat.getColor(this, R.color.hint_color))
+            binding.yesTV.setTextColor(ContextCompat.getColor(this, R.color.white))
             Log.d("isReturnRequest", "onCreate: $isReturnRequest")
         }
 

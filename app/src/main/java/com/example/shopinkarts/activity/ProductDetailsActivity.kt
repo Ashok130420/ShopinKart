@@ -779,7 +779,7 @@ class ProductDetailsActivity : AppCompatActivity() {
     }
 
     fun downloadFile(url: String) {
-        Toast.makeText(this, "Your download has begun", Toast.LENGTH_SHORT).show()
+        Toast.makeText(this, "Image downloading...", Toast.LENGTH_SHORT).show()
         if (ActivityCompat.checkSelfPermission(
                 this, Manifest.permission.READ_EXTERNAL_STORAGE
             ) != PackageManager.PERMISSION_GRANTED || ActivityCompat.checkSelfPermission(

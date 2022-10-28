@@ -26,7 +26,8 @@ class OrdersFragment : Fragment() {
     lateinit var sharedPreference: SharedPreference
     lateinit var binding: FragmentOrdersBinding
     lateinit var deliveredOrderAdapter: DeliveredOrderAdapter
-//    var arrayListMyOrders: ArrayList<Order> = ArrayList()
+
+    //    var arrayListMyOrders: ArrayList<Order> = ArrayList()
     companion object {
 
         var arrayListMyOrders: ArrayList<Order> = ArrayList()
@@ -44,8 +45,8 @@ class OrdersFragment : Fragment() {
 
         sharedPreference = SharedPreference(requireContext())
 
-        myOrdersList()
 
+        myOrdersList()
         return binding.root
     }
 
@@ -75,6 +76,13 @@ class OrdersFragment : Fragment() {
                             binding.deliveredOrderRV.hasFixedSize()
                             deliveredOrderAdapter.notifyDataSetChanged()
 
+                            if (arrayListMyOrders.isNotEmpty()) {
+                                binding.deliveredOrderRV.visibility = View.VISIBLE
+                                binding.lottyAnimationMyOrder.visibility = View.GONE
+                            } else {
+                                binding.lottyAnimationMyOrder.visibility = View.VISIBLE
+                                binding.deliveredOrderRV.visibility = View.GONE
+                            }
                         }
                         myOrderResponse.orders
                     }

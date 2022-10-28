@@ -150,6 +150,7 @@ class LoginActivity : AppCompatActivity() {
                         sharedPreference.setToken(loginResponse.token)
                         sharedPreference.setUserId(loginResponse.user._id)
                         sharedPreference.isLoginSet(loginResponse.status)
+                        sharedPreference.setUsertype(loginResponse.user.userType.toString())
 
                         sharedPreference.setPhoneNo(phoneNo = binding.phoneET.text.toString())
 

@@ -57,8 +57,7 @@ class SignUpActivity : AppCompatActivity() {
 
         binding.radioGroup.setOnCheckedChangeListener { radioGroup, i ->
             val rb = radioGroup.findViewById<RadioButton>(i)
-            if (rb != null)
-                userType = radioGroup.indexOfChild(rb).toString()
+            if (rb != null) userType = radioGroup.indexOfChild(rb).toString()
 
         }
 
@@ -154,8 +153,7 @@ class SignUpActivity : AppCompatActivity() {
         val call: Call<SignUpResponse> = RetrofitClient.instance!!.api.signup(requestBody)
         call.enqueue(object : Callback<SignUpResponse> {
             override fun onResponse(
-                call: Call<SignUpResponse>,
-                response: Response<SignUpResponse>
+                call: Call<SignUpResponse>, response: Response<SignUpResponse>
             ) {
                 if (response.isSuccessful) {
                     val signupResponse = response.body()
@@ -175,9 +173,7 @@ class SignUpActivity : AppCompatActivity() {
                         sharedPreference.setPhoneNo(phoneNo = binding.phoneET.text.toString())
 
                         Toast.makeText(
-                            this@SignUpActivity,
-                            signupResponse.message,
-                            Toast.LENGTH_SHORT
+                            this@SignUpActivity, signupResponse.message, Toast.LENGTH_SHORT
                         ).show()
                         val intent = Intent(this@SignUpActivity, DashBoardActivity::class.java)
 //                        val intent = Intent(this@SignUpActivity, OtpVerifyActivity::class.java)
@@ -187,9 +183,7 @@ class SignUpActivity : AppCompatActivity() {
                 } else {
                     mProgressDialog.dismiss()
                     Toast.makeText(
-                        this@SignUpActivity,
-                        response.message(),
-                        Toast.LENGTH_SHORT
+                        this@SignUpActivity, response.message(), Toast.LENGTH_SHORT
                     ).show()
                 }
                 mProgressDialog.dismiss()
@@ -197,9 +191,7 @@ class SignUpActivity : AppCompatActivity() {
 
             override fun onFailure(call: Call<SignUpResponse>, t: Throwable) {
                 Toast.makeText(
-                    this@SignUpActivity,
-                    "${t.message}",
-                    Toast.LENGTH_SHORT
+                    this@SignUpActivity, "${t.message}", Toast.LENGTH_SHORT
                 ).show()
             }
 

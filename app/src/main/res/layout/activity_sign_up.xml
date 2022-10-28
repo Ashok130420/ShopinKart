@@ -117,7 +117,6 @@
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/dm_sans"
                     android:inputType="textEmailAddress"
-                    android:maxLength="10"
                     android:textColorHighlight="@color/hint_color"
                     android:textColorHint="@color/hint"
                     android:textSize="@dimen/text_size_12"
@@ -217,8 +216,6 @@
                     />
 
             </com.google.android.material.textfield.TextInputLayout>
-
-
 
 
             <ImageView

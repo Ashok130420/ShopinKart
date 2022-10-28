@@ -29,12 +29,12 @@
 
         <ImageView
             android:id="@+id/cartIV"
-            android:layout_width="23dp"
-            android:layout_height="23dp"
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:layout_marginEnd="@dimen/m14"
             android:padding="@dimen/p2"
-
             android:src="@drawable/cart"
-            app:layout_constraintEnd_toEndOf="@+id/cartItemTV"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="@+id/notificationIV"
             tools:ignore="ContentDescription" />
 
@@ -42,7 +42,7 @@
             android:id="@+id/cartItemTV"
             android:layout_width="15dp"
             android:layout_height="15dp"
-            android:layout_marginEnd="@dimen/m18"
+
             android:layout_marginBottom="15dp"
             android:background="@drawable/text_view_blue"
             android:gravity="center"
@@ -51,15 +51,15 @@
             android:textColor="@color/white"
             android:textSize="8sp"
             app:layout_constraintBottom_toBottomOf="@id/cartIV"
-            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintEnd_toEndOf="@+id/cartIV"
             tools:ignore="SmallSp" />
 
         <ImageView
             android:id="@+id/notificationIV"
-            android:layout_width="23dp"
-            android:layout_height="23dp"
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:layout_marginEnd="5dp"
             android:padding="@dimen/p1"
-            android:layout_marginEnd="11dp"
             android:src="@drawable/notification"
             app:layout_constraintBottom_toBottomOf="@+id/nameTV"
             app:layout_constraintEnd_toStartOf="@+id/cartIV"
@@ -98,9 +98,9 @@
             android:id="@+id/profileIV"
             android:layout_width="25dp"
             android:layout_height="25dp"
-            android:padding="@dimen/p1"
-            android:background="@drawable/profile_boarder"
             android:layout_marginHorizontal="@dimen/m18"
+            android:background="@drawable/profile_boarder"
+            android:padding="@dimen/p1"
             android:src="@drawable/white_blue_logo"
             app:layout_constraintBottom_toBottomOf="@+id/nameTV"
             app:layout_constraintStart_toStartOf="parent"

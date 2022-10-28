@@ -52,7 +52,7 @@
                     <androidx.viewpager2.widget.ViewPager2
                         android:id="@+id/productViewPager"
                         android:layout_width="match_parent"
-                        android:layout_height="180dp"
+                        android:layout_height="300dp"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent" />
@@ -99,8 +99,10 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_margin="@dimen/m14"
+                    android:layout_marginTop="184dp"
                     android:background="@color/white"
-                    app:layout_constraintTop_toBottomOf="@+id/imageSliderCL">
+                    app:layout_constraintTop_toBottomOf="@+id/imageSliderCL"
+                    tools:layout_editor_absoluteX="-48dp">
 
                     <TextView
                         android:id="@+id/idTV"
@@ -108,8 +110,8 @@
                         android:layout_height="wrap_content"
                         android:paddingVertical="@dimen/p2"
                         android:text="@string/id_002597"
-                        android:textSize="@dimen/text_size_12"
                         android:textColor="@color/dark_Gray"
+                        android:textSize="@dimen/text_size_12"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent" />
 

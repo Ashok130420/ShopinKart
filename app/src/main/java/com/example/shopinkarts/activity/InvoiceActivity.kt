@@ -44,6 +44,7 @@ class InvoiceActivity : AppCompatActivity() {
     var gstAmount = 0F
     var pdfNumber = 1
     var orderId = ""
+    var userType = ""
 
 //    var pageHeight = 1120
 //    var pageWidth = 792
@@ -71,17 +72,14 @@ class InvoiceActivity : AppCompatActivity() {
         Log.d("orderId", orderId.toString())
 
         ActivityCompat.requestPermissions(
-            this,
-            arrayOf(Manifest.permission.WRITE_EXTERNAL_STORAGE),
-            1
+            this, arrayOf(Manifest.permission.WRITE_EXTERNAL_STORAGE), 1
         )
         ActivityCompat.requestPermissions(
-            this,
-            arrayOf(Manifest.permission.READ_EXTERNAL_STORAGE),
-            1
+            this, arrayOf(Manifest.permission.READ_EXTERNAL_STORAGE), 1
         )
 
         sharedPreference = SharedPreference(this)
+        userType = sharedPreference.getUserType().toString()
 
         binding.back.setOnClickListener {
             onBackPressed()
@@ -124,8 +122,16 @@ class InvoiceActivity : AppCompatActivity() {
          })*/
         position = intent.extras!!.getInt("position", 0)
 
-        binding.customerNameTV.text =
-            "${sharedPreference.getName()}\n${sharedPreference.getFlat()},${sharedPreference.getStreet()}, ${sharedPreference.getPin()},${sharedPreference.getCity()},${sharedPreference.getLandmark()}"
+        if (userType == "0") {
+            binding.customerNameTV.text =
+                "${sharedPreference.getName()}\n${sharedPreference.getFlat()},${sharedPreference.getStreet()}, ${sharedPreference.getPin()},${sharedPreference.getCity()},${sharedPreference.getLandmark()}"
+
+        } else {
+            binding.customerNameTV.text =
+                "${sharedPreference.getBusinessName()}\n${sharedPreference.getBusinessFlat()},${sharedPreference.getBusinessStreet()}, ${sharedPreference.getBusinessPin()},${sharedPreference.getBusinessCity()},${sharedPreference.getBusinessLandmark()}"
+
+        }
+
 
         binding.orderIdTV.text = "Order Id-${orderId}"
 
@@ -324,11 +330,9 @@ class InvoiceActivity : AppCompatActivity() {
             // Finally writing the bitmap to the output stream that we opened
             bitmap.compress(Bitmap.CompressFormat.JPEG, 100, it)
             Toast.makeText(
-                this,
-                "Invoice saved to Gallery at " + "${
+                this, "Invoice saved to Gallery at " + "${
                     Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES)
-                }",
-                Toast.LENGTH_SHORT
+                }", Toast.LENGTH_SHORT
             ).show()
             finish()
         }

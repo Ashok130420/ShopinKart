@@ -43,16 +43,28 @@ class CheckOutDetailsActivity : AppCompatActivity() {
     var paymentType = 0
 
     var name = ""
+    var nameBusiness = ""
     var phone = ""
+    var phoneBusiness = ""
     var flat = ""
+    var flatBusiness = ""
     var street = ""
+    var streetBusiness = ""
     var pin = ""
+    var pinBusiness = ""
     var city = ""
+    var cityBusiness = ""
     var state = ""
+    var stateBusiness = ""
     var landmark = ""
+    var landmarkBusiness = ""
+    var companyBusiness = ""
+    var gstBusiness = ""
+    var opertingStateBusiness = ""
+
     var totalPrice = 0
     var finalPrice = 0
-    var totalQuantity=0
+    var totalQuantity = 0
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         Utils.changeStatusTextColor(this)
@@ -60,22 +72,49 @@ class CheckOutDetailsActivity : AppCompatActivity() {
         binding = DataBindingUtil.setContentView(this, R.layout.activity_checkout_details)
 
         layoutCount = 1
+
+//        binding.includeStepper1.personalCL.visibility = View.GONE
+//        binding.includeStepper1.businessDetailsCl.visibility = View.GONE
+
+
         layoutFirst()
 
         sharedPreference = SharedPreference(this)
         userType = sharedPreference.getUserType().toString()
         Log.d("USERTYPE.....", userType)
 
-        binding.includeStepper1.nameET.setText(sharedPreference.getName())
-        binding.includeStepper1.phoneNumberET.setText(sharedPreference.getPhone())
-        binding.includeStepper1.flatHouseET.setText(sharedPreference.getFlat())
-        binding.includeStepper1.streetET.setText(sharedPreference.getStreet())
-        binding.includeStepper1.pinCodeET.setText(sharedPreference.getPin())
-        binding.includeStepper1.cityET.setText(sharedPreference.getCity())
+        if (userType == "0") {
+            binding.includeStepper1.businessDetailsCl.visibility = View.GONE
+            binding.includeStepper1.personalCL.visibility = View.VISIBLE
+
+            binding.includeStepper1.nameET.setText(sharedPreference.getName())
+            binding.includeStepper1.phoneNumberET.setText(sharedPreference.getPhone())
+            binding.includeStepper1.flatHouseET.setText(sharedPreference.getFlat())
+            binding.includeStepper1.streetET.setText(sharedPreference.getStreet())
+            binding.includeStepper1.pinCodeET.setText(sharedPreference.getPin())
+            binding.includeStepper1.cityET.setText(sharedPreference.getCity())
 //      binding.includeStepper1.stateSpinner.setSelection(state.toInt())
-        state = sharedPreference.getState().toString()
-        Log.d("state", "onItemSelected:  $state ")
-        binding.includeStepper1.landMarkET.setText(sharedPreference.getLandmark())
+            state = sharedPreference.getState().toString()
+            Log.d("state", "onItemSelected:  $state ")
+            binding.includeStepper1.landMarkET.setText(sharedPreference.getLandmark())
+
+        } else if (userType == "1") {
+            binding.includeStepper1.personalCL.visibility = View.GONE
+            binding.includeStepper1.businessDetailsCl.visibility = View.VISIBLE
+
+
+            binding.includeStepper1.businessNameET.setText(sharedPreference.getBusinessName())
+            binding.includeStepper1.firmNameET.setText(sharedPreference.getBusinessCompany())
+            binding.includeStepper1.gstInET.setText(sharedPreference.getBusinessGst())
+            binding.includeStepper1.businessPhoneNumberET.setText(sharedPreference.getBusinessPhoneNo())
+            binding.includeStepper1.businessFlatHouseET.setText(sharedPreference.getBusinessFlat())
+            binding.includeStepper1.businessStreetET.setText(sharedPreference.getBusinessStreet())
+            binding.includeStepper1.businessPinCodeET.setText(sharedPreference.getBusinessPin())
+            binding.includeStepper1.businessCityET.setText(sharedPreference.getBusinessCity())
+            binding.includeStepper1.businessLandMarkET.setText(sharedPreference.getBusinessLandmark())
+
+        }
+
 
         /*        binding.includeStepper1.stateSpinner.onItemSelectedListener =
             object : AdapterView.OnItemSelectedListener {
@@ -104,9 +143,16 @@ class CheckOutDetailsActivity : AppCompatActivity() {
 
         binding.shippingCL.setOnClickListener {
             layoutFirst()
+            if (userType == "0") {
+                binding.includeStepper1.businessDetailsCl.visibility = View.GONE
+                binding.includeStepper1.personalCL.visibility = View.VISIBLE
+            } else if (userType == "1") {
+                binding.includeStepper1.personalCL.visibility = View.GONE
+                binding.includeStepper1.businessDetailsCl.visibility = View.VISIBLE
+            }
         }
         binding.paymentCL.setOnClickListener {
-            layoutSecond()
+//            layoutSecond()
         }
         binding.successCL.setOnClickListener {
 //            layoutThird()
@@ -141,48 +187,117 @@ class CheckOutDetailsActivity : AppCompatActivity() {
             state = state
             landmark = binding.includeStepper1.landMarkET.text.toString().trim()
 
-            if (name.isEmpty()) {
-                binding.includeStepper1.nameET.error = "Enter name"
-                binding.includeStepper1.nameET.requestFocus()
-                return@setOnClickListener
+            nameBusiness = binding.includeStepper1.businessNameET.text.toString().trim()
+            companyBusiness = binding.includeStepper1.firmNameET.text.toString().trim()
+            gstBusiness = binding.includeStepper1.gstInET.text.toString().trim()
+            phoneBusiness = binding.includeStepper1.businessPhoneNumberET.text.toString().trim()
+            flatBusiness = binding.includeStepper1.businessFlatHouseET.text.toString().trim()
+            streetBusiness = binding.includeStepper1.businessStreetET.text.toString().trim()
+            pinBusiness = binding.includeStepper1.businessPinCodeET.text.toString().trim()
+            cityBusiness = binding.includeStepper1.businessCityET.text.toString().trim()
+
+
+
+            if (userType == "0") {
+                if (name.isEmpty()) {
+                    binding.includeStepper1.nameET.error = "Enter name"
+                    binding.includeStepper1.nameET.requestFocus()
+                    return@setOnClickListener
+                }
+                if (phone.isEmpty()) {
+                    binding.includeStepper1.phoneNumberET.error = "Enter phone number"
+                    binding.includeStepper1.phoneNumberET.requestFocus()
+                    return@setOnClickListener
+                }
+                if (flat.isEmpty()) {
+                    binding.includeStepper1.flatHouseET.error = "Enter house no"
+                    binding.includeStepper1.flatHouseET.requestFocus()
+                    return@setOnClickListener
+                }
+                if (street.isEmpty()) {
+                    binding.includeStepper1.streetET.error = "Enter street"
+                    binding.includeStepper1.streetET.requestFocus()
+                    return@setOnClickListener
+                }
+                if (pin.isEmpty()) {
+                    binding.includeStepper1.pinCodeET.error = "Enter pin code"
+                    binding.includeStepper1.pinCodeET.requestFocus()
+                    return@setOnClickListener
+                }
+                if (city.isEmpty()) {
+                    binding.includeStepper1.cityET.error = "Enter city"
+                    binding.includeStepper1.cityET.requestFocus()
+                    return@setOnClickListener
+                }
+
+                sharedPreference.setAddress(
+                    name = binding.includeStepper1.nameET.text.toString(),
+                    phone = binding.includeStepper1.phoneNumberET.text.toString(),
+                    flat = binding.includeStepper1.flatHouseET.text.toString(),
+                    street = binding.includeStepper1.streetET.text.toString(),
+                    pin = binding.includeStepper1.pinCodeET.text.toString(),
+                    city = binding.includeStepper1.cityET.text.toString(),
+                    state = state,
+                    landmark = binding.includeStepper1.landMarkET.text.toString()
+                )
+            } else if (userType == "1") {
+
+                if (nameBusiness.isEmpty()) {
+                    binding.includeStepper1.businessNameET.error = "Enter name.."
+                    binding.includeStepper1.businessNameET.requestFocus()
+                    return@setOnClickListener
+                }
+                if (companyBusiness.isEmpty()) {
+                    binding.includeStepper1.firmNameET.error = "Enter company name"
+                    binding.includeStepper1.firmNameET.requestFocus()
+                    return@setOnClickListener
+                }
+                if (gstBusiness.isEmpty()) {
+                    binding.includeStepper1.gstInET.error = "Enter gst no"
+                    binding.includeStepper1.gstInET.requestFocus()
+                    return@setOnClickListener
+                }
+                if (phoneBusiness.isEmpty()) {
+                    binding.includeStepper1.businessPhoneNumberET.error = "Enter phone no"
+                    binding.includeStepper1.businessPhoneNumberET.requestFocus()
+                    return@setOnClickListener
+                }
+                if (flatBusiness.isEmpty()) {
+                    binding.includeStepper1.businessFlatHouseET.error = "Enter flat house no"
+                    binding.includeStepper1.businessFlatHouseET.requestFocus()
+                    return@setOnClickListener
+                }
+                if (streetBusiness.isEmpty()) {
+                    binding.includeStepper1.businessStreetET.error = "Enter street"
+                    binding.includeStepper1.businessStreetET.requestFocus()
+                    return@setOnClickListener
+                }
+                if (pinBusiness.isEmpty()) {
+                    binding.includeStepper1.businessPinCodeET.error = "Enter pin code"
+                    binding.includeStepper1.businessPinCodeET.requestFocus()
+                    return@setOnClickListener
+                }
+                if (cityBusiness.isEmpty()) {
+                    binding.includeStepper1.businessCityET.error = "Enter cty"
+                    binding.includeStepper1.businessCityET.requestFocus()
+                    return@setOnClickListener
+                }
+
+                sharedPreference.setBusinessAddress(
+                    bname = binding.includeStepper1.businessNameET.text.toString(),
+                    bphone = binding.includeStepper1.businessPhoneNumberET.text.toString(),
+                    bflat = binding.includeStepper1.businessFlatHouseET.text.toString(),
+                    bstreet = binding.includeStepper1.businessStreetET.text.toString(),
+                    bpin = binding.includeStepper1.businessPinCodeET.text.toString(),
+                    bcity = binding.includeStepper1.businessCityET.text.toString(),
+                    bstate = "",
+                    blandmark = binding.includeStepper1.businessLandMarkET.text.toString(),
+                    bcompany = binding.includeStepper1.firmNameET.text.toString(),
+                    bgst = binding.includeStepper1.gstInET.text.toString(),
+                )
             }
 
-            if (phone.isEmpty()) {
-                binding.includeStepper1.phoneNumberET.error = "Enter phone number"
-                binding.includeStepper1.phoneNumberET.requestFocus()
-                return@setOnClickListener
-            }
-            if (flat.isEmpty()) {
-                binding.includeStepper1.flatHouseET.error = "Enter house no"
-                binding.includeStepper1.flatHouseET.requestFocus()
-                return@setOnClickListener
-            }
-            if (street.isEmpty()) {
-                binding.includeStepper1.streetET.error = "Enter street"
-                binding.includeStepper1.streetET.requestFocus()
-                return@setOnClickListener
-            }
-            if (pin.isEmpty()) {
-                binding.includeStepper1.pinCodeET.error = "Enter pin code"
-                binding.includeStepper1.pinCodeET.requestFocus()
-                return@setOnClickListener
-            }
-            if (city.isEmpty()) {
-                binding.includeStepper1.cityET.error = "Enter city"
-                binding.includeStepper1.cityET.requestFocus()
-                return@setOnClickListener
-            }
 
-            sharedPreference.setAddress(
-                name = binding.includeStepper1.nameET.text.toString(),
-                phone = binding.includeStepper1.phoneNumberET.text.toString(),
-                flat = binding.includeStepper1.flatHouseET.text.toString(),
-                street = binding.includeStepper1.streetET.text.toString(),
-                pin = binding.includeStepper1.pinCodeET.text.toString(),
-                city = binding.includeStepper1.cityET.text.toString(),
-                state = state,
-                landmark = binding.includeStepper1.landMarkET.text.toString()
-            )
             if (layoutCount < 4) {
                 preNextFunction()
             } else {
@@ -294,11 +409,13 @@ class CheckOutDetailsActivity : AppCompatActivity() {
     }
 
     private fun layoutFirst() {
-        if (userType == "1") {
-            binding.includeStepper1.businessDetailsCl.visibility = View.VISIBLE
-        } else {
-            binding.includeStepper1.personalCL.visibility = View.VISIBLE
-        }
+//        if (userType == "0") {
+//            binding.includeStepper1.businessDetailsCl.visibility = View.GONE
+//            binding.includeStepper1.personalCL.visibility = View.VISIBLE
+//        } else if (userType == "1") {
+//            binding.includeStepper1.personalCL.visibility = View.GONE
+//            binding.includeStepper1.businessDetailsCl.visibility = View.VISIBLE
+//        }
         binding.includeStepper2.paymentCL.visibility = View.GONE
         binding.includeStepper3.successCL.visibility = View.GONE
         binding.paymentIV.setImageResource(R.drawable.grey_right_icon)
@@ -348,7 +465,7 @@ class CheckOutDetailsActivity : AppCompatActivity() {
                 Log.d("totalQuantity", q.toString())
             }
 
-            totalQuantity=q
+            totalQuantity = q
             totalPrice = t
 //            val sum= item.variants.sumOf { it.price }
 

@@ -108,7 +108,7 @@
     <string name="rs_2800">- Rs 2800</string>
     <string name="order_total">Order Total</string>
     <string name="rs_1400">Rs 1400</string>
-    <string name="gst_18">GST</string>
+    <string name="gst_18">GST ( 5% )</string>
     <string name="rs_252">Rs 252</string>
     <string name="amount_to_be_paid">Amount to be paid</string>
     <string name="rs_1652">Rs 1652</string>
@@ -261,7 +261,7 @@
     <string name="taxes">Taxes</string>
     <string name="rs_200">Rs 200</string>
     <string name="date">Date</string>
-    <string name="taxes_gst">Taxes ( GST )</string>
+    <string name="taxes_gst">GST ( 5% )</string>
 
 
 </resources>
