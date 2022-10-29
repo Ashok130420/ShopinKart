@@ -262,6 +262,7 @@
     <string name="rs_200">Rs 200</string>
     <string name="date">Date</string>
     <string name="taxes_gst">GST ( 5% )</string>
+    <string name="new_user">New User?</string>
 
 
 </resources>
