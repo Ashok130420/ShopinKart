@@ -542,7 +542,17 @@ class ProductDetailsActivity : AppCompatActivity() {
                         binding.idTV.text = "#Id -${productResponse.product.productId}"
                         binding.tShirtNameTV.text = productResponse.product.productName
                         binding.discountedPriceTV.text = "Rs ${productResponse.product.price}.00"
-                        binding.discountTV.text = "${productResponse.product.discount} % OFF"
+
+                        if (productResponse.product.discountType == 0) {
+                            binding.discountTV.text = "${productResponse.product.discount} % OFF"
+                        } else if (productResponse.product.discountType == 1) {
+                            binding.discountTV.text = "Rs ${productResponse.product.discount} OFF"
+                        } else {
+                            binding.discountTV.visibility = View.GONE
+                        }
+
+                        if (productResponse.product.discountType == 0)
+                            binding.discountTV.text = "${productResponse.product.discount} % OFF"
 
                         if (productResponse.product.stock <= 10) {
                             binding.unitesLeftTV.visibility = View.VISIBLE

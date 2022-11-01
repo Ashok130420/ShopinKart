@@ -1,5 +1,6 @@
 package com.example.shopinkarts.adapter
 
+import android.annotation.SuppressLint
 import android.content.Context
 import android.content.Intent
 
@@ -28,6 +29,7 @@ class ParticularItemAdapter(val context: Context, var arrayList: ArrayList<Produ
         return ViewHolder(binding)
     }
 
+    @SuppressLint("SetTextI18n")
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val itemDetails = arrayList[position]
         holder.itemsParticularItemBinding.apply {
