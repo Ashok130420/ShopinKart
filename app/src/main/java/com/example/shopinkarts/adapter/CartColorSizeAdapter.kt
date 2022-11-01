@@ -50,8 +50,6 @@ class CartColorSizeAdapter(val context: Context, val arrayList: ArrayList<Varian
 
                 ProductCartActivity.arrayTotal.clear()
 
-//                updateQty = itemDetails.quantity
-//                unitPrice = itemDetails.price / itemDetails.quantity
                 updateQty = itemDetails.quantity + 1
 
                 Log.d("defaultCQ", itemDetails.quantity.toString())
@@ -63,13 +61,6 @@ class CartColorSizeAdapter(val context: Context, val arrayList: ArrayList<Varian
                 if (updateQty <= itemDetails.stock) {
 
                     itemDetails.quantity = updateQty
-
-//                    Log.d("plus_UnitPrice", unitPrice.toString())
-//                    Log.d("plus_UpdateQty", updateQty.toString())
-//                    Log.d("plus_update_price", "${unitPrice * updateQty}")
-//                    Log.d("plus_price", itemDetails.price.toString())
-
-//                    updatePrice = unitPrice * updateQty
 
                     notifyDataSetChanged()
 
@@ -83,43 +74,15 @@ class CartColorSizeAdapter(val context: Context, val arrayList: ArrayList<Varian
             }
 
             minusQuantityTV.setOnClickListener {
-
-                ProductCartActivity.arrayTotal.clear()
-
-
-//                 updateQty = itemDetails.quantity
-//                 unitPrice = itemDetails.price / itemDetails.quantity
                 updateQty = itemDetails.quantity - 1
 
-
-                if (updateQty == 0) {
-                    //delete item
-                    arrayList.removeAt(position)
-                    selectedVIDs.removeAt(position)
-                    sharedPreference.setArray()
-
-                    notifyDataSetChanged()
-                    ProductCartActivity.cartInstance.update()
-
-                } else  {
-
-                    //update item
-//                    val uPrice = itemDetails.price / itemDetails.quantity
+                if (updateQty >= 1) {
+                    ProductCartActivity.arrayTotal.clear()
                     itemDetails.quantity = updateQty
-//                    updatePrice = uPrice * updateQty
-//                    itemDetails.price = updatePrice
-//
-//                    Log.d("minus_UnitPrice", unitPrice.toString())
-//                    Log.d("minus_UpdateQty", updateQty.toString())
-//                    Log.d("minus_update_price", "${unitPrice * updateQty}")
-//                    Log.d("minus_price", itemDetails.price.toString())
-
                     sharedPreference.setArray()
                     notifyDataSetChanged()
                     ProductCartActivity.cartInstance.update()
-
                 }
-//                 ProductCartActivity.cartInstance.update()
                 ProductCartActivity.getInstance().updatedCal()
             }
 

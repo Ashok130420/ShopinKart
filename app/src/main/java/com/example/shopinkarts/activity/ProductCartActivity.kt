@@ -139,7 +139,7 @@ class ProductCartActivity : AppCompatActivity() {
         gst = (productsPrice * 5 / 100).toFloat()
         binding.gstValueTV.text = "Rs $gst"
 
-        amountPaid = orderTotalAmount + gst
+        amountPaid = productsPrice + gst
         binding.amountPaidValueTV.text = "Rs $amountPaid"
         Log.d("totalAmountPaid", "onCreate: $amountPaid")
 
