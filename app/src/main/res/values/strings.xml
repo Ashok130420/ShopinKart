@@ -109,6 +109,7 @@
     <string name="order_total">Order Total</string>
     <string name="rs_1400">Rs 1400</string>
     <string name="gst_18">GST ( 5% )</string>
+    <string name="gst_no">GST NO</string>
     <string name="rs_252">Rs 252</string>
     <string name="amount_to_be_paid">Amount to be paid</string>
     <string name="rs_1652">Rs 1652</string>
@@ -125,7 +126,6 @@
     <string name="city">City</string>
     <string name="landmark_optional">Landmark (optional)</string>
     <string-array name="state">
-        <item>State</item>
         <item>Rajasthan</item>
         <item>Delhi</item>
         <item>Bombay</item>

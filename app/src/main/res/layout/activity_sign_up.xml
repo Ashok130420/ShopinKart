@@ -180,6 +180,37 @@
                 app:layout_constraintBottom_toBottomOf="@+id/radioLayout"
                 app:layout_constraintTop_toTopOf="@+id/radioLayout"
 
+                />
+
+            <TextView
+                android:id="@+id/gstTV"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="@dimen/m10"
+                android:layout_marginTop="@dimen/m30"
+                android:layout_marginBottom="@dimen/m5"
+                android:text="@string/gst_no"
+                android:textColor="@color/hint_color"
+                android:textSize="@dimen/text_size_14"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/radioLayout" />
+
+            <EditText
+                android:id="@+id/gstValueET"
+                android:layout_width="@dimen/m160"
+                android:layout_height="wrap_content"
+                android:background="@drawable/shape_text_grey"
+                android:gravity="center"
+                android:inputType="textCapCharacters"
+                android:maxLength="15"
+                android:paddingHorizontal="@dimen/p2"
+                android:paddingVertical="@dimen/p6"
+                android:singleLine="true"
+                android:textColor="@color/primary_text"
+                android:textSize="@dimen/text_size_12"
+                app:layout_constraintBottom_toBottomOf="@+id/gstTV"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/gstTV"
 
                 />
 
@@ -194,7 +225,7 @@
                 android:textColorHint="@color/hint_color"
                 app:boxStrokeColor="@color/primary_Blue"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/radioLayout">
+                app:layout_constraintTop_toBottomOf="@+id/gstTV">
 
                 <com.google.android.material.textfield.TextInputEditText
 

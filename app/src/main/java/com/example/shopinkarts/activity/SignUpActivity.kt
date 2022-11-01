@@ -48,6 +48,9 @@ class SignUpActivity : AppCompatActivity() {
 
         sharedPreference = SharedPreference(this)
 
+        binding.gstTV.visibility = View.GONE
+        binding.gstValueET.visibility = View.GONE
+
         deviceId = OneSignal.getDeviceState()?.userId.toString()
         Log.d("TAG_deviceId", "onCreate: $deviceId")
 
@@ -59,6 +62,16 @@ class SignUpActivity : AppCompatActivity() {
             val rb = radioGroup.findViewById<RadioButton>(i)
             if (rb != null) userType = radioGroup.indexOfChild(rb).toString()
 
+        }
+
+        binding.personalRB.setOnClickListener {
+            binding.gstTV.visibility = View.GONE
+            binding.gstValueET.visibility = View.GONE
+        }
+
+        binding.resellingRB.setOnClickListener {
+            binding.gstTV.visibility = View.VISIBLE
+            binding.gstValueET.visibility = View.VISIBLE
         }
 
         binding.signUpTv.setOnClickListener {
@@ -171,6 +184,7 @@ class SignUpActivity : AppCompatActivity() {
                         sharedPreference.isLoginSet(signupResponse.status)
 
                         sharedPreference.setPhoneNo(phoneNo = binding.phoneET.text.toString())
+                        sharedPreference.setGst(gst = binding.gstValueET.text.toString())
 
                         Toast.makeText(
                             this@SignUpActivity, signupResponse.message, Toast.LENGTH_SHORT

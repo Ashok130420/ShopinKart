@@ -105,7 +105,7 @@ class CheckOutDetailsActivity : AppCompatActivity() {
 
             binding.includeStepper1.businessNameET.setText(sharedPreference.getBusinessName())
             binding.includeStepper1.firmNameET.setText(sharedPreference.getBusinessCompany())
-            binding.includeStepper1.gstInET.setText(sharedPreference.getBusinessGst())
+            binding.includeStepper1.gstInET.setText(sharedPreference.getGst())
             binding.includeStepper1.businessPhoneNumberET.setText(sharedPreference.getBusinessPhoneNo())
             binding.includeStepper1.businessFlatHouseET.setText(sharedPreference.getBusinessFlat())
             binding.includeStepper1.businessStreetET.setText(sharedPreference.getBusinessStreet())

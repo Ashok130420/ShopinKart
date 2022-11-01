@@ -31,11 +31,16 @@ class YourCartAdapter(val context: Context, var arrayList: ArrayList<CartModel>)
 
     var finalTotalPrice = 0
     var totalPrice = 0
-
     var finalQuantity = 0
     var totalQuantity = 0
 
+
     companion object {
+//        var cartInstance: YourCartAdapter = YourCartAdapter(context)
+//
+//        fun getInstance(): YourCartAdapter {
+//            return cartInstance
+//        }
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -66,20 +71,22 @@ class YourCartAdapter(val context: Context, var arrayList: ArrayList<CartModel>)
             totalQuantity = 0
 
             for (i in itemDetails.variants) {
-
                 totalPrice += i.price * i.quantity
                 Log.d("totalPrice", totalPrice.toString())
 
                 totalQuantity += i.quantity
                 Log.d("totalQuantity", totalQuantity.toString())
+
             }
 
             finalTotalPrice += totalPrice
             finalQuantity += totalQuantity
+
             Log.d("finalQuantity", finalQuantity.toString())
 
             ProductCartActivity.orderTotalAmount = finalTotalPrice
-            ProductCartActivity.orderTotalQuantity=finalQuantity
+
+            ProductCartActivity.orderTotalQuantity = finalQuantity
 
             ProductCartActivity.cartInstance.updatedCal()
 
@@ -185,6 +192,10 @@ class YourCartAdapter(val context: Context, var arrayList: ArrayList<CartModel>)
             }
         }
 
+        fun update() {
+            notifyDataSetChanged()
+        }
+
     }
 
     override fun getItemCount(): Int {
@@ -196,4 +207,6 @@ class YourCartAdapter(val context: Context, var arrayList: ArrayList<CartModel>)
         val binding: ItemYourCartBinding = itemView
 
     }
+
+
 }

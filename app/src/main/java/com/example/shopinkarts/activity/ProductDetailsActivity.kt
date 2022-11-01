@@ -92,8 +92,8 @@ class ProductDetailsActivity : AppCompatActivity() {
         var size = ""
         var imageUrl = ""
         var variantTarget = ""
-
         var unitPrice = 0
+
         fun getInstance(): ProductDetailsActivity {
             return pInstance
         }
@@ -174,7 +174,7 @@ class ProductDetailsActivity : AppCompatActivity() {
 
                 binding.quantityShowTV.text = currentNumber.toString()
 
-                binding.discountedPriceTV.text = "Rs ${ unitPrice * currentNumber }.00"
+                binding.discountedPriceTV.text = "Rs ${unitPrice * currentNumber}.00"
 
                 quantitySze = if (currentNumber > 1) {
                     activeAddCart()
@@ -200,7 +200,7 @@ class ProductDetailsActivity : AppCompatActivity() {
             Log.d("quantitySze", quantitySze.toString())
             binding.quantityShowTV.text = currentNumber.toString()
 
-            binding.discountedPriceTV.text = "Rs ${ unitPrice * currentNumber }.00"
+            binding.discountedPriceTV.text = "Rs ${unitPrice * currentNumber}.00"
         }
 
         binding.productDescriptionHeaderCL.setOnClickListener {

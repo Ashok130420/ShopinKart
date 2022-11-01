@@ -88,7 +88,7 @@
                 android:textColor="@color/primary_text"
                 android:textSize="@dimen/text_size_14"
                 android:textStyle="bold"
-                android:visibility="invisible"
+                android:visibility="visible"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 tools:ignore="ContentDescription" />
@@ -121,7 +121,7 @@
                 android:textColor="@color/primary_text"
                 android:textSize="@dimen/text_size_14"
                 android:textStyle="bold"
-                android:visibility="invisible"
+                android:visibility="visible"
                 app:layout_constraintBottom_toBottomOf="@+id/plusQuantityTV"
                 app:layout_constraintStart_toEndOf="@+id/quantityShowTV"
                 app:layout_constraintTop_toTopOf="@+id/plusQuantityTV"

@@ -103,7 +103,7 @@
                     android:background="@color/primary_text"
                     android:fontFamily="@font/dm_sans_bold"
                     android:paddingVertical="@dimen/p5"
-                    android:text="@string/cod_collect_rs_30000"
+
                     android:textColor="@color/white"
                     android:textSize="@dimen/text_size_12"
                     app:layout_constraintStart_toStartOf="parent"

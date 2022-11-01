@@ -30,8 +30,8 @@ class ProductCartActivity : AppCompatActivity() {
 
     companion object {
         var cartInstance: ProductCartActivity = ProductCartActivity()
-        var orderTotalAmount=0
-        var orderTotalQuantity=0
+        var orderTotalAmount = 0
+        var orderTotalQuantity = 0
         fun getInstance(): ProductCartActivity {
             return cartInstance
         }
@@ -117,8 +117,6 @@ class ProductCartActivity : AppCompatActivity() {
 
 //            totalAmount = item.variants.sumOf { it.price }.toDouble()
 
-            binding.totalAmountValueTV.text = "RS $orderTotalAmount"
-            Log.d("totalAmount", "onCreate: $orderTotalAmount")
 
 //            discountAmount = DashBoardActivity.arrayListCart.sumOf { it.actualPrice }.toFloat()
 //            binding.discountsValueTV.text = "- RS $discountAmount"
@@ -128,14 +126,29 @@ class ProductCartActivity : AppCompatActivity() {
 //            binding.orderTotalValueTV.text = "Rs $orderTotal"
 //            Log.d("totalOrderTotal", "onCreate: $orderTotal")
 
-            gst = (orderTotalAmount * 5 / 100).toFloat()
-            binding.gstValueTV.text = "Rs $gst"
 
-            amountPaid = orderTotalAmount + gst
-            binding.amountPaidValueTV.text = "Rs $amountPaid"
-            Log.d("totalAmountPaid", "onCreate: $amountPaid")
+        binding.totalAmountValueTV.text = "RS $orderTotalAmount.0"
+        Log.d("totalAmount", "onCreate: $orderTotalAmount")
+        gst = (orderTotalAmount * 5 / 100).toFloat()
+        binding.gstValueTV.text = "Rs $gst"
 
-            differenceAmount = (totalAmount - amountPaid).toFloat()
+        amountPaid = orderTotalAmount + gst
+        binding.amountPaidValueTV.text = "Rs $amountPaid"
+        Log.d("totalAmountPaid", "onCreate: $amountPaid")
+
+        differenceAmount = (totalAmount - amountPaid).toFloat()
+
+
+        /*  binding.totalAmountValueTV.text = "RS ${YourCartAdapter.totalPrice}"
+          Log.d("totalAmount", "onCreate: $orderTotalAmount")
+          gst = (YourCartAdapter.totalPrice * 5 / 100).toFloat()
+          binding.gstValueTV.text = "Rs $gst"
+
+          amountPaid = YourCartAdapter.totalPrice + gst
+          binding.amountPaidValueTV.text = "Rs $amountPaid"
+          Log.d("totalAmountPaid", "onCreate: $amountPaid")
+
+          differenceAmount = (YourCartAdapter.totalPrice - amountPaid).toFloat()*/
 
 //            if (DashBoardActivity.arrayListCart.isNotEmpty()) {
 //                percentage = differenceAmount / totalAmount * 100
@@ -143,7 +156,11 @@ class ProductCartActivity : AppCompatActivity() {
 //                    "Congratulations! You are saving ${percentage.roundToInt()} % on \nthis order"
 //                Log.d("totalPercentage", "onCreate: ${percentage.roundToInt()}")
 //            }
-        }
-//    }
+    }
+
+    //    }
+    fun update() {
+        yourCartAdapter.notifyDataSetChanged()
+    }
 
 }

@@ -136,7 +136,7 @@ class InvoiceActivity : AppCompatActivity() {
         binding.orderIdTV.text = "Order Id-${orderId}"
 
         binding.paymentTV.text =
-            "COD : Collect amount \nRs ${OrdersFragment.arrayListMyOrders[position].totalAmount + OrdersFragment.arrayListMyOrders[position].gstAmount} /-"
+            "COD : Collect amount \nRs ${OrdersFragment.arrayListMyOrders[position].finalAmount + OrdersFragment.arrayListMyOrders[position].gstAmount} /-"
 
         arrayList = OrdersFragment.arrayListMyOrders[position].products
 

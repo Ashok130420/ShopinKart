@@ -28,7 +28,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:background="@color/white"
-                    android:visibility="gone"
+                    android:visibility="visible"
                     app:layout_constraintTop_toTopOf="parent"
                     tools:context=".activity.CheckOutDetailsActivity">
 
@@ -235,14 +235,27 @@
 
                     </com.google.android.material.textfield.TextInputLayout>
 
+                    <EditText
+                        android:id="@+id/deliveryInstructionsET"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/m20"
+                        android:background="@drawable/shape_grey_corners_5dp"
+                        android:hint="@string/delivery_instructions"
+                        android:padding="@dimen/p15"
+                        android:textSize="@dimen/text_size_12"
+                        android:textColorHint="@color/hint_color"
+                        android:textColor="@color/primary_text"
+                        app:layout_constraintTop_toBottomOf="@id/landMarkTVLayout"
+                        tools:ignore="Autofill,TextFields" />
 
                 </androidx.constraintlayout.widget.ConstraintLayout>
 
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:id="@+id/businessDetailsCl"
                     android:layout_width="match_parent"
-                    android:layout_marginTop="@dimen/m5"
                     android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/m5"
                     android:background="@color/white"
                     android:visibility="visible"
                     app:layout_constraintTop_toBottomOf="@id/personalCL"
@@ -519,6 +532,20 @@
                             android:textSize="@dimen/text_size_12" />
 
                     </com.google.android.material.textfield.TextInputLayout>
+
+                    <EditText
+                        android:id="@+id/deliveryInstructionsBusinessET"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/m20"
+                        android:background="@drawable/shape_grey_corners_5dp"
+                        android:hint="@string/delivery_instructions"
+                        android:padding="@dimen/p15"
+                        android:textSize="@dimen/text_size_12"
+                        android:textColorHint="@color/hint_color"
+                        android:textColor="@color/primary_text"
+                        app:layout_constraintTop_toBottomOf="@id/businessLandMarkTVLayout"
+                        tools:ignore="Autofill,TextFields" />
 
                 </androidx.constraintlayout.widget.ConstraintLayout>
 

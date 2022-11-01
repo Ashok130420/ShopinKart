@@ -42,6 +42,8 @@ class SharedPreference(val context: Context) {
         const val BState = "bState"
         const val BLandmark = "bLandmark"
 
+        const val GST="gst"
+
 
     }
 
@@ -206,6 +208,17 @@ class SharedPreference(val context: Context) {
 
     fun getUserType(): String? {
         return prefs.getString(userType, "")
+
+    }
+
+    fun setGst(gst: String) {
+        val editor = prefs.edit()
+        editor.putString(GST, gst)
+        editor.apply()
+    }
+
+    fun getGst(): String? {
+        return prefs.getString(GST, "")
 
     }
 
