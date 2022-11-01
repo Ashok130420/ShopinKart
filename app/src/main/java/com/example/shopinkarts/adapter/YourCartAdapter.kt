@@ -71,6 +71,7 @@ class YourCartAdapter(val context: Context, var arrayList: ArrayList<CartModel>)
             totalQuantity = 0
 
             for (i in itemDetails.variants) {
+
                 totalPrice += i.price * i.quantity
                 Log.d("totalPrice", totalPrice.toString())
 

@@ -65,14 +65,13 @@ class CartColorSizeAdapter(val context: Context, val arrayList: ArrayList<Varian
                 Log.d("stockstockstock", unitPrice.toString())
                 Log.d("stockstockstock", updateQty.toString())
                 Log.d("stockstockstock", "${unitPrice * updateQty}")
-
                 Log.d("pricepriceprice", itemDetails.price.toString())
 
                 updatePrice = unitPrice * updateQty
 //                    itemDetails.price = updatePrice
 
-
                 notifyDataSetChanged()
+
                 ProductCartActivity.cartInstance.update()
 //                ProductCartActivity.cartInstance.updatedCal()
                     sharedPreference.setArray()
