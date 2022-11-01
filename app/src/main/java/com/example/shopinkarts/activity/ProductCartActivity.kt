@@ -33,6 +33,9 @@ class ProductCartActivity : AppCompatActivity() {
         var orderTotalAmount = 0
         var orderTotalQuantity = 0
 
+        var arrayTotal: ArrayList<Int> = ArrayList()
+        var productsPrice = 0
+
         fun getInstance(): ProductCartActivity {
             return cartInstance
         }
@@ -75,6 +78,7 @@ class ProductCartActivity : AppCompatActivity() {
 
 
         // adapter for your cart
+        arrayTotal.clear()
         yourCartAdapter = YourCartAdapter(this, DashBoardActivity.arrayListCart)
         binding.yourCartRV.adapter = yourCartAdapter
         binding.yourCartRV.isNestedScrollingEnabled = false
@@ -127,10 +131,12 @@ class ProductCartActivity : AppCompatActivity() {
 //            binding.orderTotalValueTV.text = "Rs $orderTotal"
 //            Log.d("totalOrderTotal", "onCreate: $orderTotal")
 
+        productsPrice= arrayTotal.sum()
+        Log.d("productsPrice", productsPrice.toString())
 
-        binding.totalAmountValueTV.text = "RS $orderTotalAmount.0"
+        binding.totalAmountValueTV.text = "RS $productsPrice.0"
         Log.d("totalAmount", "onCreate: $orderTotalAmount")
-        gst = (orderTotalAmount * 5 / 100).toFloat()
+        gst = (productsPrice * 5 / 100).toFloat()
         binding.gstValueTV.text = "Rs $gst"
 
         amountPaid = orderTotalAmount + gst

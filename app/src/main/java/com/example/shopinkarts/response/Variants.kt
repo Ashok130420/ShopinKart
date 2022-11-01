@@ -6,4 +6,5 @@ data class Variants(
     var quantity: Int,
     var price: Int,
     var id: String,
+    var stock: Int,
 )

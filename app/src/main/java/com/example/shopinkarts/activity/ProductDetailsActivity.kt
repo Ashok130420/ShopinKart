@@ -327,7 +327,8 @@ class ProductDetailsActivity : AppCompatActivity() {
                     size = selectedSize,
                     quantity = currentNumber,
                     price = actualPrice,
-                    id = vId
+                    id = vId,
+                    stock = stock
                 )
             variantArray.add(variant)
             val product = CartModel(
@@ -368,7 +369,8 @@ class ProductDetailsActivity : AppCompatActivity() {
                                 size = selectedSize,
                                 quantity = currentNumber,
                                 price = actualPrice,
-                                id = vId
+                                id = vId,
+                                stock = stock
                             )
                         )
                     ) {
@@ -389,7 +391,8 @@ class ProductDetailsActivity : AppCompatActivity() {
                                         size = selectedSize,
                                         quantity = currentNumber,
                                         price = actualPrice,
-                                        id = vId
+                                        id = vId,
+                                        stock = stock
                                     )
                                 )
                                 break
@@ -402,7 +405,8 @@ class ProductDetailsActivity : AppCompatActivity() {
                                     size = selectedSize,
                                     quantity = currentNumber,
                                     price = actualPrice,
-                                    id = vId
+                                    id = vId,
+                                    stock = stock
                                 )
                             )
                         }
@@ -442,7 +446,8 @@ class ProductDetailsActivity : AppCompatActivity() {
                         size = selectedSize,
                         quantity = currentNumber,
                         price = actualPrice,
-                        id = vId
+                        id = vId,
+                        stock = stock
                     )
                 )
                 DashBoardActivity.arrayListCart.add(

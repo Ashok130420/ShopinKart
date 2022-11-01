@@ -35,14 +35,6 @@ class YourCartAdapter(val context: Context, var arrayList: ArrayList<CartModel>)
     var totalQuantity = 0
 
 
-    companion object {
-//        var cartInstance: YourCartAdapter = YourCartAdapter(context)
-//
-//        fun getInstance(): YourCartAdapter {
-//            return cartInstance
-//        }
-    }
-
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val binding: ItemYourCartBinding = DataBindingUtil.inflate(
             LayoutInflater.from(parent.context), R.layout.item_your_cart, parent, false
@@ -80,6 +72,8 @@ class YourCartAdapter(val context: Context, var arrayList: ArrayList<CartModel>)
 
             }
 
+            ProductCartActivity.arrayTotal.add(totalPrice)
+
             finalTotalPrice += totalPrice
             finalQuantity += totalQuantity
 
@@ -100,76 +94,74 @@ class YourCartAdapter(val context: Context, var arrayList: ArrayList<CartModel>)
             Log.d("TAG:totalAmount", "onBindViewHolder: ${(itemDetails.totalAmount)}")
 
 //            updateQty = itemDetails.variants[0].quantity
-//          /  quantityShowTV.text = updateQty.toString()
+//            quantityShowTV.text = updateQty.toString()
 //            sizeBlockTV.text = itemDetails.variants[0].size
 //            colorIV.setBackgroundColor(Color.parseColor(itemDetails.variants[0].color))
 
             Glide.with(context).load(itemDetails.imageUrl).into(imageIV)
 
-/*
-            plusQuantityTV.setOnClickListener {
+            /*
+                plusQuantityTV.setOnClickListener {
 
-                updateQty = itemDetails.quantity + 1
+                    updateQty = itemDetails.quantity + 1
 
-                Log.d("defaultCQ", itemDetails.quantity.toString())
-                Log.d("after+CQ", updateQty.toString())
-                Log.d("stock", itemDetails.stock.toString())
-                Log.d(" itemDetails.quantity", itemDetails.quantity.toString())
+                    Log.d("defaultCQ", itemDetails.quantity.toString())
+                    Log.d("after+CQ", updateQty.toString())
+                    Log.d("stock", itemDetails.stock.toString())
+                    Log.d(" itemDetails.quantity", itemDetails.quantity.toString())
 
-                unitPrice = itemDetails.discountedPrice.toInt()
+                    unitPrice = itemDetails.discountedPrice.toInt()
 
-                if (updateQty <= itemDetails.stock) {
+                    if (updateQty <= itemDetails.stock) {
 
-                    itemDetails.quantity = updateQty
+                        itemDetails.quantity = updateQty
 
-                    Log.d("stockstockstock", unitPrice.toString())
-                    Log.d("stockstockstock", updateQty.toString())
-                    Log.d("stockstockstock", "${unitPrice * updateQty}")
+                        Log.d("stockstockstock", unitPrice.toString())
+                        Log.d("stockstockstock", updateQty.toString())
+                        Log.d("stockstockstock", "${unitPrice * updateQty}")
 
-                    updatePrice = unitPrice * updateQty
-                    itemDetails.totalAmount = updatePrice
+                        updatePrice = unitPrice * updateQty
+                        itemDetails.totalAmount = updatePrice
 
-                    notifyDataSetChanged()
-                    sharedPreference.setArray()
+                        notifyDataSetChanged()
+                        sharedPreference.setArray()
 
-                } else {
-                    Toast.makeText(context, "Out of stock", Toast.LENGTH_SHORT).show()
+                    } else {
+                        Toast.makeText(context, "Out of stock", Toast.LENGTH_SHORT).show()
+                    }
+                    ProductCartActivity.getInstance().updatedCal()
                 }
-                ProductCartActivity.getInstance().updatedCal()
-            }
 
-            minusQuantityTV.setOnClickListener {
-
-                Log.d("defaultCQ", itemDetails.quantity.toString())
-                Log.d("after+CQ", (itemDetails.quantity.toInt() - 1).toString())
-                Log.d("stock", itemDetails.stock.toString())
-
-                updateQty = itemDetails.quantity - 1
-
-                val unitPrice = itemDetails.discountedPrice.toInt()
-
-                if (updateQty == 0) {
-                    //delete item
-                    arrayList.removeAt(position)
-                    selectedVIDs.removeAt(position)
-                    sharedPreference.setArray()
+                minusQuantityTV.setOnClickListener {
 
 
-                    notifyDataSetChanged()
+
+                    updateQty = itemDetails.quantity - 1
+
+                    val unitPrice = itemDetails.discountedPrice.toInt()
+
+                    if (updateQty == 0) {
+                        //delete item
+                        arrayList.removeAt(position)
+                        selectedVIDs.removeAt(position)
+                        sharedPreference.setArray()
 
 
-                } else {
+                        notifyDataSetChanged()
 
-                    //update item
-                    itemDetails.quantity = updateQty
-                    updatePrice = unitPrice * updateQty
-                    itemDetails.totalAmount = updatePrice
-                    sharedPreference.setArray()
-                    notifyDataSetChanged()
 
-                }
-                ProductCartActivity.getInstance().updatedCal()
-            }*/
+                    } else {
+
+                        //update item
+                        itemDetails.quantity = updateQty
+                        updatePrice = unitPrice * updateQty
+                        itemDetails.totalAmount = updatePrice
+                        sharedPreference.setArray()
+                        notifyDataSetChanged()
+
+                    }
+                    ProductCartActivity.getInstance().updatedCal()
+                }*/
 
             cartColorSizeAdapter = CartColorSizeAdapter(context, itemDetails.variants)
             cartSizeColorRV.adapter = cartColorSizeAdapter
@@ -191,10 +183,6 @@ class YourCartAdapter(val context: Context, var arrayList: ArrayList<CartModel>)
                     (context as Activity).finish()
                 }
             }
-        }
-
-        fun update() {
-            notifyDataSetChanged()
         }
 
     }

@@ -6,9 +6,11 @@ import android.graphics.Color
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.example.shopinkarts.R
+import com.example.shopinkarts.activity.DashBoardActivity.Companion.selectedVIDs
 import com.example.shopinkarts.activity.ProductCartActivity
 import com.example.shopinkarts.classes.SharedPreference
 import com.example.shopinkarts.databinding.ItemsCartColorSizeQtyBinding
@@ -46,76 +48,80 @@ class CartColorSizeAdapter(val context: Context, val arrayList: ArrayList<Varian
 
             plusQuantityTV.setOnClickListener {
 
-                updateQty = itemDetails.quantity
-                unitPrice = itemDetails.price / itemDetails.quantity
+                ProductCartActivity.arrayTotal.clear()
 
+//                updateQty = itemDetails.quantity
+//                unitPrice = itemDetails.price / itemDetails.quantity
                 updateQty = itemDetails.quantity + 1
 
                 Log.d("defaultCQ", itemDetails.quantity.toString())
                 Log.d("after+CQ", updateQty.toString())
-//                Log.d("stock", itemDetails.stock.toString())
+                Log.d("stock", itemDetails.stock.toString())
                 Log.d(" itemDetails.quantity", itemDetails.quantity.toString())
 
-//                unitPrice = itemDetails.discountedPrice.toInt()
 
-//                if (updateQty <= itemDetails.stock) {
+                if (updateQty <= itemDetails.stock) {
 
-                itemDetails.quantity = updateQty
+                    itemDetails.quantity = updateQty
 
-                Log.d("stockstockstock", unitPrice.toString())
-                Log.d("stockstockstock", updateQty.toString())
-                Log.d("stockstockstock", "${unitPrice * updateQty}")
-                Log.d("pricepriceprice", itemDetails.price.toString())
+//                    Log.d("plus_UnitPrice", unitPrice.toString())
+//                    Log.d("plus_UpdateQty", updateQty.toString())
+//                    Log.d("plus_update_price", "${unitPrice * updateQty}")
+//                    Log.d("plus_price", itemDetails.price.toString())
 
-                updatePrice = unitPrice * updateQty
-//                    itemDetails.price = updatePrice
+//                    updatePrice = unitPrice * updateQty
 
-                notifyDataSetChanged()
+                    notifyDataSetChanged()
 
-                ProductCartActivity.cartInstance.update()
-//                ProductCartActivity.cartInstance.updatedCal()
+                    ProductCartActivity.cartInstance.update()
                     sharedPreference.setArray()
 
-//                } else {
-//                    Toast.makeText(context, "Out of stock", Toast.LENGTH_SHORT).show()
-//                }
-//                ProductCartActivity.getInstance().updatedCal()
-
+                } else {
+                    Toast.makeText(context, "Out of stock", Toast.LENGTH_SHORT).show()
+                }
 
             }
 
-//            minusQuantityTV.setOnClickListener {
+            minusQuantityTV.setOnClickListener {
+
+                ProductCartActivity.arrayTotal.clear()
+
+
+//                 updateQty = itemDetails.quantity
+//                 unitPrice = itemDetails.price / itemDetails.quantity
+                updateQty = itemDetails.quantity - 1
+
+
+                if (updateQty == 0) {
+                    //delete item
+                    arrayList.removeAt(position)
+                    selectedVIDs.removeAt(position)
+                    sharedPreference.setArray()
+
+                    notifyDataSetChanged()
+                    ProductCartActivity.cartInstance.update()
+
+                } else  {
+
+                    //update item
+//                    val uPrice = itemDetails.price / itemDetails.quantity
+                    itemDetails.quantity = updateQty
+//                    updatePrice = uPrice * updateQty
+//                    itemDetails.price = updatePrice
 //
-//                Log.d("defaultCQ", itemDetails.quantity.toString())
-//                Log.d("after+CQ", (itemDetails.quantity.toInt() - 1).toString())
-//                Log.d("stock", itemDetails.stock.toString())
-//
-//                updateQty = itemDetails.quantity - 1
-//
-//                val unitPrice = itemDetails.discountedPrice.toInt()
-//
-//                if (updateQty == 0) {
-//                    //delete item
-//                    arrayList.removeAt(position)
-//                    selectedVIDs.removeAt(position)
-//                    sharedPreference.setArray()
-//
-//
-//                    notifyDataSetChanged()
-//
-//
-//                } else {
-//
-//                    //update item
-//                    itemDetails.quantity = updateQty
-//                    updatePrice = unitPrice * updateQty
-//                    itemDetails.totalAmount = updatePrice
-//                    sharedPreference.setArray()
-//                    notifyDataSetChanged()
-//
-//                }
-//                ProductCartActivity.getInstance().updatedCal()
-//            }
+//                    Log.d("minus_UnitPrice", unitPrice.toString())
+//                    Log.d("minus_UpdateQty", updateQty.toString())
+//                    Log.d("minus_update_price", "${unitPrice * updateQty}")
+//                    Log.d("minus_price", itemDetails.price.toString())
+
+                    sharedPreference.setArray()
+                    notifyDataSetChanged()
+                    ProductCartActivity.cartInstance.update()
+
+                }
+//                 ProductCartActivity.cartInstance.update()
+                ProductCartActivity.getInstance().updatedCal()
+            }
 
         }
 
