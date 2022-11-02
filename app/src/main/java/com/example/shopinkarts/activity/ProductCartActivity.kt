@@ -13,6 +13,7 @@ import com.example.shopinkarts.adapter.YourCartAdapter
 import com.example.shopinkarts.classes.Utils
 import com.example.shopinkarts.databinding.ActivityProductCartBinding
 import com.example.shopinkarts.response.Variants
+import java.text.DecimalFormat
 import kotlin.math.roundToInt
 
 class ProductCartActivity : AppCompatActivity() {
@@ -22,8 +23,8 @@ class ProductCartActivity : AppCompatActivity() {
     var totalAmount: Double = 0.00
     var discountAmount = 0F
     var orderTotal = 0F
-    var gst = 0F
-    var amountPaid = 0F
+    var gst: Double = 0.00
+    var amountPaid: Double = 0.00
     var percentage: Double = 0.00
     var differenceAmount = 0F
 
@@ -34,7 +35,7 @@ class ProductCartActivity : AppCompatActivity() {
         var orderTotalQuantity = 0
 
         var arrayTotal: ArrayList<Int> = ArrayList()
-        var productsPrice = 0
+        var productsPrice: Double = 0.00
 
         fun getInstance(): ProductCartActivity {
             return cartInstance
@@ -130,17 +131,20 @@ class ProductCartActivity : AppCompatActivity() {
 //            orderTotal = (totalAmount - discountAmount).toFloat()
 //            binding.orderTotalValueTV.text = "Rs $orderTotal"
 //            Log.d("totalOrderTotal", "onCreate: $orderTotal")
-
-        productsPrice= arrayTotal.sum()
+        productsPrice = arrayTotal.sum().toDouble()
         Log.d("productsPrice", productsPrice.toString())
 
-        binding.totalAmountValueTV.text = "RS $productsPrice.0"
+//        binding.totalAmountValueTV.text = "RS $productsPrice"
+        binding.totalAmountValueTV.text = "RS " + DecimalFormat(".00").format(productsPrice)
         Log.d("totalAmount", "onCreate: $orderTotalAmount")
-        gst = (productsPrice * 5 / 100).toFloat()
-        binding.gstValueTV.text = "Rs $gst"
+
+        gst = (productsPrice * 5 / 100)
+//        binding.gstValueTV.text = "Rs $gst"
+        binding.gstValueTV.text = "RS " + DecimalFormat(".00").format(gst)
 
         amountPaid = productsPrice + gst
-        binding.amountPaidValueTV.text = "Rs $amountPaid"
+//        binding.amountPaidValueTV.text = "Rs $amountPaid"
+        binding.amountPaidValueTV.text = "RS " + DecimalFormat(".00").format(amountPaid)
         Log.d("totalAmountPaid", "onCreate: $amountPaid")
 
         differenceAmount = (totalAmount - amountPaid).toFloat()

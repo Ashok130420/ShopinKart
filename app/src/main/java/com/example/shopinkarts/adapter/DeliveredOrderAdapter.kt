@@ -11,12 +11,14 @@ import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.example.shopinkarts.R
 import com.example.shopinkarts.activity.InvoiceActivity
+import com.example.shopinkarts.activity.ProductCartActivity
 import com.example.shopinkarts.activity.TrackOrderActivity
 import com.example.shopinkarts.classes.SharedPreference
 import com.example.shopinkarts.classes.Utils
 import com.example.shopinkarts.databinding.ItemsDeliveredOrderBinding
 import com.example.shopinkarts.model.CreateProduct
 import com.example.shopinkarts.response.Order
+import java.text.DecimalFormat
 
 class DeliveredOrderAdapter(val context: Context, val arrayList: ArrayList<Order>) :
     RecyclerView.Adapter<DeliveredOrderAdapter.ViewHolder>() {
@@ -57,8 +59,13 @@ class DeliveredOrderAdapter(val context: Context, val arrayList: ArrayList<Order
                 "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'", "dd-MMM-yyyy", arrayList[position].creationTimeStamp
             ).toString()
 
-            totalAmountValueTV.text = " Rs ${itemDetails.finalAmount + itemDetails.gstAmount}"
-            tAmount = (itemDetails.finalAmount + itemDetails.gstAmount).toFloat()
+//            totalAmountValueTV.text = " Rs ${itemDetails.finalAmount + itemDetails.gstAmount}"
+
+
+            totalAmountValueTV.text =
+                "RS " + DecimalFormat(".00").format(itemDetails.finalAmount + itemDetails.gstAmount)
+
+            tAmount = (itemDetails.finalAmount + itemDetails.gstAmount)
 
             gst = itemDetails.gstAmount
 

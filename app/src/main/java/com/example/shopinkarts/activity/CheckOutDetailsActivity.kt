@@ -37,9 +37,9 @@ class CheckOutDetailsActivity : AppCompatActivity() {
     var userType = ""
 
     var totalAmount: Double = 0.00
-    var gst = 0F
-    var discountAmount = 0F
-    var amountPaid = 0F
+    var gst: Double = 0.00
+    var discountAmount: Double = 0.00
+    var amountPaid : Double = 0.00
     var paymentType = 0
 
     var name = ""
@@ -159,9 +159,9 @@ class CheckOutDetailsActivity : AppCompatActivity() {
         }
 
         totalAmount = intent.extras!!.getDouble("totalAmount", 0.0)
-        gst = intent.extras!!.getFloat("gst", 0F)
-        discountAmount = intent.extras!!.getFloat("discount", 0F)
-        amountPaid = intent.extras!!.getFloat("finalAmount", 0F)
+        gst = intent.extras!!.getDouble("gst", 0.0)
+        discountAmount = intent.extras!!.getDouble("discount", 0.0)
+        amountPaid = intent.extras!!.getDouble("finalAmount", 0.0)
 
 
         Log.d("TAG1", "onCreate: $totalAmount")

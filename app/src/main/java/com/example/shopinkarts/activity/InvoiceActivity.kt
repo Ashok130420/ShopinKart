@@ -30,6 +30,7 @@ import com.example.shopinkarts.model.CreateProduct
 import java.io.File
 import java.io.FileOutputStream
 import java.io.OutputStream
+import java.text.DecimalFormat
 import java.util.*
 import java.util.Calendar.getInstance
 
@@ -136,17 +137,18 @@ class InvoiceActivity : AppCompatActivity() {
         binding.orderIdTV.text = "Order Id-${orderId}"
 
         binding.paymentTV.text =
-            "COD : Collect amount \nRs ${OrdersFragment.arrayListMyOrders[position].finalAmount + OrdersFragment.arrayListMyOrders[position].gstAmount} /-"
+            "COD : Collect amount \nRS " + DecimalFormat(".00").format(OrdersFragment.arrayListMyOrders[position].finalAmount + OrdersFragment.arrayListMyOrders[position].gstAmount)+"/-"
 
         arrayList = OrdersFragment.arrayListMyOrders[position].products
 
         binding.tAmountValueTV.text =
-            OrdersFragment.arrayListMyOrders[position].finalAmount.toString()
+            "RS " + DecimalFormat(".00").format(OrdersFragment.arrayListMyOrders[position].finalAmount)
 
-        binding.gstTaxValueTV.text = OrdersFragment.arrayListMyOrders[position].gstAmount.toString()
+        binding.gstTaxValueTV.text =
+            "RS " + DecimalFormat(".00").format(OrdersFragment.arrayListMyOrders[position].gstAmount)
 
         binding.totalValueTV.text =
-            "Rs ${OrdersFragment.arrayListMyOrders[position].finalAmount + OrdersFragment.arrayListMyOrders[position].gstAmount}"
+            "RS " + DecimalFormat(".00").format(OrdersFragment.arrayListMyOrders[position].finalAmount + OrdersFragment.arrayListMyOrders[position].gstAmount)
 
         gstAmount = OrdersFragment.arrayListMyOrders[position].gstAmount
 

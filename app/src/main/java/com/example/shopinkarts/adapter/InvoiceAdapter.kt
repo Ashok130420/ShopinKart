@@ -7,8 +7,10 @@ import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.example.shopinkarts.R
+import com.example.shopinkarts.activity.ProductCartActivity
 import com.example.shopinkarts.databinding.ItemsInvoiceDetailsBinding
 import com.example.shopinkarts.model.CreateProduct
+import java.text.DecimalFormat
 
 class InvoiceAdapter(
     val context: Context, val arrayList: List<CreateProduct>
@@ -32,7 +34,7 @@ class InvoiceAdapter(
 
             itemsNameTV.text = "${itemDetails.productName} \nPid-(${ itemDetails.productId })"
             qtyValueTV.text = itemDetails.qty.toString()
-            totalAmountValueTV.text = "RS ${itemDetails.totalAmount}"
+            totalAmountValueTV.text = "RS " + DecimalFormat(".00").format(itemDetails.totalAmount)
 
         }
 
