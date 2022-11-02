@@ -10,6 +10,7 @@ import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import com.bumptech.glide.Glide
 import com.example.shopinkarts.R
+import com.example.shopinkarts.classes.InAppUpdate
 import com.example.shopinkarts.classes.SharedPreference
 import com.example.shopinkarts.classes.Utils
 import com.example.shopinkarts.databinding.ActivityDashBoardBinding
@@ -29,6 +30,7 @@ class DashBoardActivity : AppCompatActivity() {
     private val ordersFragment = OrdersFragment()
     private val accountFragment = AccountFragment()
     lateinit var sharedPreference: SharedPreference
+    private lateinit var inAppUpdate: InAppUpdate
 
     private var backPressedTime: Long = 0
 
@@ -59,7 +61,20 @@ class DashBoardActivity : AppCompatActivity() {
         } else {
             binding.headerDashBoard.cartItemTV.visibility = View.GONE
         }
+
         super.onResume()
+        inAppUpdate.onResume()
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        inAppUpdate.onDestroy()
+    }
+
+    @Deprecated("Deprecated in Java")
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        inAppUpdate.onActivityResult(requestCode,resultCode, data)
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -72,6 +87,7 @@ class DashBoardActivity : AppCompatActivity() {
         sharedPreference = SharedPreference(this)
 
         sharedPreference.getArray()
+        inAppUpdate = InAppUpdate(this)
 
         mInstance = this
 
