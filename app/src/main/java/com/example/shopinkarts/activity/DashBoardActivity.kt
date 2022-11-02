@@ -74,7 +74,7 @@ class DashBoardActivity : AppCompatActivity() {
     @Deprecated("Deprecated in Java")
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
-        inAppUpdate.onActivityResult(requestCode,resultCode, data)
+        inAppUpdate.onActivityResult(requestCode, resultCode, data)
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -178,7 +178,7 @@ class DashBoardActivity : AppCompatActivity() {
         binding.navBottomMenu.selectedItemId = R.id.bottomCategories
     }
 
-// exit from app on double click
+    // exit from app on double click
     @Deprecated("Deprecated in Java")
     override fun onBackPressed() {
         if (backPressedTime + 3000 > System.currentTimeMillis()) {
