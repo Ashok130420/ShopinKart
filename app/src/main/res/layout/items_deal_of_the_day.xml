@@ -10,10 +10,8 @@
     <androidx.cardview.widget.CardView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/p2"
-        android:layout_marginEnd="@dimen/m10"
-        android:layout_marginBottom="@dimen/m8"
-        app:cardCornerRadius="@dimen/m10">
+        app:cardCornerRadius="@dimen/m10"
+        app:cardUseCompatPadding="true">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="wrap_content"
@@ -21,8 +19,8 @@
 
             <ImageView
                 android:id="@+id/imageIV"
-                android:layout_width="150dp"
-                android:layout_height="150dp"
+                android:layout_width="158dp"
+                android:layout_height="160dp"
                 android:scaleType="fitXY"
                 android:src="@drawable/newly_added_image"
                 app:layout_constraintEnd_toEndOf="parent"

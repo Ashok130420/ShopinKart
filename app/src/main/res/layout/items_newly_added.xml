@@ -19,7 +19,7 @@
 
             <ImageView
                 android:id="@+id/newlyAddedIV"
-                android:layout_width="155dp"
+                android:layout_width="158dp"
                 android:layout_height="160dp"
                 android:scaleType="fitXY"
                 android:src="@drawable/newly_added_image"
