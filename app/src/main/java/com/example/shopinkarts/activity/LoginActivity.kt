@@ -152,7 +152,6 @@ class LoginActivity : AppCompatActivity() {
 
                         sharedPreference.setPhoneNo(phoneNo = binding.phoneET.text.toString())
 
-
                         val intent = Intent(this@LoginActivity, DashBoardActivity::class.java)
                         intent.flags =
                             Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK
@@ -166,7 +165,7 @@ class LoginActivity : AppCompatActivity() {
                 } else {
                     mProgressDialog.dismiss()
                     Toast.makeText(
-                        this@LoginActivity, "${response.message()}", Toast.LENGTH_SHORT
+                        this@LoginActivity, response.message(), Toast.LENGTH_SHORT
                     ).show()
                 }
                 mProgressDialog.dismiss()

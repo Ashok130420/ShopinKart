@@ -37,8 +37,6 @@ class DashBoardActivity : AppCompatActivity() {
         var mInstance: DashBoardActivity = DashBoardActivity()
         var arrayListCart: ArrayList<CartModel> = ArrayList()
         var selectedVIDs: ArrayList<String> = ArrayList()
-        var arrayListVariants: ArrayList<Variants> = ArrayList()
-
 
         fun getInstance(): DashBoardActivity {
             return mInstance
@@ -168,7 +166,7 @@ class DashBoardActivity : AppCompatActivity() {
     @Deprecated("Deprecated in Java")
     override fun onBackPressed() {
         if (backPressedTime + 3000 > System.currentTimeMillis()) {
-            super.onBackPressed()
+            super.finish()
             finish()
         } else {
             Toast.makeText(this, "Press back again to exit.", Toast.LENGTH_LONG).show()
