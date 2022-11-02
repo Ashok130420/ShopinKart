@@ -164,7 +164,7 @@ class DashBoardActivity : AppCompatActivity() {
         binding.navBottomMenu.selectedItemId = R.id.bottomCategories
     }
 
-// Exit From App on Double Click
+// exit from app on double click
     @Deprecated("Deprecated in Java")
     override fun onBackPressed() {
         if (backPressedTime + 3000 > System.currentTimeMillis()) {
