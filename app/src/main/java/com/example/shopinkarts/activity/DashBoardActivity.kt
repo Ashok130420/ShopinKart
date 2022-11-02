@@ -30,7 +30,7 @@ class DashBoardActivity : AppCompatActivity() {
     private val accountFragment = AccountFragment()
     lateinit var sharedPreference: SharedPreference
 
-    var backPressedTime: Long = 0
+    private var backPressedTime: Long = 0
 
     companion object {
         var profile = ""

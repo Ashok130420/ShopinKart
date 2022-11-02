@@ -63,4 +63,5 @@
     <dimen name="m160">160dp</dimen>
     <dimen name="m90">90dp</dimen>
     <dimen name="m230">230dp</dimen>
+    <dimen name="m15">15dp</dimen>
 </resources>

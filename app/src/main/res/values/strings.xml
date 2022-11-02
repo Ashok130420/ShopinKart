@@ -6,6 +6,7 @@
     <string name="enter_phone_number">* Enter phone number</string>
     <string name="enter_password">* Enter password</string>
     <string name="password">Password</string>
+    <string name="password_6">Password(min 6 chars)</string>
     <string name="sign_in">Sign In</string>
     <string name="forgot_password">Forgot Password ?</string>
     <string name="sign_up">Sign Up</string>
@@ -87,6 +88,7 @@
     <string name="product_description">Product Description</string>
     <string name="product_checklist">Product Checklist</string>
     <string name="delivery_instructions">Delivery Instructions</string>
+    <string name="delivery_ins">Delivery Instructions \n(for e.g, please deliver my order by 3pm )</string>
     <string name="buy_now">Buy Now</string>
     <string name="add_to_cart">ADD TO CART</string>
     <string name="read_reviews_4">Read Reviews (4\t\t\t)</string>
@@ -254,15 +256,17 @@
     <string name="please_enter_the_code_to_continue">Please enter the code to continue</string>
     <string name="customer_address">Customer Address</string>
     <string name="cod_collect_rs_30000">COD : Collect Rs 30000/-</string>
-    <string name="gst_08bfddfp73597">GST- 08BfddfP73597</string>
-    <string name="k_a_c_aparment_3rd_floor_flat_no_302_muthyalapalem_near_waler_lanknellore_andhra_pradesh_524003">K.A.C.Aparment 3rd floor flat no.302,Muthyalapalem near waler lankNellore, Andhra Pradesh, 524003</string>
+    <string name="gst_08AAQCM1573M1ZT">GST- 08AAQCM1573M1ZT</string>
+    <string name="manuda_address">B-340, Headgevar Circle, Indra Verma Colony,Jaipur, Jaipur, Rajasthan, 302016</string>
     <string name="product_name">Product Name</string>
     <string name="amount">Amount</string>
     <string name="taxes">Taxes</string>
     <string name="rs_200">Rs 200</string>
     <string name="date">Date</string>
     <string name="taxes_gst">GST ( 5% )</string>
-    <string name="new_user">New User?</string>
+    <string name="new_user">New User? Click Here</string>
+    <string name="register_now">Register Now</string>
+    <string name="manudha_fashion_private_limited">MANUDHA FASHION PRIVATE LIMITED</string>
 
 
 </resources>

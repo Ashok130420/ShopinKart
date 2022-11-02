@@ -52,7 +52,7 @@
                     <androidx.viewpager2.widget.ViewPager2
                         android:id="@+id/productViewPager"
                         android:layout_width="match_parent"
-                        android:layout_height="300dp"
+                        android:layout_height="350dp"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent" />
@@ -120,7 +120,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:paddingVertical="@dimen/p4"
-                        android:text="@string/blazers_t_shirt_nike"
+                        android:text=""
                         android:textColor="@color/primary_text"
                         android:textSize="@dimen/text_size_16"
                         app:layout_constraintStart_toStartOf="parent"
@@ -238,7 +238,7 @@
                         android:id="@+id/deliveryIV"
                         android:layout_width="@dimen/m35"
                         android:layout_height="@dimen/m35"
-                        android:layout_marginTop="@dimen/m8"
+                        android:layout_marginTop="@dimen/m5"
                         android:padding="@dimen/p4"
                         android:src="@drawable/delivery"
                         android:visibility="gone"
@@ -468,6 +468,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_margin="@dimen/m14"
+                        android:visibility="gone"
                         app:layout_constraintTop_toBottomOf="@+id/productDescriptionCL">
 
                         <androidx.constraintlayout.widget.ConstraintLayout
