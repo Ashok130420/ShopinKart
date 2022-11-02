@@ -134,16 +134,13 @@ class ProductCartActivity : AppCompatActivity() {
         productsPrice = arrayTotal.sum().toDouble()
         Log.d("productsPrice", productsPrice.toString())
 
-//        binding.totalAmountValueTV.text = "RS $productsPrice"
         binding.totalAmountValueTV.text = "RS " + DecimalFormat(".00").format(productsPrice)
         Log.d("totalAmount", "onCreate: $orderTotalAmount")
 
         gst = (productsPrice * 5 / 100)
-//        binding.gstValueTV.text = "Rs $gst"
         binding.gstValueTV.text = "RS " + DecimalFormat(".00").format(gst)
 
         amountPaid = productsPrice + gst
-//        binding.amountPaidValueTV.text = "Rs $amountPaid"
         binding.amountPaidValueTV.text = "RS " + DecimalFormat(".00").format(amountPaid)
         Log.d("totalAmountPaid", "onCreate: $amountPaid")
 
