@@ -40,7 +40,7 @@ class LoginActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         Utils.changeStatusTextColor(this)
-        Utils.changeStatusColor(this,R.color.white)
+        Utils.changeStatusColor(this, R.color.white)
         binding = DataBindingUtil.setContentView(this, R.layout.activity_login)
 
         sharedPreference = SharedPreference(this)
@@ -135,12 +135,10 @@ class LoginActivity : AppCompatActivity() {
         mProgressDialog.setMessage("Loading....")
         mProgressDialog.show()
 
-        val call: Call<LoginResponse> =
-            RetrofitClient.instance!!.api.login(requestBody)
+        val call: Call<LoginResponse> = RetrofitClient.instance!!.api.login(requestBody)
         call.enqueue(object : Callback<LoginResponse> {
             override fun onResponse(
-                call: Call<LoginResponse>,
-                response: Response<LoginResponse>
+                call: Call<LoginResponse>, response: Response<LoginResponse>
             ) {
                 if (response.isSuccessful) {
                     mProgressDialog.dismiss()
@@ -155,13 +153,12 @@ class LoginActivity : AppCompatActivity() {
                         sharedPreference.setPhoneNo(phoneNo = binding.phoneET.text.toString())
 
 
-                        val intent =
-                            Intent(this@LoginActivity, DashBoardActivity::class.java)
+                        val intent = Intent(this@LoginActivity, DashBoardActivity::class.java)
+                        intent.flags =
+                            Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK
                         startActivity(intent)
                         Toast.makeText(
-                            this@LoginActivity,
-                            loginResponse.message,
-                            Toast.LENGTH_SHORT
+                            this@LoginActivity, loginResponse.message, Toast.LENGTH_SHORT
                         ).show()
                         Log.e("TAG", "${response.message()} ")
                     }
@@ -169,9 +166,7 @@ class LoginActivity : AppCompatActivity() {
                 } else {
                     mProgressDialog.dismiss()
                     Toast.makeText(
-                        this@LoginActivity,
-                        "${response.message()}",
-                        Toast.LENGTH_SHORT
+                        this@LoginActivity, "${response.message()}", Toast.LENGTH_SHORT
                     ).show()
                 }
                 mProgressDialog.dismiss()
@@ -179,9 +174,7 @@ class LoginActivity : AppCompatActivity() {
 
             override fun onFailure(call: Call<LoginResponse>, t: Throwable) {
                 Toast.makeText(
-                    this@LoginActivity,
-                    "${t.message}",
-                    Toast.LENGTH_SHORT
+                    this@LoginActivity, "${t.message}", Toast.LENGTH_SHORT
                 ).show()
                 Log.e("TAG", "${t.message} ")
             }

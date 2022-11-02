@@ -190,6 +190,7 @@ class SignUpActivity : AppCompatActivity() {
                             this@SignUpActivity, signupResponse.message, Toast.LENGTH_SHORT
                         ).show()
                         val intent = Intent(this@SignUpActivity, DashBoardActivity::class.java)
+                        intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK
 //                        val intent = Intent(this@SignUpActivity, OtpVerifyActivity::class.java)
                         startActivity(intent)
                     }

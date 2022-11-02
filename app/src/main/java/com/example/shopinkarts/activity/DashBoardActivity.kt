@@ -4,6 +4,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.View
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
@@ -28,6 +29,8 @@ class DashBoardActivity : AppCompatActivity() {
     private val ordersFragment = OrdersFragment()
     private val accountFragment = AccountFragment()
     lateinit var sharedPreference: SharedPreference
+
+    var backPressedTime: Long = 0
 
     companion object {
         var profile = ""
@@ -161,8 +164,15 @@ class DashBoardActivity : AppCompatActivity() {
         binding.navBottomMenu.selectedItemId = R.id.bottomCategories
     }
 
-    fun setArray() {
-        sharedPreference.setArray()
+// Exit From App on Double Click
+    @Deprecated("Deprecated in Java")
+    override fun onBackPressed() {
+        if (backPressedTime + 3000 > System.currentTimeMillis()) {
+            super.onBackPressed()
+            finish()
+        } else {
+            Toast.makeText(this, "Press back again to exit.", Toast.LENGTH_LONG).show()
+        }
+        backPressedTime = System.currentTimeMillis()
     }
-
 }
