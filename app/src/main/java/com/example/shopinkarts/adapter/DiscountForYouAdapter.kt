@@ -1,5 +1,6 @@
 package com.example.shopinkarts.adapter
 
+import android.annotation.SuppressLint
 import android.content.Context
 import android.content.Intent
 import android.view.LayoutInflater
@@ -13,7 +14,7 @@ import com.example.shopinkarts.activity.ProductDetailsActivity
 import com.example.shopinkarts.databinding.ItemsDiscountForYouBinding
 import com.example.shopinkarts.response.DiscountForYou
 
-class DiscountForYouAdapter(val context: Context,val arrayList:ArrayList<DiscountForYou>) :
+class DiscountForYouAdapter(val context: Context, val arrayList: ArrayList<DiscountForYou>) :
     RecyclerView.Adapter<DiscountForYouAdapter.ViewHolder>() {
 
 
@@ -28,6 +29,7 @@ class DiscountForYouAdapter(val context: Context,val arrayList:ArrayList<Discoun
         return ViewHolder(binding)
     }
 
+    @SuppressLint("SetTextI18n")
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val itemDetails = arrayList[position]
         holder.binding.apply {
@@ -35,11 +37,11 @@ class DiscountForYouAdapter(val context: Context,val arrayList:ArrayList<Discoun
             Glide.with(context).load(itemDetails.productImages[0]).into(imageIV)
             productNameTV.text = itemDetails.productName
             priceTV.text = "Rs ${itemDetails.price}"
-            ratingTV.text=itemDetails.avgRating.toString()
+            ratingTV.text = itemDetails.avgRating.toString()
             if (itemDetails.discountType == 0) {
                 discountTV.text = "${itemDetails.discount} %OFF"
             } else if (itemDetails.discountType == 1) {
-                discountTV.text = "${itemDetails.discount} OFF"
+                discountTV.text = "Rs ${itemDetails.discount} OFF"
             } else {
                 discountTV.visibility = View.GONE
             }
@@ -47,7 +49,7 @@ class DiscountForYouAdapter(val context: Context,val arrayList:ArrayList<Discoun
         }
         holder.itemView.setOnClickListener {
             val intent = Intent(context, ProductDetailsActivity::class.java)
-            intent.putExtra("productId",itemDetails._id)
+            intent.putExtra("productId", itemDetails._id)
             context.startActivity(intent)
         }
     }
