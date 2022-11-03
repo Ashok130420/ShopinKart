@@ -23,6 +23,9 @@ interface Api {
     @GET("categories")
     fun categories(): Call<CategoriesResponse>
 
+    @GET("banners/categories")
+    fun categoryBanner(): Call<CategoryBannerResponse>
+
     // sub categories api
     @GET("sub-categories/category/{id}")
     fun subCategories(@Path("id") id: String?): Call<SubCategoriesResponse>
