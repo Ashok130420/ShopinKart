@@ -1,5 +1,6 @@
 package com.example.shopinkarts.fragments
 
+import android.annotation.SuppressLint
 import android.app.Activity
 import android.content.Intent
 import android.net.Uri
@@ -32,6 +33,7 @@ class AccountFragment : Fragment() {
     private val PICK_IMAGE_REQUEST = 71
     private var filePath: Uri? = null
 
+    @SuppressLint("SetTextI18n")
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
     ): View? {
@@ -69,6 +71,7 @@ class AccountFragment : Fragment() {
 //            DashBoardActivity.arrayListCart.clear()
 //            DashBoardActivity.selectedVIDs.clear()
             val intent = Intent(requireContext(), LoginActivity::class.java)
+            intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK
             startActivity(intent)
         }
 
