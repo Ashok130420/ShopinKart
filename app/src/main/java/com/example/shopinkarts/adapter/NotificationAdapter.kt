@@ -7,8 +7,9 @@ import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.example.shopinkarts.R
 import com.example.shopinkarts.databinding.ItemsNotificationsBinding
+import com.example.shopinkarts.response.Notification
 
-class NotificationAdapter(val context: Context, val arrayList: ArrayList<Any>) :
+class NotificationAdapter(val context: Context, val arrayList: ArrayList<Notification>) :
     RecyclerView.Adapter<NotificationAdapter.ViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -20,6 +21,11 @@ class NotificationAdapter(val context: Context, val arrayList: ArrayList<Any>) :
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
+        val itemDetails = arrayList[position]
+        holder.binding.apply {
+            titleTV.text = itemDetails.title
+            descriptionTV.text = itemDetails.message
+        }
 
     }
 

@@ -14,7 +14,7 @@
         <androidx.cardview.widget.CardView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_marginHorizontal="@dimen/p1"
+            android:layout_marginHorizontal="@dimen/p10"
             android:paddingHorizontal="@dimen/p14"
             app:cardCornerRadius="@dimen/m10"
             app:cardUseCompatPadding="true">

@@ -44,50 +44,50 @@ class CategoryBannerAdapter(val context: Context, val arrayList: ArrayList<Banne
         }
 
 //      banner type 0 for external
-        when (itemDetails.bannerType) {
-            0 -> {
-                holder.itemView.setOnClickListener {
-                    Log.d("BannerBanner", itemDetails.bannerURL)
-                    val intent = Intent(
-                        Intent.ACTION_VIEW,
-                        Uri.parse(itemDetails.bannerURL)
-                    )
-                    val chooseIntent = Intent.createChooser(intent, "Choose from below")
-                    context.startActivity(chooseIntent)
-                }
-
-                //      banner type 0 for categories
-            }
-            1 -> {
-                holder.itemView.setOnClickListener {
-                    Log.d("BannerBanner", itemDetails.bannerURL)
-                    val intent = Intent(context, DashBoardActivity::class.java)
-                    intent.putExtra("from", "categories")
-                    intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK
-                    context.startActivity(intent)
-                }
-
-                //      banner type 0 for sub_categories
-            }
-            2 -> {
-                holder.itemView.setOnClickListener {
-                    Log.d("BannerBanner", itemDetails.bannerURL)
-                    val intent = Intent(context, SubCategoriesActivity::class.java)
-                    intent.putExtra("categoryId", itemDetails.bannerURL)
-                    context.startActivity(intent)
-                }
-
-                //      banner type 0 for product
-            }
-            3 -> {
-                holder.itemView.setOnClickListener {
-                    Log.d("BannerBanner", itemDetails.bannerURL)
-                    val intent = Intent(context, ParticularItemActivity::class.java)
-                    intent.putExtra("particularItemId", itemDetails.bannerURL)
-                    context.startActivity(intent)
-                }
-            }
-        }
+//        when (itemDetails.bannerType) {
+//            0 -> {
+//                holder.itemView.setOnClickListener {
+//                    Log.d("BannerBanner", itemDetails.bannerURL)
+//                    val intent = Intent(
+//                        Intent.ACTION_VIEW,
+//                        Uri.parse(itemDetails.bannerURL)
+//                    )
+//                    val chooseIntent = Intent.createChooser(intent, "Choose from below")
+//                    context.startActivity(chooseIntent)
+//                }
+//
+//                //      banner type 0 for categories
+//            }
+//            1 -> {
+//                holder.itemView.setOnClickListener {
+//                    Log.d("BannerBanner", itemDetails.bannerURL)
+//                    val intent = Intent(context, DashBoardActivity::class.java)
+//                    intent.putExtra("from", "categories")
+//                    intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK
+//                    context.startActivity(intent)
+//                }
+//
+//                //      banner type 0 for sub_categories
+//            }
+//            2 -> {
+//                holder.itemView.setOnClickListener {
+//                    Log.d("BannerBanner", itemDetails.bannerURL)
+//                    val intent = Intent(context, SubCategoriesActivity::class.java)
+//                    intent.putExtra("categoryId", itemDetails.bannerURL)
+//                    context.startActivity(intent)
+//                }
+//
+//                //      banner type 0 for product
+//            }
+//            3 -> {
+//                holder.itemView.setOnClickListener {
+//                    Log.d("BannerBanner", itemDetails.bannerURL)
+//                    val intent = Intent(context, ParticularItemActivity::class.java)
+//                    intent.putExtra("particularItemId", itemDetails.bannerURL)
+//                    context.startActivity(intent)
+//                }
+//            }
+//        }
 
     }
 

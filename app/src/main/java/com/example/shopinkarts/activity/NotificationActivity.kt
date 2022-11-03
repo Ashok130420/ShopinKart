@@ -1,5 +1,6 @@
 package com.example.shopinkarts.activity
 
+import android.annotation.SuppressLint
 import android.os.Bundle
 import android.util.Log
 import android.view.View
@@ -12,6 +13,7 @@ import com.example.shopinkarts.api.RetrofitClient
 import com.example.shopinkarts.classes.SharedPreference
 import com.example.shopinkarts.classes.Utils
 import com.example.shopinkarts.databinding.ActivityNotificationBinding
+import com.example.shopinkarts.response.Notification
 import com.example.shopinkarts.response.NotificationResponse
 import retrofit2.Call
 import retrofit2.Callback
@@ -28,7 +30,7 @@ class NotificationActivity : AppCompatActivity() {
     companion object {
         var nInstance: NotificationActivity = NotificationActivity()
 
-        var arrayListNotifications: ArrayList<Any> = ArrayList()
+        var arrayListNotifications: ArrayList<Notification> = ArrayList()
 
         fun getInstance(): NotificationActivity {
             return nInstance
@@ -58,6 +60,7 @@ class NotificationActivity : AppCompatActivity() {
             RetrofitClient.instance!!.api.notification(id = userId)
 
         call.enqueue(object : Callback<NotificationResponse> {
+            @SuppressLint("NotifyDataSetChanged")
             override fun onResponse(
                 call: Call<NotificationResponse>, response: Response<NotificationResponse>
             ) {
