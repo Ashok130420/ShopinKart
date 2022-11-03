@@ -72,7 +72,7 @@
             android:name=".activity.NotificationActivity"
             android:exported="false" />
         <activity
-            android:name=".activity.ForgotPasswordEmailActivity"
+            android:name=".activity.ForgotPasswordPhoneActivity"
             android:exported="false" />
         <activity
             android:name=".activity.OrderDetailsActivity"

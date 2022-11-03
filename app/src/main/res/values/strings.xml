@@ -141,7 +141,7 @@
     <string name="you_can_track_the_delivery">You can track the delivery in the \'Order\' section</string>
     <string name="go_to_your_orders">Go To Your Orders</string>
     <string name="continue_shopping">Continue Shopping</string>
-    <string name="email_details">A code is sent to your Email\njohn****g@gmail.com.\nPlease enter the code below to continue</string>
+    <string name="email_details">A code is sent to your phone no 8233121212 Please enter the code below to continue</string>
     <string name="submit">Submit</string>
 
     <string-array name="state_business">
@@ -243,9 +243,9 @@
     <string name="_9_35_am">9:35 AM</string>
     <string name="_9_55_am">9:55 AM</string>
     <string name="cancel_order">Cancel Order</string>
-    <string name="please_enter_your_registered_email">Please enter your registered Email</string>
+    <string name="please_enter_your_registered_email">Please enter your registered phone no</string>
     <string name="send_otp">Send otp</string>
-    <string name="not_your_email_id">Not your email ID?</string>
+    <string name="not_your_email_id">Not your phone no?</string>
     <string name="change">Change</string>
     <string name="notifications">Notifications</string>
     <string name="_0">0</string>
@@ -299,6 +299,7 @@
     <string name="new_user">New User? Click Here</string>
     <string name="register_now">Register Now</string>
     <string name="manudha_fashion_private_limited">MANUDHA FASHION PRIVATE LIMITED</string>
+    <string name="enter_phone_no">Enter phone no</string>
 
 
 </resources>

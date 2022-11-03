@@ -8,7 +8,6 @@ import android.os.Bundle
 import android.text.method.HideReturnsTransformationMethod
 import android.text.method.PasswordTransformationMethod
 import android.util.Log
-import android.util.Patterns
 import android.view.MotionEvent
 import android.view.View
 import android.view.inputmethod.InputMethodManager
@@ -17,8 +16,6 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import com.example.shopinkarts.R
-import com.example.shopinkarts.api.MyApplication
-import com.example.shopinkarts.api.ONESIGNAL_APP_ID
 import com.example.shopinkarts.api.RetrofitClient
 import com.example.shopinkarts.classes.SharedPreference
 import com.example.shopinkarts.classes.Utils
@@ -74,7 +71,7 @@ class LoginActivity : AppCompatActivity() {
         }
 
         binding.forgotPasswordTV.setOnClickListener {
-            val intent = Intent(this, ForgotPasswordEmailActivity::class.java)
+            val intent = Intent(this, ForgotPasswordPhoneActivity::class.java)
             startActivity(intent)
         }
 

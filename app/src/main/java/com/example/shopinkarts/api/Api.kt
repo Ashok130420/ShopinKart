@@ -67,4 +67,8 @@ interface Api {
     // track order api
     @GET("orders/track?")
     fun trackOrder(@Query("id") id: String?): Call<TrackOrderResponse>
+
+    //  forgot password send otp
+    @POST("users/forgot-password/send-otp")
+    fun forgotPasswordSendOtp(@Body body: Map<String, String>): Call<ForgotPasswordSendOtpResponse>
 }

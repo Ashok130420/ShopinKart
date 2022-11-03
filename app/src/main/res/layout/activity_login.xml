@@ -220,12 +220,12 @@
             android:id="@+id/forgotPasswordTV"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:visibility="gone"
+            android:visibility="visible"
             android:layout_marginBottom="@dimen/m10"
             android:fontFamily="@font/dm_sans"
             android:text="@string/forgot_password"
             android:textColor="@color/primary_text"
-            android:textSize="@dimen/text_size_14"
+            android:textSize="@dimen/text_size_12"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent" />
 
@@ -233,14 +233,13 @@
             android:id="@+id/signUpTV"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="@dimen/m15"
+            android:layout_marginBottom="@dimen/m10"
             android:layout_marginTop="@dimen/m10"
             android:fontFamily="@font/dm_sans"
             android:text="@string/new_user"
             android:textColor="@color/primary_Blue"
-            android:textSize="@dimen/text_size_14"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/signInTv"
+            android:textSize="@dimen/text_size_12"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent" />
 
 
