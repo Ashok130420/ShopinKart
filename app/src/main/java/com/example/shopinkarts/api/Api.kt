@@ -71,4 +71,8 @@ interface Api {
     //  forgot password send otp
     @POST("users/forgot-password/send-otp")
     fun forgotPasswordSendOtp(@Body body: Map<String, String>): Call<ForgotPasswordSendOtpResponse>
+
+    //    forgot password rest
+    @POST("users/forgot-password")
+    fun forgotPasswordRest(@Body body: Map<String, String>): Call<ForgotPasswordRestResponse>
 }

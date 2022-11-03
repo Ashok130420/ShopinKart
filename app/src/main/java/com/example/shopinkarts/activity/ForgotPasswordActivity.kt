@@ -3,6 +3,8 @@ package com.example.shopinkarts.activity
 import android.annotation.SuppressLint
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import com.example.shopinkarts.R
@@ -13,6 +15,7 @@ class ForgotPasswordActivity : AppCompatActivity() {
 
     lateinit var binding: ActivityForgotPasswordBinding
     var phoneNo = ""
+    var otpSend = ""
 
     @SuppressLint("SetTextI18n")
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -22,6 +25,7 @@ class ForgotPasswordActivity : AppCompatActivity() {
         binding = DataBindingUtil.setContentView(this, R.layout.activity_forgot_password)
 
         phoneNo = intent.extras!!.getString("phoneNo", "")
+        otpSend = intent.extras!!.getString("otpSend", "")
 
         binding.headerForgotPassword.nameTV.text = resources.getString(R.string.password_reset)
 
@@ -32,8 +36,17 @@ class ForgotPasswordActivity : AppCompatActivity() {
         }
 
         binding.submitTV.setOnClickListener {
-            val intent = Intent(this, NewPasswordActivity::class.java)
-            startActivity(intent)
+
+            if (otpSend == binding.pinView.text.toString()) {
+                val intent = Intent(this, NewPasswordActivity::class.java)
+                intent.putExtra("phoneNo",phoneNo)
+                startActivity(intent)
+                Log.d("forgotPasswordSendOtp", "true")
+            } else {
+                Log.d("forgotPasswordSendOtp", "false  $otpSend == ${binding.pinView.text}")
+                Toast.makeText(this, "Invalid otp", Toast.LENGTH_LONG).show()
+            }
+
         }
         binding.changeTV.setOnClickListener {
             val intent = Intent(this, ForgotPasswordPhoneActivity::class.java)

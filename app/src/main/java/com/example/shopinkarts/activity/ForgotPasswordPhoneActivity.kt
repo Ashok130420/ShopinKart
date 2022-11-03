@@ -22,6 +22,7 @@ class ForgotPasswordPhoneActivity : AppCompatActivity() {
     lateinit var binding: ActivityForgotPasswordEmailBinding
 
     var phoneNo = ""
+    var otpSend = ""
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         Utils.changeStatusTextColor(this)
@@ -47,7 +48,6 @@ class ForgotPasswordPhoneActivity : AppCompatActivity() {
 
         }
 
-
     }
 
     private fun forgotPasswordSendOtp() {
@@ -55,7 +55,7 @@ class ForgotPasswordPhoneActivity : AppCompatActivity() {
         requestBody["phone"] = phoneNo
 
         val mProgressDialog = ProgressDialog(this)
-        mProgressDialog.setMessage("Loading....")
+        mProgressDialog.setMessage("Please Wait...")
         mProgressDialog.setCanceledOnTouchOutside(false)
         mProgressDialog.show()
 
@@ -76,11 +76,12 @@ class ForgotPasswordPhoneActivity : AppCompatActivity() {
                             forgotPasswordSendOtpResponse.message,
                             Toast.LENGTH_SHORT
                         ).show()
-
+                        otpSend = forgotPasswordSendOtpResponse.otp
                         val intent = Intent(
                             this@ForgotPasswordPhoneActivity, ForgotPasswordActivity::class.java
                         )
                         intent.putExtra("phoneNo", phoneNo)
+                        intent.putExtra("otpSend", otpSend)
 //                        intent.flags =
 //                            Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK
                         startActivity(intent)
