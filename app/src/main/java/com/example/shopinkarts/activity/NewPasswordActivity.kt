@@ -19,7 +19,6 @@ import com.example.shopinkarts.api.RetrofitClient
 import com.example.shopinkarts.classes.Utils
 import com.example.shopinkarts.databinding.ActivityNewPasswordBinding
 import com.example.shopinkarts.response.ForgotPasswordRestResponse
-import com.example.shopinkarts.response.ForgotPasswordSendOtpResponse
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response

@@ -21,7 +21,9 @@ import com.example.shopinkarts.api.RetrofitClient
 import com.example.shopinkarts.classes.SharedPreference
 import com.example.shopinkarts.classes.Utils
 import com.example.shopinkarts.databinding.ActivitySignUpBinding
+import com.example.shopinkarts.response.ForgotPasswordSendOtpResponse
 import com.example.shopinkarts.response.SignUpResponse
+import com.example.shopinkarts.response.VerifyOtpResponse
 import com.onesignal.OneSignal
 import retrofit2.Call
 import retrofit2.Callback
@@ -38,6 +40,18 @@ class SignUpActivity : AppCompatActivity() {
     var userType = String()
     var password = ""
     var deviceId = String()
+    var gst = ""
+
+    var verifyOtpSend = ""
+
+
+    companion object {
+        var mInstance: SignUpActivity = SignUpActivity()
+        fun getInstance(): SignUpActivity {
+            return mInstance
+        }
+
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -78,7 +92,7 @@ class SignUpActivity : AppCompatActivity() {
             phone = binding.phoneET.text.toString().trim()
             email = binding.emailET.text.toString().trim()
             password = binding.passwordET.text.toString().trim()
-
+            gst = binding.gstValueET.text.toString().trim()
 
             if (phone.isEmpty()) {
                 binding.phoneET.error = "Enter phone number"
@@ -105,7 +119,10 @@ class SignUpActivity : AppCompatActivity() {
                 binding.passwordET.requestFocus()
                 return@setOnClickListener
             }
-            signUpApi()
+
+
+//            signUpApi()
+            verifyOtp()
         }
 
     }
@@ -149,48 +166,108 @@ class SignUpActivity : AppCompatActivity() {
         return super.dispatchTouchEvent(event)
     }
 
-    fun signUpApi() {
+    /* fun signUpApi() {
+         val requestBody: MutableMap<String, String> = HashMap()
+         requestBody["phone"] = phone
+         requestBody["email"] = email
+         requestBody["password"] = password
+         requestBody["deviceId"] = deviceId
+         requestBody["userType"] = userType
+
+ //        val mProgressDialog = ProgressDialog(this)
+ //        mProgressDialog.setMessage("Please wait....")
+ //        mProgressDialog.setCanceledOnTouchOutside(false)
+ //        mProgressDialog.show()
+
+         val call: Call<SignUpResponse> = RetrofitClient.instance!!.api.signup(requestBody)
+         call.enqueue(object : Callback<SignUpResponse> {
+             override fun onResponse(
+                 call: Call<SignUpResponse>, response: Response<SignUpResponse>
+             ) {
+                 if (response.isSuccessful) {
+                     val signupResponse = response.body()
+                     if (signupResponse!!.status) {
+ //                        mProgressDialog.dismiss()
+
+                         sharedPreference.setToken(signupResponse.token)
+                         sharedPreference.setUserId(signupResponse.user._id)
+
+                         Log.d("Token....", signupResponse.token)
+                         sharedPreference.setUsertype(signupResponse.user.userType.toString())
+                         Log.d("UserType", signupResponse.user.userType.toString())
+
+                         Log.d("sharedPreference....", "$sharedPreference")
+                         sharedPreference.isLoginSet(signupResponse.status)
+
+                         sharedPreference.setPhoneNo(phoneNo = binding.phoneET.text.toString())
+                         sharedPreference.setGst(gst = binding.gstValueET.text.toString())
+
+                         Toast.makeText(
+                             this@SignUpActivity, signupResponse.message, Toast.LENGTH_SHORT
+                         ).show()
+                         val intent = Intent(this@SignUpActivity, DashBoardActivity::class.java)
+                         intent.flags =
+                             Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK
+ //                        val intent = Intent(this@SignUpActivity, OtpVerifyActivity::class.java)
+                         startActivity(intent)
+                     }
+
+                 } else {
+ //                    mProgressDialog.dismiss()
+                     Toast.makeText(
+                         this@SignUpActivity, response.message(), Toast.LENGTH_SHORT
+                     ).show()
+                 }
+ //                mProgressDialog.dismiss()
+             }
+
+             override fun onFailure(call: Call<SignUpResponse>, t: Throwable) {
+                 Toast.makeText(
+                     this@SignUpActivity, "${t.message}", Toast.LENGTH_SHORT
+                 ).show()
+             }
+
+         })
+     }*/
+
+    private fun verifyOtp() {
         val requestBody: MutableMap<String, String> = HashMap()
         requestBody["phone"] = phone
-        requestBody["email"] = email
-        requestBody["password"] = password
-        requestBody["deviceId"] = deviceId
-        requestBody["userType"] = userType
 
         val mProgressDialog = ProgressDialog(this)
-        mProgressDialog.setMessage("Loading....")
+        mProgressDialog.setMessage("Please Wait...")
         mProgressDialog.setCanceledOnTouchOutside(false)
         mProgressDialog.show()
 
-        val call: Call<SignUpResponse> = RetrofitClient.instance!!.api.signup(requestBody)
-        call.enqueue(object : Callback<SignUpResponse> {
+        val call: Call<VerifyOtpResponse> = RetrofitClient.instance!!.api.verifyOtp(requestBody)
+        call.enqueue(object : Callback<VerifyOtpResponse> {
             override fun onResponse(
-                call: Call<SignUpResponse>, response: Response<SignUpResponse>
+                call: Call<VerifyOtpResponse>, response: Response<VerifyOtpResponse>
             ) {
                 if (response.isSuccessful) {
-                    val signupResponse = response.body()
-                    if (signupResponse!!.status) {
+                    val verifyOtpResponse = response.body()
+                    if (verifyOtpResponse!!.status) {
                         mProgressDialog.dismiss()
 
-                        sharedPreference.setToken(signupResponse.token)
-                        sharedPreference.setUserId(signupResponse.user._id)
-
-                        Log.d("Token....", signupResponse.token)
-                        sharedPreference.setUsertype(signupResponse.user.userType.toString())
-                        Log.d("UserType", signupResponse.user.userType.toString())
-
-                        Log.d("sharedPreference....", "$sharedPreference")
-                        sharedPreference.isLoginSet(signupResponse.status)
-
-                        sharedPreference.setPhoneNo(phoneNo = binding.phoneET.text.toString())
-                        sharedPreference.setGst(gst = binding.gstValueET.text.toString())
-
                         Toast.makeText(
-                            this@SignUpActivity, signupResponse.message, Toast.LENGTH_SHORT
+                            this@SignUpActivity,
+                            verifyOtpResponse.message,
+                            Toast.LENGTH_SHORT
                         ).show()
-                        val intent = Intent(this@SignUpActivity, DashBoardActivity::class.java)
-                        intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK
-//                        val intent = Intent(this@SignUpActivity, OtpVerifyActivity::class.java)
+                        verifyOtpSend = verifyOtpResponse.otp
+                        Log.d("verifyOtpSend", verifyOtpSend)
+
+                        val intent = Intent(this@SignUpActivity, OtpVerifyActivity::class.java)
+
+                        intent.putExtra("verifyOtpSend", verifyOtpSend)
+                        intent.putExtra("phone", phone)
+                        intent.putExtra("email", email)
+                        intent.putExtra("password", password)
+                        intent.putExtra("deviceId", deviceId)
+                        intent.putExtra("userType", userType)
+                        intent.putExtra("gst", gst)
+//                        intent.flags =
+//                            Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK
                         startActivity(intent)
                     }
 
@@ -203,10 +280,11 @@ class SignUpActivity : AppCompatActivity() {
                 mProgressDialog.dismiss()
             }
 
-            override fun onFailure(call: Call<SignUpResponse>, t: Throwable) {
+            override fun onFailure(call: Call<VerifyOtpResponse>, t: Throwable) {
                 Toast.makeText(
                     this@SignUpActivity, "${t.message}", Toast.LENGTH_SHORT
                 ).show()
+                mProgressDialog.dismiss()
             }
 
         })

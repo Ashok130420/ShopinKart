@@ -15,34 +15,30 @@ class RetrofitClient private constructor() {
 
     //var interceptor = TokenInterceptor()
     var interceptor = HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BODY)
-    var client: OkHttpClient = OkHttpClient.Builder()
-        .addInterceptor(interceptor)
-        .addInterceptor { chain ->
+    var client: OkHttpClient =
+        OkHttpClient.Builder().addInterceptor(interceptor).addInterceptor { chain ->
 
-            val original: Request = chain.request()
-            val requestBuilder: Request.Builder = original.newBuilder()
-                .addHeader("Accept", "application/json")
-                .addHeader("Content-Type", "application/json")
+                val original: Request = chain.request()
+                val requestBuilder: Request.Builder =
+                    original.newBuilder().addHeader("Accept", "application/json")
+                        .addHeader("Content-Type", "application/json")
 
-            // Adding Authorization token (API Key)
-            // Requests will be denied without API key
+                // Adding Authorization token (API Key)
+                // Requests will be denied without API key
 
-            Log.d("TAG", "header--------------: Bearer ${sharedPreferences.getToken()}")
+                Log.d("TAG", "header--------------: Bearer ${sharedPreferences.getToken()}")
             requestBuilder.addHeader("Authorization", "Bearer ${sharedPreferences.getToken()}")
-            val request: Request = requestBuilder.build()
-            chain.proceed(request)
-        }.build()
+                val request: Request = requestBuilder.build()
+                chain.proceed(request)
+            }.build()
 
-    private val retrofit: Retrofit = Retrofit.Builder()
-        .client(client)
-        .baseUrl(BASE_URL)
-        .addConverterFactory(GsonConverterFactory.create())
-        .build()
+    private val retrofit: Retrofit = Retrofit.Builder().client(client).baseUrl(BASE_URL)
+        .addConverterFactory(GsonConverterFactory.create()).build()
     val api: Api
         get() = retrofit.create(Api::class.java)
 
     companion object {
-        private val BASE_URL = "https://shopinkartapp.herokuapp.com/api/"
+        private const val BASE_URL = "https://shopinkartapp.herokuapp.com/api/"
         private var mInstance: RetrofitClient? = null
 
 

@@ -126,10 +126,9 @@ class LoginActivity : AppCompatActivity() {
         requestBody["password"] = password
         requestBody["deviceId"] = deviceId
 
-
-        /*Progress bar*/
+        // progress bar
         val mProgressDialog = ProgressDialog(this)
-        mProgressDialog.setMessage("Loading....")
+        mProgressDialog.setMessage("Please wait....")
         mProgressDialog.show()
 
         val call: Call<LoginResponse> = RetrofitClient.instance!!.api.login(requestBody)
