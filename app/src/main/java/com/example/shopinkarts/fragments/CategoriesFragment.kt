@@ -143,12 +143,13 @@ class CategoriesFragment : Fragment() {
 
                         arraylistCategoryBanner.clear()
                         arraylistCategoryBanner.addAll(categoryBannerResponse.banners)
-                        categoryBannerAdapter =
-                            CategoryBannerAdapter(requireContext(), arraylistCategoryBanner)
-                        binding.categoryBannerViewPager.adapter = categoryBannerAdapter
-                        setupIndicators()
-                        autoSlideBanner(arraylistCategoryBanner.size)
-
+                        if (context != null) {
+                            categoryBannerAdapter =
+                                CategoryBannerAdapter(requireContext(), arraylistCategoryBanner)
+                            binding.categoryBannerViewPager.adapter = categoryBannerAdapter
+                            setupIndicators()
+                            autoSlideBanner(arraylistCategoryBanner.size)
+                        }
                     }
                     Log.d("TAG", "onResponse_SuccessResponse :${categoryBannerResponse.message}")
                 } else {
@@ -214,15 +215,13 @@ class CategoriesFragment : Fragment() {
             if (i == index) {
                 imageView.setImageDrawable(context?.let {
                     ContextCompat.getDrawable(
-                        it,
-                        R.drawable.indicator_active
+                        it, R.drawable.indicator_active
                     )
                 })
             } else {
                 imageView.setImageDrawable(context?.let {
                     ContextCompat.getDrawable(
-                        it,
-                        R.drawable.indicator_inactive
+                        it, R.drawable.indicator_inactive
                     )
                 })
 

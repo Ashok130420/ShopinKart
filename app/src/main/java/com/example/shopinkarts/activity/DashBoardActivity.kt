@@ -19,6 +19,7 @@ import com.example.shopinkarts.fragments.CategoriesFragment
 import com.example.shopinkarts.fragments.HomeFragment
 import com.example.shopinkarts.fragments.OrdersFragment
 import com.example.shopinkarts.model.CartModel
+import com.example.shopinkarts.response.Notification
 import com.example.shopinkarts.response.Variants
 
 
@@ -39,6 +40,8 @@ class DashBoardActivity : AppCompatActivity() {
         var mInstance: DashBoardActivity = DashBoardActivity()
         var arrayListCart: ArrayList<CartModel> = ArrayList()
         var selectedVIDs: ArrayList<String> = ArrayList()
+
+        var arrayListNotifications: ArrayList<Notification> = ArrayList()
 
         fun getInstance(): DashBoardActivity {
             return mInstance
@@ -110,6 +113,13 @@ class DashBoardActivity : AppCompatActivity() {
             startActivity(i)
         }
 
+
+        if (arrayListNotifications.isEmpty()) {
+            binding.headerDashBoard.notificationItemTV.visibility = View.GONE
+        } else {
+            binding.headerDashBoard.notificationItemTV.visibility = View.VISIBLE
+        }
+
         // default fragment loads
         replaceFragment(homeFragment)
 
@@ -156,11 +166,8 @@ class DashBoardActivity : AppCompatActivity() {
                 categories()
             }
         }
-        if (NotificationActivity.arrayListNotifications.isEmpty()) {
-            binding.headerDashBoard.notificationItemTV.visibility = View.GONE
-        } else {
-            binding.headerDashBoard.notificationItemTV.visibility = View.VISIBLE
-        }
+
+
     }
 
     // Replace Fragment on FrameLayout

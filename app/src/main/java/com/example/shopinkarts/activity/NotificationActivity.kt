@@ -30,7 +30,6 @@ class NotificationActivity : AppCompatActivity() {
     companion object {
         var nInstance: NotificationActivity = NotificationActivity()
 
-        var arrayListNotifications: ArrayList<Notification> = ArrayList()
 
         fun getInstance(): NotificationActivity {
             return nInstance
@@ -40,7 +39,7 @@ class NotificationActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         Utils.changeStatusTextColor(this)
-        Utils.changeStatusColor(this,R.color.white)
+        Utils.changeStatusColor(this, R.color.white)
         binding = DataBindingUtil.setContentView(this, R.layout.activity_notification)
 
         sharedPreference = SharedPreference(this)
@@ -68,15 +67,18 @@ class NotificationActivity : AppCompatActivity() {
                 if (response.isSuccessful) {
                     if (notificationResponse!!.status) {
 
-                        arrayListNotifications.clear()
-                        arrayListNotifications.addAll(notificationResponse.notifications)
+                        DashBoardActivity.arrayListNotifications.clear()
+                        DashBoardActivity.arrayListNotifications.addAll(notificationResponse.notifications)
                         notificationAdapter =
-                            NotificationAdapter(this@NotificationActivity, arrayListNotifications)
+                            NotificationAdapter(
+                                this@NotificationActivity,
+                                DashBoardActivity.arrayListNotifications
+                            )
                         binding.notificationRV.adapter = notificationAdapter
                         binding.notificationRV.hasFixedSize()
                         notificationAdapter.notifyDataSetChanged()
 
-                        if (arrayListNotifications.isEmpty()) {
+                        if (DashBoardActivity.arrayListNotifications.isEmpty()) {
                             binding.notificationCL.visibility = View.GONE
                             binding.lottyAnimationCL.visibility = View.VISIBLE
 
