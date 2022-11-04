@@ -137,20 +137,22 @@ class DeliveredOrderAdapter(val context: Context, val arrayList: ArrayList<Order
 
             paymentType = itemDetails.paymentType
 
-//            if (itemDetails.orderStatus == 3) {
+            downloadInvoiceCL.visibility = View.GONE
 
-            downloadInvoiceCL.visibility = View.VISIBLE
+            if (itemDetails.orderStatus == 3) {
 
-            downloadInvoiceCL.setOnClickListener {
+                downloadInvoiceCL.visibility = View.VISIBLE
 
-                val intent = Intent(context, InvoiceActivity::class.java)
-                //send position
-                intent.putExtra("position", position)
-                intent.putExtra("orderId", itemDetails.orderId)
+                downloadInvoiceCL.setOnClickListener {
 
-                context.startActivity(intent)
+                    val intent = Intent(context, InvoiceActivity::class.java)
+                    //send position
+                    intent.putExtra("position", position)
+                    intent.putExtra("orderId", itemDetails.orderId)
+
+                    context.startActivity(intent)
+                }
             }
-//            }
             trackOrderStatusTV.setOnClickListener {
                 val intent = Intent(context, TrackOrderActivity::class.java)
                 intent.putExtra("orderId", itemDetails.orderId)

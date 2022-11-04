@@ -60,20 +60,6 @@ class CategoriesFragment : Fragment() {
 
         setCurrentIndicatorCategoryBanner(0)
 
-        val handler = Handler()
-        val update = Runnable {
-            binding.categoryBannerViewPager.setCurrentItem(
-                currentPage % categoryBannerAdapter.itemCount, true
-            )
-            currentPage++
-        }
-        timer = Timer()
-        timer!!.schedule(object : TimerTask() {
-            override fun run() {
-                handler.post(update)
-            }
-        }, DELAY_MS, PERIOD_MS)
-
 
         binding.categoryBannerViewPager.registerOnPageChangeCallback(object :
             ViewPager2.OnPageChangeCallback() {
@@ -114,7 +100,7 @@ class CategoriesFragment : Fragment() {
                     }
                     Log.d("TAG", "onResponse_SuccessResponse :${categoriesResponse.message}")
                 } else {
-                    Toast.makeText(
+                    if (context != null) Toast.makeText(
                         requireContext(), "${categoriesResponse?.message}", Toast.LENGTH_SHORT
                     ).show()
                 }
@@ -122,7 +108,7 @@ class CategoriesFragment : Fragment() {
 
             override fun onFailure(call: Call<CategoriesResponse>, t: Throwable) {
                 Log.d("TAG", "onFailureResponse: ${t.message}")
-                Toast.makeText(requireContext(), "${t.message}", Toast.LENGTH_SHORT).show()
+                if (context != null) Toast.makeText(requireContext(), "${t.message}", Toast.LENGTH_SHORT).show()
             }
 
         })
@@ -153,7 +139,7 @@ class CategoriesFragment : Fragment() {
                     }
                     Log.d("TAG", "onResponse_SuccessResponse :${categoryBannerResponse.message}")
                 } else {
-                    Toast.makeText(
+                    if (context != null) Toast.makeText(
                         requireContext(), "${categoryBannerResponse?.message}", Toast.LENGTH_SHORT
                     ).show()
                 }
@@ -161,7 +147,7 @@ class CategoriesFragment : Fragment() {
 
             override fun onFailure(call: Call<CategoryBannerResponse>, t: Throwable) {
                 Log.d("TAG", "onFailureResponse: ${t.message}")
-                Toast.makeText(requireContext(), "${t.message}", Toast.LENGTH_SHORT).show()
+                if (context != null)  Toast.makeText(requireContext(), "${t.message}", Toast.LENGTH_SHORT).show()
             }
 
         })
