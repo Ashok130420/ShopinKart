@@ -1,6 +1,7 @@
 package com.example.shopinkarts.activity
 
 import android.content.Context
+import android.content.Intent
 import android.graphics.Color
 import android.graphics.Rect
 import android.os.Bundle
@@ -133,6 +134,9 @@ class CustomerSupportActivity : AppCompatActivity() {
                         this@CustomerSupportActivity, customerResponse?.message, Toast.LENGTH_SHORT
                     ).show()
                     Log.d(TAG, "onResponse: ${customerResponse?.message}")
+                    val intent = Intent(this@CustomerSupportActivity, DashBoardActivity::class.java)
+                    intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK
+                    startActivity(intent)
 
                 } else {
 

@@ -298,18 +298,28 @@
 
         <TextView
             android:id="@+id/logOutTV"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="@dimen/m10"
-            android:layout_marginTop="@dimen/m4"
-            android:background="@drawable/shape_text_blue"
-            android:paddingHorizontal="@dimen/p20"
-            android:paddingVertical="@dimen/p10"
+            android:layout_marginTop="4dp"
+            android:background="@color/white"
+            android:padding="@dimen/p14"
             android:text="@string/logout"
-            android:textColor="@color/primary_Blue"
+            android:textColor="@color/red"
             android:textSize="@dimen/text_size_13"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="parent" />
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/privacyPolicyTV" />
 
+
+        <ImageView
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_marginEnd="@dimen/m16"
+            android:background="@color/white"
+            android:padding="@dimen/p8"
+            android:src="@drawable/arrow_next"
+            app:layout_constraintBottom_toBottomOf="@+id/logOutTV"
+            app:layout_constraintEnd_toEndOf="@+id/logOutTV"
+            app:layout_constraintTop_toTopOf="@+id/logOutTV"
+            tools:ignore="ContentDescription" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

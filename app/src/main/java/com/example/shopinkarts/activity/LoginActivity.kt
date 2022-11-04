@@ -44,6 +44,7 @@ class LoginActivity : AppCompatActivity() {
 
         deviceId = OneSignal.getDeviceState()?.userId.toString()
 
+        binding.imageToggle.visibility=View.VISIBLE
         Log.d("TAG_deviceId", "onCreate: $deviceId")
 
         binding.signUpTV.setOnClickListener {
@@ -64,6 +65,7 @@ class LoginActivity : AppCompatActivity() {
             if (password.isEmpty()) {
                 binding.passwordET.error = "Enter password"
                 binding.passwordET.requestFocus()
+                binding.imageToggle.visibility=View.GONE
                 return@setOnClickListener
             }
 
@@ -101,6 +103,7 @@ class LoginActivity : AppCompatActivity() {
 
     // To remove EditText focus on touch outside
     override fun dispatchTouchEvent(event: MotionEvent): Boolean {
+        binding.imageToggle.visibility=View.VISIBLE
         if (event.action == MotionEvent.ACTION_DOWN) {
             val v = currentFocus
             if (v is EditText) {
