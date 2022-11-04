@@ -320,7 +320,7 @@ class CheckOutDetailsActivity : AppCompatActivity() {
             }
         }
 
-        ss.setSpan(span1, 36, 41, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE)
+        ss.setSpan(span1, 35, 41, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE)
         binding.includeStepper3.trackDeliveryTV.text = ss
         binding.includeStepper3.trackDeliveryTV.highlightColor =
             ContextCompat.getColor(this, R.color.primary_Blue)
