@@ -63,9 +63,6 @@ class ParticularItemActivity : AppCompatActivity() {
         manufacturerItemId = intent.extras!!.getString("manufacturerItemId", "")
         type = intent.extras!!.getInt("type", 0)
         Log.d("manufacturerItemId", manufacturerItemId)
-        Log.d("typetypetypetype", type.toString())
-        Log.d("manufacturerName", manufacturerName)
-
 
         binding.headerParticularItem.cartIV.visibility = View.GONE
         binding.headerParticularItem.cartItemTV.visibility = View.GONE
@@ -352,7 +349,7 @@ class ParticularItemActivity : AppCompatActivity() {
             when (it.itemId) {
                 R.id.optionFilter1 -> {
                     if (type == 0) {
-                         manufacturerItemList("filter", "price", "0")
+                        manufacturerItemList("filter", "price", "0")
                     } else {
                         particularItemList("filter", "price", "0")
                     }
