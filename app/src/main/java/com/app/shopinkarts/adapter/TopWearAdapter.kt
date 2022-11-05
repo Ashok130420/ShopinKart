@@ -40,6 +40,7 @@ class TopWearAdapter(val context: Context, val arrayList: ArrayList<SubCategory>
             intent.putExtra("subCategoryName", itemDetails.subCategoryName)
             intent.putExtra("particularItemId", itemDetails._id)
             intent.putExtra("imageURL", itemDetails.imageURL)
+            intent.putExtra("type", 1)
             context.startActivity(intent)
         }
     }

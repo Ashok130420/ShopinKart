@@ -39,6 +39,15 @@ interface Api {
         @Query("value") value: String
     ): Call<ParticularItemResponse>
 
+    //    manufacturer item api
+    @GET("products/manufacturer/{id}?")
+    fun manufacturerItems(
+        @Path("id") id: String?,
+        @Query("type") type: String?,
+        @Query("subType") subType: String?,
+        @Query("value") value: String
+    ): Call<ManufacturerResponse>
+
     // product api
     @POST("products/details")
     fun productApi(@Body body: Map<String, String>): Call<ProductResponse>

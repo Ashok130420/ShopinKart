@@ -18,6 +18,7 @@ import com.app.shopinkarts.adapter.ParticularItemAdapter
 import com.app.shopinkarts.api.RetrofitClient
 import com.app.shopinkarts.classes.Utils
 import com.app.shopinkarts.databinding.ActivityParticularItemBinding
+import com.app.shopinkarts.response.ManufacturerResponse
 import com.app.shopinkarts.response.ParticularItemResponse
 import com.app.shopinkarts.response.Product
 import retrofit2.Call
@@ -33,6 +34,11 @@ class ParticularItemActivity : AppCompatActivity() {
     var subCategoryName = ""
     var imageURL = ""
     var particularItemId = ""
+    var manufacturerName = ""
+    var manufacturerImage = ""
+    var manufacturerItemId = ""
+
+    var type = 0
 
     var page = 1
     var isloading = false
@@ -45,18 +51,40 @@ class ParticularItemActivity : AppCompatActivity() {
         binding = DataBindingUtil.setContentView(this, R.layout.activity_particular_item)
 
         layoutManager = LinearLayoutManager(this)
+
         subCategoryName = intent.extras!!.getString("subCategoryName", "")
         imageURL = intent.extras!!.getString("imageURL", "")
-
         particularItemId = intent.extras!!.getString("particularItemId", "")
+        type = intent.extras!!.getInt("type", 0)
         Log.d("particularItemId", particularItemId)
 
-        binding.headerParticularItem.titleTV.text = subCategoryName
+        manufacturerName = intent.extras!!.getString("manufacturerName", "")
+        manufacturerImage = intent.extras!!.getString("manufacturerImageURL", "")
+        manufacturerItemId = intent.extras!!.getString("manufacturerItemId", "")
+        type = intent.extras!!.getInt("type", 0)
+        Log.d("manufacturerItemId", manufacturerItemId)
+        Log.d("typetypetypetype", type.toString())
+        Log.d("manufacturerName", manufacturerName)
+
+
         binding.headerParticularItem.cartIV.visibility = View.GONE
         binding.headerParticularItem.cartItemTV.visibility = View.GONE
-        Glide.with(this).load(imageURL).into(binding.headerParticularItem.iconIV)
+        if (type == 0) {
+            binding.headerParticularItem.titleTV.text = manufacturerName
+            Glide.with(this).load(manufacturerImage).into(binding.headerParticularItem.iconIV)
+            manufacturerItemList("sort", "price", "0")
+        } else {
+            binding.headerParticularItem.titleTV.text = subCategoryName
+            Glide.with(this).load(imageURL).into(binding.headerParticularItem.iconIV)
+            particularItemList("sort", "price", "0")
+        }
 
-        particularItemList("sort", "price", "0")
+
+
+
+
+
+
 
         binding.headerParticularItem.backIV.setOnClickListener {
             onBackPressed()
@@ -144,13 +172,16 @@ class ParticularItemActivity : AppCompatActivity() {
             override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
 //                if (dy > 0) {
                 val visibleItemCount: Int = layoutManager.childCount
-                val pastVisibleItem: Int =
-                    layoutManager.findFirstCompletelyVisibleItemPosition()
+                val pastVisibleItem: Int = layoutManager.findFirstCompletelyVisibleItemPosition()
                 val total: Int = particularItemAdapter.itemCount
                 if (!isloading) {
                     if ((visibleItemCount + pastVisibleItem) > total) {
                         page++
-                        particularItemList("sort", "price", "0")
+                        if (type == 0) {
+                            manufacturerItemList("sort", "price", "0")
+                        } else {
+                            particularItemList("sort", "price", "0")
+                        }
                     }
                 }
 //                }
@@ -176,29 +207,29 @@ class ParticularItemActivity : AppCompatActivity() {
                 if (response.isSuccessful) {
                     if (particularItemResponse!!.status) {
 
-                       /* isloading = true
-                        binding.progressbar.visibility = View.VISIBLE
-                        val start: Int = (page - 1) * limit
-                        val end: Int = (page) * limit
+                        /* isloading = true
+                         binding.progressbar.visibility = View.VISIBLE
+                         val start: Int = (page - 1) * limit
+                         val end: Int = (page) * limit
 
-                        arrayListParticularItem.clear()
-                        for (i: Int in start..end) {
-                            arrayListParticularItem.addAll(particularItemResponse.products)
-                        }
+                         arrayListParticularItem.clear()
+                         for (i: Int in start..end) {
+                             arrayListParticularItem.addAll(particularItemResponse.products)
+                         }
 
-                        Handler().postDelayed({
-                            if (::particularItemAdapter.isInitialized) {
-                                particularItemAdapter.notifyDataSetChanged()
-                            } else {
-                                particularItemAdapter = ParticularItemAdapter(
-                                    this@ParticularItemActivity, arrayListParticularItem
-                                )
-                                binding.particularItemRV.adapter = particularItemAdapter
+                         Handler().postDelayed({
+                             if (::particularItemAdapter.isInitialized) {
+                                 particularItemAdapter.notifyDataSetChanged()
+                             } else {
+                                 particularItemAdapter = ParticularItemAdapter(
+                                     this@ParticularItemActivity, arrayListParticularItem
+                                 )
+                                 binding.particularItemRV.adapter = particularItemAdapter
 
-                            }
-                            isloading = false
-                            binding.progressbar.visibility = View.GONE
-                        }, 1000)*/
+                             }
+                             isloading = false
+                             binding.progressbar.visibility = View.GONE
+                         }, 1000)*/
 
                         arrayListParticularItem.clear()
                         arrayListParticularItem.addAll(particularItemResponse.products)
@@ -230,21 +261,82 @@ class ParticularItemActivity : AppCompatActivity() {
         })
     }
 
+    private fun manufacturerItemList(type: String, subType: String, value: String) {
+
+
+        val call: Call<ManufacturerResponse> = RetrofitClient.instance!!.api.manufacturerItems(
+            manufacturerItemId, type = type, subType = subType, value = value
+        )
+
+
+        call.enqueue(object : Callback<ManufacturerResponse> {
+            @SuppressLint("SetTextI18n", "NotifyDataSetChanged")
+            override fun onResponse(
+                call: Call<ManufacturerResponse>, response: Response<ManufacturerResponse>
+            ) {
+                val particularItemResponse = response.body()
+                if (response.isSuccessful) {
+                    if (particularItemResponse!!.status) {
+
+
+                        arrayListParticularItem.clear()
+                        arrayListParticularItem.addAll(particularItemResponse.products)
+                        particularItemAdapter = ParticularItemAdapter(
+                            this@ParticularItemActivity, arrayListParticularItem
+                        )
+
+                        binding.particularItemRV.adapter = particularItemAdapter
+                        particularItemAdapter.notifyDataSetChanged()
+
+                        binding.allProductsTV.text =
+                            "Showcasing ${arrayListParticularItem.size} $subCategoryName"
+                    }
+                    Log.d("TAG", "onResponse_SuccessResponse${particularItemResponse.message} ")
+                } else {
+                    Toast.makeText(
+                        this@ParticularItemActivity,
+                        "${particularItemResponse?.message}",
+                        Toast.LENGTH_SHORT
+                    ).show()
+                }
+            }
+
+            override fun onFailure(call: Call<ManufacturerResponse>, t: Throwable) {
+                Log.d("TAG", "onFailureResponse: ${t.message}")
+                Toast.makeText(this@ParticularItemActivity, "${t.message}", Toast.LENGTH_SHORT)
+                    .show()
+            }
+        })
+    }
+
+    @SuppressLint("DiscouragedPrivateApi")
     private fun popupMenuSorting(view: View) {
         val popupMenu = PopupMenu(this, view)
         popupMenu.inflate(R.menu.sorting_option_menu)
         popupMenu.setOnMenuItemClickListener {
             when (it.itemId) {
                 R.id.optionPriceHigh -> {
-                    particularItemList("sort", "price", "0")
+                    if (type == 0) {
+                        manufacturerItemList("sort", "price", "0")
+                    } else {
+                        particularItemList("sort", "price", "0")
+                    }
                     true
                 }
                 R.id.optionPriceLow -> {
-                    particularItemList("sort", "price", "1")
+                    if (type == 0) {
+                        manufacturerItemList("sort", "price", "1")
+                    } else {
+                        particularItemList("sort", "price", "1")
+                    }
                     true
                 }
                 R.id.optionNewest -> {
-                    particularItemList("sort", "newest", "")
+                    if (type == 0) {
+                        manufacturerItemList("sort", "newest", "")
+                    } else {
+                        particularItemList("sort", "newest", "")
+                    }
                     true
                 }
                 else -> true
@@ -258,29 +350,43 @@ class ParticularItemActivity : AppCompatActivity() {
 
     }
 
+    @SuppressLint("DiscouragedPrivateApi")
     private fun popupMenuFilter(view: View) {
         val popupMenu = PopupMenu(this, view)
         popupMenu.inflate(R.menu.filter_option_menu)
         popupMenu.setOnMenuItemClickListener {
             when (it.itemId) {
                 R.id.optionFilter1 -> {
-                    particularItemList("filter", "price", "0")
-
+                    if (type == 0) {
+                        manufacturerItemList("filter", "price", "0")
+                    } else {
+                        particularItemList("filter", "price", "0")
+                    }
                     true
                 }
                 R.id.optionFilter2 -> {
-                    particularItemList("filter", "price", "1")
-
+                    if (type == 0) {
+                        manufacturerItemList("filter", "price", "1")
+                    } else {
+                        particularItemList("filter", "price", "1")
+                    }
                     true
                 }
                 R.id.optionFilter3 -> {
-                    particularItemList("filter", "price", "2")
-
+                    if (type == 0) {
+                        manufacturerItemList("filter", "price", "2")
+                    } else {
+                        particularItemList("filter", "price", "2")
+                    }
                     true
                 }
                 R.id.optionFilter4 -> {
 
-                    particularItemList("filter", "price", "3")
+                    if (type == 0) {
+                        manufacturerItemList("filter", "price", "3")
+                    } else {
+                        particularItemList("filter", "price", "3")
+                    }
                     true
                 }
                 else -> true
