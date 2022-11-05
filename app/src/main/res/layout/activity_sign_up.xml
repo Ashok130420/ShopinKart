@@ -29,7 +29,7 @@
             android:layout_height="0dp"
 
             app:layout_constraintTop_toBottomOf="@+id/backIV"
-            tools:context="com.example.shopinkarts.activity.activity.SignUpActivity">
+            tools:context="com.app.shopinkarts.activity.activity.SignUpActivity">
 
             <ImageView
                 android:id="@+id/logoIV"

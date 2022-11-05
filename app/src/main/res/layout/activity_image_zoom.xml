@@ -12,7 +12,7 @@
         android:layout_height="match_parent"
         tools:context=".activity.ImageZoomActivity">
 
-        <com.example.shopinkarts.classes.ZoomClass
+        <com.app.shopinkarts.classes.ZoomClass
             android:id="@+id/largeImage"
             android:layout_width="match_parent"
             android:layout_height="match_parent"

@@ -12,7 +12,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@color/fragment_background"
-        tools:context="com.example.shopinkarts.fragments.AccountFragment">
+        tools:context="com.app.shopinkarts.fragments.AccountFragment">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/profileCL"

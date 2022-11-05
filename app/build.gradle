@@ -10,7 +10,7 @@ android {
     compileSdk 33
 
     defaultConfig {
-        applicationId "com.example.shopinkarts"
+        applicationId "com.app.shopinkarts"
         minSdk 21
         targetSdk 33
         versionCode 1
@@ -39,7 +39,7 @@ android {
             excludes += ['META-INF/atomicfu.kotlin_module']
         }
     }
-    namespace 'com.example.shopinkarts'
+    namespace 'com.app.shopinkarts'
 }
 
 dependencies {

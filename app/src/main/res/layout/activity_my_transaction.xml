@@ -13,7 +13,7 @@
         android:layout_height="match_parent"
         android:background="@color/fragment_background"
 
-        tools:context="com.example.shopinkarts.activity.activity.MyTransactionActivity">
+        tools:context="com.app.shopinkarts.activity.activity.MyTransactionActivity">
 
         <include
             android:id="@+id/headerMyTransactions"
