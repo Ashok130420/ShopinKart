@@ -69,6 +69,7 @@ class ParticularItemActivity : AppCompatActivity() {
 
         binding.headerParticularItem.cartIV.visibility = View.GONE
         binding.headerParticularItem.cartItemTV.visibility = View.GONE
+
         if (type == 0) {
             binding.headerParticularItem.titleTV.text = manufacturerName
             Glide.with(this).load(manufacturerImage).into(binding.headerParticularItem.iconIV)
@@ -78,12 +79,6 @@ class ParticularItemActivity : AppCompatActivity() {
             Glide.with(this).load(imageURL).into(binding.headerParticularItem.iconIV)
             particularItemList("sort", "price", "0")
         }
-
-
-
-
-
-
 
 
         binding.headerParticularItem.backIV.setOnClickListener {
@@ -97,7 +92,6 @@ class ParticularItemActivity : AppCompatActivity() {
         binding.filterCL.setOnClickListener {
             popupMenuFilter(it)
         }
-
 
         binding.headerParticularItem.cartIV.setOnClickListener {
             val intent = Intent(this, ProductCartActivity::class.java)
@@ -132,6 +126,7 @@ class ParticularItemActivity : AppCompatActivity() {
                 override fun onNothingSelected(parent: AdapterView<*>?) {
                 }
             }*/
+
         /*  binding.sortTV.onItemSelectedListener =
               object : AdapterView.OnItemSelectedListener {
                   override fun onItemSelected(
@@ -154,10 +149,10 @@ class ParticularItemActivity : AppCompatActivity() {
                           } else {
                               particularItemList("sort", "price", "newest")
                           }
-                          *//* if ()
+                          if ()
                              particularItemList("sort", "price", "1")
                          else
-                             particularItemList("sort", "newest", "2")*//*
+                             particularItemList("sort", "newest", "2")
 
                     }
                     Log.d("Position", selectedItem)
@@ -357,7 +352,7 @@ class ParticularItemActivity : AppCompatActivity() {
             when (it.itemId) {
                 R.id.optionFilter1 -> {
                     if (type == 0) {
-                        manufacturerItemList("filter", "price", "0")
+                         manufacturerItemList("filter", "price", "0")
                     } else {
                         particularItemList("filter", "price", "0")
                     }
