@@ -1,5 +1,6 @@
 package com.app.shopinkarts.activity
 
+import android.annotation.SuppressLint
 import android.content.Intent
 import android.os.Bundle
 import android.os.Handler
@@ -40,7 +41,7 @@ class ParticularItemActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         Utils.changeStatusTextColor(this)
-        Utils.changeStatusColor(this,R.color.white)
+        Utils.changeStatusColor(this, R.color.white)
         binding = DataBindingUtil.setContentView(this, R.layout.activity_particular_item)
 
         layoutManager = LinearLayoutManager(this)
@@ -167,6 +168,7 @@ class ParticularItemActivity : AppCompatActivity() {
             particularItemId, type = type, subType = subType, value = value
         )
         call.enqueue(object : Callback<ParticularItemResponse> {
+            @SuppressLint("SetTextI18n", "NotifyDataSetChanged")
             override fun onResponse(
                 call: Call<ParticularItemResponse>, response: Response<ParticularItemResponse>
             ) {
@@ -174,7 +176,7 @@ class ParticularItemActivity : AppCompatActivity() {
                 if (response.isSuccessful) {
                     if (particularItemResponse!!.status) {
 
-                        isloading = true
+                       /* isloading = true
                         binding.progressbar.visibility = View.VISIBLE
                         val start: Int = (page - 1) * limit
                         val end: Int = (page) * limit
@@ -196,19 +198,19 @@ class ParticularItemActivity : AppCompatActivity() {
                             }
                             isloading = false
                             binding.progressbar.visibility = View.GONE
-                        }, 1000)
+                        }, 1000)*/
 
-//                        arrayListParticularItem.clear()
-//                        arrayListParticularItem.addAll(particularItemResponse.products)
-//                        particularItemAdapter = ParticularItemAdapter(
-//                            this@ParticularItemActivity, arrayListParticularItem
-//                        )
+                        arrayListParticularItem.clear()
+                        arrayListParticularItem.addAll(particularItemResponse.products)
+                        particularItemAdapter = ParticularItemAdapter(
+                            this@ParticularItemActivity, arrayListParticularItem
+                        )
 
-//                        binding.particularItemRV.adapter = particularItemAdapter
-//                        particularItemAdapter.notifyDataSetChanged()
+                        binding.particularItemRV.adapter = particularItemAdapter
+                        particularItemAdapter.notifyDataSetChanged()
 
                         binding.allProductsTV.text =
-                            "Showcasing ${arrayListParticularItem.size} ${subCategoryName}"
+                            "Showcasing ${arrayListParticularItem.size} $subCategoryName"
                     }
                     Log.d("TAG", "onResponse_SuccessResponse${particularItemResponse.message} ")
                 } else {
