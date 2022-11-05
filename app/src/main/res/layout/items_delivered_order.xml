@@ -130,6 +130,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:padding="10dp"
+            android:visibility="visible"
             app:layout_constraintTop_toBottomOf="@id/view1">
 
             <ImageView
@@ -298,13 +299,33 @@
         </androidx.constraintlayout.widget.ConstraintLayout>
 
         <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/cancelOrderCL"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="14dp"
+            android:visibility="gone"
+            app:layout_constraintTop_toBottomOf="@id/stepperLayout">
+
+            <TextView
+                android:id="@+id/cancelOrderTV"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/this_order_has_been_canceled_our_team_will_get_back_to_you"
+                android:textColor="@color/red"
+                android:textSize="@dimen/text_size_12"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/trackOrderCL"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
 
             android:layout_marginHorizontal="@dimen/m14"
             android:layout_marginTop="@dimen/m20"
-            app:layout_constraintTop_toBottomOf="@id/stepperLayout">
+            app:layout_constraintTop_toBottomOf="@id/cancelOrderCL">
 
             <TextView
                 android:id="@+id/trackOrderStatusTV"

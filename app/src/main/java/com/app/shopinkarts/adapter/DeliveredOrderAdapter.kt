@@ -51,6 +51,7 @@ class DeliveredOrderAdapter(val context: Context, val arrayList: ArrayList<Order
         val itemDetails = arrayList[position]
 
         holder.binding.apply {
+            cancelOrderCL.visibility=View.GONE
 
             orderIdTV.text = "# ${itemDetails.orderId}"
 
@@ -77,7 +78,17 @@ class DeliveredOrderAdapter(val context: Context, val arrayList: ArrayList<Order
             productRV.adapter = productAdapter
             productRV.isNestedScrollingEnabled = false
             productRV.hasFixedSize()
-
+            if (itemDetails.orderStatus == 4) {
+                stepperLayout.visibility = View.GONE
+                trackOrderCL.visibility = View.GONE
+                downloadInvoiceCL.visibility = View.GONE
+                cancelOrderCL.visibility=View.VISIBLE
+            } else {
+                stepperLayout.visibility = View.VISIBLE
+                trackOrderCL.visibility = View.VISIBLE
+                downloadInvoiceCL.visibility = View.VISIBLE
+                cancelOrderCL.visibility=View.GONE
+            }
             when (itemDetails.orderStatus) {
                 0 -> {
                     viewStepper2.setBackgroundColor(context.resources.getColor(R.color.hint))
