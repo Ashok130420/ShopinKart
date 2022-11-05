@@ -312,6 +312,7 @@ class ParticularItemActivity : AppCompatActivity() {
                     }
                     true
                 }
+
                 R.id.optionPriceLow -> {
                     if (type == 0) {
                         manufacturerItemList("sort", "price", "1")
