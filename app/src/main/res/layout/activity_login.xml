@@ -10,8 +10,8 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:padding="@dimen/p25"
-        tools:context="com.example.shopinkarts.activity.LoginActivity">
+        android:padding="@dimen/p14"
+        tools:context="com.app.shopinkarts.activity.LoginActivity">
 
         <ImageView
             android:id="@+id/logoIV"
@@ -48,7 +48,83 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/welcomeTV" />
 
-        <TextView
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/phoneNumberLayout"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/m20"
+            android:hint="@string/phone_number"
+            android:padding="0dp"
+            android:textColorHint="@color/hint_color"
+            app:boxStrokeColor="@color/primary_Blue"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/belowDetailsTV">
+
+            <com.google.android.material.textfield.TextInputEditText
+
+                android:id="@+id/phoneET"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/m20"
+                android:fontFamily="@font/dm_sans"
+                android:inputType="number"
+                android:maxLength="10"
+                android:textColorHighlight="@color/hint_color"
+                android:textColorHint="@color/hint"
+                android:textSize="@dimen/text_size_14"
+
+                />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/passwordLayout"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/m20"
+            android:hint="@string/password"
+            android:padding="0dp"
+            android:textColorHint="@color/hint_color"
+            app:boxStrokeColor="@color/primary_Blue"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/phoneNumberLayout">
+
+            <com.google.android.material.textfield.TextInputEditText
+
+
+                android:id="@+id/passwordET"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/m20"
+                android:fontFamily="@font/dm_sans"
+                android:inputType="textPassword"
+                android:maxLength="15"
+                android:textColorHighlight="@color/hint_color"
+                android:textColorHint="@color/hint"
+                android:textSize="@dimen/text_size_14"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/passwordTV"
+
+                />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <ImageView
+            android:id="@+id/imageToggle"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:onClick="passToggle"
+            android:padding="8dp"
+            android:src="@drawable/eye_open"
+            app:layout_constraintBottom_toBottomOf="@+id/passwordLayout"
+            app:layout_constraintEnd_toEndOf="@+id/passwordLayout"
+            app:layout_constraintTop_toTopOf="@+id/passwordLayout"
+            tools:ignore="ContentDescription,UsingOnClickInXml" />
+
+        <!--<TextView
             android:id="@+id/phoneTV"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -120,7 +196,7 @@
             app:layout_constraintEnd_toEndOf="@+id/passwordET"
             app:layout_constraintTop_toTopOf="@+id/passwordET"
             tools:ignore="ContentDescription,UsingOnClickInXml" />
-
+-->
 
         <TextView
             android:id="@+id/signInTv"
@@ -136,17 +212,20 @@
             android:textColor="@color/white"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/passwordET" />
+            app:layout_constraintTop_toBottomOf="@+id/passwordLayout" />
+
+
 
         <TextView
             android:id="@+id/forgotPasswordTV"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:visibility="visible"
             android:layout_marginBottom="@dimen/m10"
             android:fontFamily="@font/dm_sans"
             android:text="@string/forgot_password"
             android:textColor="@color/primary_text"
-            android:textSize="@dimen/text_size_14"
+            android:textSize="@dimen/text_size_12"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent" />
 
@@ -155,12 +234,13 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginBottom="@dimen/m10"
+            android:layout_marginTop="@dimen/m10"
             android:fontFamily="@font/dm_sans"
-            android:text="@string/sign_up"
+            android:text="@string/new_user"
             android:textColor="@color/primary_Blue"
-            android:textSize="@dimen/text_size_14"
+            android:textSize="@dimen/text_size_12"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="@id/passwordET" />
+            app:layout_constraintEnd_toEndOf="parent" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

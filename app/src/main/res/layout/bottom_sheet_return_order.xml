@@ -66,9 +66,10 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="@dimen/m10"
                     android:backgroundTint="@color/radio_button"
+                    android:fontFamily="@font/dm_sans_medium"
                     android:text="@string/damage_defective"
                     android:textColor="@color/hint"
-                    android:textSize="@dimen/text_size_16" />
+                    android:textSize="@dimen/text_size_14" />
 
                 <RadioButton
                     android:id="@+id/qualityNotGoodRB"
@@ -76,9 +77,10 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="@dimen/m10"
                     android:backgroundTint="@color/radio_button"
+                    android:fontFamily="@font/dm_sans_medium"
                     android:text="@string/quality_not_good"
                     android:textColor="@color/hint"
-                    android:textSize="@dimen/text_size_16" />
+                    android:textSize="@dimen/text_size_14" />
 
                 <RadioButton
                     android:id="@+id/sizeIssueRB"
@@ -86,9 +88,10 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="@dimen/m10"
                     android:backgroundTint="@color/radio_button"
+                    android:fontFamily="@font/dm_sans_medium"
                     android:text="@string/size_issue"
                     android:textColor="@color/hint"
-                    android:textSize="@dimen/text_size_16" />
+                    android:textSize="@dimen/text_size_14" />
 
                 <RadioButton
                     android:id="@+id/othersRB"
@@ -96,9 +99,10 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="@dimen/m10"
                     android:backgroundTint="@color/radio_button"
+                    android:fontFamily="@font/dm_sans_medium"
                     android:text="@string/others"
                     android:textColor="@color/hint"
-                    android:textSize="@dimen/text_size_16" />
+                    android:textSize="@dimen/text_size_14" />
 
             </RadioGroup>
 
@@ -121,9 +125,9 @@
                 android:id="@+id/descriptionET"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_margin="@dimen/m10"
+                android:layout_marginHorizontal="@dimen/m10"
                 android:background="@drawable/edit_text_background_boarder"
-                android:fontFamily="@font/dm_sans"
+                android:fontFamily="@font/dm_sans_medium"
                 android:hint="@string/please_type_here"
                 android:inputType="textEmailAddress"
                 android:paddingHorizontal="@dimen/p20"

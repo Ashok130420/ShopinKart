@@ -10,53 +10,101 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginHorizontal="@dimen/m14"
+
         tools:context=".activity.ViewAllActivity">
 
         <include
             android:id="@+id/headerViewAll"
-            layout="@layout/header_particular_item" />
+            layout="@layout/header_particular_item"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            tools:layout_editor_absoluteY="-2dp" />
+
+        <View
+            android:id="@+id/view"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/hint"
+            app:layout_constraintTop_toBottomOf="@+id/headerViewAll" />
+
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/shortingFilterCL"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/p2"
-            android:background="@color/light_Gray"
+            android:background="@color/primary_Blue"
+            android:paddingVertical="@dimen/p10"
+            android:visibility="gone"
             app:layout_constraintTop_toBottomOf="@+id/headerViewAll">
 
+            <View
+                android:id="@+id/view1"
+                android:layout_width="1dp"
+                android:layout_height="10dp"
+                android:background="@color/white"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <!-- <View
+                 android:id="@+id/view2"
+                 android:layout_width="1dp"
+                 android:layout_height="10dp"
+                 android:background="@color/white"
+                 app:layout_constraintBottom_toBottomOf="parent"
+                 app:layout_constraintEnd_toEndOf="parent"
+                 app:layout_constraintStart_toEndOf="@id/view1"
+                 app:layout_constraintTop_toTopOf="parent" />-->
+
             <androidx.constraintlayout.widget.ConstraintLayout
-                android:id="@+id/shortingCL"
+                android:id="@+id/sortCL"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginEnd="@dimen/m5"
-                android:paddingVertical="@dimen/p10"
-                app:layout_constraintEnd_toStartOf="@+id/filterCL"
+                android:layout_marginEnd="@dimen/m10"
+                app:layout_constraintEnd_toStartOf="@id/filterCL"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent">
 
                 <TextView
-                    android:id="@+id/shortTV"
+                    android:id="@+id/sortTV"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/shorting"
-                    android:textColor="@color/primary_text"
-                    android:textSize="@dimen/text_size_16"
+                    android:layout_marginEnd="@dimen/m20"
+                    android:fontFamily="@font/dm_sans_medium"
+                    android:text="@string/sorting"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/text_size_14"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
                     tools:ignore="RtlSymmetry" />
 
+                <!-- <Spinner
+                     android:id="@+id/sortTV"
+                     android:layout_width="120dp"
+                     android:layout_height="wrap_content"
+                     android:entries="@array/sorting"
+                     android:fontFamily="@font/dm_sans_medium"
+                     android:imeActionLabel="@string/sorting"
+                     android:labelFor="@id/sortTV"
+                     android:text="@string/sorting"
+                     android:textColor="@color/white"
+                     android:textSize="@dimen/text_size_14"
+                     app:layout_constraintStart_toStartOf="parent"
+                     app:layout_constraintTop_toTopOf="parent"
+                     tools:ignore="RtlSymmetry" />
+     -->
                 <ImageView
-                    android:id="@+id/shortingIconIV"
+                    android:id="@+id/sortingIconIV"
                     android:layout_width="25dp"
                     android:layout_height="25dp"
-                    android:layout_marginStart="@dimen/m10"
                     android:padding="@dimen/p1"
-                    android:src="@drawable/shorting_icon"
-                    app:layout_constraintBottom_toBottomOf="@id/shortTV"
-                    app:layout_constraintStart_toEndOf="@+id/shortTV"
-                    app:layout_constraintTop_toTopOf="@id/shortTV"
+                    android:src="@drawable/sorting_icon_white"
+                    app:layout_constraintBottom_toBottomOf="@id/sortTV"
+                    app:layout_constraintStart_toEndOf="@+id/sortTV"
+                    app:layout_constraintTop_toTopOf="@id/sortTV"
                     tools:ignore="ContentDescription" />
             </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -64,52 +112,93 @@
                 android:id="@+id/filterCL"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/m5"
-                android:paddingVertical="@dimen/p10"
+                android:layout_marginStart="@dimen/m10"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@+id/shortingCL"
+                app:layout_constraintStart_toEndOf="@id/sortCL"
                 app:layout_constraintTop_toTopOf="parent">
 
                 <TextView
                     android:id="@+id/filterTV"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginEnd="@dimen/m6"
+                    android:layout_marginEnd="@dimen/m10"
+                    android:fontFamily="@font/dm_sans_medium"
                     android:text="@string/filter"
-                    android:textColor="@color/primary_text"
-                    android:textSize="@dimen/text_size_16"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/text_size_14"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
                     tools:ignore="RtlSymmetry" />
+                <!-- <Spinner
+                     android:id="@+id/filterTV"
+                     android:layout_width="120dp"
+                     android:layout_height="wrap_content"
+                     android:entries="@array/filter"
+                     android:fontFamily="@font/dm_sans_medium"
+                     android:textColor="@color/white"
+                     android:textSize="@dimen/text_size_14"
+                     android:visibility="invisible"
+                     app:layout_constraintBottom_toBottomOf="@id/sortTV"
+                     app:layout_constraintEnd_toEndOf="parent"
+                     app:layout_constraintTop_toTopOf="@id/sortTV"
+                     tools:ignore="RtlSymmetry" />-->
 
                 <ImageView
                     android:id="@+id/filterIconIV"
                     android:layout_width="25dp"
                     android:layout_height="25dp"
-                    android:layout_marginStart="@dimen/m10"
-                    android:padding="@dimen/p4"
-                    android:src="@drawable/filter_icon"
-                    app:layout_constraintStart_toEndOf="@+id/filterTV"
-                    app:layout_constraintTop_toTopOf="parent"
+                    android:padding="@dimen/p7"
+                    android:src="@drawable/filter_icon_white"
+
+                    app:layout_constraintBottom_toBottomOf="@+id/filterTV"
+                    app:layout_constraintStart_toEndOf="@id/filterTV"
+                    app:layout_constraintTop_toTopOf="@+id/filterTV"
+
                     tools:ignore="ContentDescription" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 
 
+            <!--<TextView
+                android:id="@+id/categoryTV"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/dm_sans_medium"
+                android:text="@string/category"
+                android:textColor="@color/white"
+                android:textSize="@dimen/text_size_14"
+                app:layout_constraintBottom_toBottomOf="@id/sortTV"
+                app:layout_constraintEnd_toStartOf="@id/filterTV"
+                app:layout_constraintStart_toEndOf="@+id/sortTV"
+                app:layout_constraintTop_toTopOf="@id/sortTV"
+                tools:ignore="RtlSymmetry" />
+
+            <ImageView
+                android:id="@+id/categoryIconIV"
+                android:layout_width="25dp"
+                android:layout_height="25dp"
+                android:padding="@dimen/p4"
+                android:src="@drawable/down_icon_white"
+                app:layout_constraintBottom_toBottomOf="@id/categoryTV"
+                app:layout_constraintStart_toEndOf="@+id/categoryTV"
+                app:layout_constraintTop_toTopOf="@id/categoryTV"
+                tools:ignore="ContentDescription" />
+-->
         </androidx.constraintlayout.widget.ConstraintLayout>
 
         <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/newlyAddedRV"
+            android:id="@+id/viewAllRV"
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_marginTop="@dimen/m10"
+            android:layout_margin="@dimen/m10"
+            android:layout_marginHorizontal="@dimen/m14"
             app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/shortingFilterCL"
             app:spanCount="2"
             tools:itemCount="8"
-            tools:listitem="@layout/items_newly_added" />
+            tools:listitem="@layout/items_filter_items" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

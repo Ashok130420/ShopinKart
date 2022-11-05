@@ -7,9 +7,38 @@
   "client": [
     {
       "client_info": {
+        "mobilesdk_app_id": "1:824629569855:android:1b85d656df0c2f0f814b8a",
+        "android_client_info": {
+          "package_name": "com.app.shopinkarts"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "824629569855-4ol7qijl5um74n71qafkf7u6tnnbsmlf.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDaAK89J3_Spc7a6zN2RI_9_k-N4QLuKBM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "824629569855-4ol7qijl5um74n71qafkf7u6tnnbsmlf.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
         "mobilesdk_app_id": "1:824629569855:android:e7695c4c99d2b6b2814b8a",
         "android_client_info": {
-          "package_name": "com.example.shopinkarts"
+          "package_name": "com.example.shopinkarts.activity"
         }
       },
       "oauth_client": [

@@ -19,24 +19,35 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/m20"
-            android:text="@string/t_shirts"
+            android:text=""
+            android:paddingEnd="@dimen/p10"
             android:textColor="@color/primary_text"
             android:textSize="@dimen/text_size_18"
             app:layout_constraintStart_toEndOf="@+id/backIV"
             app:layout_constraintTop_toTopOf="parent"
             tools:ignore="RtlSymmetry" />
 
-        <ImageView
-            android:id="@+id/iconIV"
-            android:layout_width="25dp"
-            android:layout_height="25dp"
-            android:layout_marginStart="@dimen/m18"
-            android:padding="@dimen/p1"
-            android:src="@drawable/t_shirt_icon"
+        <androidx.cardview.widget.CardView
+            android:id="@+id/imageCardView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/p2"
+            app:cardBackgroundColor="@color/fragment_background"
+            app:cardCornerRadius="@dimen/m10"
+            app:cardElevation="0dp"
             app:layout_constraintBottom_toBottomOf="@id/titleTV"
             app:layout_constraintStart_toEndOf="@+id/titleTV"
-            app:layout_constraintTop_toTopOf="@id/titleTV"
-            tools:ignore="ContentDescription" />
+            app:layout_constraintTop_toTopOf="@id/titleTV">
+
+            <ImageView
+                android:id="@+id/iconIV"
+                android:layout_width="25dp"
+                android:layout_height="25dp"
+                android:padding="@dimen/p1"
+                android:src="@drawable/t_shirt_icon"
+                tools:ignore="ContentDescription" />
+        </androidx.cardview.widget.CardView>
+
 
         <ImageView
 
@@ -63,18 +74,18 @@
             app:layout_constraintTop_toTopOf="@id/titleTV"
             tools:ignore="ContentDescription" />
 
-        <ImageView
-            android:id="@+id/searchIV"
-            android:layout_width="25dp"
-            android:layout_height="25dp"
-            android:layout_marginEnd="@dimen/m10"
-            android:padding="@dimen/p2"
-            android:src="@drawable/search_icon_black"
-            app:layout_constraintBottom_toBottomOf="@id/titleTV"
-            app:layout_constraintEnd_toStartOf="@+id/cartIV"
-            app:layout_constraintTop_toTopOf="@id/titleTV"
-            tools:ignore="ContentDescription" />
-
+        <!-- <ImageView
+             android:id="@+id/searchIV"
+             android:layout_width="25dp"
+             android:layout_height="25dp"
+             android:layout_marginEnd="@dimen/m10"
+             android:padding="@dimen/p2"
+             android:src="@drawable/search_icon_black"
+             app:layout_constraintBottom_toBottomOf="@id/titleTV"
+             app:layout_constraintEnd_toStartOf="@+id/cartIV"
+             app:layout_constraintTop_toTopOf="@id/titleTV"
+             tools:ignore="ContentDescription" />
+ -->
         <TextView
             android:id="@+id/cartItemTV"
             android:layout_width="15dp"

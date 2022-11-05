@@ -53,4 +53,15 @@
     <dimen name="m2">2dp</dimen>
     <dimen name="text_size_13">13sp</dimen>
     <dimen name="design_navigation_icon_size" tools:override="true">20dp</dimen>
+    <dimen name="p6">6dp</dimen>
+    <dimen name="p7">7dp</dimen>
+    <dimen name="m150">150dp</dimen>
+    <dimen name="m180">180dp</dimen>
+    <dimen name="m110">110dp</dimen>
+    <dimen name="m250">250dp</dimen>
+    <dimen name="m170">170dp</dimen>
+    <dimen name="m160">160dp</dimen>
+    <dimen name="m90">90dp</dimen>
+    <dimen name="m230">230dp</dimen>
+    <dimen name="m15">15dp</dimen>
 </resources>

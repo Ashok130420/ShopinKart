@@ -31,10 +31,10 @@
             android:id="@+id/cartIV"
             android:layout_width="25dp"
             android:layout_height="25dp"
+            android:layout_marginEnd="@dimen/m14"
             android:padding="@dimen/p2"
-
             android:src="@drawable/cart"
-            app:layout_constraintEnd_toEndOf="@+id/cartItemTV"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="@+id/notificationIV"
             tools:ignore="ContentDescription" />
 
@@ -42,7 +42,7 @@
             android:id="@+id/cartItemTV"
             android:layout_width="15dp"
             android:layout_height="15dp"
-            android:layout_marginEnd="@dimen/m18"
+
             android:layout_marginBottom="15dp"
             android:background="@drawable/text_view_blue"
             android:gravity="center"
@@ -51,15 +51,15 @@
             android:textColor="@color/white"
             android:textSize="8sp"
             app:layout_constraintBottom_toBottomOf="@id/cartIV"
-            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintEnd_toEndOf="@+id/cartIV"
             tools:ignore="SmallSp" />
 
         <ImageView
             android:id="@+id/notificationIV"
             android:layout_width="25dp"
             android:layout_height="25dp"
+            android:layout_marginEnd="5dp"
             android:padding="@dimen/p1"
-            android:layout_marginEnd="11dp"
             android:src="@drawable/notification"
             app:layout_constraintBottom_toBottomOf="@+id/nameTV"
             app:layout_constraintEnd_toStartOf="@+id/cartIV"
@@ -70,12 +70,10 @@
             android:id="@+id/nameTV"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-
-
             android:fontFamily="@font/dm_sans"
             android:gravity="center"
             android:textColor="@color/primary_Blue"
-            android:textSize="@dimen/text_size_20"
+            android:textSize="@dimen/text_size_16"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -98,11 +96,12 @@
 
         <de.hdodenhof.circleimageview.CircleImageView
             android:id="@+id/profileIV"
-            android:layout_width="30dp"
-            android:layout_height="30dp"
-            android:padding="@dimen/p1"
+            android:layout_width="25dp"
+            android:layout_height="25dp"
             android:layout_marginHorizontal="@dimen/m18"
-            android:src="@drawable/profile"
+            android:background="@drawable/profile_boarder"
+            android:padding="@dimen/p1"
+            android:src="@drawable/white_blue_logo"
             app:layout_constraintBottom_toBottomOf="@+id/nameTV"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="@+id/nameTV" />

@@ -1,0 +1,223 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/white"
+        tools:context=".activity.CheckOutDetailsActivity">
+
+        <include
+            android:id="@+id/headerPersonalDetails"
+            layout="@layout/header_product_cart" />
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/stepperCL"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="@dimen/m18"
+            android:layout_marginTop="@dimen/m10"
+            android:paddingVertical="@dimen/p10"
+            app:layout_constraintTop_toBottomOf="@id/headerPersonalDetails">
+
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/shippingCL"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                app:layout_constraintEnd_toStartOf="@id/paymentCL"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <ImageView
+                    android:id="@+id/shippingIV"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:padding="@dimen/p4"
+                    android:src="@drawable/blue_right_icon"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    tools:ignore="ContentDescription,UsingOnClickInXml" />
+
+                <TextView
+                    android:id="@+id/shippingTV"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+
+                    android:text="@string/shipping"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/text_size_13"
+                    app:layout_constraintBottom_toBottomOf="@+id/shippingIV"
+                    app:layout_constraintStart_toEndOf="@+id/shippingIV"
+                    app:layout_constraintTop_toTopOf="@+id/shippingIV" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/paymentCL"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                app:layout_constraintBottom_toBottomOf="@id/shippingCL"
+                app:layout_constraintEnd_toStartOf="@id/successCL"
+                app:layout_constraintStart_toEndOf="@id/shippingCL"
+                app:layout_constraintTop_toTopOf="@id/shippingCL">
+
+                <ImageView
+                    android:id="@+id/paymentIV"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:layout_marginStart="@dimen/m14"
+                    android:padding="@dimen/p4"
+                    android:src="@drawable/grey_right_icon2"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    tools:ignore="ContentDescription,UsingOnClickInXml" />
+
+                <TextView
+                    android:id="@+id/paymentTV"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/payment"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/text_size_13"
+                    app:layout_constraintBottom_toBottomOf="@+id/paymentIV"
+                    app:layout_constraintStart_toEndOf="@+id/paymentIV"
+                    app:layout_constraintTop_toTopOf="@+id/paymentIV" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/successCL"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                app:layout_constraintBottom_toBottomOf="@id/shippingCL"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@id/paymentCL"
+                app:layout_constraintTop_toTopOf="@id/shippingCL">
+
+                <ImageView
+                    android:id="@+id/successIV"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:layout_marginStart="@dimen/m14"
+                    android:padding="@dimen/p4"
+                    android:src="@drawable/grey_right_icon2"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    tools:ignore="ContentDescription,UsingOnClickInXml" />
+
+                <TextView
+                    android:id="@+id/successTV"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+
+                    android:text="@string/success"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/text_size_13"
+                    app:layout_constraintBottom_toBottomOf="@+id/successIV"
+                    app:layout_constraintStart_toEndOf="@+id/successIV"
+                    app:layout_constraintTop_toTopOf="@+id/successIV" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+        <ScrollView
+            android:id="@+id/scrollView"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_marginBottom="@dimen/m10"
+            app:layout_constraintBottom_toTopOf="@+id/goToOrdersTV"
+            app:layout_constraintTop_toBottomOf="@+id/stepperCL">
+
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toBottomOf="@id/headerPersonalDetails">
+
+                <!--Stepper Layout 1st-->
+                <include
+                    android:id="@+id/includeStepper1"
+                    layout="@layout/stepper1_layout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="@dimen/m18"
+                    android:visibility="visible"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintVertical_bias="0.0"
+                    tools:layout_editor_absoluteX="105dp" />
+
+                <!--Stepper Layout 2nd-->
+
+                <include
+                    android:id="@+id/includeStepper2"
+                    layout="@layout/stepper2_layout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="@dimen/m18"
+                    android:visibility="gone"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <!--Stepper Layout 3rd-->
+                <include
+                    android:id="@+id/includeStepper3"
+                    layout="@layout/stepper3_layout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="@dimen/m18"
+                    android:visibility="gone"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+        </ScrollView>
+
+        <TextView
+            android:id="@+id/goToOrdersTV"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="@dimen/m18"
+            android:layout_marginBottom="@dimen/m10"
+            android:background="@drawable/shape_text_blue"
+            android:gravity="center"
+            android:padding="@dimen/p16"
+            android:text="@string/go_to_your_orders"
+            android:textColor="@color/primary_Blue"
+            android:textSize="@dimen/text_size_14"
+            android:visibility="gone"
+            app:layout_constraintBottom_toTopOf="@+id/continueTV" />
+
+        <TextView
+            android:id="@+id/continueTV"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="@dimen/m18"
+            android:layout_marginBottom="@dimen/m10"
+            android:background="@drawable/button_blue_radius5"
+            android:gravity="center"
+            android:padding="@dimen/p16"
+            android:text="@string/continue_"
+            android:textColor="@color/white"
+            android:textSize="@dimen/text_size_14"
+            app:layout_constraintBottom_toBottomOf="parent" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
+
+

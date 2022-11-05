@@ -28,29 +28,70 @@
                 android:layout_height="wrap_content"
                 app:layout_constraintTop_toBottomOf="@+id/headerProductDetails">
 
-                <com.denzcoskun.imageslider.ImageSlider
-                    android:id="@+id/productDetailsIS"
+                <!-- <com.denzcoskun.imageslider.ImageSlider
+                     android:id="@+id/productDetailsIS"
+                     android:layout_width="match_parent"
+                     android:layout_height="200dp"
+                     app:iss_auto_cycle="false"
+                     app:iss_corner_radius="5"
+                     app:iss_delay="0"
+                     app:iss_error_image="@android:color/darker_gray"
+                     app:iss_period="2000"
+                     app:iss_placeholder="@android:color/darker_gray"
+                     app:iss_selected_dot="@drawable/default_selected_dot"
+                     app:iss_unselected_dot="@drawable/default_unselected_dot"
+                     app:layout_constraintTop_toTopOf="parent"
+                     tools:ignore="MissingConstraints" />-->
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/imageSliderCL"
                     android:layout_width="match_parent"
-                    android:layout_height="200dp"
-                    app:iss_auto_cycle="false"
-                    app:iss_corner_radius="5"
-                    app:iss_delay="0"
-                    app:iss_error_image="@android:color/darker_gray"
-                    app:iss_period="2000"
-                    app:iss_placeholder="@android:color/darker_gray"
-                    app:iss_selected_dot="@drawable/default_selected_dot"
-                    app:iss_unselected_dot="@drawable/default_unselected_dot"
-                    app:layout_constraintTop_toTopOf="parent"
-                    tools:ignore="MissingConstraints" />
+                    android:layout_height="wrap_content"
+                    app:layout_constraintTop_toTopOf="parent">
+
+                    <androidx.viewpager2.widget.ViewPager2
+                        android:id="@+id/productViewPager"
+                        android:layout_width="match_parent"
+                        android:layout_height="350dp"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+                    <!--                    <com.tbuonomo.viewpagerdotsindicator.DotsIndicator-->
+                    <!--                        android:id="@+id/dots_indicator"-->
+                    <!--                        android:layout_width="wrap_content"-->
+                    <!--                        android:layout_height="wrap_content"-->
+                    <!--                        app:dotsColor="@color/white"-->
+                    <!--                        app:dotsCornerRadius="8dp"-->
+                    <!--                        app:dotsSize="16dp"-->
+                    <!--                        app:dotsSpacing="4dp"-->
+                    <!--                        app:dotsWidthFactor="2.5"-->
+                    <!--                        app:selectedDotColor="@color/primary_Blue"-->
+                    <!--                        app:progressMode="true"-->
+                    <!--                        app:layout_constraintEnd_toEndOf="parent"-->
+                    <!--                        app:layout_constraintStart_toStartOf="parent"-->
+                    <!--                        app:layout_constraintTop_toBottomOf="@id/productViewPager"-->
+                    <!--                        />-->
+                    <LinearLayout
+                        android:id="@+id/indicatorsContainersProduct"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/m10"
+                        android:gravity="center"
+                        android:orientation="horizontal"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/productViewPager" />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
 
                 <ImageView
                     android:id="@+id/downloadImageIV"
                     android:layout_width="30dp"
                     android:layout_height="30dp"
-                    android:layout_margin="@dimen/m10"
+                    android:layout_margin="@dimen/m14"
                     android:src="@drawable/download_image_icon"
-                    app:layout_constraintEnd_toEndOf="@+id/productDetailsIS"
-                    app:layout_constraintTop_toTopOf="@+id/productDetailsIS"
+                    app:layout_constraintEnd_toEndOf="@+id/imageSliderCL"
+                    app:layout_constraintTop_toTopOf="@+id/imageSliderCL"
                     tools:ignore="ContentDescription" />
 
                 <androidx.constraintlayout.widget.ConstraintLayout
@@ -58,16 +99,19 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_margin="@dimen/m14"
+                    android:layout_marginTop="184dp"
                     android:background="@color/white"
-                    app:layout_constraintTop_toBottomOf="@+id/productDetailsIS">
+                    app:layout_constraintTop_toBottomOf="@+id/imageSliderCL"
+                    tools:layout_editor_absoluteX="-48dp">
 
                     <TextView
                         android:id="@+id/idTV"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:paddingVertical="@dimen/p2"
-                        android:text="@string/id_002597"
+
                         android:textColor="@color/dark_Gray"
+                        android:textSize="@dimen/text_size_12"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent" />
 
@@ -76,9 +120,9 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:paddingVertical="@dimen/p4"
-                        android:text="@string/blazers_t_shirt_nike"
+                        android:text=""
                         android:textColor="@color/primary_text"
-                        android:textSize="@dimen/text_size_20"
+                        android:textSize="@dimen/text_size_16"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@+id/idTV" />
 
@@ -100,7 +144,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginStart="@dimen/m5"
                         android:padding="@dimen/p1"
-                        android:text="@string/_66_off"
+
                         android:textColor="@color/white"
                         android:textSize="@dimen/m10"
                         app:layout_constraintBottom_toBottomOf="@+id/discountTagRightIV"
@@ -114,9 +158,9 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="@dimen/m6"
                         android:paddingVertical="@dimen/p2"
-                        android:text="@string/rs_100_00"
+
                         android:textColor="@color/primary_text"
-                        android:textSize="@dimen/text_size_18"
+                        android:textSize="@dimen/text_size_14"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@+id/t_shirtNameTV" />
 
@@ -126,7 +170,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginStart="@dimen/m14"
                         android:paddingVertical="@dimen/p2"
-                        android:text="@string/rs_300_00"
+
                         android:textColor="@color/dark_Gray"
                         android:textSize="@dimen/text_size_12"
                         app:layout_constraintBottom_toBottomOf="@+id/discountedPriceTV"
@@ -149,7 +193,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="@dimen/m10"
                         android:numStars="5"
-                        android:rating="4.5"
+
                         android:theme="@style/RatingBar"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@id/discountedPriceTV" />
@@ -161,7 +205,7 @@
                         android:background="@drawable/shape_text_blue"
                         android:paddingHorizontal="@dimen/p14"
                         android:paddingVertical="@dimen/p4"
-                        android:text="@string/few_units_left"
+
                         android:textColor="@color/primary_Blue"
                         android:textSize="@dimen/text_size_12"
                         app:layout_constraintBottom_toBottomOf="@id/ratingBar"
@@ -184,9 +228,8 @@
                         android:layout_height="wrap_content"
                         android:layout_marginStart="@dimen/m14"
                         android:paddingVertical="@dimen/p2"
-                        android:text="@string/dispatched_in_2_3_days"
                         android:textColor="@color/dark_Gray"
-                        android:textSize="@dimen/text_size_14"
+                        android:textSize="@dimen/text_size_12"
                         app:layout_constraintBottom_toBottomOf="@+id/dispatchedIV"
                         app:layout_constraintStart_toEndOf="@+id/dispatchedIV"
                         app:layout_constraintTop_toTopOf="@+id/dispatchedIV" />
@@ -195,11 +238,13 @@
                         android:id="@+id/deliveryIV"
                         android:layout_width="@dimen/m35"
                         android:layout_height="@dimen/m35"
-                        android:layout_marginTop="@dimen/m8"
+                        android:layout_marginTop="@dimen/m5"
                         android:padding="@dimen/p4"
                         android:src="@drawable/delivery"
+                        android:visibility="gone"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@id/dispatchedIV" />
+                        app:layout_constraintTop_toBottomOf="@id/dispatchedIV"
+                        tools:ignore="ContentDescription" />
 
                     <TextView
                         android:id="@+id/deliveryTV"
@@ -207,9 +252,9 @@
                         android:layout_height="wrap_content"
                         android:layout_marginStart="@dimen/m14"
                         android:paddingVertical="@dimen/p2"
-                        android:text="@string/free_delivery"
                         android:textColor="@color/dark_Gray"
-                        android:textSize="@dimen/text_size_14"
+                        android:textSize="@dimen/text_size_12"
+                        android:visibility="gone"
                         app:layout_constraintBottom_toBottomOf="@+id/deliveryIV"
                         app:layout_constraintStart_toEndOf="@+id/deliveryIV"
                         app:layout_constraintTop_toTopOf="@+id/deliveryIV" />
@@ -218,11 +263,11 @@
                         android:id="@+id/selectColorTV"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="@dimen/m24"
+                        android:layout_marginTop="@dimen/m16"
                         android:paddingVertical="@dimen/p2"
                         android:text="@string/select_color"
                         android:textColor="@color/primary_text"
-                        android:textSize="@dimen/text_size_15"
+                        android:textSize="@dimen/text_size_13"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@+id/deliveryIV" />
 
@@ -230,7 +275,7 @@
                         android:id="@+id/selectColorRV"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="@dimen/m20"
+                        android:layout_marginTop="@dimen/m5"
                         android:orientation="horizontal"
                         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                         app:layout_constraintStart_toStartOf="parent"
@@ -242,11 +287,11 @@
                         android:id="@+id/selectSizeTV"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="@dimen/m24"
+                        android:layout_marginTop="@dimen/m16"
                         android:paddingVertical="@dimen/p2"
                         android:text="@string/select_size"
                         android:textColor="@color/primary_text"
-                        android:textSize="@dimen/text_size_15"
+                        android:textSize="@dimen/text_size_13"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@+id/selectColorRV" />
 
@@ -255,7 +300,7 @@
                         android:id="@+id/selectSizeRV"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="@dimen/m20"
+                        android:layout_marginTop="@dimen/m5"
                         android:orientation="horizontal"
                         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                         app:layout_constraintStart_toStartOf="parent"
@@ -267,27 +312,26 @@
                         android:id="@+id/quantityTV"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/m16"
                         android:paddingVertical="@dimen/p2"
                         android:text="@string/quantity"
                         android:textColor="@color/primary_text"
-                        android:textSize="@dimen/text_size_15"
-                        app:layout_constraintBottom_toBottomOf="@+id/selectSizeTV"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintTop_toTopOf="@+id/selectSizeTV" />
+                        android:textSize="@dimen/text_size_13"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/selectSizeRV" />
 
                     <androidx.constraintlayout.widget.ConstraintLayout
                         android:id="@+id/quantityCL"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        app:layout_constraintBottom_toBottomOf="@+id/selectSizeRV"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintTop_toTopOf="@+id/selectSizeRV">
+                        android:layout_marginTop="@dimen/m5"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/quantityTV">
 
                         <TextView
                             android:id="@+id/plusQuantityTV"
                             android:layout_width="@dimen/m30"
                             android:layout_height="@dimen/m30"
-
                             android:background="@drawable/shape_color_grey"
                             android:gravity="center"
                             android:text="@string/plus"
@@ -343,7 +387,7 @@
                     android:id="@+id/productsCL"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/m35"
+                    android:layout_marginTop="@dimen/m20"
                     android:background="@drawable/background_corners_round"
                     app:layout_constraintTop_toBottomOf="@+id/productDetailsCL">
 
@@ -354,58 +398,66 @@
                         android:layout_margin="@dimen/m14"
                         app:layout_constraintTop_toTopOf="parent">
 
-                        <TextView
-                            android:id="@+id/productDescriptionTV"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="@dimen/m8"
-                            android:background="@color/fragment_background"
-                            android:paddingVertical="@dimen/p12"
-                            android:text="@string/product_description"
-                            android:textColor="@color/primary_text"
-                            android:textSize="@dimen/text_size_16"
-                            app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toTopOf="parent"
-
-                            />
-
-                        <ImageView
-                            android:id="@+id/productDescriptionIV"
-                            android:layout_width="30dp"
-                            android:layout_height="30dp"
-                            android:padding="@dimen/p8"
-                            android:src="@drawable/arrow_next"
-                            app:layout_constraintBottom_toBottomOf="@+id/productDescriptionTV"
-                            app:layout_constraintEnd_toEndOf="parent"
-                            app:layout_constraintTop_toTopOf="@+id/productDescriptionTV"
-                            tools:ignore="ContentDescription" />
-
-                        <View
+                        <androidx.constraintlayout.widget.ConstraintLayout
+                            android:id="@+id/productDescriptionHeaderCL"
                             android:layout_width="match_parent"
-                            android:layout_height="1dp"
-                            android:background="@color/light_Gray"
-                            app:layout_constraintBottom_toBottomOf="@+id/productDescriptionDetailsCL"
+                            android:layout_height="wrap_content"
+                            app:layout_constraintTop_toTopOf="parent">
 
-                            />
+                            <TextView
+                                android:id="@+id/productDescriptionTV"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="@dimen/m8"
+                                android:background="@color/fragment_background"
+                                android:paddingVertical="@dimen/p12"
+                                android:text="@string/product_description"
+                                android:textColor="@color/primary_text"
+                                android:textSize="@dimen/text_size_14"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toTopOf="parent"
+
+                                />
+
+                            <ImageView
+                                android:id="@+id/productDescriptionIV"
+                                android:layout_width="30dp"
+                                android:layout_height="30dp"
+                                android:padding="@dimen/p8"
+                                android:src="@drawable/arrow_next"
+                                app:layout_constraintBottom_toBottomOf="@+id/productDescriptionTV"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintTop_toTopOf="@+id/productDescriptionTV"
+                                tools:ignore="ContentDescription" />
+
+                            <View
+                                android:layout_width="match_parent"
+                                android:layout_height="1dp"
+                                android:background="@color/light_Gray"
+                                app:layout_constraintBottom_toBottomOf="parent"
+
+                                />
+
+                        </androidx.constraintlayout.widget.ConstraintLayout>
 
                         <androidx.constraintlayout.widget.ConstraintLayout
                             android:id="@+id/productDescriptionDetailsCL"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:visibility="gone"
-                            app:layout_constraintTop_toBottomOf="@+id/productDescriptionTV">
+                            app:layout_constraintTop_toBottomOf="@+id/productDescriptionHeaderCL">
 
-                            <com.airbnb.lottie.LottieAnimationView
-                                android:id="@+id/lottyAnimation"
-                                android:layout_width="300dp"
-                                android:layout_height="300dp"
-                                app:layout_constraintBottom_toBottomOf="parent"
-                                app:layout_constraintEnd_toEndOf="parent"
-                                app:layout_constraintStart_toStartOf="parent"
+                            <TextView
+                                android:id="@+id/productDescriptionDetailsTV"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="@dimen/m10"
+                                android:inputType="textMultiLine"
+                                android:textColor="@color/grey_font"
+                                android:textSize="@dimen/text_size_14"
                                 app:layout_constraintTop_toTopOf="parent"
-                                app:lottie_autoPlay="true"
-                                app:lottie_loop="true"
-                                app:lottie_rawRes="@raw/empty" />
+                                tools:ignore="TextViewEdits" />
+
 
                         </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -416,57 +468,67 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_margin="@dimen/m14"
+                        android:visibility="gone"
                         app:layout_constraintTop_toBottomOf="@+id/productDescriptionCL">
 
-                        <TextView
-                            android:id="@+id/productCheckListTV"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="@dimen/m8"
-                            android:background="@color/fragment_background"
-                            android:paddingVertical="@dimen/p12"
-                            android:text="@string/product_checklist"
-                            android:textColor="@color/primary_text"
-                            android:textSize="@dimen/text_size_16"
-                            app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toTopOf="parent"
-
-                            />
-
-                        <ImageView
-                            android:id="@+id/productCheckListIV"
-                            android:layout_width="30dp"
-                            android:layout_height="30dp"
-                            android:padding="@dimen/p8"
-                            android:src="@drawable/arrow_next"
-                            app:layout_constraintBottom_toBottomOf="@+id/productCheckListTV"
-                            app:layout_constraintEnd_toEndOf="parent"
-                            app:layout_constraintTop_toTopOf="@+id/productCheckListTV"
-                            tools:ignore="ContentDescription" />
-
-                        <View
+                        <androidx.constraintlayout.widget.ConstraintLayout
+                            android:id="@+id/productChecklistHeaderCL"
                             android:layout_width="match_parent"
-                            android:layout_height="1dp"
-                            android:background="@color/light_Gray"
-                            app:layout_constraintBottom_toBottomOf="@+id/productCheckListDetailsCL" />
+                            android:layout_height="wrap_content"
+                            app:layout_constraintTop_toTopOf="parent">
+
+                            <TextView
+                                android:id="@+id/productCheckListTV"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="@dimen/m8"
+                                android:background="@color/fragment_background"
+                                android:paddingVertical="@dimen/p12"
+                                android:text="@string/product_checklist"
+                                android:textColor="@color/primary_text"
+                                android:textSize="@dimen/text_size_14"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toTopOf="parent"
+
+                                />
+
+                            <ImageView
+                                android:id="@+id/productCheckListIV"
+                                android:layout_width="30dp"
+                                android:layout_height="30dp"
+                                android:padding="@dimen/p8"
+                                android:src="@drawable/arrow_next"
+                                app:layout_constraintBottom_toBottomOf="@+id/productCheckListTV"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintTop_toTopOf="@+id/productCheckListTV"
+                                tools:ignore="ContentDescription" />
+
+                            <View
+                                android:layout_width="match_parent"
+                                android:layout_height="1dp"
+                                android:background="@color/light_Gray"
+                                app:layout_constraintBottom_toBottomOf="parent" />
+
+
+                        </androidx.constraintlayout.widget.ConstraintLayout>
 
                         <androidx.constraintlayout.widget.ConstraintLayout
                             android:id="@+id/productCheckListDetailsCL"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:visibility="gone"
-                            app:layout_constraintTop_toBottomOf="@+id/productCheckListTV">
+                            app:layout_constraintTop_toBottomOf="@+id/productChecklistHeaderCL">
 
-                            <com.airbnb.lottie.LottieAnimationView
-                                android:layout_width="300dp"
-                                android:layout_height="300dp"
-                                app:layout_constraintBottom_toBottomOf="parent"
-                                app:layout_constraintEnd_toEndOf="parent"
-                                app:layout_constraintStart_toStartOf="parent"
+                            <TextView
+                                android:id="@+id/productCheckListDetailsTV"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="@dimen/m10"
+                                android:inputType="textMultiLine"
+                                android:textColor="@color/grey_font"
+                                android:textSize="@dimen/text_size_14"
                                 app:layout_constraintTop_toTopOf="parent"
-                                app:lottie_autoPlay="true"
-                                app:lottie_loop="true"
-                                app:lottie_rawRes="@raw/empty" />
+                                tools:ignore="TextViewEdits" />
 
                         </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -477,6 +539,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="0dp"
                         android:layout_margin="@dimen/m14"
+                        android:visibility="gone"
                         app:layout_constraintTop_toBottomOf="@+id/productChecklistCL">
 
                         <androidx.constraintlayout.widget.ConstraintLayout
@@ -494,7 +557,7 @@
                                 android:paddingVertical="@dimen/p12"
                                 android:text="@string/read_reviews_4"
                                 android:textColor="@color/primary_text"
-                                android:textSize="@dimen/text_size_16"
+                                android:textSize="@dimen/text_size_14"
                                 app:layout_constraintStart_toStartOf="parent"
                                 app:layout_constraintTop_toTopOf="parent"
 
@@ -537,252 +600,6 @@
 
                         </androidx.constraintlayout.widget.ConstraintLayout>
 
-                        <androidx.constraintlayout.widget.ConstraintLayout
-                            android:id="@+id/readReviewsDetailsCL"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:visibility="gone"
-                            app:layout_constraintTop_toBottomOf="@+id/readReviewsHeaderCL">
-
-                            <androidx.constraintlayout.widget.ConstraintLayout
-                                android:id="@+id/userReviewCL"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:background="@drawable/shape_fragment_corners_10"
-                                android:paddingVertical="@dimen/p15"
-                                android:paddingStart="@dimen/p20"
-                                android:paddingEnd="@dimen/p10"
-                                app:layout_constraintTop_toTopOf="parent">
-
-                                <TextView
-                                    android:id="@+id/ratingTV"
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:text="@string/_4_6"
-                                    android:textColor="@color/primary_text"
-                                    android:textSize="@dimen/text_size_32sp"
-                                    app:layout_constraintStart_toStartOf="parent"
-                                    app:layout_constraintTop_toTopOf="parent" />
-
-                                <TextView
-                                    android:id="@+id/totalRatingTV"
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:layout_marginBottom="@dimen/m5"
-                                    android:text="@string/_5"
-                                    android:textColor="@color/primary_text"
-                                    android:textSize="@dimen/text_size_16"
-                                    app:layout_constraintBottom_toBottomOf="@+id/ratingTV"
-                                    app:layout_constraintStart_toEndOf="@+id/ratingTV" />
-
-                                <TextView
-                                    android:id="@+id/basedOnReviewsTV"
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:text="@string/based_on_120_reviews"
-                                    android:textColor="@color/unselected_Text_color"
-                                    android:textSize="@dimen/text_size_12"
-                                    app:layout_constraintStart_toStartOf="parent"
-                                    app:layout_constraintTop_toBottomOf="@+id/ratingTV" />
-
-
-                                <RatingBar
-                                    android:id="@+id/ratingBarReviews"
-                                    style="@style/Widget.AppCompat.RatingBar.Small"
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:layout_marginTop="@dimen/m16"
-                                    android:numStars="5"
-                                    android:rating="4.5"
-                                    android:theme="@style/RatingBar"
-                                    app:layout_constraintBottom_toBottomOf="parent"
-                                    app:layout_constraintStart_toStartOf="parent" />
-
-
-                                <ProgressBar
-
-                                    android:id="@+id/star5"
-                                    style="?android:attr/progressBarStyleHorizontal"
-                                    android:layout_width="80dp"
-                                    android:layout_height="4dp"
-                                    android:layout_marginTop="@dimen/m10"
-                                    android:max="100"
-                                    android:progress="90"
-                                    android:progressDrawable="@drawable/custom_progress_bar"
-                                    app:layout_constraintEnd_toEndOf="parent"
-                                    app:layout_constraintTop_toTopOf="parent" />
-
-
-                                <TextView
-                                    android:id="@+id/star5TV"
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:layout_marginEnd="@dimen/m10"
-                                    android:text="@string/_5_star"
-                                    android:textColor="@color/unselected_Text_color"
-                                    android:textSize="@dimen/text_size_12"
-                                    app:layout_constraintBottom_toBottomOf="@+id/star5"
-                                    app:layout_constraintEnd_toStartOf="@id/star5"
-                                    app:layout_constraintTop_toTopOf="@id/star5" />
-
-
-                                <ProgressBar
-                                    android:id="@+id/star4"
-                                    style="?android:attr/progressBarStyleHorizontal"
-                                    android:layout_width="80dp"
-                                    android:layout_height="4dp"
-                                    android:layout_marginTop="@dimen/m10"
-                                    android:max="100"
-                                    android:progress="70"
-                                    android:progressDrawable="@drawable/custom_progress_bar"
-                                    app:layout_constraintEnd_toEndOf="parent"
-                                    app:layout_constraintTop_toBottomOf="@+id/star5" />
-
-                                <TextView
-                                    android:id="@+id/star4TV"
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:layout_marginEnd="@dimen/m10"
-                                    android:text="@string/_4_star"
-                                    android:textColor="@color/unselected_Text_color"
-                                    android:textSize="@dimen/text_size_12"
-                                    app:layout_constraintBottom_toBottomOf="@+id/star4"
-                                    app:layout_constraintEnd_toStartOf="@id/star4"
-                                    app:layout_constraintTop_toTopOf="@id/star4" />
-
-
-                                <ProgressBar
-                                    android:id="@+id/star3"
-                                    style="?android:attr/progressBarStyleHorizontal"
-                                    android:layout_width="80dp"
-                                    android:layout_height="4dp"
-                                    android:layout_marginTop="@dimen/m10"
-                                    android:max="100"
-                                    android:progress="50"
-                                    android:progressDrawable="@drawable/custom_progress_bar"
-                                    app:layout_constraintEnd_toEndOf="parent"
-                                    app:layout_constraintTop_toBottomOf="@+id/star4" />
-
-                                <TextView
-                                    android:id="@+id/star3TV"
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:layout_marginEnd="@dimen/m10"
-                                    android:text="@string/_3_star"
-                                    android:textColor="@color/unselected_Text_color"
-                                    android:textSize="@dimen/text_size_12"
-                                    app:layout_constraintBottom_toBottomOf="@+id/star3"
-                                    app:layout_constraintEnd_toStartOf="@id/star3"
-                                    app:layout_constraintTop_toTopOf="@id/star3" />
-
-
-                                <ProgressBar
-                                    android:id="@+id/star2"
-                                    style="?android:attr/progressBarStyleHorizontal"
-                                    android:layout_width="80dp"
-                                    android:layout_height="4dp"
-                                    android:layout_marginTop="@dimen/m10"
-                                    android:max="100"
-                                    android:progress="30"
-                                    android:progressDrawable="@drawable/custom_progress_bar"
-                                    app:layout_constraintEnd_toEndOf="parent"
-                                    app:layout_constraintTop_toBottomOf="@+id/star3" />
-
-                                <TextView
-                                    android:id="@+id/star2TV"
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:layout_marginEnd="@dimen/m10"
-                                    android:text="@string/_2_star"
-                                    android:textColor="@color/unselected_Text_color"
-                                    android:textSize="@dimen/text_size_12"
-                                    app:layout_constraintBottom_toBottomOf="@+id/star2"
-                                    app:layout_constraintEnd_toStartOf="@id/star2"
-                                    app:layout_constraintTop_toTopOf="@id/star2" />
-
-
-                                <ProgressBar
-                                    android:id="@+id/star1"
-                                    style="?android:attr/progressBarStyleHorizontal"
-                                    android:layout_width="80dp"
-                                    android:layout_height="4dp"
-                                    android:layout_marginTop="@dimen/m10"
-                                    android:max="100"
-                                    android:progress="10"
-                                    android:progressDrawable="@drawable/custom_progress_bar"
-                                    app:layout_constraintEnd_toEndOf="parent"
-                                    app:layout_constraintTop_toBottomOf="@+id/star2" />
-
-                                <TextView
-                                    android:id="@+id/star1TV"
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:layout_marginEnd="@dimen/m10"
-                                    android:text="@string/_1_star"
-                                    android:textColor="@color/unselected_Text_color"
-                                    android:textSize="@dimen/text_size_12"
-                                    app:layout_constraintBottom_toBottomOf="@+id/star1"
-                                    app:layout_constraintEnd_toStartOf="@id/star1"
-                                    app:layout_constraintTop_toTopOf="@id/star1" />
-
-                            </androidx.constraintlayout.widget.ConstraintLayout>
-
-                            <TextView
-                                android:id="@+id/userTV"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_marginTop="@dimen/p25"
-                                android:text="@string/user_reviews"
-                                android:textColor="@color/primary_text"
-                                android:textSize="@dimen/text_size_16"
-                                app:layout_constraintStart_toStartOf="parent"
-                                app:layout_constraintTop_toBottomOf="@id/userReviewCL" />
-
-                            <TextView
-                                android:id="@+id/filterTV"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_marginEnd="@dimen/m6"
-                                android:text="@string/filter"
-                                android:textColor="@color/primary_text"
-                                android:textSize="@dimen/text_size_16"
-                                app:layout_constraintBottom_toBottomOf="@id/filterIconIV"
-                                app:layout_constraintEnd_toStartOf="@id/filterIconIV"
-                                app:layout_constraintTop_toTopOf="@id/filterIconIV"
-                                tools:ignore="RtlSymmetry" />
-
-                            <ImageView
-                                android:id="@+id/filterIconIV"
-                                android:layout_width="25dp"
-                                android:layout_height="25dp"
-                                android:layout_marginStart="@dimen/m10"
-                                android:padding="@dimen/p4"
-                                android:src="@drawable/filter_icon"
-                                app:layout_constraintBottom_toBottomOf="@id/userTV"
-                                app:layout_constraintEnd_toEndOf="parent"
-                                app:layout_constraintTop_toTopOf="@id/userTV"
-                                tools:ignore="ContentDescription" />
-
-                            <View
-                                android:id="@+id/view"
-                                android:layout_width="match_parent"
-                                android:layout_height="1dp"
-                                android:background="@color/light_Gray"
-                                app:layout_constraintTop_toBottomOf="@id/filterIconIV" />
-
-                            <androidx.recyclerview.widget.RecyclerView
-                                android:id="@+id/reviewsRV"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:layout_marginTop="@dimen/m30"
-                                android:orientation="vertical"
-                                app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
-                                app:layout_constraintTop_toBottomOf="@id/view"
-                                tools:listitem="@layout/items_reviews"
-
-                                />
-
-                        </androidx.constraintlayout.widget.ConstraintLayout>
 
                     </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -793,49 +610,57 @@
                         android:layout_margin="@dimen/m14"
                         app:layout_constraintTop_toBottomOf="@+id/readReviewsCL">
 
-                        <TextView
-                            android:id="@+id/deliveryInstructionTV"
-                            android:layout_width="wrap_content"
+                        <androidx.constraintlayout.widget.ConstraintLayout
+                            android:id="@+id/deliveryInstructionHeaderCL"
+                            android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_marginTop="@dimen/m8"
-                            android:background="@color/fragment_background"
-                            android:paddingVertical="@dimen/p12"
-                            android:text="@string/delivery_instructions"
-                            android:textColor="@color/primary_text"
-                            android:textSize="@dimen/text_size_16"
-                            app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toTopOf="parent"
+                            app:layout_constraintTop_toTopOf="parent">
 
-                            />
+                            <TextView
+                                android:id="@+id/deliveryInstructionTV"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="@dimen/m8"
+                                android:background="@color/fragment_background"
+                                android:paddingVertical="@dimen/p12"
+                                android:text="@string/delivery_instructions"
+                                android:textColor="@color/primary_text"
+                                android:textSize="@dimen/text_size_14"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toTopOf="parent"
 
-                        <ImageView
-                            android:id="@+id/deliveryInstructionIV"
-                            android:layout_width="30dp"
-                            android:layout_height="30dp"
-                            android:padding="@dimen/p8"
-                            android:src="@drawable/arrow_next"
-                            app:layout_constraintBottom_toBottomOf="@+id/deliveryInstructionTV"
-                            app:layout_constraintEnd_toEndOf="parent"
-                            app:layout_constraintTop_toTopOf="@+id/deliveryInstructionTV"
-                            tools:ignore="ContentDescription" />
+                                />
+
+                            <ImageView
+                                android:id="@+id/deliveryInstructionIV"
+                                android:layout_width="30dp"
+                                android:layout_height="30dp"
+                                android:padding="@dimen/p8"
+                                android:src="@drawable/arrow_next"
+                                app:layout_constraintBottom_toBottomOf="@+id/deliveryInstructionTV"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintTop_toTopOf="@+id/deliveryInstructionTV"
+                                tools:ignore="ContentDescription" />
+
+                        </androidx.constraintlayout.widget.ConstraintLayout>
 
                         <androidx.constraintlayout.widget.ConstraintLayout
                             android:id="@+id/deliveryInstructionDetailsCL"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:visibility="gone"
-                            app:layout_constraintTop_toBottomOf="@+id/deliveryInstructionTV">
+                            app:layout_constraintTop_toBottomOf="@+id/deliveryInstructionHeaderCL">
 
-                            <com.airbnb.lottie.LottieAnimationView
-                                android:layout_width="300dp"
-                                android:layout_height="300dp"
-                                app:layout_constraintBottom_toBottomOf="parent"
-                                app:layout_constraintEnd_toEndOf="parent"
-                                app:layout_constraintStart_toStartOf="parent"
+                            <TextView
+                                android:id="@+id/deliveryInstructionDetailsTV"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="@dimen/m10"
+                                android:inputType="textMultiLine"
+                                android:textColor="@color/grey_font"
+                                android:textSize="@dimen/text_size_14"
                                 app:layout_constraintTop_toTopOf="parent"
-                                app:lottie_autoPlay="true"
-                                app:lottie_loop="true"
-                                app:lottie_rawRes="@raw/empty" />
+                                tools:ignore="TextViewEdits" />
 
                         </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -858,6 +683,7 @@
                     <View
                         android:layout_width="match_parent"
                         android:layout_height="1dp"
+                        android:visibility="gone"
                         android:background="@color/light_Gray"
                         app:layout_constraintTop_toTopOf="parent" />
 
@@ -865,12 +691,11 @@
                         android:id="@+id/similarProductsTV"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="@dimen/m24"
                         android:paddingHorizontal="@dimen/p14"
                         android:paddingVertical="@dimen/p2"
                         android:text="@string/similar_products"
                         android:textColor="@color/primary_text"
-                        android:textSize="@dimen/text_size_15"
+                        android:textSize="@dimen/text_size_13"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent" />
 
@@ -911,6 +736,7 @@
                 android:layout_marginEnd="@dimen/m10"
                 android:background="@drawable/shape_text_blue"
                 android:gravity="center"
+                android:focusableInTouchMode="false"
                 android:paddingVertical="@dimen/p14"
                 android:text="@string/buy_now"
                 android:textColor="@color/primary_Blue"
@@ -928,6 +754,7 @@
                 android:background="@drawable/button_blue_radius5"
                 android:gravity="center"
                 android:paddingVertical="@dimen/p14"
+                android:focusableInTouchMode="false"
                 android:text="@string/add_to_cart"
                 android:textColor="@color/white"
                 android:textSize="@dimen/text_size_14"

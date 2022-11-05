@@ -10,9 +10,9 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/p3"
+        android:layout_marginTop="@dimen/p10"
         android:background="@color/white"
-        android:padding="@dimen/m14">
+       >
 
         <ImageView
             android:id="@+id/imageIV"
@@ -27,11 +27,14 @@
             android:id="@+id/productNameTV"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/m18"
+            android:layout_marginStart="@dimen/m10"
+            android:fontFamily="@font/dm_sans_medium"
             android:paddingVertical="@dimen/p4"
+            android:singleLine="true"
             android:text="@string/blazers_t_shirt_nike"
             android:textColor="@color/primary_text"
-            android:textSize="@dimen/text_size_15"
+            android:textSize="@dimen/text_size_14"
+            app:layout_constraintEnd_toStartOf="@+id/dateTV"
             app:layout_constraintStart_toEndOf="@+id/imageIV"
             app:layout_constraintTop_toTopOf="@+id/imageIV" />
 
@@ -39,7 +42,7 @@
             android:id="@+id/dateTV"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/m14"
+            android:fontFamily="@font/dm_sans_medium"
             android:paddingVertical="@dimen/p2"
             android:text="@string/_20_may_2021"
             android:textColor="@color/dark_Gray"
@@ -53,10 +56,11 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/m6"
+            android:fontFamily="@font/dm_sans_medium"
             android:paddingVertical="@dimen/p2"
             android:text="@string/total_amount"
             android:textColor="@color/dark_Gray"
-            android:textSize="@dimen/text_size_14"
+            android:textSize="@dimen/text_size_12"
             app:layout_constraintStart_toStartOf="@+id/productNameTV"
             app:layout_constraintTop_toBottomOf="@+id/productNameTV" />
 
@@ -65,6 +69,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/m14"
+            android:fontFamily="@font/dm_sans_medium"
             android:paddingVertical="@dimen/p2"
             android:text="@string/rs_1652"
             android:textColor="@color/primary_text"
@@ -78,10 +83,11 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/m6"
+            android:fontFamily="@font/dm_sans_medium"
             android:paddingVertical="@dimen/p2"
             android:text="@string/payment_mode"
             android:textColor="@color/dark_Gray"
-            android:textSize="@dimen/text_size_14"
+            android:textSize="@dimen/text_size_12"
             app:layout_constraintStart_toStartOf="@+id/totalAmountTV"
             app:layout_constraintTop_toBottomOf="@+id/totalAmountTV" />
 
@@ -90,6 +96,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/m14"
+            android:fontFamily="@font/dm_sans_medium"
             android:paddingVertical="@dimen/p2"
             android:text="@string/cod"
             android:textColor="@color/primary_text"
@@ -103,6 +110,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/m6"
+            android:fontFamily="@font/dm_sans_medium"
             android:paddingVertical="@dimen/p2"
             android:text="@string/order_id_sic0011"
             android:textColor="@color/dark_Gray"
@@ -116,6 +124,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/p2"
+            android:fontFamily="@font/dm_sans_medium"
             android:paddingVertical="@dimen/p2"
             android:text="@string/pid_2031447"
             android:textColor="@color/dark_Gray"
@@ -138,8 +147,6 @@
             tools:listitem="@layout/items_size_qty_order_details"
 
             />
-
-
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

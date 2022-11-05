@@ -10,22 +10,17 @@
     <androidx.cardview.widget.CardView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/m2"
-        android:layout_marginTop="@dimen/m2"
-        android:layout_marginEnd="@dimen/m10"
-        android:layout_marginBottom="@dimen/m2"
-        app:cardCornerRadius="@dimen/m10">
+        app:cardCornerRadius="@dimen/m10"
+        app:cardUseCompatPadding="true">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content">
 
             <ImageView
-                android:id="@+id/newlyAddedIV"
-                android:layout_width="110dp"
-                android:layout_height="140dp"
-                android:layout_marginHorizontal="@dimen/m20"
-                android:layout_marginVertical="@dimen/p12"
+                android:id="@+id/imageIV"
+                android:layout_width="158dp"
+                android:layout_height="160dp"
                 android:scaleType="fitXY"
                 android:src="@drawable/newly_added_image"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -33,8 +28,9 @@
                 app:layout_constraintTop_toTopOf="parent"
                 tools:ignore="ContentDescription" />
 
+
             <TextView
-                android:id="@+id/t_shirtNameTV"
+                android:id="@+id/productNameTV"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="@dimen/m10"
@@ -42,9 +38,9 @@
                 android:fontFamily="@font/dm_sans_medium"
                 android:text="@string/linen_t_shirt"
                 android:textColor="@color/primary_text"
-                android:textSize="@dimen/text_size_14"
+                   android:textSize="@dimen/text_size_12"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/newlyAddedIV" />
+                app:layout_constraintTop_toBottomOf="@+id/imageIV" />
 
             <TextView
                 android:id="@+id/priceTV"
@@ -54,9 +50,9 @@
                 android:fontFamily="@font/dm_sans_bold"
                 android:text="@string/rs_100_rs_500"
                 android:textColor="@color/red_velvet"
-                android:textSize="@dimen/text_size_14"
-                app:layout_constraintStart_toStartOf="@+id/t_shirtNameTV"
-                app:layout_constraintTop_toBottomOf="@+id/t_shirtNameTV" />
+                   android:textSize="@dimen/text_size_12"
+                app:layout_constraintStart_toStartOf="@+id/productNameTV"
+                app:layout_constraintTop_toBottomOf="@+id/productNameTV" />
 
             <RatingBar
                 android:id="@+id/ratingBar"
@@ -70,7 +66,7 @@
                 android:rating="1"
                 android:theme="@style/RatingBar"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintStart_toStartOf="@+id/t_shirtNameTV"
+                app:layout_constraintStart_toStartOf="@+id/productNameTV"
                 app:layout_constraintTop_toBottomOf="@+id/priceTV" />
 
             <TextView
@@ -93,6 +89,7 @@
                 android:layout_marginEnd="@dimen/m10"
                 android:padding="3dp"
                 android:scaleType="fitXY"
+                android:visibility="gone"
                 android:src="@drawable/option_menu"
                 app:layout_constraintBottom_toBottomOf="@+id/ratingBar"
                 app:layout_constraintEnd_toEndOf="parent"

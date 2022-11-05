@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/paymentCL"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:visibility="visible">
+
+        <TextView
+            android:id="@+id/paymentMethodTV"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingVertical="@dimen/p10"
+            android:text="@string/how_would_you_like_to_pay"
+            android:textColor="@color/primary_text"
+            android:textSize="@dimen/text_size_18"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/cashOnDeliveryCL"
+            android:layout_width="match_parent"
+            android:layout_marginTop="@dimen/m10"
+            android:layout_height="wrap_content"
+            android:background="@drawable/shape_green_corners_5dp"
+            android:padding="@dimen/p14"
+            app:layout_constraintTop_toBottomOf="@+id/paymentMethodTV">
+
+            <ImageView
+                android:id="@+id/caseIV"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+
+                android:src="@drawable/cash"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:ignore="ContentDescription" />
+
+            <TextView
+                android:id="@+id/cashOnDeliveryTV"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/m20"
+                android:fontFamily="@font/dm_sans_medium"
+                android:text="Cash on Delivery"
+                android:textColor="@color/primary_text"
+                android:textSize="@dimen/text_size_14"
+                app:layout_constraintBottom_toBottomOf="@+id/caseIV"
+                app:layout_constraintStart_toEndOf="@+id/caseIV"
+                app:layout_constraintTop_toTopOf="@+id/caseIV"
+                tools:ignore="HardcodedText" />
+
+            <ImageView
+                android:id="@+id/caseSelectIV"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_marginStart="@dimen/m14"
+                app:layout_constraintBottom_toBottomOf="@+id/caseIV"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/caseIV"
+                tools:ignore="ContentDescription,UsingOnClickInXml" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/payOnlineCL"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/m4"
+            android:background="@color/white"
+            android:padding="@dimen/p14"
+            app:layout_constraintTop_toBottomOf="@+id/cashOnDeliveryCL">
+
+            <ImageView
+                android:id="@+id/cardIV"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:src="@drawable/online_card"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:ignore="ContentDescription" />
+
+            <TextView
+                android:id="@+id/payOnlineTV"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/m20"
+                android:fontFamily="@font/dm_sans_medium"
+                android:text="Pay Online"
+                android:textColor="@color/primary_text"
+                android:textSize="@dimen/text_size_14"
+                app:layout_constraintBottom_toBottomOf="@+id/cardIV"
+                app:layout_constraintStart_toEndOf="@+id/cardIV"
+                app:layout_constraintTop_toTopOf="@+id/cardIV"
+                tools:ignore="HardcodedText" />
+
+            <TextView
+                android:id="@+id/payOnlineDetailTV"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:fontFamily="@font/dm_sans_medium"
+                android:text="UPI, Debit Card, Credit Card,Net Banking, Wallet"
+                android:textColor="@color/hint"
+                android:textSize="@dimen/text_size_10"
+                app:layout_constraintStart_toStartOf="@+id/payOnlineTV"
+                app:layout_constraintTop_toBottomOf="@+id/payOnlineTV"
+                tools:ignore="HardcodedText" />
+
+            <ImageView
+                android:id="@+id/onlineSelectIV"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_marginStart="@dimen/m14"
+                app:layout_constraintBottom_toBottomOf="@+id/cardIV"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/cardIV"
+                tools:ignore="ContentDescription,UsingOnClickInXml" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

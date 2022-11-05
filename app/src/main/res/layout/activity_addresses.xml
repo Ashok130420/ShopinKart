@@ -11,7 +11,7 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context="com.example.shopinkarts.activity.AddressesActivity">
+        tools:context="com.app.shopinkarts.activity.AddressesActivity">
         <include
             android:id="@+id/headerAddress"
             layout="@layout/header_profile" />

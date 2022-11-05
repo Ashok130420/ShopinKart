@@ -10,32 +10,134 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/p3"
-        android:background="@color/white"
-        android:padding="@dimen/m14">
+
+        android:background="@color/white">
+
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/orderIdCL"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="@dimen/m10"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <TextView
+                android:id="@+id/orderTV"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/m6"
+                android:paddingVertical="@dimen/p2"
+                android:text="@string/order_id"
+                android:textColor="@color/primary_text"
+                android:textSize="@dimen/text_size_10"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/orderIdTV"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/m2"
+                android:paddingVertical="@dimen/p2"
+                android:text="@string/order_id_sic0011"
+                android:textColor="@color/primary_text"
+                android:textSize="@dimen/text_size_12"
+                app:layout_constraintStart_toStartOf="@id/orderTV"
+                app:layout_constraintTop_toBottomOf="@id/orderTV" />
+
+            <TextView
+                android:id="@+id/totalAmountTV"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingVertical="@dimen/p2"
+                android:text="@string/total_amount"
+                android:textColor="@color/primary_text"
+                android:textSize="@dimen/text_size_10"
+                app:layout_constraintBottom_toBottomOf="@+id/orderTV"
+                app:layout_constraintEnd_toStartOf="@id/dateTV"
+                app:layout_constraintStart_toEndOf="@+id/orderTV"
+                app:layout_constraintTop_toTopOf="@+id/orderTV" />
+
+            <TextView
+                android:id="@+id/totalAmountValueTV"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/m2"
+                android:paddingVertical="@dimen/p2"
+                android:text="@string/rs_300_00"
+                android:textColor="@color/primary_text"
+                android:textSize="@dimen/text_size_12"
+                app:layout_constraintStart_toStartOf="@id/totalAmountTV"
+                app:layout_constraintTop_toBottomOf="@id/totalAmountTV" />
+
+            <TextView
+                android:id="@+id/dateTV"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingVertical="@dimen/p2"
+                android:text="@string/date"
+                android:textColor="@color/primary_text"
+                android:textSize="@dimen/text_size_10"
+                app:layout_constraintBottom_toBottomOf="@+id/orderTV"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/orderTV" />
+
+            <TextView
+                android:id="@+id/dateValueTV"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/m2"
+                android:paddingVertical="@dimen/p2"
+                android:text="@string/_20_may_2021"
+                android:textColor="@color/primary_text"
+                android:textSize="@dimen/text_size_12"
+                app:layout_constraintEnd_toEndOf="@id/dateTV"
+                app:layout_constraintTop_toBottomOf="@id/dateTV" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <View
+            android:id="@+id/view"
+            android:layout_width="match_parent"
+            android:layout_height="4dp"
+            android:layout_marginTop="@dimen/m10"
+            android:background="@drawable/dash_line"
+            app:layout_constraintTop_toBottomOf="@id/orderIdCL" />
 
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/productRV"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginHorizontal="@dimen/m10"
+            android:layout_marginTop="@dimen/m10"
             android:orientation="vertical"
             app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
-            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/view"
             tools:itemCount="3"
             tools:listitem="@layout/items_delivered_product" />
+
+        <View
+            android:id="@+id/view1"
+            android:layout_width="match_parent"
+            android:layout_height="4dp"
+            android:layout_marginTop="@dimen/m10"
+            android:background="@drawable/dash_line"
+            app:layout_constraintTop_toBottomOf="@id/productRV" />
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/stepperLayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:padding="10dp"
-            app:layout_constraintTop_toBottomOf="@id/productRV">
+            android:visibility="visible"
+            app:layout_constraintTop_toBottomOf="@id/view1">
 
             <ImageView
                 android:id="@+id/acceptedIV"
                 android:layout_width="20dp"
                 android:layout_height="20dp"
+                android:layout_marginStart="@dimen/m10"
                 android:layout_marginTop="20dp"
                 android:layout_marginEnd="@dimen/m40"
                 android:background="@drawable/active_stepper"
@@ -49,13 +151,13 @@
                 tools:ignore="ContentDescription" />
 
             <TextView
-                android:id="@+id/textViewCustomerDetails"
+                android:id="@+id/acceptedTV"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/m10"
                 android:background="@drawable/button_blue_radius5"
                 android:gravity="center"
-                android:paddingHorizontal="@dimen/p10"
+                android:paddingHorizontal="@dimen/p7"
                 android:paddingVertical="@dimen/p5"
                 android:text="@string/accepted"
                 android:textColor="@color/white"
@@ -90,13 +192,13 @@
                 tools:ignore="ContentDescription" />
 
             <TextView
-                android:id="@+id/textViewHouseSketch"
+                android:id="@+id/processingTV"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/m10"
                 android:background="@drawable/button_grey_radius5"
                 android:gravity="center"
-                android:paddingHorizontal="@dimen/p10"
+                android:paddingHorizontal="@dimen/p7"
                 android:paddingVertical="@dimen/p5"
                 android:text="@string/processing"
                 android:textColor="@color/white"
@@ -133,13 +235,13 @@
                 tools:ignore="ContentDescription" />
 
             <TextView
-                android:id="@+id/textViewHouseDetails"
+                android:id="@+id/outForDeliveryTV"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/m10"
                 android:background="@drawable/button_grey_radius5"
                 android:gravity="center"
-                android:paddingHorizontal="@dimen/p10"
+                android:paddingHorizontal="@dimen/p7"
                 android:paddingVertical="@dimen/p5"
                 android:text="@string/out_for_delivery"
                 android:textColor="@color/white"
@@ -164,6 +266,7 @@
                 android:layout_width="20dp"
                 android:layout_height="20dp"
                 android:layout_marginStart="@dimen/m50"
+                android:layout_marginEnd="@dimen/m10"
                 android:background="@drawable/deactivate_stepper"
                 android:gravity="center"
                 android:textColor="@color/white"
@@ -176,13 +279,13 @@
                 tools:ignore="ContentDescription" />
 
             <TextView
-                android:id="@+id/textViewAirTightness"
+                android:id="@+id/deliveredTV"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/m10"
                 android:background="@drawable/button_grey_radius5"
                 android:gravity="center"
-                android:paddingHorizontal="@dimen/p10"
+                android:paddingHorizontal="@dimen/p7"
                 android:paddingVertical="@dimen/p5"
                 android:text="@string/delivered"
                 android:textColor="@color/white"
@@ -195,14 +298,34 @@
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/cancelOrderCL"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="14dp"
+            android:visibility="gone"
+            app:layout_constraintTop_toBottomOf="@id/stepperLayout">
+
+            <TextView
+                android:id="@+id/cancelOrderTV"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/this_order_has_been_canceled_our_team_will_get_back_to_you"
+                android:textColor="@color/red"
+                android:textSize="@dimen/text_size_12"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/trackOrderCL"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginHorizontal="@dimen/m5"
+
+            android:layout_marginHorizontal="@dimen/m14"
             android:layout_marginTop="@dimen/m20"
-            app:layout_constraintTop_toBottomOf="@id/stepperLayout">
+            app:layout_constraintTop_toBottomOf="@id/cancelOrderCL">
 
             <TextView
                 android:id="@+id/trackOrderStatusTV"
@@ -212,7 +335,7 @@
                 android:paddingVertical="@dimen/p14"
                 android:text="@string/track_order_status"
                 android:textColor="@color/primary_text"
-                android:textSize="@dimen/text_size_14"
+                android:textSize="@dimen/text_size_12"
                 app:layout_constraintTop_toTopOf="parent"
 
                 />
@@ -242,7 +365,7 @@
             android:id="@+id/downloadInvoiceCL"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginHorizontal="@dimen/m5"
+            android:layout_marginHorizontal="@dimen/m14"
             app:layout_constraintTop_toBottomOf="@id/trackOrderCL">
 
             <TextView
@@ -253,7 +376,7 @@
                 android:paddingVertical="@dimen/p14"
                 android:text="@string/download_invoice"
                 android:textColor="@color/primary_text"
-                android:textSize="@dimen/text_size_14"
+                android:textSize="@dimen/text_size_12"
                 app:layout_constraintTop_toTopOf="parent"
 
                 />
@@ -272,6 +395,14 @@
                 tools:ignore="ContentDescription" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <View
+            android:id="@+id/view2"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/m10"
+            android:layout_marginTop="@dimen/m10"
+            android:background="@color/primary_text"
+            app:layout_constraintTop_toBottomOf="@id/downloadInvoiceCL" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

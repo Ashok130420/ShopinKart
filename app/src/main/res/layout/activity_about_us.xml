@@ -10,22 +10,19 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context="com.example.shopinkarts.activity.AboutUsActivity">
+        tools:context="com.app.shopinkarts.activity.AboutUsActivity">
         <include
             android:id="@+id/headerAbout"
             layout="@layout/header_profile" />
 
-        <com.airbnb.lottie.LottieAnimationView
-            android:id="@+id/lottyAnimation"
-            android:layout_width="300dp"
-            android:layout_height="300dp"
+        <WebView
+            android:id="@+id/webView"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:lottie_autoPlay="true"
-            app:lottie_loop="true"
-            app:lottie_rawRes="@raw/empty" />
+            app:layout_constraintTop_toBottomOf="@+id/headerAbout" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
 

@@ -12,8 +12,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@color/fragment_background"
-        tools:context="com.example.shopinkarts.fragments.AccountFragment">
-
+        tools:context="com.app.shopinkarts.fragments.AccountFragment">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/profileCL"
@@ -29,23 +28,41 @@
                 android:layout_height="60dp"
                 android:layout_marginHorizontal="@dimen/m14"
                 android:layout_marginTop="@dimen/m6"
-                android:src="@drawable/profile"
+                android:background="@drawable/profile_boarder"
+                android:padding="@dimen/m2"
+                android:src="@drawable/white_blue_logo"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
-                android:id="@+id/phoneNumberTV"
+                android:id="@+id/nameTV"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
+                android:gravity="center"
+                android:text="@string/shopinkarts"
+                android:textColor="@color/primary_text"
+                android:textSize="@dimen/text_size_14"
+                android:visibility="gone"
+                app:layout_constraintEnd_toEndOf="@+id/profileIV"
+                app:layout_constraintStart_toStartOf="@+id/profileIV"
+                app:layout_constraintTop_toBottomOf="@+id/profileIV"
+
+                />
+
+            <TextView
+                android:id="@+id/phoneNumberTV"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/m10"
                 android:gravity="center"
                 android:text="@string/_91_8945346789"
                 android:textColor="@color/primary_text"
                 android:textSize="@dimen/text_size_14"
                 app:layout_constraintEnd_toEndOf="@+id/profileIV"
                 app:layout_constraintStart_toStartOf="@+id/profileIV"
-                app:layout_constraintTop_toBottomOf="@+id/profileIV"
+                app:layout_constraintTop_toBottomOf="@+id/nameTV"
 
                 />
 
@@ -63,6 +80,7 @@
                 android:text="@string/rs_00"
                 android:textColor="@color/wallet"
                 android:textSize="@dimen/text_size_14"
+                android:visibility="invisible"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="@+id/profileIV"
                 app:layout_constraintStart_toStartOf="@+id/profileIV"
@@ -74,6 +92,7 @@
                 android:layout_height="30dp"
                 android:layout_marginStart="@dimen/m10"
                 android:src="@drawable/wallet"
+                android:visibility="gone"
                 app:layout_constraintBottom_toBottomOf="@+id/walletTV"
                 app:layout_constraintStart_toStartOf="@+id/walletTV"
                 app:layout_constraintTop_toTopOf="@+id/walletTV"
@@ -91,7 +110,8 @@
             android:padding="@dimen/p14"
             android:text="@string/my_transactions"
             android:textColor="@color/primary_text"
-            android:textSize="@dimen/text_size_14"
+            android:textSize="@dimen/text_size_13"
+            android:visibility="gone"
             app:layout_constraintTop_toBottomOf="@id/profileCL"
 
             />
@@ -104,6 +124,7 @@
             android:background="@color/white"
             android:padding="@dimen/p8"
             android:src="@drawable/arrow_next"
+            android:visibility="gone"
             app:layout_constraintBottom_toBottomOf="@+id/myTransactionTV"
             app:layout_constraintEnd_toEndOf="@+id/myTransactionTV"
             app:layout_constraintTop_toTopOf="@+id/myTransactionTV"
@@ -118,7 +139,8 @@
             android:padding="@dimen/p14"
             android:text="@string/addresses"
             android:textColor="@color/primary_text"
-            android:textSize="@dimen/text_size_14"
+            android:textSize="@dimen/text_size_13"
+            android:visibility="gone"
             app:layout_constraintTop_toBottomOf="@id/myTransactionTV"
 
             />
@@ -131,6 +153,7 @@
             android:background="@color/white"
             android:padding="@dimen/p8"
             android:src="@drawable/arrow_next"
+            android:visibility="gone"
             app:layout_constraintBottom_toBottomOf="@+id/addressesTV"
             app:layout_constraintEnd_toEndOf="@+id/addressesTV"
             app:layout_constraintTop_toTopOf="@+id/addressesTV"
@@ -145,7 +168,7 @@
             android:padding="@dimen/p14"
             android:text="@string/customer_support"
             android:textColor="@color/primary_text"
-            android:textSize="@dimen/text_size_14"
+            android:textSize="@dimen/text_size_13"
             app:layout_constraintTop_toBottomOf="@id/addressesTV"
 
             />
@@ -172,7 +195,7 @@
             android:padding="@dimen/p14"
             android:text="@string/about_shopinkarts"
             android:textColor="@color/primary_text"
-            android:textSize="@dimen/text_size_14"
+            android:textSize="@dimen/text_size_13"
             app:layout_constraintTop_toBottomOf="@id/customerSupportTV"
 
             />
@@ -199,7 +222,7 @@
             android:padding="@dimen/p14"
             android:text="@string/terms_conditions"
             android:textColor="@color/primary_text"
-            android:textSize="@dimen/text_size_14"
+            android:textSize="@dimen/text_size_13"
             app:layout_constraintTop_toBottomOf="@id/aboutTV"
 
             />
@@ -226,7 +249,7 @@
             android:padding="@dimen/p14"
             android:text="@string/refund_policy"
             android:textColor="@color/primary_text"
-            android:textSize="@dimen/text_size_14"
+            android:textSize="@dimen/text_size_13"
             app:layout_constraintTop_toBottomOf="@id/termsConditionsTV"
 
             />
@@ -254,7 +277,7 @@
             android:padding="@dimen/p14"
             android:text="@string/privacy_policy"
             android:textColor="@color/primary_text"
-            android:textSize="@dimen/text_size_14"
+            android:textSize="@dimen/text_size_13"
             app:layout_constraintTop_toBottomOf="@id/refundPolicyTV"
 
             />
@@ -272,5 +295,31 @@
             app:layout_constraintTop_toTopOf="@+id/privacyPolicyTV"
             tools:ignore="ContentDescription" />
 
+
+        <TextView
+            android:id="@+id/logOutTV"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:background="@color/white"
+            android:padding="@dimen/p14"
+            android:text="@string/logout"
+            android:textColor="@color/red"
+            android:textSize="@dimen/text_size_13"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/privacyPolicyTV" />
+
+
+        <ImageView
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_marginEnd="@dimen/m16"
+            android:background="@color/white"
+            android:padding="@dimen/p8"
+            android:src="@drawable/arrow_next"
+            app:layout_constraintBottom_toBottomOf="@+id/logOutTV"
+            app:layout_constraintEnd_toEndOf="@+id/logOutTV"
+            app:layout_constraintTop_toTopOf="@+id/logOutTV"
+            tools:ignore="ContentDescription" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

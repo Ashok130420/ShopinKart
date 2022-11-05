@@ -16,11 +16,14 @@
             android:id="@+id/headerOrderDetails"
             layout="@layout/header_order_success" />
 
+
+
+
         <ImageView
             android:id="@+id/thankYouIV"
             android:layout_width="300dp"
             android:layout_height="180dp"
-            android:layout_marginTop="200dp"
+            android:layout_marginTop="@dimen/m200"
             android:src="@drawable/thank_you"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -37,7 +40,7 @@
             android:paddingVertical="@dimen/p10"
             android:textColor="@color/unselected_Text_color"
             android:textSize="@dimen/text_size_18"
-            app:layout_constraintTop_toBottomOf="@+id/thankYouIV" />
+            app:layout_constraintTop_toBottomOf="@+id/lottyAnimation" />
 
         <TextView
             android:id="@+id/goToOrdersTV"

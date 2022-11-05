@@ -1,0 +1,341 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+    </data>
+
+    <ScrollView
+
+        android:layout_width="match_parent"
+
+        android:layout_height="wrap_content">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/invoiceCL"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/white"
+            android:padding="@dimen/p5"
+            tools:context=".activity.InvoiceActivity">
+
+            <ImageView
+                android:id="@+id/back"
+                android:layout_width="@dimen/m35"
+                android:layout_height="@dimen/m35"
+                android:padding="@dimen/p10"
+                android:src="@drawable/cross_icon"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:ignore="ContentDescription" />
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/customerAddressCL"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_marginEnd="@dimen/p1"
+                android:background="@drawable/shape_grey_corners_5dp"
+                android:padding="@dimen/p5"
+                app:layout_constraintBottom_toBottomOf="@+id/shopInKartsCL"
+                app:layout_constraintEnd_toStartOf="@id/shopInKartsCL"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/back">
+
+                <TextView
+                    android:id="@+id/customerAddressTV"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/dm_sans_bold"
+                    android:text="@string/customer_address"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/text_size_12"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/customerNameTV"
+                    android:layout_width="@dimen/m150"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/m10"
+                    android:fontFamily="@font/dm_sans_medium"
+                    android:inputType="textMultiLine"
+                    android:text="@string/shopinkarts"
+                    android:textColor="@color/primary_text"
+                    android:textSize="@dimen/text_size_12"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/customerAddressTV"
+                    tools:ignore="TextViewEdits" />
+
+                <TextView
+                    android:id="@+id/orderIdTV"
+                    android:layout_width="@dimen/m150"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/m10"
+                    android:fontFamily="@font/dm_sans_medium"
+                    android:inputType="textMultiLine"
+                    android:text="@string/order_id"
+                    android:textColor="@color/primary_text"
+                    android:textSize="@dimen/text_size_12"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/customerNameTV"
+                    tools:ignore="TextViewEdits" />
+
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/shopInKartsCL"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/p1"
+                android:background="@drawable/shape_grey_corners_5dp"
+                android:padding="@dimen/p5"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@id/customerAddressCL"
+                app:layout_constraintTop_toTopOf="@id/customerAddressCL">
+
+                <TextView
+                    android:id="@+id/paymentTV"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@color/primary_text"
+                    android:fontFamily="@font/dm_sans_bold"
+                    android:paddingVertical="@dimen/p5"
+
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/text_size_12"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/shopInKartsTV"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/m10"
+                    android:fontFamily="@font/dm_sans_bold"
+                    android:text="@string/manudha_fashion_private_limited"
+                    android:textColor="@color/primary_text"
+                    android:textSize="@dimen/text_size_14"
+                    android:textStyle="bold"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/paymentTV" />
+
+                <TextView
+                    android:id="@+id/gstTV"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/m4"
+                    android:fontFamily="@font/dm_sans_bold"
+                    android:text="@string/gst_08AAQCM1573M1ZT"
+                    android:textColor="@color/primary_text"
+                    android:textSize="@dimen/text_size_12"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/shopInKartsTV" />
+
+                <TextView
+                    android:id="@+id/shopInKartsAddressTV"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/m4"
+                    android:fontFamily="@font/dm_sans_bold"
+                    android:inputType="textMultiLine"
+                    android:text="@string/manuda_address"
+                    android:textColor="@color/primary_text"
+                    android:textSize="@dimen/text_size_10"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/gstTV"
+                    tools:ignore="TextViewEdits" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/productDetailsCL"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/m5"
+                android:background="@drawable/shape_grey_corners_5dp"
+                android:padding="@dimen/p5"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/shopInKartsCL">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/headingsCL"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@color/primary_text"
+                    android:paddingVertical="@dimen/p5"
+                    app:layout_constraintTop_toTopOf="parent">
+
+                    <TextView
+                        android:id="@+id/itemsTV"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@color/primary_text"
+                        android:fontFamily="@font/dm_sans_bold"
+                        android:text="@string/product_name"
+                        android:textColor="@color/white"
+                        android:textSize="@dimen/text_size_12"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <TextView
+                        android:id="@+id/qtyTV"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="@dimen/m24"
+                        android:background="@color/primary_text"
+                        android:fontFamily="@font/dm_sans_bold"
+                        android:text="@string/qty"
+                        android:textColor="@color/white"
+                        android:textSize="@dimen/text_size_12"
+                        app:layout_constraintBottom_toBottomOf="@+id/itemsTV"
+                        app:layout_constraintEnd_toStartOf="@id/totalAmountTV"
+                        app:layout_constraintTop_toTopOf="@+id/itemsTV" />
+
+                    <TextView
+                        android:id="@+id/totalAmountTV"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/m5"
+                        android:background="@color/primary_text"
+                        android:fontFamily="@font/dm_sans_bold"
+                        android:text="@string/total_amount"
+                        android:textColor="@color/white"
+                        android:textSize="@dimen/text_size_12"
+                        app:layout_constraintBottom_toBottomOf="@+id/itemsTV"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="@+id/itemsTV" />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/invoiceDetailsCL"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/m5"
+
+                    app:layout_constraintTop_toBottomOf="@id/headingsCL">
+
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/invoiceDetailsRV"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/m4"
+                        android:orientation="vertical"
+                        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                        app:layout_constraintTop_toTopOf="parent"
+                        tools:listitem="@layout/items_invoice_details" />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <View
+                    android:id="@+id/view"
+                    android:layout_width="match_parent"
+                    android:layout_height="4dp"
+                    android:layout_marginTop="@dimen/m10"
+                    android:background="@drawable/dash_line"
+                    app:layout_constraintTop_toBottomOf="@id/invoiceDetailsCL" />
+
+
+                <TextView
+                    android:id="@+id/tAmountTV"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/m10"
+                    android:fontFamily="@font/dm_sans_bold"
+                    android:text="@string/amount"
+                    android:textColor="@color/primary_text"
+                    android:textSize="@dimen/text_size_10"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/view" />
+
+                <TextView
+                    android:id="@+id/tAmountValueTV"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/dm_sans_bold"
+                    android:textColor="@color/primary_text"
+                    android:textSize="@dimen/text_size_10"
+                    app:layout_constraintBottom_toBottomOf="@+id/tAmountTV"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="@+id/tAmountTV" />
+
+                <TextView
+                    android:id="@+id/gstTaxTV"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/m10"
+                    android:fontFamily="@font/dm_sans_bold"
+                    android:text="@string/taxes_gst"
+                    android:textColor="@color/primary_text"
+                    android:textSize="@dimen/text_size_10"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/tAmountTV" />
+
+                <TextView
+                    android:id="@+id/gstTaxValueTV"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/dm_sans_bold"
+                    android:textColor="@color/primary_text"
+                    android:textSize="@dimen/text_size_10"
+                    app:layout_constraintBottom_toBottomOf="@+id/gstTaxTV"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="@+id/gstTaxTV" />
+
+                <View
+                    android:id="@+id/view1"
+                    android:layout_width="match_parent"
+                    android:layout_height="4dp"
+                    android:layout_marginTop="@dimen/m10"
+                    android:background="@drawable/dash_line"
+                    app:layout_constraintTop_toBottomOf="@id/gstTaxTV" />
+
+
+                <TextView
+                    android:id="@+id/totalTV"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/m20"
+                    android:fontFamily="@font/dm_sans_bold"
+                    android:text="@string/total_amount"
+                    android:textColor="@color/primary_text"
+                    android:textSize="@dimen/text_size_12"
+                    app:layout_constraintTop_toBottomOf="@+id/gstTaxTV" />
+
+                <TextView
+                    android:id="@+id/totalValueTV"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/dm_sans_bold"
+
+                    android:textColor="@color/primary_text"
+                    android:textSize="@dimen/text_size_12"
+                    app:layout_constraintBottom_toBottomOf="@+id/totalTV"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="@+id/totalTV" />
+
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <TextView
+                android:id="@+id/downloadInvoiceTV"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/m30"
+                android:background="@drawable/shape_text_color_corners_5dp"
+                android:fontFamily="@font/dm_sans_bold"
+                android:inputType="textMultiLine"
+                android:paddingHorizontal="@dimen/p10"
+                android:paddingVertical="@dimen/p10"
+                android:text="@string/download_invoice"
+                android:textColor="@color/primary_text"
+                android:textSize="@dimen/text_size_14"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/productDetailsCL"
+                tools:ignore="TextViewEdits" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </ScrollView>
+</layout>

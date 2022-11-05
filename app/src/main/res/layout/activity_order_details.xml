@@ -20,13 +20,13 @@
         <ScrollView
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            app:layout_constraintTop_toBottomOf="@+id/headerOrderDetails"
-            app:layout_constraintBottom_toTopOf="@+id/orderReturnCL">
+            app:layout_constraintBottom_toTopOf="@+id/orderReturnCL"
+            app:layout_constraintTop_toBottomOf="@+id/headerOrderDetails">
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_margin="@dimen/m14">
+                android:layout_marginHorizontal="@dimen/m14">
 
                 <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/orderDetailsRV"
@@ -125,10 +125,10 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="@dimen/m4"
+
                         android:numStars="5"
                         android:rating="4.5"
                         android:scaleX=".7"
-                        android:isIndicator="true"
                         android:scaleY=".7"
                         android:theme="@style/RatingBar"
                         app:layout_constraintEnd_toEndOf="parent"
@@ -162,6 +162,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="@dimen/m5"
+                        android:fontFamily="@font/dm_sans_medium"
                         android:paddingVertical="@dimen/p2"
                         android:text="@string/brain_box"
                         android:textColor="@color/dark_Gray"
@@ -173,6 +174,7 @@
                         android:id="@+id/customerAddressTV"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:fontFamily="@font/dm_sans_medium"
                         android:paddingVertical="@dimen/p2"
                         android:text="@string/d32_sharma_colony_vaishali_nagar_jaipur"
                         android:textColor="@color/dark_Gray"
@@ -184,6 +186,7 @@
                         android:id="@+id/customerMobileNumberTV"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:fontFamily="@font/dm_sans_medium"
                         android:paddingVertical="@dimen/p2"
                         android:text="@string/mobile_9999999999"
                         android:textColor="@color/dark_Gray"
@@ -208,14 +211,14 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:background="@color/white"
-                        app:layout_constraintTop_toBottomOf="@+id/priceDetailsTV"
-                       >
+                        app:layout_constraintTop_toBottomOf="@+id/priceDetailsTV">
 
                         <TextView
                             android:id="@+id/totalAmountTV"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="@dimen/m6"
+                            android:fontFamily="@font/dm_sans_medium"
                             android:text="@string/total_amount"
                             android:textColor="@color/dark_Gray"
                             android:textSize="@dimen/text_size_12"
@@ -238,6 +241,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="@dimen/m16"
+                            android:fontFamily="@font/dm_sans_medium"
                             android:text="@string/discounts"
                             android:textColor="@color/dark_Gray"
                             android:textSize="@dimen/text_size_12"
@@ -260,6 +264,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="@dimen/m16"
+                            android:fontFamily="@font/dm_sans_medium"
                             android:text="@string/order_total"
                             android:textColor="@color/dark_Gray"
                             android:textSize="@dimen/text_size_12"
@@ -282,6 +287,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="@dimen/m16"
+                            android:fontFamily="@font/dm_sans_medium"
                             android:text="@string/gst_18"
                             android:textColor="@color/dark_Gray"
                             android:textSize="@dimen/text_size_12"
@@ -343,10 +349,10 @@
         </ScrollView>
 
         <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/orderReturnCL"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@color/primary_Blue"
-            android:id="@+id/orderReturnCL"
             app:layout_constraintBottom_toBottomOf="parent">
 
             <TextView
@@ -361,14 +367,14 @@
                 app:layout_constraintStart_toStartOf="parent" />
 
             <ImageView
+                android:id="@+id/invoiceIV"
                 android:layout_width="30dp"
                 android:layout_height="30dp"
-                android:id="@+id/invoiceIV"
-                app:layout_constraintTop_toTopOf="@+id/invoiceTV"
+                android:padding="@dimen/p5"
+                android:src="@drawable/invoice_download_icon"
                 app:layout_constraintBottom_toBottomOf="@+id/invoiceTV"
                 app:layout_constraintEnd_toStartOf="@+id/invoiceTV"
-                android:src="@drawable/invoice_download_icon"
-                android:padding="@dimen/p5"
+                app:layout_constraintTop_toTopOf="@+id/invoiceTV"
                 tools:ignore="ContentDescription" />
 
 

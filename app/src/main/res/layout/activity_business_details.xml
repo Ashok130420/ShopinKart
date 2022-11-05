@@ -30,7 +30,7 @@
                 android:layout_margin="@dimen/m18"
                 android:background="@color/white"
                 app:layout_constraintTop_toBottomOf="@id/headerBusinessDetails"
-                tools:context=".activity.PersonalDetailsActivity">
+                tools:context=".activity.CheckOutDetailsActivity">
 
                 <com.google.android.material.textfield.TextInputLayout
                     android:id="@+id/nameTVLayout"
@@ -209,23 +209,6 @@
                         android:textSize="@dimen/text_size_16" />
 
                 </com.google.android.material.textfield.TextInputLayout>
-
-                <TextView
-                    android:id="@+id/continueTV"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginHorizontal="@dimen/m18"
-                    android:layout_marginTop="@dimen/m100"
-                    android:layout_marginBottom="@dimen/m50"
-                    android:background="@drawable/button_blue_radius5"
-                    android:gravity="center"
-                    android:padding="@dimen/p18"
-                    android:text="@string/continue_"
-                    android:textColor="@color/white"
-                    android:textSize="@dimen/text_size_12"
-
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/phoneNumberTVLayout" />
 
 
             </androidx.constraintlayout.widget.ConstraintLayout>

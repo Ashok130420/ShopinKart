@@ -1,11 +1,12 @@
 <resources>
     <string name="app_name">ShopInKarts</string>
-    <string name="welcome_back_to_nshopinkarts">Welcome back to \nShopinkarts</string>
+    <string name="welcome_back_to_nshopinkarts">Welcome to \nShopinkarts</string>
     <string name="please_fill_the_below_details_to_continue">Please fill the below details to continue</string>
     <string name="phone">Phone</string>
     <string name="enter_phone_number">* Enter phone number</string>
     <string name="enter_password">* Enter password</string>
     <string name="password">Password</string>
+    <string name="password_6">Password(min 6 chars)</string>
     <string name="sign_in">Sign In</string>
     <string name="forgot_password">Forgot Password ?</string>
     <string name="sign_up">Sign Up</string>
@@ -37,7 +38,7 @@
     <string name="puma">Puma</string>
     <string name="flash_sale">FLASH SALE</string>
     <string name="flash">F\t\tL\t\tA\t\tS\t\tH\t\t\t\t\tS\t\tA\t\tL\t\tE</string>
-    <string name="closing_in">Closing in</string>
+    <string name="closing_in">Closing in  </string>
     <string name="_02">02</string>
     <string name="_35">35</string>
     <string name="_05">05</string>
@@ -50,7 +51,7 @@
     <string name="my_transactions">My Transactions</string>
     <string name="addresses">Addresses</string>
     <string name="customer_support">Customer Support</string>
-    <string name="about_shopinkarts">About ShopInKarts</string>
+    <string name="about_shopinkarts">About us</string>
     <string name="terms_conditions">Terms &amp; Conditions</string>
     <string name="refund_policy">Refund Policy</string>
     <string name="privacy_policy">Privacy Policy</string>
@@ -87,13 +88,14 @@
     <string name="product_description">Product Description</string>
     <string name="product_checklist">Product Checklist</string>
     <string name="delivery_instructions">Delivery Instructions</string>
+    <string name="delivery_ins">Delivery Instructions \n(for e.g, please deliver my order by 3pm )</string>
     <string name="buy_now">Buy Now</string>
     <string name="add_to_cart">ADD TO CART</string>
     <string name="read_reviews_4">Read Reviews (4\t\t\t)</string>
     <string name="read_reviews">Read Reviews </string>
     <string name="similar_products">Similar Products</string>
     <string name="showcasing_281_t_shirts">Showcasing 281 T-Shirts</string>
-    <string name="shorting">Short</string>
+    <string name="sorting">Sort</string>
     <string name="filter">Filter</string>
     <string name="category">Category</string>
     <string name="your_cart">Your Cart</string>
@@ -108,12 +110,13 @@
     <string name="rs_2800">- Rs 2800</string>
     <string name="order_total">Order Total</string>
     <string name="rs_1400">Rs 1400</string>
-    <string name="gst_18">GST(18%)</string>
+    <string name="gst_18">GST ( 5% )</string>
+    <string name="gst_no">GST NO</string>
     <string name="rs_252">Rs 252</string>
     <string name="amount_to_be_paid">Amount to be paid</string>
     <string name="rs_1652">Rs 1652</string>
     <string name="payment_method">Payment Method</string>
-    <string name="congratulations_you_are_saving_66_on_this_order">Congratulations! You are saving 66% on this order</string>
+    <string name="congratulations_you_are_saving_66_on_this_order">Congratulations! You are saving 66% on \nthis order</string>
     <string name="continue_">CONTINUE</string>
     <string name="personal_details">Personal Details</string>
     <string name="name">Name</string>
@@ -125,7 +128,6 @@
     <string name="city">City</string>
     <string name="landmark_optional">Landmark (optional)</string>
     <string-array name="state">
-        <item>State</item>
         <item>Rajasthan</item>
         <item>Delhi</item>
         <item>Bombay</item>
@@ -139,15 +141,61 @@
     <string name="you_can_track_the_delivery">You can track the delivery in the \'Order\' section</string>
     <string name="go_to_your_orders">Go To Your Orders</string>
     <string name="continue_shopping">Continue Shopping</string>
-    <string name="email_details">A code is sent to your Email\njohn****g@gmail.com.\nPlease enter the code below to continue</string>
+    <string name="email_details">A code is sent to your phone no 8233121212 Please enter the code below to continue</string>
     <string name="submit">Submit</string>
 
     <string-array name="state_business">
         <item>Business Operating State</item>
         <item>Rajasthan</item>
+        <item>Andaman and Nicobar Islands</item>
+        <item>Andhra Pradesh</item>
+        <item>Arunachal Pradesh</item>
+        <item>Assam</item>
+        <item>Bihar</item>
+        <item>Chandigarh</item>
+        <item>Chhattisgarh</item>
+        <item>Dadra and Nagar Haveli</item>
+        <item>Daman and Diu</item>
         <item>Delhi</item>
-        <item>Bombay</item>
-        <item>Ajmer</item>
+        <item>Goa</item>
+        <item>Gujarat</item>
+        <item>Haryana</item>
+        <item>Himachal Pradesh</item>
+        <item>Jammu and Kashmir</item>
+        <item>Jharkhand</item>
+        <item>Karnataka</item>
+        <item>Kerala</item>
+        <item>Lakshadweep</item>
+        <item>Madhya Pradesh</item>
+        <item>Maharashtra</item>
+        <item>Manipur</item>
+        <item>Meghalaya</item>
+        <item>Mizoram</item>
+        <item>Nagaland</item>
+        <item>Orissa</item>
+        <item>Pondicherry</item>
+        <item>Punjab</item>
+        <item>Sikkim</item>
+        <item>Tamil Nadu</item>
+        <item>Telangana</item>
+        <item>Tripura</item>
+        <item>Uttaranchal</item>
+        <item>Uttar Pradesh</item>
+        <item>West Bengal</item>
+    </string-array>
+    <string-array name="filter">
+        <item>Filter</item>
+        <item>Rs 499  and Below</item>
+        <item>Rs 500 and Rs 999 </item>
+        <item>Rs 1000 ans Rs 1999</item>
+        <item>Rs 2000 and Above</item>
+
+    </string-array>
+    <string-array name="sorting">
+        <item>Sorting</item>
+        <item>Price - High to Low </item>
+        <item>Price Low to High</item>
+        <item>Newest First</item>
     </string-array>
     <string name="password_reset">Password reset</string>
     <string name="please_reset_your_password">Please reset your password</string>
@@ -159,6 +207,7 @@
     <string name="_20_may_2021">20 May, 2021</string>
     <string name="payment_mode">Payment Mode</string>
     <string name="cod">COD</string>
+    <string name="card">Card</string>
     <string name="order_id_sic0011">Order ID #SIC0011</string>
     <string name="pid_2031447">PID #2031447</string>
     <string name="track_order_status">Track Order Status</string>
@@ -194,9 +243,9 @@
     <string name="_9_35_am">9:35 AM</string>
     <string name="_9_55_am">9:55 AM</string>
     <string name="cancel_order">Cancel Order</string>
-    <string name="please_enter_your_registered_email">Please enter your registered Email</string>
+    <string name="please_enter_your_registered_email">Please enter your registered phone no</string>
     <string name="send_otp">Send otp</string>
-    <string name="not_your_email_id">Not your email ID?</string>
+    <string name="not_your_email_id">Not your phone no?</string>
     <string name="change">Change</string>
     <string name="notifications">Notifications</string>
     <string name="_0">0</string>
@@ -217,6 +266,41 @@
     <string name="jon_deo">Jon Deo</string>
     <string name="_1_day_ago">1 day ago</string>
     <string name="tim_responded_to_your_feedback_request_view_feedback_n_now_tim_responded_to_your_feedback_request_view_feedback_now">“ Tim responded to your Feedback Request. View feedback\n now Tim responded to your Feedback Request. View feedback now. ”</string>
+    <string name="search">Search</string>
+    <string name="shipping">Shipping</string>
+    <string name="payment">Payment</string>
+    <string name="success">Success</string>
+    <string name="how_would_you_like_to_pay">How would you like to pay?</string>
+    <string name="price_high_to_low">Price - High to Low</string>
+    <string name="price_low_to_high">Price - Low to High</string>
+    <string name="newest_first">Newest First</string>
+    <string name="deal_of_the_day">Deal Of The Day</string>
+    <string name="logout">LogOut</string>
+    <string name="product_id">Product Id</string>
+    <string name="message">Message</string>
+    <string name="notification_description">Notification Description</string>
+    <string name="no">No</string>
+    <string name="yes">Yes</string>
+    <string name="product_return">Product Return</string>
+    <string name="_30_off">30% Off</string>
+    <string name="xxl">XXL</string>
+    <string name="enter_otp">Enter otp</string>
+    <string name="please_enter_the_code_to_continue">Please enter the code to continue</string>
+    <string name="customer_address">Customer Address</string>
+    <string name="cod_collect_rs_30000">COD : Collect Rs 30000/-</string>
+    <string name="gst_08AAQCM1573M1ZT">GST- 08AAQCM1573M1ZT</string>
+    <string name="manuda_address">B-340, Headgevar Circle, Indra Verma Colony,Jaipur, Jaipur, Rajasthan, 302016</string>
+    <string name="product_name">Product Name</string>
+    <string name="amount">Amount</string>
+    <string name="taxes">Taxes</string>
+    <string name="rs_200">Rs 200</string>
+    <string name="date">Date</string>
+    <string name="taxes_gst">GST ( 5% )</string>
+    <string name="new_user">New User? Click Here</string>
+    <string name="register_now">Register Now</string>
+    <string name="manudha_fashion_private_limited">MANUDHA FASHION PRIVATE LIMITED</string>
+    <string name="enter_phone_no">Enter phone no</string>
+    <string name="this_order_has_been_canceled_our_team_will_get_back_to_you">This order has been canceled. Our team will get back to you.</string>
 
 
 </resources>
