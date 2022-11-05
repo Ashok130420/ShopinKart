@@ -268,19 +268,18 @@ class ParticularItemActivity : AppCompatActivity() {
             manufacturerItemId, type = type, subType = subType, value = value
         )
 
-
         call.enqueue(object : Callback<ManufacturerResponse> {
             @SuppressLint("SetTextI18n", "NotifyDataSetChanged")
             override fun onResponse(
                 call: Call<ManufacturerResponse>, response: Response<ManufacturerResponse>
             ) {
-                val particularItemResponse = response.body()
+                val manufacturerItemResponse = response.body()
                 if (response.isSuccessful) {
-                    if (particularItemResponse!!.status) {
+                    if (manufacturerItemResponse!!.status) {
 
 
                         arrayListParticularItem.clear()
-                        arrayListParticularItem.addAll(particularItemResponse.products)
+                        arrayListParticularItem.addAll(manufacturerItemResponse.products)
                         particularItemAdapter = ParticularItemAdapter(
                             this@ParticularItemActivity, arrayListParticularItem
                         )
@@ -291,11 +290,11 @@ class ParticularItemActivity : AppCompatActivity() {
                         binding.allProductsTV.text =
                             "Showcasing ${arrayListParticularItem.size} $subCategoryName"
                     }
-                    Log.d("TAG", "onResponse_SuccessResponse${particularItemResponse.message} ")
+                    Log.d("TAG", "onResponse_SuccessResponse${manufacturerItemResponse.message} ")
                 } else {
                     Toast.makeText(
                         this@ParticularItemActivity,
-                        "${particularItemResponse?.message}",
+                        "${manufacturerItemResponse?.message}",
                         Toast.LENGTH_SHORT
                     ).show()
                 }

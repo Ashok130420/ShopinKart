@@ -23,6 +23,7 @@ interface Api {
     @GET("categories")
     fun categories(): Call<CategoriesResponse>
 
+    //category banner api
     @GET("banners/categories")
     fun categoryBanner(): Call<CategoryBannerResponse>
 

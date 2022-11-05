@@ -27,7 +27,6 @@
             android:paddingHorizontal="@dimen/p20"
             android:paddingTop="@dimen/p16"
             android:paddingBottom="@dimen/p16"
-            android:text="@string/showcasing_281_t_shirts"
             android:textColor="@color/dark_Gray"
             android:textSize="@dimen/text_size_12"
             app:layout_constraintTop_toBottomOf="@+id/headerParticularItem" />
