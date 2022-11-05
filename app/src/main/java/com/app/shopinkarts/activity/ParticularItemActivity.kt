@@ -269,13 +269,11 @@ class ParticularItemActivity : AppCompatActivity() {
                 if (response.isSuccessful) {
                     if (manufacturerItemResponse!!.status) {
 
-
                         arrayListParticularItem.clear()
                         arrayListParticularItem.addAll(manufacturerItemResponse.products)
                         particularItemAdapter = ParticularItemAdapter(
                             this@ParticularItemActivity, arrayListParticularItem
                         )
-
                         binding.particularItemRV.adapter = particularItemAdapter
                         particularItemAdapter.notifyDataSetChanged()
 
