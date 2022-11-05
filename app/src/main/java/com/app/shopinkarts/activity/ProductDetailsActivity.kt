@@ -184,18 +184,18 @@ class ProductDetailsActivity : AppCompatActivity() {
         }
 
         binding.minusQuantityTV.setOnClickListener {
-                if (currentNumber > 1) {
-                    currentNumber--
-                }
-                if (currentNumber < 1) {
-                    inActiveAddCart()
-                }
-                quantitySze = if (currentNumber <= 1) 0 else 1
-                Log.d("quantitySze", quantitySze.toString())
-                binding.quantityShowTV.text = currentNumber.toString()
-
-                binding.discountedPriceTV.text = "Rs ${unitPrice * currentNumber}.00"
+            if (currentNumber > 1) {
+                currentNumber--
             }
+            if (currentNumber < 1) {
+                inActiveAddCart()
+            }
+            quantitySze = if (currentNumber <= 1) 0 else 1
+            Log.d("quantitySze", quantitySze.toString())
+            binding.quantityShowTV.text = currentNumber.toString()
+
+            binding.discountedPriceTV.text = "Rs ${unitPrice * currentNumber}.00"
+        }
 
         binding.productDescriptionHeaderCL.setOnClickListener {
 
