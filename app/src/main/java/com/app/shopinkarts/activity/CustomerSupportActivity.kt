@@ -57,9 +57,12 @@ class CustomerSupportActivity : AppCompatActivity() {
         if (userType == "0") {
             binding.nameET.setText(sharedPreference.getName())
             binding.phoneET.setText(sharedPreference.getPhone())
+            binding.phoneET.setText(sharedPreference.getPhoneNo())
         } else {
             binding.nameET.setText(sharedPreference.getBusinessName())
             binding.phoneET.setText(sharedPreference.getBusinessPhoneNo())
+            binding.phoneET.setText(sharedPreference.getPhoneNo())
+
         }
 
 

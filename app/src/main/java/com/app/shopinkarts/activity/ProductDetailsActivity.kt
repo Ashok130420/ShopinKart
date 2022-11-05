@@ -184,19 +184,18 @@ class ProductDetailsActivity : AppCompatActivity() {
         }
 
         binding.minusQuantityTV.setOnClickListener {
+                if (currentNumber > 1) {
+                    currentNumber--
+                }
+                if (currentNumber < 1) {
+                    inActiveAddCart()
+                }
+                quantitySze = if (currentNumber <= 1) 0 else 1
+                Log.d("quantitySze", quantitySze.toString())
+                binding.quantityShowTV.text = currentNumber.toString()
 
-            if (currentNumber > 0) {
-                currentNumber--
+                binding.discountedPriceTV.text = "Rs ${unitPrice * currentNumber}.00"
             }
-            if (currentNumber < 1) {
-                inActiveAddCart()
-            }
-            quantitySze = if (currentNumber <= 1) 0 else 1
-            Log.d("quantitySze", quantitySze.toString())
-            binding.quantityShowTV.text = currentNumber.toString()
-
-            binding.discountedPriceTV.text = "Rs ${unitPrice * currentNumber}.00"
-        }
 
         binding.productDescriptionHeaderCL.setOnClickListener {
 
@@ -316,15 +315,14 @@ class ProductDetailsActivity : AppCompatActivity() {
         val variantArray: ArrayList<Variants> = ArrayList()
 
         if (DashBoardActivity.arrayListCart.isEmpty()) {
-            val variant =
-                Variants(
-                    color = selectedColor,
-                    size = selectedSize,
-                    quantity = currentNumber,
-                    price = actualPrice,
-                    id = vId,
-                    stock = stock
-                )
+            val variant = Variants(
+                color = selectedColor,
+                size = selectedSize,
+                quantity = currentNumber,
+                price = actualPrice,
+                id = vId,
+                stock = stock
+            )
             variantArray.add(variant)
             val product = CartModel(
                 pId = pId,
@@ -380,8 +378,7 @@ class ProductDetailsActivity : AppCompatActivity() {
                             if (product.variants[ind].id == vId) {
                                 variantCheck = true
                                 variantArray.set(
-                                    index = ind,
-                                    element = Variants(
+                                    index = ind, element = Variants(
                                         color = selectedColor,
                                         size = selectedSize,
                                         quantity = currentNumber,
@@ -551,8 +548,8 @@ class ProductDetailsActivity : AppCompatActivity() {
                             binding.discountTV.visibility = View.GONE
                         }
 
-                        if (productResponse.product.discountType == 0)
-                            binding.discountTV.text = "${productResponse.product.discount} % OFF"
+                        if (productResponse.product.discountType == 0) binding.discountTV.text =
+                            "${productResponse.product.discount} % OFF"
 
                         if (productResponse.product.stock <= 10) {
                             binding.unitesLeftTV.visibility = View.VISIBLE
