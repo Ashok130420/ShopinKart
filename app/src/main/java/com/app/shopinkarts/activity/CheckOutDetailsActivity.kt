@@ -94,6 +94,7 @@ class CheckOutDetailsActivity : AppCompatActivity() {
         layoutFirst()
 
         sharedPreference = SharedPreference(this)
+
         userType = sharedPreference.getUserType().toString()
         Log.d("USERTYPE.....", userType)
 
