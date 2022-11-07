@@ -19,4 +19,9 @@ data class Order(
     val trackingDetails: List<TrackOrder>,
 
 
+    val businessOperatingState: String,
+    val companyName: String,
+    val deliveryInstruction: String,
+
+
 )

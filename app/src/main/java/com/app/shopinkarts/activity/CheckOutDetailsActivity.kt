@@ -12,6 +12,8 @@ import android.util.Log
 import android.view.MotionEvent
 import android.view.View
 import android.view.inputmethod.InputMethodManager
+import android.widget.Adapter
+import android.widget.AdapterView
 import android.widget.EditText
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
@@ -39,7 +41,7 @@ class CheckOutDetailsActivity : AppCompatActivity() {
     var totalAmount: Double = 0.00
     var gst: Double = 0.00
     var discountAmount: Double = 0.00
-    var amountPaid : Double = 0.00
+    var amountPaid: Double = 0.00
     var paymentType = 0
 
     var name = ""
@@ -61,6 +63,18 @@ class CheckOutDetailsActivity : AppCompatActivity() {
     var companyBusiness = ""
     var gstBusiness = ""
     var opertingStateBusiness = ""
+    var deliveryInstruction = ""
+
+
+    var shippingName = ""
+    var shippingPhone = ""
+    var shippingHouseNo = ""
+    var shippingStreet = ""
+    var shippingPinCode = ""
+    var shippingCity = ""
+    var shippingState = ""
+    var shippingLandMark = ""
+
 
     var totalPrice = 0
     var finalPrice = 0
@@ -116,8 +130,7 @@ class CheckOutDetailsActivity : AppCompatActivity() {
 
         }
 
-
-        /*        binding.includeStepper1.stateSpinner.onItemSelectedListener =
+        binding.includeStepper1.stateSpinner.onItemSelectedListener =
             object : AdapterView.OnItemSelectedListener {
                 override fun onItemSelected(
                     parent: AdapterView<*>?,
@@ -131,16 +144,63 @@ class CheckOutDetailsActivity : AppCompatActivity() {
                         state = ""
                     } else {
                         state = selectedItem
-//                        Log.d("state", "onItemSelected:  $state ")
+                        Log.d("state_state", "onItemSelected: $state")
                     }
-
                 }
 
                 override fun onNothingSelected(parent: AdapterView<*>?) {
 
                 }
 
-            }*/
+            }
+
+        binding.includeStepper1.businessStateSpinner.onItemSelectedListener =
+            object : AdapterView.OnItemSelectedListener {
+                override fun onItemSelected(
+                    parent: AdapterView<*>?,
+                    view: View?,
+                    positionBusinessState: Int,
+                    id: Long
+                ) {
+
+                    val selectedItem = parent?.getItemAtPosition(positionBusinessState).toString()
+                    if (positionBusinessState == 0) {
+                        stateBusiness = ""
+                    } else {
+                        stateBusiness = selectedItem
+                        Log.d("state_state", "onItemSelected: $stateBusiness")
+                    }
+                }
+
+                override fun onNothingSelected(parent: AdapterView<*>?) {
+
+                }
+
+            }
+        binding.includeStepper1.businessOperatingStateSpinner.onItemSelectedListener =
+            object : AdapterView.OnItemSelectedListener {
+                override fun onItemSelected(
+                    parent: AdapterView<*>?,
+                    view: View?,
+                    positionBusinessOperateState: Int,
+                    id: Long
+                ) {
+
+                    val selectedItem = parent?.getItemAtPosition(positionBusinessOperateState).toString()
+                    if (positionBusinessOperateState == 0) {
+                        opertingStateBusiness = ""
+                    } else {
+                        opertingStateBusiness = selectedItem
+                        Log.d("state_state", "onItemSelected: $opertingStateBusiness")
+                    }
+                }
+
+                override fun onNothingSelected(parent: AdapterView<*>?) {
+
+                }
+
+            }
+
 
         binding.shippingCL.setOnClickListener {
             layoutFirst()
@@ -178,6 +238,12 @@ class CheckOutDetailsActivity : AppCompatActivity() {
         }
 
         binding.continueTV.setOnClickListener {
+            if (userType == "0") {
+                deliveryInstruction = binding.includeStepper1.deliveryInstructionsET.text.toString()
+            } else {
+                deliveryInstruction =
+                    binding.includeStepper1.deliveryInstructionsBusinessET.text.toString()
+            }
 
             name = binding.includeStepper1.nameET.text.toString().trim()
             phone = binding.includeStepper1.phoneNumberET.text.toString().trim()
@@ -291,7 +357,7 @@ class CheckOutDetailsActivity : AppCompatActivity() {
                     bstreet = binding.includeStepper1.businessStreetET.text.toString(),
                     bpin = binding.includeStepper1.businessPinCodeET.text.toString(),
                     bcity = binding.includeStepper1.businessCityET.text.toString(),
-                    bstate = "",
+                    bstate = stateBusiness,
                     blandmark = binding.includeStepper1.businessLandMarkET.text.toString(),
                     bcompany = binding.includeStepper1.firmNameET.text.toString(),
                     bgst = binding.includeStepper1.gstInET.text.toString(),
@@ -484,15 +550,35 @@ class CheckOutDetailsActivity : AppCompatActivity() {
 
         }
 
+        if (userType == "0") {
+            shippingName = binding.includeStepper1.nameET.text.toString()
+            shippingPhone = binding.includeStepper1.phoneNumberET.text.toString()
+            shippingHouseNo = binding.includeStepper1.flatHouseET.text.toString()
+            shippingStreet = binding.includeStepper1.streetET.text.toString()
+            shippingPinCode = binding.includeStepper1.pinCodeET.text.toString()
+            shippingCity = binding.includeStepper1.cityET.text.toString()
+            shippingState = state
+            shippingLandMark = binding.includeStepper1.landMarkET.text.toString()
+        } else {
+            shippingName = binding.includeStepper1.businessNameET.text.toString()
+            shippingPhone = binding.includeStepper1.businessPhoneNumberET.text.toString()
+            shippingHouseNo = binding.includeStepper1.businessFlatHouseET.text.toString()
+            shippingStreet = binding.includeStepper1.businessStreetET.text.toString()
+            shippingPinCode = binding.includeStepper1.businessPinCodeET.text.toString()
+            shippingCity = binding.includeStepper1.businessCityET.text.toString()
+            shippingState = stateBusiness
+            shippingLandMark = binding.includeStepper1.businessLandMarkET.text.toString()
+        }
+
         val shippingDetails = ShippingDetails(
-            name = binding.includeStepper1.nameET.text.toString(),
-            phone = binding.includeStepper1.phoneNumberET.text.toString(),
-            houseNo = binding.includeStepper1.flatHouseET.text.toString(),
-            street = binding.includeStepper1.streetET.text.toString(),
-            pincode = binding.includeStepper1.pinCodeET.text.toString(),
-            city = binding.includeStepper1.cityET.text.toString(),
-            state = state,
-            landmark = binding.includeStepper1.landMarkET.text.toString()
+            name = shippingName,
+            phone = shippingPhone,
+            houseNo = shippingHouseNo,
+            street = shippingStreet,
+            pincode = shippingPinCode,
+            city = shippingCity,
+            state = shippingState,
+            landmark = shippingLandMark
         )
 
         val requestBody = CreateOrderRequest(
@@ -505,8 +591,12 @@ class CheckOutDetailsActivity : AppCompatActivity() {
             shippingDetails = shippingDetails,
             totalAmount = totalAmount.toString(),
             userId = sharedPreference.getUserId().toString(),
+            businessOperatingState =opertingStateBusiness,
+            companyName = companyBusiness,
+            deliveryInstruction = deliveryInstruction
 
-            )
+
+        )
         Log.d("requestBody", "orderApi: $requestBody")
 
 

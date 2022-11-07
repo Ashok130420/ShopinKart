@@ -344,7 +344,7 @@
                         app:layout_constraintTop_toBottomOf="@+id/gstInTVLayout">
 
                         <Spinner
-                            android:id="@+id/businessStateSpinner"
+                            android:id="@+id/businessOperatingStateSpinner"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginStart="@dimen/m10"
@@ -499,7 +499,7 @@
                         app:layout_constraintTop_toTopOf="@+id/businessCityTVLayout">
 
                         <Spinner
-                            android:id="@+id/BusinessStateSpinner"
+                            android:id="@+id/businessStateSpinner"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginStart="@dimen/m10"

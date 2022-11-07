@@ -52,6 +52,7 @@ class OtpVerifyActivity : AppCompatActivity() {
         Log.d("verifyOtpSend", password)
         Log.d("verifyOtpSend", deviceId)
         Log.d("verifyOtpSend", userType)
+        Log.d("verifyOtpSend", gst)
 
 
         binding.headerOtpVerify.backIV.setOnClickListener {
@@ -84,6 +85,7 @@ class OtpVerifyActivity : AppCompatActivity() {
         requestBody["password"] = password
         requestBody["deviceId"] = deviceId
         requestBody["userType"] = userType
+        requestBody["gstNumber"] = gst
 
         val mProgressDialog = ProgressDialog(this)
         mProgressDialog.setMessage("Please wait....")
