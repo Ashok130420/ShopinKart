@@ -186,7 +186,8 @@ class CheckOutDetailsActivity : AppCompatActivity() {
                     id: Long
                 ) {
 
-                    val selectedItem = parent?.getItemAtPosition(positionBusinessOperateState).toString()
+                    val selectedItem =
+                        parent?.getItemAtPosition(positionBusinessOperateState).toString()
                     if (positionBusinessOperateState == 0) {
                         opertingStateBusiness = ""
                     } else {
@@ -591,7 +592,7 @@ class CheckOutDetailsActivity : AppCompatActivity() {
             shippingDetails = shippingDetails,
             totalAmount = totalAmount.toString(),
             userId = sharedPreference.getUserId().toString(),
-            businessOperatingState =opertingStateBusiness,
+            businessOperatingState = opertingStateBusiness,
             companyName = companyBusiness,
             deliveryInstruction = deliveryInstruction
 
