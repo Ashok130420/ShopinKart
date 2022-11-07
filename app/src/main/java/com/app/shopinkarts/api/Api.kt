@@ -94,6 +94,9 @@ interface Api {
     fun verifyOtp(@Body body: Map<String, String>): Call<VerifyOtpResponse>
 
     // cancel order api
-    @GET("orders/{id}/cancel")
-    fun cancelOrder(@Path("id") id: String?): Call<CancelOrderResponse>
+    @POST("orders/{id}/cancel")
+    fun cancelOrder(
+        @Path("id") id: String?,
+        @Body body: Map<String, String>
+    ): Call<CancelOrderResponse>
 }

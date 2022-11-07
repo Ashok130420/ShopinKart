@@ -5,6 +5,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.widget.ImageView
+import android.widget.RadioButton
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
@@ -14,6 +15,7 @@ import com.app.shopinkarts.api.RetrofitClient
 import com.app.shopinkarts.classes.Utils
 import com.app.shopinkarts.databinding.ActivityTrackOrderBinding
 import com.app.shopinkarts.databinding.BottomSheetReturnOrderBinding
+import com.app.shopinkarts.response.CancelOrderResponse
 import com.app.shopinkarts.response.TrackOrder
 import com.app.shopinkarts.response.TrackOrderResponse
 import com.google.android.material.bottomsheet.BottomSheetDialog
@@ -26,6 +28,10 @@ class TrackOrderActivity : AppCompatActivity() {
     lateinit var binding: ActivityTrackOrderBinding
     var arrayListTrack: ArrayList<TrackOrder> = ArrayList()
     var orderId = ""
+
+    var reasonCancel = ""
+    var reason = ""
+    var descriptionCancel = ""
 
     @SuppressLint("SetTextI18n")
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -55,11 +61,43 @@ class TrackOrderActivity : AppCompatActivity() {
 
             bindingBottomSheet.titleTV.text = resources.getString(R.string.cancel_order)
 
+            bindingBottomSheet.radioGroupReturnOrder.setOnCheckedChangeListener { radioGroup, i ->
+                val rb = radioGroup.findViewById<RadioButton>(i)
+                if (rb != null) reasonCancel = radioGroup.indexOfChild(rb).toString()
+
+                val index = radioGroup.indexOfChild(rb)
+                when (index) {
+                    0 -> {
+                        reason = "Damage/Defective"
+                    }
+                    1 -> {
+                        reason = "Quality Not Good"
+                    }
+                    2 -> {
+                        reason = "Size Issue"
+                    }
+                    3 -> {
+                        reason = "Others"
+                    }
+
+                }
+
+                Log.d("reasonCancel", reasonCancel)
+            }
+
             bindingBottomSheet.submitRequestTV.setOnClickListener {
-                val intent = Intent(this, DashBoardActivity::class.java)
-                startActivity(intent)
+
                 Toast.makeText(this, "Request Send", Toast.LENGTH_LONG).show()
 
+                descriptionCancel = bindingBottomSheet.descriptionET.text.toString().trim()
+
+                Log.d("reasonCancel", reasonCancel)
+                Log.d("reasonCancel", reason)
+                Log.d("reasonCancel", descriptionCancel)
+
+                cancelOrder()
+
+                dialog.dismiss()
             }
 
             bindingBottomSheet.backIV.setOnClickListener {
@@ -152,6 +190,49 @@ class TrackOrderActivity : AppCompatActivity() {
             }
 
             override fun onFailure(call: Call<TrackOrderResponse>, t: Throwable) {
+                Toast.makeText(
+                    this@TrackOrderActivity, "${t.message}", Toast.LENGTH_SHORT
+                ).show()
+                Log.d("TAG", "onResponse_FailureResponse${t.message} ")
+            }
+
+        })
+    }
+
+    private fun cancelOrder() {
+        val requestBody: MutableMap<String, String> = HashMap()
+
+        requestBody["reason"] = reason
+        requestBody["description"] = descriptionCancel
+
+        val call: Call<CancelOrderResponse> =
+            RetrofitClient.instance!!.api.cancelOrder(id = orderId, requestBody)
+        call.enqueue(object : Callback<CancelOrderResponse> {
+            override fun onResponse(
+                call: Call<CancelOrderResponse>, response: Response<CancelOrderResponse>
+            ) {
+                val cancelResponse = response.body()
+                if (cancelResponse!!.status) {
+
+                    Toast.makeText(
+                        this@TrackOrderActivity, cancelResponse.message, Toast.LENGTH_SHORT
+                    ).show()
+
+                    val intent = Intent(this@TrackOrderActivity, DashBoardActivity::class.java)
+                    intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK
+                    startActivity(intent)
+
+                } else {
+
+                    Toast.makeText(
+                        this@TrackOrderActivity, cancelResponse.message, Toast.LENGTH_SHORT
+                    ).show()
+                    Log.d("TAG", "onResponse_ElseResponse  ${cancelResponse.message} ")
+
+                }
+            }
+
+            override fun onFailure(call: Call<CancelOrderResponse>, t: Throwable) {
                 Toast.makeText(
                     this@TrackOrderActivity, "${t.message}", Toast.LENGTH_SHORT
                 ).show()
