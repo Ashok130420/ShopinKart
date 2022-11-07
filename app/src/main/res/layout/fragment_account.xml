@@ -168,7 +168,8 @@
             android:padding="@dimen/p14"
             android:text="@string/customer_support"
             android:textColor="@color/primary_text"
-            android:textSize="@dimen/text_size_13"
+            android:fontFamily="@font/dm_sans_medium"
+            android:textSize="@dimen/text_size_14"
             app:layout_constraintTop_toBottomOf="@id/addressesTV"
 
             />
@@ -195,7 +196,8 @@
             android:padding="@dimen/p14"
             android:text="@string/about_shopinkarts"
             android:textColor="@color/primary_text"
-            android:textSize="@dimen/text_size_13"
+            android:fontFamily="@font/dm_sans_medium"
+            android:textSize="@dimen/text_size_14"
             app:layout_constraintTop_toBottomOf="@id/customerSupportTV"
 
             />
@@ -222,7 +224,8 @@
             android:padding="@dimen/p14"
             android:text="@string/terms_conditions"
             android:textColor="@color/primary_text"
-            android:textSize="@dimen/text_size_13"
+            android:fontFamily="@font/dm_sans_medium"
+            android:textSize="@dimen/text_size_14"
             app:layout_constraintTop_toBottomOf="@id/aboutTV"
 
             />
@@ -249,7 +252,8 @@
             android:padding="@dimen/p14"
             android:text="@string/refund_policy"
             android:textColor="@color/primary_text"
-            android:textSize="@dimen/text_size_13"
+            android:fontFamily="@font/dm_sans_medium"
+            android:textSize="@dimen/text_size_14"
             app:layout_constraintTop_toBottomOf="@id/termsConditionsTV"
 
             />
@@ -277,7 +281,8 @@
             android:padding="@dimen/p14"
             android:text="@string/privacy_policy"
             android:textColor="@color/primary_text"
-            android:textSize="@dimen/text_size_13"
+            android:fontFamily="@font/dm_sans_medium"
+            android:textSize="@dimen/text_size_14"
             app:layout_constraintTop_toBottomOf="@id/refundPolicyTV"
 
             />
@@ -305,7 +310,8 @@
             android:padding="@dimen/p14"
             android:text="@string/logout"
             android:textColor="@color/red"
-            android:textSize="@dimen/text_size_13"
+            android:fontFamily="@font/dm_sans_medium"
+            android:textSize="@dimen/text_size_14"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/privacyPolicyTV" />
 

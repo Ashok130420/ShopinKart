@@ -71,7 +71,7 @@
                     android:layout_height="@dimen/m35"
                     android:layout_marginStart="@dimen/m10"
                     android:padding="@dimen/p8"
-                    android:src="@drawable/search_icon"
+                    android:src="@drawable/search1"
                     android:visibility="invisible"
                     app:layout_constraintBottom_toBottomOf="@id/searchTV"
                     app:layout_constraintStart_toStartOf="@id/searchTV"

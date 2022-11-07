@@ -27,7 +27,7 @@
 
         <TextView
             android:id="@+id/orderPlacedTimeTV"
-            android:layout_width="70dp"
+            android:layout_width="80dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/m20"
             android:layout_marginTop="@dimen/m20"
@@ -87,7 +87,7 @@
 
         <TextView
             android:id="@+id/processingTimeTV"
-            android:layout_width="70dp"
+            android:layout_width="80dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/m20"
             android:paddingVertical="@dimen/p20"
@@ -147,7 +147,7 @@
 
         <TextView
             android:id="@+id/outForDeliveryDateTV"
-            android:layout_width="70dp"
+            android:layout_width="80dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/m20"
             android:paddingVertical="@dimen/p20"
@@ -207,7 +207,7 @@
 
         <TextView
             android:id="@+id/deliveredDateTV"
-            android:layout_width="70dp"
+            android:layout_width="80dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/m20"
             android:paddingVertical="@dimen/p20"
@@ -274,7 +274,7 @@
             android:paddingVertical="@dimen/p10"
             android:text="@string/cancel_order"
             android:textColor="@color/white"
-            android:textSize="@dimen/text_size_10"
+            android:textSize="@dimen/text_size_12"
             android:visibility="visible"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/deliveredDescriptionTV" />

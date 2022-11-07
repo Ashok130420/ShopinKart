@@ -150,10 +150,10 @@ class DashBoardActivity : AppCompatActivity() {
                     replaceFragment(accountFragment)
                     binding.headerDashBoard.nameTV.text = resources.getString(R.string.profile)
                     binding.headerDashBoard.profileIV.visibility = View.GONE
-                    binding.headerDashBoard.cartIV.visibility = View.GONE
-                    binding.headerDashBoard.cartItemTV.visibility = View.GONE
-                    binding.headerDashBoard.notificationIV.visibility = View.GONE
-                    binding.headerDashBoard.notificationItemTV.visibility = View.GONE
+//                    binding.headerDashBoard.cartIV.visibility = View.GONE
+//                    binding.headerDashBoard.cartItemTV.visibility = View.GONE
+//                    binding.headerDashBoard.notificationIV.visibility = View.GONE
+//                    binding.headerDashBoard.notificationItemTV.visibility = View.GONE
                 }
             }
             true

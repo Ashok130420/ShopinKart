@@ -20,7 +20,8 @@
             android:paddingVertical="@dimen/p10"
             android:text="@string/how_would_you_like_to_pay"
             android:textColor="@color/primary_text"
-            android:textSize="@dimen/text_size_18"
+            android:textSize="@dimen/text_size_16"
+            android:fontFamily="@font/dm_sans_medium"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 

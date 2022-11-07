@@ -52,7 +52,8 @@
                 android:textSize="@dimen/text_size_25"
                 android:textStyle="bold"
                 app:layout_constraintBottom_toBottomOf="@+id/logoIV"
-                app:layout_constraintStart_toStartOf="parent" />
+                app:layout_constraintStart_toStartOf="parent"
+                tools:ignore="HardcodedText" />
 
 
             <TextView
@@ -86,7 +87,7 @@
                     android:id="@+id/phoneET"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:fontFamily="@font/dm_sans"
+                    android:fontFamily="@font/dm_sans_medium"
                     android:inputType="number"
                     android:maxLength="10"
                     android:textColorHighlight="@color/hint_color"
@@ -115,7 +116,7 @@
                     android:id="@+id/emailET"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:fontFamily="@font/dm_sans"
+                    android:fontFamily="@font/dm_sans_medium"
                     android:inputType="textEmailAddress"
                     android:textColorHighlight="@color/hint_color"
                     android:textColorHint="@color/hint"
@@ -153,7 +154,7 @@
                         android:layout_marginStart="@dimen/m10"
                         android:backgroundTint="@color/hint"
                         android:checked="true"
-                        android:fontFamily="@font/dm_sans"
+                        android:fontFamily="@font/dm_sans_medium"
                         android:text="@string/personal_use"
                         android:textColor="@color/grey_font"
                         android:textSize="@dimen/text_size_12" />
@@ -164,7 +165,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginStart="@dimen/m50"
                         android:backgroundTint="@color/hint"
-                        android:fontFamily="@font/dm_sans"
+                        android:fontFamily="@font/dm_sans_medium"
                         android:text="@string/for_reselling"
                         android:textColor="@color/grey_font"
                         android:textSize="@dimen/text_size_12" />
@@ -190,6 +191,7 @@
                 android:layout_marginTop="@dimen/m30"
                 android:layout_marginBottom="@dimen/m5"
                 android:text="@string/gst_no"
+                android:fontFamily="@font/dm_sans_medium"
                 android:textColor="@color/primary_text"
                 android:textSize="@dimen/text_size_14"
                 app:layout_constraintStart_toStartOf="parent"
@@ -205,6 +207,7 @@
                 android:maxLength="17"
                 android:paddingHorizontal="@dimen/p2"
                 android:paddingVertical="@dimen/p8"
+                android:fontFamily="@font/dm_sans_medium"
                 android:singleLine="true"
                 android:textColor="@color/primary_text"
                 android:textSize="@dimen/text_size_12"
@@ -234,7 +237,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/m20"
-                    android:fontFamily="@font/dm_sans"
+                    android:fontFamily="@font/dm_sans_medium"
                     android:inputType="textPassword"
                     android:maxLength="15"
                     android:textColorHighlight="@color/hint_color"
