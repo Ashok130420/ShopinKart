@@ -33,6 +33,9 @@ class TrackOrderActivity : AppCompatActivity() {
     var reason = ""
     var descriptionCancel = ""
 
+    var startDate = ""
+    var endDate = ""
+
     @SuppressLint("SetTextI18n")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -176,6 +179,7 @@ class TrackOrderActivity : AppCompatActivity() {
                                     deliveredDescriptionTV.text = arrayListTrack[3].message
                                     deliveredIconIV.setBackgroundResource(R.drawable.green_right_icon)
 
+                                    startDate = arrayListTrack[3].time
                                 }
                             }
                         }

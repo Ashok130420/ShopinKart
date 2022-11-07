@@ -35,7 +35,7 @@ class ForgotPasswordActivity : AppCompatActivity() {
         binding.headerForgotPassword.nameTV.text = resources.getString(R.string.password_reset)
 
         binding.emailTV.text =
-            "A code is sent to your phone no $phoneNo Please enter the code below to continue"
+            "A code is sent to your Mobile Number $phoneNo \nPlease enter the code below to continue"
         binding.headerForgotPassword.backIV.setOnClickListener {
             onBackPressed()
         }
