@@ -88,7 +88,8 @@
     <string name="product_description">Product Description</string>
     <string name="product_checklist">Product Checklist</string>
     <string name="delivery_instructions">Delivery Instructions</string>
-    <string name="delivery_ins">Delivery Instructions \n(for e.g, please deliver my order by 3pm )</string>
+    <string name="delivery_ins">Delivery Instructions</string>
+    <string name="delivery_for">for e.g, please deliver my order by 3pm</string>
     <string name="buy_now">Buy Now</string>
     <string name="add_to_cart">ADD TO CART</string>
     <string name="read_reviews_4">Read Reviews (4\t\t\t)</string>

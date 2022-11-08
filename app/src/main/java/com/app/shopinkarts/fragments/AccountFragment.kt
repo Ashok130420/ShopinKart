@@ -77,7 +77,7 @@ class AccountFragment : Fragment() {
         }
 
         binding.profileIV.setOnClickListener {
-            launchGallery()
+//            launchGallery()
         }
 
         return binding.root

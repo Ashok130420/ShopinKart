@@ -244,22 +244,47 @@
 
                     </com.google.android.material.textfield.TextInputLayout>
 
-                    <EditText
-                        android:id="@+id/deliveryInstructionsET"
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:id="@+id/deliveryInstructionsLayout"
+                        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                         android:layout_width="match_parent"
-                        android:layout_height="@dimen/m200"
+                        android:layout_height="wrap_content"
                         android:layout_marginTop="@dimen/m20"
-                        android:background="@drawable/shape_grey_corners_5dp"
                         android:fontFamily="@font/dm_sans_medium"
-                        android:gravity="top"
                         android:hint="@string/delivery_ins"
-                        android:inputType="textCapSentences|textMultiLine"
-                        android:padding="@dimen/p15"
-                        android:textColor="@color/primary_text"
                         android:textColorHint="@color/hint_color"
-                        android:textSize="@dimen/text_size_12"
-                        app:layout_constraintTop_toBottomOf="@id/landMarkTVLayout"
-                        tools:ignore="Autofill,TextFields" />
+                        app:boxStrokeColor="@color/primary_Blue"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/landMarkTVLayout">
+
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/deliveryInstructionsET"
+                            android:layout_width="match_parent"
+                            android:layout_height="@dimen/m200"
+                            android:fontFamily="@font/dm_sans_medium"
+                            android:gravity="top"
+                            android:inputType="textCapSentences"
+                            android:textColorHighlight="@color/hint_color"
+                            android:textSize="@dimen/text_size_12" />
+
+                    </com.google.android.material.textfield.TextInputLayout>
+
+                    <!--                    <EditText-->
+                    <!--                        android:id="@+id/deliveryInstructionsET"-->
+                    <!--                        android:layout_width="match_parent"-->
+                    <!--                        android:layout_height="@dimen/m200"-->
+                    <!--                        android:layout_marginTop="@dimen/m20"-->
+                    <!--                        android:background="@drawable/shape_grey_corners_5dp"-->
+                    <!--                        android:fontFamily="@font/dm_sans_medium"-->
+                    <!--                        android:gravity="top"-->
+                    <!--                        android:hint="@string/delivery_ins"-->
+                    <!--                        android:inputType="textCapSentences|textMultiLine"-->
+                    <!--                        android:padding="@dimen/p15"-->
+                    <!--                        android:textColor="@color/primary_text"-->
+                    <!--                        android:textColorHint="@color/hint_color"-->
+                    <!--                        android:textSize="@dimen/text_size_12"-->
+                    <!--                        app:layout_constraintTop_toBottomOf="@id/landMarkTVLayout"-->
+                    <!--                        tools:ignore="Autofill,TextFields" />-->
 
                 </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -558,22 +583,47 @@
 
                     </com.google.android.material.textfield.TextInputLayout>
 
-                    <EditText
-                        android:id="@+id/deliveryInstructionsBusinessET"
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:id="@+id/deliveryInstructionsBusiness"
+                        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                         android:layout_width="match_parent"
-                        android:layout_height="@dimen/m200"
+                        android:layout_height="wrap_content"
                         android:layout_marginTop="@dimen/m20"
-                        android:background="@drawable/shape_grey_corners_5dp"
                         android:fontFamily="@font/dm_sans_medium"
-                        android:gravity="top"
                         android:hint="@string/delivery_ins"
-                        android:inputType="textCapSentences|textMultiLine"
-                        android:padding="@dimen/p15"
-                        android:textColor="@color/primary_text"
                         android:textColorHint="@color/hint_color"
-                        android:textSize="@dimen/text_size_12"
-                        app:layout_constraintTop_toBottomOf="@id/businessLandMarkTVLayout"
-                        tools:ignore="Autofill,TextFields" />
+                        app:boxStrokeColor="@color/primary_Blue"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/businessLandMarkTVLayout">
+
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/deliveryInstructionsBusinessET"
+                            android:layout_width="match_parent"
+                            android:layout_height="@dimen/m200"
+                            android:fontFamily="@font/dm_sans_medium"
+                            android:gravity="top"
+                            android:inputType="textCapSentences"
+                            android:textColorHighlight="@color/hint_color"
+                            android:textSize="@dimen/text_size_12" />
+
+                    </com.google.android.material.textfield.TextInputLayout>
+
+<!--                    <EditText-->
+<!--                        android:id="@+id/deliveryInstructionsBusinessET"-->
+<!--                        android:layout_width="match_parent"-->
+<!--                        android:layout_height="@dimen/m200"-->
+<!--                        android:layout_marginTop="@dimen/m20"-->
+<!--                        android:background="@drawable/shape_grey_corners_5dp"-->
+<!--                        android:fontFamily="@font/dm_sans_medium"-->
+<!--                        android:gravity="top"-->
+<!--                        android:hint="@string/delivery_ins"-->
+<!--                        android:inputType="textCapSentences|textMultiLine"-->
+<!--                        android:padding="@dimen/p15"-->
+<!--                        android:textColor="@color/primary_text"-->
+<!--                        android:textColorHint="@color/hint_color"-->
+<!--                        android:textSize="@dimen/text_size_12"-->
+<!--                        app:layout_constraintTop_toBottomOf="@id/businessLandMarkTVLayout"-->
+<!--                        tools:ignore="Autofill,TextFields" />-->
 
                 </androidx.constraintlayout.widget.ConstraintLayout>
 
