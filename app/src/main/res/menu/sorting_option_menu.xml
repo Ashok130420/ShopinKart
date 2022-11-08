@@ -6,13 +6,10 @@
         android:title="@string/price_high_to_low" />
     <item
         android:id="@+id/optionPriceLow"
-        android:title="@string/price_low_to_high"
-        />
+        android:title="@string/price_low_to_high" />
     <item
         android:id="@+id/optionNewest"
-        android:title="@string/newest_first"
-
-        />
+        android:title="@string/newest_first" />
 
 
 </menu>
