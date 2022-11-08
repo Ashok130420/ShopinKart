@@ -19,6 +19,7 @@ import com.app.shopinkarts.response.CancelOrderResponse
 import com.app.shopinkarts.response.TrackOrder
 import com.app.shopinkarts.response.TrackOrderResponse
 import com.google.android.material.bottomsheet.BottomSheetDialog
+import org.json.JSONObject
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -185,8 +186,9 @@ class TrackOrderActivity : AppCompatActivity() {
                         }
 
                     } else {
+                        val jObjError = JSONObject(response.errorBody()!!.string())
                         Toast.makeText(
-                            this@TrackOrderActivity, trackOrderResponse.message, Toast.LENGTH_SHORT
+                            this@TrackOrderActivity, jObjError.getString("message"), Toast.LENGTH_LONG
                         ).show()
                         Log.d("TAG", "onResponse_ElseResponse  ${trackOrderResponse.message} ")
                     }

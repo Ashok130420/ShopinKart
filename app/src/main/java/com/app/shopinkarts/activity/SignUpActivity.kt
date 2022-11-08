@@ -23,6 +23,7 @@ import com.app.shopinkarts.classes.Utils
 import com.app.shopinkarts.databinding.ActivitySignUpBinding
 import com.app.shopinkarts.response.VerifyOtpResponse
 import com.onesignal.OneSignal
+import org.json.JSONObject
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -270,9 +271,9 @@ class SignUpActivity : AppCompatActivity() {
                     }
 
                 } else {
-                    mProgressDialog.dismiss()
+                    val jObjError = JSONObject(response.errorBody()!!.string())
                     Toast.makeText(
-                        this@SignUpActivity, response.message(), Toast.LENGTH_SHORT
+                        this@SignUpActivity, jObjError.getString("message"), Toast.LENGTH_LONG
                     ).show()
                 }
                 mProgressDialog.dismiss()

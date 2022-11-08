@@ -24,6 +24,7 @@ import com.app.shopinkarts.databinding.FragmentHomeBinding
 import com.app.shopinkarts.model.*
 import com.app.shopinkarts.response.*
 import com.facebook.shimmer.ShimmerFrameLayout
+import org.json.JSONObject
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -441,9 +442,12 @@ class HomeFragment : Fragment() {
 
                     Log.d("TAG", "onResponse_SuccessResponse: ${dashBoardResponse.message}")
                 } else {
-                    if (context != null) Toast.makeText(
-                        requireContext(), "${dashBoardResponse?.message}", Toast.LENGTH_SHORT
-                    ).show()
+                    if (context != null) {
+                        val jObjError = JSONObject(response.errorBody()!!.string())
+                        Toast.makeText(
+                            requireContext(), jObjError.getString("message"), Toast.LENGTH_LONG
+                        ).show()
+                    }
                 }
             }
 

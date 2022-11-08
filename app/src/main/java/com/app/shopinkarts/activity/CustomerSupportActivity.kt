@@ -19,6 +19,7 @@ import com.app.shopinkarts.classes.SharedPreference
 import com.app.shopinkarts.classes.Utils
 import com.app.shopinkarts.databinding.ActivityCustomerSupportBinding
 import com.app.shopinkarts.response.CustomerSupportResponse
+import org.json.JSONObject
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -141,9 +142,14 @@ class CustomerSupportActivity : AppCompatActivity() {
 
                 } else {
 
+                    val jObjError = JSONObject(response.errorBody()!!.string())
                     Toast.makeText(
-                        this@CustomerSupportActivity, response.message(), Toast.LENGTH_SHORT
+                        this@CustomerSupportActivity,
+                        jObjError.getString("message"),
+                        Toast.LENGTH_LONG
                     ).show()
+
+
                     Log.d(TAG, "onResponse: ${response.message()}")
                 }
             }

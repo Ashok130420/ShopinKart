@@ -190,7 +190,8 @@
             android:textColor="@color/unselected_Text_color"
             android:textSize="@dimen/text_size_12"
             app:layout_constraintStart_toStartOf="@+id/outForDeliveryTV"
-            app:layout_constraintTop_toBottomOf="@+id/outForDeliveryTV" />
+            app:layout_constraintTop_toBottomOf="@+id/outForDeliveryTV"
+            tools:ignore="TextViewEdits" />
 
         <View
             android:id="@+id/outForDeliveryView"

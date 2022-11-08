@@ -22,6 +22,7 @@ import com.app.shopinkarts.classes.Utils
 import com.app.shopinkarts.databinding.ActivityLoginBinding
 import com.app.shopinkarts.response.LoginResponse
 import com.onesignal.OneSignal
+import org.json.JSONObject
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -44,7 +45,7 @@ class LoginActivity : AppCompatActivity() {
 
         deviceId = OneSignal.getDeviceState()?.userId.toString()
 
-        binding.imageToggle.visibility=View.VISIBLE
+        binding.imageToggle.visibility = View.VISIBLE
         Log.d("TAG_deviceId", "onCreate: $deviceId")
 
         binding.signUpTV.setOnClickListener {
@@ -65,7 +66,7 @@ class LoginActivity : AppCompatActivity() {
             if (password.isEmpty()) {
                 binding.passwordET.error = "Enter password"
                 binding.passwordET.requestFocus()
-                binding.imageToggle.visibility=View.GONE
+                binding.imageToggle.visibility = View.GONE
                 return@setOnClickListener
             }
 
@@ -103,7 +104,7 @@ class LoginActivity : AppCompatActivity() {
 
     // To remove EditText focus on touch outside
     override fun dispatchTouchEvent(event: MotionEvent): Boolean {
-        binding.imageToggle.visibility=View.VISIBLE
+        binding.imageToggle.visibility = View.VISIBLE
         if (event.action == MotionEvent.ACTION_DOWN) {
             val v = currentFocus
             if (v is EditText) {
@@ -163,9 +164,14 @@ class LoginActivity : AppCompatActivity() {
 
                 } else {
                     mProgressDialog.dismiss()
+
+                    val jObjError = JSONObject(response.errorBody()!!.string())
                     Toast.makeText(
-                        this@LoginActivity, response.message(), Toast.LENGTH_SHORT
+                        this@LoginActivity, jObjError.getString("message"), Toast.LENGTH_LONG
                     ).show()
+                    Log.d("jObjError", "onResponse: $jObjError")
+
+
                 }
                 mProgressDialog.dismiss()
             }

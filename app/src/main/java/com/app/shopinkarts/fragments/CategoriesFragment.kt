@@ -26,6 +26,7 @@ import com.app.shopinkarts.response.Banner
 import com.app.shopinkarts.response.CategoriesResponse
 import com.app.shopinkarts.response.Category
 import com.app.shopinkarts.response.CategoryBannerResponse
+import org.json.JSONObject
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -97,9 +98,12 @@ class CategoriesFragment : Fragment() {
                     }
                     Log.d("TAG", "onResponse_SuccessResponse :${categoriesResponse.message}")
                 } else {
-                    if (context != null) Toast.makeText(
-                        requireContext(), "${categoriesResponse?.message}", Toast.LENGTH_SHORT
-                    ).show()
+                    if (context != null) {
+                        val jObjError = JSONObject(response.errorBody()!!.string())
+                        Toast.makeText(
+                            requireContext(), jObjError.getString("message"), Toast.LENGTH_LONG
+                        ).show()
+                    }
                 }
             }
 

@@ -1,6 +1,7 @@
 package com.app.shopinkarts.activity
 
 
+import android.annotation.SuppressLint
 import android.os.Bundle
 import android.view.View
 import android.widget.PopupMenu
@@ -156,6 +157,7 @@ class ViewAllActivity : AppCompatActivity() {
         discountForYouAdapter.notifyDataSetChanged()
     }
 
+    @SuppressLint("NotifyDataSetChanged")
     private fun recommended() {
         binding.headerViewAll.titleTV.text = resources.getString(R.string.recommended)
         recommendedAdapter = RecommendedAdapter(this, HomeFragment.arrayListRecommended)

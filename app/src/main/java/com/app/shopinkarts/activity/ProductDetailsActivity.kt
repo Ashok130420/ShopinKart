@@ -36,6 +36,7 @@ import com.app.shopinkarts.model.CartModel
 import com.app.shopinkarts.model.SelectColorModel
 import com.app.shopinkarts.model.SelectSizeModel
 import com.app.shopinkarts.response.*
+import org.json.JSONObject
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -669,8 +670,9 @@ class ProductDetailsActivity : AppCompatActivity() {
                     }
                 } else {
 
+                    val jObjError = JSONObject(response.errorBody()!!.string())
                     Toast.makeText(
-                        this@ProductDetailsActivity, response.message(), Toast.LENGTH_SHORT
+                        this@ProductDetailsActivity, jObjError.getString("message"), Toast.LENGTH_LONG
                     ).show()
                 }
             }

@@ -28,6 +28,7 @@ import com.app.shopinkarts.model.CreateOrderRequest
 import com.app.shopinkarts.model.CreateProduct
 import com.app.shopinkarts.model.ShippingDetails
 import com.app.shopinkarts.response.SuccessResponse
+import org.json.JSONObject
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -625,9 +626,12 @@ class CheckOutDetailsActivity : AppCompatActivity() {
                         binding.goToOrdersTV.visibility = View.VISIBLE
 
                     } else {
+
+                        val jObjError = JSONObject(response.errorBody()!!.string())
                         Toast.makeText(
-                            this@CheckOutDetailsActivity, response.message(), Toast.LENGTH_SHORT
+                            this@CheckOutDetailsActivity, jObjError.getString("message"), Toast.LENGTH_LONG
                         ).show()
+
                         Log.e("orderResponse", "${response.message()} ")
 
                     }

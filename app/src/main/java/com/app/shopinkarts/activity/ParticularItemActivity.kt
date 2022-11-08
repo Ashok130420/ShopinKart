@@ -21,6 +21,7 @@ import com.app.shopinkarts.databinding.ActivityParticularItemBinding
 import com.app.shopinkarts.response.ManufacturerResponse
 import com.app.shopinkarts.response.ParticularItemResponse
 import com.app.shopinkarts.response.Product
+import org.json.JSONObject
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -282,10 +283,9 @@ class ParticularItemActivity : AppCompatActivity() {
                     }
                     Log.d("TAG", "onResponse_SuccessResponse${manufacturerItemResponse.message} ")
                 } else {
+                    val jObjError = JSONObject(response.errorBody()!!.string())
                     Toast.makeText(
-                        this@ParticularItemActivity,
-                        "${manufacturerItemResponse?.message}",
-                        Toast.LENGTH_SHORT
+                        this@ParticularItemActivity, jObjError.getString("message"), Toast.LENGTH_LONG
                     ).show()
                 }
             }

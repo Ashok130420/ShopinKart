@@ -19,6 +19,7 @@ import com.app.shopinkarts.api.RetrofitClient
 import com.app.shopinkarts.classes.SharedPreference
 import com.app.shopinkarts.databinding.FragmentAccountBinding
 import com.app.shopinkarts.response.AppSettingResponse
+import org.json.JSONObject
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -151,8 +152,9 @@ class AccountFragment : Fragment() {
 
                     } else {
 
+                        val jObjError = JSONObject(response.errorBody()!!.string())
                         Toast.makeText(
-                            requireContext(), appSettingResponse.message, Toast.LENGTH_SHORT
+                            requireContext(), jObjError.getString("message"), Toast.LENGTH_LONG
                         ).show()
                         Log.d(TAG, "onResponse: ${appSettingResponse.message} ")
 
