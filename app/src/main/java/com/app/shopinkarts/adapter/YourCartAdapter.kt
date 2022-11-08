@@ -174,6 +174,7 @@ class YourCartAdapter(val context: Context, var arrayList: ArrayList<CartModel>)
                 selectedVIDs.removeAt(position)
                 sharedPreference.setArray()
 
+                ProductCartActivity.arrayTotal.clear()
                 notifyDataSetChanged()
 
                 if (arrayList.isEmpty()) {
