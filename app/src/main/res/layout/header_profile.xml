@@ -29,7 +29,7 @@
             android:id="@+id/backIV"
             android:layout_width="30dp"
             android:layout_height="30dp"
-            android:layout_marginStart="@dimen/m14"
+            android:layout_marginStart="@dimen/m10"
             android:background="@color/white"
             android:src="@drawable/back_arrow"
             app:layout_constraintBottom_toBottomOf="@+id/nameTV"

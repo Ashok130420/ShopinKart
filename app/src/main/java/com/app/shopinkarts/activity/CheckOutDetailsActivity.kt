@@ -105,6 +105,7 @@ class CheckOutDetailsActivity : AppCompatActivity() {
 
             binding.includeStepper1.nameET.setText(sharedPreference.getName())
             binding.includeStepper1.phoneNumberET.setText(sharedPreference.getPhone())
+            binding.includeStepper1.phoneNumberET.setText(sharedPreference.getPhoneNo())
             binding.includeStepper1.flatHouseET.setText(sharedPreference.getFlat())
             binding.includeStepper1.streetET.setText(sharedPreference.getStreet())
             binding.includeStepper1.pinCodeET.setText(sharedPreference.getPin())
@@ -124,6 +125,7 @@ class CheckOutDetailsActivity : AppCompatActivity() {
             binding.includeStepper1.gstInET.setText(sharedPreference.getGst())
             binding.includeStepper1.gstInET.setText(sharedPreference.getBusinessGst())
             binding.includeStepper1.businessPhoneNumberET.setText(sharedPreference.getBusinessPhoneNo())
+            binding.includeStepper1.businessPhoneNumberET.setText(sharedPreference.getPhoneNo())
             binding.includeStepper1.businessFlatHouseET.setText(sharedPreference.getBusinessFlat())
             binding.includeStepper1.businessStreetET.setText(sharedPreference.getBusinessStreet())
             binding.includeStepper1.businessPinCodeET.setText(sharedPreference.getBusinessPin())

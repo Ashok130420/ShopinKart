@@ -15,6 +15,8 @@
         <!-- Customize your theme here. -->
         <item name="android:fontFamily">@font/dm_sans_medium</item>
         <item name="bottomSheetDialogTheme">@style/AppBottomSheetDialogTheme</item>
+
+
     </style>
 
     <style name="RatingBar" parent="Theme.AppCompat">
@@ -31,6 +33,15 @@
     <!--bottom sheet style-->
     <style name="AppModelStyle" parent="Widget.Design.BottomSheet.Modal">
         <item name="android:background">@drawable/bottom_sheet_shape</item>
+    </style>
+
+<!--    spinner size and color -->
+    <style name="Spinner" parent="Widget.AppCompat.Light.DropDownItem.Spinner">
+        <item name="android:paddingStart">0dp</item>
+        <item name="android:paddingEnd">0dp</item>
+        <item name="android:textColor">@color/primary_Blue</item>
+        <item name="android:backgroundTint">@color/red</item>
+        <item name="android:textSize">5sp</item>
     </style>
 
 </resources>

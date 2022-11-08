@@ -391,7 +391,7 @@
                             android:inputType="number"
                             android:paddingVertical="@dimen/p14"
                             android:textColorHighlight="@color/hint_color"
-                            android:textSize="@dimen/text_size_10" />
+                            android:textSize="@dimen/text_size_8" />
 
                     </androidx.appcompat.widget.LinearLayoutCompat>
 
@@ -608,22 +608,22 @@
 
                     </com.google.android.material.textfield.TextInputLayout>
 
-<!--                    <EditText-->
-<!--                        android:id="@+id/deliveryInstructionsBusinessET"-->
-<!--                        android:layout_width="match_parent"-->
-<!--                        android:layout_height="@dimen/m200"-->
-<!--                        android:layout_marginTop="@dimen/m20"-->
-<!--                        android:background="@drawable/shape_grey_corners_5dp"-->
-<!--                        android:fontFamily="@font/dm_sans_medium"-->
-<!--                        android:gravity="top"-->
-<!--                        android:hint="@string/delivery_ins"-->
-<!--                        android:inputType="textCapSentences|textMultiLine"-->
-<!--                        android:padding="@dimen/p15"-->
-<!--                        android:textColor="@color/primary_text"-->
-<!--                        android:textColorHint="@color/hint_color"-->
-<!--                        android:textSize="@dimen/text_size_12"-->
-<!--                        app:layout_constraintTop_toBottomOf="@id/businessLandMarkTVLayout"-->
-<!--                        tools:ignore="Autofill,TextFields" />-->
+                    <!--                    <EditText-->
+                    <!--                        android:id="@+id/deliveryInstructionsBusinessET"-->
+                    <!--                        android:layout_width="match_parent"-->
+                    <!--                        android:layout_height="@dimen/m200"-->
+                    <!--                        android:layout_marginTop="@dimen/m20"-->
+                    <!--                        android:background="@drawable/shape_grey_corners_5dp"-->
+                    <!--                        android:fontFamily="@font/dm_sans_medium"-->
+                    <!--                        android:gravity="top"-->
+                    <!--                        android:hint="@string/delivery_ins"-->
+                    <!--                        android:inputType="textCapSentences|textMultiLine"-->
+                    <!--                        android:padding="@dimen/p15"-->
+                    <!--                        android:textColor="@color/primary_text"-->
+                    <!--                        android:textColorHint="@color/hint_color"-->
+                    <!--                        android:textSize="@dimen/text_size_12"-->
+                    <!--                        app:layout_constraintTop_toBottomOf="@id/businessLandMarkTVLayout"-->
+                    <!--                        tools:ignore="Autofill,TextFields" />-->
 
                 </androidx.constraintlayout.widget.ConstraintLayout>
 
