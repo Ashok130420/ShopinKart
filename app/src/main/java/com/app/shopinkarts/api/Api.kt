@@ -99,4 +99,11 @@ interface Api {
         @Path("id") id: String?,
         @Body body: Map<String, String>
     ): Call<CancelOrderResponse>
+
+    //    end less products api
+    @GET("products?")
+    fun endLessProduct(
+        @Query("skip") skip: String?,
+        @Query("limit") limit: String?
+    ): Call<EndlessProductsResponse>
 }

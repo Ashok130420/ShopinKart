@@ -591,6 +591,42 @@
                     </androidx.constraintlayout.widget.ConstraintLayout>
 
                     <androidx.constraintlayout.widget.ConstraintLayout
+                        android:id="@+id/allProductsCL"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/m20"
+                        app:layout_constraintTop_toBottomOf="@+id/recommendedCL">
+
+                        <TextView
+                            android:id="@+id/allProductsTV"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/dm_sans"
+                            android:paddingVertical="@dimen/m10"
+                            android:text="@string/all_products"
+                            android:textColor="@color/primary_text"
+                            android:textSize="@dimen/text_size_16"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+
+                        <androidx.recyclerview.widget.RecyclerView
+                            android:id="@+id/allProductsRV"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/m10"
+                            android:orientation="vertical"
+                            app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
+                            app:layout_constraintTop_toBottomOf="@id/allProductsTV"
+                            app:spanCount="2"
+                            tools:itemCount="3"
+                            tools:listitem="@layout/items_flash_sale"
+
+                            />
+
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
                         android:id="@+id/flashSaleCL"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"

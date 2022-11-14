@@ -29,6 +29,7 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 import java.util.*
+import kotlin.collections.ArrayList
 
 
 class HomeFragment : Fragment() {
@@ -46,6 +47,7 @@ class HomeFragment : Fragment() {
     lateinit var topRatedAdapter: TopRatedAdapter
     lateinit var discountForYouAdapter: DiscountForYouAdapter
     lateinit var recommendedAdapter: RecommendedAdapter
+    lateinit var endlessProductsAdapter: EndlessProductsAdapter
     lateinit var banner2Adapter: Banner2Adapter
     lateinit var banner3Adapter: Banner3Adapter
     lateinit var shimmerHome: ShimmerFrameLayout
@@ -81,6 +83,7 @@ class HomeFragment : Fragment() {
         val arrayListRecommended: ArrayList<RecommendedItem> = ArrayList()
         val arrayListPreferredManufacturer: ArrayList<PreferredManufacturer> = ArrayList()
         val arrayListPopularBrand: ArrayList<PreferredManufacturer> = ArrayList()
+        val arrayListEndLessProduct: ArrayList<Product> = ArrayList()
         var listItems = 0
 
         fun getInstance(): HomeFragment {
@@ -97,7 +100,7 @@ class HomeFragment : Fragment() {
         activity?.window?.setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_RESIZE)
 
         dashBoardList()
-
+        endLessProductList()
         shimmerHome = binding.shimmerViewBanner
 
 
@@ -447,6 +450,7 @@ class HomeFragment : Fragment() {
                         Toast.makeText(
                             requireContext(), jObjError.getString("message"), Toast.LENGTH_LONG
                         ).show()
+//                        Log.d("TAG", "onResponse_FailedResponse: $jObjError.getString(message)")
                     }
                 }
             }
@@ -456,6 +460,38 @@ class HomeFragment : Fragment() {
                 if (context != null) Toast.makeText(
                     requireContext(), "${t.message}", Toast.LENGTH_SHORT
                 ).show()
+            }
+
+        })
+
+    }
+
+    private fun endLessProductList() {
+        val call: Call<EndlessProductsResponse> =
+            RetrofitClient.instance!!.api.endLessProduct(skip = "", limit = "10")
+        call.enqueue(object : Callback<EndlessProductsResponse> {
+            @SuppressLint("NotifyDataSetChanged")
+            override fun onResponse(
+                call: Call<EndlessProductsResponse>,
+                response: Response<EndlessProductsResponse>
+            ) {
+                val endLessResponse = response.body()
+                if (response.isSuccessful && context != null) {
+                    if (endLessResponse!!.status)
+                        arrayListEndLessProduct.clear()
+                    arrayListEndLessProduct.addAll(endLessResponse.products)
+                    endlessProductsAdapter=
+                        EndlessProductsAdapter(requireContext(), arrayListEndLessProduct)
+                    binding.allProductsRV.adapter=endlessProductsAdapter
+                    binding.allProductsRV.hasFixedSize()
+                    binding.allProductsRV.isNestedScrollingEnabled=false
+                    endlessProductsAdapter.notifyDataSetChanged()
+
+                }
+            }
+
+            override fun onFailure(call: Call<EndlessProductsResponse>, t: Throwable) {
+
             }
 
         })

@@ -575,8 +575,11 @@ class ProductDetailsActivity : AppCompatActivity() {
 
 //                        if (arrayBanner.isNotEmpty()) autoSlide(arrayBanner.size)
 
-                        binding.dispatchedTV.text = productResponse.product.dispatchDetails[0]
-                        binding.deliveryTV.text = productResponse.product.dispatchDetails[1]
+//                        binding.dispatchedTV.text = productResponse.product.dispatchDetails[0]
+//                        if (productResponse.product.dispatchDetails[1].isNotEmpty()) {
+                        binding.dispatchedTV.text = productResponse.product.deliveryInstructions[0]
+                        binding.deliveryTV.text = productResponse.product.dispatchDetails[0]
+//                        }
                         binding.ratingBar.rating = productResponse.product.avgRating.toFloat()
 
                         isFreeDelivery = productResponse.product.isFreeDelivery.toString()
@@ -672,7 +675,9 @@ class ProductDetailsActivity : AppCompatActivity() {
 
                     val jObjError = JSONObject(response.errorBody()!!.string())
                     Toast.makeText(
-                        this@ProductDetailsActivity, jObjError.getString("message"), Toast.LENGTH_LONG
+                        this@ProductDetailsActivity,
+                        jObjError.getString("message"),
+                        Toast.LENGTH_LONG
                     ).show()
                 }
             }
