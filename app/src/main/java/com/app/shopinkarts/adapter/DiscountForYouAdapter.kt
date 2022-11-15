@@ -20,10 +20,7 @@ class DiscountForYouAdapter(val context: Context, val arrayList: ArrayList<Disco
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val binding: ItemsDiscountForYouBinding = DataBindingUtil.inflate(
-            LayoutInflater.from(parent.context),
-            R.layout.items_discount_for_you,
-            parent,
-            false
+            LayoutInflater.from(parent.context), R.layout.items_discount_for_you, parent, false
         )
 
         return ViewHolder(binding)
@@ -36,11 +33,16 @@ class DiscountForYouAdapter(val context: Context, val arrayList: ArrayList<Disco
 
             Glide.with(context).load(itemDetails.productImages[0]).into(imageIV)
             productNameTV.text = itemDetails.productName
-            priceTV.text = "Rs ${itemDetails.price}"
+//            priceTV.text = "Rs ${itemDetails.price}"
             ratingTV.text = itemDetails.avgRating.toString()
-            if (itemDetails.discountType == 0) {
+            var discount = 0
+            if (itemDetails.discountType == 1) {
+                discount = (itemDetails.price * itemDetails.discount) / 100
+                priceTV.text = "Rs ${(itemDetails.price)-(discount)}"
                 discountTV.text = "${itemDetails.discount} %OFF"
-            } else if (itemDetails.discountType == 1) {
+            } else if (itemDetails.discountType == 0) {
+                discount = (itemDetails.price - itemDetails.discount)
+                priceTV.text = "Rs $discount"
                 discountTV.text = "Rs ${itemDetails.discount} OFF"
             } else {
                 discountTV.visibility = View.GONE

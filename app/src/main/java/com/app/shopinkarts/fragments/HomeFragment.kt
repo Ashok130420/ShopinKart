@@ -70,6 +70,11 @@ class HomeFragment : Fragment() {
     val DELAY_MS: Long = 2000
     val PERIOD_MS: Long = 4000
 
+    val arrayListEndLessProduct: ArrayList<Product> = ArrayList()
+    var page = 1
+    var isLoading = false
+    val limit = arrayListEndLessProduct.size
+
     companion object {
         var mInstance: HomeFragment = HomeFragment()
 
@@ -83,7 +88,7 @@ class HomeFragment : Fragment() {
         val arrayListRecommended: ArrayList<RecommendedItem> = ArrayList()
         val arrayListPreferredManufacturer: ArrayList<PreferredManufacturer> = ArrayList()
         val arrayListPopularBrand: ArrayList<PreferredManufacturer> = ArrayList()
-        val arrayListEndLessProduct: ArrayList<Product> = ArrayList()
+
         var listItems = 0
 
         fun getInstance(): HomeFragment {
@@ -468,25 +473,25 @@ class HomeFragment : Fragment() {
 
     private fun endLessProductList() {
         val call: Call<EndlessProductsResponse> =
-            RetrofitClient.instance!!.api.endLessProduct(skip = "", limit = "10")
+            RetrofitClient.instance!!.api.endLessProduct(skip = "", limit = limit)
         call.enqueue(object : Callback<EndlessProductsResponse> {
             @SuppressLint("NotifyDataSetChanged")
             override fun onResponse(
-                call: Call<EndlessProductsResponse>,
-                response: Response<EndlessProductsResponse>
+                call: Call<EndlessProductsResponse>, response: Response<EndlessProductsResponse>
             ) {
                 val endLessResponse = response.body()
                 if (response.isSuccessful && context != null) {
-                    if (endLessResponse!!.status)
-                        arrayListEndLessProduct.clear()
-                    arrayListEndLessProduct.addAll(endLessResponse.products)
-                    endlessProductsAdapter=
-                        EndlessProductsAdapter(requireContext(), arrayListEndLessProduct)
-                    binding.allProductsRV.adapter=endlessProductsAdapter
-                    binding.allProductsRV.hasFixedSize()
-                    binding.allProductsRV.isNestedScrollingEnabled=false
-                    endlessProductsAdapter.notifyDataSetChanged()
+                    if (endLessResponse!!.status) {
 
+                        arrayListEndLessProduct.clear()
+                        arrayListEndLessProduct.addAll(endLessResponse.products)
+                        endlessProductsAdapter =
+                            EndlessProductsAdapter(requireContext(), arrayListEndLessProduct)
+                        binding.allProductsRV.adapter = endlessProductsAdapter
+                        binding.allProductsRV.hasFixedSize()
+                        binding.allProductsRV.isNestedScrollingEnabled = true
+                        endlessProductsAdapter.notifyDataSetChanged()
+                    }
                 }
             }
 

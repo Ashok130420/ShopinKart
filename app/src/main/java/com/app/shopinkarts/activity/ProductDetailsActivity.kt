@@ -68,6 +68,10 @@ class ProductDetailsActivity : AppCompatActivity() {
     val PERIOD_MS: Long = 4000
     var imageNumber = 1
 
+    var dType = 0
+    var dPrice = 0
+    var dDiscount = 0
+
     companion object {
         var pInstance: ProductDetailsActivity = ProductDetailsActivity()
         var colorSize = 0
@@ -196,6 +200,7 @@ class ProductDetailsActivity : AppCompatActivity() {
             binding.quantityShowTV.text = currentNumber.toString()
 
             binding.discountedPriceTV.text = "Rs ${unitPrice * currentNumber}.00"
+
         }
 
         binding.productDescriptionHeaderCL.setOnClickListener {
@@ -533,24 +538,35 @@ class ProductDetailsActivity : AppCompatActivity() {
                     val productResponse = response.body()
                     if (productResponse!!.status) {
 
-
                         pId = productResponse.product._id
                         itemName = productResponse.product.productName
                         imageUrl = productResponse.product.productImages[0]
                         binding.idTV.text = "#Id -${productResponse.product.productId}"
                         binding.tShirtNameTV.text = productResponse.product.productName
-                        binding.discountedPriceTV.text = "Rs ${productResponse.product.price}.00"
-
-                        if (productResponse.product.discountType == 0) {
+                        binding.actualPriceTV.text = "Rs ${productResponse.product.price}.00"
+                        var discount = 0
+                        if (productResponse.product.discountType == 1) {
                             binding.discountTV.text = "${productResponse.product.discount} % OFF"
-                        } else if (productResponse.product.discountType == 1) {
+                            discount =
+                                (productResponse.product.price * productResponse.product.discount) / 100
+
+                            binding.discountedPriceTV.text =
+                                "Rs ${productResponse.product.price - discount}.00"
+                        } else if (productResponse.product.discountType == 0) {
                             binding.discountTV.text = "Rs ${productResponse.product.discount} OFF"
+                            discount =
+                                (productResponse.product.price - productResponse.product.discount)
+                            binding.discountedPriceTV.text = "Rs ${discount}.00"
+
                         } else {
                             binding.discountTV.visibility = View.GONE
+                            binding.discountTagRightIV.visibility = View.GONE
                         }
 
-                        if (productResponse.product.discountType == 0) binding.discountTV.text =
-                            "${productResponse.product.discount} % OFF"
+//                        if (productResponse.product.discountType == 1) {
+//                            binding.discountTV.text =
+//                                "${productResponse.product.discount} % OFF"
+//                        }
 
                         if (productResponse.product.stock <= 10) {
                             binding.unitesLeftTV.visibility = View.VISIBLE
@@ -668,6 +684,9 @@ class ProductDetailsActivity : AppCompatActivity() {
 
                         arrayListVariant.addAll(productResponse.product.variantsArr)
 
+                        dType = productResponse.product.discountType
+                        dPrice = productResponse.product.price
+                        dDiscount = productResponse.product.discount
 
                         Log.e("TAG", "${response.message()} ")
                     }
@@ -753,12 +772,36 @@ class ProductDetailsActivity : AppCompatActivity() {
                     vId = elements.id
                     Log.d("vId", elements.id)
 
-                    unitPrice = elements.price
-                    binding.discountedPriceTV.text = "Rs ${elements.price}.00"
+//                    unitPrice = elements.price
+//                    binding.discountedPriceTV.text = "Rs ${elements.price}.00"
 
-                    discountedPrice = elements.price
+                    var discount = 0
+                    Log.d("unitPrice.", elements.discountType.toString())
+                    if (dType == 1) {
+
+                        discount = (elements.price * dDiscount) / 100
+                        unitPrice = elements.price - discount
+                        discountedPrice = unitPrice
+                        actualPrice = unitPrice
+                        binding.discountedPriceTV.text = "${elements.price - discount}.00"
+
+                        Log.d("unitPrice.", unitPrice.toString())
+                        Log.d("unitPrice.", "${(dPrice)}  ${(dDiscount)}")
+
+                    } else if (dType == 0) {
+
+                        discount = (elements.price - dDiscount)
+                        unitPrice = elements.price - dDiscount
+                        binding.discountedPriceTV.text = "Rs ${discount}.00"
+                        discountedPrice = unitPrice
+                        actualPrice = unitPrice
+
+                        Log.d("unitPrice..", "${(dPrice)} - ${(dDiscount)}")
+                    }
+
+//                    discountedPrice = elements.price
                     binding.actualPriceTV.text = "Rs ${elements.actualPrice}.00"
-                    actualPrice = elements.actualPrice
+//                    actualPrice = elements.actualPrice
 //                    totalAmount = arrayListVariant.sumBy { it.price }
                     stock = elements.stock
                     Log.d("Stock", stock.toString())

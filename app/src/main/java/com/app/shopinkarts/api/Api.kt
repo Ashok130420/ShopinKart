@@ -16,7 +16,8 @@ interface Api {
     fun login(@Body body: Map<String, String>): Call<LoginResponse>
 
     //dash board api
-    @GET("dashboard")
+//    @GET("dashboard")
+    @GET("products/dashboard")
     fun dashBoard(): Call<DashBoardResponse>
 
     // categories api
@@ -104,6 +105,6 @@ interface Api {
     @GET("products?")
     fun endLessProduct(
         @Query("skip") skip: String?,
-        @Query("limit") limit: String?
+        @Query("limit") limit: Int
     ): Call<EndlessProductsResponse>
 }

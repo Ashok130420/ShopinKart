@@ -1,5 +1,6 @@
 package com.app.shopinkarts.adapter
 
+import android.annotation.SuppressLint
 import android.content.Context
 import android.content.Intent
 import android.view.LayoutInflater
@@ -26,14 +27,25 @@ class FlashSaleAdapter(val context: Context, val arrayList: ArrayList<FlashSale>
         return ViewHolder(binding)
     }
 
+    @SuppressLint("SetTextI18n")
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val itemDetails = arrayList[position]
         holder.itemsFlashSaleBinding.apply {
             Glide.with(context).load(itemDetails.productImages[0]).into(discountIV)
             productNameTV.text = itemDetails.productName
-            priceTV.text = "Rs ${itemDetails.price}"
+//            priceTV.text = "Rs ${itemDetails.price}"
             discountTV.text = "${itemDetails.discount} %OFF"
             ratingTV.text=itemDetails.avgRating.toString()
+            var discount = 0
+            if (itemDetails.discountType == 1) {
+                discount = (itemDetails.price * itemDetails.discount) / 100
+                priceTV.text = "Rs ${(itemDetails.price)-(discount)}"
+
+            } else if (itemDetails.discountType == 0) {
+                discount = (itemDetails.price - itemDetails.discount)
+                priceTV.text = "Rs $discount"
+
+            }
 
         }
         holder.itemView.setOnClickListener {

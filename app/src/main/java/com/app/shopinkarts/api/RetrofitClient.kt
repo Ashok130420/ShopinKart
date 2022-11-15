@@ -45,8 +45,8 @@ class RetrofitClient private constructor() {
 
 
     companion object {
-        private const val BASE_URL = "https://shopinkartapp.herokuapp.com/api/"
-//        private const val BASE_URL = "http://139.59.64.38/api/"
+//        private const val BASE_URL = "https://shopinkartapp.herokuapp.com/api/"
+        private const val BASE_URL = "http://139.59.64.38/api/"
         private var mInstance: RetrofitClient? = null
 
         @get:Synchronized
