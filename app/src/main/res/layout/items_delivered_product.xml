@@ -25,7 +25,7 @@
 
         <TextView
             android:id="@+id/productNameTV"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/m10"
             android:fontFamily="@font/dm_sans_medium"
@@ -33,6 +33,7 @@
             android:text="@string/blazers_t_shirt_nike"
             android:textColor="@color/primary_text"
             android:textSize="@dimen/text_size_12"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/imageIV"
             app:layout_constraintTop_toTopOf="@+id/imageIV" />
 

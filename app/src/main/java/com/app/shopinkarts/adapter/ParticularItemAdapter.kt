@@ -36,6 +36,7 @@ class ParticularItemAdapter(val context: Context, var arrayList: ArrayList<Produ
             Glide.with(context).load(itemDetails.productImages[0]).into(imageIV)
             tShirtNameTV.text = itemDetails.productName
             priceTV.text = "Rs ${itemDetails.price}"
+            ratingTV.text=itemDetails.avgRating.toString()
 
             if (itemDetails.discountType == 0) {
                 discountTV.text = "${itemDetails.discount} %OFF"

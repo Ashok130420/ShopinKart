@@ -58,8 +58,6 @@ class ProductDetailsActivity : AppCompatActivity() {
     var arraySelectSize: ArrayList<SelectSizeModel> = ArrayList()
     var arrayListVariant: ArrayList<VariantsArr> = ArrayList()
 
-    private lateinit var scaleGestureDetector: ScaleGestureDetector
-    private var scaleFactor = 1.0f
 
     var isFreeDelivery = ""
     var currentPage = 0
@@ -568,8 +566,9 @@ class ProductDetailsActivity : AppCompatActivity() {
 //                                "${productResponse.product.discount} % OFF"
 //                        }
 
-                        if (productResponse.product.stock <= 10) {
+                        if (productResponse.product.stock <= 50) {
                             binding.unitesLeftTV.visibility = View.VISIBLE
+//                            binding.unitesLeftTV.text = "Few units left ${productResponse.product.stock}"
                         } else {
                             binding.unitesLeftTV.visibility = View.GONE
                         }
@@ -783,7 +782,7 @@ class ProductDetailsActivity : AppCompatActivity() {
                         unitPrice = elements.price - discount
                         discountedPrice = unitPrice
                         actualPrice = unitPrice
-                        binding.discountedPriceTV.text = "${elements.price - discount}.00"
+                        binding.discountedPriceTV.text = "Rs ${elements.price - discount}.00"
 
                         Log.d("unitPrice.", unitPrice.toString())
                         Log.d("unitPrice.", "${(dPrice)}  ${(dDiscount)}")

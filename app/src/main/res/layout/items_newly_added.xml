@@ -30,14 +30,16 @@
 
             <TextView
                 android:id="@+id/productNameTV"
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="@dimen/m10"
                 android:layout_marginTop="@dimen/m14"
                 android:fontFamily="@font/dm_sans_medium"
+                android:singleLine="true"
                 android:text="@string/linen_t_shirt"
                 android:textColor="@color/primary_text"
                 android:textSize="@dimen/text_size_12"
+                app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/newlyAddedIV" />
 
