@@ -184,7 +184,7 @@
                         android:id="@+id/qtyTV"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginEnd="@dimen/m24"
+                        android:layout_marginEnd="@dimen/m10"
                         android:background="@color/primary_text"
                         android:fontFamily="@font/dm_sans_bold"
                         android:text="@string/qty"
