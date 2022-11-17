@@ -42,6 +42,7 @@ class SignUpActivity : AppCompatActivity() {
     var gst = ""
 
     var verifyOtpSend = ""
+    var user = 0
 
 
     companion object {
@@ -77,11 +78,13 @@ class SignUpActivity : AppCompatActivity() {
         }
 
         binding.personalRB.setOnClickListener {
+            user = 0
             binding.gstTV.visibility = View.GONE
             binding.gstValueET.visibility = View.GONE
         }
 
         binding.resellingRB.setOnClickListener {
+            user = 1
             binding.gstTV.visibility = View.VISIBLE
             binding.gstValueET.visibility = View.VISIBLE
         }
@@ -97,6 +100,13 @@ class SignUpActivity : AppCompatActivity() {
                 binding.phoneET.error = "Enter phone number"
                 binding.phoneET.requestFocus()
                 return@setOnClickListener
+            }
+            if (user == 1) {
+                if (gst.isEmpty()) {
+                    binding.gstValueET.error = "Enter gst number"
+                    binding.gstValueET.requestFocus()
+                    return@setOnClickListener
+                }
             }
             /* if (email.isEmpty()) {
                  binding.emailET.error = "Enter email address"

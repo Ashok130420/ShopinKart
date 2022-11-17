@@ -97,14 +97,12 @@ interface Api {
     // cancel order api
     @POST("orders/{id}/cancel")
     fun cancelOrder(
-        @Path("id") id: String?,
-        @Body body: Map<String, String>
+        @Path("id") id: String?, @Body body: Map<String, String>
     ): Call<CancelOrderResponse>
 
     //    end less products api
     @GET("products?")
     fun endLessProduct(
-        @Query("skip") skip: String?,
-        @Query("limit") limit: Int
+        @Query("skip") skip: String?, @Query("limit") limit: Int
     ): Call<EndlessProductsResponse>
 }

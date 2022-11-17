@@ -47,7 +47,7 @@ class SharedPreference(val context: Context) {
     fun clear() {
         val editor: SharedPreferences.Editor = prefs.edit()
         editor.clear()
-        editor.commit()
+        editor.apply()
     }
 
     fun setPhoneNo(phoneNo: String) {
