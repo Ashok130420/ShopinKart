@@ -8,6 +8,7 @@ import android.os.Bundle
 import android.text.method.HideReturnsTransformationMethod
 import android.text.method.PasswordTransformationMethod
 import android.util.Log
+import android.util.Patterns
 import android.view.MotionEvent
 import android.view.View
 import android.view.inputmethod.InputMethodManager
@@ -113,11 +114,12 @@ class SignUpActivity : AppCompatActivity() {
                  binding.emailET.requestFocus()
                  return@setOnClickListener
              }*/
-            /*   if (!Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
-                   binding.emailET.error = "Enter valid email"
-                   binding.emailET.requestFocus()
-                   return@setOnClickListener
-               }*/
+            if (!Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
+                binding.emailET.error = "Enter valid email"
+                binding.emailET.requestFocus()
+                return@setOnClickListener
+            }
+
             if (password.isEmpty()) {
                 binding.passwordET.error = "Enter password"
                 binding.passwordET.requestFocus()
