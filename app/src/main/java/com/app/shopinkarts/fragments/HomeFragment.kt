@@ -145,10 +145,10 @@ class HomeFragment : Fragment() {
         binding.pullToRefresh.setOnRefreshListener(OnRefreshListener {
 //            onResume()
 
-            dashBoardList()
+//            dashBoardList()
             page=0
             arrayListEndLessProduct.clear()
-            endLessProductList()
+//            endLessProductList()
 
             binding.pullToRefresh.isRefreshing = false
         })
