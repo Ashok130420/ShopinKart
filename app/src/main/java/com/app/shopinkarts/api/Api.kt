@@ -103,6 +103,6 @@ interface Api {
     //    end less products api
     @GET("products?")
     fun endLessProduct(
-        @Query("skip") skip: String?, @Query("limit") limit: Int
+        @Query("skip") skip: Int, @Query("limit") limit: Int
     ): Call<EndlessProductsResponse>
 }

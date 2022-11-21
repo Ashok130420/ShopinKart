@@ -372,7 +372,7 @@ class ProductDetailsActivity : AppCompatActivity() {
                         )
                     ) {
                         Toast.makeText(this, "Product already in cart", Toast.LENGTH_SHORT).show()
-                        sharedPreference.setArray()
+                        //sharedPreference.setArray()
                     } else {
                         variantArray.clear()
                         variantArray.addAll(product.variants)
@@ -406,31 +406,31 @@ class ProductDetailsActivity : AppCompatActivity() {
                                 )
                             )
                         }
+                        DashBoardActivity.arrayListCart.set(
+                            index = index, element = CartModel(
+                                pId = pId,
+                                vId = vId,
+                                itemName = itemName,
+                                discountedPrice = discountedPrice.toString(),
+                                actualPrice = actualPrice,
+                                color = selectedColor,
+                                size = selectedSize,
+                                quantity = currentNumber,
+                                totalAmount = totalAmount,
+                                imageUrl = imageUrl,
+                                stock = stock,
+                                variantsArr = arrayListVariant,
+                                variants = variantArray
+                            )
+                        )
+                        Toast.makeText(this, "Product update Successfully", Toast.LENGTH_SHORT).show()
 
+                        Log.d("itemDetails.variants", DashBoardActivity.arrayListCart.toString())
+
+                        sharedPreference.setArray()
                     }
 
-                    DashBoardActivity.arrayListCart.set(
-                        index = index, element = CartModel(
-                            pId = pId,
-                            vId = vId,
-                            itemName = itemName,
-                            discountedPrice = discountedPrice.toString(),
-                            actualPrice = actualPrice,
-                            color = selectedColor,
-                            size = selectedSize,
-                            quantity = currentNumber,
-                            totalAmount = totalAmount,
-                            imageUrl = imageUrl,
-                            stock = stock,
-                            variantsArr = arrayListVariant,
-                            variants = variantArray
-                        )
-                    )
-                    Toast.makeText(this, "Product update Successfully", Toast.LENGTH_SHORT).show()
 
-                    Log.d("itemDetails.variants", DashBoardActivity.arrayListCart.toString())
-
-                    sharedPreference.setArray()
                     break
                 }
             }
