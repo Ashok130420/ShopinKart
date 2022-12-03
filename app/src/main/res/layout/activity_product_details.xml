@@ -221,23 +221,24 @@
                         android:id="@+id/dispatchedIV"
                         android:layout_width="@dimen/m35"
                         android:layout_height="@dimen/m35"
-                        android:layout_marginTop="@dimen/m14"
+                        android:visibility="invisible"
                         android:padding="@dimen/p4"
                         android:src="@drawable/calendar"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@id/ratingBar" />
+                        app:layout_constraintTop_toBottomOf="@id/ratingBar"
+                        tools:ignore="ContentDescription" />
 
                     <TextView
                         android:id="@+id/dispatchedTV"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginStart="@dimen/m14"
+                        android:layout_marginTop="@dimen/m14"
                         android:fontFamily="@font/dm_sans_medium"
                         android:paddingVertical="@dimen/p2"
-                        android:textColor="@color/dark_Gray"
+                        android:textColor="@color/primary_text"
                         android:textSize="@dimen/text_size_12"
                         app:layout_constraintBottom_toBottomOf="@+id/dispatchedIV"
-                        app:layout_constraintStart_toEndOf="@+id/dispatchedIV"
+                        app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="@+id/dispatchedIV" />
 
                     <ImageView
@@ -259,7 +260,7 @@
                         android:layout_marginStart="@dimen/m14"
                         android:fontFamily="@font/dm_sans_medium"
                         android:paddingVertical="@dimen/p2"
-                        android:textColor="@color/dark_Gray"
+                        android:textColor="@color/primary_text"
                         android:textSize="@dimen/text_size_12"
                         android:visibility="gone"
                         app:layout_constraintBottom_toBottomOf="@+id/deliveryIV"

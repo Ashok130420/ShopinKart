@@ -11,6 +11,7 @@ data class CreateOrderRequest(
     val userId: String,
     val businessOperatingState: String,
     val companyName: String,
+    val gstIn: String,
     val deliveryInstruction: String,
 
 

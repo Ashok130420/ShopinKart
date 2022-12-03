@@ -63,7 +63,7 @@ class DeliveredOrderAdapter(val context: Context, val arrayList: ArrayList<Order
 
 
             totalAmountValueTV.text =
-                "RS " + DecimalFormat(".00").format(itemDetails.finalAmount + itemDetails.gstAmount)
+                "RS " + DecimalFormat(".00").format(itemDetails.finalAmount)
 
             tAmount = (itemDetails.finalAmount + itemDetails.gstAmount)
 

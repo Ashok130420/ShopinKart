@@ -15,7 +15,8 @@ import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
+import androidx.recyclerview.widget.LinearSmoothScroller
+import androidx.recyclerview.widget.RecyclerView.SmoothScroller
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout.OnRefreshListener
 import androidx.viewpager2.widget.ViewPager2
 import com.app.shopinkarts.R
@@ -33,7 +34,6 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 import java.util.*
-import kotlin.collections.ArrayList
 
 
 class HomeFragment : Fragment() {
@@ -79,7 +79,7 @@ class HomeFragment : Fragment() {
     var page = 0
     var isLoading = false
     var isLastPage: Boolean = false
-    val limit =arrayListEndLessProduct.size
+    val limit =10
     lateinit var layoutManager: LinearLayoutManager
 
     companion object {
@@ -114,7 +114,7 @@ class HomeFragment : Fragment() {
 
         endlessProductsAdapter = EndlessProductsAdapter(requireContext(), arrayListEndLessProduct)
         binding.allProductsRV.adapter = endlessProductsAdapter
-        val layoutManager = GridLayoutManager(requireContext(),2)
+        val layoutManager = GridLayoutManager(requireContext(), 2)
         binding.allProductsRV.layoutManager = layoutManager
 
         binding.allProductsRV.addOnScrollListener(object : PaginationScrollListener(layoutManager) {
@@ -127,16 +127,16 @@ class HomeFragment : Fragment() {
             }
 
             override fun loadMoreItems() {
-                Log.d("TAG", "loadMoreItems: safsafasf")
+                Log.d("TAG", "loadMoreItems: safsafasf..........")
                 isLoading = true
-                //you have to call loadmore items to get more data
-                binding.progressbar.visibility = View.VISIBLE
-                page++
-                endLessProductList()
+                //you have to call load more items to get more data
+                binding.progressbar.visibility = View.GONE
+//              page = 3
+//              endLessProductList()
             }
         })
         dashBoardList()
-        page=0
+        page = 0
         arrayListEndLessProduct.clear()
         endLessProductList()
         shimmerHome = binding.shimmerViewBanner
@@ -146,8 +146,8 @@ class HomeFragment : Fragment() {
 //            onResume()
 
 //            dashBoardList()
-            page=0
-            arrayListEndLessProduct.clear()
+            page = 0
+//            arrayListEndLessProduct.clear()
 //            endLessProductList()
 
             binding.pullToRefresh.isRefreshing = false
@@ -509,7 +509,7 @@ class HomeFragment : Fragment() {
 
     private fun endLessProductList() {
         val call: Call<EndlessProductsResponse> =
-            RetrofitClient.instance!!.api.endLessProduct(skip = page, limit = 3)
+            RetrofitClient.instance!!.api.endLessProduct(skip = 0, limit = 10)
         call.enqueue(object : Callback<EndlessProductsResponse> {
             @SuppressLint("NotifyDataSetChanged")
             override fun onResponse(
@@ -520,8 +520,8 @@ class HomeFragment : Fragment() {
                     if (endLessResponse!!.status) {
 
 
-                        val start = ((page) * limit) + 1
-                        val end = (page + 1) * limit
+//                        val start = ((page) * limit) + 1
+//                        val end = (page + 1) * limit
 
                         //arrayListEndLessProduct.clear()
                         arrayListEndLessProduct.addAll(endLessResponse.products)
@@ -530,17 +530,17 @@ class HomeFragment : Fragment() {
 //                        }
 
 
-                            if (::endlessProductsAdapter.isInitialized) {
-                                endlessProductsAdapter.notifyDataSetChanged()
-                            } else {
-                                endlessProductsAdapter = EndlessProductsAdapter(
-                                    requireContext(), arrayListEndLessProduct
-                                )
-                                binding.allProductsRV.adapter = endlessProductsAdapter
-
-                            }
-                            isLoading = false
-                            binding.progressbar.visibility = View.GONE
+                        if (::endlessProductsAdapter.isInitialized) {
+                            endlessProductsAdapter.notifyDataSetChanged()
+                        } else {
+                            endlessProductsAdapter = EndlessProductsAdapter(
+                                requireContext(), arrayListEndLessProduct
+                            )
+                            binding.allProductsRV.adapter = endlessProductsAdapter
+                            binding.allProductsRV.hasFixedSize()
+                        }
+                        isLoading = false
+                        binding.progressbar.visibility = View.GONE
                     }
                 }
             }

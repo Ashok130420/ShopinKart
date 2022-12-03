@@ -541,6 +541,7 @@ class ProductDetailsActivity : AppCompatActivity() {
                         imageUrl = productResponse.product.productImages[0]
                         binding.idTV.text = "#Id -${productResponse.product.productId}"
                         binding.tShirtNameTV.text = productResponse.product.productName
+
                         binding.actualPriceTV.text = "Rs ${productResponse.product.price}.00"
                         var discount = 0
                         if (productResponse.product.discountType == 1) {

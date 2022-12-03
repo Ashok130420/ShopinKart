@@ -27,7 +27,7 @@
 
         <TextView
             android:id="@+id/orderPlacedTimeTV"
-            android:layout_width="80dp"
+            android:layout_width="90dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/m20"
             android:layout_marginTop="@dimen/m20"
@@ -87,7 +87,7 @@
 
         <TextView
             android:id="@+id/processingTimeTV"
-            android:layout_width="80dp"
+            android:layout_width="90dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/m20"
             android:paddingVertical="@dimen/p20"
@@ -147,7 +147,7 @@
 
         <TextView
             android:id="@+id/outForDeliveryDateTV"
-            android:layout_width="80dp"
+            android:layout_width="90dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/m20"
             android:paddingVertical="@dimen/p20"
@@ -208,7 +208,7 @@
 
         <TextView
             android:id="@+id/deliveredDateTV"
-            android:layout_width="80dp"
+            android:layout_width="90dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/m20"
             android:paddingVertical="@dimen/p20"

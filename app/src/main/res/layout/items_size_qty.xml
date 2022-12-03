@@ -39,12 +39,13 @@
 
         <TextView
             android:id="@+id/sizeBlockTV"
-            android:layout_width="@dimen/m24"
+            android:layout_width="wrap_content"
             android:layout_height="@dimen/m24"
             android:layout_marginStart="@dimen/m10"
             android:background="@drawable/shape_color_grey"
             android:gravity="center"
-            android:padding="@dimen/p2"
+            android:paddingHorizontal="@dimen/p8"
+            android:paddingVertical="@dimen/p2"
             android:text="@string/m"
             android:textColor="@color/primary_text"
             app:layout_constraintBottom_toBottomOf="@+id/sizeTV"

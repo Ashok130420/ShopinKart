@@ -145,7 +145,7 @@ class TrackOrderActivity : AppCompatActivity() {
                             when (index) {
                                 0 -> {
 
-                                    binding.orderPlacedTimeTV.text = " ${arrayListTrack[0].time} AM"
+                                    binding.orderPlacedTimeTV.text = " ${arrayListTrack[0].time}"
                                     binding.orderPlacedTV.text = arrayListTrack[0].title
                                     binding.orderPlacedDescriptionTV.text =
                                         arrayListTrack[0].message
@@ -192,7 +192,7 @@ class TrackOrderActivity : AppCompatActivity() {
                                     val processingIconIV =
                                         findViewById<ImageView>(R.id.processingIconIV)
 
-                                    processingTimeTV.text = " ${arrayListTrack[1].time} AM"
+                                    processingTimeTV.text = " ${arrayListTrack[1].time}"
                                     processingTV.text = arrayListTrack[1].title
                                     processingDescriptionTV.text = arrayListTrack[1].message
                                     processingIconIV.setBackgroundResource(R.drawable.green_right_icon)
@@ -202,7 +202,7 @@ class TrackOrderActivity : AppCompatActivity() {
                                 2 -> {
 
                                     binding.outForDeliveryDateTV.text =
-                                        " ${arrayListTrack[2].time} AM"
+                                        " ${arrayListTrack[2].time}"
                                     binding.outForDeliveryTV.text = arrayListTrack[2].title
                                     binding.outForDeliveryDescriptionTV.text =
                                         arrayListTrack[2].message
@@ -219,7 +219,7 @@ class TrackOrderActivity : AppCompatActivity() {
                                     val deliveredIconIV =
                                         findViewById<ImageView>(R.id.deliveredIconIV)
 
-                                    deliveredDateTV.text = " ${arrayListTrack[3].time} AM"
+                                    deliveredDateTV.text = " ${arrayListTrack[3].time}"
                                     deliveredTV.text = arrayListTrack[3].title
                                     deliveredDescriptionTV.text = arrayListTrack[3].message
                                     deliveredIconIV.setBackgroundResource(R.drawable.green_right_icon)

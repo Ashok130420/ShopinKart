@@ -18,7 +18,6 @@
             android:id="@+id/imageCL"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
 
@@ -33,8 +32,8 @@
 
                 <ImageView
                     android:id="@+id/iconIV"
-                    android:layout_width="60dp"
-                    android:layout_height="60dp"
+                    android:layout_width="80dp"
+                    android:layout_height="80dp"
                     android:scaleType="fitXY"
                     android:src="@drawable/men_image"
                     tools:ignore="ContentDescription" />
@@ -48,8 +47,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/p5"
-            app:layout_constraintEnd_toEndOf="@id/imageCL"
-            app:layout_constraintStart_toStartOf="@id/imageCL"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/imageCL">
 
             <TextView
@@ -57,11 +56,14 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/dm_sans_medium"
+                android:gravity="center"
+                android:inputType="textMultiLine"
                 android:text="@string/men"
                 android:textColor="@color/primary_text"
-                android:textSize="@dimen/text_size_14"
+                android:textSize="@dimen/text_size_12"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintTop_toTopOf="parent"
+                tools:ignore="TextViewEdits" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 

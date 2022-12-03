@@ -135,18 +135,18 @@ class InvoiceActivity : AppCompatActivity() {
         binding.orderIdTV.text = "Order Id-${orderId}"
 
         binding.paymentTV.text =
-            "COD : Collect amount \nRS " + DecimalFormat(".00").format(OrdersFragment.arrayListMyOrders[position].finalAmount + OrdersFragment.arrayListMyOrders[position].gstAmount)+"/-"
+            "COD : Collect amount \nRS " + DecimalFormat(".00").format(OrdersFragment.arrayListMyOrders[position].finalAmount)+"/-"
 
         arrayList = OrdersFragment.arrayListMyOrders[position].products
 
         binding.tAmountValueTV.text =
-            "RS " + DecimalFormat(".00").format(OrdersFragment.arrayListMyOrders[position].finalAmount)
+            "RS " + DecimalFormat(".00").format(OrdersFragment.arrayListMyOrders[position].totalAmount)
 
         binding.gstTaxValueTV.text =
             "RS " + DecimalFormat(".00").format(OrdersFragment.arrayListMyOrders[position].gstAmount)
 
         binding.totalValueTV.text =
-            "RS " + DecimalFormat(".00").format(OrdersFragment.arrayListMyOrders[position].finalAmount + OrdersFragment.arrayListMyOrders[position].gstAmount)
+            "RS " + DecimalFormat(".00").format(OrdersFragment.arrayListMyOrders[position].finalAmount )
 
         gstAmount = OrdersFragment.arrayListMyOrders[position].gstAmount
 

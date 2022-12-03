@@ -137,10 +137,7 @@ class CheckOutDetailsActivity : AppCompatActivity() {
         binding.includeStepper1.stateSpinner.onItemSelectedListener =
             object : AdapterView.OnItemSelectedListener {
                 override fun onItemSelected(
-                    parent: AdapterView<*>?,
-                    view: View?,
-                    positionState: Int,
-                    id: Long
+                    parent: AdapterView<*>?, view: View?, positionState: Int, id: Long
                 ) {
 
                     val selectedItem = parent?.getItemAtPosition(positionState).toString()
@@ -161,10 +158,7 @@ class CheckOutDetailsActivity : AppCompatActivity() {
         binding.includeStepper1.businessStateSpinner.onItemSelectedListener =
             object : AdapterView.OnItemSelectedListener {
                 override fun onItemSelected(
-                    parent: AdapterView<*>?,
-                    view: View?,
-                    positionBusinessState: Int,
-                    id: Long
+                    parent: AdapterView<*>?, view: View?, positionBusinessState: Int, id: Long
                 ) {
 
                     val selectedItem = parent?.getItemAtPosition(positionBusinessState).toString()
@@ -589,16 +583,17 @@ class CheckOutDetailsActivity : AppCompatActivity() {
         val requestBody = CreateOrderRequest(
 
             discount = discountAmount.toString(),
-            finalAmount = finalPrice.toString(),
+            finalAmount = (finalPrice + gst).toString(),
             gstAmount = gst.toString(),
             paymentType = paymentType.toString(),
             products = arrayProduct,
             shippingDetails = shippingDetails,
-            totalAmount = totalAmount.toString(),
+            totalAmount = finalPrice.toString(),
             userId = sharedPreference.getUserId().toString(),
             businessOperatingState = opertingStateBusiness,
             companyName = companyBusiness,
-            deliveryInstruction = deliveryInstruction
+            deliveryInstruction = deliveryInstruction,
+            gstIn = gstBusiness
 
 
         )
@@ -631,7 +626,9 @@ class CheckOutDetailsActivity : AppCompatActivity() {
 
                         val jObjError = JSONObject(response.errorBody()!!.string())
                         Toast.makeText(
-                            this@CheckOutDetailsActivity, jObjError.getString("message"), Toast.LENGTH_LONG
+                            this@CheckOutDetailsActivity,
+                            jObjError.getString("message"),
+                            Toast.LENGTH_LONG
                         ).show()
 
                         Log.e("orderResponse", "${response.message()} ")
