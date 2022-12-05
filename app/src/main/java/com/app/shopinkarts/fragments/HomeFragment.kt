@@ -79,7 +79,7 @@ class HomeFragment : Fragment() {
     var page = 0
     var isLoading = false
     var isLastPage: Boolean = false
-    val limit =10
+    val limit =3
     lateinit var layoutManager: LinearLayoutManager
 
     companion object {
@@ -132,7 +132,7 @@ class HomeFragment : Fragment() {
                 //you have to call load more items to get more data
                 binding.progressbar.visibility = View.GONE
 //              page = 3
-//              endLessProductList()
+              endLessProductList()
             }
         })
         dashBoardList()
@@ -147,7 +147,7 @@ class HomeFragment : Fragment() {
 
 //            dashBoardList()
             page = 0
-//            arrayListEndLessProduct.clear()
+            arrayListEndLessProduct.clear()
 //            endLessProductList()
 
             binding.pullToRefresh.isRefreshing = false
@@ -509,7 +509,7 @@ class HomeFragment : Fragment() {
 
     private fun endLessProductList() {
         val call: Call<EndlessProductsResponse> =
-            RetrofitClient.instance!!.api.endLessProduct(skip = 0, limit = 10)
+            RetrofitClient.instance!!.api.endLessProduct(skip = page, limit = limit)
         call.enqueue(object : Callback<EndlessProductsResponse> {
             @SuppressLint("NotifyDataSetChanged")
             override fun onResponse(
@@ -541,6 +541,7 @@ class HomeFragment : Fragment() {
                         }
                         isLoading = false
                         binding.progressbar.visibility = View.GONE
+                        page +=limit
                     }
                 }
             }

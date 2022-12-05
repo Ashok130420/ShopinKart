@@ -6,6 +6,7 @@ import com.app.shopinkarts.response.VariantsArr
 
 data class CartModel(
     var pId: String,
+    var productId: String,
     var vId: String,
     var itemName: String,
     var discountedPrice: String,
@@ -18,6 +19,7 @@ data class CartModel(
     var stock: Int,
     var variantsArr: ArrayList<VariantsArr>,
     var variants: ArrayList<Variants>,
+
 //    var variants: ArrayList<Variant>
 
 )

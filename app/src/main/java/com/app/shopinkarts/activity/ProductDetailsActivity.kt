@@ -84,6 +84,7 @@ class ProductDetailsActivity : AppCompatActivity() {
         var actualPrice = 0
         var productId = ""
         var pId = ""
+        var p_Id = ""
         var vId = ""
         var itemName = ""
         var color = ""
@@ -341,7 +342,8 @@ class ProductDetailsActivity : AppCompatActivity() {
                 imageUrl = imageUrl,
                 stock = stock,
                 variantsArr = arrayListVariant,
-                variants = variantArray
+                variants = variantArray,
+                productId = p_Id
             )
             DashBoardActivity.arrayListCart.add(product)
             DashBoardActivity.selectedVIDs.add(vId)
@@ -358,6 +360,7 @@ class ProductDetailsActivity : AppCompatActivity() {
 
             for (index in DashBoardActivity.arrayListCart.indices) {
                 val product = DashBoardActivity.arrayListCart[index]
+                Log.d("productResponse.product", product.pId)
                 if (product.pId == pId) {
                     isProductFound = true
                     if (product.variants.contains(
@@ -420,7 +423,8 @@ class ProductDetailsActivity : AppCompatActivity() {
                                 imageUrl = imageUrl,
                                 stock = stock,
                                 variantsArr = arrayListVariant,
-                                variants = variantArray
+                                variants = variantArray,
+                                productId = p_Id
                             )
                         )
                         Toast.makeText(this, "Product update Successfully", Toast.LENGTH_SHORT).show()
@@ -460,7 +464,8 @@ class ProductDetailsActivity : AppCompatActivity() {
                         imageUrl = imageUrl,
                         stock = stock,
                         variantsArr = arrayListVariant,
-                        variants = variantArray
+                        variants = variantArray,
+                        productId = p_Id
                     )
                 )
                 DashBoardActivity.selectedVIDs.add(vId)
@@ -537,10 +542,14 @@ class ProductDetailsActivity : AppCompatActivity() {
                     if (productResponse!!.status) {
 
                         pId = productResponse.product._id
+                        p_Id=productResponse.product.productId
                         itemName = productResponse.product.productName
                         imageUrl = productResponse.product.productImages[0]
                         binding.idTV.text = "#Id -${productResponse.product.productId}"
                         binding.tShirtNameTV.text = productResponse.product.productName
+
+                        Log.d( "productResponse.product", productResponse.product._id)
+                        Log.d( "productResponse.product", productResponse.product.productId)
 
                         binding.actualPriceTV.text = "Rs ${productResponse.product.price}.00"
                         var discount = 0

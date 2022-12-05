@@ -31,7 +31,9 @@ class DiscountForYouAdapter(val context: Context, val arrayList: ArrayList<Disco
         val itemDetails = arrayList[position]
         holder.binding.apply {
 
-            Glide.with(context).load(itemDetails.productImages[0]).into(imageIV)
+            if (itemDetails.productImages.isNotEmpty()) {
+                Glide.with(context).load(itemDetails.productImages[0]).into(imageIV)
+            }
             productNameTV.text = itemDetails.productName
 //            priceTV.text = "Rs ${itemDetails.price}"
             ratingTV.text = itemDetails.avgRating.toString()

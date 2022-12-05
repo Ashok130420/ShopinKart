@@ -33,16 +33,17 @@ class MostPopularAdapter(val context: Context, val arrayList: ArrayList<MostPopu
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val itemDetails = arrayList[position]
         holder.binding.apply {
-
-            Glide.with(context).load(itemDetails.productImages[0]).into(imageIV)
+            if (itemDetails.productImages.isNotEmpty()) {
+                Glide.with(context).load(itemDetails.productImages[0]).into(imageIV)
+            }
             productTV.text = itemDetails.productName
 //            priceTV.text = "Rs ${itemDetails.price}"
-            ratingTV.text=itemDetails.avgRating.toString()
+            ratingTV.text = itemDetails.avgRating.toString()
 
             var discount = 0
             if (itemDetails.discountType == 1) {
                 discount = (itemDetails.price * itemDetails.discount) / 100
-                priceTV.text = "Rs ${(itemDetails.price)-(discount)}"
+                priceTV.text = "Rs ${(itemDetails.price) - (discount)}"
             } else if (itemDetails.discountType == 0) {
                 discount = (itemDetails.price - itemDetails.discount)
                 priceTV.text = "Rs $discount"
@@ -52,7 +53,7 @@ class MostPopularAdapter(val context: Context, val arrayList: ArrayList<MostPopu
         }
         holder.itemView.setOnClickListener {
             val intent = Intent(context, ProductDetailsActivity::class.java)
-            intent.putExtra("productId",itemDetails._id)
+            intent.putExtra("productId", itemDetails._id)
             context.startActivity(intent)
         }
     }

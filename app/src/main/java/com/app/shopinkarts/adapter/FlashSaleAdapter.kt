@@ -31,7 +31,9 @@ class FlashSaleAdapter(val context: Context, val arrayList: ArrayList<FlashSale>
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val itemDetails = arrayList[position]
         holder.itemsFlashSaleBinding.apply {
-            Glide.with(context).load(itemDetails.productImages[0]).into(discountIV)
+            if (itemDetails.productImages.isNotEmpty()) {
+                Glide.with(context).load(itemDetails.productImages[0]).into(discountIV)
+            }
             productNameTV.text = itemDetails.productName
 //            priceTV.text = "Rs ${itemDetails.price}"
             discountTV.text = "${itemDetails.discount} %OFF"

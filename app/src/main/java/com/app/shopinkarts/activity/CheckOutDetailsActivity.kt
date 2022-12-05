@@ -542,9 +542,12 @@ class CheckOutDetailsActivity : AppCompatActivity() {
                     productName = item.itemName,
                     qty = totalQuantity,
                     totalAmount = totalPrice.toDouble(),
-                    variants = item.variants
+                    variants = item.variants,
+                    pId = item.productId
                 )
             )
+            Log.d("arrayProduct",item.pId)
+            Log.d("arrayProduct",item.vId)
             Log.d("arrayProduct", arrayProduct.toString())
 
         }

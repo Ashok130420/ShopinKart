@@ -41,7 +41,7 @@ class ProductAdapter(val context: Context, val products: List<CreateProduct>) :
 
             dateTV.text = DeliveredOrderAdapter.date
 
-            pidTV.text = "PID # ${itemDetails.productId}"
+            pidTV.text = "PID # ${itemDetails.pId}"
 
             if (DeliveredOrderAdapter.paymentType == 1) {
                 codOnlineTV.text = context.resources.getString(R.string.card)

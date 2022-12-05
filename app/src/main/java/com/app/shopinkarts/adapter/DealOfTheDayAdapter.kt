@@ -33,7 +33,9 @@ class DealOfTheDayAdapter(val context: Context, val arrayList: ArrayList<DealOfD
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val itemDetails = arrayList[position]
         holder.itemsDealOfTheDayBinding.apply {
-            Glide.with(context).load(itemDetails.productImages[0]).into(imageIV)
+            if (itemDetails.productImages.isNotEmpty()) {
+                Glide.with(context).load(itemDetails.productImages[0]).into(imageIV)
+            }
             productNameTV.text=itemDetails.productName
 //            priceTV.text="RS ${itemDetails.price}"
             ratingTV.text=itemDetails.avgRating.toString()
