@@ -70,7 +70,7 @@
             android:id="@+id/nameTV"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:fontFamily="@font/dm_sans"
+            android:fontFamily="@font/inter_medium"
             android:gravity="center"
             android:textColor="@color/primary_Blue"
             android:textSize="@dimen/text_size_16"

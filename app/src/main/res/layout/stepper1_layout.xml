@@ -48,7 +48,7 @@
                             android:id="@+id/nameET"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:fontFamily="@font/dm_sans_medium"
+                            android:fontFamily="@font/inter_regular"
                             android:inputType="textCapSentences"
                             android:textColorHighlight="@color/hint"
                             android:textSize="@dimen/text_size_12" />
@@ -89,7 +89,7 @@
                             android:id="@+id/phoneNumberET"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:fontFamily="@font/dm_sans_medium"
+                            android:fontFamily="@font/inter_regular"
                             android:inputType="number"
                             android:maxLength="10"
                             android:textColorHighlight="@color/hint_color"
@@ -113,7 +113,7 @@
                             android:id="@+id/flatHouseET"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:fontFamily="@font/dm_sans_medium"
+                            android:fontFamily="@font/inter_regular"
                             android:inputType="textCapSentences"
                             android:textColorHighlight="@color/hint_color"
                             android:textSize="@dimen/text_size_12" />
@@ -136,7 +136,7 @@
                             android:id="@+id/streetET"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:fontFamily="@font/dm_sans_medium"
+                            android:fontFamily="@font/inter_regular"
                             android:inputType="textCapSentences"
                             android:textColorHighlight="@color/hint_color"
                             android:textSize="@dimen/text_size_12" />
@@ -159,7 +159,7 @@
                             android:id="@+id/pinCodeET"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:fontFamily="@font/dm_sans_medium"
+                            android:fontFamily="@font/inter_regular"
                             android:inputType="number"
                             android:maxLength="6"
                             android:textColorHighlight="@color/hint_color"
@@ -185,7 +185,7 @@
                             android:id="@+id/cityET"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:fontFamily="@font/dm_sans_medium"
+                            android:fontFamily="@font/inter_regular"
                             android:inputType="textCapSentences"
                             android:textSize="@dimen/text_size_12" />
 
@@ -209,7 +209,7 @@
                             android:layout_height="wrap_content"
                             android:layout_marginStart="@dimen/m10"
                             android:entries="@array/state"
-                            android:fontFamily="@font/dm_sans_medium"
+                            android:fontFamily="@font/inter_regular"
                             android:inputType="number"
                             android:paddingVertical="@dimen/p14"
                             android:textColorHighlight="@color/hint_color"
@@ -226,7 +226,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="@dimen/m20"
-                        android:fontFamily="@font/dm_sans_medium"
+                        android:fontFamily="@font/inter_regular"
                         android:hint="@string/landmark_optional"
                         android:textColorHint="@color/hint_color"
                         app:boxStrokeColor="@color/primary_Blue"
@@ -237,7 +237,7 @@
                             android:id="@+id/landMarkET"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:fontFamily="@font/dm_sans_medium"
+                            android:fontFamily="@font/inter_regular"
                             android:inputType="textCapSentences"
                             android:textColorHighlight="@color/hint_color"
                             android:textSize="@dimen/text_size_12" />
@@ -250,7 +250,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="@dimen/m20"
-                        android:fontFamily="@font/dm_sans_medium"
+                        android:fontFamily="@font/inter_regular"
                         android:hint="@string/delivery_ins"
                         android:textColorHint="@color/hint_color"
                         app:boxStrokeColor="@color/primary_Blue"
@@ -261,7 +261,7 @@
                             android:id="@+id/deliveryInstructionsET"
                             android:layout_width="match_parent"
                             android:layout_height="@dimen/m200"
-                            android:fontFamily="@font/dm_sans_medium"
+                            android:fontFamily="@font/inter_regular"
                             android:gravity="top"
                             android:inputType="textCapSentences"
                             android:textColorHighlight="@color/hint_color"
@@ -275,7 +275,7 @@
                     <!--                        android:layout_height="@dimen/m200"-->
                     <!--                        android:layout_marginTop="@dimen/m20"-->
                     <!--                        android:background="@drawable/shape_grey_corners_5dp"-->
-                    <!--                        android:fontFamily="@font/dm_sans_medium"-->
+                    <!--                        android:fontFamily="@font/inter_regular"-->
                     <!--                        android:gravity="top"-->
                     <!--                        android:hint="@string/delivery_ins"-->
                     <!--                        android:inputType="textCapSentences|textMultiLine"-->
@@ -314,7 +314,7 @@
                             android:id="@+id/businessNameET"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:fontFamily="@font/dm_sans_medium"
+                            android:fontFamily="@font/inter_regular"
                             android:inputType="textCapSentences"
                             android:textColorHighlight="@color/hint"
                             android:textSize="@dimen/text_size_12"
@@ -339,7 +339,7 @@
                             android:id="@+id/firmNameET"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:fontFamily="@font/dm_sans_medium"
+                            android:fontFamily="@font/inter_regular"
                             android:inputType="textCapSentences"
                             android:textColorHighlight="@color/hint"
                             android:textSize="@dimen/text_size_12" />
@@ -363,7 +363,7 @@
                             android:id="@+id/gstInET"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:fontFamily="@font/dm_sans_medium"
+                            android:fontFamily="@font/inter_regular"
                             android:inputType="textCapCharacters"
                             android:maxLength="17"
                             android:textColorHighlight="@color/hint"
@@ -387,7 +387,7 @@
                             android:layout_height="wrap_content"
                             android:layout_marginStart="@dimen/m10"
                             android:entries="@array/state_business"
-                            android:fontFamily="@font/dm_sans_medium"
+                            android:fontFamily="@font/inter_regular"
                             android:inputType="number"
                             android:paddingVertical="@dimen/p14"
                             android:textColorHighlight="@color/hint_color"
@@ -401,7 +401,7 @@
                         android:layout_height="wrap_content"
                         android:background="@drawable/shape_grey_corners_5dp"
                         android:enabled="false"
-                        android:fontFamily="@font/dm_sans_medium"
+                        android:fontFamily="@font/inter_regular"
                         android:padding="@dimen/p17"
                         android:text="@string/_91"
                         android:textColor="@color/primary_text"
@@ -429,7 +429,7 @@
                             android:id="@+id/businessPhoneNumberET"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:fontFamily="@font/dm_sans_medium"
+                            android:fontFamily="@font/inter_regular"
                             android:inputType="number"
                             android:maxLength="10"
                             android:textColorHighlight="@color/hint_color"
@@ -453,7 +453,7 @@
                             android:id="@+id/businessFlatHouseET"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:fontFamily="@font/dm_sans_medium"
+                            android:fontFamily="@font/inter_regular"
                             android:inputType="textCapSentences"
                             android:textColorHighlight="@color/hint_color"
                             android:textSize="@dimen/text_size_12" />
@@ -476,7 +476,7 @@
                             android:id="@+id/businessStreetET"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:fontFamily="@font/dm_sans_medium"
+                            android:fontFamily="@font/inter_regular"
                             android:inputType="textCapSentences"
                             android:textColorHighlight="@color/hint_color"
                             android:textSize="@dimen/text_size_12" />
@@ -499,7 +499,7 @@
                             android:id="@+id/businessPinCodeET"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:fontFamily="@font/dm_sans_medium"
+                            android:fontFamily="@font/inter_regular"
                             android:inputType="number"
                             android:maxLength="6"
                             android:textColorHighlight="@color/hint_color"
@@ -525,7 +525,7 @@
                             android:id="@+id/businessCityET"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:fontFamily="@font/dm_sans_medium"
+                            android:fontFamily="@font/inter_regular"
                             android:inputType="textCapSentences"
                             android:textSize="@dimen/text_size_12" />
 
@@ -549,7 +549,7 @@
                             android:layout_height="wrap_content"
                             android:layout_marginStart="@dimen/m10"
                             android:entries="@array/state"
-                            android:fontFamily="@font/dm_sans_medium"
+                            android:fontFamily="@font/inter_regular"
                             android:inputType="number"
                             android:paddingVertical="@dimen/p14"
                             android:textColorHighlight="@color/hint_color"
@@ -576,7 +576,7 @@
                             android:id="@+id/businessLandMarkET"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:fontFamily="@font/dm_sans_medium"
+                            android:fontFamily="@font/inter_regular"
                             android:inputType="textCapSentences"
                             android:textColorHighlight="@color/hint_color"
                             android:textSize="@dimen/text_size_12" />
@@ -589,7 +589,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="@dimen/m20"
-                        android:fontFamily="@font/dm_sans_medium"
+                        android:fontFamily="@font/inter_regular"
                         android:hint="@string/delivery_ins"
                         android:textColorHint="@color/hint_color"
                         app:boxStrokeColor="@color/primary_Blue"
@@ -600,7 +600,7 @@
                             android:id="@+id/deliveryInstructionsBusinessET"
                             android:layout_width="match_parent"
                             android:layout_height="@dimen/m200"
-                            android:fontFamily="@font/dm_sans_medium"
+                            android:fontFamily="@font/inter_regular"
                             android:gravity="top"
                             android:inputType="textCapSentences"
                             android:textColorHighlight="@color/hint_color"
@@ -614,7 +614,7 @@
                     <!--                        android:layout_height="@dimen/m200"-->
                     <!--                        android:layout_marginTop="@dimen/m20"-->
                     <!--                        android:background="@drawable/shape_grey_corners_5dp"-->
-                    <!--                        android:fontFamily="@font/dm_sans_medium"-->
+                    <!--                        android:fontFamily="@font/inter_regular"-->
                     <!--                        android:gravity="top"-->
                     <!--                        android:hint="@string/delivery_ins"-->
                     <!--                        android:inputType="textCapSentences|textMultiLine"-->

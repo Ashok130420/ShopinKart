@@ -187,7 +187,7 @@
                     android:layout_marginStart="@dimen/m10"
                     android:backgroundTint="@color/hint_color"
                     android:checked="true"
-                    android:fontFamily="@font/dm_sans"
+                    android:fontFamily="@font/inter_medium"
                     android:text="@string/no"
                     android:textColor="@color/hint_color"
                     android:textSize="@dimen/text_size_14" />
@@ -198,7 +198,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="@dimen/m50"
                     android:backgroundTint="@color/hint_color"
-                    android:fontFamily="@font/dm_sans"
+                    android:fontFamily="@font/inter_medium"
                     android:text="@string/yes"
                     android:textColor="@color/hint_color"
                     android:textSize="@dimen/text_size_14" />
