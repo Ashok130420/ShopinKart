@@ -127,7 +127,7 @@ class InvoiceActivity : AppCompatActivity() {
 
         } else {
             binding.customerNameTV.text =
-                "${sharedPreference.getBusinessName()}\n${sharedPreference.getBusinessFlat()},${sharedPreference.getBusinessStreet()}, ${sharedPreference.getBusinessPin()},${sharedPreference.getBusinessCity()},${sharedPreference.getBusinessLandmark()}"
+                "${sharedPreference.getBusinessName()}\n${sharedPreference.getBusinessFlat()},${sharedPreference.getBusinessStreet()}, ${sharedPreference.getBusinessPin()},${sharedPreference.getBusinessCity()},${sharedPreference.getBusinessLandmark()}\n\nGST - ${sharedPreference.getBusinessGst()}"
 
         }
 
