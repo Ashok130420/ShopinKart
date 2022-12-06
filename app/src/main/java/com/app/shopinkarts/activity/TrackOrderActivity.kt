@@ -145,7 +145,7 @@ class TrackOrderActivity : AppCompatActivity() {
                             when (index) {
                                 0 -> {
 
-                                    binding.orderPlacedTimeTV.text = " ${arrayListTrack[0].time}"
+                                    binding.orderPlacedTimeTV.text = " ${arrayListTrack[0].dateTimeStamp}"
                                     binding.orderPlacedTV.text = arrayListTrack[0].title
                                     binding.orderPlacedDescriptionTV.text =
                                         arrayListTrack[0].message
@@ -192,7 +192,7 @@ class TrackOrderActivity : AppCompatActivity() {
                                     val processingIconIV =
                                         findViewById<ImageView>(R.id.processingIconIV)
 
-                                    processingTimeTV.text = " ${arrayListTrack[1].time}"
+                                    processingTimeTV.text = " ${arrayListTrack[1].dateTimeStamp}"
                                     processingTV.text = arrayListTrack[1].title
                                     processingDescriptionTV.text = arrayListTrack[1].message
                                     processingIconIV.setBackgroundResource(R.drawable.green_right_icon)
@@ -202,7 +202,7 @@ class TrackOrderActivity : AppCompatActivity() {
                                 2 -> {
 
                                     binding.outForDeliveryDateTV.text =
-                                        " ${arrayListTrack[2].time}"
+                                        " ${arrayListTrack[2].dateTimeStamp}"
                                     binding.outForDeliveryTV.text = arrayListTrack[2].title
                                     binding.outForDeliveryDescriptionTV.text =
                                         arrayListTrack[2].message
@@ -219,7 +219,7 @@ class TrackOrderActivity : AppCompatActivity() {
                                     val deliveredIconIV =
                                         findViewById<ImageView>(R.id.deliveredIconIV)
 
-                                    deliveredDateTV.text = " ${arrayListTrack[3].time}"
+                                    deliveredDateTV.text = " ${arrayListTrack[3].dateTimeStamp}"
                                     deliveredTV.text = arrayListTrack[3].title
                                     deliveredDescriptionTV.text = arrayListTrack[3].message
                                     deliveredIconIV.setBackgroundResource(R.drawable.green_right_icon)
@@ -230,7 +230,7 @@ class TrackOrderActivity : AppCompatActivity() {
                                     var dateInString = startDate
                                     var sdf = SimpleDateFormat("yyyy-MM-dd")
                                     val c: Calendar = Calendar.getInstance()
-                                    c.time = sdf.parse(dateInString)
+                                    c.time = sdf.parse(dateInString)!!
                                     c.add(Calendar.DATE, 5)
                                     sdf = SimpleDateFormat("yyyy-MM-dd")
                                     val resultDate = Date(c.timeInMillis)

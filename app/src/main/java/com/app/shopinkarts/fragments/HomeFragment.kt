@@ -3,20 +3,22 @@ package com.app.shopinkarts.fragments
 
 import android.annotation.SuppressLint
 import android.content.Intent
+import android.os.Build
 import android.os.Bundle
 import android.os.CountDownTimer
 import android.os.Handler
 import android.util.Log
 import android.view.*
 import android.widget.*
+import androidx.annotation.NonNull
+import androidx.annotation.RequiresApi
 import androidx.core.content.ContextCompat
 import androidx.core.view.get
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.LinearSmoothScroller
-import androidx.recyclerview.widget.RecyclerView.SmoothScroller
+import androidx.recyclerview.widget.RecyclerView
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout.OnRefreshListener
 import androidx.viewpager2.widget.ViewPager2
 import com.app.shopinkarts.R
@@ -79,7 +81,7 @@ class HomeFragment : Fragment() {
     var page = 0
     var isLoading = false
     var isLastPage: Boolean = false
-    val limit =3
+    val limit = 6
     lateinit var layoutManager: LinearLayoutManager
 
     companion object {
@@ -103,6 +105,7 @@ class HomeFragment : Fragment() {
         }
     }
 
+    @RequiresApi(Build.VERSION_CODES.M)
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
     ): View {
@@ -116,6 +119,24 @@ class HomeFragment : Fragment() {
         binding.allProductsRV.adapter = endlessProductsAdapter
         val layoutManager = GridLayoutManager(requireContext(), 2)
         binding.allProductsRV.layoutManager = layoutManager
+        binding.allProductsRV.hasFixedSize()
+        binding.allProductsRV.isNestedScrollingEnabled = true
+//        binding.allProductsRV.maxFlingVelocity
+
+//        binding.scrollView.viewTreeObserver.addOnScrollChangedListener(OnScrollChangedListener {
+//
+//            endLessProductList()
+//
+//        })
+
+//        binding.allProductsRV.addOnScrollListener(object : RecyclerView.OnScrollListener() {
+//            override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
+//                super.onScrolled(recyclerView, dx, dy)
+//                if (!recyclerView.canScrollVertically(1)) { //1 for down
+//                    endLessProductList()
+//                }
+//            }
+//        })
 
         binding.allProductsRV.addOnScrollListener(object : PaginationScrollListener(layoutManager) {
             override fun isLastPage(): Boolean {
@@ -129,12 +150,11 @@ class HomeFragment : Fragment() {
             override fun loadMoreItems() {
                 Log.d("TAG", "loadMoreItems: safsafasf..........")
                 isLoading = true
-                //you have to call load more items to get more data
-                binding.progressbar.visibility = View.GONE
-//              page = 3
-              endLessProductList()
+                binding.progressbar.visibility = View.VISIBLE
+                endLessProductList()
             }
         })
+
         dashBoardList()
         page = 0
         arrayListEndLessProduct.clear()
@@ -146,8 +166,8 @@ class HomeFragment : Fragment() {
 //            onResume()
 
 //            dashBoardList()
-            page = 0
-            arrayListEndLessProduct.clear()
+//            page = 0
+//            arrayListEndLessProduct.clear()
 //            endLessProductList()
 
             binding.pullToRefresh.isRefreshing = false
@@ -538,10 +558,12 @@ class HomeFragment : Fragment() {
                             )
                             binding.allProductsRV.adapter = endlessProductsAdapter
                             binding.allProductsRV.hasFixedSize()
+                            binding.allProductsRV.isNestedScrollingEnabled = true
+
                         }
                         isLoading = false
                         binding.progressbar.visibility = View.GONE
-                        page +=limit
+                        page += limit
                     }
                 }
             }
