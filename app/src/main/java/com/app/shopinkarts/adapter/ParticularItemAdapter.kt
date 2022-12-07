@@ -38,9 +38,9 @@ class ParticularItemAdapter(val context: Context, var arrayList: ArrayList<Produ
             priceTV.text = "Rs ${itemDetails.price}"
             ratingTV.text=itemDetails.avgRating.toString()
 
-            if (itemDetails.discountType == 0) {
+            if (itemDetails.discountType == 1) {
                 discountTV.text = "${itemDetails.discount} %OFF"
-            } else if (itemDetails.discountType == 1) {
+            } else if (itemDetails.discountType == 0) {
                 discountTV.text = "Rs ${itemDetails.discount} OFF"
             } else {
                 discountTV.visibility = View.GONE
