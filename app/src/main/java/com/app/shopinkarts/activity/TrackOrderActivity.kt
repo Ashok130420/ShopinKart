@@ -145,7 +145,8 @@ class TrackOrderActivity : AppCompatActivity() {
                             when (index) {
                                 0 -> {
 
-                                    binding.orderPlacedTimeTV.text = " ${arrayListTrack[0].dateTimeStamp}"
+                                    binding.orderPlacedTimeTV.text =
+                                        " ${arrayListTrack[0].dateTimeStamp}"
                                     binding.orderPlacedTV.text = arrayListTrack[0].title
                                     binding.orderPlacedDescriptionTV.text =
                                         arrayListTrack[0].message
