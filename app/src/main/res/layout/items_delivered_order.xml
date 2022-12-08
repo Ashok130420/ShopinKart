@@ -321,13 +321,33 @@
         </androidx.constraintlayout.widget.ConstraintLayout>
 
         <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/orderReplacedCL"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="14dp"
+            android:visibility="gone"
+            app:layout_constraintTop_toBottomOf="@id/cancelOrderCL">
+
+            <TextView
+                android:id="@+id/orderReplacedTV"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Order replaced"
+                android:textColor="@color/red"
+                android:textSize="@dimen/text_size_12"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/trackOrderCL"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
 
             android:layout_marginHorizontal="@dimen/m14"
             android:layout_marginTop="@dimen/m20"
-            app:layout_constraintTop_toBottomOf="@id/cancelOrderCL">
+            app:layout_constraintTop_toBottomOf="@id/orderReplacedCL">
 
             <TextView
                 android:id="@+id/trackOrderStatusTV"

@@ -255,6 +255,26 @@ class TrackOrderActivity : AppCompatActivity() {
                                         cancelOrderTV.visibility = View.GONE
                                     }
                                 }
+                                4 -> {
+                                    val replacedTimeTV =
+                                        findViewById<TextView>(R.id.replacedTimeTV)
+                                    val replacedTV = findViewById<TextView>(R.id.replacedTV)
+                                    val replacedDescriptionTV =
+                                        findViewById<TextView>(R.id.replacedDescriptionTV)
+                                    val replacedIconIV =
+                                        findViewById<ImageView>(R.id.replacedIconIV)
+                                    val replacedView =
+                                        findViewById<View>(R.id.replacedView)
+
+                                    replacedTV.visibility = View.VISIBLE
+                                    replacedIconIV.visibility = View.VISIBLE
+                                    replacedView.visibility = View.VISIBLE
+
+                                    replacedTimeTV.text = " ${arrayListTrack[4].dateTimeStamp}"
+                                    replacedTV.text = arrayListTrack[4].title
+                                    replacedDescriptionTV.text = arrayListTrack[4].message
+
+                                }
                             }
                         }
 

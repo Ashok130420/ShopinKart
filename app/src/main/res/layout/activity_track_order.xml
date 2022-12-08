@@ -30,7 +30,7 @@
             android:layout_width="@dimen/m100"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/m20"
-            android:layout_marginTop="@dimen/m20"
+
             android:paddingVertical="@dimen/p20"
             android:textColor="@color/primary_text"
             android:textSize="@dimen/text_size_14"
@@ -53,7 +53,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/m20"
-            android:paddingVertical="@dimen/p20"
+            android:paddingVertical="@dimen/p16"
             android:text="@string/order_placed"
             android:textColor="@color/primary_text"
             android:textSize="@dimen/text_size_15"
@@ -76,7 +76,7 @@
             android:id="@+id/orderPlacedView"
             android:layout_width="2dp"
             android:layout_height="60dp"
-            android:layout_marginVertical="@dimen/m14"
+            android:layout_marginVertical="@dimen/m10"
             android:background="@color/unselected_Text_color"
             app:layout_constraintEnd_toEndOf="@+id/orderPlacedIconIV"
             app:layout_constraintStart_toStartOf="@+id/orderPlacedIconIV"
@@ -112,7 +112,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/m20"
-            android:paddingVertical="@dimen/p20"
+            android:paddingVertical="@dimen/p16"
             android:text="@string/processing"
             android:textColor="@color/primary_text"
             android:textSize="@dimen/text_size_15"
@@ -136,7 +136,7 @@
             android:id="@+id/processingView"
             android:layout_width="2dp"
             android:layout_height="60dp"
-            android:layout_marginVertical="@dimen/m14"
+            android:layout_marginVertical="@dimen/m10"
             android:background="@color/unselected_Text_color"
             app:layout_constraintEnd_toEndOf="@+id/processingIconIV"
             app:layout_constraintStart_toStartOf="@+id/processingIconIV"
@@ -172,7 +172,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/m20"
-            android:paddingVertical="@dimen/p20"
+            android:paddingVertical="@dimen/p16"
             android:text="@string/out_for_delivery"
             android:textColor="@color/primary_text"
             android:textSize="@dimen/text_size_15"
@@ -232,7 +232,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/m20"
-            android:paddingVertical="@dimen/p20"
+            android:paddingVertical="@dimen/p16"
             android:text="@string/delivered"
             android:textColor="@color/primary_text"
             android:textSize="@dimen/text_size_15"
@@ -255,7 +255,7 @@
             android:id="@+id/deliveredView"
             android:layout_width="2dp"
             android:layout_height="60dp"
-            android:layout_marginVertical="@dimen/m14"
+            android:layout_marginVertical="@dimen/m10"
             android:background="@color/unselected_Text_color"
             app:layout_constraintEnd_toEndOf="@+id/outForDeliveryIconIV"
             app:layout_constraintStart_toStartOf="@+id/outForDeliveryIconIV"
@@ -273,10 +273,68 @@
             android:text="@string/cancel_order"
             android:textColor="@color/white"
             android:textSize="@dimen/text_size_12"
-            android:visibility="visible"
+            android:visibility="gone"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/deliveredDescriptionTV" />
 
+        <View
+            android:id="@+id/replacedView"
+            android:layout_width="2dp"
+            android:layout_height="60dp"
+            android:visibility="gone"
+            android:layout_marginVertical="@dimen/m10"
+            android:background="@color/unselected_Text_color"
+            app:layout_constraintEnd_toEndOf="@+id/deliveredIconIV"
+            app:layout_constraintStart_toStartOf="@+id/deliveredIconIV"
+            app:layout_constraintTop_toBottomOf="@+id/deliveredIconIV" />
+
+        <TextView
+            android:id="@+id/replacedTimeTV"
+            android:layout_width="@dimen/m100"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/m20"
+            android:paddingVertical="@dimen/p20"
+            android:textColor="@color/primary_text"
+            android:textSize="@dimen/text_size_14"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/replacedView" />
+
+        <ImageView
+            android:id="@+id/replacedIconIV"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:visibility="gone"
+            android:layout_marginStart="@dimen/m20"
+            android:src="@drawable/green_right_icon"
+            app:layout_constraintBottom_toBottomOf="@+id/replacedTimeTV"
+            app:layout_constraintStart_toEndOf="@+id/replacedTimeTV"
+            app:layout_constraintTop_toTopOf="@+id/replacedTimeTV"
+            tools:ignore="ContentDescription,UsingOnClickInXml" />
+        <TextView
+            android:id="@+id/replacedTV"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/m20"
+            android:paddingVertical="@dimen/p16"
+            android:text="@string/replaced"
+            android:visibility="gone"
+            android:textColor="@color/primary_text"
+            android:textSize="@dimen/text_size_15"
+            app:layout_constraintBottom_toBottomOf="@+id/replacedIconIV"
+            app:layout_constraintStart_toEndOf="@+id/replacedIconIV"
+            app:layout_constraintTop_toTopOf="@+id/replacedIconIV" />
+
+        <TextView
+            android:id="@+id/replacedDescriptionTV"
+            android:layout_width="@dimen/m170"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/inter_regular"
+            android:inputType="textMultiLine"
+            android:textColor="@color/unselected_Text_color"
+            android:textSize="@dimen/text_size_12"
+            app:layout_constraintStart_toStartOf="@+id/replacedTV"
+            app:layout_constraintTop_toBottomOf="@+id/replacedTV"
+            tools:ignore="TextViewEdits" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
