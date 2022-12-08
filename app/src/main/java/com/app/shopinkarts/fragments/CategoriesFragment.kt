@@ -109,7 +109,9 @@ class CategoriesFragment : Fragment() {
 
             override fun onFailure(call: Call<CategoriesResponse>, t: Throwable) {
                 Log.d("TAG", "onFailureResponse: ${t.message}")
-                if (context != null) Toast.makeText(requireContext(), "${t.message}", Toast.LENGTH_SHORT).show()
+                if (context != null) Toast.makeText(
+                    requireContext(), "${t.message}", Toast.LENGTH_SHORT
+                ).show()
             }
 
         })
@@ -134,8 +136,10 @@ class CategoriesFragment : Fragment() {
                             categoryBannerAdapter =
                                 CategoryBannerAdapter(requireContext(), arraylistCategoryBanner)
                             binding.categoryBannerViewPager.adapter = categoryBannerAdapter
-                            setupIndicators()
-                            autoSlideBanner(arraylistCategoryBanner.size)
+                            if (arraylistCategoryBanner.isNotEmpty()) {
+                                setupIndicators()
+                                autoSlideBanner(arraylistCategoryBanner.size)
+                            }
                         }
                     }
                     Log.d("TAG", "onResponse_SuccessResponse :${categoryBannerResponse.message}")
@@ -148,7 +152,9 @@ class CategoriesFragment : Fragment() {
 
             override fun onFailure(call: Call<CategoryBannerResponse>, t: Throwable) {
                 Log.d("TAG", "onFailureResponse: ${t.message}")
-                if (context != null)  Toast.makeText(requireContext(), "${t.message}", Toast.LENGTH_SHORT).show()
+                if (context != null) Toast.makeText(
+                    requireContext(), "${t.message}", Toast.LENGTH_SHORT
+                ).show()
             }
 
         })
