@@ -10,7 +10,6 @@ import android.os.Handler
 import android.util.Log
 import android.view.*
 import android.widget.*
-import androidx.annotation.NonNull
 import androidx.annotation.RequiresApi
 import androidx.core.content.ContextCompat
 import androidx.core.view.get
@@ -18,7 +17,6 @@ import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout.OnRefreshListener
 import androidx.viewpager2.widget.ViewPager2
 import com.app.shopinkarts.R
@@ -26,7 +24,8 @@ import com.app.shopinkarts.activity.SearchActivity
 import com.app.shopinkarts.activity.ViewAllActivity
 import com.app.shopinkarts.adapter.*
 import com.app.shopinkarts.api.RetrofitClient
-import com.app.shopinkarts.classes.PaginationScrollListener
+import com.app.shopinkarts.classes.CustomScrollView
+import com.app.shopinkarts.classes.CustomScrollView.OnBottomReachedListener
 import com.app.shopinkarts.databinding.FragmentHomeBinding
 import com.app.shopinkarts.model.*
 import com.app.shopinkarts.response.*
@@ -81,7 +80,7 @@ class HomeFragment : Fragment() {
     var page = 0
     var isLoading = false
     var isLastPage: Boolean = false
-    val limit = 6
+    val limit = 8
     lateinit var layoutManager: LinearLayoutManager
 
     companion object {
@@ -120,45 +119,57 @@ class HomeFragment : Fragment() {
         val layoutManager = GridLayoutManager(requireContext(), 2)
         binding.allProductsRV.layoutManager = layoutManager
         binding.allProductsRV.hasFixedSize()
-        binding.allProductsRV.isNestedScrollingEnabled = true
+        binding.allProductsRV.isNestedScrollingEnabled = false
 //        binding.allProductsRV.maxFlingVelocity
 
-//        binding.scrollView.viewTreeObserver.addOnScrollChangedListener(OnScrollChangedListener {
-//
-//            endLessProductList()
-//
-//        })
 
-//        binding.allProductsRV.addOnScrollListener(object : RecyclerView.OnScrollListener() {
-//            override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
-//                super.onScrolled(recyclerView, dx, dy)
-//                if (!recyclerView.canScrollVertically(1)) { //1 for down
-//                    endLessProductList()
-//                }
+        /* binding.scrollView.setOnScrollChangeListener { v, scrollX, scrollY, oldScrollX, oldScrollY ->
+             val x = scrollY - oldScrollY
+             if (x > 0) {
+                 Log.d("TAG", "loadMoreItems: safsafasf..........")
+                 isLoading = true
+                 binding.progressbar.visibility = View.VISIBLE
+                 endLessProductList()
+             } else if (x < 0) {
+
+             }
+         }*/
+
+        val scrollView = binding.scrollView
+
+        scrollView.onBottomReachedListener = object : OnBottomReachedListener {
+            override fun onBottomReached() {
+                // ScrollView Reached bottom
+                if (!isLoading) {
+                    Log.d("TAG", "loadMoreItems: safsafasf..........")
+                    isLoading = true
+                    binding.progressbar.visibility = View.VISIBLE
+                    endLessProductList()
+                }
+            }
+        }
+
+//        binding.scrollView.addOnScrollListener(object : PaginationScrollListener(layoutManager) {
+//            override fun isLastPage(): Boolean {
+//                return isLastPage
+//            }
+//
+//            override fun isLoading(): Boolean {
+//                return isLoading
+//            }
+//
+//            override fun loadMoreItems() {
+//                Log.d("TAG", "loadMoreItems: safsafasf..........")
+//                isLoading = true
+//                binding.progressbar.visibility = View.VISIBLE
+//                endLessProductList()
 //            }
 //        })
-
-        binding.allProductsRV.addOnScrollListener(object : PaginationScrollListener(layoutManager) {
-            override fun isLastPage(): Boolean {
-                return isLastPage
-            }
-
-            override fun isLoading(): Boolean {
-                return isLoading
-            }
-
-            override fun loadMoreItems() {
-                Log.d("TAG", "loadMoreItems: safsafasf..........")
-                isLoading = true
-                binding.progressbar.visibility = View.VISIBLE
-                endLessProductList()
-            }
-        })
 
         dashBoardList()
         page = 0
         arrayListEndLessProduct.clear()
-        endLessProductList()
+        //endLessProductList()
         shimmerHome = binding.shimmerViewBanner
 
 
@@ -180,10 +191,10 @@ class HomeFragment : Fragment() {
         setCurrentIndicatorBanner2(0)
 
 //      banner 3rd fun
-        setCurrentIndicatorBanner3(0)
+        //setCurrentIndicatorBanner3(0)
 
 //      disable scrolling
-        binding.scrollView.isEnableScrolling = false
+        // binding.scrollView.isEnableScrolling = false
 
 //        banner 1st
         binding.introSliderViewPager.registerOnPageChangeCallback(object :
@@ -204,13 +215,13 @@ class HomeFragment : Fragment() {
         })
 
 //        banner 3rd
-        binding.banner3ViewPager.registerOnPageChangeCallback(object :
+      /*  binding.banner3ViewPager.registerOnPageChangeCallback(object :
             ViewPager2.OnPageChangeCallback() {
             override fun onPageSelected(position: Int) {
                 super.onPageSelected(position)
                 setCurrentIndicatorBanner3(position)
             }
-        })
+        })*/
 
 //        arrayList.clear()
 //        arrayList.add(CommonModel(view_type = 1, "Shop For", "View All", 0, 0))
@@ -328,14 +339,14 @@ class HomeFragment : Fragment() {
             )
         )
         // adapter for shorting cloths
-        clothsShortingAdapter = ClothsShortingAdapter(requireContext(), arrayListCloths)
+      /*  clothsShortingAdapter = ClothsShortingAdapter(requireContext(), arrayListCloths)
         binding.clothsShortingRV.adapter = clothsShortingAdapter
         binding.clothsShortingRV.isNestedScrollingEnabled = false
 
         // adapter for filter items
         filterItemsAdapter = FilterItemsAdapter(requireContext())
         binding.filterItemsRV.adapter = filterItemsAdapter
-        binding.filterItemsRV.isNestedScrollingEnabled = false
+        binding.filterItemsRV.isNestedScrollingEnabled = false*/
 
         val time = object : CountDownTimer(20000000, 1000) {
             override fun onTick(millisUntilFinished: Long) {
@@ -397,7 +408,7 @@ class HomeFragment : Fragment() {
                     if (dashBoardResponse!!.status) {
 
 //                      scrolling enable
-                        binding.scrollView.isEnableScrolling = true
+                        // binding.scrollView.isEnableScrolling = true
 
                         arrayListShopFor.clear()
                         arrayListShopFor.addAll(dashBoardResponse.shopFor)
@@ -450,10 +461,10 @@ class HomeFragment : Fragment() {
                         arraylistBanner3.clear()
                         arraylistBanner3.addAll(dashBoardResponse.banners)
                         banner3Adapter = Banner3Adapter(requireContext(), arraylistBanner3)
-                        binding.banner3ViewPager.adapter = banner3Adapter
+                        //binding.banner3ViewPager.adapter = banner3Adapter
 //                        binding.dotsIndicatorBanner2.attachTo(binding.banner2ViewPager)
                         setupIndicatorsBanner3()
-                        autoSlideBanner3(arraylistBanner3.size)
+                        //autoSlideBanner3(arraylistBanner3.size)
 
                         arrayListMostPopular.clear()
                         arrayListMostPopular.addAll(dashBoardResponse.mostPopular)
@@ -550,20 +561,16 @@ class HomeFragment : Fragment() {
 //                        }
 
 
-                        if (::endlessProductsAdapter.isInitialized) {
-                            endlessProductsAdapter.notifyDataSetChanged()
-                        } else {
-                            endlessProductsAdapter = EndlessProductsAdapter(
-                                requireContext(), arrayListEndLessProduct
-                            )
-                            binding.allProductsRV.adapter = endlessProductsAdapter
-                            binding.allProductsRV.hasFixedSize()
-                            binding.allProductsRV.isNestedScrollingEnabled = true
-
-                        }
+                        Log.d("TAG", "onResponse: ${arrayListEndLessProduct.size}")
+                        endlessProductsAdapter = EndlessProductsAdapter(
+                            requireContext(), arrayListEndLessProduct
+                        )
+                        binding.allProductsRV.adapter = endlessProductsAdapter
+                        endlessProductsAdapter.notifyDataSetChanged()
                         isLoading = false
                         binding.progressbar.visibility = View.GONE
-                        page += limit
+                        if (!isLoading && endLessResponse.products.isNotEmpty())
+                            page = page + limit
                     }
                 }
             }
@@ -604,7 +611,7 @@ class HomeFragment : Fragment() {
         }, DELAY_MS, PERIOD_MS)
     }
 
-    fun autoSlideBanner3(size: Int) {
+  /*  fun autoSlideBanner3(size: Int) {
         val handler = Handler()
         val update = Runnable {
             binding.banner3ViewPager.setCurrentItem(
@@ -622,7 +629,7 @@ class HomeFragment : Fragment() {
             }, DELAY_MS, PERIOD_MS
         )
 
-    }
+    }*/
 
     // banner 1
     @SuppressLint("NotifyDataSetChanged")
@@ -726,32 +733,32 @@ class HomeFragment : Fragment() {
                 )
                 this?.layoutParams = layoutParms
             }
-            binding.indicatorsBanner3.addView(indicators[i])
+//            binding.indicatorsBanner3.addView(indicators[i])
         }
     }
 
-    private fun setCurrentIndicatorBanner3(index: Int) {
-
-        val childCount = binding.indicatorsBanner3.childCount
-        for (i in 0 until childCount) {
-            val imageView = binding.indicatorsBanner3[i] as ImageView
-            if (i == index) {
-                imageView.setImageDrawable(context?.let {
-                    ContextCompat.getDrawable(
-                        it, R.drawable.indicator_active
-                    )
-                })
-            } else {
-                imageView.setImageDrawable(context?.let {
-                    ContextCompat.getDrawable(
-                        it, R.drawable.indicator_inactive
-                    )
-                })
-
-            }
-        }
-
-    }
+//    private fun setCurrentIndicatorBanner3(index: Int) {
+//
+//        val childCount = binding.indicatorsBanner3.childCount
+//        for (i in 0 until childCount) {
+//            val imageView = binding.indicatorsBanner3[i] as ImageView
+//            if (i == index) {
+//                imageView.setImageDrawable(context?.let {
+//                    ContextCompat.getDrawable(
+//                        it, R.drawable.indicator_active
+//                    )
+//                })
+//            } else {
+//                imageView.setImageDrawable(context?.let {
+//                    ContextCompat.getDrawable(
+//                        it, R.drawable.indicator_inactive
+//                    )
+//                })
+//
+//            }
+//        }
+//
+//    }
 
 }
 
