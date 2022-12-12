@@ -215,13 +215,13 @@ class HomeFragment : Fragment() {
         })
 
 //        banner 3rd
-      /*  binding.banner3ViewPager.registerOnPageChangeCallback(object :
-            ViewPager2.OnPageChangeCallback() {
-            override fun onPageSelected(position: Int) {
-                super.onPageSelected(position)
-                setCurrentIndicatorBanner3(position)
-            }
-        })*/
+        /*  binding.banner3ViewPager.registerOnPageChangeCallback(object :
+              ViewPager2.OnPageChangeCallback() {
+              override fun onPageSelected(position: Int) {
+                  super.onPageSelected(position)
+                  setCurrentIndicatorBanner3(position)
+              }
+          })*/
 
 //        arrayList.clear()
 //        arrayList.add(CommonModel(view_type = 1, "Shop For", "View All", 0, 0))
@@ -339,14 +339,14 @@ class HomeFragment : Fragment() {
             )
         )
         // adapter for shorting cloths
-      /*  clothsShortingAdapter = ClothsShortingAdapter(requireContext(), arrayListCloths)
-        binding.clothsShortingRV.adapter = clothsShortingAdapter
-        binding.clothsShortingRV.isNestedScrollingEnabled = false
+        /*  clothsShortingAdapter = ClothsShortingAdapter(requireContext(), arrayListCloths)
+          binding.clothsShortingRV.adapter = clothsShortingAdapter
+          binding.clothsShortingRV.isNestedScrollingEnabled = false
 
-        // adapter for filter items
-        filterItemsAdapter = FilterItemsAdapter(requireContext())
-        binding.filterItemsRV.adapter = filterItemsAdapter
-        binding.filterItemsRV.isNestedScrollingEnabled = false*/
+          // adapter for filter items
+          filterItemsAdapter = FilterItemsAdapter(requireContext())
+          binding.filterItemsRV.adapter = filterItemsAdapter
+          binding.filterItemsRV.isNestedScrollingEnabled = false*/
 
         val time = object : CountDownTimer(20000000, 1000) {
             override fun onTick(millisUntilFinished: Long) {
@@ -569,8 +569,7 @@ class HomeFragment : Fragment() {
                         endlessProductsAdapter.notifyDataSetChanged()
                         isLoading = false
                         binding.progressbar.visibility = View.GONE
-                        if (!isLoading && endLessResponse.products.isNotEmpty())
-                            page = page + limit
+                        if (!isLoading && endLessResponse.products.isNotEmpty()) page = page + limit
                     }
                 }
             }
@@ -611,25 +610,25 @@ class HomeFragment : Fragment() {
         }, DELAY_MS, PERIOD_MS)
     }
 
-  /*  fun autoSlideBanner3(size: Int) {
-        val handler = Handler()
-        val update = Runnable {
-            binding.banner3ViewPager.setCurrentItem(
-                currentPage3 % size, true
-            )
-            currentPage3++
-        }
+    /*  fun autoSlideBanner3(size: Int) {
+          val handler = Handler()
+          val update = Runnable {
+              binding.banner3ViewPager.setCurrentItem(
+                  currentPage3 % size, true
+              )
+              currentPage3++
+          }
 
-        timer = Timer()
-        timer!!.schedule(
-            object : TimerTask() {
-                override fun run() {
-                    handler.post(update)
-                }
-            }, DELAY_MS, PERIOD_MS
-        )
+          timer = Timer()
+          timer!!.schedule(
+              object : TimerTask() {
+                  override fun run() {
+                      handler.post(update)
+                  }
+              }, DELAY_MS, PERIOD_MS
+          )
 
-    }*/
+      }*/
 
     // banner 1
     @SuppressLint("NotifyDataSetChanged")
