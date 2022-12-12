@@ -92,6 +92,7 @@ class ProductDetailsActivity : AppCompatActivity() {
         var imageUrl = ""
         var variantTarget = ""
         var unitPrice = 0
+        var userType = ""
 
         fun getInstance(): ProductDetailsActivity {
             return pInstance
@@ -122,6 +123,7 @@ class ProductDetailsActivity : AppCompatActivity() {
         pInstance = this
 
         sharedPreference = SharedPreference(this)
+        userType = sharedPreference.getUserType().toString()
 
         currentNumber = 0
 
@@ -427,7 +429,8 @@ class ProductDetailsActivity : AppCompatActivity() {
                                 productId = p_Id
                             )
                         )
-                        Toast.makeText(this, "Product update Successfully", Toast.LENGTH_SHORT).show()
+                        Toast.makeText(this, "Product update Successfully", Toast.LENGTH_SHORT)
+                            .show()
 
                         Log.d("itemDetails.variants", DashBoardActivity.arrayListCart.toString())
 
@@ -542,14 +545,14 @@ class ProductDetailsActivity : AppCompatActivity() {
                     if (productResponse!!.status) {
 
                         pId = productResponse.product._id
-                        p_Id=productResponse.product.productId
+                        p_Id = productResponse.product.productId
                         itemName = productResponse.product.productName
                         imageUrl = productResponse.product.productImages[0]
                         binding.idTV.text = "#Id -${productResponse.product.productId}"
                         binding.tShirtNameTV.text = productResponse.product.productName
 
-                        Log.d( "productResponse.product", productResponse.product._id)
-                        Log.d( "productResponse.product", productResponse.product.productId)
+                        Log.d("productResponse.product", productResponse.product._id)
+                        Log.d("productResponse.product", productResponse.product.productId)
 
                         binding.actualPriceTV.text = "Rs ${productResponse.product.price}.00"
                         var discount = 0
