@@ -406,6 +406,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="@dimen/m40"
+                        android:visibility="gone"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@+id/newlyAddedCl">
 
@@ -499,6 +500,7 @@
                     <androidx.constraintlayout.widget.ConstraintLayout
                         android:id="@+id/flashSaleAllItemsCL"
                         android:layout_width="match_parent"
+                        android:visibility="gone"
                         android:layout_height="wrap_content"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@+id/flashSaleCL">
@@ -547,6 +549,7 @@
                     <androidx.constraintlayout.widget.ConstraintLayout
                         android:id="@+id/dealOfDayCl"
                         android:layout_width="match_parent"
+                        android:visibility="gone"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="@dimen/m20"
                         app:layout_constraintTop_toBottomOf="@+id/flashSaleAllItemsCL">
@@ -678,6 +681,7 @@
                         android:id="@+id/recommendedCL"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:visibility="gone"
                         android:layout_marginTop="@dimen/m20"
                         app:layout_constraintTop_toBottomOf="@+id/discountForYouCL">
 

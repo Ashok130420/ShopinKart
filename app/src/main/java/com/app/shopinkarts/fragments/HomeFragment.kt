@@ -148,23 +148,7 @@ class HomeFragment : Fragment() {
                 }
             }
         }
-
-//        binding.scrollView.addOnScrollListener(object : PaginationScrollListener(layoutManager) {
-//            override fun isLastPage(): Boolean {
-//                return isLastPage
-//            }
-//
-//            override fun isLoading(): Boolean {
-//                return isLoading
-//            }
-//
-//            override fun loadMoreItems() {
-//                Log.d("TAG", "loadMoreItems: safsafasf..........")
-//                isLoading = true
-//                binding.progressbar.visibility = View.VISIBLE
-//                endLessProductList()
-//            }
-//        })
+        
 
         dashBoardList()
         page = 0
@@ -481,20 +465,20 @@ class HomeFragment : Fragment() {
                         binding.topRatedRV.isNestedScrollingEnabled = false
                         topRatedAdapter.notifyDataSetChanged()
 
-                        arrayListFlashSale.clear()
-                        arrayListFlashSale.addAll(dashBoardResponse.flashSale)
-                        flashSaleAdapter = FlashSaleAdapter(requireContext(), arrayListFlashSale)
-                        binding.flashSaleRV.adapter = flashSaleAdapter
-                        binding.flashSaleRV.isNestedScrollingEnabled = false
-                        flashSaleAdapter.notifyDataSetChanged()
+//                        arrayListFlashSale.clear()
+//                        arrayListFlashSale.addAll(dashBoardResponse.flashSale)
+//                        flashSaleAdapter = FlashSaleAdapter(requireContext(), arrayListFlashSale)
+//                        binding.flashSaleRV.adapter = flashSaleAdapter
+//                        binding.flashSaleRV.isNestedScrollingEnabled = false
+//                        flashSaleAdapter.notifyDataSetChanged()
 
-                        arrayListDealOfDay.clear()
-                        arrayListDealOfDay.addAll(dashBoardResponse.dealOfDay)
-                        dealOfTheDayAdapter =
-                            DealOfTheDayAdapter(requireContext(), arrayListDealOfDay)
-                        binding.dealOfDayRV.adapter = dealOfTheDayAdapter
-                        binding.dealOfDayRV.isNestedScrollingEnabled = false
-                        dealOfTheDayAdapter.notifyDataSetChanged()
+//                        arrayListDealOfDay.clear()
+//                        arrayListDealOfDay.addAll(dashBoardResponse.dealOfDay)
+//                        dealOfTheDayAdapter =
+//                            DealOfTheDayAdapter(requireContext(), arrayListDealOfDay)
+//                        binding.dealOfDayRV.adapter = dealOfTheDayAdapter
+//                        binding.dealOfDayRV.isNestedScrollingEnabled = false
+//                        dealOfTheDayAdapter.notifyDataSetChanged()
 
                         arrayListDiscountForYou.clear()
                         arrayListDiscountForYou.addAll(dashBoardResponse.discountForYou)
@@ -504,13 +488,13 @@ class HomeFragment : Fragment() {
                         binding.discountForYouRV.isNestedScrollingEnabled = false
                         discountForYouAdapter.notifyDataSetChanged()
 
-                        arrayListRecommended.clear()
-                        arrayListRecommended.addAll(dashBoardResponse.recommendedItems)
-                        recommendedAdapter =
-                            RecommendedAdapter(requireContext(), arrayListRecommended)
-                        binding.recommendedRV.adapter = recommendedAdapter
-                        binding.recommendedRV.isNestedScrollingEnabled = false
-                        recommendedAdapter.notifyDataSetChanged()
+//                        arrayListRecommended.clear()
+//                        arrayListRecommended.addAll(dashBoardResponse.recommendedItems)
+//                        recommendedAdapter =
+//                            RecommendedAdapter(requireContext(), arrayListRecommended)
+//                        binding.recommendedRV.adapter = recommendedAdapter
+//                        binding.recommendedRV.isNestedScrollingEnabled = false
+//                        recommendedAdapter.notifyDataSetChanged()
 
 
                     }
