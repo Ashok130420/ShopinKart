@@ -31,7 +31,7 @@ class InvoiceAdapter(
         val itemDetails = arrayList[position]
         holder.binding.apply {
 
-            itemsNameTV.text = "${itemDetails.productName} \nPid-(${itemDetails.productId})"
+            itemsNameTV.text = "${itemDetails.productName} \nPid-(${itemDetails.pId})"
             qtyValueTV.text = itemDetails.qty.toString()
             totalAmountValueTV.text = "RS " + DecimalFormat(".00").format(itemDetails.totalAmount)
 
