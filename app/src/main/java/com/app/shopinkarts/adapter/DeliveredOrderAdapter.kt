@@ -87,7 +87,7 @@ class DeliveredOrderAdapter(val context: Context, val arrayList: ArrayList<Order
                 trackOrderCL.visibility = View.VISIBLE
                 downloadInvoiceCL.visibility = View.VISIBLE
                 orderReplacedCL.visibility = View.VISIBLE
-            } */else {
+            } */ else {
                 stepperLayout.visibility = View.VISIBLE
                 trackOrderCL.visibility = View.VISIBLE
                 downloadInvoiceCL.visibility = View.VISIBLE
@@ -143,7 +143,7 @@ class DeliveredOrderAdapter(val context: Context, val arrayList: ArrayList<Order
 
                 }
                 5 -> {
-                    deliveredTV.text="Replaced"
+                    deliveredTV.text = "Replaced"
                     viewStepper1.setBackgroundColor(context.resources.getColor(R.color.primary_Blue))
                     viewStepper2.setBackgroundColor(context.resources.getColor(R.color.primary_Blue))
                     viewStepper3.setBackgroundColor(context.resources.getColor(R.color.primary_Blue))
@@ -176,6 +176,18 @@ class DeliveredOrderAdapter(val context: Context, val arrayList: ArrayList<Order
                     //send position
                     intent.putExtra("position", position)
                     intent.putExtra("orderId", itemDetails.orderId)
+
+                    intent.putExtra("city", itemDetails.shippingDetails.city)
+                    intent.putExtra("houseNo", itemDetails.shippingDetails.houseNo)
+                    intent.putExtra("landmark", itemDetails.shippingDetails.landmark)
+                    intent.putExtra("name", itemDetails.shippingDetails.name)
+                    intent.putExtra("phone", itemDetails.shippingDetails.phone)
+                    intent.putExtra("pincode", itemDetails.shippingDetails.pincode)
+                    intent.putExtra("state", itemDetails.shippingDetails.state)
+                    intent.putExtra("street", itemDetails.shippingDetails.street)
+                    intent.putExtra("businessOperatingState", itemDetails.businessOperatingState)
+                    intent.putExtra("companyName", itemDetails.companyName)
+                    intent.putExtra("gstIn", itemDetails.gstIn)
 
                     context.startActivity(intent)
                 }
