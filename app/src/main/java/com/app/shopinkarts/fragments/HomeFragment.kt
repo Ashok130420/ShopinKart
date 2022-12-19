@@ -24,7 +24,6 @@ import com.app.shopinkarts.activity.SearchActivity
 import com.app.shopinkarts.activity.ViewAllActivity
 import com.app.shopinkarts.adapter.*
 import com.app.shopinkarts.api.RetrofitClient
-import com.app.shopinkarts.classes.CustomScrollView
 import com.app.shopinkarts.classes.CustomScrollView.OnBottomReachedListener
 import com.app.shopinkarts.databinding.FragmentHomeBinding
 import com.app.shopinkarts.model.*
@@ -51,7 +50,7 @@ class HomeFragment : Fragment() {
     lateinit var mostPopularAdapter: MostPopularAdapter
     lateinit var topRatedAdapter: TopRatedAdapter
     lateinit var discountForYouAdapter: DiscountForYouAdapter
-    lateinit var recommendedAdapter: RecommendedAdapter
+    lateinit var recommendedAdapter: YouMayLikeAdapter
     lateinit var endlessProductsAdapter: EndlessProductsAdapter
     lateinit var banner2Adapter: Banner2Adapter
     lateinit var banner3Adapter: Banner3Adapter
@@ -93,7 +92,7 @@ class HomeFragment : Fragment() {
         val arrayListDealOfDay: ArrayList<DealOfDay> = ArrayList()
         val arrayListShopFor: ArrayList<ShopFor> = ArrayList()
         val arrayListDiscountForYou: ArrayList<DiscountForYou> = ArrayList()
-        val arrayListRecommended: ArrayList<RecommendedItem> = ArrayList()
+        val arrayListRecommended: ArrayList<YouMayLike> = ArrayList()
         val arrayListPreferredManufacturer: ArrayList<PreferredManufacturer> = ArrayList()
         val arrayListPopularBrand: ArrayList<PreferredManufacturer> = ArrayList()
 
@@ -488,13 +487,13 @@ class HomeFragment : Fragment() {
                         binding.discountForYouRV.isNestedScrollingEnabled = false
                         discountForYouAdapter.notifyDataSetChanged()
 
-//                        arrayListRecommended.clear()
-//                        arrayListRecommended.addAll(dashBoardResponse.recommendedItems)
-//                        recommendedAdapter =
-//                            RecommendedAdapter(requireContext(), arrayListRecommended)
-//                        binding.recommendedRV.adapter = recommendedAdapter
-//                        binding.recommendedRV.isNestedScrollingEnabled = false
-//                        recommendedAdapter.notifyDataSetChanged()
+                        arrayListRecommended.clear()
+                        arrayListRecommended.addAll(dashBoardResponse.youMayLike)
+                        recommendedAdapter =
+                            YouMayLikeAdapter(requireContext(), arrayListRecommended)
+                        binding.recommendedRV.adapter = recommendedAdapter
+                        binding.recommendedRV.isNestedScrollingEnabled = false
+                        recommendedAdapter.notifyDataSetChanged()
 
 
                     }

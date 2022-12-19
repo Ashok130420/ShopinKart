@@ -681,7 +681,6 @@
                         android:id="@+id/recommendedCL"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:visibility="gone"
                         android:layout_marginTop="@dimen/m20"
                         app:layout_constraintTop_toBottomOf="@+id/discountForYouCL">
 
@@ -691,7 +690,7 @@
                             android:layout_height="wrap_content"
                             android:fontFamily="@font/inter_medium"
                             android:paddingVertical="@dimen/m10"
-                            android:text="@string/recommended"
+                            android:text="@string/youmaylike"
                             android:textColor="@color/primary_text"
                             android:textSize="@dimen/text_size_16"
                             app:layout_constraintStart_toStartOf="parent"
