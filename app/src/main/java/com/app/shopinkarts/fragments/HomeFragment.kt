@@ -147,7 +147,7 @@ class HomeFragment : Fragment() {
                 }
             }
         }
-        
+
 
         dashBoardList()
         page = 0
@@ -576,8 +576,11 @@ class HomeFragment : Fragment() {
             override fun run() {
                 handler.post(update)
             }
-        }, DELAY_MS, PERIOD_MS)
+        }, 2000, 4000)
     }
+
+
+
 
     fun autoSlideBanner2(size: Int) {
         val handler = Handler()
