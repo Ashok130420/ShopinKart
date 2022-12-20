@@ -17,7 +17,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Log Out ?"
-            android:fontFamily="@font/inter_bold"
+            android:fontFamily="@font/inter_medium"
             android:textColor="@color/primary_text"
             android:textSize="@dimen/text_size_14"
             app:layout_constraintStart_toStartOf="parent"
