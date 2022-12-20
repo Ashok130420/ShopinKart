@@ -573,6 +573,7 @@ class ProductDetailsActivity : AppCompatActivity() {
                             binding.discountTV.visibility = View.GONE
                             binding.discountTagRightIV.visibility = View.GONE
                             binding.actualPriceView.visibility = View.GONE
+                            binding.actualPriceTV.visibility = View.GONE
 
                         } else {
                             binding.discountTV.visibility = View.GONE

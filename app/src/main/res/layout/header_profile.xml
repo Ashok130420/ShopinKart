@@ -18,7 +18,7 @@
             android:layout_height="wrap_content"
             android:background="@color/white"
             android:paddingVertical="@dimen/p18"
-            android:fontFamily="inter_medium"
+            android:fontFamily="font/inter_medium"
             android:paddingStart="50dp"
             android:textColor="@color/primary_text"
             android:textSize="@dimen/text_size_18"

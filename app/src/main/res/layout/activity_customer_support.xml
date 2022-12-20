@@ -134,7 +134,8 @@
                 android:layout_marginTop="@dimen/m5"
                 android:text="@string/product_return"
                 android:textColor="@color/hint_color"
-                android:textSize="@dimen/text_size_14"
+                android:textSize="@dimen/text_size_12"
+                android:fontFamily="@font/inter_regular"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
