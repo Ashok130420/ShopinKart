@@ -64,4 +64,5 @@
     <dimen name="m90">90dp</dimen>
     <dimen name="m230">230dp</dimen>
     <dimen name="m15">15dp</dimen>
+    <dimen name="text_size_17">17sp</dimen>
 </resources>

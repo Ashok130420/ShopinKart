@@ -35,7 +35,7 @@ class FlashSaleAdapter(val context: Context, val arrayList: ArrayList<FlashSale>
                 Glide.with(context).load(itemDetails.productImages[0]).into(discountIV)
             }
             productNameTV.text = itemDetails.productName
-//            priceTV.text = "Rs ${itemDetails.price}"
+            priceTV.text = "Rs ${itemDetails.price}"
             discountTV.text = "${itemDetails.discount} %OFF"
             ratingTV.text=itemDetails.avgRating.toString()
             var discount = 0

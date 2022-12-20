@@ -14,7 +14,6 @@ import android.os.Environment
 import android.os.Handler
 import android.text.Html
 import android.util.Log
-import android.view.ScaleGestureDetector
 import android.view.View
 import android.widget.ImageView
 import android.widget.LinearLayout
@@ -41,7 +40,6 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 import java.util.*
-import kotlin.collections.ArrayList
 
 
 class ProductDetailsActivity : AppCompatActivity() {
@@ -569,6 +567,13 @@ class ProductDetailsActivity : AppCompatActivity() {
                                 (productResponse.product.price - productResponse.product.discount)
                             binding.discountedPriceTV.text = "Rs ${discount}.00"
 
+                        } else if (productResponse.product.discountType == 2) {
+                            binding.discountedPriceTV.text =
+                                "Rs ${productResponse.product.price}.00"
+                            binding.discountTV.visibility = View.GONE
+                            binding.discountTagRightIV.visibility = View.GONE
+                            binding.actualPriceView.visibility = View.GONE
+
                         } else {
                             binding.discountTV.visibility = View.GONE
                             binding.discountTagRightIV.visibility = View.GONE
@@ -801,6 +806,15 @@ class ProductDetailsActivity : AppCompatActivity() {
                         Log.d("unitPrice.", "${(dPrice)}  ${(dDiscount)}")
 
                     } else if (dType == 0) {
+
+                        discount = (elements.price - dDiscount)
+                        unitPrice = elements.price - dDiscount
+                        binding.discountedPriceTV.text = "Rs ${discount}.00"
+                        discountedPrice = unitPrice
+                        actualPrice = unitPrice
+
+                        Log.d("unitPrice..", "${(dPrice)} - ${(dDiscount)}")
+                    } else if (dType == 2) {
 
                         discount = (elements.price - dDiscount)
                         unitPrice = elements.price - dDiscount

@@ -20,6 +20,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout.OnRefreshListener
 import androidx.viewpager2.widget.ViewPager2
 import com.app.shopinkarts.R
+import com.app.shopinkarts.activity.DashBoardActivity
 import com.app.shopinkarts.activity.SearchActivity
 import com.app.shopinkarts.activity.ViewAllActivity
 import com.app.shopinkarts.adapter.*
@@ -70,9 +71,9 @@ class HomeFragment : Fragment() {
     var currentPage = 0
     var currentPage2 = 0
     var currentPage3 = 0
-    var timer: Timer? = null
-    val DELAY_MS: Long = 2000
-    val PERIOD_MS: Long = 4000
+//    var timer: Timer? = null
+//    val DELAY_MS: Long = 2000
+//    val PERIOD_MS: Long = 4000
 
     val arrayListEndLessProduct: ArrayList<Product> = ArrayList()
 
@@ -566,34 +567,33 @@ class HomeFragment : Fragment() {
     }
 
     fun autoSlideBanner1(size: Int) {
+        currentPage = 0
         val handler = Handler()
         val update = Runnable {
             binding.introSliderViewPager.setCurrentItem(currentPage % size, true)
             currentPage++
         }
-        timer = Timer()
-        timer!!.schedule(object : TimerTask() {
+        DashBoardActivity.timer = Timer()
+        DashBoardActivity.timer!!.schedule(object : TimerTask() {
             override fun run() {
                 handler.post(update)
             }
-        }, 2000, 4000)
+        }, DashBoardActivity.DELAY_MS, DashBoardActivity.PERIOD_MS)
     }
 
-
-
-
     fun autoSlideBanner2(size: Int) {
+        currentPage2 = 0
         val handler = Handler()
         val update = Runnable {
             binding.banner2ViewPager.setCurrentItem(currentPage2 % size, true)
             currentPage2++
         }
-        timer = Timer()
-        timer!!.schedule(object : TimerTask() {
+        DashBoardActivity.timer = Timer()
+        DashBoardActivity.timer!!.schedule(object : TimerTask() {
             override fun run() {
                 handler.post(update)
             }
-        }, DELAY_MS, PERIOD_MS)
+        }, DashBoardActivity.DELAY_MS, DashBoardActivity.PERIOD_MS)
     }
 
     /*  fun autoSlideBanner3(size: Int) {

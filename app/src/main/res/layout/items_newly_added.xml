@@ -34,7 +34,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="@dimen/m10"
                 android:layout_marginTop="@dimen/m14"
-                android:fontFamily="@font/inter_regular"
+                android:fontFamily="@font/inter_medium"
                 android:singleLine="true"
                 android:text="@string/linen_t_shirt"
                 android:textColor="@color/primary_text"

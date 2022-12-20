@@ -44,6 +44,7 @@ class ParticularItemAdapter(val context: Context, var arrayList: ArrayList<Produ
                 discountTV.text = "Rs ${itemDetails.discount} OFF"
             } else {
                 discountTV.visibility = View.GONE
+                discountTagIV.visibility = View.GONE
             }
         }
         holder.itemView.setOnClickListener {

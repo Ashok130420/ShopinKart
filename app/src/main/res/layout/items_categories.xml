@@ -37,6 +37,7 @@
                 android:layout_height="wrap_content"
                 android:layout_margin="@dimen/m10"
                 android:gravity="top"
+                android:fontFamily="@font/inter_medium"
                 android:text="@string/men"
                 android:textColor="@color/black"
                 android:textSize="@dimen/text_size_13"

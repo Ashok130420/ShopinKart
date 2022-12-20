@@ -119,11 +119,11 @@
                         android:id="@+id/t_shirtNameTV"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:fontFamily="@font/inter_regular"
-                        android:paddingVertical="@dimen/p4"
-                        android:text=""
-                        android:singleLine="false"
                         android:layout_marginEnd="@dimen/m10"
+                        android:fontFamily="@font/inter_medium"
+                        android:paddingVertical="@dimen/p4"
+                        android:singleLine="false"
+                        android:text=""
                         android:textColor="@color/primary_text"
                         android:textSize="@dimen/text_size_16"
                         app:layout_constraintEnd_toStartOf="@+id/discountTagRightIV"
@@ -134,7 +134,7 @@
                         android:id="@+id/discountTagRightIV"
                         android:layout_width="75dp"
                         android:layout_height="20dp"
-                        android:fontFamily="@font/inter_regular"
+                        android:fontFamily="@font/inter_medium"
                         android:scaleType="fitXY"
                         android:src="@drawable/discount_tag_right"
                         app:layout_constraintBottom_toBottomOf="@+id/t_shirtNameTV"
@@ -161,6 +161,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="@dimen/m6"
+                        android:fontFamily="@font/inter_medium"
                         android:paddingVertical="@dimen/p2"
 
                         android:textColor="@color/primary_text"
@@ -173,6 +174,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="@dimen/m14"
+                        android:fontFamily="@font/inter_regular"
                         android:paddingVertical="@dimen/p2"
 
                         android:textColor="@color/dark_Gray"
@@ -182,7 +184,8 @@
                         app:layout_constraintTop_toTopOf="@+id/discountedPriceTV" />
 
                     <View
-                        android:layout_width="3dp"
+                        android:id="@+id/actualPriceView"
+                        android:layout_width="0dp"
                         android:layout_height="1dp"
                         android:background="@color/dark_Gray"
                         app:layout_constraintBottom_toBottomOf="@+id/actualPriceTV"
@@ -209,9 +212,9 @@
                         android:background="@drawable/shape_text_blue"
                         android:paddingHorizontal="@dimen/p14"
                         android:paddingVertical="@dimen/p4"
+                        android:text="@string/few_units_left"
                         android:textColor="@color/primary_Blue"
                         android:textSize="@dimen/text_size_12"
-                        android:text="@string/few_units_left"
                         android:visibility="gone"
                         app:layout_constraintBottom_toBottomOf="@id/ratingBar"
                         app:layout_constraintEnd_toEndOf="parent"
@@ -221,9 +224,9 @@
                         android:id="@+id/dispatchedIV"
                         android:layout_width="@dimen/m35"
                         android:layout_height="@dimen/m35"
-                        android:visibility="invisible"
                         android:padding="@dimen/p4"
                         android:src="@drawable/calendar"
+                        android:visibility="invisible"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@id/ratingBar"
                         tools:ignore="ContentDescription" />
@@ -406,7 +409,7 @@
                         android:id="@+id/productDescriptionCL"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_margin="@dimen/m14"
+                        android:layout_margin="@dimen/m5"
                         app:layout_constraintTop_toTopOf="parent">
 
                         <androidx.constraintlayout.widget.ConstraintLayout
@@ -702,11 +705,11 @@
                         android:id="@+id/similarProductsTV"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:fontFamily="@font/inter_medium"
                         android:paddingHorizontal="@dimen/p14"
-                        android:paddingVertical="@dimen/p2"
                         android:text="@string/similar_products"
                         android:textColor="@color/primary_text"
-                        android:textSize="@dimen/text_size_13"
+                        android:textSize="@dimen/text_size_16"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent" />
 
@@ -714,7 +717,7 @@
                         android:id="@+id/similarProductsRV"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="@dimen/m18"
+                        android:layout_marginTop="@dimen/m10"
                         android:orientation="horizontal"
                         android:padding="@dimen/p4"
                         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"

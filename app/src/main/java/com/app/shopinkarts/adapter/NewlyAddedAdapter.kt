@@ -37,7 +37,7 @@ class NewlyAddedAdapter(val context: Context, val arrayList: ArrayList<NewlyAdde
             }
           
             productNameTV.text = itemDetails.productName
-//            priceTV.text = "Rs ${itemDetails.price}"
+            priceTV.text = "Rs ${itemDetails.price}"
             ratingTV.text = itemDetails.avgRating.toString()
 
             var discount = 0

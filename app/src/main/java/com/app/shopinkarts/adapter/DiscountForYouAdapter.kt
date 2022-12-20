@@ -35,7 +35,7 @@ class DiscountForYouAdapter(val context: Context, val arrayList: ArrayList<Disco
                 Glide.with(context).load(itemDetails.productImages[0]).into(imageIV)
             }
             productNameTV.text = itemDetails.productName
-//            priceTV.text = "Rs ${itemDetails.price}"
+            priceTV.text = "Rs ${itemDetails.price}"
             ratingTV.text = itemDetails.avgRating.toString()
             var discount = 0
             if (itemDetails.discountType == 1) {
