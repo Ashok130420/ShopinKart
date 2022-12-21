@@ -5,6 +5,7 @@ data class Product(
     val attributes: List<Attribute>,
     val avgRating: Int,
     val categoryId: String,
+    val hsnCode: String,
     val creationTimeStamp: String,
     val deliveryInstructions: List<String>,
     val description: String,

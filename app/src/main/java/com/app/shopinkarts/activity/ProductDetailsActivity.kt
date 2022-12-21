@@ -85,6 +85,7 @@ class ProductDetailsActivity : AppCompatActivity() {
         var p_Id = ""
         var vId = ""
         var itemName = ""
+        var hsnCode = ""
         var color = ""
         var size = ""
         var imageUrl = ""
@@ -343,7 +344,8 @@ class ProductDetailsActivity : AppCompatActivity() {
                 stock = stock,
                 variantsArr = arrayListVariant,
                 variants = variantArray,
-                productId = p_Id
+                productId = p_Id,
+                hsnCode =hsnCode
             )
             DashBoardActivity.arrayListCart.add(product)
             DashBoardActivity.selectedVIDs.add(vId)
@@ -424,7 +426,8 @@ class ProductDetailsActivity : AppCompatActivity() {
                                 stock = stock,
                                 variantsArr = arrayListVariant,
                                 variants = variantArray,
-                                productId = p_Id
+                                productId = p_Id,
+                                hsnCode = hsnCode
                             )
                         )
                         Toast.makeText(this, "Product update Successfully", Toast.LENGTH_SHORT)
@@ -466,7 +469,8 @@ class ProductDetailsActivity : AppCompatActivity() {
                         stock = stock,
                         variantsArr = arrayListVariant,
                         variants = variantArray,
-                        productId = p_Id
+                        productId = p_Id,
+                        hsnCode = hsnCode
                     )
                 )
                 DashBoardActivity.selectedVIDs.add(vId)
@@ -545,6 +549,7 @@ class ProductDetailsActivity : AppCompatActivity() {
                         pId = productResponse.product._id
                         p_Id = productResponse.product.productId
                         itemName = productResponse.product.productName
+                        hsnCode = productResponse.product.hsnCode
                         imageUrl = productResponse.product.productImages[0]
                         binding.idTV.text = "#Id -${productResponse.product.productId}"
                         binding.tShirtNameTV.text = productResponse.product.productName

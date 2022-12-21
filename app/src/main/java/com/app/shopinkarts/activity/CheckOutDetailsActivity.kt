@@ -543,7 +543,8 @@ class CheckOutDetailsActivity : AppCompatActivity() {
                     qty = totalQuantity,
                     totalAmount = totalPrice.toDouble(),
                     variants = item.variants,
-                    pId = item.productId
+                    pId = item.productId,
+                    hsnCode = item.hsnCode
                 )
             )
             Log.d("arrayProduct",item.pId)

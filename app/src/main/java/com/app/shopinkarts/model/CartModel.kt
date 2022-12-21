@@ -9,6 +9,7 @@ data class CartModel(
     var productId: String,
     var vId: String,
     var itemName: String,
+    var hsnCode: String,
     var discountedPrice: String,
     var actualPrice: Int,
     var color: String,

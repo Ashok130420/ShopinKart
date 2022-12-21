@@ -8,6 +8,7 @@ data class CreateProduct(
     val pId: String,
     val productImage: String,
     val productName: String,
+    val hsnCode: String,
     val qty: Int,
     val totalAmount: Double,
     val variants: List<Variants>,
