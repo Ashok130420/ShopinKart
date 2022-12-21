@@ -188,6 +188,7 @@ class DeliveredOrderAdapter(val context: Context, val arrayList: ArrayList<Order
                     intent.putExtra("businessOperatingState", itemDetails.businessOperatingState)
                     intent.putExtra("companyName", itemDetails.companyName)
                     intent.putExtra("gstIn", itemDetails.gstIn)
+                    intent.putExtra("hsnCode", itemDetails.hsnCode)
 
                     context.startActivity(intent)
                 }

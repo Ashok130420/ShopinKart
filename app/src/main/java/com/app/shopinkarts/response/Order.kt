@@ -20,6 +20,7 @@ data class Order(
     val businessOperatingState: String,
     val companyName: String,
     val gstIn: String,
+    val hsnCode: String,
     val deliveryInstruction: String,
 
 

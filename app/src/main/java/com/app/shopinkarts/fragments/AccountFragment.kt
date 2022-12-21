@@ -124,7 +124,7 @@ class AccountFragment : Fragment() {
                             startActivity(intent)
                         }
                         binding.refundPolicyTV.setOnClickListener {
-                            val intent = Intent(context, AboutUsActivity::class.java)
+                            val intent = Intent(context, RefundPolicyActivity::class.java)
                             intent.putExtra("header", "Refund Policy")
                             intent.putExtra("pdfUrl", appSettingResponse.appSetting.refundPolicy)
                             startActivity(intent)
@@ -140,9 +140,10 @@ class AccountFragment : Fragment() {
                         }
 
                         binding.privacyPolicyTV.setOnClickListener {
-                            val intent = Intent(context, AboutUsActivity::class.java)
+                            val intent = Intent(context, PrivacyPolicyActivity::class.java)
                             intent.putExtra("header", "Privacy Policy")
                             intent.putExtra("pdfUrl", appSettingResponse.appSetting.privacyPolicy)
+
                             startActivity(intent)
                         }
 

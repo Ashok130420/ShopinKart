@@ -71,7 +71,7 @@ class HomeFragment : Fragment() {
     var currentPage = 0
     var currentPage2 = 0
     var currentPage3 = 0
-//    var timer: Timer? = null
+    var timer: Timer? = null
 //    val DELAY_MS: Long = 2000
 //    val PERIOD_MS: Long = 4000
 
@@ -573,8 +573,8 @@ class HomeFragment : Fragment() {
             binding.introSliderViewPager.setCurrentItem(currentPage % size, true)
             currentPage++
         }
-        DashBoardActivity.timer = Timer()
-        DashBoardActivity.timer!!.schedule(object : TimerTask() {
+        timer = Timer()
+        timer!!.schedule(object : TimerTask() {
             override fun run() {
                 handler.post(update)
             }
@@ -588,8 +588,8 @@ class HomeFragment : Fragment() {
             binding.banner2ViewPager.setCurrentItem(currentPage2 % size, true)
             currentPage2++
         }
-        DashBoardActivity.timer = Timer()
-        DashBoardActivity.timer!!.schedule(object : TimerTask() {
+        timer = Timer()
+        timer!!.schedule(object : TimerTask() {
             override fun run() {
                 handler.post(update)
             }
