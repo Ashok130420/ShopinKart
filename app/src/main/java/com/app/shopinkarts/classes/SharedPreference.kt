@@ -126,14 +126,14 @@ class SharedPreference(val context: Context) {
         bstate: String,
         blandmark: String,
         bcompany: String,
-        bgst: String
+
     ) {
 
 
         val editor = prefs.edit()
         editor.putString(BName, bname)
         editor.putString(BCompany, bcompany)
-        editor.putString(BGST, bgst)
+
         editor.putString(BPhoneNo, bphone)
         editor.putString(BFlat, bflat)
         editor.putString(BStreet, bstreet)
@@ -153,9 +153,9 @@ class SharedPreference(val context: Context) {
         return prefs.getString(BCompany, "")
     }
 
-    fun getBusinessGst(): String? {
-        return prefs.getString(BGST, "")
-    }
+//    fun getBusinessGst(): String? {
+//        return prefs.getString(BGST, "")
+//    }
 
     fun getBusinessPhoneNo(): String? {
         return prefs.getString(BPhoneNo, "")

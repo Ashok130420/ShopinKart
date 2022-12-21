@@ -122,8 +122,8 @@ class CheckOutDetailsActivity : AppCompatActivity() {
 
             binding.includeStepper1.businessNameET.setText(sharedPreference.getBusinessName())
             binding.includeStepper1.firmNameET.setText(sharedPreference.getBusinessCompany())
+//            binding.includeStepper1.gstInET.setText(sharedPreference.getBusinessGst())
             binding.includeStepper1.gstInET.setText(sharedPreference.getGst())
-            binding.includeStepper1.gstInET.setText(sharedPreference.getBusinessGst())
             binding.includeStepper1.businessPhoneNumberET.setText(sharedPreference.getBusinessPhoneNo())
             binding.includeStepper1.businessPhoneNumberET.setText(sharedPreference.getPhoneNo())
             binding.includeStepper1.businessFlatHouseET.setText(sharedPreference.getBusinessFlat())
@@ -359,8 +359,9 @@ class CheckOutDetailsActivity : AppCompatActivity() {
                     bstate = stateBusiness,
                     blandmark = binding.includeStepper1.businessLandMarkET.text.toString(),
                     bcompany = binding.includeStepper1.firmNameET.text.toString(),
-                    bgst = binding.includeStepper1.gstInET.text.toString(),
+//                    bgst = binding.includeStepper1.gstInET.text.toString(),
                 )
+                sharedPreference.setGst(gst = binding.includeStepper1.gstInET.text.toString())
             }
 
 

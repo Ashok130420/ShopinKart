@@ -345,7 +345,7 @@ class ProductDetailsActivity : AppCompatActivity() {
                 variantsArr = arrayListVariant,
                 variants = variantArray,
                 productId = p_Id,
-                hsnCode =hsnCode
+                hsnCode = hsnCode
             )
             DashBoardActivity.arrayListCart.add(product)
             DashBoardActivity.selectedVIDs.add(vId)
@@ -549,7 +549,7 @@ class ProductDetailsActivity : AppCompatActivity() {
                         pId = productResponse.product._id
                         p_Id = productResponse.product.productId
                         itemName = productResponse.product.productName
-                        hsnCode = productResponse.product.hsnCode
+//                        hsnCode = productResponse.product.hsnCode
                         imageUrl = productResponse.product.productImages[0]
                         binding.idTV.text = "#Id -${productResponse.product.productId}"
                         binding.tShirtNameTV.text = productResponse.product.productName
