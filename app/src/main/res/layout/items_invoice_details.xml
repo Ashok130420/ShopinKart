@@ -13,12 +13,14 @@
 
         <TextView
             android:id="@+id/itemsNameTV"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:fontFamily="@font/dm_sans_bold"
             android:text="@string/puma"
             android:textColor="@color/primary_text"
             android:textSize="@dimen/text_size_10"
+            android:layout_marginEnd="@dimen/m10"
+            app:layout_constraintEnd_toStartOf="@+id/qtyValueTV"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 

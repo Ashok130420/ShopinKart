@@ -17,6 +17,11 @@ data class Order(
     val userId: String,
     val orderId: String,
     val trackingDetails: List<TrackOrder>,
+    val businessOperatingState: String,
+    val companyName: String,
+    val gstIn: String,
+    val hsnCode: String,
+    val deliveryInstruction: String,
 
 
 )

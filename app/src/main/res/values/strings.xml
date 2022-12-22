@@ -88,7 +88,8 @@
     <string name="product_description">Product Description</string>
     <string name="product_checklist">Product Checklist</string>
     <string name="delivery_instructions">Delivery Instructions</string>
-    <string name="delivery_ins">Delivery Instructions \n(for e.g, please deliver my order by 3pm )</string>
+    <string name="delivery_ins">Delivery Instructions</string>
+    <string name="delivery_for">for e.g, please deliver my order by 3pm</string>
     <string name="buy_now">Buy Now</string>
     <string name="add_to_cart">ADD TO CART</string>
     <string name="read_reviews_4">Read Reviews (4\t\t\t)</string>
@@ -111,7 +112,7 @@
     <string name="order_total">Order Total</string>
     <string name="rs_1400">Rs 1400</string>
     <string name="gst_18">GST ( 5% )</string>
-    <string name="gst_no">GST NO</string>
+    <string name="gst_no">GST Number</string>
     <string name="rs_252">Rs 252</string>
     <string name="amount_to_be_paid">Amount to be paid</string>
     <string name="rs_1652">Rs 1652</string>
@@ -128,6 +129,7 @@
     <string name="city">City</string>
     <string name="landmark_optional">Landmark (optional)</string>
     <string-array name="state">
+        <item>State</item>
         <item>Rajasthan</item>
         <item>Delhi</item>
         <item>Bombay</item>
@@ -243,9 +245,9 @@
     <string name="_9_35_am">9:35 AM</string>
     <string name="_9_55_am">9:55 AM</string>
     <string name="cancel_order">Cancel Order</string>
-    <string name="please_enter_your_registered_email">Please enter your registered phone no</string>
+    <string name="please_enter_your_registered_email">Please enter your registered mobile number</string>
     <string name="send_otp">Send otp</string>
-    <string name="not_your_email_id">Not your phone no?</string>
+    <string name="not_your_email_id">Not your mobile number?</string>
     <string name="change">Change</string>
     <string name="notifications">Notifications</string>
     <string name="_0">0</string>
@@ -275,7 +277,7 @@
     <string name="price_low_to_high">Price - Low to High</string>
     <string name="newest_first">Newest First</string>
     <string name="deal_of_the_day">Deal Of The Day</string>
-    <string name="logout">LogOut</string>
+    <string name="logout">Log Out</string>
     <string name="product_id">Product Id</string>
     <string name="message">Message</string>
     <string name="notification_description">Notification Description</string>
@@ -290,7 +292,7 @@
     <string name="cod_collect_rs_30000">COD : Collect Rs 30000/-</string>
     <string name="gst_08AAQCM1573M1ZT">GST- 08AAQCM1573M1ZT</string>
     <string name="manuda_address">B-340, Headgevar Circle, Indra Verma Colony,Jaipur, Jaipur, Rajasthan, 302016</string>
-    <string name="product_name">Product Name</string>
+    <string name="product_name"> Product Name</string>
     <string name="amount">Amount</string>
     <string name="taxes">Taxes</string>
     <string name="rs_200">Rs 200</string>
@@ -299,8 +301,13 @@
     <string name="new_user">New User? Click Here</string>
     <string name="register_now">Register Now</string>
     <string name="manudha_fashion_private_limited">MANUDHA FASHION PRIVATE LIMITED</string>
-    <string name="enter_phone_no">Enter phone no</string>
+    <string name="enter_phone_no">Enter mobile number</string>
     <string name="this_order_has_been_canceled_our_team_will_get_back_to_you">This order has been canceled. Our team will get back to you.</string>
+    <string name="all_products">All Products</string>
+    <string name="replaced">Replaced</string>
+    <string name="youmaylike">You may like</string>
+    <string name="about_us_details">ShopInKarts is a online B2B, B2C shopping eCommerce platform. We are working hard to get you the newest and hottest trends for both for women clothing range. Hundreds of new products are added on a daily basis.\n\nshopinkart is a very helpful platform wherever the new sellers start his one business very easily this platform provide help to start on-line business for new entrepreneur. We provide every type of help to start your business nd with us you get the good opportunity in your life this is a platform where u easily find number the products  in which help u.\n\nWe wish that you have a perfect fashion shopping experience. Happy Shopping with ShopInKarts :)\n\n<b>Regards,</b>\n<b>ShopInKarts Team</b>\n(For more information, Please feel free to contact : +91 8619616787)</string>
+    <string name="privacy_policy_data"><b>Privacy</b>\nPolicy MANUDHA FASHION PRIVATE LIMITED built the ShopInKarts app as a Free app. This SERVICE is provided by MANUDHA FASHION PRIVATE LIMITED at no cost and is intended for use as is. This page is used to inform visitors regarding our policies with the collection, use, and disclosure of Personal Information if anyone decided to use our Service.\nIf you choose to use our Service, then you agree to the collection and use of information in relation to this policy. The Personal Information that we collect is used for providing and improving the Service. We will not use or share your information with anyone except as described in this Privacy Policy.\nThe terms used in this Privacy Policy have the same meanings as in our Terms and Conditions, which are accessible at ShopInKarts unless otherwise defined in this Privacy Policy.\nInformation Collection and Use For a better experience, while using our Service, we may require you to provide us with certain personally identifiable information, including but not limited to Name , Phone , Email(Optional). The information that we request will be retained by us and used as described in this privacy policy.\nThe app does use third-party services that may collect information used to identify you. Link to the privacy policy of third-party service providers used by the app Google Play Services Log Data We want to inform you that whenever you use our Service,\nin a case of an error in the app we collect data and information (through third-party products) on your phone called Log Data. This Log Data may include information such as your device Internet Protocol (“IP”) address, device name, operating system version, the configuration of the app when utilizing our Service, the time and date of your use of the Service, and other statistics. \n\n<b>Cookies</b>\nCookies are files with a small amount of data that are commonly used as anonymous unique identifiers. These are sent to your browser from the websites that you visit and are stored on your device\'s internal memory.\nThis Service does not use these “cookies” explicitly. However, the app may use thirdparty code and libraries that use “cookies” to collect information and improve their services. You have the option to either accept or refuse these cookies and know when a cookie is being sent to your device. If you choose to refuse our cookies, you may not be able to use some portions of this Service.\n\n<b>Service Providers</b>\nWe may employ third-party companies and individuals due to the following reasons: \n• To facilitate our Service; \n• To provide the Service on our behalf; \n• To perform Service-related services; or \n• To assist us in analyzing how our Service is used. \nWe want to inform users of this Service that these third parties have access to their Personal Information. The reason is to perform the tasks assigned to them on our behalf. However, they are obligated not to disclose or use the information for any other purpose.\n\n<b>Security</b>\nWe value your trust in providing us your Personal Information, thus we are striving to use commercially acceptable means of protecting it. But remember that no method of transmission over the internet, or method of electronic storage is 100% secure and reliable, and we cannot guarantee its absolute security.\n\n<b>Links to Other Sites</b>\nThis Service may contain links to other sites. If you click on a third-party link, you will be directed to that site. Note that these external sites are not operated by us. Therefore, we strongly advise you to review the Privacy Policy of these websites. We have no control over and assume no responsibility for the content, privacy policies, or practices of any third-party sites or services.\n\n<b>Children’s Privacy</b>\nThese Services do not address anyone under the age of 13. We do not knowingly collect personally identifiable information from children under 13 years of age. In the case we discover that a child under 13 has provided us with personal information, we immediately delete this from our servers. If you are a parent or guardian and you are aware that your child has provided us with personal information, please contact us so that we will be able to do the necessary actions.\n\n<b>Changes to This Privacy Policy</b>\nWe may update our Privacy Policy from time to time. Thus, you are advised to review this page periodically for any changes. We will notify you of any changes by posting the new Privacy Policy on this page. \nThis policy is effective as of 2022-11-04 \n\n<b>Contact Us</b>\nIf you have any questions or suggestions about our Privacy Policy, do not hesitate to contact us at\n1407anubhavsingh@gmail.com.\nThis privacy policy page was created at\nprivacypolicytemplate.net \nand modified/generated by App Privacy Policy Generator</string>
 
 
 </resources>

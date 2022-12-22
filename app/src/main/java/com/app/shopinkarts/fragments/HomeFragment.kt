@@ -3,27 +3,34 @@ package com.app.shopinkarts.fragments
 
 import android.annotation.SuppressLint
 import android.content.Intent
+import android.os.Build
 import android.os.Bundle
 import android.os.CountDownTimer
 import android.os.Handler
 import android.util.Log
 import android.view.*
 import android.widget.*
+import androidx.annotation.RequiresApi
 import androidx.core.content.ContextCompat
 import androidx.core.view.get
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
+import androidx.recyclerview.widget.GridLayoutManager
+import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout.OnRefreshListener
 import androidx.viewpager2.widget.ViewPager2
 import com.app.shopinkarts.R
+import com.app.shopinkarts.activity.DashBoardActivity
 import com.app.shopinkarts.activity.SearchActivity
 import com.app.shopinkarts.activity.ViewAllActivity
 import com.app.shopinkarts.adapter.*
 import com.app.shopinkarts.api.RetrofitClient
+import com.app.shopinkarts.classes.CustomScrollView.OnBottomReachedListener
 import com.app.shopinkarts.databinding.FragmentHomeBinding
 import com.app.shopinkarts.model.*
 import com.app.shopinkarts.response.*
 import com.facebook.shimmer.ShimmerFrameLayout
+import org.json.JSONObject
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -44,7 +51,8 @@ class HomeFragment : Fragment() {
     lateinit var mostPopularAdapter: MostPopularAdapter
     lateinit var topRatedAdapter: TopRatedAdapter
     lateinit var discountForYouAdapter: DiscountForYouAdapter
-    lateinit var recommendedAdapter: RecommendedAdapter
+    lateinit var recommendedAdapter: YouMayLikeAdapter
+    lateinit var endlessProductsAdapter: EndlessProductsAdapter
     lateinit var banner2Adapter: Banner2Adapter
     lateinit var banner3Adapter: Banner3Adapter
     lateinit var shimmerHome: ShimmerFrameLayout
@@ -64,8 +72,16 @@ class HomeFragment : Fragment() {
     var currentPage2 = 0
     var currentPage3 = 0
     var timer: Timer? = null
-    val DELAY_MS: Long = 2000
-    val PERIOD_MS: Long = 4000
+//    val DELAY_MS: Long = 2000
+//    val PERIOD_MS: Long = 4000
+
+    val arrayListEndLessProduct: ArrayList<Product> = ArrayList()
+
+    var page = 0
+    var isLoading = false
+    var isLastPage: Boolean = false
+    val limit = 8
+    lateinit var layoutManager: LinearLayoutManager
 
     companion object {
         var mInstance: HomeFragment = HomeFragment()
@@ -77,9 +93,10 @@ class HomeFragment : Fragment() {
         val arrayListDealOfDay: ArrayList<DealOfDay> = ArrayList()
         val arrayListShopFor: ArrayList<ShopFor> = ArrayList()
         val arrayListDiscountForYou: ArrayList<DiscountForYou> = ArrayList()
-        val arrayListRecommended: ArrayList<RecommendedItem> = ArrayList()
+        val arrayListRecommended: ArrayList<YouMayLike> = ArrayList()
         val arrayListPreferredManufacturer: ArrayList<PreferredManufacturer> = ArrayList()
         val arrayListPopularBrand: ArrayList<PreferredManufacturer> = ArrayList()
+
         var listItems = 0
 
         fun getInstance(): HomeFragment {
@@ -87,22 +104,66 @@ class HomeFragment : Fragment() {
         }
     }
 
+    @RequiresApi(Build.VERSION_CODES.M)
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
     ): View {
 
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_home, container, false)
 
-        activity?.window?.setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_RESIZE)
+        //activity?.window?.setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_RESIZE)
+
+
+        endlessProductsAdapter = EndlessProductsAdapter(requireContext(), arrayListEndLessProduct)
+        binding.allProductsRV.adapter = endlessProductsAdapter
+        val layoutManager = GridLayoutManager(requireContext(), 2)
+        binding.allProductsRV.layoutManager = layoutManager
+        binding.allProductsRV.hasFixedSize()
+        binding.allProductsRV.isNestedScrollingEnabled = false
+//        binding.allProductsRV.maxFlingVelocity
+
+
+        /* binding.scrollView.setOnScrollChangeListener { v, scrollX, scrollY, oldScrollX, oldScrollY ->
+             val x = scrollY - oldScrollY
+             if (x > 0) {
+                 Log.d("TAG", "loadMoreItems: safsafasf..........")
+                 isLoading = true
+                 binding.progressbar.visibility = View.VISIBLE
+                 endLessProductList()
+             } else if (x < 0) {
+
+             }
+         }*/
+
+        val scrollView = binding.scrollView
+
+        scrollView.onBottomReachedListener = object : OnBottomReachedListener {
+            override fun onBottomReached() {
+                // ScrollView Reached bottom
+                if (!isLoading) {
+                    Log.d("TAG", "loadMoreItems: safsafasf..........")
+                    isLoading = true
+                    binding.progressbar.visibility = View.VISIBLE
+                    endLessProductList()
+                }
+            }
+        }
+
 
         dashBoardList()
-
+        page = 0
+        arrayListEndLessProduct.clear()
+        //endLessProductList()
         shimmerHome = binding.shimmerViewBanner
 
 
         binding.pullToRefresh.setOnRefreshListener(OnRefreshListener {
 //            onResume()
+
 //            dashBoardList()
+//            page = 0
+//            arrayListEndLessProduct.clear()
+//            endLessProductList()
 
             binding.pullToRefresh.isRefreshing = false
         })
@@ -114,10 +175,10 @@ class HomeFragment : Fragment() {
         setCurrentIndicatorBanner2(0)
 
 //      banner 3rd fun
-        setCurrentIndicatorBanner3(0)
+        //setCurrentIndicatorBanner3(0)
 
 //      disable scrolling
-        binding.scrollView.isEnableScrolling = false
+        // binding.scrollView.isEnableScrolling = false
 
 //        banner 1st
         binding.introSliderViewPager.registerOnPageChangeCallback(object :
@@ -138,13 +199,13 @@ class HomeFragment : Fragment() {
         })
 
 //        banner 3rd
-        binding.banner3ViewPager.registerOnPageChangeCallback(object :
-            ViewPager2.OnPageChangeCallback() {
-            override fun onPageSelected(position: Int) {
-                super.onPageSelected(position)
-                setCurrentIndicatorBanner3(position)
-            }
-        })
+        /*  binding.banner3ViewPager.registerOnPageChangeCallback(object :
+              ViewPager2.OnPageChangeCallback() {
+              override fun onPageSelected(position: Int) {
+                  super.onPageSelected(position)
+                  setCurrentIndicatorBanner3(position)
+              }
+          })*/
 
 //        arrayList.clear()
 //        arrayList.add(CommonModel(view_type = 1, "Shop For", "View All", 0, 0))
@@ -262,14 +323,14 @@ class HomeFragment : Fragment() {
             )
         )
         // adapter for shorting cloths
-        clothsShortingAdapter = ClothsShortingAdapter(requireContext(), arrayListCloths)
-        binding.clothsShortingRV.adapter = clothsShortingAdapter
-        binding.clothsShortingRV.isNestedScrollingEnabled = false
+        /*  clothsShortingAdapter = ClothsShortingAdapter(requireContext(), arrayListCloths)
+          binding.clothsShortingRV.adapter = clothsShortingAdapter
+          binding.clothsShortingRV.isNestedScrollingEnabled = false
 
-        // adapter for filter items
-        filterItemsAdapter = FilterItemsAdapter(requireContext())
-        binding.filterItemsRV.adapter = filterItemsAdapter
-        binding.filterItemsRV.isNestedScrollingEnabled = false
+          // adapter for filter items
+          filterItemsAdapter = FilterItemsAdapter(requireContext())
+          binding.filterItemsRV.adapter = filterItemsAdapter
+          binding.filterItemsRV.isNestedScrollingEnabled = false*/
 
         val time = object : CountDownTimer(20000000, 1000) {
             override fun onTick(millisUntilFinished: Long) {
@@ -301,7 +362,6 @@ class HomeFragment : Fragment() {
             }
         }
         time.start()
-
         return binding.root
     }
 
@@ -332,7 +392,7 @@ class HomeFragment : Fragment() {
                     if (dashBoardResponse!!.status) {
 
 //                      scrolling enable
-                        binding.scrollView.isEnableScrolling = true
+                        // binding.scrollView.isEnableScrolling = true
 
                         arrayListShopFor.clear()
                         arrayListShopFor.addAll(dashBoardResponse.shopFor)
@@ -385,10 +445,10 @@ class HomeFragment : Fragment() {
                         arraylistBanner3.clear()
                         arraylistBanner3.addAll(dashBoardResponse.banners)
                         banner3Adapter = Banner3Adapter(requireContext(), arraylistBanner3)
-                        binding.banner3ViewPager.adapter = banner3Adapter
+                        //binding.banner3ViewPager.adapter = banner3Adapter
 //                        binding.dotsIndicatorBanner2.attachTo(binding.banner2ViewPager)
                         setupIndicatorsBanner3()
-                        autoSlideBanner3(arraylistBanner3.size)
+                        //autoSlideBanner3(arraylistBanner3.size)
 
                         arrayListMostPopular.clear()
                         arrayListMostPopular.addAll(dashBoardResponse.mostPopular)
@@ -405,20 +465,20 @@ class HomeFragment : Fragment() {
                         binding.topRatedRV.isNestedScrollingEnabled = false
                         topRatedAdapter.notifyDataSetChanged()
 
-                        arrayListFlashSale.clear()
-                        arrayListFlashSale.addAll(dashBoardResponse.flashSale)
-                        flashSaleAdapter = FlashSaleAdapter(requireContext(), arrayListFlashSale)
-                        binding.flashSaleRV.adapter = flashSaleAdapter
-                        binding.flashSaleRV.isNestedScrollingEnabled = false
-                        flashSaleAdapter.notifyDataSetChanged()
+//                        arrayListFlashSale.clear()
+//                        arrayListFlashSale.addAll(dashBoardResponse.flashSale)
+//                        flashSaleAdapter = FlashSaleAdapter(requireContext(), arrayListFlashSale)
+//                        binding.flashSaleRV.adapter = flashSaleAdapter
+//                        binding.flashSaleRV.isNestedScrollingEnabled = false
+//                        flashSaleAdapter.notifyDataSetChanged()
 
-                        arrayListDealOfDay.clear()
-                        arrayListDealOfDay.addAll(dashBoardResponse.dealOfDay)
-                        dealOfTheDayAdapter =
-                            DealOfTheDayAdapter(requireContext(), arrayListDealOfDay)
-                        binding.dealOfDayRV.adapter = dealOfTheDayAdapter
-                        binding.dealOfDayRV.isNestedScrollingEnabled = false
-                        dealOfTheDayAdapter.notifyDataSetChanged()
+//                        arrayListDealOfDay.clear()
+//                        arrayListDealOfDay.addAll(dashBoardResponse.dealOfDay)
+//                        dealOfTheDayAdapter =
+//                            DealOfTheDayAdapter(requireContext(), arrayListDealOfDay)
+//                        binding.dealOfDayRV.adapter = dealOfTheDayAdapter
+//                        binding.dealOfDayRV.isNestedScrollingEnabled = false
+//                        dealOfTheDayAdapter.notifyDataSetChanged()
 
                         arrayListDiscountForYou.clear()
                         arrayListDiscountForYou.addAll(dashBoardResponse.discountForYou)
@@ -429,9 +489,9 @@ class HomeFragment : Fragment() {
                         discountForYouAdapter.notifyDataSetChanged()
 
                         arrayListRecommended.clear()
-                        arrayListRecommended.addAll(dashBoardResponse.recommendedItems)
+                        arrayListRecommended.addAll(dashBoardResponse.youMayLike)
                         recommendedAdapter =
-                            RecommendedAdapter(requireContext(), arrayListRecommended)
+                            YouMayLikeAdapter(requireContext(), arrayListRecommended)
                         binding.recommendedRV.adapter = recommendedAdapter
                         binding.recommendedRV.isNestedScrollingEnabled = false
                         recommendedAdapter.notifyDataSetChanged()
@@ -441,9 +501,13 @@ class HomeFragment : Fragment() {
 
                     Log.d("TAG", "onResponse_SuccessResponse: ${dashBoardResponse.message}")
                 } else {
-                    if (context != null) Toast.makeText(
-                        requireContext(), "${dashBoardResponse?.message}", Toast.LENGTH_SHORT
-                    ).show()
+                    if (context != null) {
+                        val jObjError = JSONObject(response.errorBody()!!.string())
+                        Toast.makeText(
+                            requireContext(), jObjError.getString("message"), Toast.LENGTH_LONG
+                        ).show()
+//                        Log.d("TAG", "onResponse_FailedResponse: $jObjError.getString(message)")
+                    }
                 }
             }
 
@@ -458,7 +522,52 @@ class HomeFragment : Fragment() {
 
     }
 
+    private fun endLessProductList() {
+        val call: Call<EndlessProductsResponse> =
+            RetrofitClient.instance!!.api.endLessProduct(skip = page, limit = limit)
+        call.enqueue(object : Callback<EndlessProductsResponse> {
+            @SuppressLint("NotifyDataSetChanged")
+            override fun onResponse(
+                call: Call<EndlessProductsResponse>, response: Response<EndlessProductsResponse>
+            ) {
+                val endLessResponse = response.body()
+                if (response.isSuccessful && context != null) {
+                    if (endLessResponse!!.status) {
+
+
+//                        val start = ((page) * limit) + 1
+//                        val end = (page + 1) * limit
+
+                        //arrayListEndLessProduct.clear()
+                        arrayListEndLessProduct.addAll(endLessResponse.products)
+//                        for (i: Int in start..end) {
+//                            arrayListEndLessProduct.addAll(endLessResponse.products)
+//                        }
+
+
+                        Log.d("TAG", "onResponse: ${arrayListEndLessProduct.size}")
+                        endlessProductsAdapter = EndlessProductsAdapter(
+                            requireContext(), arrayListEndLessProduct
+                        )
+                        binding.allProductsRV.adapter = endlessProductsAdapter
+                        endlessProductsAdapter.notifyDataSetChanged()
+                        isLoading = false
+                        binding.progressbar.visibility = View.GONE
+                        if (!isLoading && endLessResponse.products.isNotEmpty()) page = page + limit
+                    }
+                }
+            }
+
+            override fun onFailure(call: Call<EndlessProductsResponse>, t: Throwable) {
+
+            }
+
+        })
+
+    }
+
     fun autoSlideBanner1(size: Int) {
+        currentPage = 0
         val handler = Handler()
         val update = Runnable {
             binding.introSliderViewPager.setCurrentItem(currentPage % size, true)
@@ -469,10 +578,11 @@ class HomeFragment : Fragment() {
             override fun run() {
                 handler.post(update)
             }
-        }, DELAY_MS, PERIOD_MS)
+        }, DashBoardActivity.DELAY_MS, DashBoardActivity.PERIOD_MS)
     }
 
     fun autoSlideBanner2(size: Int) {
+        currentPage2 = 0
         val handler = Handler()
         val update = Runnable {
             binding.banner2ViewPager.setCurrentItem(currentPage2 % size, true)
@@ -483,28 +593,28 @@ class HomeFragment : Fragment() {
             override fun run() {
                 handler.post(update)
             }
-        }, DELAY_MS, PERIOD_MS)
+        }, DashBoardActivity.DELAY_MS, DashBoardActivity.PERIOD_MS)
     }
 
-    fun autoSlideBanner3(size: Int) {
-        val handler = Handler()
-        val update = Runnable {
-            binding.banner3ViewPager.setCurrentItem(
-                currentPage3 % size, true
-            )
-            currentPage3++
-        }
+    /*  fun autoSlideBanner3(size: Int) {
+          val handler = Handler()
+          val update = Runnable {
+              binding.banner3ViewPager.setCurrentItem(
+                  currentPage3 % size, true
+              )
+              currentPage3++
+          }
 
-        timer = Timer()
-        timer!!.schedule(
-            object : TimerTask() {
-                override fun run() {
-                    handler.post(update)
-                }
-            }, DELAY_MS, PERIOD_MS
-        )
+          timer = Timer()
+          timer!!.schedule(
+              object : TimerTask() {
+                  override fun run() {
+                      handler.post(update)
+                  }
+              }, DELAY_MS, PERIOD_MS
+          )
 
-    }
+      }*/
 
     // banner 1
     @SuppressLint("NotifyDataSetChanged")
@@ -608,32 +718,32 @@ class HomeFragment : Fragment() {
                 )
                 this?.layoutParams = layoutParms
             }
-            binding.indicatorsBanner3.addView(indicators[i])
+//            binding.indicatorsBanner3.addView(indicators[i])
         }
     }
 
-    private fun setCurrentIndicatorBanner3(index: Int) {
-
-        val childCount = binding.indicatorsBanner3.childCount
-        for (i in 0 until childCount) {
-            val imageView = binding.indicatorsBanner3[i] as ImageView
-            if (i == index) {
-                imageView.setImageDrawable(context?.let {
-                    ContextCompat.getDrawable(
-                        it, R.drawable.indicator_active
-                    )
-                })
-            } else {
-                imageView.setImageDrawable(context?.let {
-                    ContextCompat.getDrawable(
-                        it, R.drawable.indicator_inactive
-                    )
-                })
-
-            }
-        }
-
-    }
+//    private fun setCurrentIndicatorBanner3(index: Int) {
+//
+//        val childCount = binding.indicatorsBanner3.childCount
+//        for (i in 0 until childCount) {
+//            val imageView = binding.indicatorsBanner3[i] as ImageView
+//            if (i == index) {
+//                imageView.setImageDrawable(context?.let {
+//                    ContextCompat.getDrawable(
+//                        it, R.drawable.indicator_active
+//                    )
+//                })
+//            } else {
+//                imageView.setImageDrawable(context?.let {
+//                    ContextCompat.getDrawable(
+//                        it, R.drawable.indicator_inactive
+//                    )
+//                })
+//
+//            }
+//        }
+//
+//    }
 
 }
 

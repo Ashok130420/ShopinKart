@@ -13,7 +13,7 @@
         android:layout_margin="@dimen/m5"
         app:cardBackgroundColor="@color/fragment_background"
         app:cardCornerRadius="@dimen/m10"
-        app:cardElevation="0dp"
+        app:cardElevation="2dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
@@ -26,7 +26,7 @@
                 android:id="@+id/itemsIV"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:scaleType="centerCrop"
+                android:scaleType="fitXY"
                 android:src="@drawable/top_wear"
                 app:layout_constraintTop_toTopOf="parent"
                 tools:ignore="ContentDescription" />
@@ -37,6 +37,7 @@
                 android:layout_height="wrap_content"
                 android:layout_margin="@dimen/m10"
                 android:gravity="top"
+                android:fontFamily="@font/inter_medium"
                 android:text="@string/men"
                 android:textColor="@color/black"
                 android:textSize="@dimen/text_size_13"
@@ -49,7 +50,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="0dp"
                 android:layout_margin="10dp"
-                android:fontFamily="@font/dm_sans_medium"
+                android:fontFamily="@font/inter_regular"
                 android:rotation="-90"
                 android:text="@string/all_top_wear"
                 android:textColor="@color/black"

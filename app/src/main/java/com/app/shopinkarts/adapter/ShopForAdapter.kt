@@ -36,10 +36,10 @@ class ShopForAdapter(val context: Context, val arrayList: ArrayList<ShopFor>) :
         holder.itemView.setOnClickListener {
             val intent = Intent(context, SubCategoriesActivity::class.java)
             itemDetails._id
-//            intent.putExtra("from", "categories")
+//          intent.putExtra("from", "categories")
             intent.putExtra("categoryId", itemDetails._id)
             intent.putExtra("categoryName", itemDetails.categoryName)
-//            intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK
+//          intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK
             context.startActivity(intent)
         }
     }

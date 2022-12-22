@@ -5,8 +5,10 @@ import com.app.shopinkarts.response.Variants
 
 data class CreateProduct(
     val productId: String,
+    val pId: String,
     val productImage: String,
     val productName: String,
+    val hsnCode: String,
     val qty: Int,
     val totalAmount: Double,
     val variants: List<Variants>,

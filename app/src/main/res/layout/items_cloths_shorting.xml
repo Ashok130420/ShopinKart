@@ -29,7 +29,7 @@
             android:layout_height="wrap_content"
             android:paddingHorizontal="@dimen/p20"
             android:paddingVertical="@dimen/p10"
-            android:fontFamily="@font/dm_sans_medium"
+            android:fontFamily="@font/inter_regular"
             android:text="@string/t_shirts"
             android:textColor="@color/text_light_green"
             android:textSize="@dimen/text_size_14"

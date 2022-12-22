@@ -18,6 +18,8 @@
             android:layout_height="wrap_content"
             android:paddingVertical="@dimen/p16"
             android:paddingStart="50dp"
+
+            android:fontFamily="@font/inter_medium"
             android:textColor="@color/primary_text"
             android:textSize="@dimen/text_size_18"
             app:layout_constraintTop_toTopOf="parent"
@@ -28,7 +30,7 @@
             android:id="@+id/backIV"
             android:layout_width="30dp"
             android:layout_height="30dp"
-            android:layout_marginStart="@dimen/m14"
+            android:layout_marginStart="@dimen/m10"
             android:background="@color/white"
             android:src="@drawable/back_arrow"
             app:layout_constraintBottom_toBottomOf="@+id/nameTV"

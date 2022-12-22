@@ -3,8 +3,9 @@ package com.app.shopinkarts.response
 data class Product(
     val _id: String,
     val attributes: List<Attribute>,
-    val avgRating: Int,
+    val avgRating: Float,
     val categoryId: String,
+    val hsnCode: String,
     val creationTimeStamp: String,
     val deliveryInstructions: List<String>,
     val description: String,

@@ -13,6 +13,7 @@ import com.app.shopinkarts.classes.SharedPreference
 import com.app.shopinkarts.classes.Utils
 import com.app.shopinkarts.databinding.ActivityOtpVerifyBinding
 import com.app.shopinkarts.response.SignUpResponse
+import org.json.JSONObject
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -52,6 +53,7 @@ class OtpVerifyActivity : AppCompatActivity() {
         Log.d("verifyOtpSend", password)
         Log.d("verifyOtpSend", deviceId)
         Log.d("verifyOtpSend", userType)
+        Log.d("verifyOtpSend", gst)
 
 
         binding.headerOtpVerify.backIV.setOnClickListener {
@@ -84,6 +86,7 @@ class OtpVerifyActivity : AppCompatActivity() {
         requestBody["password"] = password
         requestBody["deviceId"] = deviceId
         requestBody["userType"] = userType
+        requestBody["gstNumber"] = gst
 
         val mProgressDialog = ProgressDialog(this)
         mProgressDialog.setMessage("Please wait....")
@@ -125,8 +128,9 @@ class OtpVerifyActivity : AppCompatActivity() {
 
                 } else {
                     mProgressDialog.dismiss()
+                    val jObjError = JSONObject(response.errorBody()!!.string())
                     Toast.makeText(
-                        this@OtpVerifyActivity, response.message(), Toast.LENGTH_SHORT
+                        this@OtpVerifyActivity, jObjError.getString("message"), Toast.LENGTH_LONG
                     ).show()
                 }
                 mProgressDialog.dismiss()

@@ -19,6 +19,7 @@ import com.app.shopinkarts.classes.Utils
 import com.app.shopinkarts.databinding.ActivitySearchBinding
 import com.app.shopinkarts.response.Product
 import com.app.shopinkarts.response.SearchResponse
+import org.json.JSONObject
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -85,9 +86,10 @@ class SearchActivity : AppCompatActivity() {
                     Log.d("TAG", "onResponse: ${searchResponse.message}")
 
                 } else {
-//                    Toast.makeText(
-//                        this@SearchActivity, "${searchResponse?.message}", Toast.LENGTH_SHORT
-//                    ).show()
+                    val jObjError = JSONObject(response.errorBody()!!.string())
+                    Toast.makeText(
+                        this@SearchActivity, jObjError.getString("message"), Toast.LENGTH_LONG
+                    ).show()
                     Log.d("TAG", "onResponse_ElseResponse  ${searchResponse?.message} ")
                 }
             }

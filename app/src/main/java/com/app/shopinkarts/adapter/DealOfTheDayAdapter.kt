@@ -1,5 +1,6 @@
 package com.app.shopinkarts.adapter
 
+import android.annotation.SuppressLint
 import android.content.Context
 import android.content.Intent
 import android.view.LayoutInflater
@@ -28,13 +29,27 @@ class DealOfTheDayAdapter(val context: Context, val arrayList: ArrayList<DealOfD
         return ViewHolder(binding)
     }
 
+    @SuppressLint("SetTextI18n")
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val itemDetails = arrayList[position]
         holder.itemsDealOfTheDayBinding.apply {
-            Glide.with(context).load(itemDetails.productImages[0]).into(imageIV)
+            if (itemDetails.productImages.isNotEmpty()) {
+                Glide.with(context).load(itemDetails.productImages[0]).into(imageIV)
+            }
             productNameTV.text=itemDetails.productName
-            priceTV.text="RS ${itemDetails.price}"
+//            priceTV.text="RS ${itemDetails.price}"
             ratingTV.text=itemDetails.avgRating.toString()
+
+            var discount = 0
+            if (itemDetails.discountType == 1) {
+                discount = (itemDetails.price * itemDetails.discount) / 100
+                priceTV.text = "Rs ${(itemDetails.price)-(discount)}"
+
+            } else if (itemDetails.discountType == 0) {
+                discount = (itemDetails.price - itemDetails.discount)
+                priceTV.text = "Rs $discount"
+
+            }
         }
         holder.itemView.setOnClickListener {
             val intent = Intent(context, ProductDetailsActivity::class.java)

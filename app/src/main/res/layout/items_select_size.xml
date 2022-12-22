@@ -25,7 +25,7 @@
                 android:layout_width="@dimen/m30"
                 android:layout_height="@dimen/m30"
                 android:gravity="center"
-                android:paddingVertical="@dimen/p8"
+                android:paddingVertical="@dimen/p1"
                 android:text="@string/s"
                 android:textColor="@color/primary_text"
                 android:textSize="@dimen/text_size_12"

@@ -38,15 +38,15 @@ class AboutUsActivity : AppCompatActivity() {
             onBackPressed()
         }
 
-        pdfUrl = intent.extras!!.getString("pdfUrl", "")
-        Log.d("pdfUrl", "onCreate: $pdfUrl")
-
-        binding.webView.webViewClient = WebViewClient()
-        binding.webView.settings.setSupportZoom(true)
-
-        binding.webView.settings.javaScriptEnabled = true
-
-        binding.webView.loadUrl("https://docs.google.com/gview?embedded=true&url=" + pdfUrl)
+//        pdfUrl = intent.extras!!.getString("pdfUrl", "")
+//        Log.d("pdfUrl", "onCreate: $pdfUrl")
+//
+//        binding.webView.webViewClient = WebViewClient()
+//        binding.webView.settings.setSupportZoom(true)
+//
+//        binding.webView.settings.javaScriptEnabled = true
+//
+//        binding.webView.loadUrl("https://docs.google.com/gview?embedded=true&url=" + pdfUrl)
     }
 
     private fun getDate(time: Long): String? {

@@ -8,5 +8,7 @@ data class User(
     val password: String,
     val phone: String,
     val profilePicture: String,
-    val userType: Int
-)
+    val userType: Int,
+    val gstNumber: String,
+
+    )

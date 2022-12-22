@@ -3,7 +3,7 @@ package com.app.shopinkarts.response
 data class SimilarProduct(
     val _id: String,
     val attributes: List<Attribute>,
-    val avgRating: Int,
+    val avgRating: Double,
     val categoryId: String,
     val creationTimeStamp: String,
     val deliveryInstructions: List<String>,

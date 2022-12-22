@@ -12,10 +12,45 @@
         <!-- Status bar color. -->
         <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimaryVariant</item>
         <!-- Customize your theme here. -->
-        <item name="android:fontFamily">@font/dm_sans</item>
+        <item name="android:fontFamily">@font/inter_regular</item>
+        <item name="bottomSheetDialogTheme">@style/AppBottomSheetDialogTheme</item>
+        <item name="popupMenuStyle">@style/MyPopupMenu</item>
+        <item name="android:itemTextAppearance">@style/itemTextStyle.AppTheme</item>
     </style>
     <style name="RatingBar" parent="Theme.AppCompat">
         <item name="colorControlNormal">@color/dark_gray</item>
         <item name="colorControlActivated">@color/golden_yellow</item>
     </style>
+
+    <!--bottom sheet dialog theme-->
+    <style name="AppBottomSheetDialogTheme" parent="Theme.Design.Light.BottomSheetDialog">
+        <item name="bottomSheetStyle">
+            @style/AppModelStyle
+        </item>
+    </style>
+    <!--bottom sheet style-->
+    <style name="AppModelStyle" parent="Widget.Design.BottomSheet.Modal">
+        <item name="android:background">@drawable/bottom_sheet_shape</item>
+    </style>
+
+    <!--    spinner size and color -->
+    <style name="Spinner" parent="Widget.AppCompat.Light.DropDownItem.Spinner">
+        <item name="android:paddingStart">0dp</item>
+        <item name="android:paddingEnd">0dp</item>
+        <item name="android:textColor">@color/primary_Blue</item>
+        <item name="android:backgroundTint">@color/red</item>
+        <item name="android:textSize">5sp</item>
+    </style>
+
+    <style name="MyPopupMenu" parent="@style/Widget.AppCompat.PopupMenu.Overflow">
+        <item name="android:popupBackground">@android:color/white</item>
+<!--        <item name="android:dropDownHorizontalOffset">10dp</item>-->
+<!--        <item name="android:dropDownVerticalOffset">5dp</item>-->
+    </style>
+    <!-- To change Popup Menu Item's text color and text size-->
+    <style name="itemTextStyle.AppTheme" parent="@android:style/TextAppearance.Widget.IconMenu.Item">
+        <item name="android:textColor">@color/primary_text</item>
+        <item name="android:textSize">14sp</item>
+    </style>
+
 </resources>

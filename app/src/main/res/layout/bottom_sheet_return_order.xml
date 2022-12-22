@@ -32,7 +32,7 @@
                     android:background="@color/white"
                     android:paddingVertical="@dimen/p14"
                     android:textColor="@color/primary_text"
-                    android:textSize="@dimen/text_size_20"
+                    android:textSize="@dimen/text_size_16"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
 
@@ -53,58 +53,71 @@
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 
-            <RadioGroup
-                android:id="@+id/radioGroupReturnOrder"
-                android:layout_width="wrap_content"
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/radioLayout"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                app:layout_constraintStart_toStartOf="parent"
+                android:hint="@string/phone_number"
+                android:paddingVertical="2dp"
+                android:textColorHint="@color/hint_color"
+                app:boxStrokeColor="@color/grey_font"
+                app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/returnOrderCL">
 
-                <RadioButton
-                    android:id="@+id/damageRB"
+                <RadioGroup
+                    android:id="@+id/radioGroupReturnOrder"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="@dimen/m10"
-                    android:backgroundTint="@color/radio_button"
-                    android:fontFamily="@font/dm_sans_medium"
-                    android:text="@string/damage_defective"
-                    android:textColor="@color/hint"
-                    android:textSize="@dimen/text_size_14" />
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/returnOrderCL">
 
-                <RadioButton
-                    android:id="@+id/qualityNotGoodRB"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="@dimen/m10"
-                    android:backgroundTint="@color/radio_button"
-                    android:fontFamily="@font/dm_sans_medium"
-                    android:text="@string/quality_not_good"
-                    android:textColor="@color/hint"
-                    android:textSize="@dimen/text_size_14" />
+                    <RadioButton
+                        android:id="@+id/damageRB"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/m10"
+                        android:backgroundTint="@color/radio_button"
+                        android:fontFamily="@font/inter_regular"
+                        android:text="@string/damage_defective"
+                        android:textColor="@color/hint"
+                        android:textSize="@dimen/text_size_12" />
 
-                <RadioButton
-                    android:id="@+id/sizeIssueRB"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="@dimen/m10"
-                    android:backgroundTint="@color/radio_button"
-                    android:fontFamily="@font/dm_sans_medium"
-                    android:text="@string/size_issue"
-                    android:textColor="@color/hint"
-                    android:textSize="@dimen/text_size_14" />
+                    <RadioButton
+                        android:id="@+id/qualityNotGoodRB"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/m10"
+                        android:backgroundTint="@color/radio_button"
+                        android:fontFamily="@font/inter_regular"
+                        android:text="@string/quality_not_good"
+                        android:textColor="@color/hint"
+                        android:textSize="@dimen/text_size_12" />
 
-                <RadioButton
-                    android:id="@+id/othersRB"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="@dimen/m10"
-                    android:backgroundTint="@color/radio_button"
-                    android:fontFamily="@font/dm_sans_medium"
-                    android:text="@string/others"
-                    android:textColor="@color/hint"
-                    android:textSize="@dimen/text_size_14" />
+                    <RadioButton
+                        android:id="@+id/sizeIssueRB"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/m10"
+                        android:backgroundTint="@color/radio_button"
+                        android:fontFamily="@font/inter_regular"
+                        android:text="@string/size_issue"
+                        android:textColor="@color/hint"
+                        android:textSize="@dimen/text_size_12" />
 
-            </RadioGroup>
+                    <RadioButton
+                        android:id="@+id/othersRB"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/m10"
+                        android:backgroundTint="@color/radio_button"
+                        android:fontFamily="@font/inter_regular"
+                        android:text="@string/others"
+                        android:textColor="@color/hint"
+                        android:textSize="@dimen/text_size_12" />
+
+                </RadioGroup>
+            </com.google.android.material.textfield.TextInputLayout>
 
             <TextView
                 android:id="@+id/descriptionTV"
@@ -117,7 +130,7 @@
                 android:textColor="@color/primary_text"
                 android:textSize="@dimen/text_size_14"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/radioGroupReturnOrder"
+                app:layout_constraintTop_toBottomOf="@+id/radioLayout"
 
                 />
 
@@ -127,11 +140,11 @@
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="@dimen/m10"
                 android:background="@drawable/edit_text_background_boarder"
-                android:fontFamily="@font/dm_sans_medium"
+                android:fontFamily="@font/inter_regular"
                 android:hint="@string/please_type_here"
                 android:inputType="textEmailAddress"
                 android:paddingHorizontal="@dimen/p20"
-                android:paddingVertical="@dimen/p16"
+                android:paddingVertical="@dimen/p14"
                 android:textColorHint="@color/hint"
                 android:textSize="14sp"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -143,8 +156,8 @@
                 android:id="@+id/submitRequestTV"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/m30"
-                android:layout_marginBottom="@dimen/m16"
+                android:layout_marginTop="@dimen/m20"
+                android:layout_marginBottom="@dimen/m10"
                 android:background="@drawable/button_blue_radius5"
                 android:paddingHorizontal="@dimen/p30"
                 android:paddingVertical="@dimen/p14"

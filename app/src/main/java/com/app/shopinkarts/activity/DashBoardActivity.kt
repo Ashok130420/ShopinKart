@@ -8,7 +8,6 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
-import com.bumptech.glide.Glide
 import com.app.shopinkarts.R
 import com.app.shopinkarts.classes.InAppUpdate
 import com.app.shopinkarts.classes.SharedPreference
@@ -20,6 +19,9 @@ import com.app.shopinkarts.fragments.HomeFragment
 import com.app.shopinkarts.fragments.OrdersFragment
 import com.app.shopinkarts.model.CartModel
 import com.app.shopinkarts.response.Notification
+import com.bumptech.glide.Glide
+import java.util.*
+import kotlin.collections.ArrayList
 
 
 class DashBoardActivity : AppCompatActivity() {
@@ -39,6 +41,10 @@ class DashBoardActivity : AppCompatActivity() {
         var mInstance: DashBoardActivity = DashBoardActivity()
         var arrayListCart: ArrayList<CartModel> = ArrayList()
         var selectedVIDs: ArrayList<String> = ArrayList()
+
+        var timer: Timer? = null
+        var DELAY_MS: Long = 2000
+        var PERIOD_MS: Long = 6000
 
         var arrayListNotifications: ArrayList<Notification> = ArrayList()
 
@@ -135,21 +141,35 @@ class DashBoardActivity : AppCompatActivity() {
                     replaceFragment(homeFragment)
                     binding.headerDashBoard.nameTV.text = resources.getString(R.string.shopinkarts)
                     binding.headerDashBoard.profileIV.visibility = View.VISIBLE
+
+                    DELAY_MS = 2000
+                    PERIOD_MS = 6000
                 }
                 R.id.bottomCategories -> {
                     replaceFragment(categoriesFragment)
                     binding.headerDashBoard.nameTV.text = resources.getString(R.string.categories)
                     binding.headerDashBoard.profileIV.visibility = View.VISIBLE
+                    timer= null
+                    DELAY_MS = 0
+                    PERIOD_MS = 0
+
                 }
                 R.id.bottomOrders -> {
                     replaceFragment(ordersFragment)
                     binding.headerDashBoard.nameTV.text = resources.getString(R.string.my_orders)
                     binding.headerDashBoard.profileIV.visibility = View.VISIBLE
+                    timer= null
+                    DELAY_MS = 0
+                    PERIOD_MS = 0
+
                 }
                 R.id.bottomAccount -> {
                     replaceFragment(accountFragment)
                     binding.headerDashBoard.nameTV.text = resources.getString(R.string.profile)
                     binding.headerDashBoard.profileIV.visibility = View.GONE
+                    timer= null
+                    DELAY_MS = 0
+                    PERIOD_MS = 0
                 }
             }
             true

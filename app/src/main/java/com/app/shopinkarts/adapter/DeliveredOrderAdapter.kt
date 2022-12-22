@@ -51,7 +51,7 @@ class DeliveredOrderAdapter(val context: Context, val arrayList: ArrayList<Order
         val itemDetails = arrayList[position]
 
         holder.binding.apply {
-            cancelOrderCL.visibility=View.GONE
+            cancelOrderCL.visibility = View.GONE
 
             orderIdTV.text = "# ${itemDetails.orderId}"
 
@@ -62,8 +62,7 @@ class DeliveredOrderAdapter(val context: Context, val arrayList: ArrayList<Order
 //            totalAmountValueTV.text = " Rs ${itemDetails.finalAmount + itemDetails.gstAmount}"
 
 
-            totalAmountValueTV.text =
-                "RS " + DecimalFormat(".00").format(itemDetails.finalAmount + itemDetails.gstAmount)
+            totalAmountValueTV.text = "RS " + DecimalFormat(".00").format(itemDetails.finalAmount)
 
             tAmount = (itemDetails.finalAmount + itemDetails.gstAmount)
 
@@ -82,12 +81,17 @@ class DeliveredOrderAdapter(val context: Context, val arrayList: ArrayList<Order
                 stepperLayout.visibility = View.GONE
                 trackOrderCL.visibility = View.GONE
                 downloadInvoiceCL.visibility = View.GONE
-                cancelOrderCL.visibility=View.VISIBLE
-            } else {
+                cancelOrderCL.visibility = View.VISIBLE
+            } /*else if (itemDetails.orderStatus == 5) {
+                stepperLayout.visibility = View.GONE
+                trackOrderCL.visibility = View.VISIBLE
+                downloadInvoiceCL.visibility = View.VISIBLE
+                orderReplacedCL.visibility = View.VISIBLE
+            } */ else {
                 stepperLayout.visibility = View.VISIBLE
                 trackOrderCL.visibility = View.VISIBLE
                 downloadInvoiceCL.visibility = View.VISIBLE
-                cancelOrderCL.visibility=View.GONE
+                cancelOrderCL.visibility = View.GONE
             }
             when (itemDetails.orderStatus) {
                 0 -> {
@@ -138,6 +142,19 @@ class DeliveredOrderAdapter(val context: Context, val arrayList: ArrayList<Order
                     outForDeliveryTV.setBackgroundResource(R.drawable.button_blue_radius5)
 
                 }
+                5 -> {
+                    deliveredTV.text = "Replaced"
+                    viewStepper1.setBackgroundColor(context.resources.getColor(R.color.primary_Blue))
+                    viewStepper2.setBackgroundColor(context.resources.getColor(R.color.primary_Blue))
+                    viewStepper3.setBackgroundColor(context.resources.getColor(R.color.primary_Blue))
+                    processingIV.setImageResource(R.drawable.active_stepper)
+                    outForDeliveryIV.setImageResource(R.drawable.active_stepper)
+                    deliveredIV.setImageResource(R.drawable.green_circel)
+                    deliveredTV.setBackgroundResource(R.drawable.button_green_radius5)
+                    processingTV.setBackgroundResource(R.drawable.button_blue_radius5)
+                    outForDeliveryTV.setBackgroundResource(R.drawable.button_blue_radius5)
+
+                }
             }
 
 //          time stamp date convert
@@ -149,7 +166,7 @@ class DeliveredOrderAdapter(val context: Context, val arrayList: ArrayList<Order
 
             downloadInvoiceCL.visibility = View.GONE
 
-            if (itemDetails.orderStatus == 3) {
+            if (itemDetails.orderStatus == 3 || itemDetails.orderStatus == 5) {
 
                 downloadInvoiceCL.visibility = View.VISIBLE
 
@@ -159,6 +176,19 @@ class DeliveredOrderAdapter(val context: Context, val arrayList: ArrayList<Order
                     //send position
                     intent.putExtra("position", position)
                     intent.putExtra("orderId", itemDetails.orderId)
+
+                    intent.putExtra("city", itemDetails.shippingDetails.city)
+                    intent.putExtra("houseNo", itemDetails.shippingDetails.houseNo)
+                    intent.putExtra("landmark", itemDetails.shippingDetails.landmark)
+                    intent.putExtra("name", itemDetails.shippingDetails.name)
+                    intent.putExtra("phone", itemDetails.shippingDetails.phone)
+                    intent.putExtra("pincode", itemDetails.shippingDetails.pincode)
+                    intent.putExtra("state", itemDetails.shippingDetails.state)
+                    intent.putExtra("street", itemDetails.shippingDetails.street)
+                    intent.putExtra("businessOperatingState", itemDetails.businessOperatingState)
+                    intent.putExtra("companyName", itemDetails.companyName)
+                    intent.putExtra("gstIn", itemDetails.gstIn)
+                    intent.putExtra("hsnCode", itemDetails.hsnCode)
 
                     context.startActivity(intent)
                 }

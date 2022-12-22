@@ -14,7 +14,6 @@ import android.os.Environment
 import android.os.Handler
 import android.text.Html
 import android.util.Log
-import android.view.ScaleGestureDetector
 import android.view.View
 import android.widget.ImageView
 import android.widget.LinearLayout
@@ -36,11 +35,11 @@ import com.app.shopinkarts.model.CartModel
 import com.app.shopinkarts.model.SelectColorModel
 import com.app.shopinkarts.model.SelectSizeModel
 import com.app.shopinkarts.response.*
+import org.json.JSONObject
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 import java.util.*
-import kotlin.collections.ArrayList
 
 
 class ProductDetailsActivity : AppCompatActivity() {
@@ -57,8 +56,6 @@ class ProductDetailsActivity : AppCompatActivity() {
     var arraySelectSize: ArrayList<SelectSizeModel> = ArrayList()
     var arrayListVariant: ArrayList<VariantsArr> = ArrayList()
 
-    private lateinit var scaleGestureDetector: ScaleGestureDetector
-    private var scaleFactor = 1.0f
 
     var isFreeDelivery = ""
     var currentPage = 0
@@ -66,6 +63,10 @@ class ProductDetailsActivity : AppCompatActivity() {
     val DELAY_MS: Long = 2000
     val PERIOD_MS: Long = 4000
     var imageNumber = 1
+
+    var dType = 0
+    var dPrice = 0
+    var dDiscount = 0
 
     companion object {
         var pInstance: ProductDetailsActivity = ProductDetailsActivity()
@@ -81,13 +82,16 @@ class ProductDetailsActivity : AppCompatActivity() {
         var actualPrice = 0
         var productId = ""
         var pId = ""
+        var p_Id = ""
         var vId = ""
         var itemName = ""
+        var hsnCode = ""
         var color = ""
         var size = ""
         var imageUrl = ""
         var variantTarget = ""
         var unitPrice = 0
+        var userType = ""
 
         fun getInstance(): ProductDetailsActivity {
             return pInstance
@@ -118,6 +122,7 @@ class ProductDetailsActivity : AppCompatActivity() {
         pInstance = this
 
         sharedPreference = SharedPreference(this)
+        userType = sharedPreference.getUserType().toString()
 
         currentNumber = 0
 
@@ -184,8 +189,7 @@ class ProductDetailsActivity : AppCompatActivity() {
         }
 
         binding.minusQuantityTV.setOnClickListener {
-
-            if (currentNumber > 0) {
+            if (currentNumber > 1) {
                 currentNumber--
             }
             if (currentNumber < 1) {
@@ -196,6 +200,7 @@ class ProductDetailsActivity : AppCompatActivity() {
             binding.quantityShowTV.text = currentNumber.toString()
 
             binding.discountedPriceTV.text = "Rs ${unitPrice * currentNumber}.00"
+
         }
 
         binding.productDescriptionHeaderCL.setOnClickListener {
@@ -316,15 +321,14 @@ class ProductDetailsActivity : AppCompatActivity() {
         val variantArray: ArrayList<Variants> = ArrayList()
 
         if (DashBoardActivity.arrayListCart.isEmpty()) {
-            val variant =
-                Variants(
-                    color = selectedColor,
-                    size = selectedSize,
-                    quantity = currentNumber,
-                    price = actualPrice,
-                    id = vId,
-                    stock = stock
-                )
+            val variant = Variants(
+                color = selectedColor,
+                size = selectedSize,
+                quantity = currentNumber,
+                price = actualPrice,
+                id = vId,
+                stock = stock
+            )
             variantArray.add(variant)
             val product = CartModel(
                 pId = pId,
@@ -339,7 +343,9 @@ class ProductDetailsActivity : AppCompatActivity() {
                 imageUrl = imageUrl,
                 stock = stock,
                 variantsArr = arrayListVariant,
-                variants = variantArray
+                variants = variantArray,
+                productId = p_Id,
+                hsnCode = hsnCode
             )
             DashBoardActivity.arrayListCart.add(product)
             DashBoardActivity.selectedVIDs.add(vId)
@@ -356,6 +362,7 @@ class ProductDetailsActivity : AppCompatActivity() {
 
             for (index in DashBoardActivity.arrayListCart.indices) {
                 val product = DashBoardActivity.arrayListCart[index]
+                Log.d("productResponse.product", product.pId)
                 if (product.pId == pId) {
                     isProductFound = true
                     if (product.variants.contains(
@@ -370,7 +377,7 @@ class ProductDetailsActivity : AppCompatActivity() {
                         )
                     ) {
                         Toast.makeText(this, "Product already in cart", Toast.LENGTH_SHORT).show()
-                        sharedPreference.setArray()
+                        //sharedPreference.setArray()
                     } else {
                         variantArray.clear()
                         variantArray.addAll(product.variants)
@@ -380,8 +387,7 @@ class ProductDetailsActivity : AppCompatActivity() {
                             if (product.variants[ind].id == vId) {
                                 variantCheck = true
                                 variantArray.set(
-                                    index = ind,
-                                    element = Variants(
+                                    index = ind, element = Variants(
                                         color = selectedColor,
                                         size = selectedSize,
                                         quantity = currentNumber,
@@ -405,31 +411,34 @@ class ProductDetailsActivity : AppCompatActivity() {
                                 )
                             )
                         }
+                        DashBoardActivity.arrayListCart.set(
+                            index = index, element = CartModel(
+                                pId = pId,
+                                vId = vId,
+                                itemName = itemName,
+                                discountedPrice = discountedPrice.toString(),
+                                actualPrice = actualPrice,
+                                color = selectedColor,
+                                size = selectedSize,
+                                quantity = currentNumber,
+                                totalAmount = totalAmount,
+                                imageUrl = imageUrl,
+                                stock = stock,
+                                variantsArr = arrayListVariant,
+                                variants = variantArray,
+                                productId = p_Id,
+                                hsnCode = hsnCode
+                            )
+                        )
+                        Toast.makeText(this, "Product update Successfully", Toast.LENGTH_SHORT)
+                            .show()
 
+                        Log.d("itemDetails.variants", DashBoardActivity.arrayListCart.toString())
+
+                        sharedPreference.setArray()
                     }
 
-                    DashBoardActivity.arrayListCart.set(
-                        index = index, element = CartModel(
-                            pId = pId,
-                            vId = vId,
-                            itemName = itemName,
-                            discountedPrice = discountedPrice.toString(),
-                            actualPrice = actualPrice,
-                            color = selectedColor,
-                            size = selectedSize,
-                            quantity = currentNumber,
-                            totalAmount = totalAmount,
-                            imageUrl = imageUrl,
-                            stock = stock,
-                            variantsArr = arrayListVariant,
-                            variants = variantArray
-                        )
-                    )
-                    Toast.makeText(this, "Product update Successfully", Toast.LENGTH_SHORT).show()
 
-                    Log.d("itemDetails.variants", DashBoardActivity.arrayListCart.toString())
-
-                    sharedPreference.setArray()
                     break
                 }
             }
@@ -459,7 +468,9 @@ class ProductDetailsActivity : AppCompatActivity() {
                         imageUrl = imageUrl,
                         stock = stock,
                         variantsArr = arrayListVariant,
-                        variants = variantArray
+                        variants = variantArray,
+                        productId = p_Id,
+                        hsnCode = hsnCode
                     )
                 )
                 DashBoardActivity.selectedVIDs.add(vId)
@@ -535,27 +546,53 @@ class ProductDetailsActivity : AppCompatActivity() {
                     val productResponse = response.body()
                     if (productResponse!!.status) {
 
-
                         pId = productResponse.product._id
+                        p_Id = productResponse.product.productId
                         itemName = productResponse.product.productName
+                        hsnCode = productResponse.product.hsnCode
                         imageUrl = productResponse.product.productImages[0]
                         binding.idTV.text = "#Id -${productResponse.product.productId}"
                         binding.tShirtNameTV.text = productResponse.product.productName
-                        binding.discountedPriceTV.text = "Rs ${productResponse.product.price}.00"
 
-                        if (productResponse.product.discountType == 0) {
+                        Log.d("productResponse.product", productResponse.product._id)
+                        Log.d("productResponse.product", productResponse.product.productId)
+
+                        binding.actualPriceTV.text = "Rs ${productResponse.product.price}.00"
+                        var discount = 0
+                        if (productResponse.product.discountType == 1) {
                             binding.discountTV.text = "${productResponse.product.discount} % OFF"
-                        } else if (productResponse.product.discountType == 1) {
+                            discount =
+                                (productResponse.product.price * productResponse.product.discount) / 100
+
+                            binding.discountedPriceTV.text =
+                                "Rs ${productResponse.product.price - discount}.00"
+                        } else if (productResponse.product.discountType == 0) {
                             binding.discountTV.text = "Rs ${productResponse.product.discount} OFF"
+                            discount =
+                                (productResponse.product.price - productResponse.product.discount)
+                            binding.discountedPriceTV.text = "Rs ${discount}.00"
+
+                        } else if (productResponse.product.discountType == 2) {
+                            binding.discountedPriceTV.text =
+                                "Rs ${productResponse.product.price}.00"
+                            binding.discountTV.visibility = View.GONE
+                            binding.discountTagRightIV.visibility = View.GONE
+                            binding.actualPriceView.visibility = View.GONE
+                            binding.actualPriceTV.visibility = View.GONE
+
                         } else {
                             binding.discountTV.visibility = View.GONE
+                            binding.discountTagRightIV.visibility = View.GONE
                         }
 
-                        if (productResponse.product.discountType == 0)
-                            binding.discountTV.text = "${productResponse.product.discount} % OFF"
+//                        if (productResponse.product.discountType == 1) {
+//                            binding.discountTV.text =
+//                                "${productResponse.product.discount} % OFF"
+//                        }
 
-                        if (productResponse.product.stock <= 10) {
+                        if (productResponse.product.stock <= 50) {
                             binding.unitesLeftTV.visibility = View.VISIBLE
+//                            binding.unitesLeftTV.text = "Few units left ${productResponse.product.stock}"
                         } else {
                             binding.unitesLeftTV.visibility = View.GONE
                         }
@@ -577,8 +614,11 @@ class ProductDetailsActivity : AppCompatActivity() {
 
 //                        if (arrayBanner.isNotEmpty()) autoSlide(arrayBanner.size)
 
-                        binding.dispatchedTV.text = productResponse.product.dispatchDetails[0]
-                        binding.deliveryTV.text = productResponse.product.dispatchDetails[1]
+//                        binding.dispatchedTV.text = productResponse.product.dispatchDetails[0]
+//                        if (productResponse.product.dispatchDetails[1].isNotEmpty()) {
+                        binding.dispatchedTV.text = productResponse.product.deliveryInstructions[0]
+                        binding.deliveryTV.text = productResponse.product.dispatchDetails[0]
+//                        }
                         binding.ratingBar.rating = productResponse.product.avgRating.toFloat()
 
                         isFreeDelivery = productResponse.product.isFreeDelivery.toString()
@@ -667,13 +707,19 @@ class ProductDetailsActivity : AppCompatActivity() {
 
                         arrayListVariant.addAll(productResponse.product.variantsArr)
 
+                        dType = productResponse.product.discountType
+                        dPrice = productResponse.product.price
+                        dDiscount = productResponse.product.discount
 
                         Log.e("TAG", "${response.message()} ")
                     }
                 } else {
 
+                    val jObjError = JSONObject(response.errorBody()!!.string())
                     Toast.makeText(
-                        this@ProductDetailsActivity, response.message(), Toast.LENGTH_SHORT
+                        this@ProductDetailsActivity,
+                        jObjError.getString("message"),
+                        Toast.LENGTH_LONG
                     ).show()
                 }
             }
@@ -749,12 +795,45 @@ class ProductDetailsActivity : AppCompatActivity() {
                     vId = elements.id
                     Log.d("vId", elements.id)
 
-                    unitPrice = elements.price
-                    binding.discountedPriceTV.text = "Rs ${elements.price}.00"
+//                    unitPrice = elements.price
+//                    binding.discountedPriceTV.text = "Rs ${elements.price}.00"
 
-                    discountedPrice = elements.price
+                    var discount = 0
+                    Log.d("unitPrice.", elements.discountType.toString())
+                    if (dType == 1) {
+
+                        discount = (elements.price * dDiscount) / 100
+                        unitPrice = elements.price - discount
+                        discountedPrice = unitPrice
+                        actualPrice = unitPrice
+                        binding.discountedPriceTV.text = "Rs ${elements.price - discount}.00"
+
+                        Log.d("unitPrice.", unitPrice.toString())
+                        Log.d("unitPrice.", "${(dPrice)}  ${(dDiscount)}")
+
+                    } else if (dType == 0) {
+
+                        discount = (elements.price - dDiscount)
+                        unitPrice = elements.price - dDiscount
+                        binding.discountedPriceTV.text = "Rs ${discount}.00"
+                        discountedPrice = unitPrice
+                        actualPrice = unitPrice
+
+                        Log.d("unitPrice..", "${(dPrice)} - ${(dDiscount)}")
+                    } else if (dType == 2) {
+
+                        discount = (elements.price - dDiscount)
+                        unitPrice = elements.price - dDiscount
+                        binding.discountedPriceTV.text = "Rs ${discount}.00"
+                        discountedPrice = unitPrice
+                        actualPrice = unitPrice
+
+                        Log.d("unitPrice..", "${(dPrice)} - ${(dDiscount)}")
+                    }
+
+//                    discountedPrice = elements.price
                     binding.actualPriceTV.text = "Rs ${elements.actualPrice}.00"
-                    actualPrice = elements.actualPrice
+//                    actualPrice = elements.actualPrice
 //                    totalAmount = arrayListVariant.sumBy { it.price }
                     stock = elements.stock
                     Log.d("Stock", stock.toString())

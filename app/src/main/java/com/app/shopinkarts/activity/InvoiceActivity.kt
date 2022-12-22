@@ -45,6 +45,18 @@ class InvoiceActivity : AppCompatActivity() {
     var orderId = ""
     var userType = ""
 
+    var city = ""
+    var houseNo = ""
+    var landmark = ""
+    var name = ""
+    var phone = ""
+    var pincode = ""
+    var state = ""
+    var street = ""
+    var businessOperatingState = ""
+    var companyName = ""
+    var gstIn = ""
+
 //    var pageHeight = 1120
 //    var pageWidth = 792
 //    lateinit var bmp: Bitmap
@@ -121,32 +133,50 @@ class InvoiceActivity : AppCompatActivity() {
          })*/
         position = intent.extras!!.getInt("position", 0)
 
+        city = intent.extras!!.getString("city", "")
+        houseNo = intent.extras!!.getString("houseNo", "")
+        landmark = intent.extras!!.getString("landmark", "")
+        name = intent.extras!!.getString("name", "")
+        phone = intent.extras!!.getString("phone", "")
+        pincode = intent.extras!!.getString("pincode", "")
+        state = intent.extras!!.getString("state", "")
+        street = intent.extras!!.getString("street", "")
+        businessOperatingState = intent.extras!!.getString("businessOperatingState", "")
+        companyName = intent.extras!!.getString("companyName", "")
+        gstIn = intent.extras!!.getString("gstIn", "")
+
+
+
+
         if (userType == "0") {
+//            binding.customerNameTV.text =
+//                "${sharedPreference.getName()}\n${sharedPreference.getFlat()},${sharedPreference.getStreet()}, ${sharedPreference.getPin()},${sharedPreference.getCity()},${sharedPreference.getLandmark()}"
             binding.customerNameTV.text =
-                "${sharedPreference.getName()}\n${sharedPreference.getFlat()},${sharedPreference.getStreet()}, ${sharedPreference.getPin()},${sharedPreference.getCity()},${sharedPreference.getLandmark()}"
+                "${name}\n${houseNo},${street},${pincode},${landmark},${city},${state}"
 
         } else {
+//            binding.customerNameTV.text =
+//                "${sharedPreference.getBusinessName()}\n${sharedPreference.getBusinessFlat()},${sharedPreference.getBusinessStreet()}, ${sharedPreference.getBusinessPin()},${sharedPreference.getBusinessCity()},${sharedPreference.getBusinessLandmark()}\n\nGST - ${sharedPreference.getBusinessGst()}"
             binding.customerNameTV.text =
-                "${sharedPreference.getBusinessName()}\n${sharedPreference.getBusinessFlat()},${sharedPreference.getBusinessStreet()}, ${sharedPreference.getBusinessPin()},${sharedPreference.getBusinessCity()},${sharedPreference.getBusinessLandmark()}"
-
+                "${name}\n${houseNo},${street},${pincode},${landmark},${city},${state}\nGST - $gstIn"
         }
 
 
         binding.orderIdTV.text = "Order Id-${orderId}"
 
         binding.paymentTV.text =
-            "COD : Collect amount \nRS " + DecimalFormat(".00").format(OrdersFragment.arrayListMyOrders[position].finalAmount + OrdersFragment.arrayListMyOrders[position].gstAmount)+"/-"
+            " COD : Collect amount \n RS " + DecimalFormat(".00").format(OrdersFragment.arrayListMyOrders[position].finalAmount) + "/-"
 
         arrayList = OrdersFragment.arrayListMyOrders[position].products
 
         binding.tAmountValueTV.text =
-            "RS " + DecimalFormat(".00").format(OrdersFragment.arrayListMyOrders[position].finalAmount)
+            "RS " + DecimalFormat(".00").format(OrdersFragment.arrayListMyOrders[position].totalAmount)
 
         binding.gstTaxValueTV.text =
             "RS " + DecimalFormat(".00").format(OrdersFragment.arrayListMyOrders[position].gstAmount)
 
         binding.totalValueTV.text =
-            "RS " + DecimalFormat(".00").format(OrdersFragment.arrayListMyOrders[position].finalAmount + OrdersFragment.arrayListMyOrders[position].gstAmount)
+            "RS " + DecimalFormat(".00").format(OrdersFragment.arrayListMyOrders[position].finalAmount)
 
         gstAmount = OrdersFragment.arrayListMyOrders[position].gstAmount
 

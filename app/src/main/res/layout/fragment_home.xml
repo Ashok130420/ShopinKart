@@ -17,17 +17,11 @@
         <com.app.shopinkarts.classes.CustomScrollView
             android:id="@+id/scrollView"
             android:layout_width="match_parent"
-            android:layout_height="0dp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="1.0"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.0">
+            android:layout_height="match_parent">
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="match_parent">
 
                 <com.facebook.shimmer.ShimmerFrameLayout
                     android:id="@+id/shimmerViewBanner"
@@ -54,7 +48,7 @@
                     android:layout_marginHorizontal="@dimen/m14"
                     android:layout_marginTop="@dimen/m10"
                     android:background="@drawable/search_background"
-                    android:fontFamily="@font/dm_sans_medium"
+                    android:fontFamily="@font/inter_regular"
                     android:hint="@string/search"
                     android:padding="@dimen/p14"
                     android:paddingStart="@dimen/m50"
@@ -71,7 +65,7 @@
                     android:layout_height="@dimen/m35"
                     android:layout_marginStart="@dimen/m10"
                     android:padding="@dimen/p8"
-                    android:src="@drawable/search_icon"
+                    android:src="@drawable/search1"
                     android:visibility="invisible"
                     app:layout_constraintBottom_toBottomOf="@id/searchTV"
                     app:layout_constraintStart_toStartOf="@id/searchTV"
@@ -125,25 +119,14 @@
 
                 </androidx.constraintlayout.widget.ConstraintLayout>
 
-                <androidx.constraintlayout.widget.ConstraintLayout
+                <androidx.appcompat.widget.LinearLayoutCompat
                     android:id="@+id/homeCL"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical"
                     android:layout_marginHorizontal="@dimen/m14"
-
                     app:layout_constraintTop_toBottomOf="@id/imageSliderCL">
 
-                    <!--   <androidx.recyclerview.widget.RecyclerView
-                           android:id="@+id/recyclerView"
-                           android:layout_width="match_parent"
-                           android:layout_height="wrap_content"
-                           android:orientation="vertical"
-                           android:padding="0dp"
-                           app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-                           app:layout_constraintTop_toBottomOf="@id/imageSlider"
-                           tools:itemCount="1"
-                           tools:listitem="@layout/items_shop_for"
-                           />-->
                     <androidx.constraintlayout.widget.ConstraintLayout
                         android:id="@+id/shopForCl"
                         android:layout_width="match_parent"
@@ -155,7 +138,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="@dimen/m20"
-                            android:fontFamily="@font/dm_sans"
+                            android:fontFamily="@font/inter_medium"
                             android:text="@string/shop_for"
                             android:textColor="@color/primary_text"
                             android:textSize="@dimen/text_size_16"
@@ -188,7 +171,7 @@
                             android:id="@+id/preferredManufacturerTV"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:fontFamily="@font/dm_sans"
+                            android:fontFamily="@font/inter_medium"
                             android:text="@string/preferred_manufacturer"
                             android:textColor="@color/primary_text"
                             android:textSize="@dimen/text_size_16"
@@ -200,7 +183,7 @@
                             android:id="@+id/preferredManufacturerAllTV"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:fontFamily="@font/dm_sans"
+                            android:fontFamily="@font/inter_medium"
                             android:text="@string/view_all"
                             android:textColor="@color/primary_Blue"
                             android:textSize="@dimen/text_size_12"
@@ -214,7 +197,7 @@
                             android:id="@+id/manufacturerRV"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_marginTop="@dimen/m20"
+                            android:layout_marginTop="@dimen/m10"
                             android:orientation="horizontal"
                             app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
                             app:layout_constraintTop_toBottomOf="@id/preferredManufacturerTV"
@@ -233,8 +216,7 @@
                             android:id="@+id/mostPopularTV"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:fontFamily="@font/dm_sans"
-                            android:paddingVertical="@dimen/m10"
+                            android:fontFamily="@font/inter_medium"
                             android:text="@string/most_popular"
                             android:textColor="@color/primary_text"
                             android:textSize="@dimen/text_size_16"
@@ -246,7 +228,7 @@
                             android:id="@+id/mostPopularAllTV"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:fontFamily="@font/dm_sans"
+                            android:fontFamily="@font/inter_medium"
                             android:text="@string/view_all"
                             android:textColor="@color/primary_Blue"
                             android:textSize="@dimen/text_size_12"
@@ -278,8 +260,8 @@
                             android:id="@+id/topRatedTV"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:fontFamily="@font/dm_sans"
-                            android:paddingVertical="@dimen/m10"
+                            android:fontFamily="@font/inter_medium"
+
                             android:text="@string/top_rated"
                             android:textColor="@color/primary_text"
                             android:textSize="@dimen/text_size_16"
@@ -291,7 +273,7 @@
                             android:id="@+id/topRatedAllTV"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:fontFamily="@font/dm_sans"
+                            android:fontFamily="@font/inter_medium"
                             android:text="@string/view_all"
                             android:textColor="@color/primary_Blue"
                             android:textSize="@dimen/text_size_12"
@@ -370,7 +352,7 @@
                             android:id="@+id/newlyAddedTV"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:fontFamily="@font/dm_sans"
+                            android:fontFamily="@font/inter_medium"
                             android:text="@string/newly_added"
                             android:textColor="@color/primary_text"
                             android:textSize="@dimen/text_size_16"
@@ -381,7 +363,7 @@
                             android:id="@+id/newlyAddedAllTV"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:fontFamily="@font/dm_sans"
+                            android:fontFamily="@font/inter_medium"
                             android:text="@string/view_all"
                             android:textColor="@color/primary_Blue"
                             android:textSize="@dimen/text_size_12"
@@ -409,7 +391,7 @@
                             android:id="@+id/newlyAddedRV"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_marginTop="@dimen/m20"
+                            android:layout_marginTop="@dimen/m10"
                             android:orientation="horizontal"
                             app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
                             app:layout_constraintTop_toBottomOf="@id/newlyAddedTV"
@@ -419,182 +401,11 @@
                     </androidx.constraintlayout.widget.ConstraintLayout>
 
                     <androidx.constraintlayout.widget.ConstraintLayout
-                        android:id="@+id/dealOfDayCl"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="@dimen/m20"
-                        app:layout_constraintTop_toBottomOf="@+id/flashSaleAllItemsCL">
-
-                        <TextView
-                            android:id="@+id/dealOfDayTV"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:fontFamily="@font/dm_sans"
-                            android:text="@string/deal_of_the_day"
-                            android:textColor="@color/primary_text"
-                            android:textSize="@dimen/text_size_16"
-                            app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toTopOf="parent" />
-
-                        <TextView
-                            android:id="@+id/dealOfDayAllTV"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:fontFamily="@font/dm_sans"
-                            android:text="@string/view_all"
-                            android:textColor="@color/primary_Blue"
-                            android:textSize="@dimen/text_size_12"
-                            app:layout_constraintBottom_toBottomOf="@+id/dealOfDayTV"
-                            app:layout_constraintEnd_toEndOf="parent"
-                            app:layout_constraintTop_toTopOf="@+id/dealOfDayTV" />
-
-
-                        <androidx.recyclerview.widget.RecyclerView
-                            android:id="@+id/dealOfDayRV"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="@dimen/m24"
-                            android:orientation="horizontal"
-                            app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
-                            app:layout_constraintTop_toBottomOf="@id/dealOfDayTV"
-                            tools:listitem="@layout/items_deal_of_the_day"
-
-                            />
-                    </androidx.constraintlayout.widget.ConstraintLayout>
-
-                    <androidx.constraintlayout.widget.ConstraintLayout
-                        android:id="@+id/popularBrandCl"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="@dimen/m20"
-                        android:visibility="gone"
-                        app:layout_constraintTop_toBottomOf="@+id/dealOfDayCl">
-
-                        <TextView
-                            android:id="@+id/popularBrandTV"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="@dimen/m45"
-                            android:fontFamily="@font/dm_sans"
-                            android:text="@string/popular_brand"
-                            android:textColor="@color/primary_text"
-                            android:textSize="@dimen/text_size_16"
-                            app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toTopOf="parent" />
-
-                        <TextView
-                            android:id="@+id/popularBrandAllTV"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:fontFamily="@font/dm_sans"
-                            android:text="@string/view_all"
-                            android:textColor="@color/primary_Blue"
-                            android:textSize="@dimen/text_size_12"
-                            app:layout_constraintBottom_toBottomOf="@+id/popularBrandTV"
-                            app:layout_constraintEnd_toEndOf="parent"
-                            app:layout_constraintTop_toTopOf="@+id/popularBrandTV" />
-
-                        <androidx.recyclerview.widget.RecyclerView
-                            android:id="@+id/popularBrandRV"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="@dimen/m24"
-                            android:orientation="horizontal"
-                            app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
-                            app:layout_constraintTop_toBottomOf="@id/popularBrandTV"
-                            tools:listitem="@layout/item_popular_brand" />
-
-                    </androidx.constraintlayout.widget.ConstraintLayout>
-
-                    <androidx.constraintlayout.widget.ConstraintLayout
-                        android:id="@+id/discountForYouCL"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="@dimen/m20"
-                        app:layout_constraintTop_toBottomOf="@+id/popularBrandCl">
-
-                        <TextView
-                            android:id="@+id/discountForYouTV"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:fontFamily="@font/dm_sans"
-                            android:paddingVertical="@dimen/m10"
-                            android:text="@string/discount_for_you"
-                            android:textColor="@color/primary_text"
-                            android:textSize="@dimen/text_size_16"
-                            app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toTopOf="parent" />
-
-                        <TextView
-                            android:id="@+id/discountForYouAllTV"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:fontFamily="@font/dm_sans"
-                            android:text="@string/view_all"
-                            android:textColor="@color/primary_Blue"
-                            android:textSize="@dimen/text_size_12"
-                            app:layout_constraintBottom_toBottomOf="@+id/discountForYouTV"
-                            app:layout_constraintEnd_toEndOf="parent"
-                            app:layout_constraintTop_toTopOf="@+id/discountForYouTV" />
-
-                        <androidx.recyclerview.widget.RecyclerView
-                            android:id="@+id/discountForYouRV"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:orientation="horizontal"
-                            app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
-                            app:layout_constraintTop_toBottomOf="@id/discountForYouTV"
-                            tools:listitem="@layout/items_discount_for_you" />
-
-                    </androidx.constraintlayout.widget.ConstraintLayout>
-
-                    <androidx.constraintlayout.widget.ConstraintLayout
-                        android:id="@+id/recommendedCL"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="@dimen/m20"
-                        app:layout_constraintTop_toBottomOf="@+id/discountForYouCL">
-
-                        <TextView
-                            android:id="@+id/recommendedTV"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:fontFamily="@font/dm_sans"
-                            android:paddingVertical="@dimen/m10"
-                            android:text="@string/recommended"
-                            android:textColor="@color/primary_text"
-                            android:textSize="@dimen/text_size_16"
-                            app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toTopOf="parent" />
-
-                        <TextView
-                            android:id="@+id/recommendedAllTV"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:fontFamily="@font/dm_sans"
-                            android:text="@string/view_all"
-                            android:textColor="@color/primary_Blue"
-                            android:textSize="@dimen/text_size_12"
-                            app:layout_constraintBottom_toBottomOf="@+id/recommendedTV"
-                            app:layout_constraintEnd_toEndOf="parent"
-                            app:layout_constraintTop_toTopOf="@+id/recommendedTV" />
-
-                        <androidx.recyclerview.widget.RecyclerView
-                            android:id="@+id/recommendedRV"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:orientation="horizontal"
-                            app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
-                            app:layout_constraintTop_toBottomOf="@id/recommendedTV"
-                            tools:listitem="@layout/items_recommended" />
-
-                    </androidx.constraintlayout.widget.ConstraintLayout>
-
-                    <androidx.constraintlayout.widget.ConstraintLayout
                         android:id="@+id/flashSaleCL"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="@dimen/m40"
+                        android:visibility="gone"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@+id/newlyAddedCl">
 
@@ -627,7 +438,7 @@
                             android:id="@+id/clock1TV"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:fontFamily="@font/dm_sans_medium"
+                            android:fontFamily="@font/inter_regular"
                             android:padding="@dimen/p5"
                             android:text=" 00 : 00 : 00 "
                             android:textColor="@color/primary_Blue"
@@ -642,7 +453,7 @@
                              android:layout_width="wrap_content"
                              android:layout_height="wrap_content"
                              android:background="@drawable/text_view_blue"
-                             android:fontFamily="@font/dm_sans_medium"
+                             android:fontFamily="@font/inter_regular"
                              android:maxLength="2"
                              android:padding="@dimen/p5"
                              android:text="@string/_35"
@@ -659,7 +470,7 @@
                              android:layout_height="wrap_content"
                              android:layout_marginEnd="@dimen/m35"
                              android:background="@drawable/text_view_blue"
-                             android:fontFamily="@font/dm_sans_medium"
+                             android:fontFamily="@font/inter_regular"
                              android:maxLength="2"
                              android:padding="@dimen/p5"
                              android:text="@string/_05"
@@ -688,6 +499,7 @@
                     <androidx.constraintlayout.widget.ConstraintLayout
                         android:id="@+id/flashSaleAllItemsCL"
                         android:layout_width="match_parent"
+                        android:visibility="gone"
                         android:layout_height="wrap_content"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@+id/flashSaleCL">
@@ -733,10 +545,234 @@
                             tools:ignore="ContentDescription" />
                     </androidx.constraintlayout.widget.ConstraintLayout>
 
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:id="@+id/dealOfDayCl"
+                        android:layout_width="match_parent"
+                        android:visibility="gone"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/m20"
+                        app:layout_constraintTop_toBottomOf="@+id/flashSaleAllItemsCL">
 
-                </androidx.constraintlayout.widget.ConstraintLayout>
+                        <TextView
+                            android:id="@+id/dealOfDayTV"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/inter_medium"
+                            android:text="@string/deal_of_the_day"
+                            android:textColor="@color/primary_text"
+                            android:textSize="@dimen/text_size_16"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
 
-                <androidx.constraintlayout.widget.ConstraintLayout
+                        <TextView
+                            android:id="@+id/dealOfDayAllTV"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/inter_medium"
+                            android:text="@string/view_all"
+                            android:textColor="@color/primary_Blue"
+                            android:textSize="@dimen/text_size_12"
+                            app:layout_constraintBottom_toBottomOf="@+id/dealOfDayTV"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintTop_toTopOf="@+id/dealOfDayTV" />
+
+
+                        <androidx.recyclerview.widget.RecyclerView
+                            android:id="@+id/dealOfDayRV"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/m24"
+                            android:orientation="horizontal"
+                            app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
+                            app:layout_constraintTop_toBottomOf="@id/dealOfDayTV"
+                            tools:listitem="@layout/items_deal_of_the_day"
+
+                            />
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:id="@+id/popularBrandCl"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/m20"
+                        android:visibility="gone"
+                        app:layout_constraintTop_toBottomOf="@+id/dealOfDayCl">
+
+                        <TextView
+                            android:id="@+id/popularBrandTV"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/m45"
+                            android:fontFamily="@font/inter_medium"
+                            android:text="@string/popular_brand"
+                            android:textColor="@color/primary_text"
+                            android:textSize="@dimen/text_size_16"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+                        <TextView
+                            android:id="@+id/popularBrandAllTV"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/inter_medium"
+                            android:text="@string/view_all"
+                            android:textColor="@color/primary_Blue"
+                            android:textSize="@dimen/text_size_12"
+                            app:layout_constraintBottom_toBottomOf="@+id/popularBrandTV"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintTop_toTopOf="@+id/popularBrandTV" />
+
+                        <androidx.recyclerview.widget.RecyclerView
+                            android:id="@+id/popularBrandRV"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/m24"
+                            android:orientation="horizontal"
+                            app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
+                            app:layout_constraintTop_toBottomOf="@id/popularBrandTV"
+                            tools:listitem="@layout/item_popular_brand" />
+
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:id="@+id/discountForYouCL"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/m20"
+                        app:layout_constraintTop_toBottomOf="@+id/popularBrandCl">
+
+                        <TextView
+                            android:id="@+id/discountForYouTV"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/inter_medium"
+                            android:text="@string/discount_for_you"
+                            android:textColor="@color/primary_text"
+                            android:textSize="@dimen/text_size_16"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+                        <TextView
+                            android:id="@+id/discountForYouAllTV"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/inter_medium"
+                            android:text="@string/view_all"
+                            android:textColor="@color/primary_Blue"
+                            android:textSize="@dimen/text_size_12"
+                            app:layout_constraintBottom_toBottomOf="@+id/discountForYouTV"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintTop_toTopOf="@+id/discountForYouTV" />
+
+                        <androidx.recyclerview.widget.RecyclerView
+                            android:id="@+id/discountForYouRV"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal"
+                            android:layout_marginTop="@dimen/m10"
+                            app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
+                            app:layout_constraintTop_toBottomOf="@id/discountForYouTV"
+                            tools:listitem="@layout/items_discount_for_you" />
+
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:id="@+id/recommendedCL"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/m20"
+                        app:layout_constraintTop_toBottomOf="@+id/discountForYouCL">
+
+                        <TextView
+                            android:id="@+id/recommendedTV"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/inter_medium"
+                            android:text="@string/youmaylike"
+                            android:textColor="@color/primary_text"
+                            android:textSize="@dimen/text_size_16"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+                        <TextView
+                            android:id="@+id/recommendedAllTV"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/inter_medium"
+                            android:text="@string/view_all"
+                            android:textColor="@color/primary_Blue"
+                            android:textSize="@dimen/text_size_12"
+                            app:layout_constraintBottom_toBottomOf="@+id/recommendedTV"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintTop_toTopOf="@+id/recommendedTV" />
+
+                        <androidx.recyclerview.widget.RecyclerView
+                            android:id="@+id/recommendedRV"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal"
+                            android:layout_marginTop="@dimen/m10"
+                            app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
+                            app:layout_constraintTop_toBottomOf="@id/recommendedTV"
+                            tools:listitem="@layout/items_recommended" />
+
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
+                    <androidx.appcompat.widget.LinearLayoutCompat
+                        android:id="@+id/allProductsCL"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/m20"
+                        android:orientation="vertical"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/recommendedCL">
+
+                        <TextView
+                            android:id="@+id/allProductsTV"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/inter_medium"
+                            android:text="@string/all_products"
+                            android:textColor="@color/primary_text"
+                            android:textSize="@dimen/text_size_16"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+                        <!--                        <LinearLayout-->
+                        <!--                            android:layout_width="match_parent"-->
+                        <!--                            android:layout_height="wrap_content"-->
+                        <!--                            app:layout_constraintTop_toBottomOf="@+id/allProductsTV"-->
+                        <!--                            android:weightSum="2"-->
+                        <!--                            android:orientation="vertical">-->
+
+                        <androidx.recyclerview.widget.RecyclerView
+                            android:id="@+id/allProductsRV"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/m10"
+                            android:orientation="vertical"
+                            app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
+                            app:layout_constraintTop_toBottomOf="@id/allProductsTV"
+                            app:spanCount="2"
+                            tools:itemCount="3"
+                            tools:listitem="@layout/items_flash_sale"
+
+                            />
+
+                        <ProgressBar
+                            android:id="@+id/progressbar"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:visibility="gone"
+                            app:layout_constraintBottom_toBottomOf="@+id/allProductsRV" />
+                        <!--                        </LinearLayout>-->
+
+                    </androidx.appcompat.widget.LinearLayoutCompat>
+
+                </androidx.appcompat.widget.LinearLayoutCompat>
+
+                <!--<androidx.constraintlayout.widget.ConstraintLayout
                     android:id="@+id/imageSliderBanner2CL"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -817,7 +853,7 @@
                         app:layout_constraintTop_toTopOf="parent"
                         app:spanCount="2"
                         tools:listitem="@layout/items_filter_items" />
-                </androidx.constraintlayout.widget.ConstraintLayout>
+                </androidx.constraintlayout.widget.ConstraintLayout>-->
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 

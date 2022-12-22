@@ -26,6 +26,7 @@ import com.app.shopinkarts.response.Banner
 import com.app.shopinkarts.response.CategoriesResponse
 import com.app.shopinkarts.response.Category
 import com.app.shopinkarts.response.CategoryBannerResponse
+import org.json.JSONObject
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -97,15 +98,20 @@ class CategoriesFragment : Fragment() {
                     }
                     Log.d("TAG", "onResponse_SuccessResponse :${categoriesResponse.message}")
                 } else {
-                    if (context != null) Toast.makeText(
-                        requireContext(), "${categoriesResponse?.message}", Toast.LENGTH_SHORT
-                    ).show()
+                    if (context != null) {
+                        val jObjError = JSONObject(response.errorBody()!!.string())
+                        Toast.makeText(
+                            requireContext(), jObjError.getString("message"), Toast.LENGTH_LONG
+                        ).show()
+                    }
                 }
             }
 
             override fun onFailure(call: Call<CategoriesResponse>, t: Throwable) {
                 Log.d("TAG", "onFailureResponse: ${t.message}")
-                if (context != null) Toast.makeText(requireContext(), "${t.message}", Toast.LENGTH_SHORT).show()
+                if (context != null) Toast.makeText(
+                    requireContext(), "${t.message}", Toast.LENGTH_SHORT
+                ).show()
             }
 
         })
@@ -130,8 +136,10 @@ class CategoriesFragment : Fragment() {
                             categoryBannerAdapter =
                                 CategoryBannerAdapter(requireContext(), arraylistCategoryBanner)
                             binding.categoryBannerViewPager.adapter = categoryBannerAdapter
-                            setupIndicators()
-                            autoSlideBanner(arraylistCategoryBanner.size)
+                            if (arraylistCategoryBanner.isNotEmpty()) {
+                                setupIndicators()
+                                autoSlideBanner(arraylistCategoryBanner.size)
+                            }
                         }
                     }
                     Log.d("TAG", "onResponse_SuccessResponse :${categoryBannerResponse.message}")
@@ -144,7 +152,9 @@ class CategoriesFragment : Fragment() {
 
             override fun onFailure(call: Call<CategoryBannerResponse>, t: Throwable) {
                 Log.d("TAG", "onFailureResponse: ${t.message}")
-                if (context != null)  Toast.makeText(requireContext(), "${t.message}", Toast.LENGTH_SHORT).show()
+                if (context != null) Toast.makeText(
+                    requireContext(), "${t.message}", Toast.LENGTH_SHORT
+                ).show()
             }
 
         })

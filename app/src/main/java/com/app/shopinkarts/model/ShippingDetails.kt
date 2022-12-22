@@ -10,12 +10,4 @@ data class ShippingDetails(
     val state: String,
     val street: String
 
-//    val city: String,
-//    val houseNo: String,
-//    val landmark: String,
-//    val name: String,
-//    val phone: String,
-//    val pincode: String,
-//    val state: String,
-//    val street: String
 )

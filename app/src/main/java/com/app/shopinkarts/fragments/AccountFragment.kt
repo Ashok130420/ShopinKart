@@ -10,6 +10,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.appcompat.app.AlertDialog
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import com.bumptech.glide.Glide
@@ -18,7 +19,9 @@ import com.app.shopinkarts.activity.*
 import com.app.shopinkarts.api.RetrofitClient
 import com.app.shopinkarts.classes.SharedPreference
 import com.app.shopinkarts.databinding.FragmentAccountBinding
+import com.app.shopinkarts.databinding.LogOutAlertBoxBinding
 import com.app.shopinkarts.response.AppSettingResponse
+import org.json.JSONObject
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -66,17 +69,11 @@ class AccountFragment : Fragment() {
         binding.phoneNumberTV.text = "+91${sharedPreference.getPhoneNo()}"
 
         binding.logOutTV.setOnClickListener {
-            sharedPreference.isLoginSet(false)
-            sharedPreference.clear()
-//            DashBoardActivity.arrayListCart.clear()
-//            DashBoardActivity.selectedVIDs.clear()
-            val intent = Intent(requireContext(), LoginActivity::class.java)
-            intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK
-            startActivity(intent)
+            showAlertDialogBox()
         }
 
         binding.profileIV.setOnClickListener {
-            launchGallery()
+//            launchGallery()
         }
 
         return binding.root
@@ -127,7 +124,7 @@ class AccountFragment : Fragment() {
                             startActivity(intent)
                         }
                         binding.refundPolicyTV.setOnClickListener {
-                            val intent = Intent(context, AboutUsActivity::class.java)
+                            val intent = Intent(context, RefundPolicyActivity::class.java)
                             intent.putExtra("header", "Refund Policy")
                             intent.putExtra("pdfUrl", appSettingResponse.appSetting.refundPolicy)
                             startActivity(intent)
@@ -143,16 +140,18 @@ class AccountFragment : Fragment() {
                         }
 
                         binding.privacyPolicyTV.setOnClickListener {
-                            val intent = Intent(context, AboutUsActivity::class.java)
+                            val intent = Intent(context, PrivacyPolicyActivity::class.java)
                             intent.putExtra("header", "Privacy Policy")
                             intent.putExtra("pdfUrl", appSettingResponse.appSetting.privacyPolicy)
+
                             startActivity(intent)
                         }
 
                     } else {
 
+                        val jObjError = JSONObject(response.errorBody()!!.string())
                         Toast.makeText(
-                            requireContext(), appSettingResponse.message, Toast.LENGTH_SHORT
+                            requireContext(), jObjError.getString("message"), Toast.LENGTH_LONG
                         ).show()
                         Log.d(TAG, "onResponse: ${appSettingResponse.message} ")
 
@@ -167,6 +166,36 @@ class AccountFragment : Fragment() {
             }
 
         })
+    }
+
+    fun showAlertDialogBox() {
+        val dialogBinding: LogOutAlertBoxBinding = DataBindingUtil.inflate(
+            LayoutInflater.from(requireContext()),
+            R.layout.log_out_alert_box,
+            null,
+            false
+        )
+        //Alert Dialog Builder
+        val builder = AlertDialog.Builder(requireContext()).setView(dialogBinding.root)
+        // show dialog
+
+        val alertDialog = builder.show()
+        dialogBinding.cancelTV.setOnClickListener {
+            alertDialog.dismiss()
+        }
+        dialogBinding.confirmTV.setOnClickListener {
+
+            sharedPreference.isLoginSet(false)
+            sharedPreference.clear()
+            val intent = Intent(requireContext(), LoginActivity::class.java)
+            intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK
+            startActivity(intent)
+
+            alertDialog.dismiss()
+            Toast.makeText(context, "Log Out", Toast.LENGTH_SHORT).show()
+
+        }
+
     }
 
 }

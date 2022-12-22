@@ -16,6 +16,7 @@ import com.app.shopinkarts.classes.SharedPreference
 import com.app.shopinkarts.databinding.FragmentOrdersBinding
 import com.app.shopinkarts.response.MyOrdersResponse
 import com.app.shopinkarts.response.Order
+import org.json.JSONObject
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -94,8 +95,9 @@ class OrdersFragment : Fragment() {
 
                 } else {
                     if (context != null) {
+                        val jObjError = JSONObject(response.errorBody()!!.string())
                         Toast.makeText(
-                            requireContext(), "${myOrderResponse?.message}", Toast.LENGTH_SHORT
+                            requireContext(), jObjError.getString("message"), Toast.LENGTH_LONG
                         ).show()
                     }
                     Log.d("TAG", "onResponse_ElseResponse  ${myOrderResponse?.message} ")

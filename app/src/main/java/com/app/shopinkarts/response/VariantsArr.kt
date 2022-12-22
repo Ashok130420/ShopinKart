@@ -11,6 +11,8 @@ data class VariantsArr(
     var discountedPrice: String,
     var actualPrice: Int,
     var variantValue: String,
+    val discountType: Int,
+    val discount: Int,
 
 
 

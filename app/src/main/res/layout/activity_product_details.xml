@@ -108,8 +108,8 @@
                         android:id="@+id/idTV"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:fontFamily="@font/inter_regular"
                         android:paddingVertical="@dimen/p2"
-
                         android:textColor="@color/dark_Gray"
                         android:textSize="@dimen/text_size_12"
                         app:layout_constraintStart_toStartOf="parent"
@@ -117,20 +117,24 @@
 
                     <TextView
                         android:id="@+id/t_shirtNameTV"
-                        android:layout_width="wrap_content"
+                        android:layout_width="0dp"
                         android:layout_height="wrap_content"
+                        android:layout_marginEnd="@dimen/m10"
+                        android:fontFamily="@font/inter_medium"
                         android:paddingVertical="@dimen/p4"
+                        android:singleLine="false"
                         android:text=""
                         android:textColor="@color/primary_text"
                         android:textSize="@dimen/text_size_16"
+                        app:layout_constraintEnd_toStartOf="@+id/discountTagRightIV"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@+id/idTV" />
 
                     <ImageView
                         android:id="@+id/discountTagRightIV"
-                        android:layout_width="65dp"
+                        android:layout_width="75dp"
                         android:layout_height="20dp"
-                        android:layout_marginTop="@dimen/m10"
+                        android:fontFamily="@font/inter_medium"
                         android:scaleType="fitXY"
                         android:src="@drawable/discount_tag_right"
                         app:layout_constraintBottom_toBottomOf="@+id/t_shirtNameTV"
@@ -157,6 +161,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="@dimen/m6"
+                        android:fontFamily="@font/inter_medium"
                         android:paddingVertical="@dimen/p2"
 
                         android:textColor="@color/primary_text"
@@ -169,6 +174,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="@dimen/m14"
+                        android:fontFamily="@font/inter_regular"
                         android:paddingVertical="@dimen/p2"
 
                         android:textColor="@color/dark_Gray"
@@ -178,6 +184,7 @@
                         app:layout_constraintTop_toTopOf="@+id/discountedPriceTV" />
 
                     <View
+                        android:id="@+id/actualPriceView"
                         android:layout_width="0dp"
                         android:layout_height="1dp"
                         android:background="@color/dark_Gray"
@@ -205,9 +212,10 @@
                         android:background="@drawable/shape_text_blue"
                         android:paddingHorizontal="@dimen/p14"
                         android:paddingVertical="@dimen/p4"
-
+                        android:text="@string/few_units_left"
                         android:textColor="@color/primary_Blue"
                         android:textSize="@dimen/text_size_12"
+                        android:visibility="gone"
                         app:layout_constraintBottom_toBottomOf="@id/ratingBar"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintTop_toTopOf="@id/discountedPriceTV" />
@@ -216,22 +224,24 @@
                         android:id="@+id/dispatchedIV"
                         android:layout_width="@dimen/m35"
                         android:layout_height="@dimen/m35"
-                        android:layout_marginTop="@dimen/m14"
                         android:padding="@dimen/p4"
                         android:src="@drawable/calendar"
+                        android:visibility="invisible"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@id/ratingBar" />
+                        app:layout_constraintTop_toBottomOf="@id/ratingBar"
+                        tools:ignore="ContentDescription" />
 
                     <TextView
                         android:id="@+id/dispatchedTV"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginStart="@dimen/m14"
+                        android:layout_marginTop="@dimen/m14"
+                        android:fontFamily="@font/inter_regular"
                         android:paddingVertical="@dimen/p2"
-                        android:textColor="@color/dark_Gray"
+                        android:textColor="@color/primary_text"
                         android:textSize="@dimen/text_size_12"
                         app:layout_constraintBottom_toBottomOf="@+id/dispatchedIV"
-                        app:layout_constraintStart_toEndOf="@+id/dispatchedIV"
+                        app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="@+id/dispatchedIV" />
 
                     <ImageView
@@ -251,8 +261,9 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="@dimen/m14"
+                        android:fontFamily="@font/inter_regular"
                         android:paddingVertical="@dimen/p2"
-                        android:textColor="@color/dark_Gray"
+                        android:textColor="@color/primary_text"
                         android:textSize="@dimen/text_size_12"
                         android:visibility="gone"
                         app:layout_constraintBottom_toBottomOf="@+id/deliveryIV"
@@ -263,7 +274,8 @@
                         android:id="@+id/selectColorTV"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="@dimen/m16"
+                        android:layout_marginTop="@dimen/m11"
+                        android:fontFamily="@font/inter_regular"
                         android:paddingVertical="@dimen/p2"
                         android:text="@string/select_color"
                         android:textColor="@color/primary_text"
@@ -275,7 +287,7 @@
                         android:id="@+id/selectColorRV"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="@dimen/m5"
+
                         android:orientation="horizontal"
                         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                         app:layout_constraintStart_toStartOf="parent"
@@ -287,7 +299,8 @@
                         android:id="@+id/selectSizeTV"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="@dimen/m16"
+                        android:layout_marginTop="@dimen/m11"
+                        android:fontFamily="@font/inter_regular"
                         android:paddingVertical="@dimen/p2"
                         android:text="@string/select_size"
                         android:textColor="@color/primary_text"
@@ -300,7 +313,6 @@
                         android:id="@+id/selectSizeRV"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="@dimen/m5"
                         android:orientation="horizontal"
                         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                         app:layout_constraintStart_toStartOf="parent"
@@ -312,7 +324,8 @@
                         android:id="@+id/quantityTV"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="@dimen/m16"
+                        android:layout_marginTop="@dimen/m11"
+                        android:fontFamily="@font/inter_regular"
                         android:paddingVertical="@dimen/p2"
                         android:text="@string/quantity"
                         android:textColor="@color/primary_text"
@@ -351,6 +364,7 @@
                             android:background="@drawable/square_button_blue"
                             android:gravity="center"
                             android:text="@string/_0"
+                            android:fontFamily="@font/inter_regular"
                             android:textColor="@color/white"
                             android:textSize="@dimen/text_size_16"
                             android:textStyle="bold"
@@ -395,7 +409,7 @@
                         android:id="@+id/productDescriptionCL"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_margin="@dimen/m14"
+
                         app:layout_constraintTop_toTopOf="parent">
 
                         <androidx.constraintlayout.widget.ConstraintLayout
@@ -408,9 +422,11 @@
                                 android:id="@+id/productDescriptionTV"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:layout_marginTop="@dimen/m8"
+                               android:layout_marginStart="@dimen/m14"
                                 android:background="@color/fragment_background"
-                                android:paddingVertical="@dimen/p12"
+                                android:paddingVertical="@dimen/p18"
+
+                                android:fontFamily="@font/inter_medium"
                                 android:text="@string/product_description"
                                 android:textColor="@color/primary_text"
                                 android:textSize="@dimen/text_size_14"
@@ -452,6 +468,8 @@
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:layout_marginTop="@dimen/m10"
+                                android:layout_marginStart="@dimen/m14"
+                                android:fontFamily="@font/inter_regular"
                                 android:inputType="textMultiLine"
                                 android:textColor="@color/grey_font"
                                 android:textSize="@dimen/text_size_14"
@@ -607,7 +625,6 @@
                         android:id="@+id/deliveryInstructionCL"
                         android:layout_width="match_parent"
                         android:layout_height="0dp"
-                        android:layout_margin="@dimen/m14"
                         app:layout_constraintTop_toBottomOf="@+id/readReviewsCL">
 
                         <androidx.constraintlayout.widget.ConstraintLayout
@@ -620,12 +637,13 @@
                                 android:id="@+id/deliveryInstructionTV"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:layout_marginTop="@dimen/m8"
+                                android:layout_marginStart="@dimen/m14"
                                 android:background="@color/fragment_background"
-                                android:paddingVertical="@dimen/p12"
+                                android:paddingVertical="@dimen/p18"
                                 android:text="@string/delivery_instructions"
                                 android:textColor="@color/primary_text"
                                 android:textSize="@dimen/text_size_14"
+                                android:fontFamily="@font/inter_medium"
                                 app:layout_constraintStart_toStartOf="parent"
                                 app:layout_constraintTop_toTopOf="parent"
 
@@ -656,7 +674,9 @@
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:layout_marginTop="@dimen/m10"
+                                android:layout_marginStart="@dimen/m16"
                                 android:inputType="textMultiLine"
+                                android:fontFamily="@font/inter_regular"
                                 android:textColor="@color/grey_font"
                                 android:textSize="@dimen/text_size_14"
                                 app:layout_constraintTop_toTopOf="parent"
@@ -683,19 +703,19 @@
                     <View
                         android:layout_width="match_parent"
                         android:layout_height="1dp"
-                        android:visibility="gone"
                         android:background="@color/light_Gray"
+                        android:visibility="gone"
                         app:layout_constraintTop_toTopOf="parent" />
 
                     <TextView
                         android:id="@+id/similarProductsTV"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:fontFamily="@font/inter_medium"
                         android:paddingHorizontal="@dimen/p14"
-                        android:paddingVertical="@dimen/p2"
                         android:text="@string/similar_products"
                         android:textColor="@color/primary_text"
-                        android:textSize="@dimen/text_size_13"
+                        android:textSize="@dimen/text_size_16"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent" />
 
@@ -703,7 +723,7 @@
                         android:id="@+id/similarProductsRV"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="@dimen/m18"
+                        android:layout_marginTop="@dimen/m10"
                         android:orientation="horizontal"
                         android:padding="@dimen/p4"
                         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
@@ -735,8 +755,8 @@
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="@dimen/m10"
                 android:background="@drawable/shape_text_blue"
-                android:gravity="center"
                 android:focusableInTouchMode="false"
+                android:gravity="center"
                 android:paddingVertical="@dimen/p14"
                 android:text="@string/buy_now"
                 android:textColor="@color/primary_Blue"
@@ -752,9 +772,9 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/m10"
                 android:background="@drawable/button_blue_radius5"
+                android:focusableInTouchMode="false"
                 android:gravity="center"
                 android:paddingVertical="@dimen/p14"
-                android:focusableInTouchMode="false"
                 android:text="@string/add_to_cart"
                 android:textColor="@color/white"
                 android:textSize="@dimen/text_size_14"

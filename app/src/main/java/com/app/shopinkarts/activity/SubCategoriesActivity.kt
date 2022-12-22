@@ -15,6 +15,7 @@ import com.app.shopinkarts.classes.Utils
 import com.app.shopinkarts.databinding.ActivitySubCategoriesBinding
 import com.app.shopinkarts.response.SubCategoriesResponse
 import com.app.shopinkarts.response.SubCategory
+import org.json.JSONObject
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -76,10 +77,11 @@ class SubCategoriesActivity : AppCompatActivity() {
                     }
                     Log.d("TAG", "onResponse_SuccessResponse ${subCategoriesResponse.message} ")
                 } else {
+                    val jObjError = JSONObject(response.errorBody()!!.string())
                     Toast.makeText(
                         this@SubCategoriesActivity,
-                        "${subCategoriesResponse?.message}",
-                        Toast.LENGTH_SHORT
+                        jObjError.getString("message"),
+                        Toast.LENGTH_LONG
                     ).show()
                 }
             }

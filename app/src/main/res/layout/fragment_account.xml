@@ -56,6 +56,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/m10"
+                android:fontFamily="@font/inter_medium"
                 android:gravity="center"
                 android:text="@string/_91_8945346789"
                 android:textColor="@color/primary_text"
@@ -165,10 +166,11 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/m4"
             android:background="@color/white"
+            android:fontFamily="@font/inter_medium"
             android:padding="@dimen/p14"
             android:text="@string/customer_support"
             android:textColor="@color/primary_text"
-            android:textSize="@dimen/text_size_13"
+            android:textSize="@dimen/text_size_14"
             app:layout_constraintTop_toBottomOf="@id/addressesTV"
 
             />
@@ -192,10 +194,11 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/m4"
             android:background="@color/white"
+            android:fontFamily="@font/inter_medium"
             android:padding="@dimen/p14"
             android:text="@string/about_shopinkarts"
             android:textColor="@color/primary_text"
-            android:textSize="@dimen/text_size_13"
+            android:textSize="@dimen/text_size_14"
             app:layout_constraintTop_toBottomOf="@id/customerSupportTV"
 
             />
@@ -219,10 +222,12 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/m4"
             android:background="@color/white"
+            android:fontFamily="@font/inter_medium"
+            android:visibility="gone"
             android:padding="@dimen/p14"
             android:text="@string/terms_conditions"
             android:textColor="@color/primary_text"
-            android:textSize="@dimen/text_size_13"
+            android:textSize="@dimen/text_size_14"
             app:layout_constraintTop_toBottomOf="@id/aboutTV"
 
             />
@@ -233,6 +238,7 @@
             android:layout_height="30dp"
             android:layout_marginEnd="@dimen/m16"
             android:background="@color/white"
+            android:visibility="gone"
             android:padding="@dimen/p8"
             android:src="@drawable/arrow_next"
             app:layout_constraintBottom_toBottomOf="@+id/termsConditionsTV"
@@ -246,10 +252,11 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/m4"
             android:background="@color/white"
+            android:fontFamily="@font/inter_medium"
             android:padding="@dimen/p14"
             android:text="@string/refund_policy"
             android:textColor="@color/primary_text"
-            android:textSize="@dimen/text_size_13"
+            android:textSize="@dimen/text_size_14"
             app:layout_constraintTop_toBottomOf="@id/termsConditionsTV"
 
             />
@@ -274,10 +281,11 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/m4"
             android:background="@color/white"
+            android:fontFamily="@font/inter_medium"
             android:padding="@dimen/p14"
             android:text="@string/privacy_policy"
             android:textColor="@color/primary_text"
-            android:textSize="@dimen/text_size_13"
+            android:textSize="@dimen/text_size_14"
             app:layout_constraintTop_toBottomOf="@id/refundPolicyTV"
 
             />
@@ -302,10 +310,11 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="4dp"
             android:background="@color/white"
+            android:fontFamily="@font/inter_medium"
             android:padding="@dimen/p14"
             android:text="@string/logout"
             android:textColor="@color/red"
-            android:textSize="@dimen/text_size_13"
+            android:textSize="@dimen/text_size_14"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/privacyPolicyTV" />
 

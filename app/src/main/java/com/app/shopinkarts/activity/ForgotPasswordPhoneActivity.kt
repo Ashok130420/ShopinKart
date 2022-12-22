@@ -16,6 +16,7 @@ import com.app.shopinkarts.api.RetrofitClient
 import com.app.shopinkarts.classes.Utils
 import com.app.shopinkarts.databinding.ActivityForgotPasswordEmailBinding
 import com.app.shopinkarts.response.ForgotPasswordSendOtpResponse
+import org.json.JSONObject
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -92,8 +93,11 @@ class ForgotPasswordPhoneActivity : AppCompatActivity() {
 
                 } else {
                     mProgressDialog.dismiss()
+                    val jObjError = JSONObject(response.errorBody()!!.string())
                     Toast.makeText(
-                        this@ForgotPasswordPhoneActivity, response.message(), Toast.LENGTH_SHORT
+                        this@ForgotPasswordPhoneActivity,
+                        jObjError.getString("message"),
+                        Toast.LENGTH_LONG
                     ).show()
                 }
                 mProgressDialog.dismiss()

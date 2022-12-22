@@ -8,6 +8,7 @@ import android.os.Bundle
 import android.text.method.HideReturnsTransformationMethod
 import android.text.method.PasswordTransformationMethod
 import android.util.Log
+import android.util.Patterns
 import android.view.MotionEvent
 import android.view.View
 import android.view.inputmethod.InputMethodManager
@@ -23,6 +24,7 @@ import com.app.shopinkarts.classes.Utils
 import com.app.shopinkarts.databinding.ActivitySignUpBinding
 import com.app.shopinkarts.response.VerifyOtpResponse
 import com.onesignal.OneSignal
+import org.json.JSONObject
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -41,6 +43,7 @@ class SignUpActivity : AppCompatActivity() {
     var gst = ""
 
     var verifyOtpSend = ""
+    var user = 0
 
 
     companion object {
@@ -76,11 +79,13 @@ class SignUpActivity : AppCompatActivity() {
         }
 
         binding.personalRB.setOnClickListener {
+            user = 0
             binding.gstTV.visibility = View.GONE
             binding.gstValueET.visibility = View.GONE
         }
 
         binding.resellingRB.setOnClickListener {
+            user = 1
             binding.gstTV.visibility = View.VISIBLE
             binding.gstValueET.visibility = View.VISIBLE
         }
@@ -97,16 +102,24 @@ class SignUpActivity : AppCompatActivity() {
                 binding.phoneET.requestFocus()
                 return@setOnClickListener
             }
+            if (user == 1) {
+                if (gst.isEmpty()) {
+                    binding.gstValueET.error = "Enter gst number"
+                    binding.gstValueET.requestFocus()
+                    return@setOnClickListener
+                }
+            }
             /* if (email.isEmpty()) {
                  binding.emailET.error = "Enter email address"
                  binding.emailET.requestFocus()
                  return@setOnClickListener
              }*/
-            /*   if (!Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
-                   binding.emailET.error = "Enter valid email"
-                   binding.emailET.requestFocus()
-                   return@setOnClickListener
-               }*/
+            if (!Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
+                binding.emailET.error = "Enter valid email"
+                binding.emailET.requestFocus()
+                return@setOnClickListener
+            }
+
             if (password.isEmpty()) {
                 binding.passwordET.error = "Enter password"
                 binding.passwordET.requestFocus()
@@ -270,9 +283,9 @@ class SignUpActivity : AppCompatActivity() {
                     }
 
                 } else {
-                    mProgressDialog.dismiss()
+                    val jObjError = JSONObject(response.errorBody()!!.string())
                     Toast.makeText(
-                        this@SignUpActivity, response.message(), Toast.LENGTH_SHORT
+                        this@SignUpActivity, jObjError.getString("message"), Toast.LENGTH_LONG
                     ).show()
                 }
                 mProgressDialog.dismiss()
