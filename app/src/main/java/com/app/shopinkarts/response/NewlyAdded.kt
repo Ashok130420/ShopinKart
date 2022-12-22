@@ -16,7 +16,7 @@ data class NewlyAdded(
     val tax: Int,
     val taxType: Int,
     val variantsArr: List<VariantsArr>,
-    val avgRating: Int,
+    val avgRating: Double,
     val deliveryInstructions: List<String>,
     val dispatchDetails: List<String>,
     val isFreeDelivery: Int,
