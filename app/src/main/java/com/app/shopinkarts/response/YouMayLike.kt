@@ -23,7 +23,7 @@ data class YouMayLike(
     val tax: Int,
     val taxType: Int,
     val variantsArr: List<VariantsArr>,
-    val manufacturerId: Int,
+    val manufacturerId: String,
     val priceReselling: Int,
     val productId: String,
 
