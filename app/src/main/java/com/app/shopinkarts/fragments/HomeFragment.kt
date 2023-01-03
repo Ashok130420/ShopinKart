@@ -465,12 +465,12 @@ class HomeFragment : Fragment() {
                         binding.topRatedRV.isNestedScrollingEnabled = false
                         topRatedAdapter.notifyDataSetChanged()
 
-//                        arrayListFlashSale.clear()
+                        arrayListFlashSale.clear()
 //                        arrayListFlashSale.addAll(dashBoardResponse.flashSale)
-//                        flashSaleAdapter = FlashSaleAdapter(requireContext(), arrayListFlashSale)
-//                        binding.flashSaleRV.adapter = flashSaleAdapter
-//                        binding.flashSaleRV.isNestedScrollingEnabled = false
-//                        flashSaleAdapter.notifyDataSetChanged()
+                        flashSaleAdapter = FlashSaleAdapter(requireContext(), arrayListFlashSale)
+                        binding.flashSaleRV.adapter = flashSaleAdapter
+                        binding.flashSaleRV.isNestedScrollingEnabled = false
+                        flashSaleAdapter.notifyDataSetChanged()
 
 //                        arrayListDealOfDay.clear()
 //                        arrayListDealOfDay.addAll(dashBoardResponse.dealOfDay)

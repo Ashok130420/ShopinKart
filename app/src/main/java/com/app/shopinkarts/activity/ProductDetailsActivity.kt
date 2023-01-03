@@ -832,7 +832,7 @@ class ProductDetailsActivity : AppCompatActivity() {
                     }
 
 //                    discountedPrice = elements.price
-                    binding.actualPriceTV.text = "Rs ${elements.actualPrice}.00"
+//                    binding.actualPriceTV.text = "Rs ${elements.actualPrice}.00"
 //                    actualPrice = elements.actualPrice
 //                    totalAmount = arrayListVariant.sumBy { it.price }
                     stock = elements.stock
