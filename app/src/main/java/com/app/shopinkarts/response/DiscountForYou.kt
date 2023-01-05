@@ -21,5 +21,11 @@ data class DiscountForYou(
     val subCategoryId: String,
     val tax: Int,
     val taxType: Int,
-    val variantsArr: List<VariantsArr>
+    val variantsArr: List<VariantsArr>,
+
+    val hsnCode: String,
+    val manufacturerId: String,
+    val priceReselling: Int,
+    val productId: String,
+
 )

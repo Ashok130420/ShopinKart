@@ -26,5 +26,6 @@ data class YouMayLike(
     val manufacturerId: String,
     val priceReselling: Int,
     val productId: String,
+    val hsnCode: String,
 
     )

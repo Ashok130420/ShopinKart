@@ -23,4 +23,8 @@ data class TopRated(
     val isFreeDelivery: Int,
     val productCheckList: ProductCheckList,
     val reviews: List<Any>,
+    val hsnCode: String,
+    val manufacturerId: String,
+    val priceReselling: Int,
+    val productId: String,
 )

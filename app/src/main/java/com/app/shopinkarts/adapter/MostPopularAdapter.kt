@@ -3,27 +3,27 @@ package com.app.shopinkarts.adapter
 import android.annotation.SuppressLint
 import android.content.Context
 import android.content.Intent
+import android.util.Log
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.RecyclerView
-import com.bumptech.glide.Glide
 import com.app.shopinkarts.R
 import com.app.shopinkarts.activity.ProductDetailsActivity
+import com.app.shopinkarts.classes.SharedPreference
 import com.app.shopinkarts.databinding.ItemsMostPopularBinding
 import com.app.shopinkarts.response.MostPopular
+import com.bumptech.glide.Glide
 
 class MostPopularAdapter(val context: Context, val arrayList: ArrayList<MostPopular>) :
     RecyclerView.Adapter<MostPopularAdapter.ViewHolder>() {
 
+    lateinit var sharedPreference: SharedPreference
+    var userType = ""
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val binding: ItemsMostPopularBinding = DataBindingUtil.inflate(
-            LayoutInflater.from(parent.context),
-            R.layout.items_most_popular,
-            parent,
-            false
+            LayoutInflater.from(parent.context), R.layout.items_most_popular, parent, false
         )
 
         return ViewHolder(binding)
@@ -31,23 +31,43 @@ class MostPopularAdapter(val context: Context, val arrayList: ArrayList<MostPopu
 
     @SuppressLint("SetTextI18n")
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
+
+        sharedPreference = SharedPreference(context)
+        userType = sharedPreference.getUserType().toString()
+        Log.d("USERTYPE.....D", userType)
+
         val itemDetails = arrayList[position]
         holder.binding.apply {
             if (itemDetails.productImages.isNotEmpty()) {
                 Glide.with(context).load(itemDetails.productImages[0]).into(imageIV)
             }
+
+            if (userType == "0") {
+                priceTV.text = "Rs ${itemDetails.price}"
+            }else if(userType == "1") {
+                priceTV.text = "Rs ${itemDetails.priceReselling}"
+            }
             productTV.text = itemDetails.productName
-            priceTV.text = "Rs ${itemDetails.price}"
             ratingTV.text = itemDetails.avgRating.toString()
 
             var discount = 0
-            if (itemDetails.discountType == 1) {
-                discount = (itemDetails.price * itemDetails.discount) / 100
-                priceTV.text = "Rs ${(itemDetails.price) - (discount)}"
-            } else if (itemDetails.discountType == 0) {
-                discount = (itemDetails.price - itemDetails.discount)
-                priceTV.text = "Rs $discount"
+            if (userType == "0") {
+                if (itemDetails.discountType == 1) {
+                    discount = (itemDetails.price * itemDetails.discount) / 100
+                    priceTV.text = "Rs ${(itemDetails.price) - (discount)}"
+                } else if (itemDetails.discountType == 0) {
+                    discount = (itemDetails.price - itemDetails.discount)
+                    priceTV.text = "Rs $discount"
+                }
 
+            } else if (userType == "1") {
+                if (itemDetails.discountType == 1) {
+                    discount = (itemDetails.priceReselling * itemDetails.discount) / 100
+                    priceTV.text = "Rs ${(itemDetails.priceReselling) - (discount)}"
+                } else if (itemDetails.discountType == 0) {
+                    discount = (itemDetails.priceReselling - itemDetails.discount)
+                    priceTV.text = "Rs $discount"
+                }
             }
 
         }
