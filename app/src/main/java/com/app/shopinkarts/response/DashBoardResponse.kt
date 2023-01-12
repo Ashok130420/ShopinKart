@@ -14,4 +14,8 @@ data class DashBoardResponse(
     val discountForYou: List<DiscountForYou>,
     val youMayLike: List<YouMayLike>,
 
+    val flashSaleProducts: List<FlashSaleProduct>,
+    val isFlashSellActive: IsFlashSellActive,
+
+
     )

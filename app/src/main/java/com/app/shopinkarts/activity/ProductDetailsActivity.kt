@@ -480,32 +480,6 @@ class ProductDetailsActivity : AppCompatActivity() {
                 sharedPreference.setArray()
             }
 
-//            DashBoardActivity.arrayListVariants.addAll(variantArray)
-//            sharedPreference.setArray()
-
-            /* if (DashBoardActivity.selectedVIDs.contains(vId)) {
-                     if (product.variants.contains(Variants(color = color, size = size, quantity = quantitySze))) {
-                         Toast.makeText(this, "Product already in cart", Toast.LENGTH_SHORT).show()
-                     }else{
-                         product.variants.add(Variants(color = color, size = size, quantity = quantitySze))
-                         DashBoardActivity.arrayListCart.add(
-                             product
-                         )
-                     }
-
-             }
-             else {
-
-                 product.variants.add(Variants(color = color, size = size, quantity = quantitySze))
-                 DashBoardActivity.arrayListCart.add(
-                     product
-                 )
-                 DashBoardActivity.selectedVIDs.add(vId)
-                 Toast.makeText(this, "Product Added Successfully", Toast.LENGTH_SHORT).show()
-
-                 //store  arraylist in SP
-                 sharedPreference.setArray()
-             }*/
 
         }
         Log.d("variantTarget", variantTarget)
@@ -612,10 +586,6 @@ class ProductDetailsActivity : AppCompatActivity() {
 
                         }
 
-//                        if (arrayBanner.isNotEmpty()) autoSlide(arrayBanner.size)
-
-//                        binding.dispatchedTV.text = productResponse.product.dispatchDetails[0]
-//                        if (productResponse.product.dispatchDetails[1].isNotEmpty()) {
                         binding.dispatchedTV.text = productResponse.product.deliveryInstructions[0]
                         binding.deliveryTV.text = productResponse.product.dispatchDetails[0]
 //                        }
@@ -639,15 +609,7 @@ class ProductDetailsActivity : AppCompatActivity() {
                             } else {
                                 Html.fromHtml(productResponse.product.description)
                             }
-//                        binding.productCheckListDetailsTV.text =
-//                            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
-//                                Html.fromHtml(
-//                                    " ${productResponse.product.productCheckList.box} ${productResponse.product.productCheckList.color}",
-//                                    Html.FROM_HTML_MODE_COMPACT
-//                                )
-//                            } else {
-//                                Html.fromHtml(productResponse.product.productCheckList.toString())
-//                            }
+
 
                         binding.productCheckListDetailsTV.text =
                             "Item : ${productResponse.product.productCheckList.box} \nColor : ${productResponse.product.productCheckList.color}"
@@ -795,8 +757,6 @@ class ProductDetailsActivity : AppCompatActivity() {
                     vId = elements.id
                     Log.d("vId", elements.id)
 
-//                    unitPrice = elements.price
-//                    binding.discountedPriceTV.text = "Rs ${elements.price}.00"
 
                     var discount = 0
                     Log.d("unitPrice.", elements.discountType.toString())
@@ -831,10 +791,7 @@ class ProductDetailsActivity : AppCompatActivity() {
                         Log.d("unitPrice..", "${(dPrice)} - ${(dDiscount)}")
                     }
 
-//                    discountedPrice = elements.price
-//                    binding.actualPriceTV.text = "Rs ${elements.actualPrice}.00"
-//                    actualPrice = elements.actualPrice
-//                    totalAmount = arrayListVariant.sumBy { it.price }
+
                     stock = elements.stock
                     Log.d("Stock", stock.toString())
                 }
@@ -876,7 +833,6 @@ class ProductDetailsActivity : AppCompatActivity() {
             ) != PackageManager.PERMISSION_GRANTED
         ) {
 
-            // this will request for permission when user has not granted permission for the app
 
             ActivityCompat.requestPermissions(
                 this as Activity, arrayOf(

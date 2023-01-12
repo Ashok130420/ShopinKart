@@ -26,6 +26,7 @@ import com.app.shopinkarts.activity.ViewAllActivity
 import com.app.shopinkarts.adapter.*
 import com.app.shopinkarts.api.RetrofitClient
 import com.app.shopinkarts.classes.CustomScrollView.OnBottomReachedListener
+import com.app.shopinkarts.classes.SharedPreference
 import com.app.shopinkarts.databinding.FragmentHomeBinding
 import com.app.shopinkarts.model.*
 import com.app.shopinkarts.response.*
@@ -83,13 +84,16 @@ class HomeFragment : Fragment() {
     val limit = 8
     lateinit var layoutManager: LinearLayoutManager
 
+    lateinit var sharedPreference: SharedPreference
+    var userType = ""
+
     companion object {
         var mInstance: HomeFragment = HomeFragment()
 
         val arrayListNewlyAdded: ArrayList<NewlyAdded> = ArrayList()
         val arrayListMostPopular: ArrayList<MostPopular> = ArrayList()
         val arrayListTopRated: ArrayList<TopRated> = ArrayList()
-        val arrayListFlashSale: ArrayList<FlashSale> = ArrayList()
+        val arrayListFlashSale: ArrayList<FlashSaleProduct> = ArrayList()
         val arrayListDealOfDay: ArrayList<DealOfDay> = ArrayList()
         val arrayListShopFor: ArrayList<ShopFor> = ArrayList()
         val arrayListDiscountForYou: ArrayList<DiscountForYou> = ArrayList()
@@ -113,6 +117,8 @@ class HomeFragment : Fragment() {
 
         //activity?.window?.setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_RESIZE)
 
+        sharedPreference = SharedPreference(requireContext())
+        userType = sharedPreference.getUserType().toString()
 
         endlessProductsAdapter = EndlessProductsAdapter(requireContext(), arrayListEndLessProduct)
         binding.allProductsRV.adapter = endlessProductsAdapter
@@ -465,12 +471,34 @@ class HomeFragment : Fragment() {
                         binding.topRatedRV.isNestedScrollingEnabled = false
                         topRatedAdapter.notifyDataSetChanged()
 
-                        arrayListFlashSale.clear()
-//                        arrayListFlashSale.addAll(dashBoardResponse.flashSale)
-                        flashSaleAdapter = FlashSaleAdapter(requireContext(), arrayListFlashSale)
-                        binding.flashSaleRV.adapter = flashSaleAdapter
-                        binding.flashSaleRV.isNestedScrollingEnabled = false
-                        flashSaleAdapter.notifyDataSetChanged()
+                        if (userType == "0") {
+                            binding.flashSaleCL.visibility = View.GONE
+                            binding.flashSaleAllItemsCL.visibility = View.GONE
+                        } else if (userType == "1") {
+
+                            arrayListFlashSale.clear()
+                            if (dashBoardResponse.isFlashSellActive.isActive==1){
+
+                                binding.flashSaleCL.visibility = View.VISIBLE
+                                binding.flashSaleAllItemsCL.visibility = View.VISIBLE
+
+                                if (dashBoardResponse.flashSaleProducts.isNotEmpty()) {
+
+                                    arrayListFlashSale.addAll(dashBoardResponse.flashSaleProducts)
+                                    flashSaleAdapter =
+                                        FlashSaleAdapter(requireContext(), arrayListFlashSale)
+                                    binding.flashSaleRV.adapter = flashSaleAdapter
+                                    binding.flashSaleRV.isNestedScrollingEnabled = false
+                                    flashSaleAdapter.notifyDataSetChanged()
+                                }
+                            }
+                            else{
+                                binding.flashSaleCL.visibility = View.GONE
+                                binding.flashSaleAllItemsCL.visibility = View.GONE
+                            }
+
+                        }
+
 
 //                        arrayListDealOfDay.clear()
 //                        arrayListDealOfDay.addAll(dashBoardResponse.dealOfDay)

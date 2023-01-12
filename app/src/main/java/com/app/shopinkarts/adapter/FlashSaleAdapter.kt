@@ -10,12 +10,16 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.app.shopinkarts.R
 import com.app.shopinkarts.activity.ProductDetailsActivity
+import com.app.shopinkarts.classes.SharedPreference
 import com.app.shopinkarts.databinding.ItemsFlashSaleBinding
 import com.app.shopinkarts.response.FlashSale
+import com.app.shopinkarts.response.FlashSaleProduct
 
-class FlashSaleAdapter(val context: Context, val arrayList: ArrayList<FlashSale>) :
+class FlashSaleAdapter(val context: Context, val arrayList: ArrayList<FlashSaleProduct>) :
     RecyclerView.Adapter<FlashSaleAdapter.ViewHolder>() {
 
+    lateinit var sharedPreference: SharedPreference
+    var userType = ""
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val binding: ItemsFlashSaleBinding = DataBindingUtil.inflate(
@@ -29,13 +33,21 @@ class FlashSaleAdapter(val context: Context, val arrayList: ArrayList<FlashSale>
 
     @SuppressLint("SetTextI18n")
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
+
+        sharedPreference = SharedPreference(context)
+        userType = sharedPreference.getUserType().toString()
+
         val itemDetails = arrayList[position]
         holder.itemsFlashSaleBinding.apply {
             if (itemDetails.productImages.isNotEmpty()) {
                 Glide.with(context).load(itemDetails.productImages[0]).into(discountIV)
             }
             productNameTV.text = itemDetails.productName
-            priceTV.text = "Rs ${itemDetails.price}"
+            if (userType == "0") {
+                priceTV.text = "Rs ${itemDetails.price}"
+            }else if(userType == "1") {
+                priceTV.text = "Rs ${itemDetails.priceReselling}"
+            }
             discountTV.text = "${itemDetails.discount} %OFF"
             ratingTV.text=itemDetails.avgRating.toString()
             var discount = 0
